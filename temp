@@ -1,0 +1,53 @@
+
+$fontpageLayouts = get_option('kjd_frontPage_layout_settings');
+$fontpageLayouts = $fontpageLayouts['kjd_frontPage_layout'];
+
+
+$options = get_option('kjd_post_layout_settings');
+$postLayouts = $options['kjd_post_layouts'];
+
+//$pageTemplates = array('template-one','template-two','template-three','template-four','template-five','template-six','front-page-sidebar','front-page-widget-area-1','front-page-widget-area-2','header-widgets','footer-widgets' );
+//$postLayouts = array('posts','single','category','archive','tag','taxonomy','author','date','search','attachment');
+
+$sidebars = wp_get_sidebars_widgets();
+// $frontPage2CountCount = count( $sidebars['front-page-widget-area-2'] );
+
+// foreach($sidebars as $sidebar){
+// 	$widgetCount = count($sidebar);	
+// 	set_widget_area_width($front_page_2_template, $postLayouts['kjd_posts']['position'],$widgetCount);	
+// }
+
+
+function set_widget_area_width($widgetArea, $sidebarPosition,$widgetCount){
+	// if($sidebarPosition =='top' || $sidebarPosition =='bottom'){
+
+		switch($widgetCount){
+			case 1:
+				$widgetArea['before_widget'] = "<div class='span12'>";
+				register_sidebar($widgetArea);
+				break;
+			case 2:
+				$widgetArea['before_widget'] = "<div class='span6'>";
+				register_sidebar($widgetArea);
+				break;
+			case 3:
+				$widgetArea['before_widget'] = "<div class='span4'>";
+				register_sidebar($widgetArea);
+				break;
+			case 4:
+				$widgetArea['before_widget'] = "<div class='span3'>";
+				register_sidebar($widgetArea);
+				break;
+			case 5:
+				$widgetArea['before_widget'] = "<div class='span2'>";
+				register_sidebar($widgetArea);
+				break;
+			case 6:
+				$widgetArea['before_widget'] = "<div class='span2'>";
+				register_sidebar($widgetArea);
+				break;
+		}
+
+	// }
+
+}

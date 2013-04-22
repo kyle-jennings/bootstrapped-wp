@@ -1,0 +1,90 @@
+<?php
+	settings_fields('kjd_'.$section.'_borders_settings');
+	$options = get_option('kjd_'.$section.'_borders_settings'); 
+
+	$borderRadius = $options['kjd_'.$section.'_border_radius'];
+
+	// $generalSettings = get_option('kjd_general_settings');
+	// $confinePage = $generalSettings['kjd_confine_page'];
+	// if($confinePage == 'true'){ 
+
+	// }else{
+
+	// }
+	$confinePage ='true';
+	$borders = array("top","right","bottom","left");
+	$corners = array('top-left', 'top-right','bottom-left','bottom-right');
+	$borderSizes = range(1,20);
+	$borderStyles = array('none','solid','dotted','dashed','double','groove','ridge','inset','outset');
+?>
+		<!--**************-->
+		<!-- Border stuff -->
+		<!--***************-->
+		<div class="optionsWrapper">
+			<h2>Border style and colors</h2>
+
+			<?php foreach($borders as $border){ 
+
+				$borderValue = $options['kjd_'.$section.'_'.$border.'_border'];
+				$color = $options['kjd_'.$section.'_'.$border.'_border']['color'];
+				$size = $options['kjd_'.$section.'_'.$border.'_border']['size'];
+				$style = $options['kjd_'.$section.'_'.$border.'_border']['style'];
+
+
+			?>
+			
+			<h3><?echo ucfirst($border);?> Border</h3>
+			<!-- border color -->
+			<div class="color_option option" style="position: relative;">
+
+				<label>Border color</label>
+				<input type="minicolors" class="minicolors" data-default="none" name="kjd_<?php echo $section;?>_borders_settings[kjd_<?php echo $section;?>_<?php echo $border;?>_border][color]"
+				value="<?php echo $color ? $color : '' ;?>"
+				 />		
+				<a class="clearColor">Clear</a>
+			</div> 
+
+			<!-- border size -->
+			<div class="option">
+				<label>Border size</label>
+				<select name="kjd_<?php echo $section;?>_borders_settings[kjd_<?php echo $section;?>_<?php echo $border;?>_border][size]">
+					<?php foreach($borderSizes as $size){?>
+						<option value="<?php echo $size.'px';?>" <?php selected( $borderValue['size'], $size.'px', true) ?>><?php echo $size.'px';?></option>
+					<?php }?>
+				</select>
+			</div>
+
+			<!-- border style -->
+			<div class="option">
+				<label>Border style</label>
+				<select name="kjd_<?php echo $section;?>_borders_settings[kjd_<?php echo $section;?>_<?php echo $border;?>_border][style]">
+					<?php foreach($borderStyles as $style){?>
+						<option value="<?php echo $style;?>"<?php selected( $borderValue['style'], $style, true) ?>><?php echo $style;?></option>
+					<?php }?>
+				</select>
+			</div>
+
+			<?php }	?>
+			
+		</div><!-- end options wrapper -->
+		<div class="optionsWrapper">
+						<!-- border radius -->
+			<h2>Border Radius</h2>
+			<?php 
+			if($confinePage == 'true'){ 			
+			foreach($corners as $corner){ 
+			?>
+			
+			<div class="option">
+				<label>Border radius</label>
+				<select name="kjd_<?php echo $section;?>_borders_settings[kjd_<?php echo $section; ?>_border_radius][<?php echo $corner; ?>]">
+					<?php foreach($borderSizes as $radius){?>
+						<option value="<?php echo $radius.'px';?>" <?php selected( $borderRadius[$corner], $radius.'px', true) ?>><?php echo $radius.'px';?>
+						</option>
+					<?php }?>
+				</select>
+			</div>
+
+			<?php } } ?>
+			
+		</div><!-- end options wrapper -->

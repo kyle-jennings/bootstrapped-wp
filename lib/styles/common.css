@@ -1,0 +1,279 @@
+/*
+Theme Name: KJD
+Theme URI: http://kylejenningsdesign.com
+Description: Modeled after my portfolio site.
+Version: 1.0
+Author: Kyle Jennings Design
+
+*/
+*{outline:none !important; text-shadow:none !important;}
+
+
+/* image slider for gallery 1 */
+.navSlides li{margin:0 10px 0 0;}
+.navSlides li img{height:75px; width:75px;}
+.clearfix{clear:both;}
+
+/*input[type="text"], textarea{padding:4px;}*/
+
+
+/* Scaffolding */
+/* ****************** */
+/* Sticky Footer Stuff */
+html,body{		
+		height: 100%;
+		margin:0 !important;
+		overflow:auto;
+		position:relative;
+		}
+/* page > .container is for future use - backgrounds mostly*/
+#pageWrapper{	
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+		margin: 0 auto -270px;
+	}
+
+/*main > .container is for sticky footer*/
+
+#mastArea{position:relative;}
+#header{}
+#logoWrapper > a >img,#logoWrapper > img{ position:relative; z-index:99999;}
+
+	#header > .container,#navbar > .container,#cycler > .container, #pageTitle > .container,#body > .container,#footer > .container{padding:10px 0;}
+.frontPageBody{position:relative;}
+
+
+.navbar{margin:0;}
+
+/* Cycler Settings*/
+	#imageSliderWrapper{
+			position:relative; 
+			margin:0 auto; 
+		}
+	#imageSliderWrapper > .container #imageSlider{ 
+		background:url(../images/shadow.png) no-repeat bottom center; 
+		padding:20px 0 60px; 
+		overflow: hidden;
+	}
+	#imageSliderWrapper > .container > #imageSlider > .singleImage > img{margin:0 auto; display:block;}
+	.singleImage{margin:0 auto; position:relative;}
+
+	.singleImage .caption{
+		-moz-box-sizing: border-box;
+		background: none repeat scroll 0 0 #000000;
+		color: #FFFFFF;
+		opacity: 0.8;
+		overflow: hidden;
+		padding: 10px 0;
+		position: absolute;
+		z-index: 8;
+	}
+
+	.singleImage .caption{padding:10px;}
+
+	.nivoSlider {
+	    position:relative;
+	    background:url(../images/loading.gif) no-repeat 50% 50%;
+	    /*max-height:400px !important;*/
+	}
+	.nivoSlider img {
+	    position:absolute;
+	    top:0px;
+	    left:0px;
+	    display:none;
+	}
+	.nivoSlider a {
+	    border:0;
+	    display:block;
+	}
+
+/*	.slides li img{display:block; margin:0 auto; max-height:400px !important;}
+	.flex-control-nav.flex-control-paging{top:325px !important; left:47%; height:20px; width:100px;}
+	.flex-direction-nav{}*/
+/* Page Settings */
+#pageTitle{}
+	#pageTitle > .container h1{margin:0;}
+
+
+#body{}
+	
+	#mainContent{}
+	#sideContent{}
+
+
+/* content */	
+
+.post-info
+{
+	border-bottom:1px solid rgba(0,0,0,.8);
+	margin-bottom:20px;
+}
+
+
+/* bootstrap stuff*/
+.image{float:left;}
+
+.jumbotron {
+    margin: 60px 0;
+    text-align: center;
+}
+.jumbotron h1 {
+    font-size: 72px;
+    line-height: 1;
+}
+.jumbotron h2{
+    font-size: 66px;
+    line-height: 1;
+}
+.jumbotron h3{
+    font-size: 54px;
+    line-height: 1;
+}
+.jumbotron h4{
+    font-size: 48px;
+    line-height: 1;
+}
+
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+
+.featurette-divider {
+    margin: 80px 0;
+}
+.featurette {
+    overflow: hidden;
+    padding-top: 120px;
+}
+.featurette img {
+    margin-top: -120px !important;
+}
+
+.featurette h1,.featurette h2,.featurette h3,.featurette h4 {
+    font-size: 50px;
+    font-weight: 300;
+    letter-spacing: -1px;
+    line-height: 1;
+}
+
+.featurette p{
+  	font-size: 21px;
+    font-weight: 200;
+    line-height: 30px;
+    margin-bottom: 20px;
+}
+
+.hero-unit, .well{border:none !important; white-space: inherit !important;}
+
+
+.well-light-grey{background-color: #eeeeee;}
+.well-grey{background-color: #eeeeee;}
+.well-dark-grey{background-color:#999; color:#EEEEEE;}
+.well.badge-info{color:#D9EDF7;}
+.well.badge-success{color:#DFF0D8;}
+.well.badge-warning{color:#FCF8E3;}
+.well.badge-important{color:#EED3D7;}
+
+.well.well-dark-grey{color:#EEEEEE;}
+.well.well-grey{color:#999999;}
+.well.label-info{color:#BCE8F1;}
+.well.label-success{color:#DFF0D8;}
+.well.label-warning{color:#FCF8E3;}
+.well.label-important{color:#F2DEDE;}
+
+
+.well.alert{padding:19px;}
+
+
+.hero-unit h1 {
+    color: inherit;
+    font-size: 60px;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 0;
+    padding:0 0 10px !important; 
+}
+/* images */
+.thumbnail{text-align:center;}
+.thumbnail img{border:none !important;}
+div.img-rounded,div.img-polaroid,div.img-circle{ margin:0 5px;}
+div.img-rounded img{
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+div.img-polaroid img{
+  padding: 4px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+     -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+div.img-circle img{
+  -webkit-border-radius: 5000px;
+     -moz-border-radius: 5000px;
+          border-radius: 5000px;
+}
+
+/**====================================/
+/* ===== jquery cycler gallery thumbnails ===== */
+.items{}
+.nextThumbs{float:right;}
+.paginationLinks{clear:both;}
+/* ===== image lists ===== */
+
+.imageList{ list-style-type:none; padding:0px; margin:0;}
+.imageList li{float:left; margin:0 5px 5px 0;}
+.imageList li a{display:block;}
+.imageList img{height:64px; width:64px;}
+
+ 
+.imageCycler div{overflow:visible;}
+.imageCycler div img{border:none; cursor:pointer; display:block;}
+.imageCycler div imageInfo{overflow:auto;}
+
+
+/* =====  ===== */
+
+
+#push, #footer{clear:both; height:270px;}
+#footer{}
+@media (max-width: 979px) {
+
+
+.navbar .dropdown-menu{background:transparent !important;}
+.navbar .dropdown-menu:after,
+.navbar .dropdown-menu:before{
+	display:none !important;
+}
+.navbar-fixed-top, .navbar-fixed-bottom {
+    position: fixed !important;
+}
+
+ }
+
+
+@media (max-width: 767px) {
+
+#navbar{position:none}
+
+.navbar .dropdown-menu{background:transparent !important;}
+.navbar .dropdown-menu:after,
+.navbar .dropdown-menu:before{
+	display:none !important;
+}
+	#header {height:auto !important;}
+	#header > .container,.navbar-fixed-top, .navbar-fixed-bottom, .navbar > .container, #cycler > .container, #pageTitle > .container,#body > .container,#footer > .container{
+          padding-left: 20px;
+          padding-right: 20px;
+	}
+	.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > a.dropdown-toggle{
+		margin-top:0px !important;
+	}
+}
