@@ -142,10 +142,8 @@ function navbar_misc_settings_callback(){
 			<div class="option">
 				<label>Nav alignment</label>
 				<select name="kjd_navbar_misc_settings[kjd_navbar_misc][navbar_alignment]">
-					<!-- 
 					<option value="left" <?php selected( $navbarSettings['navbar_alignment'], 'left', true) ?>>Left</option>
-					-->
-					<option value="center" <?php selected( $navbarSettings['navbar_alignment'], 'center', true) ?>>Center</option>
+					<!-- <option value="center" <?php selected( $navbarSettings['navbar_alignment'], 'center', true) ?>>Center</option> -->
 					<option value="right" <?php selected( $navbarSettings['navbar_alignment'], 'right', true) ?>>Right</option>
 				</select>
 			</div>
@@ -207,14 +205,14 @@ function navbar_misc_settings_callback(){
 		<div class="color_option option" style="position: relative;">
 			<label>Background</label>
 
-			<input type="minicolors" data-default="none" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_bg]" 
+			<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_bg]" 
 				value="<?php echo  $navbarSettings['menu_btn_bg'] ?  $navbarSettings['menu_btn_bg'] : ''; ?>"/>
 			<a class="clearColor">Clear</a>
 		</div>
 		<div class="color_option option" style="position: relative;">
 			<label>Border</label>
 
-			<input type="minicolors" data-default="none" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_border]" 
+			<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_border]" 
 				value="<?php echo $navbarSettings['menu_btn_border'] ? $navbarSettings['menu_btn_border'] : ''; ?>"/>
 			<a class="clearColor">Clear</a>
 		</div>
@@ -222,14 +220,14 @@ function navbar_misc_settings_callback(){
 		<div class="color_option option" style="position: relative;">
 			<label>Background - hovered/active</label>
 
-			<input type="minicolors" data-default="none" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_bg_hovered]" 
+			<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_bg_hovered]" 
 				value="<?php echo  $navbarSettings['menu_btn_bg_hovered'] ?  $navbarSettings['menu_btn_bg_hovered'] : ''; ?>"/>
 			<a class="clearColor">Clear</a>
 		</div>
 		<div class="color_option option" style="position: relative;">
 			<label>Border - hovered/active</label>
 
-			<input type="minicolors" data-default="none" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_border_hovered]" 
+			<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_border_hovered]" 
 				value="<?php echo $navbarSettings['menu_btn_border_hovered'] ? $navbarSettings['menu_btn_border_hovered'] : ''; ?>"/>
 			<a class="clearColor">Clear</a>
 		</div>

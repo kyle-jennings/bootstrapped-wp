@@ -15,7 +15,7 @@ if ( !defined('WP_LOAD_PATH') ) {
 		else
 			exit("Could not find wp-load.php");
 }
-
+$adminRoot = dirname(_file_);
 // let's load WordPress
 require_once( WP_LOAD_PATH . 'wp-load.php');
 
@@ -32,17 +32,19 @@ require_once( WP_LOAD_PATH . 'wp-load.php');
 <link rel='stylesheet' id='bootstrap'  href="<?php echo get_bloginfo('template_directory');?>/lib/styles/bootstrap/bootstrap.css" type='text/css' media='all' />
 <link rel='stylesheet' id='bootstrap-responsive-css'  href="<?php echo get_bloginfo('template_directory');?>/lib/styles/bootstrap/bootstrap-responsive.css" type='text/css' media='all' />
 
-
+<script language="javascript" type="text/javascript" src="colorpicker/minicolors.js"></script>
+<link rel='stylesheet'  href="colorpicker/minicolors.css" type='text/css' media='all' />
 <script language="javascript" type="text/javascript" src="shortCodePlugin.js"></script>
 
 <style>
 *{outline:none !important;}
-.buttonGroupSelect{display:none;}
+#thumbsStyle, #background-color,.buttonGroupSelect{display:none;}
 .buttonLabel{display:inline-block; width:80px;}
 .halfWidth{float:left; width:45%;}
 #shortCodeForm{ padding:0 10px;}
 .tab-content{height:450px;}
 #selectedShortCodeName{margin-left:10px;}
+
 </style>
 
 </head>
@@ -271,14 +273,41 @@ require_once( WP_LOAD_PATH . 'wp-load.php');
 			<div class="controls controls-row">
 				<select id="galleryStyle" class="galleryStyle">
 					<option value=''>Select One</option>
-					<option value='cycler'>Basic</option>
-					<option value='elastislide'>Elasislide</option> 
-					<option value='responsivegallery'>Responsive Gallery</option> 
+					<option value='thumbnails'>Thumbnails</option>
+					<option value='elastislide'>Elasislide</option>
+					<option value='wallofthumbs'>Wall of Thumbnails</option> 
+				</select>
+				<input type="hidden" id="hiddenField" class="galleryStyle" /> 
+			</div>
+		</div>
+
+		<div class="control-group" id="thumbsStyle">
+			<label class="control-label">Thumbnail Styles</label>
+			<div class="controls controls-row">
+				Size
+				<select id="thumbsSize" class="galleryStyle">
+					<option value=''>Select One</option>
+					<option value='thumb75'>75px</option>
+					<option value='thumb150'>150px</option> 
+					<option value='thumbFull'>full size</option> 
+				</select>
+				Wrapper
+				<select id="thumbsWrapper" class="galleryStyle">
+					<option value=''>Select One</option>
+					<option value='wrapper'>Yes</option>
+					<option value='no-wrapper'>No</option> 
 				</select>
 			</div>
 		</div>
 
 
+		<div id="background-color" class="control-group">
+			<label class="control-label">Background Color</label>
+			<div class="controls controls-row">
+				<input class="galleryStyle minicolors opacity" data-opacity="0.78" />
+
+			</div>
+		</div>
 	  </div>
 
 	  <div class="tab-pane" id="tab7">

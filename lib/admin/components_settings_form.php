@@ -35,7 +35,7 @@
 		<div class="option" style="position: relative;">
 
 			<label><?php echo ucwords(str_replace('_', ' ', $part));?></label>
-			<input type="minicolors" data-default="none" name="kjd_<?php echo $section; ?>_forms_settings[kjd_<?php echo $section; ?>_forms][<?php echo $part;?>]" value="<?php echo $sectionSettings[$part] ? $sectionSettings[$part] : 'none'; ?>"  />		
+			<input class="minicolors" name="kjd_<?php echo $section; ?>_forms_settings[kjd_<?php echo $section; ?>_forms][<?php echo $part;?>]" value="<?php echo $sectionSettings[$part] ? $sectionSettings[$part] : 'none'; ?>"  />		
 		<a class="clearColor">Clear</a>
 		</div> 
 	<?php
@@ -51,7 +51,7 @@
 		<div class="option" style="position: relative;">
 
 			<label><?php echo ucwords(str_replace('_', ' ', $part));?></label>
-			<input type="minicolors" data-default="none" name="kjd_<?php echo $section; ?>_forms_settings[kjd_<?php echo $section; ?>_forms][<?php echo $part;?>]" value="<?php echo $sectionSettings[$part] ? $sectionSettings[$part] : 'none'; ?>"  />		
+			<input class="minicolors" name="kjd_<?php echo $section; ?>_forms_settings[kjd_<?php echo $section; ?>_forms][<?php echo $part;?>]" value="<?php echo $sectionSettings[$part] ? $sectionSettings[$part] : 'none'; ?>"  />		
 		<a class="clearColor">Clear</a>
 		</div> 
 	<?php
@@ -67,7 +67,7 @@
 		<div class="option" style="position: relative;">
 
 			<label><?php echo ucwords(str_replace('_', ' ', $part));?></label>
-			<input type="minicolors" data-default="none" name="kjd_<?php echo $section; ?>_forms_settings[kjd_<?php echo $section; ?>_forms][<?php echo $part;?>]" value="<?php echo $sectionSettings[$part] ? $sectionSettings[$part] : 'none'; ?>"  />		
+			<input class="minicolors" name="kjd_<?php echo $section; ?>_forms_settings[kjd_<?php echo $section; ?>_forms][<?php echo $part;?>]" value="<?php echo $sectionSettings[$part] ? $sectionSettings[$part] : 'none'; ?>"  />		
 		<a class="clearColor">Clear</a>
 		</div> 
 	<?php
@@ -82,7 +82,7 @@
 		<div class="option" style="position: relative;">
 
 			<label><?php echo ucwords(str_replace('_', ' ', $part));?></label>
-			<input type="minicolors" data-default="none" name="kjd_<?php echo $section; ?>_forms_settings[kjd_<?php echo $section; ?>_forms][<?php echo $part;?>]" value="<?php echo $sectionSettings[$part] ? $sectionSettings[$part] : 'none'; ?>"  />		
+			<input class="minicolors" name="kjd_<?php echo $section; ?>_forms_settings[kjd_<?php echo $section; ?>_forms][<?php echo $part;?>]" value="<?php echo $sectionSettings[$part] ? $sectionSettings[$part] : 'none'; ?>"  />		
 		<a class="clearColor">Clear</a>
 		</div> 
 	<?php
@@ -130,7 +130,7 @@
 		<div class="option" style="position: relative;">
 
 			<label><?php echo ucwords(str_replace('_', ' ', $part));?></label>
-			<input type="minicolors" data-default="none" name="kjd_<?php echo $section; ?>_forms_settings[kjd_<?php echo $section; ?>_forms][<?php echo $part;?>]" value="<?php echo $sectionSettings[$part] ? $sectionSettings[$part] : 'none'; ?>"  />		
+			<input class="minicolors" name="kjd_<?php echo $section; ?>_forms_settings[kjd_<?php echo $section; ?>_forms][<?php echo $part;?>]" value="<?php echo $sectionSettings[$part] ? $sectionSettings[$part] : 'none'; ?>"  />		
 		<a class="clearColor">Clear</a>
 		</div> 
 	<?php

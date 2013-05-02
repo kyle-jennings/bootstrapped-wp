@@ -26,8 +26,9 @@ function kjd_override_gallery($empty, $attr){
 	'include'    => '',
 	'exclude'    => '',
 	'style' => null,
-	'thumbspos' => null,
-	'captionpos' => null
+	'size' => null,
+	'wrapper' => null,
+	'color' => null
 	), $attr));
 
 	$id = intval($id);
@@ -99,11 +100,11 @@ function kjd_override_gallery($empty, $attr){
 			return ' ';
 		}elseif($style=='elastislide'){
 				$template = '<script id="img-wrapper-tmpl" type="text/x-jquery-tmpl">  ';
-				$template .= '<div class="rg-image-wrapper">';
+				$template .= '<div class="rg-image-wrapper" style="background:'.$color.';">';
 				$template .= '{{if itemsCount > 1}}';
 				$template .= '<div class="rg-image-nav">';
-				$template .= '<a href="#" class="rg-image-nav-prev">Previous Image</a>';
-				$template .= '<a href="#" class="rg-image-nav-next">Next Image</a>';
+				$template .= '<a href="#" class="rg-image-nav-prev" style="background-color:'.$color.';">Previous Image</a>';
+				$template .= '<a href="#" class="rg-image-nav-next" style="background-color:'.$color.';">Next Image</a>';
 				$template .= '</div>';
 				$template .= '{{/if}}';
 				$template .= '<div class="rg-image"></div>';
@@ -120,7 +121,7 @@ function kjd_override_gallery($empty, $attr){
 
 			$output .= '<div class="rg-thumbs">';
 			$output .= '<!-- Elastislide Carousel Thumbnail Viewer -->';
-			$output .= '<div class="es-carousel-wrapper">';
+			$output .= '<div class="es-carousel-wrapper" style="background:'.$color.';">';
 				$output .= '<div class="es-nav">';
 				$output .= '<span class="es-nav-prev">Previous</span>';
 				$output .= '<span class="es-nav-next">Next</span>';
@@ -129,9 +130,10 @@ function kjd_override_gallery($empty, $attr){
 				$output .= '<div class="es-carousel">';
 				$output .= '<ul>';
 				
+				$thumbnails = get_post_images(get_the_ID(), 'thumbmail');
 				$fullImages = get_post_images(get_the_ID(), 'large');
-				foreach ($fullImages as $img) {
-		    		$output .= '<li><a href="#"><img src="'.$img[0].'" alt="'.$title.'" data-large="'.$img[0].'" alt="image01" data-description="'.$img["title"].'" /></a></li>';
+				foreach ($thumbnails as $thumb) {
+		    		$output .= '<li><a href="#"><img src="'.$thumb[0].'" alt="'.$title.'" data-large="'.$thumb[0].'" alt="image01" data-description="'.$img["title"].'" /></a></li>';
 				}
 				$output .= '</ul>';
 				$output .= '</div>';

@@ -41,8 +41,8 @@ function load_style_sheets_and_scripts() {
 	wp_enqueue_script('media-upload');  
 	wp_enqueue_script('jquery-ui-sortable'); 	
 
-	wp_enqueue_style("colorPicker", $adminDir."assets/colorpicker/miniColors.css");
-	wp_enqueue_script("colorPicker", $adminDir."assets/colorpicker/miniColors.js");  
+	wp_enqueue_style("colorPicker", $adminDir."assets/colorpicker/minicolors.css");
+	wp_enqueue_script("colorPicker", $adminDir."assets/colorpicker/minicolors.js");  
 	wp_enqueue_script("admin", $adminDir."assets/admin.js", false, "1.0");   
 
 }  

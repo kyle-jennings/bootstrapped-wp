@@ -83,7 +83,7 @@
 		}
 
 		?>
-				<div id="header" class="visible-desktop<?php echo $confineHeaderBackground =='true' ? 'container' : '' ;?>">
+				<div id="header" class="visible-desktop <?php echo $confineHeaderBackground =='true' ? 'container' : '' ;?>">
 					<div class="container">
 						<div class="row">
 							<div id="logoWrapper" class="span6">

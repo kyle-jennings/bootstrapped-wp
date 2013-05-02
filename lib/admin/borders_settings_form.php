@@ -38,7 +38,7 @@
 			<div class="color_option option" style="position: relative;">
 
 				<label>Border color</label>
-				<input type="minicolors" class="minicolors" data-default="none" name="kjd_<?php echo $section;?>_borders_settings[kjd_<?php echo $section;?>_<?php echo $border;?>_border][color]"
+				<input class="minicolors" name="kjd_<?php echo $section;?>_borders_settings[kjd_<?php echo $section;?>_<?php echo $border;?>_border][color]"
 				value="<?php echo $color ? $color : '' ;?>"
 				 />		
 				<a class="clearColor">Clear</a>

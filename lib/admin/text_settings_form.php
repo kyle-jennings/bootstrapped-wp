@@ -29,7 +29,7 @@
 
 			<label>Color</label>
 
-			<input type="minicolors" data-default="none" name="kjd_<?php echo $section;?>_text_settings[kjd_<?php echo $section;?>_<?php echo $element;?>][color];" 
+			<input class="minicolors" name="kjd_<?php echo $section;?>_text_settings[kjd_<?php echo $section;?>_<?php echo $element;?>][color];" 
 				value="<?php echo $value['color'] ? $value['color'] : ''; ?>"/>
 			<a class="clearColor">Clear</a>
 		</div>
@@ -50,7 +50,7 @@
 		<div class="shadowColor color_option option" style="<?php echo $value['decoration'] == 'text-shadow'? 'display:block;' : 'display:none;' ;?>">
 			<label>Text-shadow Color</label>
 
-			<input type="minicolors" data-default="none" name="kjd_<?php echo $section;?>_text_settings[kjd_<?php echo $section;?>_<?php echo $element;?>][textShadowColor];" 
+			<input class="minicolors" name="kjd_<?php echo $section;?>_text_settings[kjd_<?php echo $section;?>_<?php echo $element;?>][textShadowColor];" 
 				value="<?php echo $value['textShadowColor'] ? $value['textShadowColor'] : ''; ?>"/>
 			<a class="clearColor">Clear</a>
 		</div>
@@ -69,7 +69,7 @@
 		<div class="color_option option" style="position: relative;">
 			<label><?php echo $elementName;?> BG Color</label>
 
-			<input type="minicolors" data-default="none" 
+			<input class="minicolors" 
 			name="kjd_<?php echo $section;?>_text_settings[kjd_<?php echo $section;?>_<?php echo $element;?>][bg_color]" 
 				value="<?php echo $value['bg_color'] ? $value['bg_color'] : 'none'; ?>" />
 				<a class="clearColor">Clear</a>

@@ -17,7 +17,7 @@
 		 	<div class="color_option option" style="position: relative;">
 
 				<label>Start color</label>
-				<input type="minicolors" data-default="none" id="content_bgColor" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][color]" value="<?php echo $colorSettings['color'] ? $colorSettings['color'] : 'none'; ?>" />
+				<input class="minicolors" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][color]" value="<?php echo $colorSettings['color'] ? $colorSettings['color'] : 'none'; ?>" />
 <a class="clearColor">Clear</a>
 			</div> <!-- End color select-->
 
@@ -25,7 +25,7 @@
 		 	<div class="color_option option" style="position: relative;">
 
 				<label>End color</label>
-				<input type="minicolors" data-default="none" id="content_bgColor" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][endcolor]" value="<?php echo $colorSettings['endcolor'] ? $colorSettings['endcolor'] : 'none'; ?>"  />
+				<input class="minicolors" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][endcolor]" value="<?php echo $colorSettings['endcolor'] ? $colorSettings['endcolor'] : 'none'; ?>"  />
 <a class="clearColor">Clear</a>
 			</div> <!-- End color select-->
 

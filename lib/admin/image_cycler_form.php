@@ -126,7 +126,7 @@ $effects = '';
 		<div class="color_option option" style="position: relative;">
 
 			<label>Border color</label>
-			<input type="minicolors" data-default="none" 
+			<input class="minicolors" 
 			name="kjd_cycler_misc_settings[kjd_cycler_misc][borderColor]"
 			value="<?php echo $options['kjd_cycler_misc']['borderColor'] ?  $options['kjd_cycler_misc']['borderColor'] : '' ;?>"
 			 />		
