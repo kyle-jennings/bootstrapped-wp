@@ -14,6 +14,10 @@
 .rg-image img{
 	max-height:100%;
 	max-width:100%;
+	background:none !important;
+	border:none !important;
+	border-radius:0 !important;
+	padding:0 !important;
 }
 .rg-image-nav a{
 	position:absolute;

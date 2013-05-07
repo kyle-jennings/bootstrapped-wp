@@ -740,40 +740,98 @@ collapible_content_background','collapible_content_border','collapible_content_t
 thumbnail_background','thumbnail_border','thumbnail_glow','thumbnail_text
 		*/
 
-#<?php echo $section; ?> .thumbnail{ 
-	color:<?php echo $sectionForms['thumbnail_text']; ?>;
-	background:<?php echo $sectionForms['thumbnail_background']; ?> ;  
+/* pagination */
+<?php
+if($section=='header' || $section=='body' || $section=='footer'){
+?>
+
+#<?php echo $section; ?> img{ 
+	/*color:<?php echo $sectionForms['thumbnail_text']; ?>;*/
+	background:<?php echo $sectionForms['kjd_image_background_color']; ?> ;  
+	border:<?php echo $sectionForms['kjd_image_border']['size'].' '.$sectionForms['kjd_image_border']['style'].' '.$sectionForms['kjd_image_border']['color']; ?>;
+	padding:<?php echo $sectionForms['kjd_image_padding']; ?>;
+	border-radius:<?php echo $sectionForms['kjd_image_radius']; ?>;
+}
+
+#<?php echo $section; ?> .thumbnail img{ 
+	/*color:<?php echo $sectionForms['thumbnail_text']; ?>;*/
+	background:none !important;
+	border:none !important;
+	padding:0 !important;
+	border-radius:0 !important;
+}
+#<?php echo $section; ?> .thumbnail
+{
+	background:<?php echo $sectionForms['thumbnail_background']; ?>;
 	border-color:<?php echo $sectionForms['thumbnail_border']; ?>;
 }
 #<?php echo $section; ?> .thumbnail:hover{
-	border-color: :<?php echo $sectionForms['field_border']; ?>;
+	border-color:<?php echo $sectionForms['thumbnail_glow']; ?>;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 2px <?php echo $sectionForms['thumbnail_glow']; ?>;
 }
 
 		/* tables settings
 'table_header_background','table_border','table_header_text_color','even_row_background','even_row_link_color','even_row_text_color','odd_row_background', 'odd_row_link_color','odd_row_text_color','hovered_row_background','hovered_row_link_color')
 		*/
-		.table, .table td, .table th{
+		#<?php echo $section; ?> .table,
+		#<?php echo $section; ?> .table td,
+		#<?php echo $section; ?> .table th{
 			border-color:<?php echo $sectionForms['table_border'];?> !important;
 		}
 
-		.table thead{
+		#<?php echo $section; ?> .table thead{
 			color:<?php echo $sectionForms['table_header_text_color']; ?>;
 			background:<?php echo $sectionForms['table_header_background']; ?>;
 			border-color:<?php echo $sectionForms['table_border'];?> !important;
 		}
-		.table-hover tbody tr td{
+		#<?php echo $section; ?> .table-hover tbody tr td{
 			background:<?php echo $sectionForms['hovered_row_background'];?> !important;
 			color:<?php echo $sectionForms['hovered_row_text_color']; ?>;
 		}
-		.table-striped tbody tr:nth-child(even) td, .table-striped tbody tr:nth-child(even) th{
+		#<?php echo $section; ?> .table-striped tbody tr:nth-child(even) td,
+		#<?php echo $section; ?> .table-striped tbody tr:nth-child(even) th{
 			background:<?php echo $sectionForms['even_row_background'];?> !important;
 			color:<?php echo $sectionForms['even_row_text_color']; ?>;
 		}
-		.table-striped tbody tr:nth-child(odd) td, .table-striped tbody tr:nth-child(odd) th{
+		#<?php echo $section; ?> .table-striped tbody tr:nth-child(odd) td,
+		#<?php echo $section; ?> .table-striped tbody tr:nth-child(odd) th{
 			background:<?php echo $sectionForms['odd_row_background'];?> !important;
 			color:<?php echo $sectionForms['odd_row_text_color']; ?>;
 		}
+
+<?php
+}
+?>
+<?php if($section=='body'){
+	?>
+
+.pagination ul
+{
+	
+}
+.pagination ul li > *
+{
+	background:<?php echo $sectionForms['pagination_background']; ?> ;
+	border-color:<?php echo $sectionForms['pagination_border']; ?> ;
+}
+.pagination li:hover span,
+.pagination li:hover a
+{
+	background:<?php echo $sectionForms['pagination_hover']; ?> ;
+}
+.pagination li a.page-numbers
+{
+	color:<?php echo $sectionForms['pagination_link']; ?> ;
+}
+.pagination li span.page-numbers
+{
+	color:<?php echo $sectionForms['pagination_text']; ?> ;	
+}
+
+<?php
+} ?>
+
+
 /* forms 
 'form_background','form_border','field_background','field_border','field_glow','field_text', 'button_background','button_background_end','button_border','button_text'
 */

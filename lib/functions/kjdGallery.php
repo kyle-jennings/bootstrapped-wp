@@ -74,18 +74,10 @@ function kjd_override_gallery($empty, $attr){
 
 		$output .= "<li class='span2'>";
 
-		if ( $captiontag && trim($attachment->post_excerpt) ) {
-			$output .= "
-				<div class='thumbnail'>";
-					$output .= $link;
-					$output .= wptexturize($attachment->post_excerpt) . 
-				"</div>";
-		}else{
-			$output .= "
-				<div class='thumbnail'>";
-					$output .= $link;
-				"</div>";
-		}
+		$output .= "<div class='thumbnail'>";
+		//$output .= '<img src="'.get_attachment_link($id, $size, false, false).'" />';
+		$output .= '<img src="'.wp_get_attachment_url( $id ).'" />';
+		$output .= "</div>";
 
 		$output .= "</li>";
 		}

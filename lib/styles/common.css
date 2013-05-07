@@ -40,6 +40,8 @@ html,body{
 #header{}
 #logoWrapper > a >img,#logoWrapper > img{ position:relative; z-index:99999;}
 
+#logoWrapper > a > img:hover, #logoWrapper > img:hover {box-shadow: none !important;}
+
 	#header > .container,#navbar > .container,#cycler > .container, #pageTitle > .container,#body > .container,#footer > .container{padding:10px 0;}
 .frontPageBody{position:relative;}
 
@@ -221,6 +223,22 @@ div.img-circle img{
           border-radius: 5000px;
 }
 
+/* pagination */
+.pagination{
+	margin-left:30px;
+}
+
+/* posts */
+.page-header
+{
+	border:none;
+	margin:0;
+	padding:0;
+}
+.content-wrapper
+{
+	margin-bottom:60px;
+}
 /**====================================/
 /* ===== jquery cycler gallery thumbnails ===== */
 .items{}

@@ -8,7 +8,6 @@
 	position:relative;
 	-moz-box-shadow:0px 1px 3px rgba(0, 0, 0, 0.9);
 	-webkit-box-shadow:0px 1px 3px rgba(0, 0, 0, 0.9);
-	box-shadow:0px 1px 3px rgba(0, 0, 0, 0.9);
 	position:relative;
 	margin-bottom:20px;
 }
@@ -42,7 +41,10 @@
 }
 .es-carousel ul li a img{
 	display:block;
-	border:none;
+	background:none !important;
+	border:none !important;
+	border-radius:0 !important;
+	padding:0 !important;
 	max-height:100%;
 	max-width:100%;
 }
@@ -50,7 +52,7 @@
 	position:absolute;
 	top:50%;
 	left:8px;
-	background:transparent url(../images/nav_thumbs.png) no-repeat top left;
+	background:transparent url(images/nav_thumbs.png) no-repeat top left;
 	width:14px;
 	height:26px;
 	margin-top:-13px;

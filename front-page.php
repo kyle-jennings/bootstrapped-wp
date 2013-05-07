@@ -28,14 +28,9 @@ if(!empty($components))
 { ?>
 
 <div id="body" class="frontPageBody <?php echo $confineBodyBackground =='true' ? 'container' : '' ;?>">
-
+	<div class="container">
+	<div class="row">
 <?php 
-if($layoutSettings['position'] != 'right' && $layoutSettings['position'] !='left')
-{ 
-	echo '<div class="container">';
-	echo '<div class="row">';
-	echo '<div class="span9">';
-}	
 	foreach($components as $position => $component)
 	{
 		if($component['component'] =='widget_area_1'){
@@ -54,7 +49,7 @@ if($layoutSettings['position'] != 'right' && $layoutSettings['position'] !='left
 	echo '</div>';
 	echo '<div class="span3">';
 	dynamic_sidebar('front_page_sidebar');
-	echo '</div></div></div>';
+	echo '</div></div>';
 }
 
 }else{ ?>
@@ -182,50 +177,12 @@ function widget_area_2_callback($layoutSettings){
 
 
 function content_callback($layoutSettings){
-
-
-	if (have_posts()) : while (have_posts()) : the_post();
-
-	if($layoutSettings['position'] != 'right' && $layoutSettings['position'] !='left'){ ?>
-		<div class="span12">
-			<div class="page-header">
-				<h1><a href="<?php echo the_permalink(); ?>"><?php the_title(); ?></a></h1>
-			</div>
-			<div class="post-info">
-				<span class="post-date">
-					Posted on: <a href=""><?php the_date(); ?></a>, 
-				</span>
-				<span class="post-author">
-					By: <a href=""><?php the_author(); ?></a>
-				</span>
-			</div>
-			
-			<div class="post-content">
-				<?php the_content(); ?>
-			</div>
-
-			<div class="post-meta">
-
-			</div>
-		</div><!-- end main content end span10-->
-	<?php
-	}else{ ?>
-
-		<div class="span9">
-			<h2><?php the_title(); ?></h2>
-			<div class="theContent">
-				<?php the_content(); ?>
-			</div>
-		</div><!-- end main content end span10-->
-	<?php
-	}
-	
-	endwhile; endif;
+	include('lib/page_code/the_content.php');
 }
 
 function secondary_content_callback($frontPageOptions,$layoutSettings){ 
 	if($layoutSettings['position'] != 'right' && $layoutSettings['position'] !='left'){ ?>
-		<div class="span12">
+		<div class="span12 content-wrapper">
 			<div class="theContent">
 				<?php echo do_shortcode($frontPageOptions['kjd_frontPage_secondaryContent']); ?>
 			</div>
@@ -233,7 +190,7 @@ function secondary_content_callback($frontPageOptions,$layoutSettings){
 	<?php
 	}else{ ?>
 
-		<div class="span9">
+		<div class="span9 content-wrapper">
 			<div class="theContent">
 				<?php echo do_shortcode($frontPageOptions['kjd_frontPage_secondaryContent']); ?>
 			</div>
