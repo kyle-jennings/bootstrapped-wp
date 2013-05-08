@@ -76,7 +76,7 @@ function kjd_override_gallery($empty, $attr){
 
 		$output .= "<div class='thumbnail'>";
 		//$output .= '<img src="'.get_attachment_link($id, $size, false, false).'" />';
-		$output .= '<img src="'.wp_get_attachment_url( $id ).'" />';
+		$output .= '<a href="'.wp_get_attachment_url( $id ).'"><img src="'.wp_get_attachment_url( $id ).'" /></a>';
 		$output .= "</div>";
 
 		$output .= "</li>";
