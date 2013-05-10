@@ -72,9 +72,7 @@ get_header();
 				<?php } ?>
 
 					<div id="sideContent" class="span3 <?php deviceViewSettings($layoutSettings['deviceView']); ?>">		
-					<?php if(is_active_sidebar('kjd_template_13') ){  
-						dynamic_sidebar('kjd_template_3');
-					 } ?>
+					<?php dynamic_sidebar('kjd_template_3'); ?>
 					</div><!-- end sidebar content end span3-->
 
 				<?php if($layoutSettings['position'] =='left'){ ?>

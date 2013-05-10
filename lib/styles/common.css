@@ -100,8 +100,8 @@ html,body{
 
 #body{}
 	
-	#mainContent{}
-	#sideContent{}
+	#mainContent{min-height:1px;}
+	#sideContent{min-height:1px;}
 
 
 /* content */	

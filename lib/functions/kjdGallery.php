@@ -63,7 +63,9 @@ function kjd_override_gallery($empty, $attr){
 
 
 		$captiontag = tag_escape($captiontag);
-
+		if(!$size){
+			$size = 'thumbnail';
+		}
 		$size_class = sanitize_html_class( $size );
 		$gallery_div = "<ul class='thumbnails'>";
 		$output = apply_filters( 'gallery_style', $gallery_style . "\n\t\t" . $gallery_div );
@@ -91,6 +93,8 @@ function kjd_override_gallery($empty, $attr){
 		
 			return ' ';
 		}elseif($style=='elastislide'){
+
+
 				$template = '<script id="img-wrapper-tmpl" type="text/x-jquery-tmpl">  ';
 				$template .= '<div class="rg-image-wrapper" style="background:'.$color.';">';
 				$template .= '{{if itemsCount > 1}}';
@@ -124,8 +128,8 @@ function kjd_override_gallery($empty, $attr){
 				
 				$thumbnails = get_post_images(get_the_ID(), 'thumbmail');
 				$fullImages = get_post_images(get_the_ID(), 'large');
-				foreach ($thumbnails as $thumb) {
-		    		$output .= '<li><a href="#"><img src="'.$thumb[0].'" alt="'.$title.'" data-large="'.$thumb[0].'" alt="image01" data-description="'.$img["title"].'" /></a></li>';
+				foreach ($thumbnails as $image) {
+		    		$output .= '<li><a href="#"><img src="'.$image['thumbnail'].'" alt="'.$title.'" data-large="'.$image['full'].'" alt="'.$image['alt'].'" data-description="'.$img["content"].'" /></a></li>';
 				}
 				$output .= '</ul>';
 				$output .= '</div>';

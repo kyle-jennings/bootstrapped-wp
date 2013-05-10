@@ -75,60 +75,44 @@ function the_post_thumbnail_description($args) {
 //////////////////
 
 // old image grabber
-function get_post_images($postid, $size) {
-	$atts = new WP_Query(array(
-		'post_type' => 'attachment',
-		'post_status' => 'null',
-		'post_mime_type' => 'image/jpeg',
-		'post_parent' => $postid,
-		'order' => 'ASC',
-		'orderby' => 'menu_order',
-		'showposts' => 99, 'size'=> $size
-	));
-	
-	$imgs = array();
-	
-	if ($atts->have_posts()) :
-		foreach ($atts->posts as $att) :
-			$title = apply_filters('the_title', $att->post_title);
-			$data = wp_get_attachment_image_src($att->ID, $size);
+function get_post_images($postID, $size = NULL) {
+
+$attachments = get_children( array( 
+	'post_parent' => $postID, 
+	'post_type' => 'attachment', 
+	'post_mime_type' => 'image', 
+	'orderby' => 'menu_order', 
+	'order' => 'ASC', 
+	'numberposts' => 999 ) 
+); 
+	$images = array();
+/* $images is now a object that contains all images (related to post id 1) and their information ordered like the gallery interface. */
+    $attributes = array();
+	if ( $attachments){
+	    //looping through the images
+	    foreach ( $attachments as $attachment => $att ) {
+	    	$url = wp_get_attachment_image_src($attachment, 'thumbnail');
+			$attributes['thumbnail']= $url[0];
+			$url = wp_get_attachment_image_src($attachment, 'medium');
+			$attributes['medium'] = $url[0];
+			$url = wp_get_attachment_image_src($attachment, 'large');
+			$attributes['large'] = $url[0];
+			$url = wp_get_attachment_image_src($attachment, 'url');
+			$attributes['full'] = $url[0];
 			
-			if ($data[2] <= 50) : # hack: no "featured" images; they are not distinguished in any way in the database
-				continue;
-			endif;
-			
-			$imgs[$title] = $data;
-			$imgs[$title][3] = apply_filters('the_content', $att->post_content);
-		endforeach;
-	endif;
+			$attributes['title'] = $att->post_title;
+			$attributes['description'] = $att->post_content;
+			$attributes['caption'] = $att->post_excerpt;
+			$attributes['alt'] = $att->_wp_attachment_image_alt;
+			array_push($images, $attributes);
+	    }
+	}	
 	
-	return $imgs;
+
+	return $images;
+
 }
 
-
-// new image grabber
-function get_all_post_images($postid, $size) {
-	$images = get_children( array( 
-		'post_parent' => $postid,
-		'post_type' => 'attachment', 
-		'post_mime_type' => 'image', 
-		'size'=> $size, 
-		'orderby' => 'menu_order', 
-		'order' => 'ASC', 
-		'numberposts' => 999 ) 
-	); 
-
-	$imageData = array();
-    if ( $images ) { 
-        //looping through the images
-        foreach ( $images as $image_id => $image ) {
-        	$imageData['title'] = $image->post_title; 
-        	$imageData['excerpt'] = $image->post_excerpt;
-        	$imageData['content'] = $image->post_content;
-        }
-    }
-    return $imageData;
-}
 
 /// page template stuff
 function layoutSettings(){

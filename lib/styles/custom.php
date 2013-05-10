@@ -952,9 +952,9 @@ function wallpaperCallback($backgroundImage, $backgroundPosition, $backgroundRep
 		background-image:url(<?php echo $backgroundImage ;?>);<?php	
 	}
 	if(isset($backgroundAttachment) && $backgroundAttachment!=""){ ?>
-		background-attachment:<?php echo $backgroundAttachment ;?>;<?php	
+		background-attachment:<?php echo $backgroundAttachment ;?> !important;<?php	
 	}else{
-		echo 'background-attachment:scroll;';
+		echo 'background-attachment:scroll !important;';
 	}
 
 	if(isset($backgroundPosition) && $backgroundPosition!=""){ ?>
