@@ -15,9 +15,14 @@ $pageLayouts = $options['kjd_page_layouts'];
 
 // $pageLayouts['front_page_widget_area_1']=array('position' => 'bottom','deviceView' => 'all');
 // $pageLayouts['front_page_widget_area_2']=array('position' => 'bottom','deviceView' => 'all');
-if(!empty($pageLayouts) && !empty($postLayouts)){
-$layouts = array_merge($pageLayouts,$postLayouts);	
+if(!empty($pageLayouts) && empty($postLayouts)){ 
+	$layouts = $pageLayouts;
+}elseif(!empty($postLayouts) && empty($pageLayouts)){
+	$layouts = $postLayouts;
+}else{
+	$layouts = array_merge($pageLayouts,$postLayouts);
 }
+
 
 
 //echo count($sidebars[$layouts['kjd_template_1']]);

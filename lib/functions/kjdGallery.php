@@ -8,9 +8,9 @@ function kjd_override_gallery($empty, $attr){
 
 	// We're trusting author input, so let's at least make sure it looks like a valid orderby statement
 	if ( isset( $attr['orderby'] ) ) {
-	$attr['orderby'] = sanitize_sql_orderby( $attr['orderby'] );
-	if ( !$attr['orderby'] )
-		unset( $attr['orderby'] );
+		$attr['orderby'] = sanitize_sql_orderby( $attr['orderby'] );
+		if ( !$attr['orderby'] )
+			unset( $attr['orderby'] );
 	}
 
 	// extract args
@@ -47,41 +47,38 @@ function kjd_override_gallery($empty, $attr){
 		$exclude = preg_replace( '/[^0-9,]+/', '', $exclude );
 		$attachments = get_children( array('post_parent' => $id, 'exclude' => $exclude, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
 	} else {
-	$attachments = get_children( array('post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
+		$attachments = get_children( array('post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
 	}
 
 	if(!$style){
 		if ( empty($attachments) )
 		return '';
 
+		// I think this is here to prvent galleries from showing up on the blog feed
 		if ( is_feed() ) {
 		$output = "\n";
-		foreach ( $attachments as $att_id => $attachment )
-			$output .= wp_get_attachment_link($att_id, $size, true) . "\n";
-		return $output;
+			foreach ( $attachments as $att_id => $attachment )
+				$output .= wp_get_attachment_link($att_id, $size, true) . "\n";
+			return $output;
 		}
 
-
-		$captiontag = tag_escape($captiontag);
-		if(!$size){
-			$size = 'thumbnail';
-		}
-		$size_class = sanitize_html_class( $size );
-		$gallery_div = "<ul class='thumbnails'>";
-		$output = apply_filters( 'gallery_style', $gallery_style . "\n\t\t" . $gallery_div );
-
-		$i = 0;
+		$output .= "<ul class='thumbnails'>";
 		foreach ( $attachments as $id => $attachment ) {
-		$link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_link($id, $size, false, false) : wp_get_attachment_link($id, $size, true, false);
+		
+			$url = wp_get_attachment_image_src($id, 'thumbnail');
+			$output .= "<li class='span2'>";
 
-		$output .= "<li class='span2'>";
+			$output .= "<div class='thumbnail'>";
+			//$output .= '<img src="'.get_attachment_link($id, $size, false, false).'" />';
+			if($link == 'post'){
+				$output .= '<a href="'.get_attachment_link( $id ).'"><img src="'.$url[0].'" /></a>';
+			}else{
+				$output .= '<a href="'.wp_get_attachment_url( $id ).'"><img src="'.$url[0].'" /></a>';
+			}
+			
+			$output .= "</div>";
 
-		$output .= "<div class='thumbnail'>";
-		//$output .= '<img src="'.get_attachment_link($id, $size, false, false).'" />';
-		$output .= '<a href="'.wp_get_attachment_url( $id ).'"><img src="'.wp_get_attachment_url( $id ).'" /></a>';
-		$output .= "</div>";
-
-		$output .= "</li>";
+			$output .= "</li>";
 		}
 
 		$output .= "</ul>\n";

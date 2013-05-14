@@ -23,7 +23,6 @@ Author: Kyle Jennings Design
 html,body{		
 		height: 100%;
 		margin:0 !important;
-		overflow:auto;
 		position:relative;
 		}
 /* page > .container is for future use - backgrounds mostly*/
@@ -31,7 +30,7 @@ html,body{
     min-height: 100%;
     height: auto !important;
     height: 100%;
-		margin: 0 auto -270px;
+		margin: 0 auto -225px;
 	}
 
 /*main > .container is for sticky footer*/
@@ -167,7 +166,11 @@ html,body{
     margin-bottom: 20px;
 }
 
-.hero-unit, .well{border:none !important; white-space: inherit !important;}
+.hero-unit, 
+.well{ 
+	border:none !important;
+
+}
 
 
 .well-light-grey{background-color: #eeeeee;}
@@ -188,15 +191,6 @@ html,body{
 
 .well.alert{padding:19px;}
 
-
-.hero-unit h1 {
-    color: inherit;
-    font-size: 60px;
-    letter-spacing: -1px;
-    line-height: 1;
-    margin-bottom: 0;
-    padding:0 0 10px !important; 
-}
 /* images */
 .thumbnail{text-align:center;}
 .thumbnail img{border:none !important;}
@@ -260,7 +254,7 @@ div.img-circle img{
 /* =====  ===== */
 
 
-#push, #footer{clear:both; height:270px;}
+#push, #footer{clear:both; height:225px;}
 #footer{}
 @media (max-width: 979px) {
 

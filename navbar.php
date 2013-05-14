@@ -1,25 +1,40 @@
 <?php 
-	if($navbarLinkStyle == "dividers"){
-		?>
-		<script>
-		jQuery(document).ready(function() {  
-			jQuery('.nav > .menu-item').after('<li class="divider-vertical"></li>');
-			
-		});
-		</script>
 
+$navbarSettings = get_option('kjd_navbar_misc_settings');
 
+if(empty($navbarSettings))
+{ ?>
+<div class="container">
+	<a href="wp-admin/admin.php?page=kjd_navbar_settings&tab=misc"class="btn btn-primary btn-large">
+		Dont forget to configure your navbar settings
+    </a>
 
-	<?php
-	}
+	<a href="nav-menus.php"class="btn btn-primary btn-large">
+		Dont forget to set a menu.
+    </a>
+ </div>
+
+<?php
+}else{
+
 	
-	$navbarSettings = get_option('kjd_navbar_misc_settings');
-	$navbarSettings = $navbarSettings['kjd_navbar_misc'];
-	$navbarLinkStyle = $navbarSettings['navbar_link_style'];
-	$form = $navbarSetting['form_type'];
+	
+$navbarSettings = $navbarSettings['kjd_navbar_misc'];
+$navbarLinkStyle = $navbarSettings['navbar_link_style'];
+$form = $navbarSetting['form_type'];
 
-	$confineNavbarBackground = $navbarSettings['kjd_navbar_confine_background'];
+$confineNavbarBackground = $navbarSettings['kjd_navbar_confine_background'];
 
+if($navbarLinkStyle == "dividers"){
+	?>
+	<script>
+	jQuery(document).ready(function() {  
+		jQuery('.nav > .menu-item').after('<li class="divider-vertical"></li>');
+		
+	});
+	</script>
+<?php
+}
 
 if($navbarSettings['hideNav'] == "false"){
 
@@ -48,19 +63,19 @@ if($navbarSettings['hideNav'] == "false"){
 	<?php	
 	} ?>
 
-			<div class="navbar-inner">
-				<div class="container">
-					<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar">
-				    <span class="icon-bar"></span>
-				    <span class="icon-bar"></span>
-				    <span class="icon-bar"></span>
-				  </a>
-					<div class="nav-collapse collapse navbar-responsive-collapse">
-					<?php	menuStyleCallback($navbarLinkStyle);	?>
-					</div>
+		<div class="navbar-inner">
+			<div class="container">
+				<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar">
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			  </a>
+				<div class="nav-collapse collapse navbar-responsive-collapse">
+				<?php	menuStyleCallback($navbarLinkStyle);	?>
+				</div>
 
-				</div> <!-- end container -->
-			</div> <!-- end navbar-inner-->
+			</div> <!-- end container -->
+		</div> <!-- end navbar-inner-->
 
 	<?php if($navbarSettings['navbar_style'] == "full_width"){ ?>
 	</div>
@@ -79,27 +94,17 @@ if($navbarSettings['hideNav'] == "false"){
 	</div>
 	<?php
 	}else{ ?>
-
+		</div>
 	<?php
 	} ?>
 
 <?php
 }
 
-
-/*
-link styles
-***********
-no bg
-no bg with dividers
-normal
-normal with dividers
-pills
-tabs
-upside tabs
+}
+	
 
 
-*/
 function menuStyleCallback($navbarLinkStyle){
 	if($navbarLinkStyle == "none" ){
 		wp_nav_menu(array('theme_location' => 'header-menu', 'menu_class' =>'nav nav-noBG','container'=> '','walker'=> new dropDown() ) );

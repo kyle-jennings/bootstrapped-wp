@@ -23,6 +23,7 @@ Author: Kyle Jennings Design
 	$confineBackgrounds = $generalSettings['kjd_confine_page'];
 	$responsive = $generalSettings['kjd_responsive_design'];
 	$pageWrapperShadow = $generalSettings['kjd_box_shadow'];
+	$stickyFooter = $generalSettings['sticky_footer'];
 	if($responsive != 'true'){ ?>
 		#navbar > .navbar-inner > .container > .collapse{overflow:visible !important;}
 	<?php
@@ -41,6 +42,11 @@ Author: Kyle Jennings Design
 	<?php
 	}
 
+	if($stickyFooter =='true'){
+	?>
+
+	<?php
+	}
 /* **************** */
 /* Navbar settings  */
 /* **************** */
@@ -173,11 +179,13 @@ if($navSettings['link_shadows'] =='true'){
 	text-decoration:<?php echo $navbarLinkActive['decoration'];?> !important;
 }
 /* normal caret */
+.navbar .nav > li > a.dropdown-toggle > .caret{
+	border-top-color:<?php echo $navbarLink['color'];?> !important;
+}
+/* active caret*/
 .navbar .nav > li.active > a.dropdown-toggle > .caret{
 	border-top-color:<?php echo $navbarLinkActive['color'];?> !important;
 }
-
-
 
 /* top level nav when hovered */
  .navbar .nav > li > a:hover,.navbar .nav > li > a:focus{
@@ -224,7 +232,7 @@ if($navSettings['link_shadows'] =='true'){
 /* first level dropdown stuff: */
 /* the triangle at the top of the dropdown */
 .dropdown-menu:after {  
-	border-bottom-color: <?php echo $dropdownMenuBackgroundColors['color'];?> !important;
+	border-bottom-color: <?php echo $dropdownMenuBackgroundColors['color'] ;?> !important;
 }
 
 .navbar .nav > li > .dropdown-menu:before{  
@@ -251,7 +259,7 @@ if($navSettings['link_shadows'] =='true'){
     top:auto;
 }
 .navbar-fixed-bottom .nav > li > .dropdown-menu:after{
-border-top-color: <?php echo $dropdownMenuBackgroundColors['color'];?> !important;
+border-top-color: <?php echo $dropdownMenuBackgroundColors['color'] ;?> !important;
 }
 .navbar-fixed-bottom.navbar .nav .sub-menu{margin-bottom:-32px;}
 /* first level dropdown link: */
@@ -513,7 +521,7 @@ foreach ($sections as $section){
 				background-color: <?php echo $sectionBackgroundColorSettings['color'];?> !important;
 			<?php 
 			}elseif($sectionBackgroundColorSettings['gradient'] =='none'){ ?>
-				background-color:none !important;
+				background-color:transparent !important;
 			<?php
 			}
 			

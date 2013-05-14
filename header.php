@@ -70,7 +70,9 @@
 	}
 	// Custom Styles
 	include(dirname(__FILE__) . '/lib/styles/custom.php');
-
+ if ( is_user_logged_in() ) { 
+ 	echo '<style>#mastArea{padding-top:30px !important;}</style>';
+  }
 ?>
 </head>
 

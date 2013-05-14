@@ -97,7 +97,7 @@ $attachments = get_children( array(
 			$attributes['medium'] = $url[0];
 			$url = wp_get_attachment_image_src($attachment, 'large');
 			$attributes['large'] = $url[0];
-			$url = wp_get_attachment_image_src($attachment, 'url');
+			$url = wp_get_attachment_image_src($attachment, 'full');
 			$attributes['full'] = $url[0];
 			
 			$attributes['title'] = $att->post_title;
