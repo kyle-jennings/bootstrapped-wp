@@ -13,14 +13,15 @@ $postLayouts = $options['kjd_post_layouts'];
 $options = get_option('kjd_page_layout_settings');
 $pageLayouts = $options['kjd_page_layouts'];
 
-// $pageLayouts['front_page_widget_area_1']=array('position' => 'bottom','deviceView' => 'all');
-// $pageLayouts['front_page_widget_area_2']=array('position' => 'bottom','deviceView' => 'all');
+
 if(!empty($pageLayouts) && empty($postLayouts)){ 
 	$layouts = $pageLayouts;
 }elseif(!empty($postLayouts) && empty($pageLayouts)){
 	$layouts = $postLayouts;
-}else{
+}elseif(!empty($postLayouts) && !empty($pageLayouts)){
 	$layouts = array_merge($pageLayouts,$postLayouts);
+}else{
+	$layouts = array();
 }
 
 

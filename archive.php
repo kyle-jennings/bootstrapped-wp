@@ -19,10 +19,27 @@ $confineTitleBackground = $pageTitleSettings['kjd_pageTitle_confine_background']
 get_header();
 ?>
 
+<div id="pageTitle" class="<?php echo $confineTitleBackground =='true' ? 'container' : '' ;?>">
+	<div class="container">
+		<h1>
+			<?php
+			if ( is_day() ) :
+				printf( __( 'Daily Archives: %s', 'the-bootstrap' ), '<span>' . get_the_date() . '</span>' );
+			elseif ( is_month() ) :
+				printf( __( 'Monthly Archives: %s', 'the-bootstrap' ), '<span>' . get_the_date( 'F Y' ) . '</span>' );
+			elseif ( is_year() ) :
+				printf( __( 'Yearly Archives: %s', 'the-bootstrap' ), '<span>' . get_the_date( 'Y' ) . '</span>' );
+			else :
+				_e( 'Blog Archives', 'the-bootstrap' );
+			endif; ?>
+		</h1>	
+	</div> <!-- end page title wrapper-->
+</div> <!-- end page title area-->
+
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 		<div id="pageTitle" class="<?php echo $confineTitleBackground =='true' ? 'container' : '' ;?>">
 			<div class="container">
-				<h1><?php the_title(); ?></h1>	
+				<h2><?php the_title(); ?></h2>	
 			</div> <!-- end page title wrapper-->
 		</div> <!-- end page title area-->
 

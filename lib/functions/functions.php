@@ -144,7 +144,7 @@ add_action('login_head', 'login_css');
 
 
 // pagination 
-function posts_pagination($width){
+function posts_pagination(){
 	global $wp_query;  
 	  
 	$total_pages = $wp_query->max_num_pages;  

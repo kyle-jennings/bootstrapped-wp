@@ -83,7 +83,6 @@
 		if($navbarSettings['navbar_style'] =='page-top'){
 			include("navbar.php"); 	
 		}
-
 		?>
 				<div id="header" class="visible-desktop <?php echo $confineHeaderBackground =='true' ? 'container' : '' ;?>">
 					<div class="container">
@@ -106,6 +105,7 @@
 					</div><!-- end header container -->
 				</div> <!-- end header area -->
 				<?php 
+
 				if($navbarSettings['navbar_style'] !='page-top'){
 					include("navbar.php"); 	
 				}

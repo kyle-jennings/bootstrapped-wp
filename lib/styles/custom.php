@@ -114,22 +114,22 @@ Author: Kyle Jennings Design
 	}
 
 	//pulls navbar up
-	if($navSettings['kjd_navbar_pull_up'] == 'true'){ ?>
+	if($navSettings['kjd_navbar_pull_up'] == 'true' && $navSettings['navbar_style'] !='page-top'){ ?>
 		#navbar{
 			position:absolute;
 			bottom:<?php echo $navSettings['kjd_navbar_margin_top']; ?>px;
-			z-index:9999;
+			z-index:999;
 		}
 		#header{
 			position: relative;
-			z-index:9;
+			z-index:9999;
 		}
 
 		@media (max-width: 979px) {
 			#navbar{
 				position:relative;
 				bottom:0;
-				z-index:9999;
+				z-index:999;
 			}
 		}
 	<?php
@@ -792,7 +792,7 @@ if($section=='header' || $section=='body' || $section=='footer'){
 			background:<?php echo $sectionForms['table_header_background']; ?>;
 			border-color:<?php echo $sectionForms['table_border'];?> !important;
 		}
-		#<?php echo $section; ?> .table-hover tbody tr td{
+		#<?php echo $section; ?> .table-hover tbody tr td:hover{
 			background:<?php echo $sectionForms['hovered_row_background'];?> !important;
 			color:<?php echo $sectionForms['hovered_row_text_color']; ?>;
 		}

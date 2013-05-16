@@ -176,14 +176,14 @@ function navbar_misc_settings_callback(){
 			</div> -->
 
 			<div class="option">
-				<label>Pull Navbar up?</label>
+				<label>Align Navbar with logo?</label>
 				<select name="kjd_navbar_misc_settings[kjd_navbar_misc][kjd_navbar_pull_up]">
 					<option value="false" <?php selected( $navbarSettings['kjd_navbar_pull_up'], 'false', true ) ?>>No</option>
 					<option value="true" <?php selected( $navbarSettings['kjd_navbar_pull_up'], 'true', true) ?>>Yes</option>
 				</select>
 				<input name="kjd_navbar_misc_settings[kjd_navbar_misc][kjd_navbar_margin_top]" 
 				value="<?php echo  $navbarSettings['kjd_navbar_margin_top'] ?  $navbarSettings['kjd_navbar_margin_top'] : ''; ?>"
-				style="width:40px;"/>px
+				style="width:40px;"/>px from bottom.
 			</div>	
 
 			<div class="option">
