@@ -114,15 +114,13 @@ Author: Kyle Jennings Design
 	}
 
 	//pulls navbar up
-	if($navSettings['kjd_navbar_pull_up'] == 'true' && $navSettings['navbar_style'] !='page-top'){ ?>
+	if($navSettings['kjd_navbar_pull_up'] == 'true'){ ?>
 		#navbar{
-			position:absolute;
-			bottom:<?php echo $navSettings['kjd_navbar_margin_top']; ?>px;
-			z-index:999;
+			margin-top:<?php echo $navSettings['kjd_navbar_margin_top']; ?>px;
 		}
-		#header{
-			position: relative;
-			z-index:9999;
+		#logoWrapper,
+		#logoWrapper a{
+			float:left;
 		}
 
 		@media (max-width: 979px) {

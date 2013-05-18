@@ -37,9 +37,16 @@ html,body{
 
 #mastArea{position:relative;}
 #header{}
-#logoWrapper > a >img,#logoWrapper > img{ position:relative; z-index:99999;}
+#logoWrapper > a
+{
+	display:block;
+}
+#logoWrapper > a >img,
+#logoWrapper > img{ position:relative; z-index:99999;}
 
-#logoWrapper > a > img:hover, #logoWrapper > img:hover {box-shadow: none !important;}
+#logoWrapper > a > img:hover, 
+#logoWrapper > img:hover 
+{box-shadow: none !important;}
 
 	#header > .container,#navbar > .container,#cycler > .container, #pageTitle > .container,#body > .container,#footer > .container{padding:10px 0;}
 .frontPageBody{position:relative;}

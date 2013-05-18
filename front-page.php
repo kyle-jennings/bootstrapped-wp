@@ -190,7 +190,7 @@ function widget_area_2_callback($layoutSettings){
 
 function content_callback($layoutSettings){
 	echo '<div class="row">'; 
-		include('lib/page_code/the_content.php');
+		include('lib/partials/the_content.php');
 	echo '</div>';
 }
 

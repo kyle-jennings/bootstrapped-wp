@@ -40,22 +40,6 @@ if (function_exists('add_theme_support')) {
 }  
 
 
-// get image sizes from admin area
-//
-// if (function_exists("add_image_size")) {  
-//     add_image_size('wideBanner', 1170, 400, true);
-//     add_image_size('normalBanner', 960, 400, true);
-// }  
-
-// add_filter( 'image_size_names_choose', 'custom_image_sizes_choose' );  
-// function custom_image_sizes_choose( $sizes ) {  
-//     $custom_sizes = array(  
-//         'wideBanner' => 'Wide Banner',  
-//         'normalBanner' => 'Normal Banner'
-//     );  
-//     return array_merge( $sizes, $custom_sizes );  
-// }
-
 //gets featured image meta info
 function the_post_thumbnail_description($args) {
   $thumbnail_id    = get_post_thumbnail_id($args->ID);

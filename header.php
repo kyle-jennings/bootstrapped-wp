@@ -36,7 +36,7 @@
 
 	$options = get_option('kjd_navbar_misc_settings');
 	$navbarSettings = $options['kjd_navbar_misc'];
-
+	$alignNavWithLogo = $options['kjd_navbar_misc']['kjd_navbar_pull_up'];
 
 	$useMast = $headerSettings['use_mast'];
 	$useLogo = $headerSettings['use_logo'];
@@ -80,10 +80,46 @@
 	<div id="pageWrapper">
 		<div id="mastArea" class="<?php echo $confineMast == 'true' ? 'container' : '' ;?>">
 		<?php
-		if($navbarSettings['navbar_style'] =='page-top'){
-			include("navbar.php"); 	
-		}
-		?>
+		//if the nav is set to align with header then we use the following template to render the nav NEXT to the logo in the header
+		//depending on the user settings, it will probably look hideous
+		if($alignNavWithLogo =='true'){
+
+			?>
+				<div class="container">
+					<div class="row">
+						<div class="span4 widgetWrapper hidden-phone">
+							<?php if(is_active_sidebar('header-widgets') ){  
+								dynamic_sidebar('header-widgets');
+							 } ?>
+						</div> <!-- end header widgets -->
+					</div>
+				</div>
+				<div id="header" class="visible-desktop <?php echo $confineHeaderBackground =='true' ? 'container' : '' ;?>">
+					<div class="container">
+						<div class="row">
+							<div id="logoWrapper">
+								<?php if($useLogo == "true"){ ?>
+								<a href="<?php bloginfo('url'); ?>">
+									<img src="<?php echo $logo; ?>" alt=""/>
+								</a>
+								<?php
+								}?>
+							</div> <!-- end logo-->
+							<?php 
+								if($navbarSettings['navbar_style'] !='page-top'){
+									include("navbar.php"); 	
+								}
+							?>
+						</div> <!-- end row -->
+					</div><!-- end header container -->
+				</div> <!-- end header area -->
+			<?php
+		}else{
+			//places navbar at top of page
+			if($navbarSettings['navbar_style'] =='page-top'){
+				include("navbar.php"); 	
+			}
+			?>
 				<div id="header" class="visible-desktop <?php echo $confineHeaderBackground =='true' ? 'container' : '' ;?>">
 					<div class="container">
 						<div class="row">
@@ -104,12 +140,12 @@
 						</div> <!-- end row -->
 					</div><!-- end header container -->
 				</div> <!-- end header area -->
-				<?php 
-
-				if($navbarSettings['navbar_style'] !='page-top'){
-					include("navbar.php"); 	
-				}
-				
-				?>
+			<?php
+			//places navbar underneath header - this is the default behavior
+			if($navbarSettings['navbar_style'] !='page-top'){
+				include("navbar.php"); 	
+			}
+		}
+		?>
 			
 		</div> <!-- end mast -->
