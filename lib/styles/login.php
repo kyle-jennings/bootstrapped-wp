@@ -100,25 +100,31 @@ text-shadow:0 1px 0 <?php echo $loginLink['textShadowColor']; ?> !important;
 	text-shadow:0 1px 0 <?php echo $loginLinkHovered['textShadowColor']; ?> !important;
 }
 
-form, #loginform{
-	background-color:<?php echo $loginForms['container_bg'];?> !important;
-	border-color:<?php echo $loginForms['container_border'];?> !important;
-	color:<?php echo $loginForms['container_font'];?> !important;
+form, 
+#loginform,
+.login form{
+	background-color:<?php echo $loginForms['form_background'];?> !important;
+	border-color:<?php echo $loginForms['form_border'];?> !important;
+	color:<?php echo $loginForms['form_text'];?> !important;
 }
 
 form input, .input, #rememberme{
-	background-color:<?php echo $loginForms['field_bg'];?> !important;
+	background-color:<?php echo $loginForms['field_background'];?> !important;
 	border-color:<?php echo $loginForms['field_border'];?> !important;
 	color:<?php echo $loginForms['field_text'];?> !important;
+}
+form input[type='checkbox']{
+	background-color:<?php echo $loginForms['field_background'];?> !important;
 }
 
 form input:focus, #rememberme:focus{
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px <?php echo $loginForms['field_glow']; ?>;
 }
 #wp-submit{
-	background:<?php echo $loginForms['button_bg'];?> !important;
+ 	box-shadow: none;
+	background:<?php horizontalGradientCallback($loginForms['button_background'],$loginForms['button_background_end']);?> !important;
 	border-color:<?php echo $loginForms['button_border'];?> !important;
-	color:<?php echo $loginForms['button_font'];?> !important;
+	color:<?php echo $loginForms['button_text'];?> !important;
 }
 
 #wp-submit:hover,#wp-submit:active{

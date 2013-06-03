@@ -37,6 +37,7 @@
 	$options = get_option('kjd_navbar_misc_settings');
 	$navbarSettings = $options['kjd_navbar_misc'];
 	$alignNavWithLogo = $options['kjd_navbar_misc']['kjd_navbar_pull_up'];
+	$sideNav = $navbarSettings['side_nav'];
 
 	$useMast = $headerSettings['use_mast'];
 	$useLogo = $headerSettings['use_logo'];
@@ -77,6 +78,15 @@
 </head>
 
 <body>
+	<?php if($sideNav =='true'){
+	?>
+		<div id="sidr">
+		  	
+			<?php wp_nav_menu(array('theme_location' => 'header-menu' ) ); ?>
+		</div>	
+	<?php
+	}?>
+
 	<div id="pageWrapper">
 		<div id="mastArea" class="<?php echo $confineMast == 'true' ? 'container' : '' ;?>">
 		<?php
@@ -94,7 +104,7 @@
 						</div> <!-- end header widgets -->
 					</div>
 				</div>
-				<div id="header" class="visible-desktop <?php echo $confineHeaderBackground =='true' ? 'container' : '' ;?>">
+				<div id="header" class="<?php echo $confineHeaderBackground =='true' ? 'container' : '' ;?>">
 					<div class="container">
 						<div class="row">
 							<div id="logoWrapper">

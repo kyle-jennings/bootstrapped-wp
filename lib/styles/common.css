@@ -36,13 +36,6 @@ html,body{
 /*main > .container is for sticky footer*/
 
 #mastArea{position:relative;}
-#header{}
-#logoWrapper > a
-{
-	display:block;
-}
-#logoWrapper > a >img,
-#logoWrapper > img{ position:relative; z-index:99999;}
 
 #logoWrapper > a > img:hover, 
 #logoWrapper > img:hover 
@@ -101,9 +94,6 @@ html,body{
 	.flex-direction-nav{}*/
 /* Page Settings */
 #pageTitle{}
-	#pageTitle > .container h1{margin:0;}
-
-
 #body{}
 	
 	#mainContent{min-height:1px;}
@@ -226,6 +216,7 @@ div.img-circle img{
 
 /* pagination */
 .pagination{
+	clear:both;
 	margin-left:30px;
 }
 
@@ -265,6 +256,11 @@ div.img-circle img{
 #footer{}
 @media (max-width: 979px) {
 
+#logoWrapper > a > img, 
+#logoWrapper > img 
+{
+	max-width:95%;
+}
 
 .navbar .dropdown-menu{background:transparent !important;}
 .navbar .dropdown-menu:after,
@@ -280,7 +276,7 @@ div.img-circle img{
 
 @media (max-width: 767px) {
 
-#navbar{position:none}
+
 
 .navbar .dropdown-menu{background:transparent !important;}
 .navbar .dropdown-menu:after,

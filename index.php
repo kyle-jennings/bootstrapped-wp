@@ -31,7 +31,7 @@ if (have_posts()) : while (have_posts()) : the_post();
 
 			</div>
 		</div>
-<?php endif;
+<?php endwhile; endif;
 
 get_footer();
 ?>

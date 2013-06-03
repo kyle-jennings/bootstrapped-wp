@@ -9,7 +9,7 @@
 		$tabParts = array('tabbed_content_background','tabbed_content_border','tabbed_content_text_color','active_tab_background','active_tab_link_color','inactive_tab_background', 'inactive_tab_link_color','hovered_tab_background','hovered_tab_link_color');
 		$collapsibleParts = array('collapible_content_background','collapible_content_border','collapible_content_text_color','active_title_background','active_title_link_color','inactive_title_background', 'inactive_title_link_color','hovered_title_background','hovered_title_link_color');
 		$tableParts = array('table_header_background','table_border','table_header_text_color','even_row_background','even_row_link_color','even_row_text_color','odd_row_background', 'odd_row_link_color','odd_row_text_color','hovered_row_background','hovered_row_link_color');
-		$formParts =array('form_background','form_border','field_background','field_border','field_glow','field_text', 'button_background','button_background_end','button_border','button_text');
+		$formParts =array('form_background','form_border','form_text','field_background','field_border','field_glow','field_text', 'button_background','button_background_end','button_border','button_text');
 		$thumbnailParts =array('thumbnail_background','thumbnail_glow','thumbnail_border');
 		$paginationParts =array('pagination_border','pagination_background','pagination_text','pagination_link','pagination_hover');
 ?>

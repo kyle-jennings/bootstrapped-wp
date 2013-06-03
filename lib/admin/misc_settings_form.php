@@ -163,17 +163,6 @@ function navbar_misc_settings_callback(){
 					<option value="true" <?php selected( $navbarSettings['kjd_navbar_confine_background'], 'true', true) ?>>Yes</option>
 				</select>
 			</div>	
-<!-- 
-			<div class="option">
-				<label>Outer glow</label>
-				<select name="kjd_navbar_misc_settings[kjd_navbar_misc][kjd_navbar_section_shadow]">
-					<?php foreach($glowSettings as $glow){ ?>
-						<option value="<?php echo $glow;?>" <?php selected( $navbarSettings['kjd_navbar_section_shadow'], $glow, true) ?>>
-							<?php echo $glow; ?>
-						</option>
-					<?php } ?>
-				</select>
-			</div> -->
 
 			<div class="option">
 				<label>Align Navbar with logo?</label>
@@ -201,6 +190,23 @@ function navbar_misc_settings_callback(){
 						<option value="true" <?php selected( $navbarSettings['hideNav'], 'true', true) ?>>Yes</option>
 				</select>
 			</div>
+
+			<div class="option">
+				<label>Side Sliding Nav</label>
+				<select name="kjd_navbar_misc_settings[kjd_navbar_misc][side_nav]">
+						<option value="false" <?php selected( $navbarSettings['side_nav'], 'false', true) ?>>No</option>
+						<option value="true" <?php selected( $navbarSettings['side_nav'], 'true', true) ?>>Yes</option>
+				</select>
+			</div>
+
+			<div class="option">
+				<label>Dropdown Background on Mobile?</label>
+				<select name="kjd_navbar_misc_settings[kjd_navbar_misc][dropdown_bg]">
+					<option value="true" <?php selected( $navbarSettings['dropdown_bg'], 'true', true) ?>>Yes</option>
+					<option value="false" <?php selected( $navbarSettings['dropdown_bg'], 'false', true ) ?>>No</option>
+				</select>
+			</div>
+
 		<h3>Open Menu Button Settings</h3>
 		<div class="color_option option" style="position: relative;">
 			<label>Background</label>

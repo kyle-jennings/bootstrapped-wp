@@ -5,19 +5,9 @@ function load_custom_style(){
 
 ?>
 <style>
-/*
-Theme Name: KJD user settings
-Theme URI: http://kylejenningsdesign.com
-Description: user customized color scheme
-Version: 1.0
-Author: Kyle Jennings Design
 
-*/		
 <?php 
 
-// 	$parts = explode(':',$generalSettings['kjd_general_font']['font']);
-// 	$parts = str_replace('+',' ',$parts[0]);
-// 	$generalFont = "'".$parts."'";
 
 	$generalSettings = get_option('kjd_theme_settings');
 	$confineBackgrounds = $generalSettings['kjd_confine_page'];
@@ -53,7 +43,8 @@ Author: Kyle Jennings Design
 	//kjd_navbar_misc_settings[kjd_navbar_misc][navbar_style]
 	$navSettings = get_option('kjd_navbar_misc_settings');
 	$navSettings = $navSettings['kjd_navbar_misc'];
-
+	$dropdown_bg = $navSettings['side_nav'];
+	
 	$navbarBackgroundOptions = get_option('kjd_navbar_background_settings');
 	$navbarBackgroundColors = $navbarBackgroundOptions['kjd_navbar_background_colors'];
 	$navbarWallpaper = $navbarBackgroundOptions['kjd_navbar_background_wallpaper'];
@@ -114,23 +105,35 @@ Author: Kyle Jennings Design
 	}
 
 	//pulls navbar up
-	if($navSettings['kjd_navbar_pull_up'] == 'true'){ ?>
-		#navbar{
-			margin-top:<?php echo $navSettings['kjd_navbar_margin_top']; ?>px;
-		}
-		#logoWrapper,
-		#logoWrapper a{
+	if($navSettings['side_nav'] == 'true'){
+	?>
+	@media (max-width: 767px) {
+
+		#sidr-toggle{
 			float:left;
 		}
-
-		@media (max-width: 979px) {
-			#navbar{
-				position:relative;
-				bottom:0;
-				z-index:999;
-			}
-		}
+	}		
 	<?php
+	}else{
+
+		if($navSettings['kjd_navbar_pull_up'] == 'true'){ ?>
+			#navbar{
+				margin-top:<?php echo $navSettings['kjd_navbar_margin_top']; ?>px;
+			}
+			@media (max-width: 767px) {
+
+				#navbar{
+					float:right;
+					margin-top: -70px !important;
+					position:none
+				}
+				#logoWrapper,
+				#logoWrapper a{
+					width:90%;
+				}
+			}
+		<?php
+		}
 	}
 
 	// Removes box shadow
@@ -166,7 +169,7 @@ if($navSettings['link_shadows'] =='true'){
 ?>
 
 .navbar .nav > li > a{
-		color:<?php echo isset($navbarLink['color']) && $navbarLink['color'] != (' ') && $navbarLink['color'] != ('')? $navbarLink['color'] : 'black' ;?> !important;
+		color:<?php echo $navbarLink['color'];?> !important;
 		background-color:<?php $navbarLink['bg_color'];?>;
 	}
 
@@ -292,25 +295,116 @@ border-top-color: <?php echo $dropdownMenuBackgroundColors['color'] ;?> !importa
 
 /* collapsable navbar */
 
-
-
-
 .dropdown-menu.sub-menu li.active >a,
 .nav-collapse.navbar-responsive-collapse.in.collapse > ul > li.active > ul > li > ul >li >a,
 .current_page_item > a,.current-menu-item > a ,.current-page-ancestor > a,{
 	background-color:none!important;
-	color:<?php echo isset($navbarLinkHovered['color']) && $navbarLinkHovered['color'] != (' ') && $navbarLinkHovered['color'] != ('')? $navbarLinkHovered['color'] : 'black' ;?> !important;	
+	color:<?php echo $navbarLinkHovered['color'];?> !important;	
 }
 
-.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > a:hover,
-.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul, 
-.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > a:hover,
-.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > a:hover:after,
-.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > ul,
-.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > ul >li >a:hover{
+@media (max-width: 979px) {
 
-	background-color:none!important;
-	color:<?php echo isset($navbarLinkHovered['color']) && $navbarLinkHovered['color'] != (' ') && $navbarLinkHovered['color'] != ('')? $navbarLinkHovered['color'] : 'black' ;?> !important;	
+	.sidr
+	{
+		background-color:<?php echo $dropdownMenuBackgroundColors['color'] ;?> !important;
+		-webkit-box-shadow:inset 0 0 5px 5px rgba(0,0,0,.2);
+		-moz-box-shadow:inset 0 0 5px 5px rgba(0,0,0,.2);
+		box-shadow:inset 0 0 5px 5px rgba(0,0,0,.2)}
+	}
+
+	.sidr ul
+	{
+		border:none;
+	}
+	.sidr ul li
+	{
+		border-top:none;
+		border-bottom:none;
+	}
+	.sidr ul li a,
+	.sidr ul li span
+	{
+		color:<?php echo $dropdownMenuLink['color'];?> !important;
+	}
+
+	.sidr ul li:hover a,
+	.sidr ul li:hover span
+	{
+		color:<?php echo $dropdownMenuLinkHovered['color'];?> !important;
+	}
+	.sidr ul li ul li:hover>a,
+	.sidr ul li ul li:hover>span,
+	.sidr ul li ul li.active>a,
+	.sidr ul li ul li.active>span,
+	.sidr ul li ul li.sidr-class-active>a,
+	.sidr ul li ul li.sidr-class-active>span
+	{
+		-webkit-box-shadow:none;
+		-moz-box-shadow:none;
+		box-shadow:none;
+	}
+
+}
+@media(max-width:767){
+
+<?php 
+if($dropdown_bg != true){ ?>
+	.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > a:hover,
+	.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul, 
+	.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > a:hover,
+	.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > a:hover:after,
+	.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > ul,
+	.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > ul >li >a:hover{
+
+		background-color:none!important;
+		color:<?php echo $navbarLinkHovered['color'];?> !important;	
+	}
+<?php
+}else{
+?>
+  .nav-collapse.collapse > .nav:before
+  {
+     border-bottom: 7px solid <?php echo $dropdownMenuTopBorder['color'];?> !important;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      content: "";
+      display: inline-block;
+      right: 9px;
+      position: absolute;
+      top: -7px;
+  }
+
+  .nav-collapse.collapse > .nav:after
+  {
+       border-bottom: 6px solid <?php echo $dropdownMenuBackgroundColors['color'] ;?> !important;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      content: "";
+      display: inline-block;
+      right: 10px;
+      position: absolute;
+      top: -6px;
+  }
+  .nav-collapse.collapse > .nav
+  {    
+      background-clip: padding-box;
+      background-color: <?php echo $dropdownMenuBackgroundColors['color'] ;?> !important;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 6px 6px 6px 6px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      float: right;
+      left: 0;
+      list-style: none outside none;
+      margin: 10px 0 0;
+      min-width: 160px;
+      padding: 5px 0;
+      z-index: 1000;
+  } 
+<?php
+}
+
+?>
+
 }
 
 .nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > a > .caret{

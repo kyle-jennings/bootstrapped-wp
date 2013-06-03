@@ -1,6 +1,8 @@
 <?php 
 
 $navbarSettings = get_option('kjd_navbar_misc_settings');
+$navSettings = $navbarSettings['kjd_navbar_misc'];
+$sideNav = $navSettings['side_nav'];
 
 if(empty($navbarSettings))
 { ?>
@@ -65,11 +67,20 @@ if($navbarSettings['hideNav'] == "false"){
 
 		<div class="navbar-inner">
 			<div class="container">
-				<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar">
+		<?php if($sideNav == 'true'){
+			echo '<a id="sidr-toggle" class="btn btn-navbar">
 			    <span class="icon-bar"></span>
 			    <span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>';
+		}else{
+			echo '<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar">
 			    <span class="icon-bar"></span>
-			  </a>
+			    <span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>';
+		}?>
+			
 				<div class="nav-collapse collapse navbar-responsive-collapse">
 				<?php	menuStyleCallback($navbarLinkStyle);	?>
 				</div>

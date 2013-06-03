@@ -13,12 +13,22 @@ if(is_admin()){
 add_action( 'wp_enqueue_scripts', 'add_assets' );
 function add_assets(){
 
+	$navbarSettings = get_option('kjd_navbar_misc_settings');
+	$navbarSettings = $navbarSettings['kjd_navbar_misc'];
+	$sideNav = $navbarSettings['side_nav'];
+
 	$root=get_bloginfo('template_directory'); 
 	$root = $root.'/lib';
 
 	wp_enqueue_script("jquery", $root."/scripts/jquery.js", false, "1.0", false);  
 	wp_enqueue_script("bootstrap", $root."/scripts/bootstrap.min.js", false, "1.0", true);  
 	wp_enqueue_script("script", $root."/scripts/application.js", false, "1.0", true);  
+
+	if($sideNav =='true'){
+		wp_enqueue_script("sidr", $root."/scripts/sidr.min.js", false, "1.0", true);  
+		wp_enqueue_style("sidr", $root."/styles/sidr.css");
+	}
+
 	wp_enqueue_style("bootstrap", $root."/styles/bootstrap/bootstrap.css");
 	$generalSettings = get_option('kjd_theme_settings');
 	$responsive = $generalSettings['kjd_responsive_design'];
