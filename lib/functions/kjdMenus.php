@@ -1,13 +1,22 @@
 <?php
+	$options = get_option('kjd_navbar_misc_settings');
+	$navbarSettings = $options['kjd_navbar_misc'];
+	$sideNav = $navbarSettings['side_nav'];
 
 ////////////////////////
 // register navbar menu
 ////////////////////////
-if(function_exists('register_nav_menus')){
+if($sideNav == 'true'){
 	register_nav_menus(
 	    array(
 	      'header-menu' => __( 'Header Menu' ),
-	      'footer-menu' => __( 'Footer Menu' )
+	      'sidr-menu' => __( 'Side Drawer Menu' )
+	    )
+	);
+}else{
+	register_nav_menus(
+	    array(
+	      'header-menu' => __( 'Header Menu' ),
 	    )
 	);
 }

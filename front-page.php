@@ -195,8 +195,15 @@ function content_callback($layoutSettings){
 }
 
 function secondary_content_callback($frontPageOptions,$layoutSettings){ 
-	echo '<div class="row">'; 
-		echo do_shortcode($frontPageOptions['kjd_frontPage_secondaryContent']);
-	echo '</div>'; 
+	if($layoutSettings['position'] != 'right' && $layoutSettings['position'] !='left'){ 
+		echo '<div class="row"><div class="span12">'; 
+			echo do_shortcode($frontPageOptions['kjd_frontPage_secondaryContent']);
+		echo '</div></div>'; 
+	}else{
+		echo '<div class="row"><div class="span9">'; 
+			echo do_shortcode($frontPageOptions['kjd_frontPage_secondaryContent']);
+		echo '</div></div>'; 
+	}
+
 }
 ?>

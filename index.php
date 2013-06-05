@@ -8,8 +8,7 @@ get_header();
 	$pageTitleSettings = get_option('kjd_pageTitle_misc_settings');
 	$pageTitleSettings = $pageTitleSettings['kjd_pageTitle_misc'];
 	$confineTitleBackground = $pageTitleSettings['kjd_pageTitle_confine_background'];
-if (have_posts()) : while (have_posts()) : the_post();
-?>
+if (have_posts()) : while (have_posts()) : the_post(); ?>
 		<div id="mainContent" class="span12">
 			<div class="page-header">
 				<h1><a href="<?php echo the_permalink(); ?>"><?php the_title(); ?></a></h1>
@@ -31,6 +30,7 @@ if (have_posts()) : while (have_posts()) : the_post();
 
 			</div>
 		</div>
+		
 <?php endwhile; endif;
 
 get_footer();

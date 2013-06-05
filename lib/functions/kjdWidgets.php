@@ -100,7 +100,7 @@ function set_width($template,$frontpage_area = null)
 		'name' => __( 'Template One Widgets' ),
 		'id' => 'kjd_template_1',
 		'description' => __( 'Widgets in this area will appear on pages using template one.' ),
-		'before_widget' =>'<div class="'.$width.'">',
+		'before_widget' =>'<div class="widget '.$width.'">',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 		'after_widget' => '</div>'
@@ -111,7 +111,7 @@ $width = set_width($layouts['kjd_template_2']);
 		'name' => __( 'Template Two Widgets' ),
 		'id' => 'kjd_template_2',
 		'description' => __( 'Widgets in this area will appear on pages using template two.' ),
-		'before_widget' =>'<div class="'.$width.'">',
+		'before_widget' =>'<div class="widget '.$width.'">',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 		'after_widget' => '</div>'
@@ -122,7 +122,7 @@ $width = set_width($layouts['kjd_template_3']);
 		'name' => __( 'Template Three Widgets' ),
 		'id' => 'kjd_template_3',
 		'description' => __( 'Widgets in this area will appear on pages using template three.' ),
-		'before_widget' =>'<div class="'.$width.'">',
+		'before_widget' =>'<div class="widget '.$width.'">',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 		'after_widget' => '</div>'
@@ -133,7 +133,7 @@ $width = set_width($layouts['kjd_template_4']);
 		'name' => __( 'Template Four Widgets' ),
 		'id' => 'kjd_template_4',
 		'description' => __( 'Widgets in this area will appear on pages using template four.' ),
-		'before_widget' =>'<div class="'.$width.'">',
+		'before_widget' =>'<div class="widget '.$width.'">',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 		'after_widget' => '</div>'
@@ -144,7 +144,7 @@ $width = set_width($layouts['kjd_template_5']);
 		'name' => __( 'Template Five Widgets' ),
 		'id' => 'kjd_template_5',
 		'description' => __( 'Widgets in this area will appear on pages using template five.' ),
-		'before_widget' =>'<div class="'.$width.'">',
+		'before_widget' =>'<div class="widget '.$width.'">',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 		'after_widget' => '</div>'
@@ -155,7 +155,7 @@ $width = set_width($layouts['kjd_template_6']);
 		'name' => __( 'Template Six Widgets' ),
 		'id' => 'kjd_template_6',
 		'description' => __( 'Widgets in this area will appear on pages using template six.' ),
-		'before_widget' =>'<div class="'.$width.'">',
+		'before_widget' =>'<div class="widget '.$width.'">',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 		'after_widget' => '</div>'
@@ -171,7 +171,7 @@ register_sidebar($template_6);
 		'name' => __( 'Front page Widget Sidebar' ),
 		'id' => 'front_page_sidebar',
 		'description' => __( 'Widgets in this area will appear on the front page.' ),
-		'before_widget' =>'<div>',
+		'before_widget' =>'<div class="widget">',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 		'after_widget' => '</div>'
@@ -186,7 +186,7 @@ register_sidebar($template_6);
 		'name' => __( 'Front page Widgets 1' ),
 		'id' => 'front_page_widget_area_1',
 		'description' => __( 'Widgets in this area will appear on the front page.' ),
-		'before_widget' =>'<div class="'.$width.'">',
+		'before_widget' =>'<div class="widget '.$width.'">',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 		'after_widget' => '</div>'
@@ -198,7 +198,7 @@ register_sidebar($template_6);
 		'name' => __( 'Front page Widgets 2' ),
 		'id' => 'front_page_widget_area_2',
 		'description' => 'Widgets in this area will appear on the front page.',
-		'before_widget' =>'<div class="'.$width.'">',
+		'before_widget' =>'<div class="widget '.$width.'">',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 		'after_widget' => '</div>'
@@ -211,7 +211,7 @@ register_sidebar($template_6);
 		'name' => __( 'Header Area Widgets' ),
 		'id' => 'header_widgets',
 		'description' => __( 'Widgets in this area will appear in the header on the right.' ),
-		'before_widget' =>'<div class="'.$width.'">',
+		'before_widget' =>'<div class="widget '.$width.'">',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 		'after_widget' => '</div>'
@@ -223,8 +223,8 @@ register_sidebar($template_6);
 	$footer_widgets = array(
 		'name' => __( 'Footer Widgets' ),
 		'id' => 'footer_widgets',
-		'description' => __( 'Widgets in this area will appear in the footer. Only use FOUR!' ),
-		'before_widget' =>'<div class="'.$width.'">',
+		'description' => __( 'Widgets in this area will appear in the footer.!' ),
+		'before_widget' =>'<div class="widget '.$width.'">',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 		'after_widget' => '</div>'
@@ -241,7 +241,7 @@ register_sidebar($template_6);
 		'name' => __( 'Posts Widgets' ),
 		'id' => 'posts',
 		'description' => __( 'Widgets in this area will appear on the posts index.' ),
-		'before_widget' =>'<div class="'.$width.'">',
+		'before_widget' =>'<div class="widget '.$width.'">',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 		'after_widget' => '</div>'
@@ -253,7 +253,7 @@ register_sidebar($template_6);
 		'name' => __( 'Single Post Widgets' ),
 		'id' => 'kjd_single',
 		'description' => __( 'Widgets in this area will appear on single posts.' ),
-		'before_widget' =>'<div class="'.$width.'">',
+		'before_widget' =>'<div class="widget '.$width.'">',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 		'after_widget' => '</div>'
@@ -266,7 +266,7 @@ register_sidebar($template_6);
 		'name' => __( 'Category Page Widgets' ),
 		'id' => 'category',
 		'description' => __( 'Widgets in this area will appear the category page.' ),
-		'before_widget' =>'<div class="'.$width.'">',
+		'before_widget' =>'<div class="widget '.$width.'">',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 		'after_widget' => '</div>'
@@ -278,7 +278,7 @@ register_sidebar($template_6);
 		'name' => __( 'Archive Page Widgets' ),
 		'id' => 'archive',
 		'description' => __( 'Widgets in this area will appear the archives page.' ),
-		'before_widget' =>'<div class="'.$width.'">',
+		'before_widget' =>'<div class="widget '.$width.'">',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 		'after_widget' => '</div>'
@@ -290,7 +290,7 @@ register_sidebar($template_6);
 		'name' => __( 'Tags Page Widgets' ),
 		'id' => 'tags',
 		'description' => __( 'Widgets in this area will appear the tags page.' ),
-		'before_widget' =>'<div class="'.$width.'">',
+		'before_widget' =>'<div class="widget '.$width.'">',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 		'after_widget' => '</div>'
@@ -303,7 +303,7 @@ register_sidebar($template_6);
 		'name' => __( 'Taxonomy Page Widgets' ),
 		'id' => 'taxonomy',
 		'description' => __( 'Widgets in this area will appear the taxonomy page.' ),
-		'before_widget' =>'<div class="'.$width.'">',
+		'before_widget' =>'<div class="widget '.$width.'">',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 		'after_widget' => '</div>'
@@ -316,7 +316,7 @@ register_sidebar($template_6);
 		'name' => __( 'Author Page Widgets' ),
 		'id' => 'author',
 		'description' => __( 'Widgets in this area will appear the author page.' ),
-		'before_widget' =>'<div class="'.$width.'">',
+		'before_widget' =>'<div class="widget '.$width.'">',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 		'after_widget' => '</div>'
@@ -328,7 +328,7 @@ register_sidebar($template_6);
 		'name' => __( 'Date Page Widgets' ),
 		'id' => 'date',
 		'description' => __( 'Widgets in this area will appear the dates page.' ),
-		'before_widget' =>'<div class="'.$width.'">',
+		'before_widget' =>'<div class="widget '.$width.'">',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 		'after_widget' => '</div>'
@@ -340,7 +340,7 @@ register_sidebar($template_6);
 		'name' => __( 'Search Page Widgets' ),
 		'id' => 'search',
 		'description' => __( 'Widgets in this area will appear the search page.' ),
-		'before_widget' =>'<div class="'.$width.'">',
+		'before_widget' =>'<div class="widget '.$width.'">',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 		'after_widget' => '</div>'
@@ -353,7 +353,7 @@ register_sidebar($template_6);
 		'name' => __( 'Attachment Page Widgets' ),
 		'id' => 'attachment',
 		'description' => __( 'Widgets in this area will appear the attachment page.' ),
-		'before_widget' =>'<div class="'.$width.'">',
+		'before_widget' =>'<div class="widget '.$width.'">',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
 		'after_widget' => '</div>'

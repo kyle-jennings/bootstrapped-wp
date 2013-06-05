@@ -82,7 +82,7 @@
 	?>
 		<div id="sidr">
 		  	
-			<?php wp_nav_menu(array('theme_location' => 'header-menu' ) ); ?>
+			<?php wp_nav_menu(array('theme_location' => 'sidr-menu' ) ); ?>
 		</div>	
 	<?php
 	}?>
