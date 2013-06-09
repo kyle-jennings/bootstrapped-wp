@@ -76,11 +76,20 @@ function theme_settings_callback(){
 	</div>
 
 	
-	<div class="option">
+<!-- 	<div class="option">
 		<label>Use breadcrumbs</label>
 		<select name="kjd_theme_settings[kjd_toggle_breadcrumbs]">
 			<option value="true" <?php selected( $options['kjd_toggle_breadcrumbs'], "true", true) ?>>Yes</option>
 			<option value="false" <?php selected( $options['kjd_toggle_breadcrumbs'], "false", true) ?>>No</option>
+		</select>
+
+	</div> -->
+
+	<div class="option">
+		<label>Display paginator at top of posts</label>
+		<select name="kjd_theme_settings[kjd_pagination_top]">
+			<option value="true" <?php selected( $options['kjd_pagination_top'], "true", true) ?>>Yes</option>
+			<option value="false" <?php selected( $options['kjd_pagination_top'], "false", true) ?>>No</option>
 		</select>
 
 	</div>

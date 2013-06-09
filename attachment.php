@@ -2,7 +2,7 @@
 
 $layoutOptions = get_option('kjd_post_layout_settings');
 $layoutSettings = $layoutOptions['kjd_post_layouts'];
-$layoutSettings = $layoutSettings['kjd_single'];
+$layoutSettings = $layoutSettings['kjd_attachment'];
 $position = $layoutSettings['position'];
 $span = $position == 'left' || $position == 'right'? 'span9' : 'span12' ;
 
@@ -42,7 +42,16 @@ get_header();
 						</div>
 
 						<div class="post-content">
-							<?php the_content(); ?>
+							<?php// the_content(); ?>
+							<?php if ( wp_attachment_is_image( $post->id ) ) : $att_image = wp_get_attachment_image_src( $post->id, "full"); ?>
+							        <p class="attachment"><a href="<?php echo wp_get_attachment_url($post->id); ?>" title="<?php the_title(); ?>" rel="attachment"><img src="<?php echo $att_image[0];?>" width="<?php echo $att_image[1];?>" height="<?php echo $att_image[2];?>"  class="attachment-medium" alt="<?php $post->post_excerpt; ?>" /></a>
+							        </p>
+							<?php endif; 
+								if(!empty($post->post_content))
+								{
+									echo '<p class="excerpt">'.$post->post_content.'</p>';
+								}
+							?>							
 						</div>
 
 						<div class="post-meta">
@@ -52,8 +61,8 @@ get_header();
 
 					<!-- sidebar-->
 					<div id="sideContent" class="span3 <?php deviceViewSettings($layoutSettings['deviceView']); ?>">		
-					<?php if(is_active_sidebar('kjd_single') ){  
-						dynamic_sidebar('kjd_single');
+					<?php if(is_active_sidebar('attachment') ){  
+						dynamic_sidebar('attachment');
 					 } ?>
 					</div><!-- end sidebar content end span3-->
 
@@ -65,3 +74,4 @@ get_header();
 
 get_footer();
 ?>
+

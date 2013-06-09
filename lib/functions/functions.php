@@ -85,6 +85,7 @@ $attachments = get_children( array(
 	if ( $attachments){
 	    //looping through the images
 	    foreach ( $attachments as $attachment => $att ) {
+
 	    	$url = wp_get_attachment_image_src($attachment, 'thumbnail');
 			$attributes['thumbnail']= $url[0];
 			$url = wp_get_attachment_image_src($attachment, 'medium');
@@ -94,6 +95,7 @@ $attachments = get_children( array(
 			$url = wp_get_attachment_image_src($attachment, 'full');
 			$attributes['full'] = $url[0];
 			
+			$attributes['image_id'] = $att->ID;
 			$attributes['title'] = $att->post_title;
 			$attributes['description'] = $att->post_content;
 			$attributes['caption'] = $att->post_excerpt;
@@ -101,16 +103,18 @@ $attachments = get_children( array(
 			array_push($images, $attributes);
 	    }
 	}	
-	
-
 	return $images;
 
 }
 
 
 /// page template stuff
-function layoutSettings(){
-	
+function layoutSettings($position){
+	if($position =='right'){
+
+	}else{
+
+	}
 }
 
 function deviceViewSettings($deviceView){
@@ -133,8 +137,6 @@ function login_css() {
 	require_once(dirname(dirname(__FILE__)).'/styles/login.php');
 }
 add_action('login_head', 'login_css');
-
-//include('kjdBuildWidgets.php');
 
 
 // pagination 

@@ -104,6 +104,21 @@ function load_custom_style(){
 	<?php
 	}
 
+	if($navSettings['kjd_navbar_pull_up'] == 'true'){ ?>
+		#navbar{
+			margin-top:<?php echo $navSettings['kjd_navbar_margin_top']; ?>px;
+		}
+		@media (max-width: 767px) {
+
+			#navbar{
+				float:right;
+				margin-top: 0px !important;
+				position:none
+			}
+		}
+	<?php
+	}
+
 	//pulls navbar up
 	if($navSettings['side_nav'] == 'true'){
 	?>
@@ -114,27 +129,11 @@ function load_custom_style(){
 		}
 	}		
 	<?php
-	}else{
-
-		if($navSettings['kjd_navbar_pull_up'] == 'true'){ ?>
-			#navbar{
-				margin-top:<?php echo $navSettings['kjd_navbar_margin_top']; ?>px;
-			}
-			@media (max-width: 767px) {
-
-				#navbar{
-					float:right;
-					margin-top: -70px !important;
-					position:none
-				}
-				#logoWrapper,
-				#logoWrapper a{
-					width:90%;
-				}
-			}
-		<?php
-		}
 	}
+
+
+
+
 
 	// Removes box shadow
 	if($navbarBackgroundColors['gradient'] == 'none' || (!isset($navbarBackgroundColors['color']) || $navbarBackgroundColors['color'] == '' || empty($navbarBackgroundColors['color'])) ){ ?>
@@ -301,10 +300,8 @@ border-top-color: <?php echo $dropdownMenuBackgroundColors['color'] ;?> !importa
 	background-color:none!important;
 	color:<?php echo $navbarLinkHovered['color'];?> !important;	
 }
-
-@media (max-width: 979px) {
-
-	.sidr
+/*------------------ media querie navbar stuff -------------------------- */
+.sidr
 	{
 		background-color:<?php echo $dropdownMenuBackgroundColors['color'] ;?> !important;
 		-webkit-box-shadow:inset 0 0 5px 5px rgba(0,0,0,.2);
@@ -344,79 +341,12 @@ border-top-color: <?php echo $dropdownMenuBackgroundColors['color'] ;?> !importa
 		box-shadow:none;
 	}
 
-}
-@media(max-width:767){
 
-<?php 
-if($dropdown_bg != true){ ?>
-	.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > a:hover,
-	.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul, 
-	.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > a:hover,
-	.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > a:hover:after,
-	.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > ul,
-	.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > ul >li >a:hover{
 
-		background-color:none!important;
-		color:<?php echo $navbarLinkHovered['color'];?> !important;	
-	}
-<?php
-}else{
-?>
-  .nav-collapse.collapse > .nav:before
-  {
-     border-bottom: 7px solid <?php echo $dropdownMenuTopBorder['color'];?> !important;
-      border-left: 7px solid transparent;
-      border-right: 7px solid transparent;
-      content: "";
-      display: inline-block;
-      right: 9px;
-      position: absolute;
-      top: -7px;
-  }
-
-  .nav-collapse.collapse > .nav:after
-  {
-       border-bottom: 6px solid <?php echo $dropdownMenuBackgroundColors['color'] ;?> !important;
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-      content: "";
-      display: inline-block;
-      right: 10px;
-      position: absolute;
-      top: -6px;
-  }
-  .nav-collapse.collapse > .nav
-  {    
-      background-clip: padding-box;
-      background-color: <?php echo $dropdownMenuBackgroundColors['color'] ;?> !important;
-      border: 1px solid rgba(0, 0, 0, 0.2);
-      border-radius: 6px 6px 6px 6px;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-      float: right;
-      left: 0;
-      list-style: none outside none;
-      margin: 10px 0 0;
-      min-width: 160px;
-      padding: 5px 0;
-      z-index: 1000;
-  } 
-<?php
-}
-
-?>
-
-}
-
-.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > a > .caret{
-}
-.nav-collapse.navbar-responsive-collapse.in.collapse > .dropdown-menu li.active > a {
-
-}
 
 /* misc shit*/
 .btn-navbar{ 
 	background:<?php echo $navSettings['menu_btn_bg']?>;
-	
 }
 
 .btn-navbar:hover,.btn-navbar:active{ 
@@ -455,8 +385,74 @@ if($dropdown_bg != true){ ?>
 		.current_page_item a{border-color:<?php echo $navbarLinkActive['border_color'];?> !important;}
 	<?php
 	}
+?>
+@media (max-width: 979px) {
 
+	
+}
+@media(max-width:767px){
 
+	<?php 
+	if($dropdown_bg != true){ ?>
+		.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > a:hover,
+		.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul, 
+		.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > a:hover,
+		.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > a:hover:after,
+		.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > ul,
+		.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > ul >li >a:hover{
+
+			background-color:none!important;
+			color:<?php echo $navbarLinkHovered['color'];?> !important;	
+		}
+	<?php
+	}else{
+	?>
+	  .nav-collapse.collapse > .nav:before
+	  {
+	     border-bottom: 7px solid <?php echo $dropdownMenuTopBorder['color'];?> !important;
+	      border-left: 7px solid transparent;
+	      border-right: 7px solid transparent;
+	      content: "";
+	      display: inline-block;
+	      right: 9px;
+	      position: absolute;
+	      top: -7px;
+	  }
+
+	  .nav-collapse.collapse > .nav:after
+	  {
+	       border-bottom: 6px solid <?php echo $dropdownMenuBackgroundColors['color'] ;?> !important;
+	      border-left: 6px solid transparent;
+	      border-right: 6px solid transparent;
+	      content: "";
+	      display: inline-block;
+	      right: 10px;
+	      position: absolute;
+	      top: -6px;
+	  }
+	  .nav-collapse.collapse > .nav
+	  {    
+	      background-clip: padding-box;
+	      background-color: <?php echo $dropdownMenuBackgroundColors['color'] ;?> !important;
+	      border: 1px solid rgba(0, 0, 0, 0.2);
+	      border-radius: 6px 6px 6px 6px;
+	      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	      float: right;
+	      left: 0;
+	      list-style: none outside none;
+	      margin: 10px 0 0;
+	      min-width: 160px;
+	      padding: 5px 0;
+	      z-index: 1000;
+	  } 
+	<?php
+	} //
+
+?>
+
+}
+
+<?php
 //////// END NAV BAR SETTINGS
 
 //////// BEGIN SECTION SETTINGS
@@ -512,6 +508,9 @@ foreach ($sections as $section){
 			
 			$confineSectionBackground = $options['kjd_'.$section.'_confine_background'];
 			$sectionShadow = $options['kjd_'.$section.'_section_shadow'];
+			if($section == "body"){
+				$postInfoBorder= $options['post_info_border'] ? $options['post_info_border'] : 'rgba(0,0,0,.5)';
+			}
 
 			if($section =="header"){
 				$forceHeight = $options['force_height'];
@@ -928,6 +927,10 @@ if($section=='header' || $section=='body' || $section=='footer'){
 	color:<?php echo $sectionForms['pagination_text']; ?> ;	
 }
 
+.post-info
+{
+	border-bottom:1px solid <?php echo $postInfoBorder;?>;
+}
 <?php
 } ?>
 

@@ -223,7 +223,7 @@ register_sidebar($template_6);
 	$footer_widgets = array(
 		'name' => __( 'Footer Widgets' ),
 		'id' => 'footer_widgets',
-		'description' => __( 'Widgets in this area will appear in the footer.!' ),
+		'description' => __( 'Widgets in this area will appear in the footer.' ),
 		'before_widget' =>'<div class="widget '.$width.'">',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',

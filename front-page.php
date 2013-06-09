@@ -31,11 +31,11 @@ if(!empty($components))
 	<div class="container">
 	<div class="row">
 <?php 
-
+	$floatRight = $layoutSettings['position'] == 'right'? 'style="float:right;"' : '' ;
 	if($layoutSettings['position'] != 'right' && $layoutSettings['position'] !='left'){ 
 		echo '<div class="span12 content-wrapper">';
 	}else{
-		echo '<div class="span9 content-wrapper">';
+		echo '<div class="span9 content-wrapper" '.$floatRight.'>';
 	}
 
 	foreach($components as $position => $component)

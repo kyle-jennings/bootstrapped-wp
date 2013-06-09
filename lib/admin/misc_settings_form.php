@@ -143,7 +143,7 @@ function navbar_misc_settings_callback(){
 				<label>Nav alignment</label>
 				<select name="kjd_navbar_misc_settings[kjd_navbar_misc][navbar_alignment]">
 					<option value="left" <?php selected( $navbarSettings['navbar_alignment'], 'left', true) ?>>Left</option>
-					<!-- <option value="center" <?php selected( $navbarSettings['navbar_alignment'], 'center', true) ?>>Center</option> -->
+					<option value="center" <?php selected( $navbarSettings['navbar_alignment'], 'center', true) ?>>Center</option>
 					<option value="right" <?php selected( $navbarSettings['navbar_alignment'], 'right', true) ?>>Right</option>
 				</select>
 			</div>
@@ -165,7 +165,7 @@ function navbar_misc_settings_callback(){
 			</div>	
 
 			<div class="option">
-				<label>Align Navbar with logo?</label>
+				<label>Add top margin to navbar?</label>
 				<select name="kjd_navbar_misc_settings[kjd_navbar_misc][kjd_navbar_pull_up]">
 					<option value="false" <?php selected( $navbarSettings['kjd_navbar_pull_up'], 'false', true ) ?>>No</option>
 					<option value="true" <?php selected( $navbarSettings['kjd_navbar_pull_up'], 'true', true) ?>>Yes</option>
@@ -271,6 +271,14 @@ function body_misc_settings_callback(){
 					<?php } ?>
 				</select>
 			</div> -->
+
+		<div class="color_option option" style="position: relative;">
+			<label>Title Bottom Border</label>
+
+			<input class="minicolors" name="kjd_body_misc_settings[kjd_body_misc][post_info_border]" 
+				value="<?php echo $bodySettings['post_info_border'] ? $bodySettings['post_info_border'] : ''; ?>"/>
+			<a class="clearColor">Clear</a>
+		</div>
 
 			<div class="option">
 				<label>Float body</label>
