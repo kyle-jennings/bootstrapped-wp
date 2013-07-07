@@ -3,17 +3,14 @@ function load_custom_style(){
 
 	$sections = array('htmlTag','bodyTag','mastArea','header','navbar','dropdown-menu','cycler','contentArea','pageTitle','body','footer');
 
-?>
-<style>
-
-<?php 
-
 
 	$generalSettings = get_option('kjd_theme_settings');
 	$confineBackgrounds = $generalSettings['kjd_confine_page'];
 	$responsive = $generalSettings['kjd_responsive_design'];
 	$pageWrapperShadow = $generalSettings['kjd_box_shadow'];
 	$stickyFooter = $generalSettings['sticky_footer'];
+
+
 	if($responsive != 'true'){ ?>
 		#navbar > .navbar-inner > .container > .collapse{overflow:visible !important;}
 	<?php
@@ -43,8 +40,10 @@ function load_custom_style(){
 	//kjd_navbar_misc_settings[kjd_navbar_misc][navbar_style]
 	$navSettings = get_option('kjd_navbar_misc_settings');
 	$navSettings = $navSettings['kjd_navbar_misc'];
+	$flush_left = $navSettings['flush_first_link'];
 	$dropdown_bg = $navSettings['side_nav'];
 	
+
 	$navbarBackgroundOptions = get_option('kjd_navbar_background_settings');
 	$navbarBackgroundColors = $navbarBackgroundOptions['kjd_navbar_background_colors'];
 	$navbarWallpaper = $navbarBackgroundOptions['kjd_navbar_background_wallpaper'];
@@ -143,7 +142,12 @@ function load_custom_style(){
     <?php
 	}
 
-// navbar normal
+// remove left padding on first link
+if($flush_left == 'true')
+{
+ echo '.navbar .nav > li:first-child > a{padding-left:0;}';
+}
+//disable link inner shaddow
 if($navSettings['link_shadows'] =='true'){
 	 ?>
 .navbar .nav > .active > a, 
@@ -152,6 +156,7 @@ if($navSettings['link_shadows'] =='true'){
 	 <?php
 	//echo "box-shadow:none !important;"
 }
+
 //layouts
 	//confines layout to like, 960 and has border radius
 	if($navSettings['navbar_style'] =="contained"){ ?>
@@ -167,53 +172,57 @@ if($navSettings['link_shadows'] =='true'){
 // colors
 ?>
 
+<!-- *************** link colors ******************** -->
+<!--  normal link colors -->
 .navbar .nav > li > a{
 		color:<?php echo $navbarLink['color'];?> !important;
 		background-color:<?php $navbarLink['bg_color'];?>;
 	}
 
-
+<!--  active link colors -->
 .navbar .nav > li.active > a{
 	background-color:<?php echo $navbarLinkActive['bg_color'];?>;
 	color:<?php echo $navbarLinkActive['color'];?> !important;
 	text-decoration:<?php echo $navbarLinkActive['decoration'];?> !important;
 }
-/* normal caret */
+<!--  inactive carret -->
 .navbar .nav > li > a.dropdown-toggle > .caret{
 	border-top-color:<?php echo $navbarLink['color'];?> !important;
 }
-/* active caret*/
+<!--  active carret -->
 .navbar .nav > li.active > a.dropdown-toggle > .caret{
 	border-top-color:<?php echo $navbarLinkActive['color'];?> !important;
 }
 
-/* top level nav when hovered */
+<!--  toplevel nav when hovered  -->
  .navbar .nav > li > a:hover,.navbar .nav > li > a:focus{
 	
 	background-color:<?php echo $navbarLinkHovered['bg_color'];?> !important;
 	color:<?php echo $navbarLinkHovered['color'];?> !important;
 	text-decoration:<?php echo $navbarLinkHovered['decoration'];?> !important;
 }
-/*  caret  when hovered*/
+<!--  hovered carret -->
 .navbar .nav > li > a:hover.dropdown-toggle > .caret{
 	border-top-color:<?php echo $navbarLinkHovered['color'];?> !important;
 }	
 
-/* cartent when navbar is on bottom */
+<!--  carret when on bottom -->
 .navbar-fixed-bottom .nav > li > a.dropdown-toggle > .caret{
 		border-top-color:transparent !important;
 	border-bottom-color:<?php echo $navbarLink['color'];?> !important;
 }
+<!--  carret when on bottom:hovered -->
 .navbar-fixed-bottom .nav > li > a:hover.dropdown-toggle > .caret{
 	border-top-color:transparent !important;
 	border-bottom-color:<?php echo $navbarLinkHovered['color'];?> !important;
 }
+<!--  carret when on bottom:active -->
 .navbar-fixed-bottom .nav > li.active > a.dropdown-toggle > .caret{
 		border-top-color:transparent !important;
 		border-bottom-color:<?php echo $navbarLinkActive['color'];?> !important;
 }
 
-/* top level nav when opened */
+<!--  top level nav when opened  -->
 .navbar .nav > li.open > a{
 	
 	background-color:<?php echo $navbarLinkHovered['bg_color'];?> !important;
@@ -221,20 +230,22 @@ if($navSettings['link_shadows'] =='true'){
 }
 
 
-/*  caret  when opened*/
+<!--  carret when opened  -->
 .navbar .nav > li.open > a.dropdown-toggle > .caret{
 	border-top-color:<?php echo $navbarLinkHovered['color'];?> !important;
 }
+
+<!--  top level nav when opened  -->
 /*.navbar .nav li.open > a:after{
 	border-color:<?php echo $navbarLinkHovered['color'];?> !important;
 }*/
 
-/* first level dropdown stuff: */
-/* the triangle at the top of the dropdown */
+<!--  first level dropdown stuff  -->
+<!-- the triangle at the top of the dropdown -->
 .dropdown-menu:after {  
 	border-bottom-color: <?php echo $dropdownMenuBackgroundColors['color'] ;?> !important;
 }
-
+<!--  -->
 .navbar .nav > li > .dropdown-menu:before{  
  	border-bottom: 7px solid <?php echo $dropdownMenuTopBorder['color'];?> !important;
     border-left: 7px solid transparent;
@@ -245,7 +256,7 @@ if($navSettings['link_shadows'] =='true'){
     position: absolute;
     top: -7px;
 }
-
+<!--  -->
 .navbar-fixed-bottom.navbar .nav > li > .dropdown-menu:before{
 	border-top: 7px solid <?php echo $dropdownMenuBottomBorder['color'];?> !important;
 	border-bottom: none !important;
@@ -258,31 +269,38 @@ if($navSettings['link_shadows'] =='true'){
     bottom: -7px;
     top:auto;
 }
+
+<!--  -->
 .navbar-fixed-bottom .nav > li > .dropdown-menu:after{
 border-top-color: <?php echo $dropdownMenuBackgroundColors['color'] ;?> !important;
 }
 .navbar-fixed-bottom.navbar .nav .sub-menu{margin-bottom:-32px;}
-/* first level dropdown link: */
+
+
+<!-- Drop down Menus -->
 .dropdown-menu li > a{
 	background-color:transparent !important;
 	color:<?php echo $dropdownMenuLink['color'];?> !important;
 	text-decoration: <?php echo $dropdownMenuLink['decoration'];?> !important;
 }
+<!-- Drop down triangle -->
 .dropdown-menu li > a:after {
     border-left-color: <?php echo $dropdownMenuLink['color'];?> !important;
 }
 
-/* first level dropdown link when active: */
+
+<!-- active link -->
 .dropdown-menu li.active > a{
 	background:<?php echo $dropdownMenuLinkActive['bg_color'];?> !important; 
 	color:<?php echo $dropdownMenuLinkActive['color'];?> !important;
 	text-decoration: <?php echo $dropdownMenuLinkActive['decoration'];?> !important;
 }
+
 .dropdown-menu li.active > a:after{
 	border-left-color: <?php echo $dropdownMenuLinkActive['color'];?> !important;
 }
 
-/* first level dropdown link when hovered: */
+<!-- hovered link -->
 .dropdown-menu li > a:hover{
 	background:<?php echo $dropdownMenuLinkHovered['bg_color'];?> !important; 
 	color:<?php echo $dropdownMenuLinkHovered['color'];?> !important;
@@ -292,7 +310,7 @@ border-top-color: <?php echo $dropdownMenuBackgroundColors['color'] ;?> !importa
 	border-left-color: <?php echo $dropdownMenuLinkHovered['color'];?> !important;	
 }
 
-/* collapsable navbar */
+<!-- collapsible navbar link -->
 
 .dropdown-menu.sub-menu li.active >a,
 .nav-collapse.navbar-responsive-collapse.in.collapse > ul > li.active > ul > li > ul >li >a,
@@ -300,7 +318,8 @@ border-top-color: <?php echo $dropdownMenuBackgroundColors['color'] ;?> !importa
 	background-color:none!important;
 	color:<?php echo $navbarLinkHovered['color'];?> !important;	
 }
-/*------------------ media querie navbar stuff -------------------------- */
+
+<!-- ************************ sidr Nav ******************************* -->
 .sidr
 	{
 		background-color:<?php echo $dropdownMenuBackgroundColors['color'] ;?> !important;
@@ -341,10 +360,7 @@ border-top-color: <?php echo $dropdownMenuBackgroundColors['color'] ;?> !importa
 		box-shadow:none;
 	}
 
-
-
-
-/* misc shit*/
+<!-- collapsed navbar button -->
 .btn-navbar{ 
 	background:<?php echo $navSettings['menu_btn_bg']?>;
 }
@@ -358,6 +374,7 @@ border-top-color: <?php echo $dropdownMenuBackgroundColors['color'] ;?> !importa
 	border-right: 1px solid <?php echo $navbarBackground['color'];?>;
 }
 
+<!-- Navlink Tyles -->
 <?php
 
 	// Link styles
@@ -386,6 +403,8 @@ border-top-color: <?php echo $dropdownMenuBackgroundColors['color'] ;?> !importa
 	<?php
 	}
 ?>
+
+<!-- Media Queries -->
 @media (max-width: 979px) {
 
 	
@@ -463,6 +482,8 @@ foreach ($sections as $section){
 			$sectionBackgroundWallpaperSettings = $options['kjd_'.$section.'_background_wallpaper'];
 			
 			if($section !='login' && $section !='bodyTag' && $section !='htmlTag'  && $section !='mastArea'  && $section !='contentArea'){
+
+
 				$options = get_option('kjd_'.$section.'_borders_settings');
 				$sectionTopBorder = $options['kjd_'.$section.'_top_border'];
 				$sectionRightBorder = $options['kjd_'.$section.'_right_border'];
@@ -471,12 +492,13 @@ foreach ($sections as $section){
 				$sectionBorderRadius = $options['kjd_'.$section.'_border_radius'];
 
 				if(($confineBackgrounds=='true' && $responsive != 'true') || $section =='dropdown-menu'){
-				$borders = array('top' =>$sectionTopBorder,'right' =>$sectionRightBorder,'bottom' =>$sectionBottomBorder,'left' =>$sectionLeftBorder);
+					$borders = array('top' =>$sectionTopBorder,'right' =>$sectionRightBorder,'bottom' =>$sectionBottomBorder,'left' =>$sectionLeftBorder);
+	
 				}else{
 					$borders = array('top' =>$sectionTopBorder,'bottom' =>$sectionBottomBorder);
 				}
 
-//				$borders = array('top' =>$sectionTopBorder,'right' =>$sectionRightBorder,'bottom' =>$sectionBottomBorder,'left' =>$sectionLeftBorder);
+
 			}
 
 			if($section !='bodyTag' && $section !='htmlTag' && $section!='mastArea' && $section!='contentArea' && $section !='cycler'){
@@ -513,12 +535,12 @@ foreach ($sections as $section){
 			}
 
 			if($section =="header"){
+				$hideHeader = $options['hide_header']; 
 				$forceHeight = $options['force_height'];
 				$useMast = $options['kjd_header_misc']['use_mastArea'];				
 			}
 			if($section =="cycler"){
-				$options = get_option('kjd_cycler_misc_settings');
-				$options = $options['kjd_cycler_misc']; 
+
 				if($options['shadow'] == "false"){ ?>
 					#imageSlider{background:none !important; padding:20px 0 !important;}
 				<?php
@@ -588,6 +610,7 @@ foreach ($sections as $section){
 		#<?php echo 'imageSliderWrapper'; ?>
 	<?php
 	}elseif($section == 'navbar'){ ?>
+		
 		#<?php echo $section.' .navbar-inner' ;?>
 	<?php
 	}elseif($section =='htmlTag'){
@@ -601,6 +624,7 @@ foreach ($sections as $section){
 	?>
 		{
 			<?php
+			
 
 			if($sectionBackgroundColorSettings['gradient'] =='vertical'){
 				verticalGradientCallback($sectionBackgroundColorSettings['color'], $sectionBackgroundColorSettings['endcolor']);
@@ -620,12 +644,21 @@ foreach ($sections as $section){
 
 				wallpaperCallback($sectionBackgroundWallpaperSettings['image'], $sectionBackgroundWallpaperSettings['position'], $sectionBackgroundWallpaperSettings['repeat']);			
 			}
-
+if($section =='header' && $hideHeader == 'true'){
+	echo 'display:none !important;';
+}
 		if($section !='login' && $section !='bodyTag' && $section !='htmlTag'  && $section !='mastArea'  && $section !='contentArea'){
 
 			foreach ($borders as $border => $value){ 
 				borderSettingsCallback($border, $value['color'], $value['size'], $value['style']);
 			}
+
+			if($confineBackgrounds =='true'){
+					$border_corners = array('top-left','top-right','bottom-right','bottom-left');
+					foreach($border_corners as $corner){
+						borderRadiusCallback($corner, $sectionBorderRadius[$corner]);
+					}	
+				}
 		}
 			
 			if($confineSectionBackground=='true' && $confineBackgrounds == 'false'){ ?>
@@ -634,9 +667,9 @@ foreach ($sections as $section){
 			}
 			?>
 			<?php echo "color:".$sectionText['color'].";"; ?>
-			<?php if($options['float'] == 'true'){
-				echo "margin-top:10px;";
-				echo "margin-bottom:10px;";
+			<?php if($options['float'] == 'true' && $section!='navbar'){
+				echo "margin-top:20px;";
+				echo "margin-bottom:20px;";
 			}
 			
 			if($forceHeight =="true" && $navSettings['navbar_style'] != 'sticky-bottom'){
@@ -878,7 +911,8 @@ if($section=='header' || $section=='body' || $section=='footer'){
 			border-color:<?php echo $sectionForms['table_border'];?> !important;
 		}
 
-		#<?php echo $section; ?> .table thead{
+		#<?php echo $section; ?> .table thead,
+		#<?php echo $section; ?> .table tfoot{
 			color:<?php echo $sectionForms['table_header_text_color']; ?>;
 			background:<?php echo $sectionForms['table_header_background']; ?>;
 			border-color:<?php echo $sectionForms['table_border'];?> !important;
@@ -974,16 +1008,12 @@ if($section=='header' || $section=='body' || $section=='footer'){
 
 } //end foreach
 
-?>
-
-</style>
-<?php
 } // end function
 
 
 
 ////////////////////////////
-// functions
+// background color functions
 ////////////////////////////
 
 ////////////////////////
@@ -1164,5 +1194,4 @@ function linkSettingsCallback($color, $decoration,$textShadow, $bgStyle, $bgColo
 
 
 
-load_custom_style();			
-?>
+load_custom_style();

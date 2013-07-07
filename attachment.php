@@ -20,7 +20,7 @@ get_header();
 ?>
 
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-		<div id="pageTitle" class="<?php echo $confineTitleBackground =='true' ? 'container' : '' ;?>">
+		<div id="pageTitle" class="<?php echo $confineTitleBackground =='true' ? 'container confined' : '' ;?>">
 			<div class="container">
 				<h1><?php the_title(); ?></h1>	
 			</div> <!-- end page title wrapper-->
@@ -44,12 +44,12 @@ get_header();
 						<div class="post-content">
 							<?php// the_content(); ?>
 							<?php if ( wp_attachment_is_image( $post->id ) ) : $att_image = wp_get_attachment_image_src( $post->id, "full"); ?>
-							        <p class="attachment"><a href="<?php echo wp_get_attachment_url($post->id); ?>" title="<?php the_title(); ?>" rel="attachment"><img src="<?php echo $att_image[0];?>" width="<?php echo $att_image[1];?>" height="<?php echo $att_image[2];?>"  class="attachment-medium" alt="<?php $post->post_excerpt; ?>" /></a>
-							        </p>
+							        <div class="attachment"><a href="<?php echo wp_get_attachment_url($post->id); ?>" title="<?php the_title(); ?>" rel="attachment"><img src="<?php echo $att_image[0];?>" width="<?php echo $att_image[1];?>" height="<?php echo $att_image[2];?>"  class="attachment-medium" alt="<?php $post->post_excerpt; ?>" /></a>
+							        </div>
 							<?php endif; 
 								if(!empty($post->post_content))
 								{
-									echo '<p class="excerpt">'.$post->post_content.'</p>';
+									echo '<p class="attachment-description">'.$post->post_content.'</p>';
 								}
 							?>							
 						</div>

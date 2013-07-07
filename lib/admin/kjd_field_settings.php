@@ -62,7 +62,7 @@
 				'kjd_theme_settings_section' // parent section
 			);
 
-		register_setting('kjd_theme_settings','kjd_theme_settings');
+		register_setting('kjd_theme_settings','kjd_theme_settings', 'build_css');
 
 		///////////////////
 		// cycler settings
@@ -106,8 +106,8 @@
 				'kjd_cycler_images_settings_section' //
 			);
 
-		register_setting('kjd_cycler_misc_settings','kjd_cycler_misc_settings');
-		register_setting('kjd_cycler_images_settings','kjd_cycler_images_settings');
+		register_setting('kjd_cycler_misc_settings','kjd_cycler_misc_settings', 'build_css');
+		register_setting('kjd_cycler_images_settings','kjd_cycler_images_settings', 'build_css');
 
 
 		///////////////////
@@ -127,7 +127,7 @@
 			'kjd_navbar_options_settings_section'
 		);
 
-		register_setting('kjd_navbar_options_settings','kjd_navbar_options_settings');
+		register_setting('kjd_navbar_options_settings','kjd_navbar_options_settings', 'build_css');
 
 		/////////////////////
 		// page layouts
@@ -190,9 +190,9 @@
 				'kjd_frontPage_layout_section' // parent section
 			);		
 				
- 		register_setting('kjd_post_layout_settings','kjd_post_layout_settings');
- 		register_setting('kjd_page_layout_settings','kjd_page_layout_settings');
- 		register_setting('kjd_frontPage_layout_settings','kjd_frontPage_layout_settings');
+ 		register_setting('kjd_post_layout_settings','kjd_post_layout_settings', 'build_css');
+ 		register_setting('kjd_page_layout_settings','kjd_page_layout_settings', 'build_css');
+ 		register_setting('kjd_frontPage_layout_settings','kjd_frontPage_layout_settings', 'build_css');
 
 
 //////////////////////////
@@ -239,7 +239,7 @@ foreach($sections as $section){
 				'kjd_'.$section.'_background_settings', // page name
 				'kjd_'.$section.'_background_settings_section' // parent section
 			);
-	register_setting('kjd_'.$section.'_background_settings','kjd_'.$section.'_background_settings');
+	register_setting('kjd_'.$section.'_background_settings','kjd_'.$section.'_background_settings', 'build_css');
 
 
 	// The body, html, and login sections dont need border control
@@ -299,7 +299,7 @@ foreach($sections as $section){
 				'kjd_'.$section.'_borders_settings_section' // parent section
 			);
 		
-		register_setting('kjd_'.$section.'_borders_settings','kjd_'.$section.'_borders_settings');
+		register_setting('kjd_'.$section.'_borders_settings','kjd_'.$section.'_borders_settings', 'build_css');
 	} //end if not login, body, or html
 
 	// the body, html, and cycler sections dont need text or form controls
@@ -370,7 +370,7 @@ foreach($sections as $section){
 				'kjd_'.$section.'_text_settings_section' // parent section
 
 			);
-			register_setting('kjd_'.$section.'_text_settings','kjd_'.$section.'_text_settings');
+			register_setting('kjd_'.$section.'_text_settings','kjd_'.$section.'_text_settings', 'build_css');
 		}
 		//////////////////////
 		// text and link styles
@@ -422,22 +422,22 @@ foreach($sections as $section){
 		// forms
 		///////////////////
 		add_settings_section(
-			'kjd_'.$section.'_forms_settings_section', // ID hook name
+			'kjd_'.$section.'_components_settings_section', // ID hook name
 			'Forms settings', // label
-			'kjd_'.$section.'_forms_settings_callback', // function name
-			'kjd_'.$section.'_forms_settings' // page name
+			'kjd_'.$section.'_components_settings_callback', // function name
+			'kjd_'.$section.'_components_settings' // page name
 		);
 			add_settings_field(
-				'kjd_'.$section.'_forms',
+				'kjd_'.$section.'_components',
 				'Forms Options',
 				'kjd_frontpage_'.$section.'_options_callback',
-				'kjd_'.$section.'_forms_settings',
-				'kjd_'.$section.'_forms_settings_section'
+				'kjd_'.$section.'_components_settings',
+				'kjd_'.$section.'_components_settings_section'
 			);
 
 		
-		register_setting('kjd_'.$section.'_links_settings','kjd_'.$section.'_links_settings');
-		register_setting('kjd_'.$section.'_forms_settings','kjd_'.$section.'_forms_settings');
+		register_setting('kjd_'.$section.'_links_settings','kjd_'.$section.'_links_settings', 'build_css');
+		register_setting('kjd_'.$section.'_components_settings','kjd_'.$section.'_components_settings', 'build_css');
 
 	} //end if not body or html
 
@@ -454,10 +454,35 @@ foreach($sections as $section){
 			'kjd_'.$section.'_misc_settings',
 			'kjd_'.$section.'_misc_settings_section'
 		);
-	register_setting('kjd_'.$section.'_misc_settings','kjd_'.$section.'_misc_settings');
+	register_setting('kjd_'.$section.'_misc_settings','kjd_'.$section.'_misc_settings', 'build_css');
 }//end loop
-		
 
+function build_css($input){
 
+	// error_reporting(E_ALL);
+	// ini_set('display_errors', 1);
 
-?>
+	$root=dirname(dirname(__FILE__)); 
+	$root = $root.'/styles';
+	$file = $root.'/custom.css';
+	
+
+	if(file_exists($file)){
+		chmod($file, 0777);
+		$file = fopen($file, "w");	
+	}else{
+		$file = fopen($file, "x");
+	}
+
+	ob_start();
+		include $root.'/styles.php';
+		$buffered_content = ob_get_contents();
+	ob_end_clean();
+
+	fwrite($file, $buffered_content);
+	fclose($file);
+	
+	//chmod($file, 0555);
+
+	return $input;
+}

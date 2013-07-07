@@ -1,7 +1,9 @@
 <?php 
 	$options = get_option('kjd_theme_settings');
 	$pagination_top = $options['kjd_pagination_top'];
+
 if (have_posts()) :
+	
 	if($pagination_top == 'true'){
 		posts_pagination();
 	}

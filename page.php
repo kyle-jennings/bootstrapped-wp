@@ -12,13 +12,13 @@
 get_header();
 ?>
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-		<div id="pageTitle" class="<?php echo $confineTitleBackground =='true' ? 'container' : '' ;?>">
+		<div id="pageTitle" class="<?php echo $confineTitleBackground =='true' ? 'container confined' : '' ;?>">
 			<div class="container">
 				<h1><?php the_title(); ?></h1>	
 			</div> <!-- end page title wrapper-->
 		</div> <!-- end page title area-->
 
-		<div id="body" class="<?php echo $confineBodyBackground =='true' ? 'container' : '' ;?>">
+		<div id="body" class="<?php echo $confineBodyBackground =='true' ? 'container confined' : '' ;?>">
 			<div class="container">
 				<div class="row">	
 					<div id="mainContent" class="span12">
@@ -31,13 +31,13 @@ get_header();
 		</div><!-- end body -->	
 
 <?php endwhile; else: ?> 
-		<div id="pageTitle" class="<?php echo $confineTitleBackground =='true' ? 'container' : '' ;?>">
+		<div id="pageTitle" class="<?php echo $confineTitleBackground =='true' ? 'container confined' : '' ;?>">
 			<div class="container">
 				<h1> Content not found..</h1>	
 			</div> <!-- end page title wrapper-->
 		</div> <!-- end page title area-->
 
-		<div id="body" class="<?php echo $confineBodyBackground =='true' ? 'container' : '' ;?>">
+		<div id="body" class="<?php echo $confineBodyBackground =='true' ? 'container confined' : '' ;?>">
 			<div class="container">
 				<div class="row">	
 					<div id="mainContent" class="span12">

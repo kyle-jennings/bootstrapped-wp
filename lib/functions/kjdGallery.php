@@ -73,7 +73,7 @@ function kjd_override_gallery($empty, $attr){
 			if($link == 'post'){
 				$output .= '<a href="'.get_attachment_link( $id ).'"><img src="'.$url[0].'" /></a>';
 			}else{
-				$output .= '<a href="'.wp_get_attachment_url( $id ).'"><img src="'.$url[0].'" /></a>';
+				$output .= '<a href="'.get_attachment_link( $id ).'"><img src="'.$url[0].'" /></a>';
 			}
 			
 			$output .= "</div>";

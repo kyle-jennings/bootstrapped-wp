@@ -17,51 +17,6 @@ $confineTitleBackground = $pageTitleSettings['kjd_pageTitle_confine_background']
 
 
 get_header();
-?>
-
-<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-		<div id="pageTitle" class="<?php echo $confineTitleBackground =='true' ? 'container' : '' ;?>">
-			<div class="container">
-				<h1><?php the_title(); ?></h1>	
-			</div> <!-- end page title wrapper-->
-		</div> <!-- end page title area-->
-
-
-		<div id="body" class="<?php echo $confine;?>">
-			<div class="container">
-				<div class="row">	
-					<!-- main content -->
-					<div id="mainContent" class="<?php echo $span;?>" >
-						<div class="post-info">
-							<span class="post-date">
-								Posted on: <a href=""><?php the_date(); ?></a>, 
-							</span>
-							<span class="post-author">
-								By: <a href=""><?php the_author(); ?></a>
-							</span>
-						</div>
-
-						<div class="post-content">
-							<?php the_content(); ?>
-						</div>
-
-						<div class="post-meta">
-
-						</div>
-					</div><!-- end main content end span9-->
-
-					<!-- sidebar-->
-					<div id="sideContent" class="span3 <?php deviceViewSettings($layoutSettings['deviceView']); ?>">		
-					<?php if(is_active_sidebar('kjd_single') ){  
-						dynamic_sidebar('kjd_single');
-					 } ?>
-					</div><!-- end sidebar content end span3-->
-
-				</div>	<!-- end row -->
-			</div> <!-- end container -->
-		</div><!-- end body -->	
-
-<?php endwhile; endif;
-
+include('lib/partials/the_content_scaffolding.php');
 get_footer();
 ?>

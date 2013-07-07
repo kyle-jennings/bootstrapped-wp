@@ -25,7 +25,6 @@ html,body{
 		margin:0 !important;
 		position:relative;
 		}
-/* page > .container is for future use - backgrounds mostly*/
 #pageWrapper{	
     min-height: 100%;
     height: auto !important;
@@ -33,15 +32,28 @@ html,body{
 		margin: 0 auto -225px;
 	}
 
-/*main > .container is for sticky footer*/
+#header > .container,
+#navbar > .container,
+#cycler > .container,
+#pageTitle > .container,
+#body > .container,
+#footer > .container{
+	padding:10px 0;
+}
+
+div.container.confined{
+	padding:20px !important;
+	margin:0 auto;
+}
 
 #mastArea{position:relative;}
 
+#logoWrapper{margin-left:30px;}
 #logoWrapper > a > img:hover, 
 #logoWrapper > img:hover 
 {box-shadow: none !important;}
 
-	#header > .container,#navbar > .container,#cycler > .container, #pageTitle > .container,#body > .container,#footer > .container{padding:10px 0;}
+	
 .frontPageBody{position:relative;}
 
 
@@ -235,10 +247,7 @@ div.img-circle img{
 
 
 /* ===== footer push  ===== */
-
-
 #push, #footer{clear:both; height:225px;}
-#footer{}
 
 /* =============================== media queries ===================================== */
 @media (max-width: 979px) {
@@ -262,7 +271,7 @@ div.img-circle img{
 
 
 @media (max-width: 767px) {
-
+	#logoWrapper{margin-left:0px;}
 	img{
 		height:auto;
 		max-width: 97%;

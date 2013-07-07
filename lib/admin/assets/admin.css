@@ -1,4 +1,15 @@
 *{outline:none;}
+
+div#widgets-left
+{
+  position:fixed;
+  z-index: 0;
+}
+.widget-liquid-right .widget, .inactive-sidebar .widget, .widget-liquid-right .sidebar-description
+{
+  position:relative;
+  z-index: 9;
+}
 /* Tabbed content */
 
 .nav-tabs,

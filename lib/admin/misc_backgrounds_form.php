@@ -82,7 +82,7 @@ function mastArea_background_callback($section){
 	</div>
 
 	<div class="option">
-		<label>Mast top Padding</label>
+		<label>Mast Top Padding</label>
 		<select name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_misc][use_top_padding]">
 			<option value="false" <?php selected( $miscSettings['use_top_padding'], 'false', true ) ?>>No</option>
 			<option value="true" <?php selected( $miscSettings['use_top_padding'], 'true', true ) ?>>Yes</option>
@@ -93,7 +93,7 @@ function mastArea_background_callback($section){
 	</div>
 
 	<div class="option">
-		<label>Mast bottom Padding</label>
+		<label>Mast Bottom Padding</label>
 		<select name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_misc][use_bottom_padding]">
 			<option value="false" <?php selected( $miscSettings['use_bottom_padding'], 'false', true ) ?>>No</option>
 			<option value="true" <?php selected( $miscSettings['use_bottom_padding'], 'true', true ) ?>>Yes</option>

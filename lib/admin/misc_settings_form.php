@@ -89,18 +89,24 @@ function header_misc_settings_callback(){
 					<option value="true" <?php selected( $options['force_height'], 'true', true ) ?>>Yes</option>
 				</select>
 				<input type="text" name="kjd_header_misc_settings[kjd_header_misc][header_height]"
-				value="<?php echo $options['header_height'] ?$options['header_height'] : '' ;?>" style="width:40px;">px
+				value="<?php echo $options['header_height'] ? $options['header_height'] : '' ;?>" style="width:40px;">px
 			</div>
 
-				<div class="option">
-					<label>Confine Background?</label>
-					<select name="kjd_header_misc_settings[kjd_header_misc][kjd_header_confine_background]">
-						<option value="false" <?php selected( $options['kjd_header_confine_background'], 'false', true ) ?>>No</option>
-						<option value="true" <?php selected( $options['kjd_header_confine_background'], 'true', true) ?>>Yes</option>
-					</select>
-				</div>	
+			<div class="option">
+				<label>Confine Background?</label>
+				<select name="kjd_header_misc_settings[kjd_header_misc][kjd_header_confine_background]">
+					<option value="false" <?php selected( $options['kjd_header_confine_background'], 'false', true ) ?>>No</option>
+					<option value="true" <?php selected( $options['kjd_header_confine_background'], 'true', true) ?>>Yes</option>
+				</select>
+			</div>	
 				
-				
+			<div class="option">
+				<label>Hide Header?</label>
+				<select name="kjd_header_misc_settings[kjd_header_misc][hide_header]">
+					<option value="false" <?php selected( $options['hide_header'], 'false', true ) ?>>No</option>
+					<option value="true" <?php selected( $options['hide_header'], 'true', true ) ?>>Yes</option>
+				</select>
+			</div>			
 
 		</div><!-- end options wrapper -->
 
@@ -172,7 +178,7 @@ function navbar_misc_settings_callback(){
 				</select>
 				<input name="kjd_navbar_misc_settings[kjd_navbar_misc][kjd_navbar_margin_top]" 
 				value="<?php echo  $navbarSettings['kjd_navbar_margin_top'] ?  $navbarSettings['kjd_navbar_margin_top'] : ''; ?>"
-				style="width:40px;"/>px from bottom.
+				style="width:40px;"/>px.
 			</div>	
 
 			<div class="option">
@@ -180,6 +186,14 @@ function navbar_misc_settings_callback(){
 				<select name="kjd_navbar_misc_settings[kjd_navbar_misc][float]">
 						<option value="false" <?php selected( $navbarSettings['float'], 'false', true) ?>>No</option>
 						<option value="true" <?php selected( $navbarSettings['float'], 'true', true) ?>>Yes</option>
+				</select>
+			</div>
+
+			<div class="option">
+				<label>Remove left padding on first link</label>
+				<select name="kjd_navbar_misc_settings[kjd_navbar_misc][flush_first_link]">
+						<option value="false" <?php selected( $navbarSettings['flush_first_link'], 'false', true) ?>>No</option>
+						<option value="true" <?php selected( $navbarSettings['flush_first_link'], 'true', true) ?>>Yes</option>
 				</select>
 			</div>
 
@@ -273,7 +287,7 @@ function body_misc_settings_callback(){
 			</div> -->
 
 		<div class="color_option option" style="position: relative;">
-			<label>Title Bottom Border</label>
+			<label>Post Titles Bottom Border</label>
 
 			<input class="minicolors" name="kjd_body_misc_settings[kjd_body_misc][post_info_border]" 
 				value="<?php echo $bodySettings['post_info_border'] ? $bodySettings['post_info_border'] : ''; ?>"/>

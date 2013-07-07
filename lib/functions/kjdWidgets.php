@@ -168,7 +168,7 @@ register_sidebar($template_6);
 /////////////////////////////
 
 	$front_page_sidebar = array(
-		'name' => __( 'Front page Widget Sidebar' ),
+		'name' => __( 'Frontpage Widget Sidebar' ),
 		'id' => 'front_page_sidebar',
 		'description' => __( 'Widgets in this area will appear on the front page.' ),
 		'before_widget' =>'<div class="widget">',
@@ -183,7 +183,7 @@ register_sidebar($template_6);
 
 	$front_page_widget_area_1 = 
 	array(
-		'name' => __( 'Front page Widgets 1' ),
+		'name' => __( 'Frontpage Widgets 1' ),
 		'id' => 'front_page_widget_area_1',
 		'description' => __( 'Widgets in this area will appear on the front page.' ),
 		'before_widget' =>'<div class="widget '.$width.'">',
@@ -195,7 +195,7 @@ register_sidebar($template_6);
 	
 	$width = set_width($layouts['kjd_front_page_widgets'],'front_page_widget_area_2');
 	$front_page_widget_area_2 = array(
-		'name' => __( 'Front page Widgets 2' ),
+		'name' => __( 'Frontpage Widgets 2' ),
 		'id' => 'front_page_widget_area_2',
 		'description' => 'Widgets in this area will appear on the front page.',
 		'before_widget' =>'<div class="widget '.$width.'">',

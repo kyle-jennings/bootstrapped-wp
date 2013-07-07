@@ -19,7 +19,7 @@ get_header();
 
 ?>
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-		<div id="pageTitle" class="<?php echo $confineTitleBackground =='true' ? 'container' : '' ;?>">
+		<div id="pageTitle" class="<?php echo $confineTitleBackground =='true' ? 'container confined' : '' ;?>">
 			<div class="container">
 				<h1><?php the_title(); ?></h1>	
 			</div> <!-- end page title wrapper-->
@@ -29,7 +29,7 @@ get_header();
 
 	if($layoutSettings['position'] != 'right' && $layoutSettings['position'] !='left'){ 
 	?>
-		<div id="body" class="<?php echo $confineBodyBackground =='true' ? 'container' : '' ;?>">
+		<div id="body" class="<?php echo $confineBodyBackground =='true' ? 'container confined' : '' ;?>">
 			<div class="container">
 		<?php 
 		if($layoutSettings['position'] =='top'){ ?>
@@ -60,7 +60,7 @@ get_header();
 	<?php
 	}else{ ?>
 
-		<div id="body" class="<?php echo $confineBodyBackground =='true' ? 'container' : '' ;?>">
+		<div id="body" class="<?php echo $confineBodyBackground =='true' ? 'container confined' : '' ;?>">
 			<div class="container">
 				<div class="row">	
 				<?php if($layoutSettings['position'] =='right'){ ?>
@@ -94,7 +94,7 @@ get_header();
 ?>
 
 <?php endwhile; else: ?> 
-		<div id="pageTitle" class="<?php echo $confineTitleBackground =='true' ? 'container' : '' ;?>">
+		<div id="pageTitle" class="<?php echo $confineTitleBackground =='true' ? 'container confined' : '' ;?>">
 			<div class="container">
 				<h1> Content not found..</h1>	
 			</div> <!-- end page title wrapper-->
@@ -103,7 +103,7 @@ get_header();
 
 	if($layoutSettings!= 'right' && $layoutSettings !='left'){ ?>
 
-		<div id="body" class="<?php echo $confineBodyBackground =='true' ? 'container' : '' ;?>">
+		<div id="body" class="<?php echo $confineBodyBackground =='true' ? 'container confined' : '' ;?>">
 			<div class="container">
 				<div class="row">	
 					<div id="mainContent" class="span12">
@@ -125,7 +125,7 @@ get_header();
 	<?php
 	}else{ ?>
 
-		<div id="body" class="<?php echo $confineBodyBackground =='true' ? 'container' : '' ;?>">
+		<div id="body" class="<?php echo $confineBodyBackground =='true' ? 'container confined' : '' ;?>">
 			<div class="container">
 				<div class="row">	
 					<div id="mainContent" class="span9" <?php layoutSettings($layoutSettings['position']);?>>

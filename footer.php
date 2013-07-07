@@ -10,7 +10,7 @@ $footerWidgetCount =  count( $sidebars['footer-widgets'] );
 ?>
 	<div id="push"></div>
 	</div> <!-- end pageWrapper-->
-	<div id="footer" <?php echo $confineFooterBackground == 'true' ? 'class="container"': '' ; ?>>
+	<div id="footer" <?php echo $confineFooterBackground == 'true' ? 'class="container confined"': '' ; ?>>
 		<div class="container">
 			<ul class="row widgetsWrapper">
 				<?php if(is_active_sidebar('footer_widgets') ){  

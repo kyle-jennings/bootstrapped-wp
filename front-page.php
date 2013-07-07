@@ -16,9 +16,11 @@ get_header();
 	$bodySettings = $bodySettings['kjd_body_misc'];	
 	$confineBodyBackground = $bodySettings['kjd_body_confine_background'];
 
-$layoutSettings['position'] = 'right';
-$showImageSlider = get_option('kjd_cycler_misc_settings');
-$showImageSlider = $showImageSlider['kjd_cycler_misc']['enable'];
+	$showImageSlider = get_option('kjd_cycler_misc_settings');
+	$showImageSlider = $showImageSlider['kjd_cycler_misc']['enable'];
+
+
+
 if($showImageSlider =='true')
 {
 	image_slider_callback($confineBodyBackground,$position,$arrayLength,$layoutSettings);
@@ -27,44 +29,36 @@ if($showImageSlider =='true')
 if(!empty($components))
 { ?>
 
-<div id="body" class="frontPageBody <?php echo $confineBodyBackground =='true' ? 'container' : '' ;?>">
+<div id="body" class="frontPageBody <?php echo $confineBodyBackground =='true' ? 'container confined' : '' ;?>">
 	<div class="container">
 	<div class="row">
 <?php 
-	$floatRight = $layoutSettings['position'] == 'right'? 'style="float:right;"' : '' ;
 	if($layoutSettings['position'] != 'right' && $layoutSettings['position'] !='left'){ 
 		echo '<div class="span12 content-wrapper">';
 	}else{
-		echo '<div class="span9 content-wrapper" '.$floatRight.'>';
+		if($layoutSettings['position'] == 'left'){
+			echo kjd_get_sidebar('front_page_sidebar');
+		}
+
+		echo '<div class="span9 content-wrapper">';
 	}
 
-	foreach($components as $position => $component)
-	{
-		if($component['component'] =='widget_area_1'){
-			 widget_area_1_callback($layoutSettings); 
-		}elseif($component['component'] =='widget_area_2'){
-			 widget_area_2_callback($layoutSettings);
-		}elseif($component['component'] =='content'){
-			content_callback($layoutSettings);
-		}elseif($component['component'] =='secondary_content'){
-			secondary_content_callback($frontPageOptions,$layoutSettings);
-		}
-	}
+	front_page_layout($components,$layoutSettings);
 
 	if($layoutSettings['position'] == 'right' || $layoutSettings['position'] =='left')
 	{
 		echo '</div>'; // end left content
-		echo '<div class="span3">';
-		dynamic_sidebar('front_page_sidebar');
-		echo '</div>';
+		if($layoutSettings['position'] == 'right'){
+			echo kjd_get_sidebar('front_page_sidebar');
+		}
 	}else{
 		echo '</div>';
 	}
-	
-	echo '</div></div>';
+	//end row, container, and body divs	
+	echo '</div></div></div>';
 
 }else{ ?>
-<div id="body" class="<?php echo $confineBodyBackground =='true' ? 'container' : '' ;?>">
+<div id="body" class="<?php echo $confineBodyBackground =='true' ? 'container confined' : '' ;?>">
 	<div class="container">
 		<br /><br /><br /><br />
 		<div class="hero-unit">
@@ -84,6 +78,12 @@ if(!empty($components))
 
 get_footer(); // End page, start function
 
+
+
+
+/* ---------------------------------------------------------------------------------------------- */
+/* ------------------------------- Front Page Functions ----------------------------------------- */
+/* ---------------------------------------------------------------------------------------------- */
 function image_slider_callback($confineBodyBackground,$position,$arrayLength,$layoutSettings){
 		
 		$options = get_option('kjd_cycler_images_settings');
@@ -206,4 +206,34 @@ function secondary_content_callback($frontPageOptions,$layoutSettings){
 	}
 
 }
-?>
+
+function front_page_layout($components,$layoutSettings)
+{
+	foreach($components as $position => $component)
+	{
+		if($component['component'] =='widget_area_1'){
+			 widget_area_1_callback($layoutSettings); 
+		}elseif($component['component'] =='widget_area_2'){
+			 widget_area_2_callback($layoutSettings);
+		}elseif($component['component'] =='content'){
+			content_callback($layoutSettings);
+		}elseif($component['component'] =='secondary_content'){
+			secondary_content_callback($frontPageOptions,$layoutSettings);
+		}
+	}
+}
+
+function kjd_get_sidebar($sidebar, $location = null)
+{
+
+	$location_class = $location == 'horizontal' ? 'row' : 'span3' ;
+	ob_start();
+		dynamic_sidebar($sidebar);
+		$the_buffered_sidebar = ob_get_contents();
+	ob_end_clean();
+	$the_sidebar_markup = '<div id="sideContent" class="'.$location_class.' '.$location.'-widgets '.deviceViewSettings($layoutSettings['deviceView']).'">';
+	$the_sidebar_markup .= $the_buffered_sidebar;
+	$the_sidebar_markup .= '</div>';
+
+	return $the_sidebar_markup;
+}

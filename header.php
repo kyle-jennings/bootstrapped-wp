@@ -70,9 +70,11 @@
 
 	}
 	// Custom Styles
-	include(dirname(__FILE__) . '/lib/styles/custom.php');
+	// $root=get_bloginfo('template_directory'); 
+	// include($root.'/lib/styles/custom.php');
+
  if ( is_user_logged_in() ) { 
- 	echo '<style>#mastArea{padding-top:30px !important;}</style>';
+ 	echo '<style>body{padding-top:18px !important;}</style>';
   }
 ?>
 </head>
@@ -104,7 +106,7 @@
 						</div> <!-- end header widgets -->
 					</div>
 				</div>
-				<div id="header" class="<?php echo $confineHeaderBackground =='true' ? 'container' : '' ;?>">
+				<div id="header" class="<?php echo $confineHeaderBackground =='true' ? 'container confined' : '' ;?>">
 					<div class="container">
 						<div class="row">
 							<div id="logoWrapper">
@@ -130,7 +132,7 @@
 				include("navbar.php"); 	
 			}
 			?>
-				<div id="header" class="visible-desktop <?php echo $confineHeaderBackground =='true' ? 'container' : '' ;?>">
+				<div id="header" class="visible-desktop <?php echo $confineHeaderBackground =='true' ? 'container confined' : '' ;?>">
 					<div class="container">
 						<div class="row">
 							<div id="logoWrapper" class="span6">

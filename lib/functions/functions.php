@@ -38,7 +38,7 @@ function add_assets(){
 
 	wp_enqueue_style("wpstyles", $root."/styles/wpstyles.css");	
 	wp_enqueue_style("scaffolding", $root."/styles/common.css");	
-	
+	wp_enqueue_style("custom", $root."/styles/custom.css");
 }
 
 ///////////////////////////
