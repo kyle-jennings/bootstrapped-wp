@@ -121,7 +121,17 @@ $effects = '';
 
 ?>
 	<div class="option singleOptions" style="display:<?php echo $options['kjd_cycler_misc']['plugin'] == 'single image' ? 'block': 'none' ;?>;">
-		<label>Image Frame</label>
+		<h2>Image Frame</h2>
+
+		<div class="color_option option" style="position: relative;">
+
+			<label>Background color</label>
+			<input class="minicolors" 
+			name="kjd_cycler_misc_settings[kjd_cycler_misc][backgroundColor]"
+			value="<?php echo $options['kjd_cycler_misc']['backgroundColor'] ?  $options['kjd_cycler_misc']['backgroundColor'] : '' ;?>"
+			 />		
+			<a class="clearColor">Clear</a>
+		</div> 
 			
 		<div class="color_option option" style="position: relative;">
 

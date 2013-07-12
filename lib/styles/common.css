@@ -29,9 +29,9 @@ html,body{
     min-height: 100%;
     height: auto !important;
     height: 100%;
-		margin: 0 auto -225px;
 	}
 
+#imageSliderWrapper > .container,
 #header > .container,
 #navbar > .container,
 #cycler > .container,
@@ -40,7 +40,11 @@ html,body{
 	padding:10px 0;
 }
 
-div.container.confined{
+#imageSliderWrapper.container.confined,
+#header.container.confined,
+#cycler.container.confined,
+#body.container.confined,
+#footer.container.confined{
 	padding:20px !important;
 	margin:0 auto;
 }
@@ -250,8 +254,6 @@ div.img-circle img{
 .paginationLinks{clear:both;}
 
 
-/* ===== footer push  ===== */
-#push, #footer{clear:both; height:225px;}
 
 /* =============================== media queries ===================================== */
 @media (max-width: 979px) {

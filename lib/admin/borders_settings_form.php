@@ -76,7 +76,7 @@
 			?>
 			
 			<div class="option">
-				<label>Border radius</label>
+				<label><?php echo ucwords(str_replace('-',' ',$corner)); ?></label>
 				<select name="kjd_<?php echo $section;?>_borders_settings[kjd_<?php echo $section; ?>_border_radius][<?php echo $corner; ?>]">
 					<?php foreach($borderSizes as $radius){?>
 						<option value="<?php echo $radius.'px';?>" <?php selected( $borderRadius[$corner], $radius.'px', true) ?>><?php echo $radius.'px';?>

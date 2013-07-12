@@ -6,12 +6,15 @@ Template Name: Style Sheet
 
 	// error_reporting(E_ALL);
 	// ini_set('display_errors', 1);
+
 function get_theme_options(){
 	$sections = array('htmlTag','bodyTag','mastArea','header','navbar','dropdown-menu','cycler','contentArea','pageTitle','body','footer');
 
 
 	$section_output = '';
 	$media_767_markup ='@media(max-width:767px){';
+
+	$miscMarkup = miscStylesCallback();
 
 	$navArea_markup = navbarStylesCallback($media_767_markup);
 	$media_767_markup .= mediaQuery767Callback($media_767_markup);
@@ -117,7 +120,7 @@ function get_theme_options(){
 		
 	}
 	// return $section_output;
-	return $navArea_markup.$media_767_markup.$section_output; 
+	return $miscMarkup.$navArea_markup.$media_767_markup.$section_output; 
 	
 } // end build css function
 
@@ -168,6 +171,10 @@ function section_markup_callback($section,$section_options){
 		$sectionArea_markup .= 	$section_name.' .navbar-inner{box-shadow:none !important;}';
 	}
 
+
+
+
+// start section markup
 	$sectionArea_markup .= $section_name.'{';
 
 	if($section == 'navbar' && $miscSettings['navbar_style'] =="contained"){
@@ -185,8 +192,15 @@ function section_markup_callback($section,$section_options){
 		$sectionArea_markup .= "margin-bottom:".$margin_bottom."px;";
 	}
 
-	if(!empty($forceHeight) && $forceHeight =="true" && $navSettings['navbar_style'] != 'sticky-bottom'  && $section=='header' && !empty($miscSettings['header_height'])){
+	if($section=='header' && $forceHeight =="true" && !empty($miscSettings['header_height'])){
 		$sectionArea_markup .= "height:".$miscSettings['header_height']."px;";
+	}
+
+	if($section =='footer'){
+
+		$height = !empty($miscSettings['height']) ? $miscSettings['height'] : '300' ;
+		$sectionArea_markup .= "height:".$height."px;";	
+
 	}
 
 // if($section == 'mastArea'){
@@ -236,9 +250,16 @@ function section_markup_callback($section,$section_options){
 	if($section == "body"){
 		//color of the line underneath the post info
 		$postInfoBorder = $miscSettings['post_info_border'] ? $miscSettings['post_info_border'] : 'rgba(0,0,0,.5)';
-		$sectionArea_markup .= '.post-info';
+		$blockquote = $miscSettings['blockquote'] ? $miscSettings['blockquote'] : 'rgba(0,0,0,.5)';
+
+		$sectionArea_markup .= '#body .post-info';
 		$sectionArea_markup .= '{';
 			$sectionArea_markup .= 'border-bottom:1px solid '. $postInfoBorder.';';
+		$sectionArea_markup .= '}';
+
+		$sectionArea_markup .= '#body blockquote';
+		$sectionArea_markup .= '{';
+			$sectionArea_markup .= 'border-color:'. $blockquote.';';
 		$sectionArea_markup .= '}';
 	}
 
@@ -300,7 +321,8 @@ function image_cycler_settings_callback($miscSettings){
 		if($miscSettings['plugin'] == "single image"){
 	
 			$cycler_output .=".singleImage{
-							border:".$miscSettings['borderSize']." ".$miscSettings['borderColor']." solid; 
+						background:".$miscSettings['backgroundColor'].";
+						border:".$miscSettings['borderSize']." ".$miscSettings['borderColor']." solid; 
 						-webkit-border-radius:".$miscSettings['borderRadius'].";
 						-moz-border-radius:".$miscSettings['borderRadius'].";
 						border-radius:".$miscSettings['borderRadius'].";
@@ -966,6 +988,15 @@ function navbarStylesCallback(&$media_767_markup){
 	$navSettings = get_option('kjd_navbar_misc_settings');
 	$navSettings = $navSettings['kjd_navbar_misc'];
 	
+	if(!empty($navSettings['float']) && $navSettings['float']=='true'){
+
+
+		$margin_top = !empty($navSettings['float']['margin_top']) ? $navSettings['float']['margin_top'] : '0' ;
+		$margin_bottom = !empty($navSettings['float']['margin_bottom']) ? $navSettings['float']['margin_bottom'] : '0' ;
+		
+		$sectionArea_markup .= "margin-top:".$margin_top."px;";
+		$sectionArea_markup .= "margin-bottom:".$margin_bottom."px;";
+	}
 
 
 	$flush_left = $navSettings['flush_first_link'];
@@ -1372,4 +1403,21 @@ if($dropdown_bg != 'true'){
 function mediaQuery767Callback(&$media_767_markup){
 	$media_767_markup .= '}';
 	return $media_767_markup;
+}
+
+function miscStylesCallback(){
+
+	//get footer height
+	$footerOptions = get_option('kjd_footer_misc_settings');
+	$footerOptions = $footerOptions['kjd_footer_misc'];
+	$footerHeight = !empty($footerOptions["height"]) ? $footerOptions["height"] : '300' ;
+	if($footerOptions['kjd_footer_confine_background'] =='true'){
+		$footerHeight = $footerHeight+'40';
+	}
+
+	$misc_markup = '';
+	$misc_markup .='#pageWrapper{ margin: 0 auto -'.$footerHeight.'px;}';
+	$misc_markup .='#push{height:'.$footerHeight.'px;}';
+
+	return $misc_markup;
 }

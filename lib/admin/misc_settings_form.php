@@ -346,6 +346,14 @@ function body_misc_settings_callback(){
 			<a class="clearColor">Clear</a>
 		</div>
 
+		<div class="color_option option" style="position: relative;">
+			<label>Blockquote Color</label>
+
+			<input class="minicolors" name="kjd_body_misc_settings[kjd_body_misc][blockquote]" 
+				value="<?php echo $options['blockquote'] ? $options['blockquote'] : ''; ?>"/>
+			<a class="clearColor">Clear</a>
+		</div>
+
 		<div class="option float-toggle">
 			<label>Float Body Area</label>
 			<select name="kjd_body_misc_settings[kjd_body_misc][float][toggle]">
@@ -388,6 +396,12 @@ function footer_misc_settings_callback(){
 				</select>
 			</div>	
 
+		<div class="option">
+			<label>Footer Height</label>
+			<input name="kjd_footer_misc_settings[kjd_footer_misc][height]" 
+				value="<?php echo $options['height'] ? $options['height'] : ''; ?>"
+				style="width:40px;"/>px.
+		</div>
 
 <!-- 			<div class="option">
 				<label>Outer glow</label>
