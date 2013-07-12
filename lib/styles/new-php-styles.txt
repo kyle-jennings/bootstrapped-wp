@@ -1,0 +1,28 @@
+functions:
+border-styles: Color, width, styles
+border-radius: radius
+backgrounds: Solid
+			gradients
+				-Gradient functions: Vertical,  hortizontal, radial
+			background-image
+link styles: colors, text-decoration
+htag styles: colors
+
+table colors:
+tabbed content:
+Collapsibles:
+Images:
+Forms:
+Paginations:
+
+Conditionals:
+Mast - background, misc
+	Header
+	Nav-background,border,border,radius
+
+Content-area - background, misc
+	Title
+	Body
+Footer
+
+Navbar: Requires more fine tuning, pull everything out into the loops

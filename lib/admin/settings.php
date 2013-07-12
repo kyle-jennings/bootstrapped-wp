@@ -51,7 +51,8 @@ function kjd_settings_display($section) {
 </h2>
 
     <?php settings_errors(); ?>  
-	<form method="post" action="options.php">  
+	<form method="post" action="options.php"> 
+		<div class="fields-wrapper">
 	<?php 
 	if( $active_tab == 'background' ) { 
 		section_background_callback($section);
@@ -74,6 +75,8 @@ function kjd_settings_display($section) {
 	}
 	submit_button(); 
 	?>  
+		</div>
+		<div class="preview-options">preview</div>
 	</form>
 
 <?php

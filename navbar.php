@@ -4,18 +4,24 @@ $navbarSettings = get_option('kjd_navbar_misc_settings');
 $navSettings = $navbarSettings['kjd_navbar_misc'];
 $sideNav = $navSettings['side_nav'];
 
-if(empty($navbarSettings))
-{ ?>
-<div class="container">
-	<a href="wp-admin/admin.php?page=kjd_navbar_settings&tab=misc"class="btn btn-primary btn-large">
-		Dont forget to configure your navbar settings
-    </a>
-
-	<a href="nav-menus.php"class="btn btn-primary btn-large">
-		Dont forget to set a menu.
-    </a>
- </div>
-
+?>
+	<?php
+	if(empty($navbarSettings)){ 
+	?>
+	<div class="container">
+		<a href="wp-admin/admin.php?page=kjd_navbar_settings&tab=misc"class="btn btn-primary btn-large">
+			Dont forget to configure your navbar settings
+	    </a>
+	</div>
+	<?php
+	}
+	if( !has_nav_menu( 'header-menu' ) ){
+?>
+	<div class="container">
+		<a href="nav-menus.php"class="btn btn-primary btn-large">
+			Dont forget to set a menu.
+	    </a>
+ 	</div>
 <?php
 }else{
 
@@ -38,80 +44,65 @@ if($navbarLinkStyle == "dividers"){
 <?php
 }
 
-if($navbarSettings['hideNav'] == "false"){
+	if($navbarSettings['hideNav'] == "false"){
 
-	if($navbarSettings['navbar_style'] == "full_width"){ ?>
-		<div id="navbar" class="navbar navbar-static-top">
-		
-	<?php
-	}elseif($navbarSettings['navbar_style'] =="contained"){
-	?>
-	<div id="navbar" class="navbarWrapper container">
-		<div class="navbar">
-	<?php
-	}elseif($navbarSettings['navbar_style'] == "sticky-top"){
-	?>
-		<div id="navbar" class="navbar navbar-fixed-top">
-	<?php
-	}elseif($navbarSettings['navbar_style'] == "sticky-bottom"){
-	?>
-		<div id="navbar" class="navbar navbar-fixed-bottom">
-	<?php
-	}elseif($navbarSettings['navbar_style'] == "page-top"){ ?>
-		<div id="navbar" class="navbar navbar-static-top">
-	<?php
-	}else{ ?>
-		<div id="navbar" class="navbar navbar-static-top">
-	<?php	
-	} ?>
+		if($navbarSettings['navbar_style'] == "full_width"){
+			$navbar_open = '<div id="navbar" class="navbar navbar-static-top">';
+		}elseif($navbarSettings['navbar_style'] =="contained"){
+			$navbar_open = '<div id="navbar" class="navbarWrapper container"><div class="navbar">';
+		}elseif($navbarSettings['navbar_style'] == "sticky-top"){
+			$navbar_open = '<div id="navbar" class="navbar navbar-fixed-top">';
+		}elseif($navbarSettings['navbar_style'] == "sticky-bottom"){
+			$navbar_open = '<div id="navbar" class="navbar navbar-fixed-bottom">';
+		}elseif($navbarSettings['navbar_style'] == "page-top"){
+			$navbar_open = '<div id="navbar" class="navbar navbar-static-top">';
+		}else{ 
+			$navbar_open = '<div id="navbar" class="navbar navbar-static-top">';
+		} 
 
-		<div class="navbar-inner">
-			<div class="container">
-		<?php if($sideNav == 'true'){
-			echo '<a id="sidr-toggle" class="btn btn-navbar">
-			    <span class="icon-bar"></span>
-			    <span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</a>';
+		$navbar_inner = '';
+			$navbar_inner .= '<div class="navbar-inner">';
+			$navbar_inner .= '<div class="container">';
+			if($sideNav == 'true'){
+				$navbar_inner .= '<a id="sidr-toggle" class="btn btn-navbar">
+				    <span class="icon-bar"></span>
+				    <span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</a>';
+			}else{
+				$navbar_inner .= '<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar">
+				    <span class="icon-bar"></span>
+				    <span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>';
+			}
+				
+					$navbar_inner .='<div class="nav-collapse collapse navbar-responsive-collapse">';
+					ob_start();
+					menuStyleCallback($navbarLinkStyle);
+					$navbar_contents = ob_get_contents();
+					ob_end_clean();
+					$navbar_inner .= $navbar_contents;
+					$navbar_inner .= '</div>';
+
+				$navbar_inner .='</div>'; // end container -->
+			$navbar_inner .='</div>'; // end navbar-inner-->
+
+		 if($navbarSettings['navbar_style'] == "full_width"){
+			$navbar_close = '</div>';
+		}elseif($navbarSettings['navbar_style'] =="contained"){
+			$navbar_close = '</div></div>';
+		}elseif($navbarSettings['navbar_style'] == "sticky-top"){
+			$navbar_close = '</div>';
+		}elseif($navbarSettings['navbar_style'] == "sticky-bottom"){
+			$navbar_close = '</div>';
 		}else{
-			echo '<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar">
-			    <span class="icon-bar"></span>
-			    <span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</a>';
-		}?>
-			
-				<div class="nav-collapse collapse navbar-responsive-collapse">
-				<?php	menuStyleCallback($navbarLinkStyle);	?>
-				</div>
-
-			</div> <!-- end container -->
-		</div> <!-- end navbar-inner-->
-
-	<?php if($navbarSettings['navbar_style'] == "full_width"){ ?>
-	</div>
-	<?php
-	}elseif($navbarSettings['navbar_style'] =="contained"){
-	?>
-		</div>
-	</div>
-	<?php
-	}elseif($navbarSettings['navbar_style'] == "sticky-top"){
-	?>
-	</div>
-	<?php
-	}elseif($navbarSettings['navbar_style'] == "sticky-bottom"){
-	?>
-	</div>
-	<?php
-	}else{ ?>
-		</div>
-	<?php
-	} ?>
-
-<?php
-}
-
+			$navbar_close = '</div>';
+		} 
+	}
+echo $navbar_open; 
+echo $navbar_inner;
+echo $navbar_close; 
 }
 	
 

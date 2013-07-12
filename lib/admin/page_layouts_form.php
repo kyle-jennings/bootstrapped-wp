@@ -148,7 +148,7 @@ function front_page_settings(){
 	$options = get_option('kjd_frontPage_layout_settings');
 	$layoutOrder = $options['kjd_frontPage_layout'];
 	
-	$components = array('image_slider','widget_area_1','widget_area_2','content','secondary_content');
+	$components = array('widget_area_1','widget_area_2','content','secondary_content');//'image_slider'
 	$activeComponents = array();
 	if(!empty($layoutOrder)){
 		foreach($layoutOrder as $orderNum){

@@ -90,3 +90,12 @@
 				<input type="text" name="kjd_<?php echo $section;?>_background_settings[kjd_<?php echo $section;?>_background_wallpaper][positionY]"
 				value="<?php echo $wallpaperSettings['positionY'] ? $wallpaperSettings['positionY'] : '' ;?>" style="width:40px;"><span class="explanation">from top </span>
 			</div>
+		</div>
+	<div class="optionsWrapper">
+		<label>Background Attachment</label>		
+		<select name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_wallpaper][attachment]">
+			<option value="scroll" <?php selected( $wallpaperSettings['attachment'], 'scroll', true) ?>>Scroll</option>
+			<option value="fixed" <?php selected( $wallpaperSettings['attachment'], 'fixed', true) ?>>Fixed</option>
+			<option value="local" <?php selected( $wallpaperSettings['attachment'], 'local', true) ?>>Local</option>
+		</select>
+	</div>

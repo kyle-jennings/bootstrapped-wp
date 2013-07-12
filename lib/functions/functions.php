@@ -2,6 +2,7 @@
 // gets options function
 if(is_admin()){
 	include(dirname(dirname(__FILE__)).'/admin/init.php' ); 	
+	include(dirname(dirname(__FILE__)).'/styles/styles.php');
 }
 
  require_once('kjdMenus.php');
@@ -61,6 +62,11 @@ function the_post_thumbnail_description($args) {
 }
 
 
+// add excerpts to pages
+add_action( 'init', 'add_excerpts_to_pages' );
+function add_excerpts_to_pages() {
+     add_post_type_support( 'page', 'excerpt' );
+}
 
 
 

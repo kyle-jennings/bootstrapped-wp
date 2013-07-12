@@ -5,9 +5,9 @@
 
 		$tabParts = array('tabbed_content_background','tabbed_content_border','tabbed_content_text_color','active_tab_background','active_tab_link_color','inactive_tab_background', 'inactive_tab_link_color','hovered_tab_background','hovered_tab_link_color');
 		$collapsibleParts = array('collapible_content_background','collapible_content_border','collapible_content_text_color','active_title_background','active_title_link_color','inactive_title_background', 'inactive_title_link_color','hovered_title_background','hovered_title_link_color');
-		$tableParts = array('table_header_background','table_border','table_header_text_color','even_row_background','even_row_link_color','even_row_text_color','odd_row_background', 'odd_row_link_color','odd_row_text_color','hovered_row_background','hovered_row_link_color');
+		$tableParts = array('table_header_background','table_border','table_header_text_color','even_row_background','even_row_link_color','even_row_text_color','odd_row_background', 'odd_row_link_color','odd_row_text_color','hovered_row_background','hovered_row_link_color','hovered_row_text_color');
 		$formParts =array('form_background','form_border','form_text','field_background','field_border','field_glow','field_text', 'button_background','button_background_end','button_border','button_text');		
-		$paginationParts =array('pagination_border','pagination_background','pagination_text','pagination_link','pagination_hover');
+		$paginationParts =array('pagination_border','pagination_background','pagination_text','pagination_link','pagination_hover_background','pagination_hover_link', 'pagination_current_background','pagination_current_text');
 ?>
 	<input type="hidden" id="active_tab" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][tabID]" 
 value="<?php echo $sectionSettings['tabID'] ? $sectionSettings['tabID'] : 'none'; ?>"  />		
@@ -119,7 +119,7 @@ value="<?php echo $sectionSettings['tabID'] ? $sectionSettings['tabID'] : 'none'
 
 <?php 
 function imagesFormFields($section,$sectionSettings){
-	$borderSizes = range(1,20);
+	$borderSizes = range(0,20);
 	$borderStyles = array('none','solid','dotted','dashed','double','groove','ridge','inset','outset');
 
 	foreach(array('thumbnails','images') as $image_type){
@@ -184,6 +184,7 @@ function imagesFormFields($section,$sectionSettings){
 				<?php foreach($borderSizes as $size){?>
 					<option value="<?php echo $size.'px';?>"<?php selected( $sectionSettings[$image_type]['padding'], $size.'px', true) ?>><?php echo $size.'px';?></option>
 				<?php }?>
+
 			</select>
 		</div>
 
@@ -193,6 +194,7 @@ function imagesFormFields($section,$sectionSettings){
 				<?php foreach($borderSizes as $size){?>
 					<option value="<?php echo $size.'px';?>"<?php selected( $sectionSettings[$image_type]['border_radius'], $size.'px', true) ?>><?php echo $size.'px';?></option>
 				<?php }?>
+				<option value="50%"<?php selected( $sectionSettings[$image_type]['border_radius'], '50%', true) ?>>50%</option>
 			</select>
 		</div>
 

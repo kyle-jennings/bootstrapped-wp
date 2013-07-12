@@ -27,20 +27,26 @@ if($showImageSlider =='true')
 }
 
 if(!empty($components))
-{ ?>
+{ 
+	// $class = ($confineBodyBackground =='true') ? 'container confined' : '' ;
+	// $frontpage_markup ='';
+	// $frontpage_markup .='<div id="body" class="frontPageBody '.$class.'">';
+	// $frontpage_markup .='';
+	// $frontpage_markup .='';
+?>
 
 <div id="body" class="frontPageBody <?php echo $confineBodyBackground =='true' ? 'container confined' : '' ;?>">
 	<div class="container">
 	<div class="row">
 <?php 
 	if($layoutSettings['position'] != 'right' && $layoutSettings['position'] !='left'){ 
-		echo '<div class="span12 content-wrapper">';
+		echo '<div class="span12">';
 	}else{
 		if($layoutSettings['position'] == 'left'){
 			echo kjd_get_sidebar('front_page_sidebar');
 		}
 
-		echo '<div class="span9 content-wrapper">';
+		echo '<div class="span9">';
 	}
 
 	front_page_layout($components,$layoutSettings);
@@ -54,10 +60,13 @@ if(!empty($components))
 	}else{
 		echo '</div>';
 	}
+
 	//end row, container, and body divs	
 	echo '</div></div></div>';
 
-}else{ ?>
+}else{ 
+/* ---------------------------- if the front page settings arent configured ---------------------------- */
+?>
 <div id="body" class="<?php echo $confineBodyBackground =='true' ? 'container confined' : '' ;?>">
 	<div class="container">
 		<br /><br /><br /><br />
@@ -85,94 +94,7 @@ get_footer(); // End page, start function
 /* ------------------------------- Front Page Functions ----------------------------------------- */
 /* ---------------------------------------------------------------------------------------------- */
 function image_slider_callback($confineBodyBackground,$position,$arrayLength,$layoutSettings){
-		
-		$options = get_option('kjd_cycler_images_settings');
-		$cyclerOptions = get_option('kjd_cycler_misc_settings');
-		$plugin = $cyclerOptions['kjd_cycler_misc']['plugin'];
-		$images = $options['kjd_cycler_images'];
-
-		$options = get_option('kjd_cycler_misc_settings');
-		$sliderOptions = $options['kjd_cycler_misc'];
-
-		// $cyclerOptions = get_option('kjd_cycler_misc_settings');
-		// $cyclerOptions = $cyclerOptions['kjd_cycler_misc'];	
-		$confineCyclerBackground = $cyclerOptions['kjd_cycler_misc']['kjd_cycler_confine_background'];	
-?>
-
-<div id="imageSliderWrapper" class="frontPageBody hidden-phone">
-	<?php include(dirname(__FILE__) . '/lib/scripts/sliderScripts.php'); ?>
-<div class="container">
-<div id="imageSlider">
-<?php
-	 if($plugin !="none" && isset($plugin)){ 
-		if($plugin =="nivo"){
-			include "lib/scripts/nivo/nivoSlider.php"; 
-		}elseif($plugin =="piecemaker3d"){
-			include "lib/scripts/picemaker/piecemaker.php"; 
-		}elseif($plugin =="flexslider2"){
-			include "lib/scripts/flexslider/flexslider.php"; 
-		}elseif($plugin =="parallax"){
-			include "lib/scripts/parallax/parallax.php"; 
-		}elseif($plugin =="single image"){ ?> 
-	
-			<div class="singleImage">
-				<?php if(!empty($images[0]['url'])){ ?>
-				<img alt="<?php echo '0'; ?>" src="<?php echo $images[0]['url'];?>" />
-					<?php if(!empty($images[0]['text'])){ ?>
-				<div class="caption">
-					<p>
-						<?php echo $images[0]['text'];?>
-					</p>
-				</div>
-				<?php } ?>
-				<?php }else{
-					 echo "<div id='emptyImage'></div>"; 
-				} ?>
-
-			</div>
-
-			<?php if(!empty($images[0]['text'])){ ?>
-			<script>
-				jQuery(document).ready(function() {  
-					var imgWidth = jQuery('.singleImage > img').innerWidth();
-					var borderWidth = jQuery('.singleImage > img').css("border-left-width");
-					borderWidth = parseInt(borderWidth)*2;
-					jQuery('.singleImage').width(imgWidth);
-					imgWidth = '-'+((imgWidth/2) - (borderWidth-borderWidth/2))+'px'; 
-					borderWidth/=2;
-					<?php if($sliderOptions['singleCaption'] == "top"){
-						echo "jQuery('.singleImage > .caption').css('margin-left',imgWidth);";
-						echo "jQuery('.singleImage > .caption').css('top',borderWidth);";
-					}elseif($sliderOptions['singleCaption'] == "bottom"){
-						echo "jQuery('.singleImage > .caption').css('margin-left',imgWidth);";
-						echo "jQuery('.singleImage > .caption').css('bottom',borderWidth);";
-					}elseif($sliderOptions['singleCaption'] == "right"){ 
-						echo "jQuery('.singleImage > .caption').css('top',borderWidth);";
-						echo "jQuery('.singleImage > .caption').css('bottom',borderWidth);";
-						?> borderWidth*=-1;<?php
-						echo "jQuery('.singleImage > .caption').css('right',borderWidth);";
-					}elseif($sliderOptions['singleCaption'] == "left"){
-						echo "jQuery('.singleImage > .caption').css('top',borderWidth);";
-						echo "jQuery('.singleImage > .caption').css('bottom',borderWidth);";
-						echo "jQuery('.singleImage > .caption').css('left',borderWidth);";
-					}
-					?>
-				});
-			</script>
-			<?php
-			}
-
-
-			 ?>
-			
-		<?php
-		}
-	}
-?>
-		</div> <!-- end cycler -->
-	</div>
-</div> <!-- end image slider -->
-<?php
+		include('lib/partials/image_slider_wrapper.php');
 }
 
 function widget_area_1_callback($layoutSettings){

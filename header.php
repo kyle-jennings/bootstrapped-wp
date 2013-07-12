@@ -36,7 +36,7 @@
 
 	$options = get_option('kjd_navbar_misc_settings');
 	$navbarSettings = $options['kjd_navbar_misc'];
-	$alignNavWithLogo = $options['kjd_navbar_misc']['kjd_navbar_pull_up'];
+	$alignNavWithLogo = $navbarSettings['kjd_navbar_pull_up'];
 	$sideNav = $navbarSettings['side_nav'];
 
 	$useMast = $headerSettings['use_mast'];
@@ -74,7 +74,7 @@
 	// include($root.'/lib/styles/custom.php');
 
  if ( is_user_logged_in() ) { 
- 	echo '<style>body{padding-top:18px !important;}</style>';
+ 	echo '<style>body{padding-top:28px !important;}</style>';
   }
 ?>
 </head>
@@ -100,9 +100,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="span4 widgetWrapper hidden-phone">
-							<?php if(is_active_sidebar('header-widgets') ){  
-								dynamic_sidebar('header-widgets');
-							 } ?>
+							<?php dynamic_sidebar('header-widgets'); ?>
 						</div> <!-- end header widgets -->
 					</div>
 				</div>
@@ -145,9 +143,7 @@
 							</div> <!-- end logo-->
 
 							<div class="span4 widgetWrapper hidden-phone">
-								<?php if(is_active_sidebar('header-widgets') ){  
-									dynamic_sidebar('header-widgets');
-								 } ?>
+								<?php dynamic_sidebar('header-widgets'); ?>
 							</div> <!-- end header widgets -->
 						</div> <!-- end row -->
 					</div><!-- end header container -->

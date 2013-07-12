@@ -6,7 +6,7 @@ Version: 1.0
 Author: Kyle Jennings Design
 
 */
-*{outline:none !important; text-shadow:none !important;}
+*{outline:none !important; text-shadow:none !important; word-break:hyphenate; word-wrap:break-word;}
 
 
 /* image slider for gallery 1 */
@@ -35,7 +35,6 @@ html,body{
 #header > .container,
 #navbar > .container,
 #cycler > .container,
-#pageTitle > .container,
 #body > .container,
 #footer > .container{
 	padding:10px 0;
@@ -58,6 +57,10 @@ div.container.confined{
 
 
 .navbar{margin:0;}
+	#navbar .nav-tabs.tabs-below > li {margin-bottom: 0;}
+	#navbar .collapse{
+		overflow: visible !important;
+	}
 
 /* Cycler Settings*/
 	#imageSliderWrapper{
@@ -113,7 +116,9 @@ div.container.confined{
 
 
 /* content */	
-
+.the_content{
+	background:transparent;
+}
 .post-info
 {
 	border-bottom:1px solid rgba(0,0,0,.8);
@@ -202,7 +207,6 @@ div.container.confined{
 
 /* images */
 .thumbnail{text-align:center;}
-.thumbnail img{border:none !important;}
 div.img-rounded,div.img-polaroid,div.img-circle{ margin:0 5px;}
 div.img-rounded img{
   -webkit-border-radius: 6px;
@@ -252,31 +256,38 @@ div.img-circle img{
 /* =============================== media queries ===================================== */
 @media (max-width: 979px) {
 
-#logoWrapper > a > img, 
-#logoWrapper > img 
-{
-	max-width:95%;
-}
+	#logoWrapper > a > img, 
+	#logoWrapper > img 
+	{
+		max-width:95%;
+	}
 
-.navbar .dropdown-menu{background:transparent !important;}
-.navbar .dropdown-menu:after,
-.navbar .dropdown-menu:before{
-	display:none !important;
-}
-.navbar-fixed-top, .navbar-fixed-bottom {
-    position: fixed !important;
-}
+
+	.navbar .dropdown-menu{background:transparent !important;}
+	.navbar .dropdown-menu:after,
+	.navbar .dropdown-menu:before{
+		display:none !important;
+	}
+	.navbar-fixed-top, .navbar-fixed-bottom {
+	    position: fixed !important;
+	}
 
  }
 
 
 @media (max-width: 767px) {
+	#sidr-toggle{
+		float:left;
+	}
 	#logoWrapper{margin-left:0px;}
 	img{
 		height:auto;
 		max-width: 97%;
 	}
 
+	#navbar .collapse{
+		overflow: hidden !important;
+	}
 	.navbar .dropdown-menu{background:transparent !important;}
 	.navbar .dropdown-menu:after,
 	.navbar .dropdown-menu:before{
