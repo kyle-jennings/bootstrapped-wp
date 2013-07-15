@@ -248,7 +248,7 @@ register_sidebar($template_6);
 	);
 	register_sidebar($posts_template);
 
-	$width = set_width($layouts['single']);
+	$width = set_width($layouts['kjd_single']);
 	$singlePost_template = array(
 		'name' => __( 'Single Post Widgets' ),
 		'id' => 'kjd_single',

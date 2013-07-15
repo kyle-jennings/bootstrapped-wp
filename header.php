@@ -87,7 +87,10 @@
 			<?php wp_nav_menu(array('theme_location' => 'sidr-menu' ) ); ?>
 		</div>	
 	<?php
-	}?>
+	}
+
+// echo get_page_template();
+	?>
 
 	<div id="pageWrapper">
 		<div id="mastArea" class="<?php echo $confineMast == 'true' ? 'container' : '' ;?>">

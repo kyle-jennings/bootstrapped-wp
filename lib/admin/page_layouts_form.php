@@ -20,7 +20,7 @@ function kjd_page_layout_settings_display() {  ?>
 	  <a href="?page=kjd_page_layout_settings&tab=posts" class="nav-tab"<?php echo $active_tab == 'posts' ? 'id="active"' : 'none'; ?>>Post Layouts</a> 
 	  <a href="?page=kjd_page_layout_settings&tab=pages" class="nav-tab"<?php echo $active_tab == 'pages' ? 'id="active"' : 'none'; ?>>Page Layouts</a> 
 	  <a href="?page=kjd_page_layout_settings&tab=frontPage" class="nav-tab"<?php echo $active_tab == 'frontPage' ? 'id="active"' : 'none'; ?>>Front Page Layout</a> 
-	  <a href="?page=kjd_page_layout_settings&tab=attachements" class="nav-tab"<?php echo $active_tab == 'attachements' ? 'id="active"' : 'none'; ?>>Attachment Page Layout</a>
+	  <!-- <a href="?page=kjd_page_layout_settings&tab=attachements" class="nav-tab"<?php echo $active_tab == 'attachements' ? 'id="active"' : 'none'; ?>>Attachment Page Layout</a> -->
 	 </h2>
     <?php settings_errors(); ?>  
 	  <form method="post" action="options.php">  

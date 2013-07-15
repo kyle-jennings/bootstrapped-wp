@@ -126,7 +126,9 @@ function kjd_override_gallery($empty, $attr){
 				$thumbnails = get_post_images(get_the_ID(), 'thumbmail');
 				$fullImages = get_post_images(get_the_ID(), 'large');
 				foreach ($thumbnails as $image) {
-		    		$output .= '<li><a href="#"><img src="'.$image['thumbnail'].'" alt="'.$title.'" data-large="'.$image['full'].'" alt="'.$image['alt'].'" data-description="'.$img["content"].'" /></a></li>';
+
+		    		$output .= '<li><a href="#">
+		    		<img src="'.$image['thumbnail'].'" alt="'.$title.'" data-link="'.get_attachment_link($image["image_id"]).'" data-large="'.$image['full'].'" alt="'.$image['alt'].'" data-description="'.$img["content"].'" /></a></li>';
 				}
 				$output .= '</ul>';
 				$output .= '</div>';

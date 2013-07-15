@@ -17,10 +17,8 @@ $confineTitleBackground = $pageTitleSettings['kjd_pageTitle_confine_background']
 
 $sidebar = 'blog-entry';
 $content_type = 'archives';
+
 get_header();
-
-
-include('lib/partials/the_list_scaffolding.php');
-
+include('lib/partials/the_content_scaffolding.php');
 get_footer();
 ?>

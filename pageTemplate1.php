@@ -15,9 +15,8 @@ Template Name: Page Template 1
 	$confineTitleBackground = $pageTitleSettings['kjd_pageTitle_confine_background'];
 
 	$sidebar = 'kjd_template_1';
+
 get_header();
-
 include('lib/partials/the_content_scaffolding.php');
-
 get_footer();
 ?>

@@ -3,7 +3,7 @@
 $layoutOptions = get_option('kjd_post_layout_settings');
 $layoutSettings = $layoutOptions['kjd_post_layouts'];
 
-$layoutSettings = $layoutSettings['kjd_single'];
+$layoutSettings = $layoutSettings['kjd_404'];
 
 $position = $layoutSettings['position'];
 $span = $position == 'left' || $position == 'right'? 'span9' : 'span12' ;
@@ -17,8 +17,8 @@ $pageTitleSettings = get_option('kjd_pageTitle_misc_settings');
 $pageTitleSettings = $pageTitleSettings['kjd_pageTitle_misc'];
 $confineTitleBackground = $pageTitleSettings['kjd_pageTitle_confine_background'];
 
-$sidebar = 'kjd_single';
+$sidebar = 'kjd_404';
 
 get_header();
-include('lib/partials/the_content_scaffolding.php');
+// include('lib/partials/the_content_scaffolding.php');
 get_footer();

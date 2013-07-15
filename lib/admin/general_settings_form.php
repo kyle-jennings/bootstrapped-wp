@@ -144,6 +144,11 @@ function theme_settings_callback(){
 	</div>	
 </div>	
 
+	<div class="option">
+		<label>404 Page Content</label>
+			<?php wp_editor( $options['kjd_404_page'], 'kjd_theme_settings[kjd_404_page]' );?>
+	</div>
+
 <?php
 }
 

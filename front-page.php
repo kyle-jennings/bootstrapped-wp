@@ -111,9 +111,17 @@ function widget_area_2_callback($layoutSettings){
 
 
 function content_callback($layoutSettings){
-	echo '<div class="row">'; 
-		include('lib/partials/the_content.php');
-	echo '</div>';
+	if (have_posts()) : 
+		if($pagination_top == 'true'){
+			echo posts_pagination();
+		}
+		while (have_posts()) : the_post(); 
+				//include('lib/partials/the_content.php');
+				kjd_the_content();
+			
+		endwhile;
+		echo posts_pagination();
+	endif;
 }
 
 function secondary_content_callback($frontPageOptions,$layoutSettings){ 
@@ -143,19 +151,4 @@ function front_page_layout($components,$layoutSettings)
 			secondary_content_callback($frontPageOptions,$layoutSettings);
 		}
 	}
-}
-
-function kjd_get_sidebar($sidebar, $location = null)
-{
-
-	$location_class = $location == 'horizontal' ? 'row' : 'span3' ;
-	ob_start();
-		dynamic_sidebar($sidebar);
-		$the_buffered_sidebar = ob_get_contents();
-	ob_end_clean();
-	$the_sidebar_markup = '<div id="sideContent" class="'.$location_class.' '.$location.'-widgets '.deviceViewSettings($layoutSettings['deviceView']).'">';
-	$the_sidebar_markup .= $the_buffered_sidebar;
-	$the_sidebar_markup .= '</div>';
-
-	return $the_sidebar_markup;
 }
