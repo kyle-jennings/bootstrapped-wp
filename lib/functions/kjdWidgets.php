@@ -95,7 +95,19 @@ function set_width($template,$frontpage_area = null)
 //	 Page templates
 //////////////////////////////
 
-	$width = set_width($layouts['kjd_template_1']);
+// $width = set_width($layouts['page']);
+// 	$page = array(
+// 		'name' => __( 'Page' ),
+// 		'id' => 'page',
+// 		'description' => __( 'Widgets in this area will appear on normal pages' ),
+// 		'before_widget' =>'<div class="widget '.$width.'">',
+// 		'before_title' => '<h3>',
+// 		'after_title' => '</h3>',
+// 		'after_widget' => '</div>'
+// 	);
+// register_sidebar($page);
+
+$width = set_width($layouts['kjd_template_1']);
 	$template_1 = array(
 		'name' => __( 'Template One Widgets' ),
 		'id' => 'kjd_template_1',

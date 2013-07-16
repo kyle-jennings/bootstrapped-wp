@@ -20,5 +20,5 @@ $confineTitleBackground = $pageTitleSettings['kjd_pageTitle_confine_background']
 $sidebar = 'kjd_404';
 
 get_header();
-// include('lib/partials/the_content_scaffolding.php');
+include('lib/partials/the_content_scaffolding.php');
 get_footer();

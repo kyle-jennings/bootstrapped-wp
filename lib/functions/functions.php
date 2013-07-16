@@ -157,18 +157,19 @@ function posts_pagination(){
 	if ($total_pages > 1){  
 	  
 	  $current_page = max(1, get_query_var('paged'));  
-	    
-	  $pagination_markup .= '<div class="pagination">';
-	  $pagination_markup .=  paginate_links(array(  
-	      'base' => get_pagenum_link(1) . '%_%',  
-	      'format' => 'page/%#%',  
-	      'current' => $current_page,  
-	      'total' => $total_pages,  
-	      'type' => 'list',
-	      'prev_text' => 'Prev',  
-	      'next_text' => 'Next'  
-	    ));  
-	  
+	  $pagination_markup .= '<div class="row">';
+
+		  $pagination_markup .= '<div class="pagination">';
+		  $pagination_markup .=  paginate_links(array(  
+		      'base' => get_pagenum_link(1) . '%_%',  
+		      'format' => 'page/%#%',  
+		      'current' => $current_page,  
+		      'total' => $total_pages,  
+		      'type' => 'list',
+		      'prev_text' => 'Prev',  
+		      'next_text' => 'Next'  
+		    ));  
+		  $pagination_markup .= '</div>';
 	  $pagination_markup .= '</div>';  
 	    
 	}  
@@ -199,10 +200,8 @@ function kjd_get_the_content()
 		}
 
 	}elseif(is_404()){
-	
-		$page404 = get_option('kjd_theme_settings');
-		$page404 = $page404['kjd_404_page'];
-		$the_content_markup .= $page404;
+
+		$the_content_markup = kjd_the_404();
 
 	}elseif(is_single() || is_page()){
 		
@@ -264,7 +263,9 @@ function kjd_get_the_post_meta(){
 function kjd_the_content(){
 
 	$the_content_markup = '';
+	// $the_content_markup .= is_front_page() ?  : ; 
 
+	$the_content_markup .= '<div class="the-content">';
 
 	if(!is_single() && !is_page()){
 		$the_content_markup .= '<h3 class="post-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h3>';
@@ -281,7 +282,9 @@ function kjd_the_content(){
 		$the_content_markup .= kjd_get_the_post_meta();
 	}
 
-	echo $the_content_markup;
+	$the_content_markup .= '</div>';
+	
+	return $the_content_markup;
 }
 
 
@@ -373,4 +376,13 @@ function kjd_gallery_image_links(){
 
 	$navigation_markup .= '</div>';
 	return $navigation_markup;
+}
+
+/* ------------------------ the 404 ------------------------ */
+
+function kjd_the_404(){
+
+	$page404 = get_option('kjd_theme_settings');
+	$page404 = do_shortcode($page404['kjd_404_page']);
+	return $page404;
 }

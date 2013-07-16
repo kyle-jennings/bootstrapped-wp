@@ -117,11 +117,10 @@ function content_callback($layoutSettings){
 		}
 		while (have_posts()) : the_post(); 
 				//include('lib/partials/the_content.php');
-				kjd_the_content();
-			
+				echo kjd_the_content();
 		endwhile;
-		echo posts_pagination();
 	endif;
+	echo posts_pagination();
 }
 
 function secondary_content_callback($frontPageOptions,$layoutSettings){ 
