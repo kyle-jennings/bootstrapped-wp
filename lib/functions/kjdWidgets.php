@@ -248,11 +248,11 @@ register_sidebar($template_6);
 ///////////////////////
 
 
-	$width = set_width($layouts['posts']);
+	$width = set_width($layouts['index']);
 	$posts_template = array(
 		'name' => __( 'Posts Widgets' ),
-		'id' => 'posts',
-		'description' => __( 'Widgets in this area will appear on the posts index.' ),
+		'id' => 'index',
+		'description' => __( 'Widgets in this area will appear on the index index.' ),
 		'before_widget' =>'<div class="widget '.$width.'">',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
@@ -260,7 +260,7 @@ register_sidebar($template_6);
 	);
 	register_sidebar($posts_template);
 
-	$width = set_width($layouts['kjd_single']);
+	$width = set_width($layouts['single']);
 	$singlePost_template = array(
 		'name' => __( 'Single Post Widgets' ),
 		'id' => 'kjd_single',

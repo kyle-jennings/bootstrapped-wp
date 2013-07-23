@@ -8,7 +8,8 @@ Template Name: Style Sheet
 	// ini_set('display_errors', 1);
 
 function get_theme_options(){
-	$sections = array('htmlTag','bodyTag','mastArea','header','navbar','dropdown-menu','cycler','contentArea','pageTitle','body','footer');
+	$sections = array('htmlTag','bodyTag','mastArea','header','navbar','dropdown-menu',
+		'cycler','contentArea','pageTitle','body','posts','footer');
 
 
 	$section_output = '';
@@ -31,6 +32,7 @@ function get_theme_options(){
 		// // Background Options
 		$options_backgrounds = get_option('kjd_'.$section.'_background_settings');
 		$backgroundColorSettings = $options_backgrounds['kjd_'.$section.'_background_colors'];
+
 		$backgroundWallpaperSettings = $options_backgrounds['kjd_'.$section.'_background_wallpaper'];
 		$backgroundSettings = array('backgroundColorSettings'=>$backgroundColorSettings,'backgroundWallpaperSettings'=>$backgroundWallpaperSettings);
 
@@ -131,24 +133,38 @@ function section_markup_callback($section,$section_options){
 	extract($section_options);
 	extract($backgroundSettings);
 
-	if($section =='dropdown-menu'){
+
+switch($section)
+{
+	case 'dropdown-menu':
 		$section_name = '.dropdown-menu';
-	}elseif($section =='cycler'){
+		break;
+	case 'cycler':
 		$section_name = '#imageSliderWrapper';
-	}elseif($section == 'navbar'){
-		// print_r($miscSettings);die();
+		break;
+	case 'navbar':
 		if($miscSettings['navbar_style'] =="contained"){
 			$section_name = '#'.$section;
 		}else{
 			$section_name = '#'.$section.' .navbar-inner';
 		}
-	}elseif($section =='htmlTag'){
+		break;
+	case 'htmlTag':
 		$section_name =  'html';
-	}elseif($section =='bodyTag'){
+		break;		
+	case 'bodyTag':
 		$section_name = 'body';
-	}else{
+		break;
+	case 'posts':
+		if($miscSettings['post_background_toggle'] == 'true'){
+			$section_name = '.the-content-wrapper';
+		}
+		break;
+	default:
 		$section_name = '#'.$section;
-	}
+		break;
+}
+
 
 	$type = $backgroundColorSettings['gradient'];
 	if(!empty($miscSettings['kjd_'.$section.'_section_shadow'])){
@@ -172,6 +188,18 @@ function section_markup_callback($section,$section_options){
 	}
 
 
+if($section == 'posts'){
+	if($miscSettings['post_background_toggle'] == 'true'){
+		$sectionArea_markup .= 	'.content-list > .the-content-wrapper.well{';
+			$sectionArea_markup .= 'margin-bottom:40px;';
+		$sectionArea_markup .=' }';
+
+		$sectionArea_markup .= 	'.content-list > .the-content-wrapper.well h3 {';
+			$sectionArea_markup .= 'margin-top:0;';
+		$sectionArea_markup .=' }';
+	}
+
+}
 
 
 // start section markup
@@ -208,7 +236,8 @@ function section_markup_callback($section,$section_options){
 // 	print_r($backgroundWallpaperSettings);die();
 // }
 	// //background functions
-	$sectionArea_markup .= background_type_callback($type,$backgroundSettings);
+
+	$sectionArea_markup .= background_type_callback($type,$backgroundColorSettings);
 	//wallpaper function
 	$sectionArea_markup .= wallpaper_callback($backgroundWallpaperSettings);
 
@@ -261,6 +290,7 @@ function section_markup_callback($section,$section_options){
 		$sectionArea_markup .= '{';
 			$sectionArea_markup .= 'border-color:'. $blockquote.';';
 		$sectionArea_markup .= '}';
+
 	}
 
 
@@ -373,6 +403,7 @@ function image_cycler_settings_callback($miscSettings){
 function background_type_callback($type = null,$backgroundColorSettings = array()){
 	extract($backgroundColorSettings); 
 
+
 	$background_type = '';
 	if($type =='vertical'){
 		$background_type .= verticalGradientCallback($backgroundColorSettings['color'], $backgroundColorSettings['endcolor']);
@@ -457,8 +488,8 @@ function wallpaper_callback($backgroundWallpaperSettings){
 	$backgroundImage = $backgroundWallpaperSettings['image'];
 	
 	$backgroundPosition = $backgroundWallpaperSettings['position'];
-	$backgroundPositionX = $backgroundWallpaperSettings['positionX'];
-	$backgroundPositionY = $backgroundWallpaperSettings['positionY'];
+	$backgroundPositionX = !empty($backgroundWallpaperSettings['positionX'])? $backgroundWallpaperSettings['positionX'] : '0' ;
+	$backgroundPositionY = !empty($backgroundWallpaperSettings['positionY'])? $backgroundWallpaperSettings['positionY'] : '0' ;
 	$backgroundRepeat = $backgroundWallpaperSettings['repeat'];
 
 	$wallpaper_markup ='';
@@ -477,7 +508,7 @@ function wallpaper_callback($backgroundWallpaperSettings){
 		}
 
 		if(isset($backgroundPosition) && $backgroundPosition=="custom"){
-			$wallpaper_markup .= 'background-position:'.$backgroundPositionX.' '.$backgroundPositionY.';';	
+			$wallpaper_markup .= 'background-position:'.$backgroundPositionX.'px '.$backgroundPositionY.'px;';	
 		}
 		if(isset($backgroundRepeat) && $backgroundRepeat!=""){
 			$wallpaper_markup .= 'background-repeat:'.$backgroundRepeat.';';	
@@ -663,9 +694,10 @@ $table_markup = '';
 	$table_markup .= '}';
 
 
-	$table_markup .= '#'.$section.' .table-hover tbody tr td:hover{';
-	$table_markup .= 'background:'.$tableContent['hovered_row_background'].' !important;';
-	$table_markup .= 'color:'.$tableContent['hovered_row_text_color'].' !important;';
+	$table_markup .= '#'.$section.' .table-hover tbody tr:hover > td,';
+	$table_markup .= '#'.$section.' .table-hover tbody tr:hover > td{';
+	$table_markup .= 'background:'.$tableContent['hovered_row_background'].';';
+	$table_markup .= 'color:'.$tableContent['hovered_row_text_color'].';';
 	$table_markup .= '}';
 
 	return $table_markup;
@@ -747,9 +779,26 @@ $form_markup .= '#'. $section.' input[type="color"]{';
 $form_markup .= '}';
 
 //input areas on focus
-$form_markup .= '#'. $section.' input[type="radio"]:focus, #'. $section.' input[type="checkbox"]:focus, #'. $section.' textarea:focus,#'. $section.'  input[type="text"]:focus,#'. $section.'  input[type="password"]:focus,#'. $section.'  input[type="datetime"]:focus,#'. $section.'  input[type="datetime-local"]:focus,#'. $section.'  input[type="date"]:focus,#'. $section.'  input[type="month"]:focus,#'. $section.'  input[type="time"]:focus,#'. $section.'  input[type="week"]:focus,#'. $section.'  input[type="number"]:focus,#'. $section.'  input[type="email"]:focus,#'. $section.'  input[type="url"]:focus,#'. $section.'  input[type="search"]:focus,#'. $section.'  input[type="tel"]:focus,#'. $section.'  input[type="color"]:focus,#'. $section.'  .uneditable-input:focus {';
+$form_markup .= '#'. $section.' input[type="radio"]:focus, 
+#'. $section.' input[type="checkbox"]:focus, 
+#'. $section.' textarea:focus,#'. $section.'  input[type="text"]:focus,
+#'. $section.'  input[type="password"]:focus,
+#'. $section.'  input[type="datetime"]:focus,
+#'. $section.'  input[type="datetime-local"]:focus,
+#'. $section.'  input[type="date"]:focus,
+#'. $section.'  input[type="month"]:focus,
+#'. $section.'  input[type="time"]:focus,
+#'. $section.'  input[type="week"]:focus,
+#'. $section.'  input[type="number"]:focus,
+#'. $section.'  input[type="email"]:focus,
+#'. $section.'  input[type="url"]:focus,
+#'. $section.'  input[type="search"]:focus,
+#'. $section.'  input[type="tel"]:focus,
+#'. $section.'  input[type="color"]:focus,
+#'. $section.'  .uneditable-input:focus {';
 	$form_markup .= 'border-color: :'. $formStyles['field_border'].';';
-	$form_markup .= 'box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px '. $formStyles['field_glow'].';';
+	$form_markup .= 'box-shadow: 0 1px 1px rgba(0
+		0, 0, 0.075) inset, 0 0 8px '. $formStyles['field_glow'].';';
 $form_markup .= '}';
 
 $form_markup .= '#'. $section.' form button, #'. $section.' form input[type=submit], #'. $section.' form .btn{';
@@ -1420,4 +1469,32 @@ function miscStylesCallback(){
 	$misc_markup .='#push{height:'.$footerHeight.'px;}';
 
 	return $misc_markup;
+}
+
+function postSettingsCallback(){
+	settings_fields('kjd_post_listing_layout_settings');
+	$options = get_option('kjd_post_listing_layout_settings');
+	$posts_options = $options['post_listing_settings'];
+
+
+	$posts_markup = '';
+
+	if($posts_options['posts_background_toggle'] == 'true'){
+	
+		$posts_markup .= '.content-list > .the-content-wrapper.well {';
+			$posts_markup.='background:'.$posts_options['posts_background_color'].';';	
+		$posts_markup .= '}';
+
+		$posts_markup .= '.content-list > .the-content-wrapper.well h3 {';
+		$posts_markup .= 'margin-top:0; }';
+	}
+
+	if($posts_options['single_post_background_toggle'] == 'true'){
+		$posts_markup .= '.content-single > .the-content-wrapper.well {';
+			$posts_markup.='background:'.$posts_options['single_post_background_color'].';';	
+		$posts_markup .= '}';
+	}
+
+
+	return $posts_markup;
 }

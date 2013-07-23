@@ -49,6 +49,7 @@
 	$contentAreaSettings = get_option('kjd_contentArea_background_settings');
 	$confinecontentArea = $contentAreaSettings['kjd_contentArea_background']['confine_contentArea'];
 
+	$navbar .= dirname(__FILE__).'/lib/partials/navbar_scaffolding.php';
 	wp_head();
 	if(is_home() ) { 
 		$themeOptions = get_option('kjd_theme_settings');
@@ -69,9 +70,8 @@
 			
 
 	}
-	// Custom Styles
-	// $root=get_bloginfo('template_directory'); 
-	// include($root.'/lib/styles/custom.php');
+
+
 
  if ( is_user_logged_in() ) { 
  	echo '<style>body{padding-top:28px !important;}</style>';
@@ -120,7 +120,7 @@
 							</div> <!-- end logo-->
 							<?php 
 								if($navbarSettings['navbar_style'] !='page-top'){
-									include("navbar.php"); 	
+									include($navbar); 	
 								}
 							?>
 						</div> <!-- end row -->
@@ -136,7 +136,7 @@
 				<div id="header" class="visible-desktop <?php echo $confineHeaderBackground =='true' ? 'container confined' : '' ;?>">
 					<div class="container">
 						<div class="row">
-							<div id="logoWrapper" class="span6">
+							<div id="logoWrapper" class="">
 								<?php if($useLogo == "true"){ ?>
 								<a href="<?php bloginfo('url'); ?>">
 									<img src="<?php echo $logo; ?>" alt=""/>
@@ -154,7 +154,7 @@
 			<?php
 			//places navbar underneath header - this is the default behavior
 			if($navbarSettings['navbar_style'] !='page-top'){
-				include("navbar.php"); 	
+				include($navbar); 	
 			}
 		}
 		?>

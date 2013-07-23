@@ -17,8 +17,8 @@ function kjd_page_layout_settings_display() {  ?>
 	}
 ?> 
 	<h2 class="nav-tab-wrapper">  
-	  <a href="?page=kjd_page_layout_settings&tab=posts" class="nav-tab"<?php echo $active_tab == 'posts' ? 'id="active"' : 'none'; ?>>Post Layouts</a> 
-	  <a href="?page=kjd_page_layout_settings&tab=pages" class="nav-tab"<?php echo $active_tab == 'pages' ? 'id="active"' : 'none'; ?>>Page Layouts</a> 
+	  <a href="?page=kjd_page_layout_settings&tab=posts" class="nav-tab"<?php echo $active_tab == 'posts' ? 'id="active"' : 'none'; ?>>Post Templates</a> 
+	  <a href="?page=kjd_page_layout_settings&tab=pages" class="nav-tab"<?php echo $active_tab == 'pages' ? 'id="active"' : 'none'; ?>>Page Templates</a> 
 	  <a href="?page=kjd_page_layout_settings&tab=frontPage" class="nav-tab"<?php echo $active_tab == 'frontPage' ? 'id="active"' : 'none'; ?>>Front Page Layout</a> 
 	  <!-- <a href="?page=kjd_page_layout_settings&tab=attachements" class="nav-tab"<?php echo $active_tab == 'attachements' ? 'id="active"' : 'none'; ?>>Attachment Page Layout</a> -->
 	 </h2>
@@ -27,9 +27,9 @@ function kjd_page_layout_settings_display() {  ?>
 		<?php 
 			
 			if( $active_tab == 'posts' ) { 
-				post_layout_callback();
+				post_templates_callback();
 			}elseif( $active_tab == 'pages' ){
-				page_layout_callback();
+				page_templates_callback();
 			}elseif($active_tab == 'frontPage'){
 				front_page_settings();
 			}elseif($active_tab == 'attachment'){
@@ -41,7 +41,7 @@ function kjd_page_layout_settings_display() {  ?>
 <?php
 }
 
-function page_layout_callback(){
+function page_templates_callback(){
 
 	settings_fields( 'kjd_page_layout_settings' );
 	$options = get_option('kjd_page_layout_settings');
@@ -57,12 +57,12 @@ function page_layout_callback(){
 }
 
 
-function post_layout_callback(){
+function post_templates_callback(){
 
 	settings_fields( 'kjd_post_layout_settings' );
 	$options = get_option('kjd_post_layout_settings');
 	
-	$postLayouts = array('single','posts','category','archive','tag','taxonomy','author','date','search','attachment');
+	$postLayouts = array('single','index','category','archive','tag','taxonomy','author','date','search','attachment');
 	$postLayoutSettings = $options['kjd_post_layouts'];
 
 // echo "<pre>";
@@ -217,15 +217,6 @@ function front_page_settings(){
 <?php
 }
 
-function post_listing_page_settings(){
-	settings_fields('kjd_post_listing_layout_settings');
-	$options = get_option('kjd_post_listing_layout_settings');
-	$layoutOrder = $options['kjd_post_listing_layout'];
-	
-
-
-}
-
 
 function attachment_page_settings(){
 	settings_fields('kjd_attachment_layout_settings');
@@ -236,4 +227,7 @@ function attachment_page_settings(){
 
 }
 
-?>
+function posts_layout_settings(){
+
+
+}

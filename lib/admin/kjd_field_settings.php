@@ -190,15 +190,31 @@
 				'kjd_frontPage_layout_section' // parent section
 			);		
 				
+		//post listings layouts
+		add_settings_section(
+			'kjd_post_listing_layout_settings_section', // ID hook name
+			'Page Layout settings', // label
+			'kjd_post_listing_layout_settings_callback', // function name
+			'kjd_post_listing_layout_settings' // page name
+		);
+			add_settings_field(
+				'post_listing_settings', // ID hook name
+				'Choose the layout for post templates', // label
+				'kjd_post_callback', // function name
+				'kjd_post_listing_layout_settings', // page name
+				'kjd_post_listing_layout_settings_section' // parent section
+			);
+
  		register_setting('kjd_post_layout_settings','kjd_post_layout_settings', 'build_css');
  		register_setting('kjd_page_layout_settings','kjd_page_layout_settings', 'build_css');
  		register_setting('kjd_frontPage_layout_settings','kjd_frontPage_layout_settings', 'build_css');
-
+ 		register_setting('kjd_post_listing_layout_settings','kjd_post_listing_layout_settings', 'build_css');
 
 //////////////////////////
 //////////////////////////
 // Page sections	
-$sections = array('login','htmlTag','bodyTag','mastArea','contentArea','header','navbar','dropdown-menu','cycler','pageTitle','body','footer');
+$sections = array('login','htmlTag','bodyTag','mastArea','contentArea','header',
+	'navbar','dropdown-menu','cycler','pageTitle','body','posts','footer');
 foreach($sections as $section){
 
 	
@@ -464,9 +480,10 @@ function build_css($input){
 	$root=dirname(dirname(__FILE__)); 
 	$root = $root.'/styles';
 	$file = $root.'/custom.css';
-	// chmod($file, 0777);
-	unlink($file);
+
 	if(file_exists($file)){
+		chmod($file, 0777);
+		unlink($file);
 		$file = fopen($file, "w+");	
 	}else{
 		$file = fopen($file, "x+");
@@ -477,10 +494,13 @@ function build_css($input){
 		$buffered_content = ob_get_contents();
 	ob_end_clean();
 
+	
+	// if(file_exists($file)){
+	// 	chmod($file, 777);
+	// }
+
 	fwrite($file, $buffered_content);
 	fclose($file);
-	
-	chmod($file, 777);
 
 	return $input;
 }

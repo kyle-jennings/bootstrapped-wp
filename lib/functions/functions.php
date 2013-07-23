@@ -5,11 +5,11 @@ if(is_admin()){
 	include(dirname(dirname(__FILE__)).'/styles/styles.php');
 }
 
- require_once('kjdMenus.php');
+ require_once('kjd_bootstrap_menus.php');
  require_once('kjdGallery.php');
  require_once('kjdShortcodes.php');
  require_once('kjdWidgets.php');
-
+ require_once('kjd_adminbar_menu.php');
 
 add_action( 'wp_enqueue_scripts', 'add_assets' );
 function add_assets(){
@@ -114,14 +114,7 @@ $attachments = get_children( array(
 }
 
 
-/// page template stuff
-function layoutSettings($position){
-	if($position =='right'){
-
-	}else{
-
-	}
-}
+/* -------------------device views ----------------------- */
 
 function deviceViewSettings($deviceView){
 		if(isset($deviceView) && $deviceView !="all"){
@@ -144,6 +137,13 @@ function login_css() {
 }
 add_action('login_head', 'login_css');
 
+
+/* --------------------------- read more link --------------------------*/
+function new_excerpt_more($more) {
+       global $post;
+	return '<a class="moretag" href="'. get_permalink($post->ID) . '"> Read More</a>';
+}
+add_filter('excerpt_more', 'new_excerpt_more');
 
 /* -------------------------------- pagination  ------------------------------- */
 function posts_pagination(){
@@ -179,10 +179,11 @@ function posts_pagination(){
 /* ---------------------------- content and content list scaffolding functions ----------------------------- */
 
 
-function kjd_get_the_content()
+function kjd_get_the_content($post_display = null)
 {
 	$the_content_markup = '';
 
+	$the_content_markup .= '<div class="the-content">';
 	if(!is_single() && !is_page()){
 		$title = get_the_title();
 	}
@@ -214,12 +215,19 @@ function kjd_get_the_content()
 	
 	}else{
 		ob_start();
+		if($post_display !='excerpt'){
+			the_content();
+		}else{
 			the_excerpt();
+		}
 			$buffered_content = ob_get_contents();
 		ob_end_clean();
 
 		$the_content_markup .= $buffered_content;
 	}
+
+		$the_content_markup .= '<div style="clear:both;"></div>';
+	$the_content_markup .= '</div>';
 
 	return $the_content_markup;
 }
@@ -262,28 +270,75 @@ function kjd_get_the_post_meta(){
 /* ------------------------------- the content ------------------------------ */
 function kjd_the_content(){
 
+
+	$post_options = get_option('kjd_posts_misc_settings');
+	$post_options = $post_options['kjd_posts_misc'];
+	$post_display = $post_options['post_listing_type'];
+
+	$use_featured_image = ($post_options['show_featured_image'] == 'true' && $post_options['post_listing_type'] == 'excerpt') ? 'true' : 'false' ;
+	$featured_image = $post_options['featured_position'];
+
+	$content_well = $post_options['post_background_toggle'] == "true" ? 'well' : '' ;
+
 	$the_content_markup = '';
-	// $the_content_markup .= is_front_page() ?  : ; 
-
-	$the_content_markup .= '<div class="the-content">';
-
-	if(!is_single() && !is_page()){
-		$the_content_markup .= '<h3 class="post-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h3>';
-	}
-
-	if(!is_page() || is_attachment()){
-		$the_content_markup .= kjd_get_the_post_info();
-	}
-
-	$the_content_markup .= kjd_get_the_content();	
 
 
-	if(!is_page() || is_attachment()){
-		$the_content_markup .= kjd_get_the_post_meta();
-	}
+	// this will wrap the content in a well if need be
+	$the_content_markup .= '<div class="the-content-wrapper '.$content_well.'">';
+		
+		// puts featured image before content wrapper
+		if(in_array($featured_image, array('atop_post','left_of_post')) && $use_featured_image == 'true'){
 
+			$the_content_markup .= kjd_get_featured_image($featured_image);
+		}
+
+		$the_content_markup .= '<div class="the-content-inner">';
+
+
+			if(!is_single() && !is_page()){
+				$the_content_markup .= '<h3 class="post-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h3>';
+			}
+
+			if(!is_page() || is_attachment()){
+
+				// featured image before info
+				if($featured_image == 'before_post_info' && $use_featured_image == 'true' && !is_attachment()){
+					$the_content_markup .= kjd_get_featured_image();
+				}
+
+				$the_content_markup .= kjd_get_the_post_info();
+			}
+
+			// featured image before content
+			if($featured_image == 'before_content' && $use_featured_image == 'true' && !is_attachment()){
+				$the_content_markup .= kjd_get_featured_image();
+			}
+
+			// the content
+			$the_content_markup .= kjd_get_the_content($post_display);
+			//the content
+
+			if(!is_page() || is_attachment()){
+				
+				// featured image before meta
+				if($featured_image == 'before_post_meta' && $use_featured_image == 'true' && !is_attachment()){
+					$the_content_markup .= kjd_get_featured_image();
+				}
+
+				$the_content_markup .= kjd_get_the_post_meta();
+			}
+
+		// closes content inner
+		$the_content_markup .= '</div>';
+
+		// featured image after post or right of post
+		if(in_array($featured_image, array('after_post','right_of_post')) && $use_featured_image == 'true'){
+			$the_content_markup .= kjd_get_featured_image($featured_image);
+		}
+
+	// closes the content-wrapper
 	$the_content_markup .= '</div>';
-	
+
 	return $the_content_markup;
 }
 
@@ -385,4 +440,18 @@ function kjd_the_404(){
 	$page404 = get_option('kjd_theme_settings');
 	$page404 = do_shortcode($page404['kjd_404_page']);
 	return $page404;
+}
+
+function kjd_get_featured_image($position = null){
+
+	$featured_image_markup = '';
+	if ( has_post_thumbnail() ) {
+		
+		$featured_image_markup .='<div class="featured-image">';
+		$featured_image_markup .= get_the_post_thumbnail();
+		$featured_image_markup .='</div>';
+	} 
+
+
+	return $featured_image_markup;
 }

@@ -60,12 +60,12 @@ html,body{
 .frontPageBody{position:relative;}
 
 
-.navbar{margin:0;}
+/*.navbar{margin:0;}
 	#navbar .nav-tabs.tabs-below > li {margin-bottom: 0;}
 	#navbar .collapse{
 		overflow: visible !important;
 	}
-
+*/
 /* Cycler Settings*/
 	#imageSliderWrapper{
 			position:relative; 
@@ -126,9 +126,8 @@ html,body{
 	margin-top:0;
 }
 
-.the_content{
-	background:transparent;
-	margin:0 auto 40px;
+.content-list > .the-content-wrapper{
+	margin:0 auto 60px;
 }
 
 .post-info
@@ -163,6 +162,12 @@ html,body{
 
 .attachment-description{
 
+}
+
+/* widget stuff*/
+.widget .accordion
+{
+	margin:0;
 }
 /* ------------ bootstrap stuff ------------------ */
 .image{float:left;}
@@ -221,7 +226,6 @@ html,body{
 .hero-unit, 
 .well{ 
 	border:none !important;
-
 }
 
 

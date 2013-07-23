@@ -4,25 +4,29 @@ $navbarSettings = get_option('kjd_navbar_misc_settings');
 $navSettings = $navbarSettings['kjd_navbar_misc'];
 $sideNav = $navSettings['side_nav'];
 
-?>
+
+	if(empty($navbarSettings) || !has_nav_menu( 'header-menu' )){ 
+	?>
+		<div class="container">
+
+
 	<?php
+	
 	if(empty($navbarSettings)){ 
 	?>
-	<div class="container">
-		<a href="wp-admin/admin.php?page=kjd_navbar_settings&tab=misc"class="btn btn-primary btn-large">
+		<a href="wp-admin/admin.php?page=kjd_navbar_settings&tab=misc" class="btn btn-primary btn-large">
 			Dont forget to configure your navbar settings
 	    </a>
-	</div>
 	<?php
 	}
 	if( !has_nav_menu( 'header-menu' ) ){
 ?>
-	<div class="container">
-		<a href="nav-menus.php"class="btn btn-primary btn-large">
+		<a href="wp-admin/nav-menus.php"class="btn btn-primary btn-large">
 			Dont forget to set a menu.
 	    </a>
- 	</div>
 <?php
+	}
+	echo '</div>';
 }else{
 
 	
@@ -124,4 +128,3 @@ function menuStyleCallback($navbarLinkStyle){
 
 	}
 }
-?>

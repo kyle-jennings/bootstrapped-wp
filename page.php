@@ -9,7 +9,6 @@
 	$pageTitleSettings = $pageTitleSettings['kjd_pageTitle_misc'];
 	$confineTitleBackground = $pageTitleSettings['kjd_pageTitle_confine_background'];
 
-$sidebar = 'kjd_page';
 
 get_header();
 include('lib/partials/the_content_scaffolding.php');

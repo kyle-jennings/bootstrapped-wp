@@ -2,7 +2,7 @@
 
 $layoutOptions = get_option('kjd_post_layout_settings');
 $layoutSettings = $layoutOptions['kjd_post_layouts'];
-$layoutSettings = $layoutSettings['kjd_author'];
+$layoutSettings = $layoutSettings['author'];
 $position = $layoutSettings['position'];
 $span = $position == 'left' || $position == 'right'? 'span9' : 'span12' ;
 
@@ -16,6 +16,7 @@ $pageTitleSettings = $pageTitleSettings['kjd_pageTitle_misc'];
 $confineTitleBackground = $pageTitleSettings['kjd_pageTitle_confine_background'];
 
 $sidebar = 'author';
+$content_type = 'author';
 
 get_header();
 include('lib/partials/the_content_scaffolding.php');

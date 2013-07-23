@@ -94,7 +94,7 @@ get_footer(); // End page, start function
 /* ------------------------------- Front Page Functions ----------------------------------------- */
 /* ---------------------------------------------------------------------------------------------- */
 function image_slider_callback($confineBodyBackground,$position,$arrayLength,$layoutSettings){
-		include('lib/partials/image_slider_wrapper.php');
+		include(dirname(__FILE__).'/lib/partials/image_slider_wrapper.php');
 }
 
 function widget_area_1_callback($layoutSettings){
@@ -111,15 +111,22 @@ function widget_area_2_callback($layoutSettings){
 
 
 function content_callback($layoutSettings){
-	if (have_posts()) : 
+	if (have_posts()){
+
 		if($pagination_top == 'true'){
 			echo posts_pagination();
 		}
-		while (have_posts()) : the_post(); 
-				//include('lib/partials/the_content.php');
-				echo kjd_the_content();
-		endwhile;
-	endif;
+		
+		echo '<div class="content-list">';
+		
+		while(have_posts()){ 
+			
+			the_post(); 
+			echo kjd_the_content();
+		}
+
+		echo '</div>';
+	}
 	echo posts_pagination();
 }
 

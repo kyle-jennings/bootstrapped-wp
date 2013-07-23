@@ -16,6 +16,7 @@ $pageTitleSettings = $pageTitleSettings['kjd_pageTitle_misc'];
 $confineTitleBackground = $pageTitleSettings['kjd_pageTitle_confine_background'];
 
 $sidebar = 'attachment';
+$content_type = 'attachment';
 
 get_header();
 include('lib/partials/the_content_scaffolding.php');

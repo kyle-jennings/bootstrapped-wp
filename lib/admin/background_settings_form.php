@@ -41,7 +41,12 @@
 				</select>
 			</div>
 
+<?php 
 
+if($section !=='posts')
+{
+
+?>
 			<!-- ********** -->
 			<!-- Wallpaper  -->
 			<!-- ********** -->
@@ -99,3 +104,5 @@
 			<option value="local" <?php selected( $wallpaperSettings['attachment'], 'local', true) ?>>Local</option>
 		</select>
 	</div>
+<?php 
+}

@@ -18,6 +18,7 @@ $pageTitleSettings = $pageTitleSettings['kjd_pageTitle_misc'];
 $confineTitleBackground = $pageTitleSettings['kjd_pageTitle_confine_background'];
 
 $sidebar = 'kjd_404';
+$content_type = '404';
 
 get_header();
 include('lib/partials/the_content_scaffolding.php');

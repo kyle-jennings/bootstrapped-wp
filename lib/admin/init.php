@@ -126,6 +126,16 @@ function setup_theme_menus() {
 		create_function('', 'kjd_settings_display("body");')
 	);   
 
+	// customize body
+    add_submenu_page(
+		'kjd_theme_settings',   // belongs to id
+  		'Customize Post Contents', // title bar
+		'Post Contents', // menu title
+		'manage_options',   //member access
+	    'kjd_posts_settings', // id for submenu
+		create_function('', 'kjd_settings_display("posts");')
+	);   
+
 		// customize footer
     add_submenu_page(
 		'kjd_theme_settings',   // belongs to id
@@ -150,7 +160,7 @@ function setup_theme_menus() {
     add_submenu_page(
 		'kjd_theme_settings',   // belongs to id
   		'Customize misc backgounds', // title bar
-		'Misc Backgrounds', // menu title
+		'Special Backgrounds', // menu title
 		'manage_options',   //member access
 	    'kjd_misc_background_settings', // id for submenu
 		'kjd_misc_backgrounds_display'

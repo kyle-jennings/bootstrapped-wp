@@ -10,6 +10,8 @@ if($section =="header"){
 	title_misc_settings_callback();
 }elseif($section =="body"){
 	body_misc_settings_callback();
+}elseif($section =="posts"){
+	posts_misc_settings_callback();	
 }elseif($section =="footer"){
 	footer_misc_settings_callback();
 }
@@ -311,6 +313,7 @@ function navbar_misc_settings_callback(){
 <?php
 }
 
+/* ------------------------- Body Misc Settings --------------------------- */
 function body_misc_settings_callback(){
 	settings_fields( 'kjd_body_misc_settings' );
 	$options = get_option('kjd_body_misc_settings');
@@ -380,6 +383,78 @@ function body_misc_settings_callback(){
 <?php
 }
 
+/* ---------------------------  Posts Misc settings ----------------------------- */
+function posts_misc_settings_callback()
+{
+	settings_fields('kjd_posts_misc_settings');
+	$options = get_option('kjd_posts_misc_settings');
+	$options = $options['kjd_posts_misc'];
+
+///////post
+		//use well
+			//well color and opacity
+
+?>
+	<div class="optionsWrapper">
+
+		<h3>Post/Page Listing</h3>
+
+
+		<div class="option"> 
+			<label>Show Excerpt or Content</label>
+			<select name="kjd_posts_misc_settings[kjd_posts_misc][post_listing_type]" class="post-listing-toggle">
+				<option value="excerpt" <?php selected( $options['post_listing_type'], "excerpt", true) ?>>Excerpt</option>
+				<option value="content" <?php selected( $options['post_listing_type'], "content", true) ?>>Content</option>
+			<select>
+		</div>
+
+	</div>
+
+	<div class="optionsWrapper image-settings" <?php echo $options['post_listing_type'] == 'excerpt' ? 'style="display:block;"' : 'style="display:none;"';?>>
+		<h3>Featured Image</h3>
+
+		<div class="option"> 
+			<label>Show Featured Image</label>
+			<select name="kjd_posts_misc_settings[kjd_posts_misc][show_featured_image]" class='featured-image-toggle'>
+				<option value="false" <?php selected( $options['show_featured_image'], "false", true) ?>>No</option>
+				<option value="true" <?php selected( $options['show_featured_image'], "true", true) ?>>Yes</option>
+			<select>
+		</div> 
+
+		<div class="option featured-image-settings"> 
+			<label>Featured Image Position</label>
+			<select name="kjd_posts_misc_settings[kjd_posts_misc][featured_position]">
+				<?php
+					$positions = array('atop_post','left_of_post','right_of_post','after_post','before_post_info', 'before_content','before_post_meta');
+					foreach($positions as $position){
+						$selected = selected( $options['featured_position'], $position, true);
+						echo '<option value="'.$position.'" '.$selected.' >'.ucwords(str_replace('_',' ',$position)).'</option>';
+					}
+				?>
+			<select>
+		</div> 
+	</div>
+
+	<div class="optionsWrapper">
+
+		<h3>Post/Page Listing</h3>
+
+
+		<div class="option"> 
+			<label>Use Background Color?</label>
+			<select name="kjd_posts_misc_settings[kjd_posts_misc][post_background_toggle]">
+				<option value="true" <?php selected( $options['post_background_toggle'], "true", true) ?>>Yes</option>
+				<option value="false" <?php selected( $options['post_background_toggle'], "false", true) ?>>No</option>
+			<select>
+		</div>
+		
+	</div>
+<?php
+
+}
+
+
+/* ---------------------------  Footer Misc settings ----------------------------- */
 function footer_misc_settings_callback(){
 	settings_fields( 'kjd_footer_misc_settings' );
 	$options = get_option('kjd_footer_misc_settings');

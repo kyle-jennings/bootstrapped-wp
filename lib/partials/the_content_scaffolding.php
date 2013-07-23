@@ -32,15 +32,23 @@ if (have_posts()){
 		$scaffolding_markup .= posts_pagination();
 	}
 
- while (have_posts()){ 
+	//open content-list/single wrapper
+	if( !is_single() && !is_page() && !is_attachment() ){
+		$scaffolding_markup .= '<div class="content-list">';
+	}else{
+		$scaffolding_markup .= '<div class="content-single">';
+	}
+	 while (have_posts()){ 
 
- the_post(); 
+		the_post(); 
+		$scaffolding_markup .= kjd_the_content();
 
-		$scaffolding_markup .= '<div class="content-wrapper">';
-				$scaffolding_markup .= kjd_the_content();
-		$scaffolding_markup .= '</div>';
+	}
 
- 	}
+ 	//close content-list/single wrapper
+	$scaffolding_markup .= '</div>';
+
+	// pagination
 	$scaffolding_markup .= posts_pagination();
 
 }else{
