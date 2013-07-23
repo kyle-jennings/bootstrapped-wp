@@ -3,7 +3,7 @@
 function kjd_theme_settings_display(){  
 screen_icon('themes'); ?> 
 
-<h2>theme Settings</h2>
+<h2>Theme Settings</h2>
 
 <?php
 
@@ -15,8 +15,8 @@ screen_icon('themes'); ?>
 ?> 
 
 <h2 class="nav-tab-wrapper">  
-	  <a href="?page=kjd_theme_settings&tab=settings" class="nav-tab"<?php echo $active_tab == 'settings' ? 'id="active"' : 'none'; ?>>theme Settings
-	  </a>  	
+	<a href="?page=kjd_theme_settings&tab=settings" class="nav-tab"<?php echo $active_tab == 'settings' ? 'id="active"' : 'none'; ?>>General Settings </a>  	
+	<a href="?page=kjd_theme_settings&tab=components" class="nav-tab"<?php echo $active_tab == 'components' ? 'id="active"' : 'none'; ?>>Components</a>
 
 </h2>
 
@@ -25,8 +25,8 @@ screen_icon('themes'); ?>
 		<?php 
 			if( $active_tab == 'settings' ) { 
 				theme_settings_callback();
-			}elseif( $active_tab == 'butt' ) { 
-				//theme_settings_callback();
+			}elseif( $active_tab == 'components' ) { 
+				theme_components_callback();
 			}
 			submit_button(); 
 		?>  
@@ -149,6 +149,50 @@ function theme_settings_callback(){
 		<label>404 Page Content</label>
 			<?php wp_editor( $options['kjd_404_page'], 'kjd_theme_settings[kjd_404_page]' );?>
 	</div>
+
+<?php
+}
+
+function theme_components_callback(){
+
+	settings_fields( 'kjd_component_settings' ); 
+	$options = get_option('kjd_component_settings');
+?>
+<div class="options_wrapper">
+
+	<div class="option">
+		<label>Style individual posts?</label>
+		<select name="kjd_component_settings[style_posts]">
+			<option value="false" <?php selected( $options['style_posts'], 'false', true ) ?>>No</option>
+			<option value="true" <?php selected( $options['style_posts'], 'true', true) ?>>Yes</option>
+		</select>
+	</div>
+
+	<div class="option">
+		<label>Style widgets?</label>
+		<select name="kjd_component_settings[style_widgets]">
+			<option value="false" <?php selected( $options['style_widgets'], 'false', true ) ?>>No</option>
+			<option value="true" <?php selected( $options['style_widgets'], 'true', true) ?>>Yes</option>
+		</select>
+	</div>	
+
+	<div class="option">
+		<label>Style image cycler section?</label>
+		<select name="kjd_component_settings[style_image_cycler_section]">
+			<option value="false" <?php selected( $options['style_image_cycler_section'], 'false', true ) ?>>No</option>
+			<option value="true" <?php selected( $options['style_image_cycler_section'], 'true', true) ?>>Yes</option>
+		</select>
+	</div>		
+
+<!-- 	<div class="option">
+		<label>Header Content</label>
+		<select name="kjd_component_settings[header_content]">
+			<option value="logo" <?php selected( $options['header_content'], 'logo', true ) ?>>Logo</option>
+			<option value="logo_nav" <?php selected( $options['header_content'], 'logo_nav', true) ?>>Logo and Nav</option>
+			<option value="widgets" <?php selected( $options['header_content'], 'widgets', true) ?>>widgets</option>
+		</select>
+	</div> -->
+</div>	
 
 <?php
 }

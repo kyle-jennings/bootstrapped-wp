@@ -8,6 +8,7 @@
 		$tableParts = array('table_header_background','table_border','table_header_text_color','even_row_background','even_row_link_color','even_row_text_color','odd_row_background', 'odd_row_link_color','odd_row_text_color','hovered_row_background','hovered_row_link_color','hovered_row_text_color');
 		$formParts =array('form_background','form_border','form_text','field_background','field_border','field_glow','field_text', 'button_background','button_background_end','button_border','button_text');		
 		$paginationParts =array('pagination_border','pagination_background','pagination_text','pagination_link','pagination_hover_background','pagination_hover_link', 'pagination_current_background','pagination_current_text');
+		$listParts = array('text_color','text_hover_color','link_color','link_hover_color','border_color','background_color','background_hover_color','_background_active_color')
 ?>
 	<input type="hidden" id="active_tab" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][tabID]" 
 value="<?php echo $sectionSettings['tabID'] ? $sectionSettings['tabID'] : 'none'; ?>"  />		
@@ -26,11 +27,16 @@ value="<?php echo $sectionSettings['tabID'] ? $sectionSettings['tabID'] : 'none'
     <li><a href="#thumbnails" data-toggle="tab">Images</a></li>
     <li><a href="#forms" data-toggle="tab">Forms</a></li>
     <li><a href="#pagination" data-toggle="tab">Pagination</a></li>
-
+    <li><a href="#lists" data-toggle="tab">Lists</a></li>
   </ul>
 
   <div class="tab-content">
   
+
+
+<!-- ***************** -->
+<!--   Tabbed Colors   -->
+<!-- ***************** -->
     <div class="tab-pane active" id="tabs">
      <h3>Tabbed Content</h3>
 	<?php foreach($tabParts as $part){ ?>
@@ -48,6 +54,12 @@ value="<?php echo $sectionSettings['tabID'] ? $sectionSettings['tabID'] : 'none'
 	?>
     </div>
 
+
+
+<!-- ****************** -->
+<!-- Collapsible Colors -->
+<!-- ****************** -->
+
     <div class="tab-pane" id="collapsibles">
       	<h3>Collapsibles</h3>
 	<?php foreach($collapsibleParts as $part){ ?>
@@ -64,6 +76,11 @@ value="<?php echo $sectionSettings['tabID'] ? $sectionSettings['tabID'] : 'none'
 	?>
     </div>
 
+
+
+<!-- ***************** -->
+<!-- 	Table Colors   -->
+<!-- ***************** -->
     <div class="tab-pane" id="tables">
       	<h3>Tables</h3>
 	<?php foreach($tableParts as $part){ ?>
@@ -80,10 +97,14 @@ value="<?php echo $sectionSettings['tabID'] ? $sectionSettings['tabID'] : 'none'
     </div>
 
     <div class="tab-pane" id="thumbnails">
- <?php imagesFormFields($section,$sectionSettings); ?>
+ 		<?php imagesFormFields($section,$sectionSettings); ?>
 
     </div>
 
+
+<!-- ***************** -->
+<!--    Form Colors    -->
+<!-- ***************** -->
     <div class="tab-pane" id="forms">
      <h3>Forms</h3>
 <?php foreach($formParts as $part){ ?>
@@ -99,14 +120,39 @@ value="<?php echo $sectionSettings['tabID'] ? $sectionSettings['tabID'] : 'none'
 	?>
     </div>
 
+<!-- ***************** -->
+<!-- Pagination Colors -->
+<!-- ***************** -->
+
     <div class="tab-pane" id="pagination">
-     <h3>Forms</h3>
+     <h3>Paginator</h3>
 	<?php foreach($paginationParts as $part){ ?>
 
 		<div class="option" style="position: relative;">
 
 			<label><?php echo ucwords(str_replace('_', ' ', $part));?></label>
 			<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][pagination][<?php echo $part;?>]" value="<?php echo $sectionSettings['pagination'][$part] ? $sectionSettings['pagination'][$part] : 'none'; ?>"  />		
+		<a class="clearColor">Clear</a>
+		</div> 
+	<?php
+	}
+	?>
+    </div>
+
+
+<!-- ***************** -->
+<!--     List Colors   -->
+<!-- ***************** -->
+
+    <div class="tab-pane" id="lists">
+     <h3>Lists</h3>
+	<?php foreach($listParts as $part){ ?>
+
+		<div class="option" style="position: relative;">
+
+			<label><?php echo ucwords(str_replace('_', ' ', $part));?></label>
+			<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][list][<?php echo $part;?>]" 
+			value="<?php echo $sectionSettings['list'][$part] ? $sectionSettings['list'][$part] : 'none'; ?>"  />		
 		<a class="clearColor">Clear</a>
 		</div> 
 	<?php

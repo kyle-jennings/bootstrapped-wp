@@ -64,6 +64,42 @@
 
 		register_setting('kjd_theme_settings','kjd_theme_settings', 'build_css');
 
+		// settings components
+		add_settings_section(
+			'kjd_component_settings_section', // ID hook name
+			'KJD General Component Settings', // label
+			'kjd_component_settings_callback', // function name
+			'kjd_component_settings' // page name
+		);
+
+			add_settings_field(
+				'kjd_style_widgets',
+				'Style Widgets',
+				'kjd_style_widgets_callback',
+				'kjd_component_settings',
+				'kjd_component_settings_section'
+			);
+
+
+			add_settings_field(
+				'kjd_style_posts',
+				'Style Posts',
+				'kjd_style_posts_callback',
+				'kjd_component_settings',
+				'kjd_component_settings_section'
+			);
+
+
+			add_settings_field(
+				'kjd_style_image_cycler_section',
+				'Style Image Cycler Section',
+				'kjd_style_image_cycler_section_callback',
+				'kjd_component_settings',
+				'kjd_component_settings_section'
+			);
+
+		register_setting('kjd_component_settings','kjd_component_settings', 'build_css');
+
 		///////////////////
 		// cycler settings
 		///////////////////
@@ -71,7 +107,7 @@
 			'kjd_cycler_misc_settings_section', // ID hook name
 			'Cycler settings', // label
 			'kjd_cycler_misc_settings_callback', // function name
-			'kjd_cycler_miscc_settings' // page name
+			'kjd_cycler_misc_settings' // page name
 		);
 			add_settings_field(
 				'kjd_cycler_misc',
@@ -210,11 +246,12 @@
  		register_setting('kjd_frontPage_layout_settings','kjd_frontPage_layout_settings', 'build_css');
  		register_setting('kjd_post_listing_layout_settings','kjd_post_listing_layout_settings', 'build_css');
 
-//////////////////////////
-//////////////////////////
-// Page sections	
+/* ------------------------------------------------------------------------------------------------------- */
+/* ------------------------------------------- Page sections --------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------------- */
+
 $sections = array('login','htmlTag','bodyTag','mastArea','contentArea','header',
-	'navbar','dropdown-menu','cycler','pageTitle','body','posts','footer');
+	'navbar','dropdown-menu','cycler','pageTitle','body','posts','widgets','footer');
 foreach($sections as $section){
 
 	

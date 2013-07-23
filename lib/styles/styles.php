@@ -9,7 +9,7 @@ Template Name: Style Sheet
 
 function get_theme_options(){
 	$sections = array('htmlTag','bodyTag','mastArea','header','navbar','dropdown-menu',
-		'cycler','contentArea','pageTitle','body','posts','footer');
+		'cycler','contentArea','pageTitle','body','posts','widgets','footer');
 
 
 	$section_output = '';
@@ -43,7 +43,7 @@ function get_theme_options(){
 		$sectionBottomBorder = $options_border['kjd_'.$section.'_bottom_border'];
 		$sectionLeftBorder = $options_border['kjd_'.$section.'_left_border'];
 
-		if($confineSectionBackground =='true' || $section =='dropdown-menu'){
+		if($confineSectionBackground =='true' || $section =='dropdown-menu' || $section =='posts'){
 			$sectionBorders = array('top'=>$sectionTopBorder,'right'=>$sectionRightBorder,'bottom'=>$sectionBottomBorder,'left'=>$sectionBottomBorder);
 		}else{
 			$sectionBorders = array('top'=>$sectionTopBorder,'bottom'=>$sectionBottomBorder);
@@ -157,7 +157,7 @@ switch($section)
 		break;
 	case 'posts':
 		if($miscSettings['post_background_toggle'] == 'true'){
-			$section_name = '.the-content-wrapper';
+			$section_name = '.the-content-wrapper.well';
 		}
 		break;
 	default:
@@ -535,13 +535,13 @@ function borderSettingsCallback($position, $border){
 	$borderSize = $border['size'];
 
 	if(isset($borderStyle) && $borderStyle!="none"){
-		$border_style_markup .= 'border-'.$position.'-style:'.$borderStyle.';';
+		$border_style_markup .= 'border-'.$position.'-style:'.$borderStyle.' !important;';
 
 		if (isset($borderColor)&& !empty($borderColor)){
-			$border_style_markup .= 'border-'.$position.'-color:'.$borderColor.';';
+			$border_style_markup .= 'border-'.$position.'-color:'.$borderColor.' !important;';
 		}
 		if (isset($borderSize) && !empty($borderSize)){
-			$border_style_markup .= 'border-'.$position.'-width:'.$borderSize.';'; 
+			$border_style_markup .= 'border-'.$position.'-width:'.$borderSize.' !important;'; 
 		}
 	}
 

@@ -14,7 +14,7 @@
 	$confinePage ='true';
 	$borders = array("top","right","bottom","left");
 	$corners = array('top-left', 'top-right','bottom-left','bottom-right');
-	$borderSizes = range(1,20);
+	$borderSizes = range(0,20);
 	$borderStyles = array('none','solid','dotted','dashed','double','groove','ridge','inset','outset');
 ?>
 		<!--**************-->

@@ -59,6 +59,10 @@ if (!current_user_can('manage_options')) {
 
 // makes new menu
 function setup_theme_menus() {  
+
+	$options = get_option('kjd_component_settings');
+    
+
     add_menu_page(
 		'Theme settings', //title bar
 		'KJD Options', // menu bar title
@@ -126,16 +130,30 @@ function setup_theme_menus() {
 		create_function('', 'kjd_settings_display("body");')
 	);   
 
-	// customize body
-    add_submenu_page(
-		'kjd_theme_settings',   // belongs to id
-  		'Customize Post Contents', // title bar
-		'Post Contents', // menu title
-		'manage_options',   //member access
-	    'kjd_posts_settings', // id for submenu
-		create_function('', 'kjd_settings_display("posts");')
-	);   
+    if($options['style_posts']=='true'){
+		// customize post
+	    add_submenu_page(
+			'kjd_theme_settings',   // belongs to id
+	  		'Customize Post Contents', // title bar
+			'Post Contents', // menu title
+			'manage_options',   //member access
+		    'kjd_posts_settings', // id for submenu
+			create_function('', 'kjd_settings_display("posts");')
+		); 
+    }
+  
 
+    if($options['style_widgets']=='true'){
+		// customize post
+	    add_submenu_page(
+			'kjd_theme_settings',   // belongs to id
+	  		'Customize Widgets', // title bar
+			'Style Widgets', // menu title
+			'manage_options',   //member access
+		    'kjd_widgets_settings', // id for submenu
+			create_function('', 'kjd_settings_display("widgets");')
+		); 
+    }
 		// customize footer
     add_submenu_page(
 		'kjd_theme_settings',   // belongs to id
