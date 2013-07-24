@@ -8,8 +8,22 @@ Template Name: Style Sheet
 	// ini_set('display_errors', 1);
 
 function get_theme_options(){
+
+
+	settings_fields( 'kjd_component_settings' ); 
+	$options = get_option('kjd_component_settings');
+
 	$sections = array('htmlTag','bodyTag','mastArea','header','navbar','dropdown-menu',
-		'cycler','contentArea','pageTitle','body','posts','widgets','footer');
+		'cycler','contentArea','pageTitle','body','footer');
+
+
+	//adds widget and post style sections
+    if($options['style_widgets']=='true'){
+		$sections[] = 'widgets';
+    }
+    if($options['style_posts']=='true'){
+		$sections[] = 'posts';
+    }
 
 
 	$section_output = '';
@@ -86,6 +100,7 @@ function get_theme_options(){
 		$collapsibleContent = $sectionComponents['collapsible_content'];
 		$tableContent = $sectionComponents['table_content'];	
 		$paginationContent = $sectionComponents['pagination'];
+		$listContent = $sectionComponents['list'];
 		$formStyles = $sectionComponents['forms'];
 
 		$images = $sectionComponents['images'];
@@ -113,6 +128,7 @@ function get_theme_options(){
 			'collapsibleContent' =>$collapsibleContent,
 			'tableContent'=>$tableContent,
 			'paginationContent'=>$paginationContent,
+			'listContent' =>$listContent,
 			'formStyles'=>$formStyles,
 			'images'=>$images,
 			'thumbnails'=>$thumbnails,
@@ -159,6 +175,9 @@ switch($section)
 		if($miscSettings['post_background_toggle'] == 'true'){
 			$section_name = '.the-content-wrapper.well';
 		}
+		break;
+	case 'widgets':
+			$section_name = '#sideContent widget';
 		break;
 	default:
 		$section_name = '#'.$section;
@@ -324,19 +343,21 @@ if($section == 'posts'){
 
 	if($section =='body' || $section =='footer'){
 		//tabbed
-		$sectionArea_markup .= tabbedMarkupCallback($section, $tabbedContent, $section_name);
+		$sectionArea_markup .= tabbedMarkupCallback($section, $tabbedContent);
 		//collapsibles
-		$sectionArea_markup .= collapsibleMarkupCallback($section, $collapsibleContent, $section_name);
+		$sectionArea_markup .= collapsibleMarkupCallback($section, $collapsibleContent);
 		//tables
-		$sectionArea_markup .= tableMarkupCallback($section, $tableContent, $section_name);
+		$sectionArea_markup .= tableMarkupCallback($section, $tableContent);
 		//pagination
-		$sectionArea_markup .= paginationMarkupCallback($section, $paginationContent, $section_name);
+		$sectionArea_markup .= paginationMarkupCallback($section, $paginationContent);
 		//forms
-		$sectionArea_markup .= formsMarkupCallback($section, $formStyles, $section_name);
+		$sectionArea_markup .= formsMarkupCallback($section, $formStyles);
 		//images
-		$sectionArea_markup .= imagesMarkupCallback($section, $images, $section_name);
+		$sectionArea_markup .= imagesMarkupCallback($section, $images);
 		//thumbnails
-		$sectionArea_markup .= thumbnailsMarkupCallback($section, $thumbnails, $section_name);
+		$sectionArea_markup .= thumbnailsMarkupCallback($section, $thumbnails);
+		//lists
+		$sectionArea_markup .= listsMarkupCallback($section, $listContent);
 	}
 	return $sectionArea_markup;
 
@@ -739,6 +760,48 @@ $pagination_markup = '';
 
 
 return $pagination_markup;
+}
+
+// /* ------------------------- Lists -------------------------*/
+function listsMarkupCallback($section, $listContent){
+
+	// echo '<pre>';
+	// 	print_r($listContent);
+	// echo '</pre>';
+	// die();
+	$list_markup = '';
+	$list_markup .= '#'. $section.' .content-nav.nav > li > span{';
+		$list_markup .= 'color:'.$listContent['text_color'].';';
+	$list_markup .= '}';
+
+	$list_markup .= '#'. $section.' .content-nav.nav > li > span:hover{';
+		$list_markup .= 'color:'.$listContent['text_hover_color'].';';
+	$list_markup .= '}';
+
+	$list_markup .= '#'. $section.' .content-nav.nav > li > a,';
+	$list_markup .= '#'. $section.' .content-nav.nav > li > span {';
+		$list_markup .= 'background-color:'.$listContent['background_color'].';';
+		$list_markup .= 'border-color:'.$listContent['border_color'].';';
+	$list_markup .= '}';
+
+	$list_markup .= '#'. $section.' .content-nav.nav > li > a{';
+		$list_markup .= 'color:'.$listContent['link_color'].';';
+	$list_markup .= '}';
+
+	$list_markup .= '#'. $section.' .content-nav.nav > li > a:hover,';
+	$list_markup .= '#'. $section.' .content-nav.nav > li.current-menu-item > a,';
+	$list_markup .= '#'. $section.' .content-nav.nav > li > span:hover {';
+		$list_markup .= 'background-color:'.$listContent['background_hover_color'].';';
+		$list_markup .= 'border-color:'.$listContent['border_hover_color'].';';
+	$list_markup .= '}';
+
+	$list_markup .= '#'. $section.' .content-nav.nav > li > a:hover,';
+	$list_markup .= '#'. $section.' .content-nav.nav > li.current-menu-item > a{';
+		$list_markup .= 'color:'.$listContent['link_hover_color'].';';	
+	$list_markup .= '}';
+
+	return $list_markup;
+
 }
 
 // /* ------------------------- forms -----------------------------*/
