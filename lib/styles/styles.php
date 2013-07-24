@@ -172,9 +172,7 @@ switch($section)
 		$section_name = 'body';
 		break;
 	case 'posts':
-		if($miscSettings['post_background_toggle'] == 'true'){
 			$section_name = '.the-content-wrapper.well';
-		}
 		break;
 	case 'widgets':
 			$section_name = '#sideContent widget';
@@ -1507,12 +1505,16 @@ if($dropdown_bg != 'true'){
 	  	      padding: 5px 0;
 	  	      z-index: 1000;
 	  	  } ";
+
 	} 
 
 	return ($navbar_markup);
 }
 
 function mediaQuery767Callback(&$media_767_markup){
+
+		  	$media_767_markup .= '#navbar .nav .dropdown-menu{ border-width:0px !important; }';
+
 	$media_767_markup .= '}';
 	return $media_767_markup;
 }

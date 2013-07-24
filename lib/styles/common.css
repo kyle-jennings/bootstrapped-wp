@@ -296,12 +296,18 @@ div.img-circle img{
 /* =============================== media queries ===================================== */
 @media (max-width: 979px) {
 
-	#logoWrapper > a > img, 
-	#logoWrapper > img 
-	{
-		max-width:95%;
+	#logoWrapper {
+		float: left;
+		text-align: center;
+		max-width: 50%;
 	}
 
+	#logoWrapper.in-row {
+		float: none;
+		margin: 0;
+		width: auto;
+		max-width: 100%;
+	}
 
 	.navbar .dropdown-menu{background:transparent !important;}
 	.navbar .dropdown-menu:after,

@@ -124,7 +124,9 @@
 								}
 							?>
 						</div> <!-- end row -->
+
 					</div><!-- end header container -->
+
 				</div> <!-- end header area -->
 			<?php
 		}else{
@@ -133,10 +135,10 @@
 				include("navbar.php"); 	
 			}
 			?>
-				<div id="header" class="visible-desktop <?php echo $confineHeaderBackground =='true' ? 'container confined' : '' ;?>">
+				<div id="header" class="<?php echo $confineHeaderBackground =='true' ? 'container confined' : '' ;?>">
 					<div class="container">
 						<div class="row">
-							<div id="logoWrapper" class="">
+							<div id="logoWrapper" class="in-row">
 								<?php if($useLogo == "true"){ ?>
 								<a href="<?php bloginfo('url'); ?>">
 									<img src="<?php echo $logo; ?>" alt=""/>
@@ -148,8 +150,11 @@
 							<div class="span4 widgetWrapper hidden-phone">
 								<?php dynamic_sidebar('header-widgets'); ?>
 							</div> <!-- end header widgets -->
+
 						</div> <!-- end row -->
+
 					</div><!-- end header container -->
+
 				</div> <!-- end header area -->
 			<?php
 			//places navbar underneath header - this is the default behavior
