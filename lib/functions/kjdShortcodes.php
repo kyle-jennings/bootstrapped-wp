@@ -17,7 +17,7 @@ function register_button($buttons) {
 }  
 
 function add_plugin($plugin_array) {  
-   $plugin_array['kjdShortCodeInjection'] = get_bloginfo('template_url').'/lib/admin/assets/mcePlugin.js';  
+   $plugin_array['kjdShortCodeInjection'] = get_bloginfo('template_url').'/lib/admin/js/mcePlugin.js';  
    return $plugin_array;  
 } 
 

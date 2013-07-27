@@ -27,7 +27,7 @@ function get_theme_options(){
 
 
 	$section_output = '';
-	$media_767_markup ='@media(max-width:767px){';
+	$media_767_markup ='@media(max-width:979px){';
 
 	$miscMarkup = miscStylesCallback();
 
@@ -763,12 +763,11 @@ return $pagination_markup;
 // /* ------------------------- Lists -------------------------*/
 function listsMarkupCallback($section, $listContent){
 
-	// echo '<pre>';
-	// 	print_r($listContent);
-	// echo '</pre>';
-	// die();
+	$background = !empty($listContent['background_color']) ? $listContent['background_color'] : 'transparent' ;
+	$background_hover = !empty($listContent['background_hover_color']) ? $listContent['background_hover_color'] : 'transparent';
+
 	$list_markup = '';
-	$list_markup .= '#'. $section.' .content-nav.nav > li > span{';
+	$list_markup .= '#'. $section.' .content-nav.li > nav > span{';
 		$list_markup .= 'color:'.$listContent['text_color'].';';
 	$list_markup .= '}';
 
@@ -778,7 +777,7 @@ function listsMarkupCallback($section, $listContent){
 
 	$list_markup .= '#'. $section.' .content-nav.nav > li > a,';
 	$list_markup .= '#'. $section.' .content-nav.nav > li > span {';
-		$list_markup .= 'background-color:'.$listContent['background_color'].';';
+		$list_markup .= 'background-color:'.$background.';';
 		$list_markup .= 'border-color:'.$listContent['border_color'].';';
 	$list_markup .= '}';
 
@@ -789,7 +788,7 @@ function listsMarkupCallback($section, $listContent){
 	$list_markup .= '#'. $section.' .content-nav.nav > li > a:hover,';
 	$list_markup .= '#'. $section.' .content-nav.nav > li.current-menu-item > a,';
 	$list_markup .= '#'. $section.' .content-nav.nav > li > span:hover {';
-		$list_markup .= 'background-color:'.$listContent['background_hover_color'].';';
+		$list_markup .= 'background-color:'.$background_hover.';';
 		$list_markup .= 'border-color:'.$listContent['border_hover_color'].';';
 	$list_markup .= '}';
 
@@ -1110,8 +1109,10 @@ function navbarStylesCallback(&$media_767_markup){
 
 
 	$flush_left = $navSettings['flush_first_link'];
-	$dropdown_bg = $navSettings['side_nav'];
-	
+	$sidr_nav = $navSettings['side_nav'];
+	$dropdown_bg = $navSettings['dropdown_bg'];
+
+
 	$navbarBackgroundOptions = get_option('kjd_navbar_background_settings');
 	$navbarBackgroundColors = $navbarBackgroundOptions['kjd_navbar_background_colors'];
 	$navbarWallpaper = $navbarBackgroundOptions['kjd_navbar_background_wallpaper'];
@@ -1372,6 +1373,11 @@ $navbar_markup .=".dropdown-menu.sub-menu li.active >a,
 	color:".$navbarLinkHovered['color']." !important;	
 }";
 
+$navbar_markup .="..nav-collapse.sub-menu li.active >a{
+	background-color:none!important;
+	color:".$navbarLink['color']." !important;	
+}";
+
 /* ************************ sidr Nav ******************************* */
 $navbar_markup .=".sidr
 	{
@@ -1490,11 +1496,13 @@ if($dropdown_bg != 'true'){
 	  	      position: absolute;
 	  	      top: -6px;
 	  	  }";
+
+
 	  $media_767_markup .= ".nav-collapse.collapse > .nav
 	  	  {    
 	  	      background-clip: padding-box;
 	  	      background-color:".$dropdownMenuBackgroundColors['color']." !important;
-	  	      border: 1px solid rgba(0, 0, 0, 0.2);
+	  	      border: 1px solid ". $dropdownMenuTopBorder['color'] .";
 	  	      border-radius: 6px 6px 6px 6px;
 	  	      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 	  	      float: right;
@@ -1504,7 +1512,31 @@ if($dropdown_bg != 'true'){
 	  	      min-width: 160px;
 	  	      padding: 5px 0;
 	  	      z-index: 1000;
+	  	      width: 99%;
 	  	  } ";
+
+
+	  $media_767_markup .= ".navbar .nav > li:first-child > a { padding:9px 15px;}";
+
+	  $media_767_markup .= ".nav-collapse .nav > li > a, .nav-collapse .dropdown-menu a {
+	  	color:". $dropdownMenuLink['color'] ." !important;
+	  }";
+
+	  $media_767_markup .= ".nav-collapse .nav > li > a:hover, .nav-collapse .dropdown-menu a:hover {
+	  	color:". $dropdownMenuLinkHovered['color'] ." !important;
+	  }";
+
+		$media_767_markup .= ".nav-collapse .navbar .nav > li > a.dropdown-toggle > .caret,";
+		$media_767_markup .= ".navbar .nav > li.open > a.dropdown-toggle > .caret,";
+		$media_767_markup .= ".nav-collapse .navbar .nav > li > a.dropdown-toggle > .caret:hover{";
+			$media_767_markup .= "border-top-color:". $dropdownMenuLink['color'] ." !important;";
+		$media_767_markup .= "}";
+
+		$media_767_markup .= ".dropdown-menu li > a:after,";
+		$media_767_markup .= ".dropdown-menu li > a:hover:after{";
+			$media_767_markup .= "border-left-color:". $dropdownMenuLink['color'] ." !important;";
+		$media_767_markup .= "}";
+
 
 	} 
 
@@ -1532,6 +1564,7 @@ function miscStylesCallback(){
 	$misc_markup = '';
 	$misc_markup .='#pageWrapper{ margin: 0 auto -'.$footerHeight.'px;}';
 	$misc_markup .='#push{height:'.$footerHeight.'px;}';
+	$misc_markup .='#footer{margin-top:-'.$footerHeight.'px;}';
 
 	return $misc_markup;
 }

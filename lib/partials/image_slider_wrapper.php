@@ -12,7 +12,7 @@
 		$confineCyclerBackground = ($cyclerOptions['kjd_cycler_misc']['kjd_cycler_confine_background'] =='true') ? 'container confined' : '' ;	
 ?>
 
-<div id="imageSliderWrapper" class="frontPageBody hidden-phone <?php echo $confineCyclerBackground; ?>">
+<div id="imageSliderWrapper" class="frontPageBody <?php echo $confineCyclerBackground; ?>">
 	<?php include(dirname(dirname(__FILE__)) . '/scripts/sliderScripts.php'); ?>
 <div class="container">
 <div id="imageSlider">

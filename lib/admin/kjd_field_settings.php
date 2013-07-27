@@ -100,6 +100,24 @@
 
 		register_setting('kjd_component_settings','kjd_component_settings', 'build_css');
 
+		// Widget Areas
+		add_settings_section(
+			'kjd_widget_areas_settings_section', // ID hook name
+			'KJD Widget Areas Settings', // label
+			'kjd_widget_areas_settings_callback', // function name
+			'kjd_widget_areas_settings' // page name
+		);
+
+			add_settings_field(
+				'widget_areas',
+				'Widget Areas',
+				'kjd_style_widgets_callback',
+				'kjd_widget_areas_settings',
+				'kjd_widget_areas_settings_section'
+			);
+
+		register_setting('kjd_widget_areas_settings','kjd_widget_areas_settings', 'build_css');
+
 		///////////////////
 		// cycler settings
 		///////////////////

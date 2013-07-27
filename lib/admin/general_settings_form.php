@@ -17,7 +17,7 @@ screen_icon('themes'); ?>
 <h2 class="nav-tab-wrapper">  
 	<a href="?page=kjd_theme_settings&tab=settings" class="nav-tab"<?php echo $active_tab == 'settings' ? 'id="active"' : 'none'; ?>>General Settings </a>  	
 	<a href="?page=kjd_theme_settings&tab=components" class="nav-tab"<?php echo $active_tab == 'components' ? 'id="active"' : 'none'; ?>>Components</a>
-
+	<a href="?page=kjd_theme_settings&tab=widget_areas" class="nav-tab"<?php echo $active_tab == 'widget_areas' ? 'id="active"' : 'none'; ?>>Widget Areas</a>
 </h2>
 
     <?php settings_errors(); ?>  
@@ -27,6 +27,8 @@ screen_icon('themes'); ?>
 				theme_settings_callback();
 			}elseif( $active_tab == 'components' ) { 
 				theme_components_callback();
+			}elseif( $active_tab == 'widget_areas' ) { 
+				theme_widget_areas_callback();
 			}
 			submit_button(); 
 		?>  
@@ -159,7 +161,7 @@ function theme_components_callback(){
 	$options = get_option('kjd_component_settings');
 ?>
 <div class="options_wrapper">
-
+	<h3>Toggle Post and Widget Settings</h3>
 	<div class="option">
 		<label>Style individual posts?</label>
 		<select name="kjd_component_settings[style_posts]">
@@ -193,6 +195,33 @@ function theme_components_callback(){
 		</select>
 	</div> -->
 </div>	
+
+<?php
+}
+
+function theme_widget_areas_callback(){
+	settings_fields( 'kjd_widget_areas_settings' ); 
+	$options = get_option('kjd_widget_areas_settings');
+
+	$widget_areas = array('single','index','category','archive','tag','taxonomy','author','date','search','attachment');
+?>
+<div class="options_wrapper">
+	<h3>Choose Widget Areas</h3>
+
+	<div class="option">
+		<ul class="checkbox-list">
+		<?php foreach($widget_areas as $area){ ?>
+			<li>
+				<label>
+					<span><?php echo ucwords($area); ?></span>
+					<input type="checkbox" name="kjd_widget_areas_settings[widget_areas][<?php echo $area;?>]" value="true" 
+					<?php checked( $options['widget_areas'][$area], 'true', true ) ?> />
+				</label>
+			</li>
+		<?php } ?>
+		</ul
+	</div>
+</div>
 
 <?php
 }

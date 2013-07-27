@@ -5,7 +5,7 @@ $path  = '';
 if ( !defined('WP_LOAD_PATH') ) {
 
 	/** classic root path if wp-content and plugins is below wp-config.php */
-	$classic_root = dirname(dirname(dirname(dirname(dirname(dirname(dirname(__FILE__))))))) . '/' ;
+	$classic_root = dirname(dirname(dirname(dirname(dirname(dirname(__FILE__)))))) . '/' ;
 	
 	if (file_exists( $classic_root . 'wp-load.php') )
 		define( 'WP_LOAD_PATH', $classic_root);
@@ -24,7 +24,7 @@ require_once( WP_LOAD_PATH . 'wp-load.php');
 <html>
 <head>
 <meta name="viewport" content="width=device-width" />
-<script src="jquery.js" type="text/javascript"></script>
+<script src="<?php echo get_bloginfo('template_directory');?>/lib/admin/js/jquery.js" type="text/javascript"></script>
 <script language="javascript" type="text/javascript" src="<?php echo get_option('siteurl') ?>/wp-includes/js/tinymce/tiny_mce_popup.js"></script>
 <script language="javascript" type="text/javascript" src="<?php echo get_option('siteurl') ?>/wp-includes/js/tinymce/utils/mctabs.js"></script>
 <script language="javascript" type="text/javascript" src="<?php echo get_option('siteurl') ?>/wp-includes/js/tinymce/utils/form_utils.js"></script>
@@ -34,7 +34,7 @@ require_once( WP_LOAD_PATH . 'wp-load.php');
 
 <script language="javascript" type="text/javascript" src="colorpicker/minicolors.js"></script>
 <link rel='stylesheet'  href="colorpicker/minicolors.css" type='text/css' media='all' />
-<script language="javascript" type="text/javascript" src="shortCodePlugin.js"></script>
+<script language="javascript" type="text/javascript" src="<?php echo get_bloginfo('template_directory');?>/lib/admin/js/shortCodePlugin.js"></script>
 
 <style>
 *{outline:none !important;}

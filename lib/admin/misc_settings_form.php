@@ -233,12 +233,12 @@ function navbar_misc_settings_callback(){
 				<label>Navbar Margin</label>
 				<div class="margin-label"><span>Top</span>
 				<input name="kjd_navbar_misc_settings[kjd_navbar_misc][float][margin_top]" 
-					value="<?php echo $options['float']['margin_top'] ? $options['float']['margin_top'] : ''; ?>"
+					value="<?php echo $options['float']['margin_top'] ? $options['float']['margin_top'] : '0'; ?>"
 					style="width:40px;"/>px.
 				</div>
 				<div class="margin-label"><span>Bottom</span>
 					<input name="kjd_navbar_misc_settings[kjd_navbar_misc][float][margin_bottom]" 
-					value="<?php echo $options['float']['margin_bottom'] ? $options['float']['margin_bottom'] : ''; ?>"
+					value="<?php echo $options['float']['margin_bottom'] ? $options['float']['margin_bottom'] : '0'; ?>"
 					style="width:40px;"/>px.
 				</div>
 			</div>

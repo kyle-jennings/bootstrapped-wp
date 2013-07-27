@@ -31,19 +31,19 @@ function load_style_sheets_and_scripts() {
 
 	$adminDir=get_bloginfo('template_directory');  
 	$adminDir = $adminDir."/lib/admin/";
-	wp_enqueue_style("admin", $adminDir."assets/admin.css");  
+	wp_enqueue_style("admin", $adminDir."css/admin.css");  
   	// wp_enqueue_style("bs", get_bloginfo('template_directory').'/lib/styles/bootstrap/bootstrap.css'); 
 
-	wp_enqueue_script("jquery", $adminDir."assets/jquery.js", false, "1.0"); 
+	wp_enqueue_script("jquery", $adminDir."js/jquery.js", false, "1.0"); 
 	wp_enqueue_script("bsjs", get_bloginfo('template_directory').'/lib/scripts/bootstrap.min.js'); 
 	wp_enqueue_script('thickbox');  
 	wp_enqueue_style('thickbox');  
 	wp_enqueue_script('media-upload');  
 	wp_enqueue_script('jquery-ui-sortable'); 	
 
-	wp_enqueue_style("colorPicker", $adminDir."assets/colorpicker/minicolors.css");
-	wp_enqueue_script("colorPicker", $adminDir."assets/colorpicker/minicolors.js");  
-	wp_enqueue_script("admin", $adminDir."assets/admin.js", false, "1.0");   
+	wp_enqueue_style("colorPicker", $adminDir."css/minicolors.css");
+	wp_enqueue_script("colorPicker", $adminDir."js/colorpicker/minicolors.js");  
+	wp_enqueue_script("admin", $adminDir."js/admin.js", false, "1.0");   
 
 }  
 
