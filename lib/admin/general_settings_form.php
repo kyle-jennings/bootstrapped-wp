@@ -203,7 +203,10 @@ function theme_widget_areas_callback(){
 	settings_fields( 'kjd_widget_areas_settings' ); 
 	$options = get_option('kjd_widget_areas_settings');
 
-	$widget_areas = array('single','index','category','archive','tag','taxonomy','author','date','search','attachment');
+
+	// print_r($options); die();
+
+	$widget_areas = array('single','404','category','archive','tag','taxonomy','author','date','search','attachment');
 ?>
 <div class="options_wrapper">
 	<h3>Choose Widget Areas</h3>

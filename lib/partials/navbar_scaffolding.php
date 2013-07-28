@@ -5,7 +5,7 @@ $navSettings = $navbarSettings['kjd_navbar_misc'];
 $sideNav = $navSettings['side_nav'];
 
 
-	if(empty($navbarSettings) || !has_nav_menu( 'header-menu' )){ 
+	if(empty($navbarSettings) || !has_nav_menu( 'primary-menu' )){ 
 	?>
 		<div class="container">
 
@@ -19,7 +19,7 @@ $sideNav = $navSettings['side_nav'];
 	    </a>
 	<?php
 	}
-	if( !has_nav_menu( 'header-menu' ) ){
+	if( !has_nav_menu( 'primary-menu' ) ){
 ?>
 		<a href="wp-admin/nav-menus.php"class="btn btn-primary btn-large">
 			Dont forget to set a menu.
@@ -113,17 +113,17 @@ echo $navbar_close;
 
 function menuStyleCallback($navbarLinkStyle){
 	if($navbarLinkStyle == "none" ){
-		wp_nav_menu(array('theme_location' => 'header-menu', 'menu_class' =>'nav nav-noBG','container'=> '','walker'=> new dropDown() ) );
+		wp_nav_menu(array('theme_location' => 'primary-menu', 'menu_class' =>'nav nav-noBG','container'=> '','walker'=> new dropDown() ) );
 	}elseif($navbarLinkStyle == "dividers" ){
-		wp_nav_menu(array('theme_location' => 'header-menu', 'menu_class' =>'nav','container'=> '','walker'=> new dropDown() ) );
+		wp_nav_menu(array('theme_location' => 'primary-menu', 'menu_class' =>'nav','container'=> '','walker'=> new dropDown() ) );
 	}elseif($navbarLinkStyle == "highlighted" ){
-		wp_nav_menu(array('theme_location' => 'header-menu', 'menu_class' =>'nav','container'=> '','walker'=> new dropDown() ) );
+		wp_nav_menu(array('theme_location' => 'primary-menu', 'menu_class' =>'nav','container'=> '','walker'=> new dropDown() ) );
 	}elseif($navbarLinkStyle == "pills"){
-			wp_nav_menu(array('theme_location' => 'header-menu', 'menu_class' =>'nav nav-pills','container'=> '','walker'=> new dropDown() ) );
+			wp_nav_menu(array('theme_location' => 'primary-menu', 'menu_class' =>'nav nav-pills','container'=> '','walker'=> new dropDown() ) );
 	}elseif($navbarLinkStyle == "tabs"){
-			wp_nav_menu(array('theme_location' => 'header-menu', 'menu_class' =>'nav nav-tabs','container'=> '','walker'=> new dropDown() ) );
+			wp_nav_menu(array('theme_location' => 'primary-menu', 'menu_class' =>'nav nav-tabs','container'=> '','walker'=> new dropDown() ) );
 	}elseif($navbarLinkStyle == "tabs-below"){
-			wp_nav_menu(array('theme_location' => 'header-menu', 'menu_class' =>'nav nav-tabs tabs-below','container'=> '','walker'=> new dropDown() ) );
+			wp_nav_menu(array('theme_location' => 'primary-menu', 'menu_class' =>'nav nav-tabs tabs-below','container'=> '','walker'=> new dropDown() ) );
 	}else{
 
 	}

@@ -9,7 +9,7 @@
 if($sideNav == 'true'){
 	register_nav_menus(
 	    array(
-	      'header-menu' => __( 'Header Menu' ),
+	      'primary-menu' => __( 'Header Menu' ),
 	      'sidr-menu' => __( 'Side Drawer Menu' )
 	    )
 	);
