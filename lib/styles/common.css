@@ -51,7 +51,7 @@ html,body{
 
 #mastArea{position:relative;}
 
-#logoWrapper{margin-left:30px;}
+#logoWrapper{float: left ; margin-left:30px;}
 #logoWrapper > a > img:hover, 
 #logoWrapper > img:hover 
 {box-shadow: none !important;}
@@ -59,6 +59,12 @@ html,body{
 	
 .frontPageBody{position:relative;}
 
+.navbar .form-search {
+	margin: 6px 0 0;
+}
+.navbar .form-search .btn, .navbar .form-search .btn-group {
+	margin: 0;
+}
 
 /*.navbar{margin:0;}
 	#navbar .nav-tabs.tabs-below > li {margin-bottom: 0;}

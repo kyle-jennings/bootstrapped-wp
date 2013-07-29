@@ -21,19 +21,25 @@ value="<?php echo $sectionSettings['tabID'] ? $sectionSettings['tabID'] : 'none'
 
 <div class="tabbable"> <!-- Only required for left/right tabs -->
   <ul class="nav nav-pills">
+  
+  <?php if($section != 'navbar') : ?>
+  
     <li class="active"><a href="#tabs" data-toggle="tab">Tabbed Content</a></li>
     <li><a href="#collapsibles" data-toggle="tab">Collapsibles</a></li>
     <li><a href="#tables" data-toggle="tab">Tables</a></li>
     <li><a href="#thumbnails" data-toggle="tab">Images</a></li>
-    <li><a href="#forms" data-toggle="tab">Forms</a></li>
     <li><a href="#pagination" data-toggle="tab">Pagination</a></li>
     <li><a href="#lists" data-toggle="tab">Lists</a></li>
+
+  <?php endif; ?>
+  	<li <?php echo $section == 'navbar' ? 'class="active"' : '' ; ?> ><a href="#forms" data-toggle="tab">Forms</a></li>
+
   </ul>
 
   <div class="tab-content">
   
 
-
+  <?php if($section != 'navbar') : ?>
 <!-- ***************** -->
 <!--   Tabbed Colors   -->
 <!-- ***************** -->
@@ -103,24 +109,6 @@ value="<?php echo $sectionSettings['tabID'] ? $sectionSettings['tabID'] : 'none'
 
 
 <!-- ***************** -->
-<!--    Form Colors    -->
-<!-- ***************** -->
-    <div class="tab-pane" id="forms">
-     <h3>Forms</h3>
-<?php foreach($formParts as $part){ ?>
-
-		<div class="option" style="position: relative;">
-
-			<label><?php echo ucwords(str_replace('_', ' ', $part));?></label>
-			<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][forms][<?php echo $part;?>]" value="<?php echo $sectionSettings['forms'][$part] ? $sectionSettings['forms'][$part] : 'none'; ?>"  />		
-		<a class="clearColor">Clear</a>
-		</div> 
-	<?php
-	}
-	?>
-    </div>
-
-<!-- ***************** -->
 <!-- Pagination Colors -->
 <!-- ***************** -->
 
@@ -160,8 +148,32 @@ value="<?php echo $sectionSettings['tabID'] ? $sectionSettings['tabID'] : 'none'
 	?>
     </div>
 
+<?php endif; ?>
+
+
+
+<!-- ***************** -->
+<!--    Form Colors    -->
+<!-- ***************** -->
+    <div class="tab-pane <?php echo $section == 'navbar' ? 'active' : '' ; ?>" id="forms">
+    	<h3>Forms</h3>
+<?php foreach($formParts as $part){ ?>
+
+		<div class="option" style="position: relative;">
+
+			<label><?php echo ucwords(str_replace('_', ' ', $part));?></label>
+			<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][forms][<?php echo $part;?>]" value="<?php echo $sectionSettings['forms'][$part] ? $sectionSettings['forms'][$part] : 'none'; ?>"  />		
+		<a class="clearColor">Clear</a>
+		</div> 
+	<?php
+	}
+	?>
+    </div>
+
   </div>
 </div>
+
+
 
 <?php 
 function imagesFormFields($section,$sectionSettings){

@@ -43,7 +43,7 @@ if(!empty($components))
 		echo '<div class="span12">';
 	}else{
 		if($layoutSettings['position'] == 'left'){
-			echo kjd_get_sidebar('front_page_sidebar');
+			echo kjd_get_sidebar('front_page');
 		}
 
 		echo '<div class="span9">';
@@ -55,7 +55,7 @@ if(!empty($components))
 	{
 		echo '</div>'; // end left content
 		if($layoutSettings['position'] == 'right'){
-			echo kjd_get_sidebar('front_page_sidebar');
+			echo kjd_get_sidebar('front_page');
 		}
 	}else{
 		echo '</div>';

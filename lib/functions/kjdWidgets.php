@@ -91,36 +91,13 @@ function set_width($template,$frontpage_area = null)
 }
 
 
-//////////////////////////////
-//	 Page templates
-//////////////////////////////
-
-$templates = array('kjd_template_1', 'kjd_template_2', 'kjd_template_3', 'kjd_template_4', 'kjd_template_5', 'kjd_template_6' );
-foreach($templates as $template){
-	
-	$width = set_width($layouts[$template]);
-	register_sidebar(
-		 array(
-			'name' => 'Page ' . ucwords(str_replace('kjd','', str_replace('_',' ',$template))),
-			'id' => $template,
-			'description' => 'Widgets for the ' .ucwords(str_replace('kjd','', str_replace('_',' ',$template))) . ' page',
-			'before_widget' =>'<div class="widget '.$width.'">',
-			'before_title' => '<h3>',
-			'after_title' => '</h3>',
-			'after_widget' => '</div>'
-		)
-	);
-
-}
-
 
 				
-/////////////////////////////
-// index, header, and footer
-/////////////////////////////
+//////////////////////////////////////////
+// header, footer, front page areas, index
+//////////////////////////////////////////
 
-$templates = array( 'front_page_sidebar', 'front_page_widget_area_1', 
-					'front_page_widget_area_2', 'header_widgets', 'footer_widgets');
+$templates = array('header_widgets', 'front_page_widget_area_1', 'front_page_widget_area_2', 'footer_widgets', 'default');
 foreach($templates as $template){
 	
 	if($template == 'front_page_widget_area_1' || $template == 'front_page_widget_area_2' ){
@@ -156,20 +133,42 @@ foreach($templates as $template){
 
 	$options = get_option('kjd_widget_areas_settings');
 	// $widget_areas = array('single','index','category','archive','tag','taxonomy','author','date','search','attachment');
-	$options['widget_areas']['index'] = 'true';
+
 	foreach($options['widget_areas'] as $k => $v){
 
 		$width = set_width($layouts[$k]);
 		register_sidebar(
 			 array(
-			'name' =>ucwords($k) . ' Page',
+			'name' => ucwords(str_replace('_page', '',$k)) . ' Page',
 			'id' => $k,
-			'description' => 'Widgets for the ' .ucwords($k) . ' page',
+			'description' => 'Widgets for the ' .ucwords(str_replace('_page', '',$k)) . ' page',
 			'before_widget' =>'<div class="widget '.$width.'">',
 			'before_title' => '<h3>',
 			'after_title' => '</h3>',
 			'after_widget' => '</div>'
 		)
+		);
+
+	}
+
+//////////////////////////////
+//	 Page templates
+//////////////////////////////
+
+	$templates = array('kjd_template_1', 'kjd_template_2', 'kjd_template_3', 'kjd_template_4', 'kjd_template_5', 'kjd_template_6' );
+	foreach($templates as $template){
+		
+		$width = set_width($layouts[$template]);
+		register_sidebar(
+			 array(
+				'name' => 'Page ' . ucwords(str_replace('kjd','', str_replace('_',' ',$template))),
+				'id' => $template,
+				'description' => 'Widgets for the ' .ucwords(str_replace('kjd','', str_replace('_',' ',$template))) . ' page',
+				'before_widget' =>'<div class="widget '.$width.'">',
+				'before_title' => '<h3>',
+				'after_title' => '</h3>',
+				'after_widget' => '</div>'
+			)
 		);
 
 	}

@@ -89,14 +89,23 @@ function header_misc_settings_callback(){
 		<div class="optionsWrapper">
 			<h2>Options</h2>
 			<div class="option">
-
-				<label>Use logo in header</label>		
-				<select name="kjd_header_misc_settings[kjd_header_misc][use_logo]">
-					<option value="true" <?php selected( $options['use_logo'], 'true', true ) ?>>Yes</option>
-					<option value="false" <?php selected( $options['use_logo'], 'false', true ) ?>>No</option>
+				<label>Header Contents</label>		
+				<select name="kjd_header_misc_settings[kjd_header_misc][header_contents]">
+					<option value="logo" <?php selected( $options['header_contents'], 'logo', true ) ?>>Logo</option>
+					<option value="widgets" <?php selected( $options['header_contents'], 'widgets', true ) ?>>Widgets</option>
 				</select>
-				<span class="explanation">Makes the logo a clickable link in the header</span>
 			</div>
+
+			<div class="option">
+
+				<label>Logo Alignment</label>		
+				<select name="kjd_header_misc_settings[kjd_header_misc][logo_align]">
+					<option value="left" <?php selected( $options['logo_align'], 'left', true ) ?>>Left</option>
+					<option value="center" <?php selected( $options['logo_align'], 'center', true ) ?>>Center</option>
+					<option value="right" <?php selected( $options['logo_align'], 'right', true ) ?>>Right</option>
+				</select>
+			</div>
+
 
 			<div class="option">
 				<label>Force Header height</label>

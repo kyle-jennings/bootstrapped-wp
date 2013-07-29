@@ -383,9 +383,7 @@ function kjd_get_sidebar($sidebar, $location = null, $width = null)
 {
 $location_class = ($location == 'horizontal') ? 'span12' : 'span3' ;
 
-	set_sidebar_area($sidebar);
-
-
+	$sidebar = set_sidebar_area($sidebar);
 
 	ob_start();
 		dynamic_sidebar($sidebar);
@@ -402,21 +400,25 @@ $location_class = ($location == 'horizontal') ? 'span12' : 'span3' ;
 	return $the_sidebar_markup;
 }
 
+
+
 function set_sidebar_area($sidebar = null){
 
 	$options = get_option('kjd_widget_areas_settings');
 	$available_sidebars = array(
 		'kjd_template_1', 'kjd_template_2', 'kjd_template_3', 'kjd_template_4', 'kjd_template_5', 'kjd_template_6',
-		'front_page_sidebar', 'front_page_widget_area_1', 'front_page_widget_area_2', 'header_widgets', 'footer_widgets'
+		'front_page_widget_area_1', 'front_page_widget_area_2', 'header_widgets', 'footer_widgets','default'
 	);
 	foreach($options['widget_areas'] as $k => $v){
 		$available_sidebars[] = $k; 
 	}
+	// print_r($available_sidebars);
 
 	if(!in_array($sidebar, $available_sidebars)){
-		$sidebar = 'index';
+		$sidebar = 'default';
 	}
-	// print_r($available_sidebars);
+
+	return $sidebar;
 }
 
 /* ----------------------------------- single image nav links for gallery images ------------------------------------ */

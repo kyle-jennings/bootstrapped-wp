@@ -19,7 +19,7 @@ function kjd_settings_display($section) {
 	}
 	if($section =="navbar"){
 		unset($tabs[2]);
-		unset($tabs[4]);
+		// unset($tabs[4]);
 	}
 	if($section =='login'){
 		unset($tabs[1]);

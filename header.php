@@ -80,88 +80,51 @@
 </head>
 
 <body>
-	<?php if($sideNav =='true'){
-	?>
+	<?php if($sideNav =='true'): ?>
 		<div id="sidr">
-		  	
-			<?php wp_nav_menu(array('theme_location' => 'sidr-menu' ) ); ?>
+			<?php #wp_nav_menu(array('theme_location' => 'sidr-menu' ) ); ?>
 		</div>	
-	<?php
-	}
+	<?php endif; ?>
 
-// echo get_page_template();
-	?>
-
-	<div id="pageWrapper">
-		<div id="mastArea" class="<?php echo $confineMast == 'true' ? 'container' : '' ;?>">
+<div id="pageWrapper">
+	<div id="mastArea" class="<?php echo $confineMast == 'true' ? 'container' : '' ;?>">
 		<?php
-		//if the nav is set to align with header then we use the following template to render the nav NEXT to the logo in the header
-		//depending on the user settings, it will probably look hideous
-		if($alignNavWithLogo =='true'){
-
-			?>
-				<div class="container">
-					<div class="row">
-						<div class="span4 widgetWrapper hidden-phone">
-							<?php dynamic_sidebar('header-widgets'); ?>
-						</div> <!-- end header widgets -->
-					</div>
-				</div>
-				<div id="header" class="<?php echo $confineHeaderBackground =='true' ? 'container confined' : '' ;?>">
-					<div class="container">
-						<div class="row">
-							<div id="logoWrapper">
-								<?php if($useLogo == "true"){ ?>
-								<a href="<?php bloginfo('url'); ?>">
-									<img src="<?php echo $logo; ?>" alt=""/>
-								</a>
-								<?php
-								}?>
-							</div> <!-- end logo-->
-							<?php 
-								if($navbarSettings['navbar_style'] !='page-top'){
-									include($navbar); 	
-								}
-							?>
-						</div> <!-- end row -->
-
-					</div><!-- end header container -->
-
-				</div> <!-- end header area -->
-			<?php
-		}else{
-			//places navbar at top of page
-			if($navbarSettings['navbar_style'] =='page-top'){
-				include("navbar.php"); 	
-			}
-			?>
-				<div id="header" class="<?php echo $confineHeaderBackground =='true' ? 'container confined' : '' ;?>">
-					<div class="container">
-						<div class="row">
-							<div id="logoWrapper" class="in-row">
-								<?php if($useLogo == "true"){ ?>
-								<a href="<?php bloginfo('url'); ?>">
-									<img src="<?php echo $logo; ?>" alt=""/>
-								</a>
-								<?php
-								}?>
-							</div> <!-- end logo-->
-
-							<div class="span4 widgetWrapper hidden-phone">
-								<?php dynamic_sidebar('header-widgets'); ?>
-							</div> <!-- end header widgets -->
-
-						</div> <!-- end row -->
-
-					</div><!-- end header container -->
-
-				</div> <!-- end header area -->
-			<?php
-			//places navbar underneath header - this is the default behavior
-			if($navbarSettings['navbar_style'] !='page-top'){
+			if( $navbarSettings['navbar_style'] =='page-top' && $alignNavWithLogo !='true'){
 				include($navbar); 	
 			}
-		}
 		?>
-			
-		</div> <!-- end mast -->
+
+			<div id="header" class="<?php echo $confineHeaderBackground =='true' ? 'container confined' : '' ;?>">
+				<div class="container">
+					<div class="row">
+					<?php if($headerSettings['header_contents'] == 'widgets'){ 
+
+						dynamic_sidebar('header_widgets');
+					
+					}else{ ?>
+						<div id="logoWrapper">
+
+							<a href="<?php bloginfo('url'); ?>">
+								<img src="<?php echo $logo; ?>" alt=""/>
+							</a>
+
+						</div> <!-- end logo-->
+						<?php 
+						if( $alignNavWithLogo =='true'){ 
+							include($navbar); 	
+						}
+						?>
+
+					<?php } ?>
+					
+					</div> <!-- end row -->
+				</div><!-- end header container -->
+
+			</div> <!-- end header area -->
+
+	<?php
+		if( $navbarSettings['navbar_style'] !='page-top' && $alignNavWithLogo !='true'){
+			include($navbar); 	
+		}
+	?>
+	</div> <!-- end mast -->

@@ -47,7 +47,7 @@ function page_templates_callback(){
 	$options = get_option('kjd_page_layout_settings');
 
 	$pageLayoutSettings = $options['kjd_page_layouts'];
-	$pageLayouts = array('template_1','template_2','template_3','template_4','template_5','template_6','front_page_widgets');
+	$pageLayouts = array('template_1','template_2','template_3','template_4','template_5','template_6','front_page');
 			
 	echo "<h3>Page layouts (default)</h3>";
 	foreach($pageLayouts as $k => $v){
@@ -90,7 +90,7 @@ function layout_form_callback($settings,$type, $layout){
 		<div class="optionComponent">
 			<span class="sublabel">Widgets Area</span>
 			<select class="layout_select" name="kjd_<?php echo $type;?>_layout_settings[kjd_<?php echo $type; ?>_layouts][kjd_<?php echo $layout;?>][position]">
-				<?php if($type=='post' || $layout == 'front_page_widgets'){ ?>
+				<?php if($type=='post' || $layout == 'front_page'){ ?>
 					<option value="none" <?php selected( $settings['kjd_'.$layout]['position'], "none", true); ?>>
 						No Sidebar
 					</option>
@@ -102,7 +102,7 @@ function layout_form_callback($settings,$type, $layout){
 				<option value="right" <?php selected( $settings['kjd_'.$layout]['position'], "right", true); ?>>
 				Right
 				</option>
-				<?php if($layout != 'front_page_widgets'){ ?>
+				<?php if($layout != 'front_page'){ ?>
 					<option value="top" <?php selected( $settings['kjd_'.$layout]['position'], "top", true); ?>>
 					Top
 					</option>

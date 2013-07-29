@@ -13,9 +13,9 @@ $footerWidgetCount =  count( $sidebars['footer-widgets'] );
 	<div id="footer" <?php echo $confineFooterBackground == 'true' ? 'class="container confined"': '' ; ?>>
 		<div class="container">
 			<ul class="row widgetsWrapper">
-				<?php if(is_active_sidebar('footer_widgets') ){  
+				<?php 
 					dynamic_sidebar('footer_widgets');
-				 } ?>
+				 ?>
 			</ul>
 		</div> <!-- End of container-->
 	</div> <!-- End of footer-->

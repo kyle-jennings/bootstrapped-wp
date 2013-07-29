@@ -191,6 +191,7 @@ switch($section)
 	if($section =="header"){
 		$hideHeader = $miscSettings['hide_header']; 
 		$forceHeight = $miscSettings['force_height'];
+		$logo_alignment = $miscSettings['logo_align'];
 		//$useMast = $miscSettings['use_mastArea'];				
 	}
 
@@ -293,6 +294,17 @@ if($section == 'posts'){
 	}
 	$sectionArea_markup .= '}';
 
+	if($section == 'header'){
+		$sectionArea_markup .= '#logoWrapper{ ';
+			if($logo_alignment == 'left' || $logo_alignment == 'right'){
+				$sectionArea_markup .= 'float: ' . $logo_alignment . ' ;';
+			}elseif($logo_alignment == 'center'){
+				$sectionArea_markup .= 'float: none; text-align: center;';	
+			}
+			
+		$sectionArea_markup .= '}';
+	}
+
 	if($section == "body"){
 		//color of the line underneath the post info
 		$postInfoBorder = $miscSettings['post_info_border'] ? $miscSettings['post_info_border'] : 'rgba(0,0,0,.5)';
@@ -339,7 +351,7 @@ if($section == 'posts'){
 
 
 
-	if($section =='body' || $section =='footer'){
+	if($section =='body' || $section =='footer' || $section =='header'){
 		//tabbed
 		$sectionArea_markup .= tabbedMarkupCallback($section, $tabbedContent);
 		//collapsibles
@@ -356,6 +368,10 @@ if($section == 'posts'){
 		$sectionArea_markup .= thumbnailsMarkupCallback($section, $thumbnails);
 		//lists
 		$sectionArea_markup .= listsMarkupCallback($section, $listContent);
+	}
+
+	if($section =='navbar') {
+		$sectionArea_markup .= formsMarkupCallback($section, $formStyles);
 	}
 	return $sectionArea_markup;
 
@@ -1217,7 +1233,7 @@ if($navSettings['link_shadows'] =='true'){
 	}
 	//stickys to top of page
 	if($navSettings['navbar_style'] =="sticky-top"){
-		$navbar_markup .='#header{padding-top:60px;}';
+		$navbar_markup .='#header{ padding-top:60px; }';
 	}	
 
 
