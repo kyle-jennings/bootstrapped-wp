@@ -66,7 +66,8 @@ function get_theme_options(){
 		
 
 		$sectionBorderRadius = $options_border['kjd_'.$section.'_border_radius'];
-		$sectionBordersRadiuses = array('top-left'=>$sectionBorderRadius['top-left'],
+		$sectionBordersRadiuses = array(
+			'top-left'=>$sectionBorderRadius['top-left'],
 			'top-right'=>$sectionBorderRadius['top-right'],
 			'bottom-right'=>$sectionBorderRadius['bottom-right'],
 			'bottom-left'=>$sectionBorderRadius['bottom-left']
@@ -302,6 +303,15 @@ if($section == 'posts'){
 				$sectionArea_markup .= 'float: none; text-align: center;';	
 			}
 			
+		$sectionArea_markup .= '}';
+	}
+
+	if($section == 'dropdown-menu'){
+		$sectionArea_markup .= '.dropdown-submenu > .dropdown-menu{ ';
+
+		foreach($sectionBordersRadiuses as $k =>$v){
+			$sectionArea_markup .= borderRadiusCallback($k, $v);	
+		}
 		$sectionArea_markup .= '}';
 	}
 
@@ -1182,6 +1192,7 @@ $dropdownMenuBackgroundColors['color'] = !empty($dropdownMenuBackgroundColors['c
 	}elseif($navSettings['navbar_alignment'] =='center'){
 		$navbar_markup .='#navbar ul.nav {margin:0 auto; text-align: center; width:100%;}';
 		$navbar_markup .='#navbar ul.nav > li{ display:inline-block; float:none;}';
+		$media_767_markup .='#navbar ul.nav > li{ display:block; float:none;}';
 	}elseif($navSettings['navbar_alignment'] =='right'){
 		$navbar_markup .='#navbar .nav{ float:right;}';
 	}
@@ -1215,7 +1226,10 @@ $dropdownMenuBackgroundColors['color'] = !empty($dropdownMenuBackgroundColors['c
 // remove left padding on first link
 if($flush_left == 'true')
 {
- $navbar_markup .= '.navbar .nav > li:first-child > a{padding-left:0;}';
+	if($navSettings['navbar_alignment'] == 'left' || $navSettings['navbar_alignment'] =='right'){
+		$navbar_markup .= '.navbar .nav > li:first-child > a{padding-'.$navSettings['navbar_alignment'].':0;}';
+	}
+ 
 }
 //disable link inner shaddow
 if($navSettings['link_shadows'] =='true'){
@@ -1514,7 +1528,7 @@ if($dropdown_bg != 'true'){
 	  	  }";
 
 
-	  $media_767_markup .= ".nav-collapse.collapse > .nav
+	  $media_767_markup .= "#navbar .nav-collapse.collapse > .nav
 	  	  {    
 	  	      background-clip: padding-box;
 	  	      background-color:".$dropdownMenuBackgroundColors['color']." !important;

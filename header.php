@@ -82,7 +82,7 @@
 <body>
 	<?php if($sideNav =='true'): ?>
 		<div id="sidr">
-			<?php #wp_nav_menu(array('theme_location' => 'sidr-menu' ) ); ?>
+			<?php wp_nav_menu(array('theme_location' => 'sidr-menu' ) ); ?>
 		</div>	
 	<?php endif; ?>
 
@@ -116,7 +116,7 @@
 						?>
 
 					<?php } ?>
-					
+
 					</div> <!-- end row -->
 				</div><!-- end header container -->
 

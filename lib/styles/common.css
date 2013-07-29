@@ -302,18 +302,6 @@ div.img-circle img{
 /* =============================== media queries ===================================== */
 @media (max-width: 979px) {
 
-	#logoWrapper {
-		float: left;
-		text-align: center;
-		max-width: 50%;
-	}
-
-	#logoWrapper.in-row {
-		float: none;
-		margin: 0;
-		width: auto;
-		max-width: 100%;
-	}
 
 	.navbar .dropdown-menu{background:transparent !important;}
 	.navbar .dropdown-menu:after,
@@ -346,6 +334,10 @@ div.img-circle img{
 	#sideContent .table th {
 		padding: 3px;
 	}
+
+	.container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+    	width: 724px;
+	}
 }
 
 @media (max-width: 767px) {
@@ -354,6 +346,7 @@ div.img-circle img{
 	}
 
 	#logoWrapper{margin-left:0px;}
+
 	img{
 		height:auto;
 		max-width: 97%;
@@ -379,11 +372,7 @@ div.img-circle img{
           padding-left: 20px;
           padding-right: 20px;
 	}
-	
-	.navbar-inner{
-		padding: 0;
-	}
-	
+
 	#imageSliderWrapper > .container #imageSlider {
 		background: none;
 		padding:20px 0 20px;
@@ -416,11 +405,7 @@ div.img-circle img{
 
 @media (max-width: 480px) {
 
-	.navbar-inner
-	{
-		padding-left:0;
-		padding-right:0;
-	}
+
 	.pagination{
 		margin-left:0px;
 	}

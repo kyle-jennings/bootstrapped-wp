@@ -351,7 +351,7 @@ function kjd_get_the_title($content_type = null)
 	$the_title_markup ='<div id="pageTitle" class="'.$class.'">';
 	$the_title_markup .= '<div class="container"><h1>';
 	
-	if(is_archive()){
+	if( is_archive() ){
 
 		if ( is_day() ) :
 			$the_title_markup .= 'Daily Archives: <span>'.get_the_date() . '</span>';
@@ -369,6 +369,10 @@ function kjd_get_the_title($content_type = null)
 				$the_title_markup .= 'Posts in category: '.$buffered_cat;
 			}
 		endif;		
+	}elseif( is_search() ){
+		global $wp_query;
+		$total_results = $wp_query->found_posts;
+		$the_title_markup .=  $total_results ? $total_results : 'No results found' ;
 	}else{
 		$the_title_markup .= get_the_title();
 	}
