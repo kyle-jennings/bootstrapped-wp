@@ -16,7 +16,7 @@ if($sideNav == 'true'){
 }else{
 	register_nav_menus(
 	    array(
-	      'header-menu' => __( 'Header Menu' ),
+	      'primary-menu' => __( 'Header Menu' ),
 	    )
 	);
 }

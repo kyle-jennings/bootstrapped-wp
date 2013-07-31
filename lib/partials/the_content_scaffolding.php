@@ -1,8 +1,18 @@
 <?php
+
+$template = $layoutSettings['name'];
+
+
+//body styles - confine body
+$bodySettings = get_option('kjd_body_misc_settings');
+$bodySettings = $bodySettings['kjd_body_misc'];	
+$confineBodyBackground = $bodySettings['kjd_body_confine_background'];
+$confineClass = ($confineBodyBackground =='true' )? 'container confined' : '' ;
+
+// echo $template; die();
 $scaffolding_markup = '';
 
 
-$confineClass = ($confineBodyBackground =='true' )? 'container confined' : '' ;
 
 if($layoutSettings['position'] =='left' || $layoutSettings['position'] =='right' ){
 	$widthClass = 'span9';
@@ -10,60 +20,64 @@ if($layoutSettings['position'] =='left' || $layoutSettings['position'] =='right'
 	$widthClass = 'span12';
 }
 
-	$scaffolding_markup .= kjd_get_the_title();
+// get the title	
+$scaffolding_markup .= kjd_get_the_title();
 
 //start scaffolding
 $scaffolding_markup .= '<div id="body" class="'.$confineClass.'">';
 	$scaffolding_markup .= '<div class="container">';
 		$scaffolding_markup .= '<div class="row">';
 
-/* ----------------- top or left sidebar ------------------- */
- if($layoutSettings['position'] =='top' || $layoutSettings['position'] =='left'){ 
-	$scaffolding_markup .= ($layoutSettings['position'] =='top') ? kjd_get_sidebar($sidebar,'horizontal',$layoutSettings['position']) : kjd_get_sidebar($sidebar);
-} 
 
-//content div
-$scaffolding_markup .= '<div id="mainContent" class="'.$widthClass.'">';
+			// print_r($layoutSettings); die();
+			/* ----------------- top or left sidebar ------------------- */
+			 if($layoutSettings['position'] =='top' || $layoutSettings['position'] =='left'){ 
 
-/* ---------------------- The Loop ----------------------- */
-if (have_posts()){
+				$scaffolding_markup .= ($layoutSettings['position'] =='top') ? kjd_get_sidebar($template,'horizontal',$layoutSettings['position']) : kjd_get_sidebar($template);
+			} 
 
-	if($pagination_top == 'true'){
-		$scaffolding_markup .= posts_pagination();
-	}
+			//content div
+			$scaffolding_markup .= '<div id="mainContent" class="'.$widthClass.'">';
 
-	//open content-list/single wrapper
-	if( !is_single() && !is_page() && !is_attachment() ){
-		$scaffolding_markup .= '<div class="content-list">';
-	}else{
-		$scaffolding_markup .= '<div class="content-single">';
-	}
-	 while (have_posts()){ 
+			/* ---------------------- The Loop ----------------------- */
+			if (have_posts()){
 
-		the_post(); 
-		$scaffolding_markup .= kjd_the_content();
+				if($pagination_top == 'true'){
+					$scaffolding_markup .= posts_pagination();
+				}
 
-	}
+				//open content-list/single wrapper
+				if( !is_single() && !is_page() && !is_attachment() ){
+					$scaffolding_markup .= '<div class="content-list">';
+				}else{
+					$scaffolding_markup .= '<div class="content-single">';
+				}
+				 while (have_posts()){ 
 
- 	//close content-list/single wrapper
-	$scaffolding_markup .= '</div>';
+					the_post(); 
+					$scaffolding_markup .= kjd_the_content();
 
-	// pagination
-	$scaffolding_markup .= posts_pagination();
+				}
 
-}else{
-		$scaffolding_markup .= '<div class="content-wrapper">';
-				$scaffolding_markup .= kjd_the_404();
-		$scaffolding_markup .= '</div>';	
-}
-/* ---------------------- End Loop ----------------------- */
+			 	//close content-list/single wrapper
+				$scaffolding_markup .= '</div>';
 
-//end main content
-$scaffolding_markup .= '</div>'; // end maincontent span
+				// pagination
+				$scaffolding_markup .= posts_pagination();
+
+			}else{
+					$scaffolding_markup .= '<div class="content-wrapper">';
+							$scaffolding_markup .= kjd_the_404();
+					$scaffolding_markup .= '</div>';	
+			}
+			/* ---------------------- End Loop ----------------------- */
+
+			//end main content
+			$scaffolding_markup .= '</div>'; // end maincontent span
 
 /* ----------------- right or bottom sidebar ------------------- */
 	if($layoutSettings['position'] =='bottom' || $layoutSettings['position'] =='right'){ 
-		$scaffolding_markup .= ($layoutSettings['position'] =='bottom') ? kjd_get_sidebar($sidebar,'horizontal',$layoutSettings['position']) : kjd_get_sidebar($sidebar);
+		$scaffolding_markup .= ($layoutSettings['position'] =='bottom') ? kjd_get_sidebar($template,'horizontal',$layoutSettings['position']) : kjd_get_sidebar($template);
 	} 
 
 

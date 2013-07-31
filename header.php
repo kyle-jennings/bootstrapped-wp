@@ -46,6 +46,9 @@
 	$options = $options['kjd_mastArea_background_misc'];
 	$confineMast = $options['confine_mast'];
 
+
+
+
 	$contentAreaSettings = get_option('kjd_contentArea_background_settings');
 	$confinecontentArea = $contentAreaSettings['kjd_contentArea_background']['confine_contentArea'];
 
@@ -102,13 +105,10 @@
 						dynamic_sidebar('header_widgets');
 					
 					}else{ ?>
-						<div id="logoWrapper">
 
-							<a href="<?php bloginfo('url'); ?>">
-								<img src="<?php echo $logo; ?>" alt=""/>
-							</a>
-
-						</div> <!-- end logo-->
+						<a id="logoWrapper" href="<?php bloginfo('url'); ?>">
+							<img src="<?php echo $logo; ?>" alt=""/>
+						</a>
 						<?php 
 						if( $alignNavWithLogo =='true'){ 
 							include($navbar); 	

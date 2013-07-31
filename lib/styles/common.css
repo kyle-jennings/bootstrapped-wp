@@ -49,6 +49,11 @@ html,body{
 	margin:0 auto;
 }
 
+#pageTitle.container.confined {
+	padding:0 20px;
+	margin:0 auto;	
+}
+
 #mastArea{position:relative;}
 
 #logoWrapper{float: left ; margin-left:30px;}

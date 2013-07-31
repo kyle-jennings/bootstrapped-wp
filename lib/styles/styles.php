@@ -1199,6 +1199,7 @@ $dropdownMenuBackgroundColors['color'] = !empty($dropdownMenuBackgroundColors['c
 
 	if($navSettings['kjd_navbar_pull_up'] == 'true'){
 		$navbar_markup .="#navbar{
+					float:left;		
 					margin-top:".$navSettings['kjd_navbar_margin_top']."px;
 				}";
 

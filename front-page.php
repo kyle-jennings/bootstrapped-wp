@@ -2,8 +2,9 @@
 
 get_header();
 
-	$layoutOptions = get_option('kjd_page_layout_settings');
-	$layoutSettings = $layoutOptions['kjd_page_layouts']['kjd_front_page_widgets'];
+	$template = 'front_page';
+	
+	$layoutSettings = get_layout_settings($template);
 
 	$frontPageOptions = get_option('kjd_frontPage_layout_settings');
 	$frontPageSidebar = $frontPageOptions['kjd_frontPage_sidebar'];

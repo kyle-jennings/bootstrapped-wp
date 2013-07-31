@@ -3,8 +3,7 @@
 $navbarSettings = get_option('kjd_navbar_misc_settings');
 $navSettings = $navbarSettings['kjd_navbar_misc'];
 $sideNav = $navSettings['side_nav'];
-
-
+$root=get_stylesheet_directory_uri(); 
 	if(empty($navbarSettings) || !has_nav_menu( 'primary-menu' )){ 
 	?>
 		<div class="container">
@@ -14,14 +13,14 @@ $sideNav = $navSettings['side_nav'];
 	
 	if(empty($navbarSettings)){ 
 	?>
-		<a href="wp-admin/admin.php?page=kjd_navbar_settings&tab=misc" class="btn btn-primary btn-large">
+		<a href="<?php echo $root; ?>wp-admin/admin.php?page=kjd_navbar_settings&tab=misc" class="btn btn-primary btn-large">
 			Dont forget to configure your navbar settings
 	    </a>
 	<?php
 	}
 	if( !has_nav_menu( 'primary-menu' ) ){
 ?>
-		<a href="wp-admin/nav-menus.php"class="btn btn-primary btn-large">
+		<a href="<?php echo $root; ?>wp-admin/nav-menus.php"class="btn btn-primary btn-large">
 			Dont forget to set a menu.
 	    </a>
 <?php

@@ -32,7 +32,7 @@ require_once( WP_LOAD_PATH . 'wp-load.php');
 <link rel='stylesheet' id='bootstrap'  href="<?php echo get_bloginfo('template_directory');?>/lib/styles/bootstrap/bootstrap.css" type='text/css' media='all' />
 <link rel='stylesheet' id='bootstrap-responsive-css'  href="<?php echo get_bloginfo('template_directory');?>/lib/styles/bootstrap/bootstrap-responsive.css" type='text/css' media='all' />
 
-<script language="javascript" type="text/javascript" src="colorpicker/minicolors.js"></script>
+<script language="javascript" type="text/javascript" src="<?php echo get_bloginfo('template_directory');?>/lib/admin/js/colorpicker/minicolors.js"></script>
 <link rel='stylesheet'  href="colorpicker/minicolors.css" type='text/css' media='all' />
 <script language="javascript" type="text/javascript" src="<?php echo get_bloginfo('template_directory');?>/lib/admin/js/shortCodePlugin.js"></script>
 
@@ -275,7 +275,7 @@ require_once( WP_LOAD_PATH . 'wp-load.php');
 					<option value=''>Select One</option>
 					<option value='thumbnails'>Thumbnails</option>
 					<option value='elastislide'>Elasislide</option>
-					<option value='wallofthumbs'>Wall of Thumbnails</option> 
+<!-- 					<option value='wallofthumbs'>Wall of Thumbnails</option>  -->
 				</select>
 				<input type="hidden" id="hiddenField" class="galleryStyle" /> 
 			</div>

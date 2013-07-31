@@ -17,8 +17,8 @@ function kjd_page_layout_settings_display() {  ?>
 	}
 ?> 
 	<h2 class="nav-tab-wrapper">  
-	  <a href="?page=kjd_page_layout_settings&tab=posts" class="nav-tab"<?php echo $active_tab == 'posts' ? 'id="active"' : 'none'; ?>>Post Templates</a> 
-	  <a href="?page=kjd_page_layout_settings&tab=pages" class="nav-tab"<?php echo $active_tab == 'pages' ? 'id="active"' : 'none'; ?>>Page Templates</a> 
+	  <a href="?page=kjd_page_layout_settings&tab=posts" class="nav-tab"<?php echo $active_tab == 'posts' ? 'id="active"' : 'none'; ?>>Page Layouts</a> 
+	  <a href="?page=kjd_page_layout_settings&tab=pages" class="nav-tab"<?php echo $active_tab == 'pages' ? 'id="active"' : 'none'; ?>>Template Layouts</a> 
 	  <a href="?page=kjd_page_layout_settings&tab=frontPage" class="nav-tab"<?php echo $active_tab == 'frontPage' ? 'id="active"' : 'none'; ?>>Front Page Layout</a> 
 	  <!-- <a href="?page=kjd_page_layout_settings&tab=attachements" class="nav-tab"<?php echo $active_tab == 'attachements' ? 'id="active"' : 'none'; ?>>Attachment Page Layout</a> -->
 	 </h2>
@@ -47,9 +47,9 @@ function page_templates_callback(){
 	$options = get_option('kjd_page_layout_settings');
 
 	$pageLayoutSettings = $options['kjd_page_layouts'];
-	$pageLayouts = array('template_1','template_2','template_3','template_4','template_5','template_6','front_page');
+	$pageLayouts = array('template_1','template_2','template_3','template_4','template_5','template_6');
 			
-	echo "<h3>Page layouts (default)</h3>";
+	echo "<h3>Template layouts</h3>";
 	foreach($pageLayouts as $k => $v){
 		layout_form_callback($pageLayoutSettings,'page',$v);
 	}
@@ -61,19 +61,31 @@ function post_templates_callback(){
 
 	settings_fields( 'kjd_post_layout_settings' );
 	$options = get_option('kjd_post_layout_settings');
-	
-	$postLayouts = array('single','index','category','archive','tag','taxonomy','author','date','search','attachment');
 	$postLayoutSettings = $options['kjd_post_layouts'];
 
-// echo "<pre>";
-// var_dump($postLayoutSettings);
-// echo "</pre>";
+	$options = get_option('kjd_widget_areas_settings');
+	$available_sidebars = array( 'default' => 'default' );
   ?>
 
-	<h3>Post layouts</h3>
-	<?php foreach($postLayouts as $layout){ 
-		layout_form_callback($postLayoutSettings,'post',$layout);
+	<h3>Page layouts</h3>
+
+	<?php
+
+	if( !empty($options['widget_areas']) ){			
+
+		foreach($options['widget_areas'] as $k => $v){
+		
+			$available_sidebars[] = $k;
+		
+		}
 	}
+
+	foreach($available_sidebars as $k => $v){
+	
+		layout_form_callback($postLayoutSettings,'post',$v);
+	
+	}
+
 }
 
 
@@ -83,30 +95,30 @@ function post_templates_callback(){
 function layout_form_callback($settings,$type, $layout){ 
 	$deviceViews = array('all','visible-desktop','hidden-phone','hidden-tablet');
 ?>
-<input type="hidden" name="kjd_<?php echo $type;?>_layout_settings[kjd_<?php echo $type; ?>_layouts][kjd_<?php echo $layout;?>][name]" value = "kjd_<?php echo $layout;?>">
+<input type="hidden" name="kjd_<?php echo $type;?>_layout_settings[kjd_<?php echo $type; ?>_layouts][<?php echo $layout;?>][name]" value = "<?php echo $layout;?>">
 	<div class="option"> 
 		<a id="<?php echo $layout;?>"></a>
 		<label><?php echo ucwords(str_replace("_"," ",$layout));?></label>
 		<div class="optionComponent">
 			<span class="sublabel">Widgets Area</span>
-			<select class="layout_select" name="kjd_<?php echo $type;?>_layout_settings[kjd_<?php echo $type; ?>_layouts][kjd_<?php echo $layout;?>][position]">
+			<select class="layout_select" name="kjd_<?php echo $type;?>_layout_settings[kjd_<?php echo $type; ?>_layouts][<?php echo $layout;?>][position]">
 				<?php if($type=='post' || $layout == 'front_page'){ ?>
-					<option value="none" <?php selected( $settings['kjd_'.$layout]['position'], "none", true); ?>>
+					<option value="none" <?php selected( $settings[$layout]['position'], "none", true); ?>>
 						No Sidebar
 					</option>
 				<?php
 				}?>
-				<option value="left" <?php selected( $settings['kjd_'.$layout]['position'], "left", true); ?>>
+				<option value="left" <?php selected( $settings[$layout]['position'], "left", true); ?>>
 				Left
 				</option>
-				<option value="right" <?php selected( $settings['kjd_'.$layout]['position'], "right", true); ?>>
+				<option value="right" <?php selected( $settings[$layout]['position'], "right", true); ?>>
 				Right
 				</option>
 				<?php if($layout != 'front_page'){ ?>
-					<option value="top" <?php selected( $settings['kjd_'.$layout]['position'], "top", true); ?>>
+					<option value="top" <?php selected( $settings[$layout]['position'], "top", true); ?>>
 					Top
 					</option>
-					<option value="bottom" <?php selected( $settings['kjd_'.$layout]['position'], "bottom", true); ?>>
+					<option value="bottom" <?php selected( $settings[$layout]['position'], "bottom", true); ?>>
 					Bottom
 					</option>
 				<?php
@@ -121,8 +133,8 @@ function layout_form_callback($settings,$type, $layout){
 					<img src="<?php bloginfo('template_directory'); ?>/images/widgetsnone.png" class="none">
 				<?php
 				}?>
-				<?php if(isset($settings['kjd_'.$layout]['position'])){ ?>
-					<img src="<?php bloginfo('template_directory'); ?>/images/widgets<?php echo $settings['kjd_'.$layout]['position'];?>.png" class="<?php echo $settings['kjd_'.$layout]['position'];?>" style="display:block;">
+				<?php if(isset($settings[$layout]['position'])){ ?>
+					<img src="<?php bloginfo('template_directory'); ?>/images/widgets<?php echo $settings[$layout]['position'];?>.png" class="<?php echo $settings[$layout]['position'];?>" style="display:block;">
 				<?php 
 				}?>
 			</div>
@@ -130,9 +142,9 @@ function layout_form_callback($settings,$type, $layout){
 
 		<div class="optionComponent">
 			<span class="sublabel">Device Visibility<span>
-			<select name="kjd_<?php echo $type; ?>_layout_settings[kjd_<?php echo $type; ?>_layouts][kjd_<?php echo $layout;?>][deviceView]">
+			<select name="kjd_<?php echo $type; ?>_layout_settings[kjd_<?php echo $type; ?>_layouts][<?php echo $layout;?>][deviceView]">
 				<?php foreach($deviceViews as $view){ ?>
-					<option value="<?php echo $view; ?>" <?php selected( $settings['kjd_'.$layout]['deviceView'], $view, true); ?>>
+					<option value="<?php echo $view; ?>" <?php selected( $settings[$layout]['deviceView'], $view, true); ?>>
 						<?php echo $view; ?>
 					</option>
 				<?php }?>

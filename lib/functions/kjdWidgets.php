@@ -25,17 +25,16 @@ if(!empty($pageLayouts) && empty($postLayouts)){
 }
 
 
-
-//echo count($sidebars[$layouts['kjd_template_1']]);
-
-
 function set_width($template,$frontpage_area = null)
 {
+	// print_r($template); die();
+
 	if($template['name']== 'kjd_front_page_widgets'){
 		$i = 1;
 		$template = $layouts[$frontpage_area];
 		$sidebars = wp_get_sidebars_widgets($frontpage_area);
 		$widgetsCount = count($sidebars[$frontpage_area]);
+
 		if($template['position'] !='none')
 		{
 			switch($widgetsCount){
@@ -132,30 +131,33 @@ foreach($templates as $template){
 ///////////////////////
 
 	$options = get_option('kjd_widget_areas_settings');
-	// $widget_areas = array('single','index','category','archive','tag','taxonomy','author','date','search','attachment');
+	// $widget_areas = array('single',category','archive','tag','taxonomy','author','date','search','attachment');
+	
+	if( !empty($options['widget_areas']) ){
+		foreach($options['widget_areas'] as $k => $v){
+			// echo $k;
+			$width = set_width($layouts[$k]);
+			register_sidebar(
+				 array(
+				'name' => ucwords(str_replace('_page', '',$k)) . ' Page',
+				'id' => $k,
+				'description' => 'Widgets for the ' .ucwords(str_replace('_page', '',$k)) . ' page',
+				'before_widget' =>'<div class="widget '.$width.'">',
+				'before_title' => '<h3>',
+				'after_title' => '</h3>',
+				'after_widget' => '</div>'
+			)
+			);
 
-	foreach($options['widget_areas'] as $k => $v){
-
-		$width = set_width($layouts[$k]);
-		register_sidebar(
-			 array(
-			'name' => ucwords(str_replace('_page', '',$k)) . ' Page',
-			'id' => $k,
-			'description' => 'Widgets for the ' .ucwords(str_replace('_page', '',$k)) . ' page',
-			'before_widget' =>'<div class="widget '.$width.'">',
-			'before_title' => '<h3>',
-			'after_title' => '</h3>',
-			'after_widget' => '</div>'
-		)
-		);
-
+		}
+		
 	}
 
 //////////////////////////////
 //	 Page templates
 //////////////////////////////
 
-	$templates = array('kjd_template_1', 'kjd_template_2', 'kjd_template_3', 'kjd_template_4', 'kjd_template_5', 'kjd_template_6' );
+	$templates = array('template_1', 'template_2', 'template_3', 'template_4', 'template_5', 'template_6' );
 	foreach($templates as $template){
 		
 		$width = set_width($layouts[$template]);

@@ -239,7 +239,7 @@ function kjd_get_the_post_info()
 	$the_post_info_markup .='<span class="post-date">';
 	$the_post_info_markup .= 'Posted on: <a href="'.get_month_link(get_the_time('Y'), get_the_time('m')).'">'.get_the_date('F j').'</a>, <a href="'.get_year_link(get_the_time('Y')).'">'.get_the_date('Y').'</a> - </span>';
 	$the_post_info_markup .='<span class="post-author">';
-	$the_post_info_markup .='By: <a href="'.get_the_author_link().'">'.get_the_author().'</a>';
+	$the_post_info_markup .='By: <a href="">'.get_the_author().'</a>';
 	$the_post_info_markup .= '</span></div>';
 
 	return $the_post_info_markup;
@@ -346,12 +346,19 @@ function kjd_the_content(){
 /* ---------------------------------- the post or page title ------------------------------------ */
 function kjd_get_the_title($content_type = null)
 {
+	
+	$pageTitleSettings = get_option('kjd_pageTitle_misc_settings');
+	$pageTitleSettings = $pageTitleSettings['kjd_pageTitle_misc'];
+	$confineTitleBackground = $pageTitleSettings['kjd_pageTitle_confine_background'];
+
 	$class = $confineTitleBackground =='true' ? 'container confined' : '' ;
 
 	$the_title_markup ='<div id="pageTitle" class="'.$class.'">';
-	$the_title_markup .= '<div class="container"><h1>';
+	$the_title_markup .= '<div class="container">';
+	$the_title_markup .= '<h1>';
 	
 	if( is_archive() ){
+		
 
 		if ( is_day() ) :
 			$the_title_markup .= 'Daily Archives: <span>'.get_the_date() . '</span>';
@@ -369,15 +376,33 @@ function kjd_get_the_title($content_type = null)
 				$the_title_markup .= 'Posts in category: '.$buffered_cat;
 			}
 		endif;		
+
 	}elseif( is_search() ){
+
+		
 		global $wp_query;
 		$total_results = $wp_query->found_posts;
 		$the_title_markup .=  $total_results ? $total_results : 'No results found' ;
+	
+
+	}elseif( is_404() ){
+
+		$the_title_markup .= 'Page Not Found';
+
 	}else{
-		$the_title_markup .= get_the_title();
+
+		$the_title = get_the_title();
+		if( isset($the_title) && !empty($the_title) && !is_null($the_title) ){
+		
+			$the_title_markup .= $the_title;
+
+		}else {
+			$the_title_markup .= 'No Title';
+		}
 	}
 
-	$the_title_markup .=  '</h1></div></div>';
+	$the_title_markup .= '</h1>';
+	$the_title_markup .=  '</div></div>';
 
 	return $the_title_markup;
 }
@@ -385,10 +410,8 @@ function kjd_get_the_title($content_type = null)
 /* ----------------------------- the sidebar ----------------------------- */
 function kjd_get_sidebar($sidebar, $location = null, $width = null)
 {
-$location_class = ($location == 'horizontal') ? 'span12' : 'span3' ;
-
+	$location_class = ($location == 'horizontal') ? 'span12' : 'span3' ;
 	$sidebar = set_sidebar_area($sidebar);
-
 	ob_start();
 		dynamic_sidebar($sidebar);
 		$the_buffered_sidebar = ob_get_contents();
@@ -410,19 +433,138 @@ function set_sidebar_area($sidebar = null){
 
 	$options = get_option('kjd_widget_areas_settings');
 	$available_sidebars = array(
-		'kjd_template_1', 'kjd_template_2', 'kjd_template_3', 'kjd_template_4', 'kjd_template_5', 'kjd_template_6',
+		'template_1', 'template_2', 'template_3', 'template_4', 'template_5', 'template_6',
 		'front_page_widget_area_1', 'front_page_widget_area_2', 'header_widgets', 'footer_widgets','default'
 	);
-	foreach($options['widget_areas'] as $k => $v){
-		$available_sidebars[] = $k; 
+	if( !empty($options['widget_areas']) ){
+		foreach($options['widget_areas'] as $k => $v){
+			$available_sidebars[] = $k; 
+		}
 	}
-	// print_r($available_sidebars);
+	
 
 	if(!in_array($sidebar, $available_sidebars)){
 		$sidebar = 'default';
 	}
 
+	// echo $sidebar;die();
+
 	return $sidebar;
+}
+
+function get_layout_settings($template = NULL) {
+
+
+
+		//if no template was hardcoded and passed in
+		if( isset($template) && !empty($template) ){
+
+			//	if the page is a post type
+
+			$layoutOptions = get_option('kjd_post_layout_settings');
+			$layoutSettings = $layoutOptions['kjd_post_layouts'];
+			
+			if( is_single() ){
+			
+				$template = 'single';
+
+			}elseif( is_attachment() ){
+
+				$template = 'attachment';
+
+			}elseif( is_404() ){
+			
+				$template = '404';
+			
+			}elseif( is_category() ){
+			
+				$template = 'category';
+
+			}elseif( is_archive() ){
+			
+				$template = 'archive';
+			
+			}elseif( is_tag() ){
+
+				$template = 'tag';
+
+			}elseif( is_taxonomy() ){
+
+				$template = 'taxonomy';
+
+			}elseif( is_author() ){
+
+				$template = 'author';
+
+			}elseif( is_date() ){
+
+				$template = 'date';
+
+			}elseif( is_search() ){
+
+				$template = 'search';
+
+			}elseif( is_front_page() ){
+
+				$template = 'front_page';
+
+			}elseif( is_page() ){
+
+				// if current page is page template
+				if( is_page_template() ){
+
+					$options = get_option('kjd_page_layout_settings');
+					$layoutSettings = $options['kjd_page_layouts'];
+
+					
+						if ( is_page_template('pageTemplate1.php') ){
+
+							$template = 'template_1';
+						
+						}elseif( is_page_template('pageTemplate2.php') ){
+
+							$template = 'template_2';
+						
+						}elseif( is_page_template('pageTemplate3.php') ){
+
+							$template = 'template_3';
+						
+						}elseif( is_page_template('pageTemplate4.php') ){
+
+							$template = 'template_4';
+						
+						}elseif( is_page_template('pageTemplate5.php') ){
+
+							$template = 'template_5';
+						
+						}elseif( is_page_template('pageTemplate6.php') ){
+
+							$template = 'template_6';
+						
+						}else{
+							
+							$template = 'default';							
+						
+						}
+		
+
+				// if current page is a page but not a template
+				}else{
+
+					$template = 'default';
+				
+				}
+
+			//fallback - if not a post template OR a page
+			}else{
+
+				$template = 'default';
+			}
+			
+		}
+	$layoutSettings = !empty($layoutSettings[$template]) ? $layoutSettings[$template] : $layoutSettings['default'] ;
+
+	return $layoutSettings;
 }
 
 /* ----------------------------------- single image nav links for gallery images ------------------------------------ */
