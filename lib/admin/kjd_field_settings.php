@@ -89,6 +89,13 @@
 				'kjd_component_settings_section'
 			);
 
+			add_settings_field(
+				'featured_image',
+				'Featured Image',
+				'kjd_featured_image_callback',
+				'kjd_component_settings',
+				'kjd_component_settings_section'
+			);
 
 			add_settings_field(
 				'kjd_style_image_cycler_section',

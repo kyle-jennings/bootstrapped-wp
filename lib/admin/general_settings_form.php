@@ -186,15 +186,23 @@ function theme_components_callback(){
 		</select>
 	</div>		
 
-<!-- 	<div class="option">
-		<label>Header Content</label>
-		<select name="kjd_component_settings[header_content]">
-			<option value="logo" <?php selected( $options['header_content'], 'logo', true ) ?>>Logo</option>
-			<option value="logo_nav" <?php selected( $options['header_content'], 'logo_nav', true) ?>>Logo and Nav</option>
-			<option value="widgets" <?php selected( $options['header_content'], 'widgets', true) ?>>widgets</option>
-		</select>
-	</div> -->
-</div>	
+	<div class="option">
+		<label>Featured Image Size</label>
+		
+		<div class="margin-label"><span>Height</span>
+		<input name="kjd_component_settings[featured_image][height]" 
+			value="<?php echo $options['featured_image']['height'] ? $options['featured_image']['height'] : ''; ?>"
+			style="width:40px;"/>px.
+		</div>
+
+		<div class="margin-label"><span>Width</span>
+		<input name="kjd_component_settings[featured_image][width]" 
+			value="<?php echo $options['featured_image']['width'] ? $options['featured_image']['width'] : ''; ?>"
+			style="width:40px;"/>px.
+		</div>
+	</div>
+
+</div>
 
 <?php
 }

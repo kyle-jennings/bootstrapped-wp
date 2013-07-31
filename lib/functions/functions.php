@@ -48,6 +48,10 @@ function add_assets(){
 
 if (function_exists('add_theme_support')) {  
     add_theme_support('post-thumbnails');  
+
+	$options = get_option('kjd_component_settings');
+	$image = $options['featured_image'];
+    add_image_size( 'featured-image', $image['width'], $image['height'] ); 
 }  
 
 
@@ -136,6 +140,125 @@ function login_css() {
 	require_once(dirname(dirname(__FILE__)).'/styles/login.php');
 }
 add_action('login_head', 'login_css');
+
+
+
+/* ------------------------------------- get page template layout settings ************************* */
+function get_layout_settings($template = NULL) {
+
+
+
+		//if no template was hardcoded and passed in
+		if( isset($template) && !empty($template) ){
+
+			//	if the page is a post type
+
+			$layoutOptions = get_option('kjd_post_layout_settings');
+			$layoutSettings = $layoutOptions['kjd_post_layouts'];
+			
+			if( is_single() ){
+			
+				$template = 'single';
+
+			}elseif( is_attachment() ){
+
+				$template = 'attachment';
+
+			}elseif( is_404() ){
+			
+				$template = '404';
+			
+			}elseif( is_category() ){
+			
+				$template = 'category';
+
+			}elseif( is_archive() ){
+			
+				$template = 'archive';
+			
+			}elseif( is_tag() ){
+
+				$template = 'tag';
+
+			}elseif( is_taxonomy() ){
+
+				$template = 'taxonomy';
+
+			}elseif( is_author() ){
+
+				$template = 'author';
+
+			}elseif( is_date() ){
+
+				$template = 'date';
+
+			}elseif( is_search() ){
+
+				$template = 'search';
+
+			}elseif( is_front_page() ){
+
+				$template = 'front_page';
+
+			}elseif( is_page() ){
+
+				// if current page is page template
+				if( is_page_template() ){
+
+					$options = get_option('kjd_page_layout_settings');
+					$layoutSettings = $options['kjd_page_layouts'];
+
+					
+						if ( is_page_template('pageTemplate1.php') ){
+
+							$template = 'template_1';
+						
+						}elseif( is_page_template('pageTemplate2.php') ){
+
+							$template = 'template_2';
+						
+						}elseif( is_page_template('pageTemplate3.php') ){
+
+							$template = 'template_3';
+						
+						}elseif( is_page_template('pageTemplate4.php') ){
+
+							$template = 'template_4';
+						
+						}elseif( is_page_template('pageTemplate5.php') ){
+
+							$template = 'template_5';
+						
+						}elseif( is_page_template('pageTemplate6.php') ){
+
+							$template = 'template_6';
+						
+						}else{
+							
+							$template = 'default';							
+						
+						}
+		
+
+				// if current page is a page but not a template
+				}else{
+
+					$template = 'default';
+				
+				}
+
+			//fallback - if not a post template OR a page
+			}else{
+
+				$template = 'default';
+			}
+			
+		}
+	$layoutSettings = !empty($layoutSettings[$template]) ? $layoutSettings[$template] : $layoutSettings['default'] ;
+
+	return $layoutSettings;
+}
+
 
 
 /* --------------------------- read more link --------------------------*/
@@ -278,21 +401,26 @@ function kjd_the_content(){
 	$use_featured_image = ($post_options['show_featured_image'] == 'true' && $post_options['post_listing_type'] == 'excerpt') ? 'true' : 'false' ;
 	$featured_image = $post_options['featured_position'];
 
+	$media_body_class = $featured_image == 'right_of_post' ? 'media-body-right' : '' ;
+	$media_class = $use_featured_image == 'true' ? 'media' : '' ;
+
 	$content_well = $post_options['post_background_toggle'] == "true" ? 'well' : '' ;
 
 	$the_content_markup = '';
 
 
 	// this will wrap the content in a well if need be
-	$the_content_markup .= '<div class="the-content-wrapper '.$content_well.'">';
+	$the_content_markup .= '<div class="the-content-wrapper '.$content_well.' '. $media_class .'">';
 		
 		// puts featured image before content wrapper
-		if(in_array($featured_image, array('atop_post','left_of_post')) && $use_featured_image == 'true'){
-
+		if( in_array($featured_image, array('atop_post','left_of_post') ) && $use_featured_image == 'true'){
+			
 			$the_content_markup .= kjd_get_featured_image($featured_image);
+
 		}
 
-		$the_content_markup .= '<div class="the-content-inner">';
+
+		$the_content_markup .= '<div class="the-content-inner media-body '.$media_body_class.' ">';
 
 
 			if(!is_single() && !is_page()){
@@ -452,120 +580,6 @@ function set_sidebar_area($sidebar = null){
 	return $sidebar;
 }
 
-function get_layout_settings($template = NULL) {
-
-
-
-		//if no template was hardcoded and passed in
-		if( isset($template) && !empty($template) ){
-
-			//	if the page is a post type
-
-			$layoutOptions = get_option('kjd_post_layout_settings');
-			$layoutSettings = $layoutOptions['kjd_post_layouts'];
-			
-			if( is_single() ){
-			
-				$template = 'single';
-
-			}elseif( is_attachment() ){
-
-				$template = 'attachment';
-
-			}elseif( is_404() ){
-			
-				$template = '404';
-			
-			}elseif( is_category() ){
-			
-				$template = 'category';
-
-			}elseif( is_archive() ){
-			
-				$template = 'archive';
-			
-			}elseif( is_tag() ){
-
-				$template = 'tag';
-
-			}elseif( is_taxonomy() ){
-
-				$template = 'taxonomy';
-
-			}elseif( is_author() ){
-
-				$template = 'author';
-
-			}elseif( is_date() ){
-
-				$template = 'date';
-
-			}elseif( is_search() ){
-
-				$template = 'search';
-
-			}elseif( is_front_page() ){
-
-				$template = 'front_page';
-
-			}elseif( is_page() ){
-
-				// if current page is page template
-				if( is_page_template() ){
-
-					$options = get_option('kjd_page_layout_settings');
-					$layoutSettings = $options['kjd_page_layouts'];
-
-					
-						if ( is_page_template('pageTemplate1.php') ){
-
-							$template = 'template_1';
-						
-						}elseif( is_page_template('pageTemplate2.php') ){
-
-							$template = 'template_2';
-						
-						}elseif( is_page_template('pageTemplate3.php') ){
-
-							$template = 'template_3';
-						
-						}elseif( is_page_template('pageTemplate4.php') ){
-
-							$template = 'template_4';
-						
-						}elseif( is_page_template('pageTemplate5.php') ){
-
-							$template = 'template_5';
-						
-						}elseif( is_page_template('pageTemplate6.php') ){
-
-							$template = 'template_6';
-						
-						}else{
-							
-							$template = 'default';							
-						
-						}
-		
-
-				// if current page is a page but not a template
-				}else{
-
-					$template = 'default';
-				
-				}
-
-			//fallback - if not a post template OR a page
-			}else{
-
-				$template = 'default';
-			}
-			
-		}
-	$layoutSettings = !empty($layoutSettings[$template]) ? $layoutSettings[$template] : $layoutSettings['default'] ;
-
-	return $layoutSettings;
-}
 
 /* ----------------------------------- single image nav links for gallery images ------------------------------------ */
 function kjd_gallery_image_links(){
@@ -611,15 +625,37 @@ function kjd_the_404(){
 	$page404 = do_shortcode($page404['kjd_404_page']);
 	return $page404;
 }
+ 
+function kjd_get_featured_image($position = null, $wrapper = 'div'){
+	
+	if($position == 'left_of_post'){
+	
+		$wrapper = 'span';
+	
+		$wrapper_class = 'pull-left';
+	
+	}elseif($position == 'right_of_post'){
+	
+		$wrapper = 'span';
+	
+		$wrapper_class = 'pull-right';
+	
+	}else{
 
-function kjd_get_featured_image($position = null){
+		$wrapper = 'div';
+	
+	}
 
 	$featured_image_markup = '';
+
 	if ( has_post_thumbnail() ) {
-		
-		$featured_image_markup .='<div class="featured-image">';
-		$featured_image_markup .= get_the_post_thumbnail();
-		$featured_image_markup .='</div>';
+		$featured_image_markup .= '<'.$wrapper.' class="media-object '.$wrapper_class.'">';
+		$featured_image_markup .= get_the_post_thumbnail(null, 'featured-image', array(
+			'alt'	=> trim(strip_tags( $attachment->post_excerpt )),
+			'title'	=> trim(strip_tags( $attachment->post_title )),
+			)
+		);
+		$featured_image_markup .= '</'.$wrapper.'>';
 	} 
 
 

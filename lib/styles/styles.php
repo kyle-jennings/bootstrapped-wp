@@ -459,9 +459,11 @@ function background_type_callback($type = null,$backgroundColorSettings = array(
 	}elseif($type =='solid'){
 		$background_type .= 'background-color: '.$backgroundColorSettings['color'].' !important;';
 	}elseif($type =='none'){
-		$background_type .= 'background-color:transparent !important;';
+		$background_type .= 'background-color:transparent;';
+		$background_type .= 'background-image: none;';
 	}else{
-		$background_type .= 'background-color:transparent !important;';
+		$background_type .= 'background-color:transparent;';
+		$background_type .= 'background-image: none;';
 	}
 	
 	return $background_type;
