@@ -14,10 +14,14 @@ if(is_admin()){
 add_action( 'wp_enqueue_scripts', 'add_assets' );
 function add_assets(){
 
+	// set variables
 	$navbarSettings = get_option('kjd_navbar_misc_settings');
 	$navbarSettings = $navbarSettings['kjd_navbar_misc'];
 	$sideNav = $navbarSettings['side_nav'];
+	$generalSettings = get_option('kjd_theme_settings');
+	$responsive = $generalSettings['kjd_responsive_design'];
 
+	//set tempplate root
 	$root=get_bloginfo('template_directory'); 
 	$root = $root.'/lib';
 
@@ -28,11 +32,12 @@ function add_assets(){
 		wp_enqueue_script("sidr", $root."/scripts/sidr.min.js", false, "1.0", true);  
 		wp_enqueue_style("sidr", $root."/styles/sidr.css");
 	}
+
+	
 	wp_enqueue_script("script", $root."/scripts/application.js", false, "1.0", true);  
 
 	wp_enqueue_style("bootstrap", $root."/styles/bootstrap/bootstrap.css");
-	$generalSettings = get_option('kjd_theme_settings');
-	$responsive = $generalSettings['kjd_responsive_design'];
+
 	if($responsive == 'true'){
 		wp_enqueue_style("bootstrap-responsive", $root."/styles/bootstrap/bootstrap-responsive.css");
 	}
@@ -40,7 +45,16 @@ function add_assets(){
 	wp_enqueue_style("wpstyles", $root."/styles/wpstyles.css");	
 	wp_enqueue_style("scaffolding", $root."/styles/common.css");	
 	wp_enqueue_style("custom", $root."/styles/custom.css");
+
+	// Add slider scripts if on front page
+	if( is_front_page() ){
+		 include( 'add_slider_scripts.php');
+	}
+
 }
+
+
+
 
 ///////////////////////////
 // featured image settings
@@ -398,13 +412,14 @@ function kjd_the_content(){
 	$post_options = $post_options['kjd_posts_misc'];
 	$post_display = $post_options['post_listing_type'];
 
-	$use_featured_image = ($post_options['show_featured_image'] == 'true' && $post_options['post_listing_type'] == 'excerpt') ? 'true' : 'false' ;
+	$use_featured_image = ($post_options['show_featured_image'] == 'true' && $post_options['post_listing_type'] == 'excerpt' && !is_singular() ) ? 'true' : 'false' ;
 	$featured_image = $post_options['featured_position'];
 
-	$media_body_class = $featured_image == 'right_of_post' ? 'media-body-right' : '' ;
-	$media_class = $use_featured_image == 'true' ? 'media' : '' ;
+	$media_body_right = $featured_image == 'right_of_post' ? 'media-body-right' : '' ;
 
-	$content_well = $post_options['post_background_toggle'] == "true" ? 'well' : '' ;
+	$media_class = ($use_featured_image == 'true' && $post_display == 'excerpt' && !is_singular() ) ? 'media' : '' ;
+
+	$content_well = $post_options['style_posts'] == "true" ? 'well' : '' ;
 
 	$the_content_markup = '';
 
@@ -420,7 +435,7 @@ function kjd_the_content(){
 		}
 
 
-		$the_content_markup .= '<div class="the-content-inner media-body '.$media_body_class.' ">';
+		$the_content_markup .= '<div class="the-content-inner media-body '.$media_body_right.' ">';
 
 
 			if(!is_single() && !is_page()){

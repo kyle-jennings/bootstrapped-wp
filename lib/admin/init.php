@@ -130,17 +130,16 @@ function setup_theme_menus() {
 		create_function('', 'kjd_settings_display("body");')
 	);   
 
-    if($options['style_posts']=='true'){
-		// customize post
-	    add_submenu_page(
-			'kjd_theme_settings',   // belongs to id
-	  		'Customize Post Contents', // title bar
-			'Post Contents', // menu title
-			'manage_options',   //member access
-		    'kjd_posts_settings', // id for submenu
-			create_function('', 'kjd_settings_display("posts");')
-		); 
-    }
+
+	// customize post
+    add_submenu_page(
+		'kjd_theme_settings',   // belongs to id
+  		'Customize Post Contents', // title bar
+		'Post Contents', // menu title
+		'manage_options',   //member access
+	    'kjd_posts_settings', // id for submenu
+		create_function('', 'kjd_settings_display("posts");')
+	); 
   
 
     if($options['style_widgets']=='true'){

@@ -161,14 +161,6 @@ function theme_components_callback(){
 	$options = get_option('kjd_component_settings');
 ?>
 <div class="options_wrapper">
-	<h3>Toggle Post and Widget Settings</h3>
-	<div class="option">
-		<label>Style individual posts?</label>
-		<select name="kjd_component_settings[style_posts]">
-			<option value="false" <?php selected( $options['style_posts'], 'false', true ) ?>>No</option>
-			<option value="true" <?php selected( $options['style_posts'], 'true', true) ?>>Yes</option>
-		</select>
-	</div>
 
 	<div class="option">
 		<label>Style widgets?</label>
@@ -198,6 +190,22 @@ function theme_components_callback(){
 		<div class="margin-label"><span>Width</span>
 		<input name="kjd_component_settings[featured_image][width]" 
 			value="<?php echo $options['featured_image']['width'] ? $options['featured_image']['width'] : ''; ?>"
+			style="width:40px;"/>px.
+		</div>
+	</div>
+
+	<div class="option">
+		<label>Author Image Size</label>
+		
+		<div class="margin-label"><span>Height</span>
+		<input name="kjd_component_settings[author_image][height]" 
+			value="<?php echo $options['author_image']['height'] ? $options['author_image']['height'] : ''; ?>"
+			style="width:40px;"/>px.
+		</div>
+
+		<div class="margin-label"><span>Width</span>
+		<input name="kjd_component_settings[author_image][width]" 
+			value="<?php echo $options['author_image']['width'] ? $options['author_image']['width'] : ''; ?>"
 			style="width:40px;"/>px.
 		</div>
 	</div>

@@ -81,7 +81,7 @@ html,body{
 			position:relative; 
 			margin:0 auto; 
 		}
-	#imageSliderWrapper > .container #imageSlider{ 
+	#imageSliderWrapper > #imageSlider{ 
 		background:url(../images/shadow.png) no-repeat bottom center; 
 		padding:20px 0 60px; 
 		overflow: hidden;

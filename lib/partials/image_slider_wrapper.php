@@ -4,7 +4,6 @@
 		$plugin = $cyclerOptions['kjd_cycler_misc']['plugin'];
 		$images = $options['kjd_cycler_images'];
 
-		$options = get_option('kjd_cycler_misc_settings');
 		$sliderOptions = $options['kjd_cycler_misc'];
 
 		// $cyclerOptions = get_option('kjd_cycler_misc_settings');
@@ -13,19 +12,33 @@
 ?>
 
 <div id="imageSliderWrapper" class="frontPageBody <?php echo $confineCyclerBackground; ?>">
-	<?php include(dirname(dirname(__FILE__)) . '/scripts/sliderScripts.php'); ?>
-<div class="container">
+
+
+<?php echo $plugin == 'responsive_slider' ? '' : '<div class="container">' ; ?>
+
 <div id="imageSlider">
 <?php
 	 if($plugin !="none" && isset($plugin)){ 
 		if($plugin =="nivo"){
+		
 			include (dirname(dirname(__FILE__))."/scripts/nivo/nivoSlider.php"); 
+		
 		}elseif($plugin =="piecemaker3d"){
+		
 			include (dirname(dirname(__FILE__))."/scripts/picemaker/piecemaker.php"); 
+		
 		}elseif($plugin =="flexslider2"){
+		
 			include (dirname(dirname(__FILE__))."/scripts/flexslider/flexslider.php"); 
+		
 		}elseif($plugin =="parallax"){
+		
 			include (dirname(dirname(__FILE__))."/scripts/parallax/parallax.php"); 
+		
+		}elseif($plugin =='responsive_slider'){
+
+			include (dirname(dirname(__FILE__))."/scripts/responsiveslider/responsive.php"); 
+
 		}elseif($plugin =="single image"){ ?> 
 	
 			<div class="singleImage">
@@ -83,5 +96,5 @@
 	}
 ?>
 		</div> <!-- end cycler -->
-	</div>
+	<?php echo $plugin == 'responsive_slider' ? '' : '</div>' ; ?> <!-- end container -->
 </div> <!-- end image slider -->

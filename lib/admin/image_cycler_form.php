@@ -6,18 +6,24 @@ settings_fields('kjd_cycler_misc_settings');
 $options = get_option('kjd_cycler_misc_settings');
 
 
-$plugins = array('single image','nivo','flexslider2'); //'piecemaker3d'
+$plugins = array('single image','nivo','flexslider2','responsive_slider'); //'piecemaker3d'
 $themes = array('dark','light');
 $glowSettings = array('none','left-right','top-bottom', 'all-sides','top','bottom');
 
 if($options['kjd_cycler_misc']['plugin'] == 'nivo'){
+
 	$effects = array('random','sliceDown','sliceDownLeft','sliceUp','sliceUpLeft','sliceUpDown',
 'sliceUpDownLeft','fold','fade','slideInRight','slideInLeft','boxRandom','boxRain',
 'boxRainReverse','boxRainGrow','boxRainGrowReverse');
+
 }elseif($options['kjd_cycler_misc']['plugin'] == "flexslider2"){
+
 $effects = array('fade','slide');
+
 }else{
+
 $effects = '';
+
 }
 	$deviceViews = array('visible-phone','visible-tablet','visible-desktop','hidden-phone','hidden-tablet','hidden-desktop','visible-all','first-image');
 ?>
@@ -42,7 +48,7 @@ $effects = '';
 			<?php foreach($plugins as $plugin){ ?>
 				<option value="<?php echo $plugin; ?>"
 				<?php selected( $options['kjd_cycler_misc']['plugin'], $plugin, true) ?>>
-					<?php echo $plugin;?>
+					<?php echo ucwords(str_replace('_',' ',$plugin));?>
 				</option>
 			<?php }?>
 		</select>
@@ -247,6 +253,20 @@ value="<?php echo $options['kjd_cycler_misc']['timeout']?$options['kjd_cycler_mi
 				<option value="false" <?php selected( $options['kjd_cycler_misc']['float'], 'false', true) ?>>No</option>
 		</select>
 	</div>
+
+
+
+
+	<div class="option">
+		<label>Force Header height</label>
+		<select name="kjd_cycler_misc_settings[kjd_cycler_misc][force_height]">
+			<option value="false" <?php selected( $options['kjd_cycler_misc']['force_height'], 'false', true ) ?>>No</option>
+			<option value="true" <?php selected( $options['kjd_cycler_misc']['force_height'], 'true', true ) ?>>Yes</option>
+		</select>
+		<input type="text" name="kjd_cycler_misc_settings[kjd_cycler_misc][height]"
+		value="<?php echo $options['kjd_cycler_misc']['height'] ? $options['kjd_cycler_misc']['height'] : '' ;?>" style="width:40px;">px
+	</div>
+
 <?php
 }
 
@@ -274,8 +294,8 @@ function cycler_images_callback(){
 	<p>Upload as many front page banner images as you want, but there are few things to remember: </p>
 	<ol>
 		<li>All images should be the EXACT same size. Otherwise, you will not see smooth transitions.</li>
-		<li>We reccommend uploading images which are at least 1200 pixels wide, and must not be more than 400 pixels tall.</li>
-		<li>To reorder your images, just click and drag to sort them!</li>
+		<li>We reccommend uploading images which are at least 1200 pixels wide, and no more than 400 pixels tall.</li>
+		<li>To reorder your images, just click and drag them!</li>
 	</ol>
 
 	<div class="option banner_image_options">

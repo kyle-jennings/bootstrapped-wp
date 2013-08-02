@@ -1,7 +1,14 @@
 <?php
 
 
+    
+
 function kjd_settings_display($section) {  
+	
+
+	$options = get_option('kjd_posts_misc_settings');
+	$options = $options['kjd_posts_misc'];
+	
 	$tabs = array(0 =>'background',1=>'borders',2=>'text',3=>'links',4=>'components',5=>'misc');
 	if($section == "cycler"){
 		array_pop($tabs);
@@ -25,6 +32,14 @@ function kjd_settings_display($section) {
 		unset($tabs[1]);
 	}
 	if($section =="pageTitle"){
+		unset($tabs[4]);
+	}
+
+	if($options['style_posts'] !='true' && $section == 'posts'){
+		unset($tabs[0]);
+		unset($tabs[1]);
+		unset($tabs[2]);
+		unset($tabs[3]);
 		unset($tabs[4]);
 	}
 	//include 'lib/kjd_field_settings.php';

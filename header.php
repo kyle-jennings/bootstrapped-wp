@@ -46,15 +46,10 @@
 	$options = $options['kjd_mastArea_background_misc'];
 	$confineMast = $options['confine_mast'];
 
-
-
-
 	$contentAreaSettings = get_option('kjd_contentArea_background_settings');
 	$confinecontentArea = $contentAreaSettings['kjd_contentArea_background']['confine_contentArea'];
 
-	$navbar .= dirname(__FILE__).'/lib/partials/navbar_scaffolding.php';
-	wp_head();
-	if(is_home() ) { 
+	if(is_front_page() ) { 
 		$themeOptions = get_option('kjd_theme_settings');
 		$hideHeader = $themeOptions['kjd_hide_header'];
 		$hideFooter = $themeOptions['kjd_hide_footer'];
@@ -79,6 +74,10 @@
  if ( is_user_logged_in() ) { 
  	echo '<style>body{padding-top:28px !important;}</style>';
   }
+
+	$navbar .= dirname(__FILE__).'/lib/partials/navbar_scaffolding.php';
+
+  	wp_head();
 ?>
 </head>
 

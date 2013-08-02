@@ -98,6 +98,14 @@
 			);
 
 			add_settings_field(
+				'author_image',
+				'author Image',
+				'kjd_author_image_callback',
+				'kjd_component_settings',
+				'kjd_component_settings_section'
+			);			
+
+			add_settings_field(
 				'kjd_style_image_cycler_section',
 				'Style Image Cycler Section',
 				'kjd_style_image_cycler_section_callback',

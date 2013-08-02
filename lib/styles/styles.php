@@ -21,6 +21,10 @@ function get_theme_options(){
     if($options['style_widgets']=='true'){
 		$sections[] = 'widgets';
     }
+
+	$options = get_option('kjd_posts_misc_settings');
+	$options = $options['kjd_posts_misc'];
+	
     if($options['style_posts']=='true'){
 		$sections[] = 'posts';
     }
@@ -138,6 +142,9 @@ function get_theme_options(){
 		$section_output .= section_markup_callback($section,$section_options);
 		
 	}
+
+	$section_output .= postSettingsCallback();
+
 	// return $section_output;
 	return $miscMarkup.$navArea_markup.$media_767_markup.$section_output; 
 	
@@ -196,8 +203,18 @@ switch($section)
 		//$useMast = $miscSettings['use_mastArea'];				
 	}
 
+
 	$sectionArea_markup = '';
 
+	if($section =="cycler"){
+		$forceHeight = $miscSettings['force_height'];
+		if($forceHeight =='true'){
+			$section_height = !empty($miscSettings['height']) ? $miscSettings['height'] : '' ;
+		}
+		$sectionArea_markup .= $section_name.' #imageSlider, .rslides{';
+			$sectionArea_markup .= "height:".$section_height."px;";
+		$sectionArea_markup .= '}';		
+	}
 
 
 //move the box shadow from .navbar-inner to #navbar
@@ -208,7 +225,7 @@ switch($section)
 
 
 if($section == 'posts'){
-	if($miscSettings['post_background_toggle'] == 'true'){
+	if($miscSettings['style_posts'] == 'true'){
 		$sectionArea_markup .= 	'.content-list > .the-content-wrapper.well{';
 			$sectionArea_markup .= 'margin-bottom:40px;';
 		$sectionArea_markup .=' }';
@@ -241,6 +258,10 @@ if($section == 'posts'){
 
 	if($section=='header' && $forceHeight =="true" && !empty($miscSettings['header_height'])){
 		$sectionArea_markup .= "height:".$miscSettings['header_height']."px;";
+	}
+
+	if($section=='cycler' && $forceHeight =="true" && !empty($miscSettings['height'])){
+		$sectionArea_markup .= "height:".$miscSettings['height']."px;";
 	}
 
 	if($section =='footer'){
@@ -313,23 +334,6 @@ if($section == 'posts'){
 			$sectionArea_markup .= borderRadiusCallback($k, $v);	
 		}
 		$sectionArea_markup .= '}';
-	}
-
-	if($section == "body"){
-		//color of the line underneath the post info
-		$postInfoBorder = $miscSettings['post_info_border'] ? $miscSettings['post_info_border'] : 'rgba(0,0,0,.5)';
-		$blockquote = $miscSettings['blockquote'] ? $miscSettings['blockquote'] : 'rgba(0,0,0,.5)';
-
-		$sectionArea_markup .= '#body .post-info';
-		$sectionArea_markup .= '{';
-			$sectionArea_markup .= 'border-bottom:1px solid '. $postInfoBorder.';';
-		$sectionArea_markup .= '}';
-
-		$sectionArea_markup .= '#body blockquote';
-		$sectionArea_markup .= '{';
-			$sectionArea_markup .= 'border-color:'. $blockquote.';';
-		$sectionArea_markup .= '}';
-
 	}
 
 
@@ -1603,29 +1607,26 @@ function miscStylesCallback(){
 }
 
 function postSettingsCallback(){
-	settings_fields('kjd_post_listing_layout_settings');
-	$options = get_option('kjd_post_listing_layout_settings');
-	$posts_options = $options['post_listing_settings'];
 
 
-	$posts_markup = '';
+		$miscSettings = get_option('kjd_posts_misc_settings');
+		$miscSettings = $miscSettings['kjd_posts_misc'];
 
-	if($posts_options['posts_background_toggle'] == 'true'){
-	
-		$posts_markup .= '.content-list > .the-content-wrapper.well {';
-			$posts_markup.='background:'.$posts_options['posts_background_color'].';';	
-		$posts_markup .= '}';
+		//color of the line underneath the post info
+		$postInfoBorder = $miscSettings['post_info_border'] ? $miscSettings['post_info_border'] : 'rgba(0,0,0,.5)';
+		$blockquote = $miscSettings['blockquote'] ? $miscSettings['blockquote'] : 'rgba(0,0,0,.5)';
 
-		$posts_markup .= '.content-list > .the-content-wrapper.well h3 {';
-		$posts_markup .= 'margin-top:0; }';
-	}
+		$post_misc_markup ='';
 
-	if($posts_options['single_post_background_toggle'] == 'true'){
-		$posts_markup .= '.content-single > .the-content-wrapper.well {';
-			$posts_markup.='background:'.$posts_options['single_post_background_color'].';';	
-		$posts_markup .= '}';
-	}
+		$post_misc_markup .= '#body .post-info';
+		$post_misc_markup .= '{';
+			$post_misc_markup .= 'border-bottom:1px solid '. $postInfoBorder.';';
+		$post_misc_markup .= '}';
 
+		$post_misc_markup .= '#body blockquote';
+		$post_misc_markup .= '{';
+			$post_misc_markup .= 'border-color:'. $blockquote.';';
+		$post_misc_markup .= '}';
 
-	return $posts_markup;
+	return $post_misc_markup;
 }
