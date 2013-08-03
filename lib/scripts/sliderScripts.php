@@ -85,6 +85,7 @@ function flexsliderSettings($root, $plugin, $theme, $effect, $timeout){
  ?>
 <link rel="stylesheet" href="<?php echo $root;?>/lib/scripts/flexslider/flexslider.css" type="text/css">
 <script src="<?php echo $root;?>/lib/scripts/flexslider/flexslider.js"></script>
+
 <script type="text/javascript" charset="utf-8">
   jQuery(window).load(function() {
     jQuery('#imageSlider .slides').flexslider({

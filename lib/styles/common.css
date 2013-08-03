@@ -77,47 +77,11 @@ html,body{
 
 
 /* Cycler Settings*/
-	#imageSliderWrapper{
-			position:relative; 
-			margin:0 auto; 
-		}
-	#imageSliderWrapper > #imageSlider{ 
-		background:url(../images/shadow.png) no-repeat bottom center; 
-		padding:20px 0 60px; 
-		overflow: hidden;
-	}
-	#imageSliderWrapper > .container > #imageSlider > .singleImage > img{margin:0 auto; display:block;}
-	.singleImage{margin:0 auto; position:relative;}
-
-	.singleImage .caption{
-		-moz-box-sizing: border-box;
-		background: none repeat scroll 0 0 #000000;
-		color: #FFFFFF;
-		opacity: 0.8;
-		overflow: hidden;
-		padding: 10px 0;
-		position: absolute;
-		z-index: 8;
-	}
-
-	.singleImage .caption{padding:10px;}
-
-	.nivoSlider {
-	    position:relative;
-	    background:url(../images/loading.gif) no-repeat 50% 50%;
-	    /*max-height:400px !important;*/
-	}
-	.nivoSlider img {
-	    position:absolute;
-	    top:0px;
-	    left:0px;
-	    display:none;
-	}
-	.nivoSlider a {
-	    border:0;
-	    display:block;
-	}
-
+#imageSlider{
+	float: left;
+	padding: 20px 0;
+	width: 100%;
+}
 /* Page Settings */
 #pageTitle{}
 
@@ -356,8 +320,15 @@ div.img-circle img{
 		border-width: 0;
 	}
 
-	#logoWrapper{margin-left:0px;}
-
+	#logoWrapper{
+		margin-left:0px;
+		float: none !important;
+	}
+	
+	#sidr-toggle {
+		margin-left:-20px;
+	}
+	
 	img{
 		height:auto;
 		max-width: 97%;

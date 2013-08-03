@@ -45,7 +45,7 @@
 			wp_enqueue_style("slider", $root."/scripts/flexslider/flexslider.css");	
 			wp_enqueue_script("slider", $root."/scripts/flexslider/flexslider.js", false, "1.0", true);  
 			
-			add_action('wp_head', 'flexsliderSettingsHook',10, 5);
+			add_action('wp_head', 'flexsliderSettingsHook',10, 2);
 			break;
 		case($plugin =="parallax"):
 		
@@ -59,8 +59,7 @@
 			
 			wp_enqueue_style("slider", $root."/scripts/responsiveslider/responsiveslides.css");	
 			wp_enqueue_script("slider", $root."/scripts/responsiveslider/responsiveslides.min.js", false, "1.0", true);  
-			
-			// add_action( 'wp_enqueue_scripts', 'add_responsive_slider_script' );
+
 			add_action('wp_head', 'responsive_slider_hook');
 
 		break;
@@ -144,8 +143,8 @@ function piecemakerSettings($root, $plugin, $theme, $effect, $timeout){
 /////////////////////
 // flexslider
 /////////////////////
-function flexsliderSettingsHook($root, $plugin, $theme, $effect, $timeout){
-		$effect = !empty($effect) ? $effect : 'random' ;
+function flexsliderSettingsHook($effect, $timeout){
+		$effect = !empty($effect) ? $effect : 'fade' ;
 		$timeout = !empty($timeout)? $timeout : '3000';
 
 		$script_output = '';
@@ -182,7 +181,7 @@ function flexsliderSettingsHook($root, $plugin, $theme, $effect, $timeout){
 				$script_output .= 'mousewheel: false, ';
 				$script_output .= 'pausePlay: false,';
 				$script_output .= 'pauseText: "Pause",';
-				$script_output .= 'playText: "Play",';
+				$script_output .= 'playText: "Play"';
 			
 					$script_output .= '});';
 		  $script_output .= '});';

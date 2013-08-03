@@ -4,9 +4,6 @@ Template Name: Style Sheet
 */
 
 
-	// error_reporting(E_ALL);
-	// ini_set('display_errors', 1);
-
 function get_theme_options(){
 
 
@@ -303,7 +300,7 @@ if($section == 'posts'){
 	
 	//height -- if header, footer, or mast
 	//margin -- if floated
-	//padding -- if floated or spcified
+	//padding -- if floated or specified
 	if($section =='mastArea'){
 		$miscOptions = get_option('kjd_mastArea_background_settings');
 		$miscSettings = $miscOptions['kjd_mastArea_background_misc'];
@@ -360,7 +357,7 @@ if($section == 'posts'){
 
 
 	if($section =="cycler"){
-		echo image_cycler_settings_callback($miscSettings);
+		$sectionArea_markup .= image_cycler_settings_callback($miscSettings);
 	}
 
 
@@ -394,9 +391,13 @@ if($section == 'posts'){
 function image_cycler_settings_callback($miscSettings){
 		$cycler_output = '';
 
-		if($miscSettings['shadow'] == "false"){ 
-			$cycler_output .= '#imageSlider{background:none !important; padding:20px 0 !important;}';
+		if($miscSettings['shadow'] == "true"){ 
+			$cycler_output .= '#imageSlider{';
+				$cycler_output .= 'background:url(../images/shadow.png) no-repeat bottom center; ';
+				$cycler_output .= 'padding:20px 0 60px; ';
+			$cycler_output .= '}';
 		}
+
 		if($miscSettings['plugin'] == "single image"){
 	
 			$cycler_output .=".singleImage{
@@ -1210,9 +1211,9 @@ $dropdownMenuBackgroundColors['color'] = !empty($dropdownMenuBackgroundColors['c
 				}";
 
 		$media_767_markup .='#navbar{
-						float:right;
-						margin-top: 0px !important;
-						position:none
+						clear: both;
+						float: none;
+						margin-top: 0;
 					}';
 	}
 
