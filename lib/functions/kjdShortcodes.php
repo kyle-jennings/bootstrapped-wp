@@ -357,4 +357,3 @@ add_shortcode('hideTitle', 'hideTitle');
 function hideTitle($atts, $content = null){
     return '<script>jQuery(document).ready(function() { jQuery("#pageTitle").hide();  });</script>';
 }
-?>

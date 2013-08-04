@@ -3,18 +3,18 @@
 $template = $layoutSettings['name'];
 
 
-//body styles - confine body
 $bodySettings = get_option('kjd_body_misc_settings');
 $bodySettings = $bodySettings['kjd_body_misc'];	
 $confineBodyBackground = $bodySettings['kjd_body_confine_background'];
 $confineClass = ($confineBodyBackground =='true' )? 'container confined' : '' ;
+$device_view = $layoutSettings['deviceView'];
+$position = $layoutSettings['position'];
 
-// echo $template; die();
 $scaffolding_markup = '';
 
 
 
-if($layoutSettings['position'] =='left' || $layoutSettings['position'] =='right' ){
+if($position =='left' || $position =='right' ){
 	$widthClass = 'span9';
 }else{
 	$widthClass = 'span12';
@@ -31,9 +31,10 @@ $scaffolding_markup .= '<div id="body" class="'.$confineClass.'">';
 
 			// print_r($layoutSettings); die();
 			/* ----------------- top or left sidebar ------------------- */
-			 if($layoutSettings['position'] =='top' || $layoutSettings['position'] =='left'){ 
+			 if($position =='top' || $position =='left'){ 
 
-				$scaffolding_markup .= ($layoutSettings['position'] =='top') ? kjd_get_sidebar($template,'horizontal',$layoutSettings['position']) : kjd_get_sidebar($template);
+	
+				$scaffolding_markup .= ($position =='top') ? kjd_get_sidebar($template,'horizontal',$position, $device_view) : kjd_get_sidebar($template,null,$position, $device_view);
 			} 
 
 			//content div
@@ -55,7 +56,7 @@ $scaffolding_markup .= '<div id="body" class="'.$confineClass.'">';
 				 while (have_posts()){ 
 
 					the_post(); 
-					$scaffolding_markup .= kjd_the_content();
+					$scaffolding_markup .= kjd_the_content_wrapper();
 
 				}
 
@@ -76,8 +77,8 @@ $scaffolding_markup .= '<div id="body" class="'.$confineClass.'">';
 			$scaffolding_markup .= '</div>'; // end maincontent span
 
 /* ----------------- right or bottom sidebar ------------------- */
-	if($layoutSettings['position'] =='bottom' || $layoutSettings['position'] =='right'){ 
-		$scaffolding_markup .= ($layoutSettings['position'] =='bottom') ? kjd_get_sidebar($template,'horizontal',$layoutSettings['position']) : kjd_get_sidebar($template);
+	if($position =='bottom' || $position =='right'){ 
+		$scaffolding_markup .= ($position =='bottom') ? kjd_get_sidebar($template,'horizontal',$position, $device_view) : kjd_get_sidebar($template,null,$position, $device_view);
 	} 
 
 

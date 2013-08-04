@@ -222,7 +222,7 @@ function theme_widget_areas_callback(){
 
 	// print_r($options); die();
 
-	$widget_areas = array('front_page','single','404','category','archive','tag','taxonomy','author','date','search','attachment');
+	$widget_areas = array('front_page','single','404','category','archive','tag','author','date','search','attachment');
 ?>
 <div class="options_wrapper">
 	<h3>Choose Widget Areas</h3>

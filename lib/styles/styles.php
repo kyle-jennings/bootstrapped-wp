@@ -28,12 +28,12 @@ function get_theme_options(){
 
 
 	$section_output = '';
-	$media_767_markup ='@media(max-width:979px){';
+	$media_979_markup ='@media(max-width:979px){';
 
 	$miscMarkup = miscStylesCallback();
 
-	$navArea_markup = navbarStylesCallback($media_767_markup);
-	$media_767_markup .= mediaQuery767Callback($media_767_markup);
+	$navArea_markup = navbarStylesCallback($media_979_markup);
+	$media_979_markup .= mediaQuery979Callback($media_979_markup);
 
 	foreach($sections as $section){
 
@@ -141,9 +141,16 @@ function get_theme_options(){
 	}
 
 	$section_output .= postSettingsCallback();
+	
+
+	$media_767_output = '@media(max-width: 768px){ #navbar{';
+			$media_767_output .= 'clear: both;';
+			$media_767_output .= 'float: none;';
+			$media_767_output .= 'margin-top: 0;';
+		$media_767_output .= '} }';
 
 	// return $section_output;
-	return $miscMarkup.$navArea_markup.$media_767_markup.$section_output; 
+	return $miscMarkup.$navArea_markup.$media_979_markup.$media_767_output.$section_output; 
 	
 } // end build css function
 
@@ -1125,7 +1132,7 @@ $thumbnail_markup ='';
 /* -------------------------------------------------------------------------------------------------- */
 /* -------------------------------------------------------------------------------------------------- */
 /* -------------------------------------------------------------------------------------------------- */
-function navbarStylesCallback(&$media_767_markup){
+function navbarStylesCallback(&$media_979_markup){
 
 	$navSettings = get_option('kjd_navbar_misc_settings');
 	$navSettings = $navSettings['kjd_navbar_misc'];
@@ -1199,7 +1206,7 @@ $dropdownMenuBackgroundColors['color'] = !empty($dropdownMenuBackgroundColors['c
 	}elseif($navSettings['navbar_alignment'] =='center'){
 		$navbar_markup .='#navbar ul.nav {margin:0 auto; text-align: center; width:100%;}';
 		$navbar_markup .='#navbar ul.nav > li{ display:inline-block; float:none;}';
-		$media_767_markup .='#navbar ul.nav > li{ display:block; float:none;}';
+		$media_979_markup .='#navbar ul.nav > li{ display:block; float:none;}';
 	}elseif($navSettings['navbar_alignment'] =='right'){
 		$navbar_markup .='#navbar .nav{ float:right;}';
 	}
@@ -1209,18 +1216,7 @@ $dropdownMenuBackgroundColors['color'] = !empty($dropdownMenuBackgroundColors['c
 					float:left;		
 					margin-top:".$navSettings['kjd_navbar_margin_top']."px;
 				}";
-
-		$media_767_markup .='#navbar{
-						clear: both;
-						float: none;
-						margin-top: 0;
-					}';
 	}
-
-	//pulls navbar up
-	// if($navSettings['side_nav'] == 'true'){
-	// 	$media_767_markup .= 'float:left;}';
-	// }
 
 	// Removes box shadow if there is no background color on the navbar - should probably just remove it period
 	if($navbarBackgroundColors['gradient'] == 'none' || (!isset($navbarBackgroundColors['color']) || 
@@ -1500,7 +1496,7 @@ $navbar_markup .=".nav .divider-vertical{
 
 
 if($dropdown_bg != 'true'){
-		$media_767_markup .= ".nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > a:hover,
+		$media_979_markup .= ".nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > a:hover,
 				.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul, 
 				.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > a:hover,
 				.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > a:hover:after,
@@ -1511,7 +1507,7 @@ if($dropdown_bg != 'true'){
 					color:".$navbarLinkHovered['color']." !important;	
 				}";
 	}else{
-	  $media_767_markup .= ".nav-collapse.collapse > .nav:before
+	  $media_979_markup .= ".nav-collapse.collapse > .nav:before
 	  	  {
 	  	     border-bottom: 7px solid ".$dropdownMenuTopBorder['color']." !important;
 	  	      border-left: 7px solid transparent;
@@ -1523,7 +1519,7 @@ if($dropdown_bg != 'true'){
 	  	      top: -7px;
 	  	  }";
 
-	  $media_767_markup .= ".nav-collapse.collapse > .nav:after
+	  $media_979_markup .= ".nav-collapse.collapse > .nav:after
 	  	  {
 	  	       border-bottom: 6px solid ".$dropdownMenuBackgroundColors['color']." !important;
 	  	      border-left: 6px solid transparent;
@@ -1536,7 +1532,7 @@ if($dropdown_bg != 'true'){
 	  	  }";
 
 
-	  $media_767_markup .= "#navbar .nav-collapse.collapse > .nav
+	  $media_979_markup .= "#navbar .nav-collapse.collapse > .nav
 	  	  {    
 	  	      background-clip: padding-box;
 	  	      background-color:".$dropdownMenuBackgroundColors['color']." !important;
@@ -1554,26 +1550,26 @@ if($dropdown_bg != 'true'){
 	  	  } ";
 
 
-	  $media_767_markup .= ".navbar .nav > li:first-child > a { padding:9px 15px;}";
+	  $media_979_markup .= ".navbar .nav > li:first-child > a { padding:9px 15px;}";
 
-	  $media_767_markup .= ".nav-collapse .nav > li > a, .nav-collapse .dropdown-menu a {
+	  $media_979_markup .= ".nav-collapse .nav > li > a, .nav-collapse .dropdown-menu a {
 	  	color:". $dropdownMenuLink['color'] ." !important;
 	  }";
 
-	  $media_767_markup .= ".nav-collapse .nav > li > a:hover, .nav-collapse .dropdown-menu a:hover {
+	  $media_979_markup .= ".nav-collapse .nav > li > a:hover, .nav-collapse .dropdown-menu a:hover {
 	  	color:". $dropdownMenuLinkHovered['color'] ." !important;
 	  }";
 
-		$media_767_markup .= ".nav-collapse .navbar .nav > li > a.dropdown-toggle > .caret,";
-		$media_767_markup .= ".navbar .nav > li.open > a.dropdown-toggle > .caret,";
-		$media_767_markup .= ".nav-collapse .navbar .nav > li > a.dropdown-toggle > .caret:hover{";
-			$media_767_markup .= "border-top-color:". $dropdownMenuLink['color'] ." !important;";
-		$media_767_markup .= "}";
+		$media_979_markup .= ".nav-collapse .navbar .nav > li > a.dropdown-toggle > .caret,";
+		$media_979_markup .= ".navbar .nav > li.open > a.dropdown-toggle > .caret,";
+		$media_979_markup .= ".nav-collapse .navbar .nav > li > a.dropdown-toggle > .caret:hover{";
+			$media_979_markup .= "border-top-color:". $dropdownMenuLink['color'] ." !important;";
+		$media_979_markup .= "}";
 
-		$media_767_markup .= ".dropdown-menu li > a:after,";
-		$media_767_markup .= ".dropdown-menu li > a:hover:after{";
-			$media_767_markup .= "border-left-color:". $dropdownMenuLink['color'] ." !important;";
-		$media_767_markup .= "}";
+		$media_979_markup .= ".dropdown-menu li > a:after,";
+		$media_979_markup .= ".dropdown-menu li > a:hover:after{";
+			$media_979_markup .= "border-left-color:". $dropdownMenuLink['color'] ." !important;";
+		$media_979_markup .= "}";
 
 
 	} 
@@ -1581,12 +1577,12 @@ if($dropdown_bg != 'true'){
 	return ($navbar_markup);
 }
 
-function mediaQuery767Callback(&$media_767_markup){
+function mediaQuery979Callback(&$media_979_markup){
 
-		  	$media_767_markup .= '#navbar .nav .dropdown-menu{ border-width:0px !important; }';
+		  	$media_979_markup .= '#navbar .nav .dropdown-menu{ border-width:0px !important; }';
 
-	$media_767_markup .= '}';
-	return $media_767_markup;
+	$media_979_markup .= '}';
+	return $media_979_markup;
 }
 
 function miscStylesCallback(){

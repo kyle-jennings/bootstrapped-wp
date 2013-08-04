@@ -96,5 +96,6 @@
 	}
 ?>
 		</div> <!-- end cycler -->
+		
 	<?php echo $plugin == 'responsive_slider' ? '' : '</div>' ; ?> <!-- end container -->
 </div> <!-- end image slider -->

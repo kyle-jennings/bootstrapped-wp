@@ -11,6 +11,7 @@ if(is_admin()){
  require_once('kjdWidgets.php');
  require_once('kjd_adminbar_menu.php');
 
+ require_once('layout_functions.php');
 add_action( 'wp_enqueue_scripts', 'add_assets' );
 function add_assets(){
 
@@ -165,6 +166,7 @@ function get_layout_settings($template = NULL) {
 		//if no template was hardcoded and passed in
 		if( isset($template) && !empty($template) ){
 
+
 			//	if the page is a post type
 
 			$layoutOptions = get_option('kjd_post_layout_settings');
@@ -316,284 +318,291 @@ function posts_pagination(){
 /* ---------------------------- content and content list scaffolding functions ----------------------------- */
 
 
-function kjd_get_the_content($post_display = null)
-{
-	$the_content_markup = '';
+// function kjd_get_the_content($post_display = null)
+// {
+// 	$the_content_markup = '';
 
-	$the_content_markup .= '<div class="the-content">';
-	if(!is_single() && !is_page()){
-		$title = get_the_title();
-	}
+// 	$the_content_markup .= '<div class="the-content">';
+// 	if(!is_single() && !is_page()){
+// 		$title = get_the_title();
+// 	}
 
 
-	if(is_attachment()){
+// 	if(is_attachment()){
 
-		if ( wp_attachment_is_image( $post->id ) ){
-			$att_image = wp_get_attachment_image_src( $post->id, "full");
+// 		if ( wp_attachment_is_image( $post->id ) ){
+// 			$att_image = wp_get_attachment_image_src( $post->id, "full");
 	        
-	        $the_content_markup .= '<div class="attachment">';
-	        	$the_content_markup .= '<a href="'.wp_get_attachment_url($post->id).'" title="'.get_the_title().'" rel="attachment">';
-	        		$the_content_markup .= '<img src="'.$att_image[0].'" class="attachment-medium" alt="'.$post->post_excerpt.'" /></a>';
-	        $the_content_markup .= '</div>';
-		}
+// 	        $the_content_markup .= '<div class="attachment">';
+// 	        	$the_content_markup .= '<a href="'.wp_get_attachment_url($post->id).'" title="'.get_the_title().'" rel="attachment">';
+// 	        		$the_content_markup .= '<img src="'.$att_image[0].'" class="attachment-medium" alt="'.$post->post_excerpt.'" /></a>';
+// 	        $the_content_markup .= '</div>';
+// 		}
 
-	}elseif(is_404()){
+// 	}elseif(is_404()){
 
-		$the_content_markup = kjd_the_404();
+// 		$the_content_markup = kjd_the_404();
 
-	}elseif(is_single() || is_page()){
+// 	}elseif(is_single() || is_page()){
 		
-		ob_start();
-			the_content();
-			$buffered_content = ob_get_contents();
-		ob_end_clean();
+// 		ob_start();
+// 			the_content();
+// 			$buffered_content = ob_get_contents();
+// 		ob_end_clean();
 
-		$the_content_markup .= $buffered_content;
+// 		$the_content_markup .= $buffered_content;
 	
-	}else{
-		ob_start();
-		if($post_display !='excerpt'){
-			the_content();
-		}else{
-			the_excerpt();
-		}
-			$buffered_content = ob_get_contents();
-		ob_end_clean();
+// 	}else{
+// 		ob_start();
+// 		if($post_display !='excerpt'){
+// 			the_content();
+// 		}else{
+// 			the_excerpt();
+// 		}
+// 			$buffered_content = ob_get_contents();
+// 		ob_end_clean();
 
-		$the_content_markup .= $buffered_content;
-	}
+// 		$the_content_markup .= $buffered_content;
+// 	}
 
-		$the_content_markup .= '<div style="clear:both;"></div>';
-	$the_content_markup .= '</div>';
+// 		$the_content_markup .= '<div style="clear:both;"></div>';
+// 	$the_content_markup .= '</div>';
 
-	return $the_content_markup;
-}
+// 	return $the_content_markup;
+// }
 
 /* ------------------------------ post info ----------------------------- */
-function kjd_get_the_post_info()
-{
-	$the_post_info_markup =	'<div class="post-info">';
-	$the_post_info_markup .='<span class="post-date">';
-	$the_post_info_markup .= 'Posted on: <a href="'.get_month_link(get_the_time('Y'), get_the_time('m')).'">'.get_the_date('F j').'</a>, <a href="'.get_year_link(get_the_time('Y')).'">'.get_the_date('Y').'</a> - </span>';
-	$the_post_info_markup .='<span class="post-author">';
-	$the_post_info_markup .='By: <a href="">'.get_the_author().'</a>';
-	$the_post_info_markup .= '</span></div>';
-
-	return $the_post_info_markup;
-}
-
-/* --------------------------- post meta -------------------------- */
-function kjd_get_the_post_meta(){
-	ob_start();
-		the_category();
-		$buffered_categories = ob_get_contents();
-	ob_end_clean();
-	$the_post_meta_markup = '<div class="post-meta">';
-	if(!is_page() && !is_attachment()){
-		$the_post_meta_markup .= '<span class="cat-label">Categorized: </span>'.$buffered_categories;
-		$the_post_meta_markup .= '<div style="clear:both;"></div>';
-	}
-
-	if(is_attachment()){
-		$the_post_meta_markup .= kjd_gallery_image_links();	
-
-		$the_post_meta_markup .= '<p class="attachment-description">'.get_the_content().'</p>';
-	}
-	$the_post_meta_markup .= '</div>';
-
-	return $the_post_meta_markup;
-}
-
-/* ------------------------------- the content ------------------------------ */
-function kjd_the_content(){
+// function kjd_get_the_post_info()
+// {
+// 	ob_start();
+// 		the_author_posts_link();
+// 		$buffered_content = ob_get_contents();
+// 	ob_end_clean();
 
 
-	$post_options = get_option('kjd_posts_misc_settings');
-	$post_options = $post_options['kjd_posts_misc'];
-	$post_display = $post_options['post_listing_type'];
+// 	$the_post_info_markup =	'<div class="post-info">';
+// 	$the_post_info_markup .='<span class="post-date">';
+// 	$the_post_info_markup .= 'Posted on: <a href="'.get_month_link(get_the_time('Y'), get_the_time('m')).'">'.get_the_date('F j').'</a>, <a href="'.get_year_link(get_the_time('Y')).'">'.get_the_date('Y').'</a> - </span>';
+// 	$the_post_info_markup .='<span class="post-author">';
+// 	$the_post_info_markup .='By: '.$buffered_content;
+// 	$the_post_info_markup .= '</span></div>';
 
-	$use_featured_image = ($post_options['show_featured_image'] == 'true' && $post_options['post_listing_type'] == 'excerpt' && !is_singular() ) ? 'true' : 'false' ;
-	$featured_image = $post_options['featured_position'];
+// 	return $the_post_info_markup;
+// }
 
-	$media_body_right = $featured_image == 'right_of_post' ? 'media-body-right' : '' ;
+// /* --------------------------- post meta -------------------------- */
+// function kjd_get_the_post_meta(){
+// 	ob_start();
+// 		the_category();
+// 		$buffered_categories = ob_get_contents();
+// 	ob_end_clean();
+// 	$the_post_meta_markup = '<div class="post-meta">';
+// 	if(!is_page() && !is_attachment()){
+// 		$the_post_meta_markup .= '<span class="cat-label">Categorized: </span>'.$buffered_categories;
+// 		$the_post_meta_markup .= '<div style="clear:both;"></div>';
+// 	}
 
-	$media_class = ($use_featured_image == 'true' && $post_display == 'excerpt' && !is_singular() ) ? 'media' : '' ;
+// 	if(is_attachment()){
+// 		$the_post_meta_markup .= kjd_gallery_image_links();	
 
-	$content_well = $post_options['style_posts'] == "true" ? 'well' : '' ;
+// 		$the_post_meta_markup .= '<p class="attachment-description">'.get_the_content().'</p>';
+// 	}
+// 	$the_post_meta_markup .= '</div>';
 
-	$the_content_markup = '';
+// 	return $the_post_meta_markup;
+// }
+
+// /* ------------------------------- the content ------------------------------ */
+// function kjd_the_content(){
 
 
-	// this will wrap the content in a well if need be
-	$the_content_markup .= '<div class="the-content-wrapper '.$content_well.' '. $media_class .'">';
+// 	$post_options = get_option('kjd_posts_misc_settings');
+// 	$post_options = $post_options['kjd_posts_misc'];
+// 	$post_display = $post_options['post_listing_type'];
+
+// 	$use_featured_image = ($post_options['show_featured_image'] == 'true' && $post_options['post_listing_type'] == 'excerpt' && !is_singular() ) ? 'true' : 'false' ;
+// 	$featured_image = $post_options['featured_position'];
+
+// 	$media_body_right = $featured_image == 'right_of_post' ? 'media-body-right' : '' ;
+
+// 	$media_class = ($use_featured_image == 'true' && $post_display == 'excerpt' && !is_singular() ) ? 'media' : '' ;
+
+// 	$content_well = $post_options['style_posts'] == "true" ? 'well' : '' ;
+
+// 	$the_content_markup = '';
+
+
+// 	// this will wrap the content in a well if need be
+// 	$the_content_markup .= '<div class="the-content-wrapper '.$content_well.' '. $media_class .'">';
 		
-		// puts featured image before content wrapper
-		if( in_array($featured_image, array('atop_post','left_of_post') ) && $use_featured_image == 'true'){
+// 		// puts featured image before content wrapper
+// 		if( in_array($featured_image, array('atop_post','left_of_post') ) && $use_featured_image == 'true'){
 			
-			$the_content_markup .= kjd_get_featured_image($featured_image);
+// 			$the_content_markup .= kjd_get_featured_image($featured_image);
 
-		}
-
-
-		$the_content_markup .= '<div class="the-content-inner media-body '.$media_body_right.' ">';
+// 		}
 
 
-			if(!is_single() && !is_page()){
-				$the_content_markup .= '<h3 class="post-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h3>';
-			}
+// 		$the_content_markup .= '<div class="the-content-inner media-body '.$media_body_right.' ">';
 
-			if(!is_page() || is_attachment()){
 
-				// featured image before info
-				if($featured_image == 'before_post_info' && $use_featured_image == 'true' && !is_attachment()){
-					$the_content_markup .= kjd_get_featured_image();
-				}
+// 			if(!is_single() && !is_page()){
+// 				$the_content_markup .= '<h3 class="post-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h3>';
+// 			}
 
-				$the_content_markup .= kjd_get_the_post_info();
-			}
+// 			if(!is_page() || is_attachment()){
 
-			// featured image before content
-			if($featured_image == 'before_content' && $use_featured_image == 'true' && !is_attachment()){
-				$the_content_markup .= kjd_get_featured_image();
-			}
+// 				// featured image before info
+// 				if($featured_image == 'before_post_info' && $use_featured_image == 'true' && !is_attachment()){
+// 					$the_content_markup .= kjd_get_featured_image();
+// 				}
 
-			// the content
-			$the_content_markup .= kjd_get_the_content($post_display);
-			//the content
+// 				$the_content_markup .= kjd_get_the_post_info();
+// 			}
 
-			if(!is_page() || is_attachment()){
+// 			// featured image before content
+// 			if($featured_image == 'before_content' && $use_featured_image == 'true' && !is_attachment()){
+// 				$the_content_markup .= kjd_get_featured_image();
+// 			}
+
+// 			// the content
+// 			$the_content_markup .= kjd_get_the_content($post_display);
+// 			//the content
+
+// 			if(!is_page() || is_attachment()){
 				
-				// featured image before meta
-				if($featured_image == 'before_post_meta' && $use_featured_image == 'true' && !is_attachment()){
-					$the_content_markup .= kjd_get_featured_image();
-				}
+// 				// featured image before meta
+// 				if($featured_image == 'before_post_meta' && $use_featured_image == 'true' && !is_attachment()){
+// 					$the_content_markup .= kjd_get_featured_image();
+// 				}
 
-				$the_content_markup .= kjd_get_the_post_meta();
-			}
+// 				$the_content_markup .= kjd_get_the_post_meta();
+// 			}
 
-		// closes content inner
-		$the_content_markup .= '</div>';
+// 		// closes content inner
+// 		$the_content_markup .= '</div>';
 
-		// featured image after post or right of post
-		if(in_array($featured_image, array('after_post','right_of_post')) && $use_featured_image == 'true'){
-			$the_content_markup .= kjd_get_featured_image($featured_image);
-		}
+// 		// featured image after post or right of post
+// 		if(in_array($featured_image, array('after_post','right_of_post')) && $use_featured_image == 'true'){
+// 			$the_content_markup .= kjd_get_featured_image($featured_image);
+// 		}
 
-	// closes the content-wrapper
-	$the_content_markup .= '</div>';
+// 	// closes the content-wrapper
+// 	$the_content_markup .= '</div>';
 
-	return $the_content_markup;
-}
+// 	return $the_content_markup;
+// }
 
 
-/* ---------------------------------- the post or page title ------------------------------------ */
-function kjd_get_the_title($content_type = null)
-{
+// /* ---------------------------------- the post or page title ------------------------------------ */
+// function kjd_get_the_title($content_type = null)
+// {
 	
-	$pageTitleSettings = get_option('kjd_pageTitle_misc_settings');
-	$pageTitleSettings = $pageTitleSettings['kjd_pageTitle_misc'];
-	$confineTitleBackground = $pageTitleSettings['kjd_pageTitle_confine_background'];
+// 	$pageTitleSettings = get_option('kjd_pageTitle_misc_settings');
+// 	$pageTitleSettings = $pageTitleSettings['kjd_pageTitle_misc'];
+// 	$confineTitleBackground = $pageTitleSettings['kjd_pageTitle_confine_background'];
 
-	$class = $confineTitleBackground =='true' ? 'container confined' : '' ;
+// 	$class = $confineTitleBackground =='true' ? 'container confined' : '' ;
 
-	$the_title_markup ='<div id="pageTitle" class="'.$class.'">';
-	$the_title_markup .= '<div class="container">';
-	$the_title_markup .= '<h1>';
+// 	$the_title_markup ='<div id="pageTitle" class="'.$class.'">';
+// 	$the_title_markup .= '<div class="container">';
+// 	$the_title_markup .= '<h1>';
 	
-	if( is_archive() ){
+// 	if( is_archive() ){
 		
 
-		if ( is_day() ) :
-			$the_title_markup .= 'Daily Archives: <span>'.get_the_date() . '</span>';
-		elseif ( is_month() ) :
-			$the_title_markup .= 'Monthly Archives: <span>' . get_the_date( 'F Y' ) . '</span>';
-		elseif ( is_year() ) :
-			$the_title_markup .= 'Yearly Archives: <span>' . get_the_date( 'Y' ) . '</span>';
-		else :
-			if(is_category()){
-				ob_start();
-					single_cat_title();
-					$buffered_cat = ob_get_contents();
-				ob_end_clean();
+// 		if ( is_day() ) :
+// 			$the_title_markup .= 'Daily Archives: <span>'.get_the_date() . '</span>';
+// 		elseif ( is_month() ) :
+// 			$the_title_markup .= 'Monthly Archives: <span>' . get_the_date( 'F Y' ) . '</span>';
+// 		elseif ( is_year() ) :
+// 			$the_title_markup .= 'Yearly Archives: <span>' . get_the_date( 'Y' ) . '</span>';
+// 		else :
+// 			if(is_category()){
+// 				ob_start();
+// 					single_cat_title();
+// 					$buffered_cat = ob_get_contents();
+// 				ob_end_clean();
 
-				$the_title_markup .= 'Posts in category: '.$buffered_cat;
-			}
-		endif;		
+// 				$the_title_markup .= 'Posts in category: '.$buffered_cat;
+// 			}
+// 		endif;		
 
-	}elseif( is_search() ){
+// 	}elseif( is_search() ){
 
 		
-		global $wp_query;
-		$total_results = $wp_query->found_posts;
-		$the_title_markup .=  $total_results ? $total_results : 'No results found' ;
+// 		global $wp_query;
+// 		$total_results = $wp_query->found_posts;
+// 		$the_title_markup .=  $total_results ? $total_results : 'No results found' ;
 	
 
-	}elseif( is_404() ){
+// 	}elseif( is_404() ){
 
-		$the_title_markup .= 'Page Not Found';
+// 		$the_title_markup .= 'Page Not Found';
 
-	}else{
+// 	}else{
 
-		$the_title = get_the_title();
-		if( isset($the_title) && !empty($the_title) && !is_null($the_title) ){
+// 		$the_title = get_the_title();
+// 		if( isset($the_title) && !empty($the_title) && !is_null($the_title) ){
 		
-			$the_title_markup .= $the_title;
+// 			$the_title_markup .= $the_title;
 
-		}else {
-			$the_title_markup .= 'No Title';
-		}
-	}
+// 		}else {
+// 			$the_title_markup .= 'No Title';
+// 		}
+// 	}
 
-	$the_title_markup .= '</h1>';
-	$the_title_markup .=  '</div></div>';
+// 	$the_title_markup .= '</h1>';
+// 	$the_title_markup .=  '</div></div>';
 
-	return $the_title_markup;
-}
+// 	return $the_title_markup;
+// }
 
-/* ----------------------------- the sidebar ----------------------------- */
-function kjd_get_sidebar($sidebar, $location = null, $width = null)
-{
-	$location_class = ($location == 'horizontal') ? 'span12' : 'span3' ;
-	$sidebar = set_sidebar_area($sidebar);
-	ob_start();
-		dynamic_sidebar($sidebar);
-		$the_buffered_sidebar = ob_get_contents();
-	ob_end_clean();
-	$the_sidebar_markup = '<div id="sideContent" class="'.$location_class.' '.$location.'-widgets '.deviceViewSettings($layoutSettings['deviceView']).'">';
-		$the_sidebar_markup .= ($location == 'horizontal') ? '<div class="row">' : '' ;
-			$the_sidebar_markup .= $the_buffered_sidebar;
-		$the_sidebar_markup .= ($location == 'horizontal') ? '</div>' : '' ;
-	$the_sidebar_markup .= '</div>';
+// /* ----------------------------- the sidebar ----------------------------- */
+// function kjd_get_sidebar($sidebar, $location = null, $width = null, $device_view = null)
+// {
 
-
-	// return $the_buffered_sidebar;
-	return $the_sidebar_markup;
-}
+// 	$location_class = ($location == 'horizontal') ? 'span12' : 'span3' ;
+// 	$sidebar = set_sidebar_area($sidebar);
+// 	ob_start();
+// 		dynamic_sidebar($sidebar);
+// 		$the_buffered_sidebar = ob_get_contents();
+// 	ob_end_clean();
+// 	$the_sidebar_markup = '<div id="sideContent" class="'.$location_class.' '.$location.'-widgets '.$device_view.'">';
+// 		$the_sidebar_markup .= ($location == 'horizontal') ? '<div class="row">' : '' ;
+// 			$the_sidebar_markup .= $the_buffered_sidebar;
+// 		$the_sidebar_markup .= ($location == 'horizontal') ? '</div>' : '' ;
+// 	$the_sidebar_markup .= '</div>';
 
 
+// 	// return $the_buffered_sidebar;
+// 	return $the_sidebar_markup;
+// }
 
-function set_sidebar_area($sidebar = null){
 
-	$options = get_option('kjd_widget_areas_settings');
-	$available_sidebars = array(
-		'template_1', 'template_2', 'template_3', 'template_4', 'template_5', 'template_6',
-		'front_page_widget_area_1', 'front_page_widget_area_2', 'header_widgets', 'footer_widgets','default'
-	);
-	if( !empty($options['widget_areas']) ){
-		foreach($options['widget_areas'] as $k => $v){
-			$available_sidebars[] = $k; 
-		}
-	}
+
+// function set_sidebar_area($sidebar = null){
+
+// 	$options = get_option('kjd_widget_areas_settings');
+// 	$available_sidebars = array(
+// 		'template_1', 'template_2', 'template_3', 'template_4', 'template_5', 'template_6',
+// 		'front_page_widget_area_1', 'front_page_widget_area_2', 'header_widgets', 'footer_widgets','default'
+// 	);
+// 	if( !empty($options['widget_areas']) ){
+// 		foreach($options['widget_areas'] as $k => $v){
+// 			$available_sidebars[] = $k; 
+// 		}
+// 	}
 	
 
-	if(!in_array($sidebar, $available_sidebars)){
-		$sidebar = 'default';
-	}
+// 	if(!in_array($sidebar, $available_sidebars)){
+// 		$sidebar = 'default';
+// 	}
 
-	// echo $sidebar;die();
+// 	// echo $sidebar;die();
 
-	return $sidebar;
-}
+// 	return $sidebar;
+// }
 
 
 /* ----------------------------------- single image nav links for gallery images ------------------------------------ */

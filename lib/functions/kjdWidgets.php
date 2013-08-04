@@ -131,7 +131,7 @@ foreach($templates as $template){
 ///////////////////////
 
 	$options = get_option('kjd_widget_areas_settings');
-	// $widget_areas = array('single',category','archive','tag','taxonomy','author','date','search','attachment');
+	// $widget_areas = array('single',category','archive','tag','author','date','search','attachment');
 	
 	if( !empty($options['widget_areas']) ){
 		foreach($options['widget_areas'] as $k => $v){

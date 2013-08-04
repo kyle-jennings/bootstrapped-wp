@@ -1,18 +1,15 @@
 <?php
-	// echo "foobar";
-	// die();
+
 
 	$cyclerOptions = get_option('kjd_cycler_misc_settings');
 	
 	$plugin = $cyclerOptions['kjd_cycler_misc']['plugin'];
-	$theme = $cyclerOptions['kjd_cycler_misc']['nivoTheme'];
-	$effect = $cyclerOptions['kjd_cycler_misc']['effect'];
-	$timeout = $cyclerOptions['kjd_cycler_misc']['timeout'];
 
 	switch($plugin){
 
 		case($plugin =="nivo"):
 		
+			$theme = $cyclerOptions['kjd_cycler_misc']['nivoTheme'];
 			wp_enqueue_script("slider", $root."/scripts/nivo/nivoSliderPack.js", false, "1.0", true);  
 
 			wp_enqueue_style("nivo", $root."/scripts/nivo/nivoSlider.css");	
@@ -30,7 +27,7 @@
 
 			} 
 
-			add_action('wp_head', 'nivoSettingsHook',10, 2);
+			add_action('wp_head', 'nivoSettingsHook');
 
 			break;
 		case($plugin =="piecemaker3d"):
@@ -45,7 +42,7 @@
 			wp_enqueue_style("slider", $root."/scripts/flexslider/flexslider.css");	
 			wp_enqueue_script("slider", $root."/scripts/flexslider/flexslider.js", false, "1.0", true);  
 			
-			add_action('wp_head', 'flexsliderSettingsHook',10, 2);
+			add_action('wp_head', 'flexsliderSettingsHook');
 			break;
 		case($plugin =="parallax"):
 		
@@ -98,7 +95,12 @@ function responsive_slider_hook(){
 ////////////////////////
 // Nivo Slider Settingsion: "fade",
 ////////////////////////
-function nivoSettingsHook($effe2t, $timeout){	
+function nivoSettingsHook(){	
+
+	$cyclerOptions = get_option('kjd_cycler_misc_settings');
+	$theme = $cyclerOptions['kjd_cycler_misc']['nivoTheme'];
+	$effect = $cyclerOptions['kjd_cycler_misc']['effect'];
+
 	$effect = !empty($effect) ? $effect : 'random' ;
 	$timeout = !empty($timeout)? $timeout : '3000';
 	$script_output = '';
@@ -143,7 +145,12 @@ function piecemakerSettings($root, $plugin, $theme, $effect, $timeout){
 /////////////////////
 // flexslider
 /////////////////////
-function flexsliderSettingsHook($effect, $timeout){
+function flexsliderSettingsHook(){
+
+		$cyclerOptions = get_option('kjd_cycler_misc_settings');
+		$theme = $cyclerOptions['kjd_cycler_misc']['nivoTheme'];
+		$effect = $cyclerOptions['kjd_cycler_misc']['effect'];
+
 		$effect = !empty($effect) ? $effect : 'fade' ;
 		$timeout = !empty($timeout)? $timeout : '3000';
 

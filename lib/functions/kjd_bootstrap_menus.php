@@ -20,6 +20,7 @@ if($sideNav == 'true'){
 	    )
 	);
 }
+
 // overrides nav walker with bootstrap settings
 class dropDown extends Walker_Nav_Menu {
 
@@ -127,6 +128,3 @@ class dropDown extends Walker_Nav_Menu {
 	}
  
 }
-
-
-?>

@@ -123,7 +123,7 @@ function content_callback($layoutSettings){
 		while(have_posts()){ 
 			
 			the_post(); 
-			echo kjd_the_content();
+			echo kjd_the_content_wrapper();
 		}
 
 		echo '</div>';
