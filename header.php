@@ -18,8 +18,8 @@
 		echo " | $site_description";
 
 	// Add a page number if necessary:
-	//if ( $paged >= 2 || $page >= 2 )
-	//	echo ' | ' . sprintf( __( 'Page %s', 'kjd' ), max( $paged, $page ) );
+	if ( $paged >= 2 || $page >= 2 )
+		echo ' | ' . sprintf( __( 'Page %s', 'page' ), max( $paged, $page ) );
 
 	?>
 	</title>

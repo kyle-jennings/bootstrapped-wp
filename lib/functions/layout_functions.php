@@ -68,9 +68,8 @@ function kjd_get_the_content($post_display = null)
 	        
 	        $the_content_markup .= '<div class="attachment">';
 	        	$the_content_markup .= '<a href="'.wp_get_attachment_url($post->id).'" title="'.get_the_title().'" rel="attachment">';
-	        		$the_content_markup .= '<img src="'.$att_image[0].'" class="attachment-medium" alt="'.$post->post_excerpt.'" /></a>';
-	       		$the_content_markup .= kjd_gallery_image_links();
-
+	        		$the_content_markup .= '<img src="'.$att_image[0].'" class="attachment-medium" alt="'.$post->post_excerpt.'" />';
+	        		$the_content_markup .= '</a>';
 	        $the_content_markup .= '</div>';
 		}
 
@@ -120,7 +119,7 @@ function kjd_get_the_post_info()
 	$the_post_info_markup .='<span class="post-date">';
 	$the_post_info_markup .= 'Posted on: <a href="'.get_month_link(get_the_time('Y'), get_the_time('m')).'">'.get_the_date('F j').'</a>, <a href="'.get_year_link(get_the_time('Y')).'">'.get_the_date('Y').'</a> - </span>';
 	$the_post_info_markup .='<span class="post-author">';
-	$the_post_info_markup .='By: '.$buffered_content;
+	$the_post_info_markup .='By: <a href="'.get_author_posts_url().get_the_author().'">'.get_the_author_meta('nickname').'</a>';
 	$the_post_info_markup .= '</span></div>';
 
 	return $the_post_info_markup;
@@ -136,6 +135,8 @@ function kjd_get_the_post_meta(){
 	if(!is_page() && !is_attachment()){
 		$the_post_meta_markup .= '<span class="cat-label">Categorized: </span>'.$buffered_categories;
 		$the_post_meta_markup .= '<div style="clear:both;"></div>';
+	}elseif( is_attachment() ){
+   		$the_post_meta_markup .= kjd_gallery_image_links();
 	}
 
 	$the_post_meta_markup .= '</div>';
@@ -168,6 +169,9 @@ function kjd_get_the_title($content_type = null)
 			$the_title_markup .= 'Monthly Archives: <span>' . get_the_date( 'F Y' ) . '</span>';
 		elseif ( is_year() ) :
 			$the_title_markup .= 'Yearly Archives: <span>' . get_the_date( 'Y' ) . '</span>';
+		elseif(get_query_var('author_name')) :
+		    $auth = get_user_by('slug', get_query_var('author_name'));
+			$the_title_markup .= 'Posts by: '.$auth->nickname;
 		else :
 			if(is_category()){
 				ob_start();
@@ -175,16 +179,15 @@ function kjd_get_the_title($content_type = null)
 					$buffered_cat = ob_get_contents();
 				ob_end_clean();
 
-				$the_title_markup .= 'Posts in category: '.$buffered_cat;
+				$the_title_markup .= 'Posted in: '.$buffered_cat;
 			}
 		endif;		
 
 	}elseif( is_search() ){
-
 		
 		global $wp_query;
 		$total_results = $wp_query->found_posts;
-		$the_title_markup .=  $total_results ? $total_results : 'No results found' ;
+		$the_title_markup .=  $total_results ? 'Posts containing: '.get_search_query() : 'No results found' ;
 	
 
 	}elseif( is_404() ){
@@ -322,18 +325,27 @@ function kjd_posts_layout($post_options) {
 
 /* ---------------------------------- the attchment ------------------------------------ */
 
-function kjd_attachment_layout(){
+function kjd_attachment_layout($post_options){
 
+	$decription_position = !empty($post_options['attachment_position']) ? $post_options['attachment_position'] : 'do_not_display'  ;
 	$the_content_markup = '';
 
 	$the_content_markup .= '<div class="the-content-inner">';
 
 		$the_content_markup .= kjd_get_the_post_info();
 
+		if($decription_position == 'over_image'){
+			$the_content_markup .= '<p class="attachment-description '. $decription_position .'">'.get_the_content().'</p>';
+		}
+
 		// the content
 		$the_content_markup .= kjd_get_the_content();
-		//the content
-			
+		//the content	
+
+		if($decription_position == 'below_image'){
+			$the_content_markup .= '<p class="attachment-description '. $decription_position .'">'.get_the_content().'</p>';
+		}
+	
 
 		$the_content_markup .= kjd_get_the_post_meta();
 

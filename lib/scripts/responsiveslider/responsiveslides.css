@@ -36,9 +36,13 @@
     width: 100%;
     z-index: 5;
  }  
+
+  .rslides .slider-copy-wrapper .slider-copy{ 
+    text-shadow: black 0.1em 0.1em 0.2em
+  }
   .rslides .container{
     /*text-align: center;*/
     padding: 40px 0 0;
-    width: 90%;
+    /*width: 90%;*/
   }
 

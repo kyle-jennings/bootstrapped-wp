@@ -313,8 +313,8 @@ function cycler_images_callback(){
 
 		<li class="cycler_image postbox" id="<?php echo 'image_id_'.$key; ?>">
 			<div class="handlediv" title="Click to toggle"><br></div>
-			<h3 class="hndle"><span><?php $imageNum = $key+1; echo 'Image number: '.$imageNum; ?></span></h3>
-			<div class="inside" <?php echo $key > 0 ? 'style="display:none;"': 'style="display:block;"' ; ?>>
+			<h3 class="handle"><span><?php $imageNum = $key+1; echo 'Image number: '.$imageNum; ?></span></h3>
+			<div class="inside">
 			<div class="halfWidth">
 				<div class="option">
 					<label>Upload Image</label>
@@ -340,7 +340,11 @@ function cycler_images_callback(){
 			<div class="halfWidth">
 				<div class="option">
 					<label class="banner">Banner Text</label>
-				<?php wp_editor( $cycler[$key]['text'], 'kjd_cycler_images_settings[kjd_cycler_images]['.$key.'][text]',$settings = array('textarea_rows' =>1,'editor_class'=>'whiteBackground','editor_css'=>'<style>.mceIframeContainer{background:white;}</style>','textarea_name' =>'kjd_cycler_images_settings[kjd_cycler_images]['.$key.'][text]') );?>
+<?php 
+wp_editor( $cycler[$key]['text'], 'kjd_cycler_images_settings[kjd_cycler_images]['.$key.'][text]',
+$settings = array('textarea_rows' =>1,'editor_class'=>'whiteBackground','editor_css'=>'<style>.mceIframeContainer{background:white;}</style>',
+	'textarea_name' =>'kjd_cycler_images_settings[kjd_cycler_images]['.$key.'][text]') );
+?>
 				</div>
 			</div>
 		

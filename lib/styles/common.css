@@ -49,10 +49,7 @@ html,body{
 	margin:0 auto;
 }
 
-#pageTitle.container.confined {
-	padding:0 20px;
-	margin:0 auto;	
-}
+.frontPageBody{position:relative;}
 
 #mastArea{position:relative;}
 
@@ -61,8 +58,10 @@ html,body{
 #logoWrapper > img:hover 
 {box-shadow: none !important;}
 
-	
-.frontPageBody{position:relative;}
+
+
+
+/* Navbar */	
 
 .navbar-inner {
 	border:none;
@@ -74,7 +73,11 @@ html,body{
 .navbar .form-search .btn, .navbar .form-search .btn-group {
 	margin: 0;
 }
-
+/* page title */
+#pageTitle.container.confined {
+	padding:0 20px;
+	margin:0 auto;	
+}
 
 /* Cycler Settings*/
 #imageSlider{
@@ -82,14 +85,15 @@ html,body{
 	padding: 20px 0;
 	width: 100%;
 }
-/* Page Settings */
-#pageTitle{}
 
-
-#body{}
+#imageSlider{
 	
-	#mainContent{min-height:1px;}
-	#sideContent{min-height:1px;}
+}
+
+/* Page Settings */
+
+#mainContent{min-height:1px;}
+#sideContent{min-height:1px;}
 
 
 /* content */	
@@ -131,9 +135,12 @@ html,body{
 		margin-right:10px;
 
 	}
+
+/* attachment page */
 .image-pagination,
 .attachment-pagination{
 	margin:10px 0;
+	padding: 10px 0;
 }
 
 .image-pagination .image-nav.next,
@@ -141,8 +148,16 @@ html,body{
 	float:right;
 }
 
-.attachment-description{
+.attachment{
+	text-align: center;
+}
 
+.attachment-description.over_image{
+	margin-bottom:40px;
+
+}
+.attachment-description.below_image{
+	margin-top: 40px;
 }
 
 /* widget stuff*/
@@ -290,7 +305,7 @@ div.img-circle img{
 	.navbar .nav > li.open > .dropdown-menu:after {
 		display: none;
 	}
-	
+
 	.navbar-fixed-top, .navbar-fixed-bottom {
 	    position: fixed !important;
 	}
@@ -341,7 +356,7 @@ div.img-circle img{
 	}
 	
 	#sidr-toggle {
-		margin-left:-20px;
+		/*margin-left:-20px;*/
 	}
 	
 	img{

@@ -1,17 +1,86 @@
 *{outline:none;}
 
-div#widgets-left
-{
-  position:fixed;
-  z-index: 0;
-}
-.widget-liquid-right .widget, .inactive-sidebar .widget, .widget-liquid-right .sidebar-description
-{
-  position:relative;
-  z-index: 9;
-}
-/* Tabbed content */
+/*
+  Clean this shit up, Kyle
+  table of contents
 
+  -Settings Pages
+    -option wrapper
+      -options
+      -inline inputs
+  -bootstrap stuff for component settings
+
+  - cycler
+
+  -wp admin styles
+
+
+*/
+
+
+
+/* --------------------------------------------------------------------------------------------------------- */
+.margin-label{
+  float:left;
+  margin-right:10px;
+}
+.margin-label span{
+  float:left;
+}
+.submit{clear:both;}
+.long_textarea{height:150px; width:70%;}
+.divider{clear:both;}
+.explanation{float:left; padding:0 10px;}
+
+form.kjd-options{
+  height:100%;
+}
+div.preview-options{
+  float:left;
+  display:none;
+}
+
+form .fields-wrapper{
+  /*float:left;*/
+  /*width:650px;*/
+}
+.optionsWrapper{clear:both; float:left; margin-bottom:20px; width:99%;}
+.option{clear:both; float:left; margin-bottom:20px; width:99%;}
+.option label{display:inline-block; float:left;  width:200px;}
+.option select{float:left;}
+.option input{float:left;}
+.option input.smallInput{width:50px;}
+.option .input_group{float:left; margin-right:20px;}
+
+.radio_holder{}
+.short{width:60px !important;}
+.clearColor{cursor:pointer;}
+
+.optionComponent{float:left;}
+.optionComponent span{display:block;}
+.secondTitle{float:left; margin:0 10px;}
+
+
+.checkbox-list li{
+  clear: both;
+  float: none;
+}
+.checkbox-list li label{
+  display: block;
+}
+
+.checkbox-list li label span{
+  display: block;
+  float: left;
+  width: 100px;
+}
+
+
+/*   
+
+bootstrap stuff for component settings
+  
+*/
 .nav-tabs,
 .nav-pills {
   *zoom: 1;
@@ -222,49 +291,18 @@ div#widgets-left
 .nav-tab-wrapper a{background:#DFDFDF; color:#555753;}
 .nav-tab-wrapper #active{background:white; color:#D54e21;}
 
-/* --------------------------------------------------------------------------------------------------------- */
-.margin-label{
-  float:left;
-  margin-right:10px;
-}
-.margin-label span{
-  float:left;
-}
-.submit{clear:both;}
-.long_textarea{height:150px; width:70%;}
-.divider{clear:both;}
-.explanation{float:left; padding:0 10px;}
 
-form.kjd-options{
-  height:100%;
-}
-div.preview-options{
-  float:left;
-  display:none;
+
+/* ------------------ Image cycler mgmt ----------------------------*/
+.ui-state-highlight {
+  background:#F3F3F3; 
+  border:dashed 2px #D0D0D0; 
+  clear:both;
+  display: block;
+  line-height: 24px; 
+  min-height: 320px;
 }
 
-form .fields-wrapper{
-  /*float:left;*/
-  /*width:650px;*/
-}
-.optionsWrapper{clear:both; float:left; margin-bottom:20px; width:99%;}
-.option{clear:both; float:left; margin-bottom:20px; width:99%;}
-.option label{display:inline-block; float:left;  width:200px;}
-.option select{float:left;}
-.option input{float:left;}
-.option input.smallInput{width:50px;}
-.option .input_group{float:left; margin-right:20px;}
-
-.radio_holder{}
-.short{width:60px !important;}
-.clearColor{cursor:pointer;}
-
-.optionComponent{float:left;}
-.optionComponent span{display:block;}
-.secondTitle{float:left; margin:0 10px;}
-
-/* Image cycler mgmt*/
-.cycler_mgmt .ui-state-highlight {height:347px;}
 .cycler_mgmt textarea{resize:none;}
 .cycler_mgmt label{width:120px;}
 .cycler_mgmt label.banner{margin-top:10px;}
@@ -286,7 +324,6 @@ li.cycler_image > div.option,li.cycler_image > h3{padding:5px;}
   .frontPageLayoutList li {background:; margin: 5px; line-height:24px; padding: 5px; width: 90%; }
   .frontPageLayoutList li > div{float:right;}
   
-  .ui-state-highlight {background:#F3F3F3; border:dashed 2px #D0D0D0; line-height: 24px; height: 26px;}
 
   
 /* font preview */
@@ -324,14 +361,11 @@ li.cycler_image > div.option,li.cycler_image > h3{padding:5px;}
 		linear, left top, left bottom, 
 		from(#93d96a),
 		to(#529128));
-	-moz-border-radius: 15px;
-	-webkit-border-radius: 15px;
-	border-radius: 15px;
-	border: 1px solid #93d96a;
 
+	border: 1px solid #93d96a;
+  height: 30px;
 	text-shadow:
-		0px -1px 0px rgba(000,000,000,0.7),
-		0px 1px 0px rgba(255,255,255,0.3);
+		0px 1px 0px rgba(0,0,0,0.6);
 }
 #add_image:hover{	border: 1px solid #529128;}
 .remove_image{
@@ -348,9 +382,7 @@ li.cycler_image > div.option,li.cycler_image > h3{padding:5px;}
 		linear, left top, left bottom, 
 		from(#e61010),
 		to(#b30d0d));
-	-moz-border-radius: 15px;
-	-webkit-border-radius: 15px;
-	border-radius: 15px;
+
 	border: 1px solid #e61010;
 
 	text-shadow:
@@ -360,17 +392,16 @@ li.cycler_image > div.option,li.cycler_image > h3{padding:5px;}
 
 .remove_image:hover{	border: 1px solid #8f2828; color:white;}
 
+/* Wordpress Stuff */
 
-.checkbox-list li{
-  clear: both;
-  float: none;
-}
-.checkbox-list li label{
-  display: block;
-}
 
-.checkbox-list li label span{
-  display: block;
-  float: left;
-  width: 100px;
+div#widgets-left
+{
+  position:fixed;
+  z-index: 0;
+}
+.widget-liquid-right .widget, .inactive-sidebar .widget, .widget-liquid-right .sidebar-description
+{
+  position:relative;
+  z-index: 9;
 }

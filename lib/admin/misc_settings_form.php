@@ -407,6 +407,25 @@ function posts_misc_settings_callback()
 			<a class="clearColor">Clear</a>
 		</div>
 	</div>
+
+	<div class="options-wrapper">
+
+		<h3>Attachment Page Layout</h3>
+		
+		<div class="option"> 
+			<label>Image Description Position</label>
+			<select name="kjd_posts_misc_settings[kjd_posts_misc][attachment_position]">
+				<?php
+					$positions = array('do_not_display','over_image','below_image');
+					foreach($positions as $position){
+						$selected = selected( $options['attachment_position'], $position, true);
+						echo '<option value="'.$position.'" '.$selected.' >'.ucwords(str_replace('_',' ',$position)).'</option>';
+					}
+				?>
+			<select>
+		</div> 
+
+	</div>
 <?php
 
 }
