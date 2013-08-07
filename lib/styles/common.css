@@ -8,6 +8,9 @@ Author: Kyle Jennings Design
 */
 *{outline:none !important; text-shadow:none !important; word-break:hyphenate; word-wrap:break-word;}
 
+#sidr{
+	display:none;
+}
 
 /* image slider for gallery 1 */
 .navSlides li{margin:0 10px 0 0;}
@@ -106,6 +109,12 @@ html,body{
 .content-list > .the-content-wrapper{
 	margin:0 auto 60px;
 }
+
+
+/*.content-list > .the-content-wrapper.well {
+	float:left;
+	width: 100%;
+}*/
 
 .the-content-wrapper.well.media .media-object{
 	padding-top: 9px;

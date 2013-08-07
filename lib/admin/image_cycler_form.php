@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////
 // cycler settings
-function cycler_settings_callback(){ 
+function kjd_cycler_settings_callback(){ 
 settings_fields('kjd_cycler_misc_settings');
 $options = get_option('kjd_cycler_misc_settings');
 
@@ -274,7 +274,7 @@ value="<?php echo $options['kjd_cycler_misc']['timeout']?$options['kjd_cycler_mi
 //////////////////////////////////
 // cycler images
 
-function cycler_images_callback(){
+function kjd_cycler_images_callback(){
 	settings_fields('kjd_cycler_images_settings');
 	$options = get_option('kjd_cycler_images_settings');
 	$cycler = $options['kjd_cycler_images'];
@@ -309,7 +309,7 @@ function cycler_images_callback(){
 
 		<ul class="cycler_mgmt">
 <!-- begining image list -->
-<?php	foreach ($cycler as $key => $value) { ?>
+<?php foreach ($cycler as $key => $value) { ?>
 
 		<li class="cycler_image postbox" id="<?php echo 'image_id_'.$key; ?>">
 			<div class="handlediv" title="Click to toggle"><br></div>

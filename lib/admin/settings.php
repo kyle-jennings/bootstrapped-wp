@@ -70,23 +70,37 @@ function kjd_settings_display($section) {
 		<div class="fields-wrapper">
 	<?php 
 	if( $active_tab == 'background' ) { 
-		section_background_callback($section);
+		kjd_section_background_callback($section);
+	
 	}elseif($active_tab == 'borders' && ($section !='login' && $section !='bodyTag' && $section !='htmlTag')){
-		section_borders_callback($section);
+	
+		kjd_section_borders_callback($section);
+	
 	}elseif($active_tab == 'text' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler' && $section!='dropdown-menu')){
-		section_text_callback($section);
+	
+		kjd_section_text_callback($section);
+	
 	}elseif($active_tab == 'links' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler')){
-		section_link_callback($section);
+	
+		kjd_section_link_callback($section);
+	
 	}elseif($active_tab == 'components' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler') ){
-		section_components_callback($section);
+	
+		kjd_section_components_callback($section);
+	
 	}elseif($active_tab == 'misc' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler') ){
-		section_misc_callback($section);
+	
+		kjd_section_misc_callback($section);
+	
 	}elseif($active_tab == 'cycler Settings'){ // image cycler settings
-		image_cycler_display_callback();
-		cycler_settings_callback();
+	
+		kjd_image_cycler_display_callback();
+		kjd_cycler_settings_callback();
+	
 	}elseif($active_tab == 'cycler Images'){ // image cycler iamges
-		image_cycler_display_callback();
-		cycler_images_callback();
+	
+		kjd_image_cycler_display_callback();
+		kjd_cycler_images_callback();
 	}
 	submit_button(); 
 	?>  
@@ -100,7 +114,7 @@ function kjd_settings_display($section) {
 ////////////////////////////////////
 // background color and wallpaper
 ////////////////////////////////////
-function section_background_callback($section){
+function kjd_section_background_callback($section){
 	include	'background_settings_form.php';
 }
 
@@ -108,14 +122,14 @@ function section_background_callback($section){
 // borders
 ////////////////////////////////////
 
-function section_borders_callback($section){
+function kjd_section_borders_callback($section){
 	include('borders_settings_form.php');	
 }
 
 ////////////////////////////////////
 // text styles
 ////////////////////////////////////
-function section_text_callback($section){
+function kjd_section_text_callback($section){
 
 	include('text_settings_form.php');
 }
@@ -123,24 +137,24 @@ function section_text_callback($section){
 ////////////////////////////////////
 // links  styles
 ////////////////////////////////////
-function section_link_callback($section){
+function kjd_section_link_callback($section){
 	include('link_settings_form.php');
 }
 
 ////////////////////////////////////
 // components, buttons, and wells
 ////////////////////////////////////
-function section_components_callback($section){
+function kjd_section_components_callback($section){
 	include('components_settings_form.php');
 }
 
 //// image cycler
-function image_cycler_display_callback(){
+function kjd_image_cycler_display_callback(){
 	include('image_cycler_form.php');
 }
 
 // misc sections
-function section_misc_callback($section){ 
+function kjd_section_misc_callback($section){ 
 	include('misc_settings_form.php');
 }
 ?>

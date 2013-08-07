@@ -139,7 +139,7 @@ foreach($templates as $template){
 			$width = set_width($layouts[$k]);
 			register_sidebar(
 				 array(
-				'name' => ucwords(str_replace('_page', '',$k)) . ' Page',
+				'name' => ucwords(str_replace('page', 'Default' ,str_replace('_page', '',$k))) . ' Page',
 				'id' => $k,
 				'description' => 'Widgets for the ' .ucwords(str_replace('_page', '',$k)) . ' page',
 				'before_widget' =>'<div class="widget '.$width.'">',

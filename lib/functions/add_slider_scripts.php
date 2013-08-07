@@ -13,6 +13,7 @@
 			wp_enqueue_script("slider", $root."/scripts/nivo/nivoSliderPack.js", false, "1.0", true);  
 
 			wp_enqueue_style("nivo", $root."/scripts/nivo/nivoSlider.css");	
+
 			if($theme =="light"){ 
 
 				wp_enqueue_style("slider", $root."/scripts/nivo/themes/light/light.css");	
@@ -27,7 +28,7 @@
 
 			} 
 
-			add_action('wp_head', 'nivoSettingsHook');
+			add_action('wp_head', 'kjd_nivo_settings_hook');
 
 			break;
 		case($plugin =="piecemaker3d"):
@@ -35,14 +36,14 @@
 			// all settings are in those xml files, google the instructions
 			wp_enqueue_style("slider", $root."/scripts/piecemaker/swfobject/swfobject.js");	
 			
-			add_action('wp_head', 'piecemakerSettings',10, 5);
+			add_action('wp_head', 'kjd_piecemakerSettings',10, 5);
 			break;
 		case($plugin =="flexslider2"):
 			
 			wp_enqueue_style("slider", $root."/scripts/flexslider/flexslider.css");	
 			wp_enqueue_script("slider", $root."/scripts/flexslider/flexslider.js", false, "1.0", true);  
 			
-			add_action('wp_head', 'flexsliderSettingsHook');
+			add_action('wp_head', 'kjd_flexslider_settings_hook');
 			break;
 		case($plugin =="parallax"):
 		
@@ -50,23 +51,23 @@
 			wp_enqueue_script("mondernizer", $root."/scripts/parallax/modernizr.custom.28468.js", false, "1.0", true);  
 			wp_enqueue_script("slider", $root."/scripts/parallax/jquery.cslider.js", false, "1.0", true);  
 
-			add_action('wp_head', 'parallaxSliderSettings',10, 5);
+			add_action('wp_head', 'kjd_parallax_slider_settings',10, 5);
 			break;
 		case($plugin =='responsive_slider'):
 			
 			wp_enqueue_style("slider", $root."/scripts/responsiveslider/responsiveslides.css");	
 			wp_enqueue_script("slider", $root."/scripts/responsiveslider/responsiveslides.min.js", false, "1.0", true);  
 
-			add_action('wp_head', 'responsive_slider_hook');
+			add_action('wp_head', 'kjd_responsive_slider_hook');
 
 		break;
 		case($plugin =="single image"):
 
-			singleImage();
+			kjd_singleImage();
 		break;
 		case($plugin =="none"):
 
-			noImage();
+			kjd_noImage();
 			break;
 
 	}
@@ -75,13 +76,13 @@
 /////////////////////////////
 //		responsive slider
 /////////////////////////////
-function add_responsive_slider_script(){
+function kjd_add_responsive_slider_script(){
 	wp_enqueue_style("slider", $root."/scripts/responsiveslider/responsiveslides.css");	
 	wp_enqueue_script("slider", $root."/scripts/responsiveslider/responsiveslides.min.js", false, "1.0", true);  
 
 }
 
-function responsive_slider_hook(){
+function kjd_responsive_slider_hook(){
 	$script_output = '';
 	$script_output .= '<script>';
 		$script_output .= 'jQuery(function() {';
@@ -95,7 +96,7 @@ function responsive_slider_hook(){
 ////////////////////////
 // Nivo Slider Settingsion: "fade",
 ////////////////////////
-function nivoSettingsHook(){	
+function kjd_nivo_settings_hook(){	
 
 	$cyclerOptions = get_option('kjd_cycler_misc_settings');
 	$theme = $cyclerOptions['kjd_cycler_misc']['nivoTheme'];
@@ -136,7 +137,7 @@ function nivoSettingsHook(){
 /////////////////////
 // piecemaker
 /////////////////////
-function piecemakerSettings($root, $plugin, $theme, $effect, $timeout){ 
+function kjd_piecemakerSettings($root, $plugin, $theme, $effect, $timeout){ 
 
 
 }
@@ -145,7 +146,7 @@ function piecemakerSettings($root, $plugin, $theme, $effect, $timeout){
 /////////////////////
 // flexslider
 /////////////////////
-function flexsliderSettingsHook(){
+function kjd_flexslider_settings_hook(){
 
 		$cyclerOptions = get_option('kjd_cycler_misc_settings');
 		$theme = $cyclerOptions['kjd_cycler_misc']['nivoTheme'];
@@ -197,7 +198,7 @@ function flexsliderSettingsHook(){
 		echo $script_output;
 }
 
-function parallaxSliderSettings($root, $plugin, $theme, $effect, $timeout){
+function kjd_parallaxSliderSettings($root, $plugin, $theme, $effect, $timeout){
 
 
 $timeout = '';
@@ -212,8 +213,8 @@ $timeout .= '<script type="text/javascript">';
 $timeout .= '</script>';
 
 }
-function singleImage(){
+function kjd_singleImage(){
 
 }
 
-function noImage(){}
+function kjd_noImage(){}

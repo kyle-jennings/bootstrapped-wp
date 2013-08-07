@@ -62,7 +62,7 @@
 				'kjd_theme_settings_section' // parent section
 			);
 
-		register_setting('kjd_theme_settings','kjd_theme_settings', 'build_css');
+		register_setting('kjd_theme_settings','kjd_theme_settings', 'kjd_build_theme_css');
 
 		// settings components
 		add_settings_section(
@@ -113,7 +113,7 @@
 				'kjd_component_settings_section'
 			);
 
-		register_setting('kjd_component_settings','kjd_component_settings', 'build_css');
+		register_setting('kjd_component_settings','kjd_component_settings', 'kjd_build_theme_css');
 
 		// Widget Areas
 		add_settings_section(
@@ -131,7 +131,7 @@
 				'kjd_widget_areas_settings_section'
 			);
 
-		register_setting('kjd_widget_areas_settings','kjd_widget_areas_settings', 'build_css');
+		register_setting('kjd_widget_areas_settings','kjd_widget_areas_settings', 'kjd_build_theme_css');
 
 		///////////////////
 		// cycler settings
@@ -175,8 +175,8 @@
 				'kjd_cycler_images_settings_section' //
 			);
 
-		register_setting('kjd_cycler_misc_settings','kjd_cycler_misc_settings', 'build_css');
-		register_setting('kjd_cycler_images_settings','kjd_cycler_images_settings', 'build_css');
+		register_setting('kjd_cycler_misc_settings','kjd_cycler_misc_settings', 'kjd_build_theme_css');
+		register_setting('kjd_cycler_images_settings','kjd_cycler_images_settings', 'kjd_build_theme_css');
 
 
 		///////////////////
@@ -196,7 +196,7 @@
 			'kjd_navbar_options_settings_section'
 		);
 
-		register_setting('kjd_navbar_options_settings','kjd_navbar_options_settings', 'build_css');
+		register_setting('kjd_navbar_options_settings','kjd_navbar_options_settings', 'kjd_build_theme_css');
 
 		/////////////////////
 		// page layouts
@@ -274,10 +274,10 @@
 				'kjd_post_listing_layout_settings_section' // parent section
 			);
 
- 		register_setting('kjd_post_layout_settings','kjd_post_layout_settings', 'build_css');
- 		register_setting('kjd_page_layout_settings','kjd_page_layout_settings', 'build_css');
- 		register_setting('kjd_frontPage_layout_settings','kjd_frontPage_layout_settings', 'build_css');
- 		register_setting('kjd_post_listing_layout_settings','kjd_post_listing_layout_settings', 'build_css');
+ 		register_setting('kjd_post_layout_settings','kjd_post_layout_settings', 'kjd_build_theme_css');
+ 		register_setting('kjd_page_layout_settings','kjd_page_layout_settings', 'kjd_build_theme_css');
+ 		register_setting('kjd_frontPage_layout_settings','kjd_frontPage_layout_settings', 'kjd_build_theme_css');
+ 		register_setting('kjd_post_listing_layout_settings','kjd_post_listing_layout_settings', 'kjd_build_theme_css');
 
 /* ------------------------------------------------------------------------------------------------------- */
 /* ------------------------------------------- Page sections --------------------------------------------- */
@@ -325,7 +325,7 @@ foreach($sections as $section){
 				'kjd_'.$section.'_background_settings', // page name
 				'kjd_'.$section.'_background_settings_section' // parent section
 			);
-	register_setting('kjd_'.$section.'_background_settings','kjd_'.$section.'_background_settings', 'build_css');
+	register_setting('kjd_'.$section.'_background_settings','kjd_'.$section.'_background_settings', 'kjd_build_theme_css');
 
 
 	// The body, html, and login sections dont need border control
@@ -385,7 +385,7 @@ foreach($sections as $section){
 				'kjd_'.$section.'_borders_settings_section' // parent section
 			);
 		
-		register_setting('kjd_'.$section.'_borders_settings','kjd_'.$section.'_borders_settings', 'build_css');
+		register_setting('kjd_'.$section.'_borders_settings','kjd_'.$section.'_borders_settings', 'kjd_build_theme_css');
 	} //end if not login, body, or html
 
 	// the body, html, and cycler sections dont need text or form controls
@@ -456,7 +456,7 @@ foreach($sections as $section){
 				'kjd_'.$section.'_text_settings_section' // parent section
 
 			);
-			register_setting('kjd_'.$section.'_text_settings','kjd_'.$section.'_text_settings', 'build_css');
+			register_setting('kjd_'.$section.'_text_settings','kjd_'.$section.'_text_settings', 'kjd_build_theme_css');
 		}
 		//////////////////////
 		// text and link styles
@@ -522,8 +522,8 @@ foreach($sections as $section){
 			);
 
 		
-		register_setting('kjd_'.$section.'_links_settings','kjd_'.$section.'_links_settings', 'build_css');
-		register_setting('kjd_'.$section.'_components_settings','kjd_'.$section.'_components_settings', 'build_css');
+		register_setting('kjd_'.$section.'_links_settings','kjd_'.$section.'_links_settings', 'kjd_build_theme_css');
+		register_setting('kjd_'.$section.'_components_settings','kjd_'.$section.'_components_settings', 'kjd_build_theme_css');
 
 	} //end if not body or html
 
@@ -540,10 +540,10 @@ foreach($sections as $section){
 			'kjd_'.$section.'_misc_settings',
 			'kjd_'.$section.'_misc_settings_section'
 		);
-	register_setting('kjd_'.$section.'_misc_settings','kjd_'.$section.'_misc_settings', 'build_css');
+	register_setting('kjd_'.$section.'_misc_settings','kjd_'.$section.'_misc_settings', 'kjd_build_theme_css');
 }//end loop
 
-function build_css($input){
+function kjd_build_theme_css($input){
 
 
 
@@ -560,7 +560,7 @@ function build_css($input){
 	}
 
 	ob_start();
-		echo get_theme_options();
+		echo kjd_get_theme_options();
 		$buffered_content = ob_get_contents();
 	ob_end_clean();
 

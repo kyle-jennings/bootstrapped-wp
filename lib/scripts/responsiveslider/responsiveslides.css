@@ -37,8 +37,9 @@
     z-index: 5;
  }  
 
-  .rslides .slider-copy-wrapper .slider-copy{ 
-    text-shadow: black 0.1em 0.1em 0.2em
+  .rslides .slider-copy-wrapper .slider-copy,
+  .rslides .slider-copy-wrapper .slider-copy *{ 
+    text-shadow: 1px 1px 1px black !important;
   }
   .rslides .container{
     /*text-align: center;*/

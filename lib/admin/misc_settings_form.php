@@ -2,35 +2,35 @@
 
 if($section =="header"){
 
-	header_misc_settings_callback();
+	kjd_header_misc_settings_callback();
 
 }elseif($section =="login"){
 
-	login_misc_settings_callback();
+	kjd_login_misc_settings_callback();
 
 }elseif($section =="navbar"){
 
-	navbar_misc_settings_callback();
+	kjd_navbar_misc_settings_callback();
 
 }elseif($section =="pageTitle"){
 
-	title_misc_settings_callback();
+	kjd_title_misc_settings_callback();
 
 }elseif($section =="body"){
 
-	body_misc_settings_callback();
+	kjd_body_misc_settings_callback();
 
 }elseif($section =="posts"){
 
-	posts_misc_settings_callback();	
+	kjd_posts_misc_settings_callback();	
 
 }elseif($section =="footer"){
 
-	footer_misc_settings_callback();
+	kjd_footer_misc_settings_callback();
 
 }
 
-function title_misc_settings_callback(){
+function kjd_title_misc_settings_callback(){
 	settings_fields( 'kjd_pageTitle_misc_settings' );
 	$options = get_option('kjd_pageTitle_misc_settings');
 	$options = $options['kjd_pageTitle_misc'];
@@ -39,15 +39,15 @@ function title_misc_settings_callback(){
 	<div class="optionsWrapper">
 
 		<?php 
-			echo confine_section_toggle($section);
+			echo kjd_confine_section_toggle($section);
 		?>
 	
 		<?php
-			echo float_section_toggle($section);
+			echo kjd_float_section_toggle($section);
 		?>
 
 		<?php
-			echo set_section_margin($section);
+			echo kjd_set_section_margin($section);
 		?>
 
 	</div>
@@ -55,7 +55,7 @@ function title_misc_settings_callback(){
 }
 
 
-function login_misc_settings_callback(){	
+function kjd_login_misc_settings_callback(){	
 	settings_fields( 'kjd_login_misc_settings' );
 	$logoOptions = get_option('kjd_login_misc_settings'); 
 	$logo = $logoOptions['kjd_loginPage_logo'];
@@ -76,7 +76,7 @@ function login_misc_settings_callback(){
 <?php
 }
 
-function header_misc_settings_callback(){
+function kjd_header_misc_settings_callback(){
 		settings_fields( 'kjd_header_misc_settings' );
 		$options = get_option('kjd_header_misc_settings'); 
 		$options = $options['kjd_header_misc'];
@@ -115,15 +115,15 @@ function header_misc_settings_callback(){
 			</div>
 
 		<?php 
-			echo confine_section_toggle($section);
+			echo kjd_confine_section_toggle($section);
 		?>
 	
 		<?php
-			echo float_section_toggle($section);
+			echo kjd_float_section_toggle($section);
 		?>
 
 		<?php
-			echo set_section_margin($section);
+			echo kjd_set_section_margin($section);
 		?>
 				
 			<div class="option">
@@ -139,7 +139,7 @@ function header_misc_settings_callback(){
 <?php
 }
 
-function navbar_misc_settings_callback(){ 
+function kjd_navbar_misc_settings_callback(){ 
 	settings_fields( 'kjd_navbar_misc_settings' );
 	$options = get_option('kjd_navbar_misc_settings');
 	$options = $options['kjd_navbar_misc'];
@@ -189,15 +189,15 @@ function navbar_misc_settings_callback(){
 			</div>
 
 		<?php 
-			echo confine_section_toggle($section);
+			echo kjd_confine_section_toggle($section);
 		?>
 
 		<?php
-			echo float_section_toggle($section);
+			echo kjd_float_section_toggle($section);
 		?>
 
 		<?php
-			echo set_section_margin($section);
+			echo kjd_set_section_margin($section);
 		?>
 		
 			<div class="option">
@@ -282,7 +282,7 @@ function navbar_misc_settings_callback(){
 }
 
 /* ------------------------- Body Misc Settings --------------------------- */
-function body_misc_settings_callback(){
+function kjd_body_misc_settings_callback(){
 	settings_fields( 'kjd_body_misc_settings' );
 	$options = get_option('kjd_body_misc_settings');
 	$options = $options['kjd_body_misc'];
@@ -292,15 +292,15 @@ function body_misc_settings_callback(){
 	<div class="optionsWrapper">
 
 		<?php 
-			echo confine_section_toggle($section);
+			echo kjd_confine_section_toggle($section);
 		?>
 
 		<?php
-			echo float_section_toggle($section);
+			echo kjd_float_section_toggle($section);
 		?>
 
 		<?php
-			echo set_section_margin($section);
+			echo kjd_set_section_margin($section);
 		?>
 
 
@@ -309,7 +309,7 @@ function body_misc_settings_callback(){
 }
 
 /* ---------------------------  Posts Misc settings ----------------------------- */
-function posts_misc_settings_callback()
+function kjd_posts_misc_settings_callback()
 {
 	settings_fields('kjd_posts_misc_settings');
 	$options = get_option('kjd_posts_misc_settings');
@@ -432,7 +432,7 @@ function posts_misc_settings_callback()
 
 
 /* ---------------------------  Footer Misc settings ----------------------------- */
-function footer_misc_settings_callback(){
+function kjd_footer_misc_settings_callback(){
 	settings_fields( 'kjd_footer_misc_settings' );
 	$options = get_option('kjd_footer_misc_settings');
 	$options = $options['kjd_footer_misc'];
@@ -442,7 +442,7 @@ function footer_misc_settings_callback(){
 	<div class="optionsWrapper">
 
 		<?php 
-			echo confine_section_toggle($section);
+			echo kjd_confine_section_toggle($section);
 		?>
 
 		<div class="option">
@@ -458,7 +458,7 @@ function footer_misc_settings_callback(){
 
 /* --------------------------------- repeated settings --------------------------------- */
 
-function confine_section_toggle($section) {
+function kjd_confine_section_toggle($section) {
 
 	$option_markup ='';
 	$option_markup .= '<div class="option">';
@@ -472,7 +472,7 @@ function confine_section_toggle($section) {
 	return $option_markup;
 }
 
-function float_section_toggle($section) {
+function kjd_float_section_toggle($section) {
 
 	$option_markup ='';
 	$option_markup .= '<div class="option float-toggle">';
@@ -486,7 +486,7 @@ function float_section_toggle($section) {
 	return $option_markup;
 }
 
-function set_section_margin($section) {
+function kjd_set_section_margin($section) {
 	$option_markup ='';
 	
 	$toggle_class = $options['float']['toggle']=='true' ? 'style="display:block;"' : 'style="display:none;"' ;
@@ -510,7 +510,7 @@ function set_section_margin($section) {
 	return $option_markup;
 }
 
-function section_glow_toggle($section) {
+function kjd_section_glow_toggle($section) {
 	
 	$option_markup = '';
 	$option_markup .= '<div class="option">';

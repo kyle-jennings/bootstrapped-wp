@@ -119,7 +119,7 @@ function kjd_get_the_post_info()
 	$the_post_info_markup .='<span class="post-date">';
 	$the_post_info_markup .= 'Posted on: <a href="'.get_month_link(get_the_time('Y'), get_the_time('m')).'">'.get_the_date('F j').'</a>, <a href="'.get_year_link(get_the_time('Y')).'">'.get_the_date('Y').'</a> - </span>';
 	$the_post_info_markup .='<span class="post-author">';
-	$the_post_info_markup .='By: <a href="'.get_author_posts_url().get_the_author().'">'.get_the_author_meta('nickname').'</a>';
+	$the_post_info_markup .='By: <a href="'.get_author_posts_url(get_the_author_meta( 'ID' )).'">'.get_the_author_meta('nickname').'</a>';
 	$the_post_info_markup .= '</span></div>';
 
 	return $the_post_info_markup;
@@ -216,8 +216,10 @@ function kjd_get_the_title($content_type = null)
 function kjd_get_sidebar($sidebar, $location = null, $width = null, $device_view = null)
 {
 
+
 	$location_class = ($location == 'horizontal') ? 'span12' : 'span3' ;
-	$sidebar = set_sidebar_area($sidebar);
+
+	$sidebar = kjd_set_sidebar_area($sidebar);
 	ob_start();
 		dynamic_sidebar($sidebar);
 		$the_buffered_sidebar = ob_get_contents();
@@ -235,7 +237,7 @@ function kjd_get_sidebar($sidebar, $location = null, $width = null, $device_view
 
 
 
-function set_sidebar_area($sidebar = null){
+function kjd_set_sidebar_area($sidebar = null){
 
 	$options = get_option('kjd_widget_areas_settings');
 	$available_sidebars = array(

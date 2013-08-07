@@ -4,7 +4,7 @@ Template Name: Style Sheet
 */
 
 
-function get_theme_options(){
+function kjd_get_theme_options(){
 
 
 	settings_fields( 'kjd_component_settings' ); 
@@ -364,7 +364,7 @@ if($section == 'posts'){
 
 
 	if($section =="cycler"){
-		$sectionArea_markup .= image_cycler_settings_callback($miscSettings);
+		$sectionArea_markup .= kjd_image_cycler_settings_callback($miscSettings);
 	}
 
 
@@ -395,7 +395,7 @@ if($section == 'posts'){
 
 }
 /* ------------------------------- image cycler settings--------------------------------- */
-function image_cycler_settings_callback($miscSettings){
+function kjd_image_cycler_settings_callback($miscSettings){
 		$cycler_output = '';
 
 		if($miscSettings['shadow'] == "true"){ 
@@ -460,16 +460,18 @@ function image_cycler_settings_callback($miscSettings){
 function background_type_callback($type = null,$backgroundColorSettings = array()){
 	extract($backgroundColorSettings); 
 
+	$start_color = !empty($backgroundColorSettings['start_rgba']) ? $backgroundColorSettings['start_rgba'] : $backgroundColorSettings['color'];
+	$end_color = !empty($backgroundColorSettings['endcolor']) ? $backgroundColorSettings['endcolor'] : $backgroundColorSettings['endcolor'];
 
 	$background_type = '';
 	if($type =='vertical'){
-		$background_type .= verticalGradientCallback($backgroundColorSettings['color'], $backgroundColorSettings['endcolor']);
+		$background_type .= verticalGradientCallback($start_color, $end_color);
 	}elseif($type =='horizontal'){ 
-		$background_type .= horizontalGradientCallback($backgroundColorSettings['color'], $backgroundColorSettings['endcolor']);
+		$background_type .= horizontalGradientCallback($start_color, $end_color);
 	}elseif($type =='radial'){ 
-		$background_type .= radialGradientCallback($backgroundColorSettings['color'], $backgroundColorSettings['endcolor']);
+		$background_type .= radialGradientCallback($start_color, $end_color);
 	}elseif($type =='solid'){
-		$background_type .= 'background-color: '.$backgroundColorSettings['color'].' !important;';
+		$background_type .= 'background-color: '.$start_color.' !important;';
 	}elseif($type =='none'){
 		$background_type .= 'background-color:transparent;';
 		$background_type .= 'background-image: none;';
@@ -1182,6 +1184,11 @@ function navbarStylesCallback(&$media_979_markup){
 
 	$dropdownMenuBackgroundOptions = get_option('kjd_dropdown-menu_background_settings');
 	$dropdownMenuBackgroundColors = $dropdownMenuBackgroundOptions['kjd_dropdown-menu_background_colors'];
+
+	$dropdownStartColor = !empty($dropdownMenuBackgroundColors['start_rgba']) ? $dropdownMenuBackgroundColors['start_rgba'] : $dropdownMenuBackgroundColors['color'] ;
+	$dropdownEndColor =  !empty($dropdownMenuBackgroundColors['end_rgba']) ? $dropdownMenuBackgroundColors['end_rgba'] : $dropdownMenuBackgroundColors['endcolor'] ;
+	$dropdownStartColor = !empty($dropdownStartColor) ? $dropdownStartColor : 'transparent' ;
+
 	$dropdownMenuWallpaper = $dropdownMenuBackgroundOptions['kjd_dropdown-menu_background_wallpaper'];
 
 	/* dropdown-menu borders */
@@ -1197,7 +1204,8 @@ function navbarStylesCallback(&$media_979_markup){
 	$dropdownMenuLinkActive = $dropdownMenuLinksOptions['kjd_dropdown-menu_linkActive'];
 	$dropdownMenuLinkVisted = $dropdownMenuLinksOptions['kjd_dropdown-menu_linkVisited'];
 
-$dropdownMenuBackgroundColors['color'] = !empty($dropdownMenuBackgroundColors['color']) ? $dropdownMenuBackgroundColors['color'] : 'transparent' ;
+	
+ 	
  	$navbar_markup ='';
 
 // Positions navbar
@@ -1328,7 +1336,7 @@ $navbar_markup .=".navbar .nav li.open > a:after{
 // first level dropdown stuff  -->
 //the triangle at the top of the dropdown -->
 $navbar_markup .=".dropdown-menu:after {  
-	border-bottom-color:".$dropdownMenuBackgroundColors['color']." !important;
+	border-bottom-color:".$dropdownStartColor." !important;
 }";
 
 $navbar_markup .=".navbar .nav > li > .dropdown-menu:before{  
@@ -1360,7 +1368,7 @@ $navbar_markup .=".navbar-fixed-bottom.navbar .nav > li > .dropdown-menu:before{
 }";
 
 $navbar_markup .=".navbar-fixed-bottom .nav > li > .dropdown-menu:after{
-border-top-color: ".$dropdownMenuBackgroundColors['color']." !important;
+border-top-color: ".$dropdownStartColor." !important;
 }";
 $navbar_markup .=".navbar-fixed-bottom.navbar .nav .sub-menu{margin-bottom:-32px;}";
 
@@ -1415,7 +1423,7 @@ $navbar_markup .="..nav-collapse.sub-menu li.active >a{
 /* ************************ sidr Nav ******************************* */
 $navbar_markup .=".sidr
 	{
-		background-color:".$dropdownMenuBackgroundColors['color']." !important;
+		background-color:".$dropdownStartColor." !important;
 		-webkit-box-shadow:inset 0 0 5px 5px rgba(0,0,0,.2);
 		-moz-box-shadow:inset 0 0 5px 5px rgba(0,0,0,.2);
 		box-shadow:inset 0 0 5px 5px rgba(0,0,0,.2)}
@@ -1463,8 +1471,8 @@ $navbar_markup .=".btn-navbar:hover,.btn-navbar:active{
 	
 }";
 $navbar_markup .=".nav .divider-vertical{
-	border-left: 1px solid ".$navbarBackground['endcolor'].";
-	border-right: 1px solid ".$navbarBackground['color'].";
+	border-left: 1px solid ".$navbarBackground['end_rgba'].";
+	border-right: 1px solid ".$navbarBackground['start_rgba'].";
 }";
 
 // Navlink Tyles -->
@@ -1521,7 +1529,7 @@ if($dropdown_bg != 'true'){
 
 	  $media_979_markup .= ".nav-collapse.collapse > .nav:after
 	  	  {
-	  	       border-bottom: 6px solid ".$dropdownMenuBackgroundColors['color']." !important;
+	  	       border-bottom: 6px solid ".$dropdownStartColor." !important;
 	  	      border-left: 6px solid transparent;
 	  	      border-right: 6px solid transparent;
 	  	      content: '';
@@ -1535,7 +1543,7 @@ if($dropdown_bg != 'true'){
 	  $media_979_markup .= "#navbar .nav-collapse.collapse > .nav
 	  	  {    
 	  	      background-clip: padding-box;
-	  	      background-color:".$dropdownMenuBackgroundColors['color']." !important;
+	  	      background-color:".$dropdownStartColor." !important;
 	  	      border: 1px solid ". $dropdownMenuTopBorder['color'] .";
 	  	      border-radius: 6px 6px 6px 6px;
 	  	      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);

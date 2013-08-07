@@ -24,11 +24,11 @@ screen_icon('themes'); ?>
 	  <form method="post" action="options.php">  
 		<?php 
 			if( $active_tab == 'settings' ) { 
-				theme_settings_callback();
+				kjd_theme_settings_callback();
 			}elseif( $active_tab == 'components' ) { 
-				theme_components_callback();
+				kjd_theme_components_callback();
 			}elseif( $active_tab == 'widget_areas' ) { 
-				theme_widget_areas_callback();
+				kjd_theme_widget_areas_callback();
 			}
 			submit_button(); 
 		?>  
@@ -40,7 +40,7 @@ screen_icon('themes'); ?>
 ////////////////////
 // theme settings
 ////////////////////
-function theme_settings_callback(){
+function kjd_theme_settings_callback(){
 
 	settings_fields( 'kjd_theme_settings' ); 
 	$options = get_option('kjd_theme_settings');
@@ -155,7 +155,7 @@ function theme_settings_callback(){
 <?php
 }
 
-function theme_components_callback(){
+function kjd_theme_components_callback(){
 
 	settings_fields( 'kjd_component_settings' ); 
 	$options = get_option('kjd_component_settings');
@@ -215,14 +215,14 @@ function theme_components_callback(){
 <?php
 }
 
-function theme_widget_areas_callback(){
+function kjd_theme_widget_areas_callback(){
 	settings_fields( 'kjd_widget_areas_settings' ); 
 	$options = get_option('kjd_widget_areas_settings');
 
 
 	// print_r($options); die();
 
-	$widget_areas = array('front_page','single','404','category','archive','tag','author','date','search','attachment');
+	$widget_areas = array('front_page','page','single','404','category','archive','tag','author','date','search','attachment');
 ?>
 <div class="options_wrapper">
 	<h3>Choose Widget Areas</h3>

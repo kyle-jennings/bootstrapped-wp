@@ -10,6 +10,8 @@ $confineClass = ($confineBodyBackground =='true' )? 'container confined' : '' ;
 $device_view = $layoutSettings['deviceView'];
 $position = $layoutSettings['position'];
 
+
+
 $scaffolding_markup = '';
 
 
@@ -32,9 +34,10 @@ $scaffolding_markup .= '<div id="body" class="'.$confineClass.'">';
 			// print_r($layoutSettings); die();
 			/* ----------------- top or left sidebar ------------------- */
 			 if($position =='top' || $position =='left'){ 
-
 	
-				$scaffolding_markup .= ($position =='top') ? kjd_get_sidebar($template,'horizontal',$position, $device_view) : kjd_get_sidebar($template,null,$position, $device_view);
+				$scaffolding_markup .= ($position =='top') ? 
+				 kjd_get_sidebar($template,'horizontal',$position, $device_view) :
+				 kjd_get_sidebar($template,null,$position, $device_view);
 			} 
 
 			//content div
@@ -44,7 +47,7 @@ $scaffolding_markup .= '<div id="body" class="'.$confineClass.'">';
 			if (have_posts()){
 
 				if($pagination_top == 'true'){
-					$scaffolding_markup .= posts_pagination();
+					$scaffolding_markup .= kjd_get_posts_pagination();
 				}
 
 				//open content-list/single wrapper
@@ -64,7 +67,7 @@ $scaffolding_markup .= '<div id="body" class="'.$confineClass.'">';
 				$scaffolding_markup .= '</div>';
 
 				// pagination
-				$scaffolding_markup .= posts_pagination();
+				$scaffolding_markup .= kjd_get_posts_pagination();
 
 			}else{
 					$scaffolding_markup .= '<div class="content-wrapper">';

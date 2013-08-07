@@ -20,20 +20,17 @@ function kjd_page_layout_settings_display() {  ?>
 	  <a href="?page=kjd_page_layout_settings&tab=posts" class="nav-tab"<?php echo $active_tab == 'posts' ? 'id="active"' : 'none'; ?>>Page Layouts</a> 
 	  <a href="?page=kjd_page_layout_settings&tab=pages" class="nav-tab"<?php echo $active_tab == 'pages' ? 'id="active"' : 'none'; ?>>Template Layouts</a> 
 	  <a href="?page=kjd_page_layout_settings&tab=frontPage" class="nav-tab"<?php echo $active_tab == 'frontPage' ? 'id="active"' : 'none'; ?>>Front Page Layout</a> 
-	  <!-- <a href="?page=kjd_page_layout_settings&tab=attachements" class="nav-tab"<?php echo $active_tab == 'attachements' ? 'id="active"' : 'none'; ?>>Attachment Page Layout</a> -->
 	 </h2>
     <?php settings_errors(); ?>  
 	  <form method="post" action="options.php">  
 		<?php 
 			
 			if( $active_tab == 'posts' ) { 
-				post_templates_callback();
+				kjd_post_templates_callback();
 			}elseif( $active_tab == 'pages' ){
-				page_templates_callback();
+				kjd_page_templates_callback();
 			}elseif($active_tab == 'frontPage'){
-				front_page_settings();
-			}elseif($active_tab == 'attachment'){
-				attachment_page_settings();
+				kjd_front_page_settings();
 			}
 		 submit_button(); ?>  
 	</form>
@@ -41,7 +38,7 @@ function kjd_page_layout_settings_display() {  ?>
 <?php
 }
 
-function page_templates_callback(){
+function kjd_page_templates_callback(){
 
 	settings_fields( 'kjd_page_layout_settings' );
 	$options = get_option('kjd_page_layout_settings');
@@ -51,13 +48,13 @@ function page_templates_callback(){
 			
 	echo "<h3>Template layouts</h3>";
 	foreach($pageLayouts as $k => $v){
-		layout_form_callback($pageLayoutSettings,'page',$v);
+		kjd_layout_form_callback($pageLayoutSettings,'page',$v);
 	}
   
 }
 
 
-function post_templates_callback(){
+function kjd_post_templates_callback(){
 
 	settings_fields( 'kjd_post_layout_settings' );
 	$options = get_option('kjd_post_layout_settings');
@@ -82,7 +79,7 @@ function post_templates_callback(){
 
 	foreach($available_sidebars as $k => $v){
 	
-		layout_form_callback($postLayoutSettings,'post',$v);
+		kjd_layout_form_callback($postLayoutSettings,'post',$v);
 	
 	}
 
@@ -92,7 +89,7 @@ function post_templates_callback(){
 /////////////////////////
 // form
 /////////////////////////
-function layout_form_callback($settings,$type, $layout){ 
+function kjd_layout_form_callback($settings,$type, $layout){ 
 	$deviceViews = array('all','visible-desktop','hidden-phone','hidden-tablet');
 ?>
 <input type="hidden" name="kjd_<?php echo $type;?>_layout_settings[kjd_<?php echo $type; ?>_layouts][<?php echo $layout;?>][name]" value = "<?php echo $layout;?>">
@@ -102,12 +99,9 @@ function layout_form_callback($settings,$type, $layout){
 		<div class="optionComponent">
 			<span class="sublabel">Widgets Area</span>
 			<select class="layout_select" name="kjd_<?php echo $type;?>_layout_settings[kjd_<?php echo $type; ?>_layouts][<?php echo $layout;?>][position]">
-				<?php if($type=='post' || $layout == 'front_page'){ ?>
-					<option value="none" <?php selected( $settings[$layout]['position'], "none", true); ?>>
-						No Sidebar
-					</option>
-				<?php
-				}?>
+				<option value="none" <?php selected( $settings[$layout]['position'], "none", true); ?>>
+					No Sidebar
+				</option>
 				<option value="left" <?php selected( $settings[$layout]['position'], "left", true); ?>>
 				Left
 				</option>
@@ -129,10 +123,8 @@ function layout_form_callback($settings,$type, $layout){
 				<img src="<?php bloginfo('template_directory'); ?>/images/widgetstop.png" class="top">
 				<img src="<?php bloginfo('template_directory'); ?>/images/widgetsbottom.png" class="bottom">
 				<img src="<?php bloginfo('template_directory'); ?>/images/widgetsleft.png" class="left">
-				<?php if($type=='post'){ ?>
-					<img src="<?php bloginfo('template_directory'); ?>/images/widgetsnone.png" class="none">
-				<?php
-				}?>
+
+				<img src="<?php bloginfo('template_directory'); ?>/images/widgetsnone.png" class="none">
 				<?php if(isset($settings[$layout]['position'])){ ?>
 					<img src="<?php bloginfo('template_directory'); ?>/images/widgets<?php echo $settings[$layout]['position'];?>.png" class="<?php echo $settings[$layout]['position'];?>" style="display:block;">
 				<?php 
@@ -155,7 +147,7 @@ function layout_form_callback($settings,$type, $layout){
 <?php
 }
 
-function front_page_settings(){
+function kjd_front_page_settings(){
 	settings_fields('kjd_frontPage_layout_settings');
 	$options = get_option('kjd_frontPage_layout_settings');
 	$layoutOrder = $options['kjd_frontPage_layout'];
@@ -227,19 +219,4 @@ function front_page_settings(){
 			<?php wp_editor( $options['kjd_frontPage_secondaryContent'], 'kjd_frontPage_layout_settings[kjd_frontPage_secondaryContent]' );?>
 	</div>
 <?php
-}
-
-
-function attachment_page_settings(){
-	settings_fields('kjd_attachment_layout_settings');
-	$options = get_option('kjd_attachment_layout_settings');
-	$layoutOrder = $options['kjd_attachment_layout'];
-	
-
-
-}
-
-function posts_layout_settings(){
-
-
 }

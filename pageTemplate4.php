@@ -3,7 +3,7 @@
 Template Name: Page Template 4
 */
 
-$layoutSettings = get_layout_settings($template);
+$layoutSettings = kjd_get_layout_settings($template);
 
 get_header();
 include('lib/partials/the_content_scaffolding.php');

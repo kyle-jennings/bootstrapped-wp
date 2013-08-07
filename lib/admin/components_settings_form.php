@@ -103,7 +103,7 @@ value="<?php echo $sectionSettings['tabID'] ? $sectionSettings['tabID'] : 'none'
     </div>
 
     <div class="tab-pane" id="thumbnails">
- 		<?php imagesFormFields($section,$sectionSettings); ?>
+ 		<?php kjd_images_form_fields($section,$sectionSettings); ?>
 
     </div>
 
@@ -176,7 +176,7 @@ value="<?php echo $sectionSettings['tabID'] ? $sectionSettings['tabID'] : 'none'
 
 
 <?php 
-function imagesFormFields($section,$sectionSettings){
+function kjd_images_form_fields($section,$sectionSettings){
 	$borderSizes = range(0,20);
 	$borderStyles = array('none','solid','dotted','dashed','double','groove','ridge','inset','outset');
 

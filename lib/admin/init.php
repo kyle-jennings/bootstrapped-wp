@@ -5,6 +5,8 @@ include 'misc_backgrounds_form.php';
 
 include 'settings.php';
 
+include('admin_functions.php');
+
 //////////////////////////////////////
 // Google font selection
 //////////////////////////////////////
@@ -26,8 +28,7 @@ include 'settings.php';
 
 
 
-add_action('admin_init', 'load_style_sheets_and_scripts');  
-function load_style_sheets_and_scripts() {  
+function kjd_load_style_sheets_and_scripts() {  
 
 	$adminDir=get_bloginfo('template_directory');  
 	$adminDir = $adminDir."/lib/admin/";
@@ -46,11 +47,12 @@ function load_style_sheets_and_scripts() {
 	wp_enqueue_script("admin", $adminDir."js/admin.js", false, "1.0");   
 
 }  
+add_action('admin_init', 'kjd_load_style_sheets_and_scripts');  
 
-function initialize_kjd_settings(){
+function kjd_initialize_kjd_settings(){
 	 include 'kjd_field_settings.php';
 }
-add_action('admin_init', 'initialize_kjd_settings');  
+add_action('admin_init', 'kjd_initialize_kjd_settings');  
 /*
 // checks to see if user has proper privs
 if (!current_user_can('manage_options')) {  
@@ -58,7 +60,7 @@ if (!current_user_can('manage_options')) {
 }*/ 
 
 // makes new menu
-function setup_theme_menus() {  
+function kjd_setup_theme_menus() {  
 
 	$options = get_option('kjd_component_settings');
     
@@ -195,5 +197,4 @@ function setup_theme_menus() {
 
 }  
 
-add_action("admin_menu", "setup_theme_menus");  
-?>
+add_action("admin_menu", "kjd_setup_theme_menus");  

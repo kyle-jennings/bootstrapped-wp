@@ -5,6 +5,22 @@
 	$wallpaperSettings = $options['kjd_'.$section.'_background_wallpaper'];
 	$positions = array('left top','left center','left bottom','right top','right center','right bottom','center top','center center','center bottom','custom');
 
+	if( !empty($colorSettings['start_rgba']) ){	
+		$start_rgba =  $colorSettings['start_rgba'];
+		$start_rgba = split(',',$start_rgba);
+		$start_rgba = $start_rgba[3];
+		$start_rgba =  str_replace(')','',$start_rgba) ;
+
+	}
+		
+
+	if( !empty($colorSettings['end_rgba']) ){		
+		$end_rgba =  $colorSettings['end_rgba'];
+		$end_rgba = split(',',$end_rgba);
+		$end_rgba =	$end_rgba[3];
+		$end_rgba =  str_replace(')','',$end_rgba);
+	}
+
 	 ?>
 		<div class="optionsWrapper">
 
@@ -17,7 +33,10 @@
 		 	<div class="color_option option" style="position: relative;">
 
 				<label>Start color</label>
-				<input class="minicolors" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][color]" value="<?php echo $colorSettings['color'] ? $colorSettings['color'] : 'none'; ?>" />
+				<input class="minicolors" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][color]" 
+				value="<?php echo $colorSettings['color'] ? $colorSettings['color'] : 'none'; ?>" data-opacity ="<?php echo $start_rgba; ?>" />
+				<input type="hidden" class="rgba-color" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][start_rgba]"
+				 value="<?php echo $colorSettings['start_rgba'] ? $colorSettings['start_rgba'] : 'none'; ?>" />
 <a class="clearColor">Clear</a>
 			</div> <!-- End color select-->
 
@@ -25,8 +44,11 @@
 		 	<div class="color_option option" style="position: relative;">
 
 				<label>End color</label>
-				<input class="minicolors" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][endcolor]" value="<?php echo $colorSettings['endcolor'] ? $colorSettings['endcolor'] : 'none'; ?>"  />
-<a class="clearColor">Clear</a>
+				<input class="minicolors" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][endcolor]" 
+				value="<?php echo $colorSettings['endcolor'] ? $colorSettings['endcolor'] : 'none'; ?>"  data-opacity ="<?php echo $end_rgba; ?>" />
+				<input type="hidden" class="rgba-color" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][end_rgba]"
+				 value="<?php echo $colorSettings['end_rgba'] ? $colorSettings['end_rgba'] : 'none'; ?>" />
+				<a class="clearColor">Clear</a>
 			</div> <!-- End color select-->
 
 			<div class="option">

@@ -4,7 +4,7 @@ get_header();
 
 	$template = 'front_page';
 	
-	$layoutSettings = get_layout_settings($template);
+	$layoutSettings = kjd_get_layout_settings($template);
 
 	$frontPageOptions = get_option('kjd_frontPage_layout_settings');
 	$frontPageSidebar = $frontPageOptions['kjd_frontPage_sidebar'];
@@ -24,16 +24,12 @@ get_header();
 
 if($showImageSlider =='true')
 {
-	image_slider_callback($confineBodyBackground,$position,$arrayLength,$layoutSettings);
+	kjd_image_slider_callback($confineBodyBackground,$position,$arrayLength,$layoutSettings);
 }
 
 if(!empty($components))
 { 
-	// $class = ($confineBodyBackground =='true') ? 'container confined' : '' ;
-	// $frontpage_markup ='';
-	// $frontpage_markup .='<div id="body" class="frontPageBody '.$class.'">';
-	// $frontpage_markup .='';
-	// $frontpage_markup .='';
+
 ?>
 
 <div id="body" class="frontPageBody <?php echo $confineBodyBackground =='true' ? 'container confined' : '' ;?>">
@@ -50,7 +46,7 @@ if(!empty($components))
 		echo '<div class="span9">';
 	}
 
-	front_page_layout($components,$layoutSettings);
+	kjd_front_page_layout($components,$layoutSettings);
 
 	if($layoutSettings['position'] == 'right' || $layoutSettings['position'] =='left')
 	{
@@ -94,28 +90,28 @@ get_footer(); // End page, start function
 /* ---------------------------------------------------------------------------------------------- */
 /* ------------------------------- Front Page Functions ----------------------------------------- */
 /* ---------------------------------------------------------------------------------------------- */
-function image_slider_callback($confineBodyBackground,$position,$arrayLength,$layoutSettings){
+function kjd_image_slider_callback($confineBodyBackground,$position,$arrayLength,$layoutSettings){
 		include(dirname(__FILE__).'/lib/partials/image_slider_wrapper.php');
 }
 
-function widget_area_1_callback($layoutSettings){
+function kjd_widget_area_1_callback($layoutSettings){
 	echo '<div class="row">'; 
 		dynamic_sidebar('front_page_widget_area_1');
 	echo '</div>'; 
 }
 
-function widget_area_2_callback($layoutSettings){
+function kjd_widget_area_2_callback($layoutSettings){
 	echo '<div class="row">'; 
 		dynamic_sidebar('front_page_widget_area_2');
 	echo '</div>';
 }
 
 
-function content_callback($layoutSettings){
+function kjd_content_callback($layoutSettings){
 	if (have_posts()){
 
 		if($pagination_top == 'true'){
-			echo posts_pagination();
+			echo kjd_get_posts_pagination();
 		}
 		
 		echo '<div class="content-list">';
@@ -128,10 +124,10 @@ function content_callback($layoutSettings){
 
 		echo '</div>';
 	}
-	echo posts_pagination();
+	echo kjd_get_posts_pagination();
 }
 
-function secondary_content_callback($frontPageOptions,$layoutSettings){ 
+function kjd_secondary_content_callback($frontPageOptions,$layoutSettings){ 
 	if($layoutSettings['position'] != 'right' && $layoutSettings['position'] !='left'){ 
 		echo '<div class="row"><div class="span12">'; 
 			echo do_shortcode($frontPageOptions['kjd_frontPage_secondaryContent']);
@@ -144,18 +140,18 @@ function secondary_content_callback($frontPageOptions,$layoutSettings){
 
 }
 
-function front_page_layout($components,$layoutSettings)
+function kjd_front_page_layout($components,$layoutSettings)
 {
 	foreach($components as $position => $component)
 	{
 		if($component['component'] =='widget_area_1'){
-			 widget_area_1_callback($layoutSettings); 
+			 kjd_widget_area_1_callback($layoutSettings); 
 		}elseif($component['component'] =='widget_area_2'){
-			 widget_area_2_callback($layoutSettings);
+			 kjd_widget_area_2_callback($layoutSettings);
 		}elseif($component['component'] =='content'){
-			content_callback($layoutSettings);
+			kjd_content_callback($layoutSettings);
 		}elseif($component['component'] =='secondary_content'){
-			secondary_content_callback($frontPageOptions,$layoutSettings);
+			kjd_secondary_content_callback($frontPageOptions,$layoutSettings);
 		}
 	}
 }

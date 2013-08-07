@@ -28,13 +28,13 @@ function kjd_misc_backgrounds_display() {
 	<form method="post" action="options.php">  
 	<?php 
 	if( $active_tab == 'htmlTag' ) { 
-		htmlTag_background_callback('htmlTag');
+		kjd_htmlTag_background_callback('htmlTag');
 	}elseif($active_tab == 'bodyTag'){
-		bodyTag_background_callback('bodyTag');
+		kjd_bodyTag_background_callback('bodyTag');
 	}elseif($active_tab == 'mastArea'){
-		mastArea_background_callback('mastArea');
+		kjd_mastArea_background_callback('mastArea');
 	}elseif($active_tab == 'contentArea'){
-		contentArea_background_callback('contentArea');
+		kjd_contentArea_background_callback('contentArea');
 	}
 	submit_button(); 
 	?>  
@@ -47,7 +47,7 @@ function kjd_misc_backgrounds_display() {
 ////////////////////////////////////
 // html background
 ////////////////////////////////////
-function htmlTag_background_callback($section){
+function kjd_htmlTag_background_callback($section){
 	include	'background_settings_form.php';
 	
 }
@@ -56,14 +56,14 @@ function htmlTag_background_callback($section){
 // body background
 ////////////////////////////////////
 
-function bodyTag_background_callback($section){
+function kjd_bodyTag_background_callback($section){
 	include	'background_settings_form.php';
 }
 
 ////////////////////////////////////
 // mast Area background
 ////////////////////////////////////
-function mastArea_background_callback($section){
+function kjd_mastArea_background_callback($section){
 	
 	include	'background_settings_form.php';
 	$miscSettings = $options['kjd_'.$section.'_background_misc'];
@@ -109,7 +109,7 @@ function mastArea_background_callback($section){
 ////////////////////////////////////
 // content area background
 ////////////////////////////////////
-function contentArea_background_callback($section){
+function kjd_contentArea_background_callback($section){
 	include	'background_settings_form.php';
 	?>
 	<h2>Settings</h2>

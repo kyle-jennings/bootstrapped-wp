@@ -12,8 +12,8 @@ if(is_admin()){
  require_once('kjd_adminbar_menu.php');
 
  require_once('layout_functions.php');
-add_action( 'wp_enqueue_scripts', 'add_assets' );
-function add_assets(){
+add_action( 'wp_enqueue_scripts', 'kjd_add_assets' );
+function kjd_add_assets(){
 
 	// set variables
 	$navbarSettings = get_option('kjd_navbar_misc_settings');
@@ -71,7 +71,7 @@ if (function_exists('add_theme_support')) {
 
 
 //gets featured image meta info
-function the_post_thumbnail_description($args) {
+function kjd_the_post_thumbnail_description($args) {
   $thumbnail_id    = get_post_thumbnail_id($args->ID);
   $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
 
@@ -82,11 +82,11 @@ function the_post_thumbnail_description($args) {
 
 
 // add excerpts to pages
-add_action( 'init', 'add_excerpts_to_pages' );
-function add_excerpts_to_pages() {
+function kjd_add_excerpts_to_pages() {
      add_post_type_support( 'page', 'excerpt' );
 }
 
+add_action( 'init', 'kjd_add_excerpts_to_pages' );
 
 
 //////////////////
@@ -94,7 +94,7 @@ function add_excerpts_to_pages() {
 //////////////////
 
 // old image grabber
-function get_post_images($postID, $size = NULL) {
+function kjd_get_post_images($postID, $size = NULL) {
 
 $attachments = get_children( array( 
 	'post_parent' => $postID, 
@@ -135,31 +135,25 @@ $attachments = get_children( array(
 
 /* -------------------device views ----------------------- */
 
-function deviceViewSettings($deviceView){
+function kjd_deviceViewSettings($deviceView){
 		if(isset($deviceView) && $deviceView !="all"){
 			echo $deviceView;
-		}else{
 		}
 }
 
 ////////////////////////
 // login screen styling
 
-function wpc_url_login(){
-$siteURL = get_option('siteurl');
-    return $siteURL; // your URL here
-}
-add_filter('login_headerurl', 'wpc_url_login');
 
-function login_css() {
+function kjd_login_css() {
 	require_once(dirname(dirname(__FILE__)).'/styles/login.php');
 }
-add_action('login_head', 'login_css');
+add_action('login_head', 'kjd_login_css');
 
 
 
 /* ------------------------------------- get page template layout settings ************************* */
-function get_layout_settings($template = NULL) {
+function kjd_get_layout_settings($template = NULL) {
 
 
 
@@ -247,15 +241,14 @@ function get_layout_settings($template = NULL) {
 						
 						}else{
 							
-							$template = 'default';							
-						
+							$template = 'page';							
 						}
 		
 
 				// if current page is a page but not a template
 				}else{
 
-					$template = 'default';
+					$template = 'page';
 				
 				}
 
@@ -274,14 +267,14 @@ function get_layout_settings($template = NULL) {
 
 
 /* --------------------------- read more link --------------------------*/
-function new_excerpt_more($more) {
+function kjd_excerpt_more_link($more) {
        global $post;
 	return '<a class="moretag" href="'. get_permalink($post->ID) . '"> Read More</a>';
 }
-add_filter('excerpt_more', 'new_excerpt_more');
+add_filter('excerpt_more', 'kjd_excerpt_more_link');
 
 /* -------------------------------- pagination  ------------------------------- */
-function posts_pagination(){
+function kjd_get_posts_pagination(){
 	
 	$pagination_markup ='';
 
@@ -324,7 +317,7 @@ function kjd_gallery_image_links(){
 		$navigation_markup .= 'no gallery';
 	}else{
 
-		$images = get_post_images($parent_id);
+		$images = kjd_get_post_images($parent_id);
 		foreach($images as $k=>$image)
 		{
 			
