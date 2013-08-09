@@ -51,6 +51,17 @@ function kjd_title_misc_settings_callback(){
 		?>
 
 	</div>
+
+	
+	<div class="option">
+		<label>Use breadcrumbs</label>
+		<select name="kjd_pageTitle_misc_settings[kjd_pageTitle_misc][use_breadcrumbs]">
+			<option value="false" <?php selected( $options['use_breadcrumbs'], "false", true) ?>>No</option>
+			<option value="true" <?php selected( $options['use_breadcrumbs'], "true", true) ?>>Yes</option>
+		</select>
+
+	</div>
+
 <?php
 }
 
@@ -126,16 +137,32 @@ function kjd_header_misc_settings_callback(){
 			echo kjd_set_section_margin($section);
 		?>
 				
-			<div class="option">
-				<label>Hide Header?</label>
-				<select name="kjd_header_misc_settings[kjd_header_misc][hide_header]">
-					<option value="false" <?php selected( $options['hide_header'], 'false', true ) ?>>No</option>
-					<option value="true" <?php selected( $options['hide_header'], 'true', true ) ?>>Yes</option>
-				</select>
-			</div>			
+		<div class="option">
+			<label>Hide Header?</label>
+			<select name="kjd_header_misc_settings[kjd_header_misc][hide_header]">
+				<option value="none" <?php selected( $options['hide_header'], 'none', true ) ?>>none</option>
+				<option value="frontpage" <?php selected( $options['hide_header'], 'frontpage', true ) ?>>Front Page</option>
+				<option value="inside" <?php selected( $options['hide_header'], 'inside', true ) ?>>Inside</option>
+				<option value="all" <?php selected( $options['hide_header'], 'all', true ) ?>>All</option>
+			</select>
+		</div>			
+
 
 		</div><!-- end options wrapper -->
 
+		<div class='options-wrapper'>
+			<h2>Mobile Settings</h2>
+
+			<div class="option">
+				<label>Hide Header?</label>
+				<select name="kjd_header_misc_settings[kjd_header_misc][mobile_hide_header]">
+					<option value="false" <?php selected( $options['mobile_hide_header'], 'false', true ) ?>>No</option>
+					<option value="true" <?php selected( $options['mobile_hide_header'], 'true', true ) ?>>Yes</option>
+				</select>
+			</div>	
+
+
+		</div>
 <?php
 }
 
@@ -227,6 +254,16 @@ function kjd_navbar_misc_settings_callback(){
 				</select>
 			</div>
 
+
+	
+
+
+
+		</div>
+
+		<div class='options-wrapper'>
+			<h2>Mobile Settings</h2>
+
 			<div class="option">
 				<label>Side Sliding Nav</label>
 				<select name="kjd_navbar_misc_settings[kjd_navbar_misc][side_nav]">
@@ -243,41 +280,39 @@ function kjd_navbar_misc_settings_callback(){
 				</select>
 			</div>
 
-		<h3>Open Menu Button Settings</h3>
-		<div class="color_option option" style="position: relative;">
-			<label>Background</label>
+			<h3>Open Menu Button Settings</h3>
+				<div class="color_option option" style="position: relative;">
+					<label>Background</label>
 
-			<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_bg]" 
-				value="<?php echo  $options['menu_btn_bg'] ?  $options['menu_btn_bg'] : ''; ?>"/>
-			<a class="clearColor">Clear</a>
+					<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_bg]" 
+						value="<?php echo  $options['menu_btn_bg'] ?  $options['menu_btn_bg'] : ''; ?>"/>
+					<a class="clearColor">Clear</a>
+				</div>
+				<div class="color_option option" style="position: relative;">
+					<label>Border</label>
+
+					<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_border]" 
+						value="<?php echo $options['menu_btn_border'] ? $options['menu_btn_border'] : ''; ?>"/>
+					<a class="clearColor">Clear</a>
+				</div>
+
+				<div class="color_option option" style="position: relative;">
+					<label>Background - hovered/active</label>
+
+					<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_bg_hovered]" 
+						value="<?php echo  $options['menu_btn_bg_hovered'] ?  $options['menu_btn_bg_hovered'] : ''; ?>"/>
+					<a class="clearColor">Clear</a>
+				</div>
+				<div class="color_option option" style="position: relative;">
+					<label>Border - hovered/active</label>
+
+					<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_border_hovered]" 
+						value="<?php echo $navbarSettings['menu_btn_border_hovered'] ? $navbarSettings['menu_btn_border_hovered'] : ''; ?>"/>
+					<a class="clearColor">Clear</a>
+				</div>
+
+
 		</div>
-		<div class="color_option option" style="position: relative;">
-			<label>Border</label>
-
-			<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_border]" 
-				value="<?php echo $options['menu_btn_border'] ? $options['menu_btn_border'] : ''; ?>"/>
-			<a class="clearColor">Clear</a>
-		</div>
-
-		<div class="color_option option" style="position: relative;">
-			<label>Background - hovered/active</label>
-
-			<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_bg_hovered]" 
-				value="<?php echo  $options['menu_btn_bg_hovered'] ?  $options['menu_btn_bg_hovered'] : ''; ?>"/>
-			<a class="clearColor">Clear</a>
-		</div>
-		<div class="color_option option" style="position: relative;">
-			<label>Border - hovered/active</label>
-
-			<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_border_hovered]" 
-				value="<?php echo $navbarSettings['menu_btn_border_hovered'] ? $navbarSettings['menu_btn_border_hovered'] : ''; ?>"/>
-			<a class="clearColor">Clear</a>
-		</div>
-
-
-
-		</div>
-
 <?php
 }
 
@@ -320,10 +355,20 @@ function kjd_posts_misc_settings_callback()
 			//well color and opacity
 
 ?>
+
 	<div class="optionsWrapper">
 
 		<h3>Post/Page Listing</h3>
 
+		<div class="option">
+			<label>Display paginator at top of posts</label>
+			<select name="kjd_posts_misc_settings[kjd_posts_misc][pagination_top]">
+				<option value="true" <?php selected( $options['pagination_top'], "true", true) ?>>Yes</option>
+				<option value="false" <?php selected( $options['pagination_top'], "false", true) ?>>No</option>
+			</select>
+
+		</div>
+		
 
 		<div class="option"> 
 			<label>Show Excerpt or Content</label>
@@ -452,7 +497,31 @@ function kjd_footer_misc_settings_callback(){
 				style="width:40px;"/>px.
 		</div>
 
-	</div>			
+		<div class="option">
+			<label>Hide Footer?</label>
+			<select name="kjd_footer_misc_settings[kjd_footer_misc][hide_footer]">
+				<option value="none" <?php selected( $options['hide_footer'], 'none', true ) ?>>none</option>
+				<option value="frontpage" <?php selected( $options['hide_footer'], 'frontpage', true ) ?>>Front Page</option>
+				<option value="inside" <?php selected( $options['hide_footer'], 'inside', true ) ?>>Inside</option>
+				<option value="all" <?php selected( $options['hide_footer'], 'all', true ) ?>>All</option>
+			</select>
+		</div>	
+	</div>	
+
+
+	<div class='options-wrapper'>
+		<h2>Mobile Settings</h2>
+
+		<div class="option">
+			<label>Hide Footer?</label>
+			<select name="kjd_footer_misc_settings[kjd_footer_misc][mobile_hide_footer]">
+				<option value="false" <?php selected( $options['mobile_hide_footer'], 'false', true ) ?>>No</option>
+				<option value="true" <?php selected( $options['mobile_hide_footer'], 'true', true ) ?>>Yes</option>
+			</select>
+		</div>	
+
+
+	</div>		
 <?php
 }
 

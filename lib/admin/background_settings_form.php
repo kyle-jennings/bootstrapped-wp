@@ -33,7 +33,7 @@
 		 	<div class="color_option option" style="position: relative;">
 
 				<label>Start color</label>
-				<input class="minicolors" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][color]" 
+				<input class="minicolors opacity" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][color]" 
 				value="<?php echo $colorSettings['color'] ? $colorSettings['color'] : 'none'; ?>" data-opacity ="<?php echo $start_rgba; ?>" />
 				<input type="hidden" class="rgba-color" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][start_rgba]"
 				 value="<?php echo $colorSettings['start_rgba'] ? $colorSettings['start_rgba'] : 'none'; ?>" />
@@ -44,7 +44,7 @@
 		 	<div class="color_option option" style="position: relative;">
 
 				<label>End color</label>
-				<input class="minicolors" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][endcolor]" 
+				<input class="minicolors opacity" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][endcolor]" 
 				value="<?php echo $colorSettings['endcolor'] ? $colorSettings['endcolor'] : 'none'; ?>"  data-opacity ="<?php echo $end_rgba; ?>" />
 				<input type="hidden" class="rgba-color" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][end_rgba]"
 				 value="<?php echo $colorSettings['end_rgba'] ? $colorSettings['end_rgba'] : 'none'; ?>" />

@@ -153,64 +153,227 @@ function kjd_get_the_title($content_type = null)
 	$pageTitleSettings = get_option('kjd_pageTitle_misc_settings');
 	$pageTitleSettings = $pageTitleSettings['kjd_pageTitle_misc'];
 	$confineTitleBackground = $pageTitleSettings['kjd_pageTitle_confine_background'];
+	$use_breadcrumbs = $pageTitleSettings['use_breadcrumbs'];
 
 	$class = $confineTitleBackground =='true' ? 'container confined' : '' ;
 
 	$the_title_markup ='<div id="pageTitle" class="'.$class.'">';
 	$the_title_markup .= '<div class="container">';
-	$the_title_markup .= '<h1>';
 	
-	if( is_archive() ){
-		
-
-		if ( is_day() ) :
-			$the_title_markup .= 'Daily Archives: <span>'.get_the_date() . '</span>';
-		elseif ( is_month() ) :
-			$the_title_markup .= 'Monthly Archives: <span>' . get_the_date( 'F Y' ) . '</span>';
-		elseif ( is_year() ) :
-			$the_title_markup .= 'Yearly Archives: <span>' . get_the_date( 'Y' ) . '</span>';
-		elseif(get_query_var('author_name')) :
-		    $auth = get_user_by('slug', get_query_var('author_name'));
-			$the_title_markup .= 'Posts by: '.$auth->nickname;
-		else :
-			if(is_category()){
-				ob_start();
-					single_cat_title();
-					$buffered_cat = ob_get_contents();
-				ob_end_clean();
-
-				$the_title_markup .= 'Posted in: '.$buffered_cat;
-			}
-		endif;		
-
-	}elseif( is_search() ){
-		
-		global $wp_query;
-		$total_results = $wp_query->found_posts;
-		$the_title_markup .=  $total_results ? 'Posts containing: '.get_search_query() : 'No results found' ;
-	
-
-	}elseif( is_404() ){
-
-		$the_title_markup .= 'Page Not Found';
-
+	if( $use_breadcrumbs == 'true' ){
+		$the_title_markup .= '<h3>';
+			$the_title_markup .= kjd_build_breadcrumbs();
+		$the_title_markup .= '</h3>';
 	}else{
+	
+		$the_title_markup .= '<h1>';
+		if( is_archive() ){
+				
 
-		$the_title = get_the_title();
-		if( isset($the_title) && !empty($the_title) && !is_null($the_title) ){
+				if ( is_day() ) :
+					$the_title_markup .= 'Daily Archives: <span>'.get_the_date() . '</span>';
+				elseif ( is_month() ) :
+					$the_title_markup .= 'Monthly Archives: <span>' . get_the_date( 'F Y' ) . '</span>';
+				elseif ( is_year() ) :
+					$the_title_markup .= 'Yearly Archives: <span>' . get_the_date( 'Y' ) . '</span>';
+				elseif(get_query_var('author_name')) :
+				    $auth = get_user_by('slug', get_query_var('author_name'));
+					$the_title_markup .= 'Posts by: '.$auth->nickname;
+				else :
+					if(is_category()){
+						ob_start();
+							single_cat_title();
+							$buffered_cat = ob_get_contents();
+						ob_end_clean();
+
+						$the_title_markup .= 'Posted in: '.$buffered_cat;
+					}
+				endif;		
+
+			}elseif( is_search() ){
+				
+				global $wp_query;
+				$total_results = $wp_query->found_posts;
+				$the_title_markup .=  $total_results ? 'Posts containing: '.get_search_query() : 'No results found' ;
+			
+
+			}elseif( is_404() ){
+
+				$the_title_markup .= 'Page Not Found';
+
+			}else{
+
+				$the_title = get_the_title();
+				if( isset($the_title) && !empty($the_title) && !is_null($the_title) ){
+				
+					$the_title_markup .= $the_title;
+
+				}else {
+					$the_title_markup .= 'No Title';
+				}
+			}	
 		
-			$the_title_markup .= $the_title;
-
-		}else {
-			$the_title_markup .= 'No Title';
-		}
+		$the_title_markup .= '</h1>';
+	
 	}
+		
 
-	$the_title_markup .= '</h1>';
 	$the_title_markup .=  '</div></div>';
 
 	return $the_title_markup;
 }
+
+function kjd_build_breadcrumbs() {
+
+	/* === OPTIONS === */
+	$text['home']     = 'Home'; // text for the 'Home' link
+	$text['category'] = 'Archive by Category "%s"'; // text for a category page
+	$text['search']   = 'Search Results for "%s" Query'; // text for a search results page
+	$text['tag']      = 'Posts Tagged "%s"'; // text for a tag page
+	$text['author']   = 'Posted by %s'; // text for an author page
+	$text['404']      = 'Error 404'; // text for the 404 page
+
+	$show_current   = 1; // 1 - show current post/page/category title in breadcrumbs, 0 - don't show
+	$show_on_home   = 0; // 1 - show breadcrumbs on the homepage, 0 - don't show
+	$show_home_link = 1; // 1 - show the 'Home' link, 0 - don't show
+	$show_title     = 1; // 1 - show the title for the links, 0 - don't show
+	$delimiter      = ' &raquo; '; // delimiter between crumbs
+	$before         = '<span class="current">'; // tag before the current crumb
+	$after          = '</span>'; // tag after the current crumb
+	/* === END OF OPTIONS === */
+
+	global $post;
+	$home_link    = home_url('/');
+	$link_before  = '<span typeof="v:Breadcrumb">';
+	$link_after   = '</span>';
+	$link_attr    = ' rel="v:url" property="v:title"';
+	$link         = $link_before . '<a' . $link_attr . ' href="%1$s">%2$s</a>' . $link_after;
+	$parent_id    = $parent_id_2 = $post->post_parent;
+	$frontpage_id = get_option('page_on_front');
+
+	$breadcrumbs_output = '';
+
+	if (is_home() || is_front_page()) {
+
+		return;
+
+	} else {
+
+		$breadcrumbs_output .= '<div class="breadcrumbs" xmlns:v="http://rdf.data-vocabulary.org/#">';
+		
+		if ($show_home_link == 1) {
+			$breadcrumbs_output .=  sprintf($link, $home_link, $text['home']);
+			if ($frontpage_id == 0 || $parent_id != $frontpage_id) 
+				$breadcrumbs_output .=  $delimiter;
+		}
+
+		if ( is_category() ) {
+			$this_cat = get_category(get_query_var('cat'), false);
+			if ($this_cat->parent != 0) {
+				$cats = get_category_parents($this_cat->parent, TRUE, $delimiter);
+				if ($show_current == 0) $cats = preg_replace("#^(.+)$delimiter$#", "$1", $cats);
+				$cats = str_replace('<a', $link_before . '<a' . $link_attr, $cats);
+				$cats = str_replace('</a>', '</a>' . $link_after, $cats);
+				if ($show_title == 0) $cats = preg_replace('/ title="(.*?)"/', '', $cats);
+				$breadcrumbs_output .= $cats;
+			}
+			if ($show_current == 1) $breadcrumbs_output .= $before . sprintf($text['category'], single_cat_title('', false)) . $after;
+
+		} elseif ( is_search() ) {
+			$breadcrumbs_output .= $before . sprintf($text['search'], get_search_query()) . $after;
+
+		} elseif ( is_day() ) {
+			$breadcrumbs_output .= sprintf($link, get_year_link(get_the_time('Y')), get_the_time('Y')) . $delimiter;
+			$breadcrumbs_output .= sprintf($link, get_month_link(get_the_time('Y'),get_the_time('m')), get_the_time('F')) . $delimiter;
+			$breadcrumbs_output .= $before . get_the_time('d') . $after;
+
+		} elseif ( is_month() ) {
+			$breadcrumbs_output .= sprintf($link, get_year_link(get_the_time('Y')), get_the_time('Y')) . $delimiter;
+			$breadcrumbs_output .= $before . get_the_time('F') . $after;
+
+		} elseif ( is_year() ) {
+			$breadcrumbs_output .= $before . get_the_time('Y') . $after;
+
+		} elseif ( is_single() && !is_attachment() ) {
+			if ( get_post_type() != 'post' ) {
+				$post_type = get_post_type_object(get_post_type());
+				$slug = $post_type->rewrite;
+				printf($link, $home_link . '/' . $slug['slug'] . '/', $post_type->labels->singular_name);
+				if ($show_current == 1) $breadcrumbs_output .= $delimiter . $before . get_the_title() . $after;
+			} else {
+				$cat = get_the_category(); $cat = $cat[0];
+				$cats = get_category_parents($cat, TRUE, $delimiter);
+				if ($show_current == 0) $cats = preg_replace("#^(.+)$delimiter$#", "$1", $cats);
+				$cats = str_replace('<a', $link_before . '<a' . $link_attr, $cats);
+				$cats = str_replace('</a>', '</a>' . $link_after, $cats);
+				if ($show_title == 0) $cats = preg_replace('/ title="(.*?)"/', '', $cats);
+				$breadcrumbs_output .= $cats;
+				if ($show_current == 1) $breadcrumbs_output .= $before . get_the_title() . $after;
+			}
+
+		} elseif ( !is_single() && !is_page() && get_post_type() != 'post' && !is_404() ) {
+			$post_type = get_post_type_object(get_post_type());
+			$breadcrumbs_output .= $before . $post_type->labels->singular_name . $after;
+
+		} elseif ( is_attachment() ) {
+			$parent = get_post($parent_id);
+			$cat = get_the_category($parent->ID); $cat = $cat[0];
+			$cats = get_category_parents($cat, TRUE, $delimiter);
+			$cats = str_replace('<a', $link_before . '<a' . $link_attr, $cats);
+			$cats = str_replace('</a>', '</a>' . $link_after, $cats);
+			if ($show_title == 0) $cats = preg_replace('/ title="(.*?)"/', '', $cats);
+			$breadcrumbs_output .= $cats;
+			printf($link, get_permalink($parent), $parent->post_title);
+			if ($show_current == 1) $breadcrumbs_output .= $delimiter . $before . get_the_title() . $after;
+
+		} elseif ( is_page() && !$parent_id ) {
+			if ($show_current == 1) $breadcrumbs_output .= $before . get_the_title() . $after;
+
+		} elseif ( is_page() && $parent_id ) {
+			if ($parent_id != $frontpage_id) {
+				$breadcrumbs = array();
+				while ($parent_id) {
+					$page = get_page($parent_id);
+					if ($parent_id != $frontpage_id) {
+						$breadcrumbs[] = sprintf($link, get_permalink($page->ID), get_the_title($page->ID));
+					}
+					$parent_id = $page->post_parent;
+				}
+				$breadcrumbs = array_reverse($breadcrumbs);
+				for ($i = 0; $i < count($breadcrumbs); $i++) {
+					$breadcrumbs_output .= $breadcrumbs[$i];
+					if ($i != count($breadcrumbs)-1) $breadcrumbs_output .= $delimiter;
+				}
+			}
+			if ($show_current == 1) {
+				if ($show_home_link == 1 || ($parent_id_2 != 0 && $parent_id_2 != $frontpage_id)) $breadcrumbs_output .= $delimiter;
+				$breadcrumbs_output .= $before . get_the_title() . $after;
+			}
+
+		} elseif ( is_tag() ) {
+			$breadcrumbs_output .= $before . sprintf($text['tag'], single_tag_title('', false)) . $after;
+
+		} elseif ( is_author() ) {
+	 		global $author;
+			$userdata = get_userdata($author);
+			$breadcrumbs_output .= $before . sprintf($text['author'], $userdata->display_name) . $after;
+
+		} elseif ( is_404() ) {
+			$breadcrumbs_output .= $before . $text['404'] . $after;
+		}
+
+		if ( get_query_var('paged') ) {
+			if ( is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author() ) $breadcrumbs_output .= ' (';
+			$breadcrumbs_output .= __('Page') . ' ' . get_query_var('paged');
+			if ( is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author() ) $breadcrumbs_output .= ')';
+		}
+
+		$breadcrumbs_output .= '</div><!-- .breadcrumbs -->';
+
+		return $breadcrumbs_output;
+	}
+} // end dimox_breadcrumbs()
+
 
 /* ----------------------------- the sidebar ----------------------------- */
 function kjd_get_sidebar($sidebar, $location = null, $width = null, $device_view = null)

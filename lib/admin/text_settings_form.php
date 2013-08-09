@@ -5,7 +5,7 @@
 	$textElements = array('text','H1','H2','H3','H4');
 	if($section == 'pageTitle'){
 		unset($textElements[2]);
-		unset($textElements[3]);
+		// unset($textElements[3]);
 		unset($textElements[4]);
 	}
 	$backgroundStyles = array('none','tabs','squared','pills');

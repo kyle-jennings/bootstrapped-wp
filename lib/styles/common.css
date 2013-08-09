@@ -82,16 +82,13 @@ html,body{
 	margin:0 auto;	
 }
 
-/* Cycler Settings*/
+/* Carousel Settings*/
 #imageSlider{
 	float: left;
 	padding: 20px 0;
 	width: 100%;
 }
 
-#imageSlider{
-	
-}
 
 /* Page Settings */
 
@@ -297,8 +294,9 @@ div.img-circle img{
 .paginationLinks{clear:both;}
 
 
-
+/* =============================== ============= ===================================== */
 /* =============================== media queries ===================================== */
+/* =============================== ============= ===================================== */
 @media (max-width: 979px) {
 
 	.navbar .dropdown-menu{background:transparent !important;}
@@ -346,9 +344,7 @@ div.img-circle img{
 
 @media (max-width: 767px) {
 	
-	#sidr-toggle{
-		float:left;
-	}
+
 		#navbar{
 			clear: both;
 			float: none;
@@ -363,11 +359,7 @@ div.img-circle img{
 		margin-left:0px;
 		float: none !important;
 	}
-	
-	#sidr-toggle {
-		/*margin-left:-20px;*/
-	}
-	
+
 	img{
 		height:auto;
 		max-width: 97%;

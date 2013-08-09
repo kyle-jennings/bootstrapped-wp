@@ -87,10 +87,9 @@
 
 .elastislide-wrapper nav span {
 	position: absolute;
-	background: #ddd url(../images/nav.png) no-repeat 4px 3px;
+	background: transparent url(../images/nav.png) no-repeat 4px 3px;
 	width: 23px;
 	height: 23px;
-	border-radius: 50%;
 	text-indent: -9000px;
 	cursor: pointer;
 	opacity: 0.8;

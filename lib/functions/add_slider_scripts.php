@@ -65,13 +65,36 @@
 
 			kjd_singleImage();
 		break;
-		case($plugin =="none"):
+		case($plugin =="bootstrap_slider"):
+			
+			wp_enqueue_style("slider", $root."/scripts/bootstrap/bootstrap_slider.css");	
+			add_action('wp_head', 'kjd_bootstrap_slider_hook');
+			
+			break;
+		default:
 
 			kjd_noImage();
 			break;
 
 	}
 
+/////////////////////////////
+// boot strap slider
+////////////////////////
+function kjd_bootstrap_slider_hook(){
+	$script_output = '';
+
+	$script_output .= '<script>';
+		$script_output .= 'jQuery(function($) {';
+    		$script_output .= '$(".carousel").carousel({';
+			  $script_output .= 'interval: 2000';
+			  // $script_output .= 'pause: "hover"';
+			$script_output .= '})';
+		$script_output .= '});';
+	$script_output .= '</script>';
+
+	echo $script_output;
+}
 
 /////////////////////////////
 //		responsive slider

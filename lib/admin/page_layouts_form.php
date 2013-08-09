@@ -166,7 +166,7 @@ function kjd_front_page_settings(){
 ?>
 
 	<h3>Frontpage layout</h3>
-	<div class="option">
+	<div id='frontpage-sortables' class="option">
 <?php 
 // echo "<pre>"; 
 // var_dump($layoutOrder);

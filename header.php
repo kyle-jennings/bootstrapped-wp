@@ -50,22 +50,28 @@
 	$confinecontentArea = $contentAreaSettings['kjd_contentArea_background']['confine_contentArea'];
 
 	if(is_front_page() ) { 
-		$themeOptions = get_option('kjd_theme_settings');
-		$hideHeader = $themeOptions['kjd_hide_header'];
-		$hideFooter = $themeOptions['kjd_hide_footer'];
-		if($hideHeader == 'true' || $hideFooter == 'true'){
-			echo "<style>";
-			if($hideHeader == 'true'){
-					echo"#mast{display:none;}";
-				}
 
-				if($hideFooter == 'true'){
-					echo"#pageWrapper{margin:0 auto !important;}";
-					echo"#footer,#push{display:none;}";
-				}
-				echo "</style>";
+		$hideHeader = $headerSettings['hide_header'];
+
+		$footerSettings = get_option('kjd_footer_misc_settings');
+		$footerSettings = $footerSettings['kjd_footer_misc'];
+		$hideFooter = $themeOptions['hide_footer'];
+
+		if($hideHeader == 'frontpage' || $hideHeader =='all' ){
+			$output = '<style>';
+				$output .= '#header{display:none;}';
+			$output .=  "</style>";
+		}
+		echo $output;
+
+		if($hideFooter == 'frontpage' ||$hideFooter == 'frontpage'){
+			$output = "<style>";
+				$output .= "#pageWrapper{margin:0 auto !important;}";
+				$output .= "#footer,#push{display:none;}";
+			$output .=  "</style>";
 		}
 			
+		echo $output;
 
 	}
 

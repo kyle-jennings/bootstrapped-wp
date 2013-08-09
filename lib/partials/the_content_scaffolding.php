@@ -10,6 +10,8 @@ $confineClass = ($confineBodyBackground =='true' )? 'container confined' : '' ;
 $device_view = $layoutSettings['deviceView'];
 $position = $layoutSettings['position'];
 
+$pagination_top = get_option('kjd_posts_misc_settings');
+$pagination_top = $pagination_top['pagination_top'];
 
 
 $scaffolding_markup = '';

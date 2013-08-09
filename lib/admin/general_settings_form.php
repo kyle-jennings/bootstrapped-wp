@@ -78,24 +78,8 @@ function kjd_theme_settings_callback(){
 		<textarea class="long_textarea" name="kjd_theme_settings[kjd_google_analytics]"><?php echo $options['kjd_google_analytics']? $options['kjd_google_analytics']: '' ;?></textarea>
 	</div>
 
-	
-<!-- 	<div class="option">
-		<label>Use breadcrumbs</label>
-		<select name="kjd_theme_settings[kjd_toggle_breadcrumbs]">
-			<option value="true" <?php selected( $options['kjd_toggle_breadcrumbs'], "true", true) ?>>Yes</option>
-			<option value="false" <?php selected( $options['kjd_toggle_breadcrumbs'], "false", true) ?>>No</option>
-		</select>
 
-	</div> -->
 
-	<div class="option">
-		<label>Display paginator at top of posts</label>
-		<select name="kjd_theme_settings[kjd_pagination_top]">
-			<option value="true" <?php selected( $options['kjd_pagination_top'], "true", true) ?>>Yes</option>
-			<option value="false" <?php selected( $options['kjd_pagination_top'], "false", true) ?>>No</option>
-		</select>
-
-	</div>
 
 <!-- confine page to 960px -->
 	<div class="option">
@@ -107,44 +91,29 @@ function kjd_theme_settings_callback(){
 		</select>
 
 	</div>
-<div class="toggleDisplay">
-	<div id="confineOption" class="option">
-		<label>Confine ALL backgrounds 960px wide</label>
 
-		<select name="kjd_theme_settings[kjd_confine_page]">
-			<option value="true" <?php selected( $options['kjd_confine_page'], "true", true) ?>>Yes</option>
-			<option value="false" <?php selected( $options['kjd_confine_page'], "false", true) ?>>No</option>
-		</select>
+	<div class="toggleDisplay">
+		<div id="confineOption" class="option">
+			<label>Confine ALL backgrounds 960px wide</label>
 
-	</div>
+			<select name="kjd_theme_settings[kjd_confine_page]">
+				<option value="true" <?php selected( $options['kjd_confine_page'], "true", true) ?>>Yes</option>
+				<option value="false" <?php selected( $options['kjd_confine_page'], "false", true) ?>>No</option>
+			</select>
 
-	<div id="boxShadow" class="option">
-		<label>Add Shadow to page wrapper?</label>
+		</div>
 
-		<select name="kjd_theme_settings[kjd_box_shadow]">
-			<option value="true" <?php selected( $options['kjd_box_shadow'], "true", true) ?>>Yes</option>
-			<option value="false" <?php selected( $options['kjd_box_shadow'], "false", true) ?>>No</option>
-		</select>
+		<div id="boxShadow" class="option">
+			<label>Add Shadow to page wrapper?</label>
 
-	</div>	
-</div>	
-<!-- disable body and html background -->
+			<select name="kjd_theme_settings[kjd_box_shadow]">
+				<option value="true" <?php selected( $options['kjd_box_shadow'], "true", true) ?>>Yes</option>
+				<option value="false" <?php selected( $options['kjd_box_shadow'], "false", true) ?>>No</option>
+			</select>
 
-	<div class="option">
-		<label>Hide Header and Navbar on homepage?</label>
-		<select name="kjd_theme_settings[kjd_hide_header]">
-			<option value="false" <?php selected( $options['kjd_hide_header'], 'false', true ) ?>>No</option>
-			<option value="true" <?php selected( $options['kjd_hide_header'], 'true', true) ?>>Yes</option>
-		</select>
+		</div>	
 	</div>	
 
-	<div class="option">
-		<label>Hide Footer on Homepage?</label>
-		<select name="kjd_theme_settings[kjd_hide_footer]">
-			<option value="false" <?php selected( $options['kjd_hide_footer'], 'false', true ) ?>>No</option>
-			<option value="true" <?php selected( $options['kjd_hide_footer'], 'true', true) ?>>Yes</option>
-		</select>
-	</div>	
 </div>	
 
 	<div class="option">

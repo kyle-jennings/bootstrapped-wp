@@ -6,7 +6,7 @@ settings_fields('kjd_cycler_misc_settings');
 $options = get_option('kjd_cycler_misc_settings');
 
 
-$plugins = array('single image','nivo','flexslider2','responsive_slider'); //'piecemaker3d'
+$plugins = array('single image','nivo','flexslider2','responsive_slider','bootstrap_slider',); //'piecemaker3d'
 $themes = array('dark','light');
 $glowSettings = array('none','left-right','top-bottom', 'all-sides','top','bottom');
 
@@ -184,7 +184,7 @@ $effects = '';
 <!-- ************************************ -->
 <!-- General settings/not plugin specifc  -->
 <!-- ************************************ -->
-<h4>Non plugin specific settings</h4>
+<h4>General settings</h4>
 <hr />
 	<div class="option">
 		<label>Phone View</label>
@@ -201,8 +201,16 @@ $effects = '';
 	<div class="option">
 		<label>Use Shadow?</label>
 		<select name="kjd_cycler_misc_settings[kjd_cycler_misc][shadow]">
-			<option value="true" <?php selected( $options['kjd_cycler_misc']['shadow'], 'true', true) ?>>Yes</option>
 			<option value="false" <?php selected( $options['kjd_cycler_misc']['shadow'], 'false', true) ?>>No</option>
+			<option value="true" <?php selected( $options['kjd_cycler_misc']['shadow'], 'true', true) ?>>Yes</option>
+		</select>
+	</div>
+
+	<div class="option">
+		<label>Full Width?</label>
+		<select name="kjd_cycler_misc_settings[kjd_cycler_misc][full_width]">
+			<option value="false" <?php selected( $options['kjd_cycler_misc']['full_width'], 'false', true) ?>>No</option>
+			<option value="true" <?php selected( $options['kjd_cycler_misc']['full_width'], 'true', true) ?>>Yes</option>
 		</select>
 	</div>
 
@@ -342,7 +350,8 @@ function kjd_cycler_images_callback(){
 					<label class="banner">Banner Text</label>
 <?php 
 wp_editor( $cycler[$key]['text'], 'kjd_cycler_images_settings[kjd_cycler_images]['.$key.'][text]',
-$settings = array('textarea_rows' =>1,'editor_class'=>'whiteBackground','editor_css'=>'<style>.mceIframeContainer{background:white;}</style>',
+$settings = array('textarea_rows' =>1,'editor_class'=>'whiteBackground',
+	'editor_css'=>'<style>.mceIframeContainer{background:url('.esc_url( $cycler[$key]['url'] ).') ;}</style>',
 	'textarea_name' =>'kjd_cycler_images_settings[kjd_cycler_images]['.$key.'][text]') );
 ?>
 				</div>

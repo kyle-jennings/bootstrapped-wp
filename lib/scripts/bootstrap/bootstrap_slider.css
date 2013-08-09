@@ -1,0 +1,34 @@
+.carousel_full_width .slider-background{
+  height: auto;
+  width: 100%;
+}
+
+.carousel .item {
+  position: relative;
+}
+
+ .carousel .slider-background {
+  border: 0;
+  display: block;
+  float: left;
+  height: auto;
+  width: 100%;
+  z-index:1;
+}
+  .carousel .slider-copy-wrapper {
+      position: absolute;
+
+      width: 100%;
+      z-index: 5;
+ }  
+
+   .carousel .slider-copy-wrapper .slider-copy,
+   .carousel .slider-copy-wrapper .slider-copy *{ 
+    text-shadow: 1px 1px 1px black !important;
+  }
+   .carousel .container{
+    /*text-align: center;*/
+    padding: 40px 0 0;
+    /*width: 90%;*/
+  }
+

@@ -20,6 +20,8 @@ get_header();
 	$showImageSlider = get_option('kjd_cycler_misc_settings');
 	$showImageSlider = $showImageSlider['kjd_cycler_misc']['enable'];
 
+	$pagination_top = get_option('kjd_posts_misc_settings');
+	$pagination_top = $pagination_top['pagination_top'];
 
 
 if($showImageSlider =='true')
