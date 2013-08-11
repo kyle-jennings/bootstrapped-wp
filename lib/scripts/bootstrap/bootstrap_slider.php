@@ -8,9 +8,10 @@
   <ol class="carousel-indicators">
   	<?php
   		$i=0;
-		foreach($images as $image){  
+		foreach($images as $image){ 
+			$first_slide = ($i ==0) ? 'class="active"'  : '' ; 
 			$i++;
-    		echo '<li data-target="#myCarousel" data-slide-to="' . $i . '" class="active"></li>';
+    		echo '<li '.$first_slide.' data-target="#myCarousel" data-slide-to="' . $i . '"></li>';
 		}
   	?>
   </ol>
@@ -21,9 +22,9 @@
 	<?php 
   		$i=0;
 		foreach($images as $image){  
-
+			$first_slide = ($i ==0) ? ' active'  : '' ;
 			$i++;
-			echo '<div class="active item">';
+			echo '<div class="item' . $first_slide . '">';
 			
 			if( !empty($image['url']) ){ 
 				echo '<img class="slider-background" src="' . $image['url'] . '" />';

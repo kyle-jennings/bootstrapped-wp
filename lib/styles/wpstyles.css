@@ -27,6 +27,7 @@ div.aligncenter {
 
 a img.alignright {
     float: right;
+    margin-left: 30px;
 }
 
 a img.alignnone {
@@ -35,7 +36,7 @@ a img.alignnone {
 
 a img.alignleft {
     float: left;
-
+    margin-right: 30px;
 }
 
 a img.aligncenter {

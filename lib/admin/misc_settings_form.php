@@ -2,52 +2,52 @@
 
 if($section =="header"){
 
-	kjd_header_misc_settings_callback();
+	kjd_header_misc_settings_callback($section);
 
 }elseif($section =="login"){
 
-	kjd_login_misc_settings_callback();
+	kjd_login_misc_settings_callback($section);
 
 }elseif($section =="navbar"){
 
-	kjd_navbar_misc_settings_callback();
+	kjd_navbar_misc_settings_callback($section);
 
 }elseif($section =="pageTitle"){
 
-	kjd_title_misc_settings_callback();
+	kjd_title_misc_settings_callback($section);
 
 }elseif($section =="body"){
 
-	kjd_body_misc_settings_callback();
+	kjd_body_misc_settings_callback($section);
 
 }elseif($section =="posts"){
 
-	kjd_posts_misc_settings_callback();	
+	kjd_posts_misc_settings_callback($section);	
 
 }elseif($section =="footer"){
 
-	kjd_footer_misc_settings_callback();
+	kjd_footer_misc_settings_callback($section);
 
 }
 
-function kjd_title_misc_settings_callback(){
+function kjd_title_misc_settings_callback($section){
 	settings_fields( 'kjd_pageTitle_misc_settings' );
 	$options = get_option('kjd_pageTitle_misc_settings');
 	$options = $options['kjd_pageTitle_misc'];
-	$glowSettings = array('none','left-right','top-bottom', 'all-sides','top','bottom');	
+	
 ?>
 	<div class="optionsWrapper">
 
 		<?php 
-			echo kjd_confine_section_toggle($section);
+			echo kjd_confine_section_toggle($section, $options);
 		?>
 	
 		<?php
-			echo kjd_float_section_toggle($section);
+			echo kjd_float_section_toggle($section, $options);
 		?>
 
 		<?php
-			echo kjd_set_section_margin($section);
+			echo kjd_set_section_margin($section, $options);
 		?>
 
 	</div>
@@ -66,7 +66,7 @@ function kjd_title_misc_settings_callback(){
 }
 
 
-function kjd_login_misc_settings_callback(){	
+function kjd_login_misc_settings_callback($section){	
 	settings_fields( 'kjd_login_misc_settings' );
 	$logoOptions = get_option('kjd_login_misc_settings'); 
 	$logo = $logoOptions['kjd_loginPage_logo'];
@@ -87,7 +87,7 @@ function kjd_login_misc_settings_callback(){
 <?php
 }
 
-function kjd_header_misc_settings_callback(){
+function kjd_header_misc_settings_callback($section){
 		settings_fields( 'kjd_header_misc_settings' );
 		$options = get_option('kjd_header_misc_settings'); 
 		$options = $options['kjd_header_misc'];
@@ -126,15 +126,15 @@ function kjd_header_misc_settings_callback(){
 			</div>
 
 		<?php 
-			echo kjd_confine_section_toggle($section);
+			echo kjd_confine_section_toggle($section, $options);
 		?>
 	
 		<?php
-			echo kjd_float_section_toggle($section);
+			echo kjd_float_section_toggle($section, $options);
 		?>
 
 		<?php
-			echo kjd_set_section_margin($section);
+			echo kjd_set_section_margin($section, $options);
 		?>
 				
 		<div class="option">
@@ -166,7 +166,7 @@ function kjd_header_misc_settings_callback(){
 <?php
 }
 
-function kjd_navbar_misc_settings_callback(){ 
+function kjd_navbar_misc_settings_callback($section){ 
 	settings_fields( 'kjd_navbar_misc_settings' );
 	$options = get_option('kjd_navbar_misc_settings');
 	$options = $options['kjd_navbar_misc'];
@@ -188,6 +188,17 @@ function kjd_navbar_misc_settings_callback(){
 					<?php } ?>
 				</select>
 			</div>
+
+			<div class="option">
+				<label>Move to header and align?</label>
+				<select name="kjd_navbar_misc_settings[kjd_navbar_misc][kjd_navbar_pull_up]">
+					<option value="false" <?php selected( $options['kjd_navbar_pull_up'], 'false', true ) ?>>No</option>
+					<option value="true" <?php selected( $options['kjd_navbar_pull_up'], 'true', true) ?>>Yes</option>
+				</select>
+				<input name="kjd_navbar_misc_settings[kjd_navbar_misc][kjd_navbar_margin_top]" 
+				value="<?php echo  $options['kjd_navbar_margin_top'] ?  $options['kjd_navbar_margin_top'] : ''; ?>"
+				style="width:40px;"/>px.
+			</div>	
 
 			<div class="option">
 				<label>Nav link style</label>
@@ -216,30 +227,24 @@ function kjd_navbar_misc_settings_callback(){
 			</div>
 
 		<?php 
-			echo kjd_confine_section_toggle($section);
+			// echo kjd_confine_section_toggle($section, $options);
 		?>
 
 		<?php
-			echo kjd_float_section_toggle($section);
+			echo kjd_float_section_toggle($section, $options);
 		?>
 
 		<?php
-			echo kjd_set_section_margin($section);
+			echo kjd_set_section_margin($section, $options);
+		?>
+
+		<?php
+			echo kjd_section_glow_toggle($section, $options);
 		?>
 		
-			<div class="option">
-				<label>Move to header and align?</label>
-				<select name="kjd_navbar_misc_settings[kjd_navbar_misc][kjd_navbar_pull_up]">
-					<option value="false" <?php selected( $options['kjd_navbar_pull_up'], 'false', true ) ?>>No</option>
-					<option value="true" <?php selected( $options['kjd_navbar_pull_up'], 'true', true) ?>>Yes</option>
-				</select>
-				<input name="kjd_navbar_misc_settings[kjd_navbar_misc][kjd_navbar_margin_top]" 
-				value="<?php echo  $options['kjd_navbar_margin_top'] ?  $options['kjd_navbar_margin_top'] : ''; ?>"
-				style="width:40px;"/>px.
-			</div>	
 
 			<div class="option">
-				<label>Remove left padding on first link</label>
+				<label>Flush links to side?</label>
 				<select name="kjd_navbar_misc_settings[kjd_navbar_misc][flush_first_link]">
 						<option value="false" <?php selected( $options['flush_first_link'], 'false', true) ?>>No</option>
 						<option value="true" <?php selected( $options['flush_first_link'], 'true', true) ?>>Yes</option>
@@ -253,11 +258,6 @@ function kjd_navbar_misc_settings_callback(){
 						<option value="true" <?php selected( $options['hideNav'], 'true', true) ?>>Yes</option>
 				</select>
 			</div>
-
-
-	
-
-
 
 		</div>
 
@@ -317,28 +317,32 @@ function kjd_navbar_misc_settings_callback(){
 }
 
 /* ------------------------- Body Misc Settings --------------------------- */
-function kjd_body_misc_settings_callback(){
+function kjd_body_misc_settings_callback($section){
 	settings_fields( 'kjd_body_misc_settings' );
 	$options = get_option('kjd_body_misc_settings');
 	$options = $options['kjd_body_misc'];
 
-	$glowSettings = array('none','left-right','top-bottom', 'all-sides','top','bottom');	
+	
 ?>
 	<div class="optionsWrapper">
 
 		<?php 
-			echo kjd_confine_section_toggle($section);
+			echo kjd_confine_section_toggle($section, $options);
 		?>
 
 		<?php
-			echo kjd_float_section_toggle($section);
+			echo kjd_float_section_toggle($section, $options);
 		?>
 
 		<?php
-			echo kjd_set_section_margin($section);
+			echo kjd_set_section_margin($section, $options);
 		?>
 
+		<?php
+			echo kjd_section_glow_toggle($section, $options);
+		?>
 
+		
 	</div>			
 <?php
 }
@@ -355,6 +359,38 @@ function kjd_posts_misc_settings_callback()
 			//well color and opacity
 
 ?>
+
+	<div class="optionsWrapper">
+		<h3>Post/Page Styles</h3>
+
+		<div class="option"> 
+			<label>Style Posts?</label>
+			<select name="kjd_posts_misc_settings[kjd_posts_misc][style_posts]">
+				<option value="true" <?php selected( $options['style_posts'], "true", true) ?>>Yes</option>
+				<option value="false" <?php selected( $options['style_posts'], "false", true) ?>>No</option>
+			<select>
+		</div>
+
+
+		<h3>Misc Colors</h3>
+
+		<div class="color_option option" style="position: relative;">
+			<label>Post Titles Bottom Border</label>
+
+			<input class="minicolors" name="kjd_posts_misc_settings[kjd_posts_misc][post_info_border]" 
+				value="<?php echo $options['post_info_border'] ? $options['post_info_border'] : ''; ?>"/>
+			<a class="clearColor">Clear</a>
+		</div>
+
+		<div class="color_option option" style="position: relative;">
+			<label>Blockquote Color</label>
+
+			<input class="minicolors" name="kjd_posts_misc_settings[kjd_posts_misc][blockquote]" 
+				value="<?php echo $options['blockquote'] ? $options['blockquote'] : ''; ?>"/>
+			<a class="clearColor">Clear</a>
+		</div>
+	
+	</div>
 
 	<div class="optionsWrapper">
 
@@ -393,7 +429,7 @@ function kjd_posts_misc_settings_callback()
 		</div> 
 	</div>
 
-	<div class="option-wraper featured-image-settings">
+	<div class="option-wraper featured-image-settings" <?php echo $options['show_featured_image'] == 'true' ? 'style="display:block;"' : 'style="display:none;"';?>>
 		<div class="option"> 
 			<label>Featured/Author Image Position</label>
 			<select name="kjd_posts_misc_settings[kjd_posts_misc][featured_position]">
@@ -418,40 +454,6 @@ function kjd_posts_misc_settings_callback()
 	</div>
 
 
-	<div class="optionsWrapper">
-		<h3>Post/Page Listing</h3>
-
-		<div class="option"> 
-			<label>Style Posts?</label>
-			<select name="kjd_posts_misc_settings[kjd_posts_misc][style_posts]">
-				<option value="true" <?php selected( $options['style_posts'], "true", true) ?>>Yes</option>
-				<option value="false" <?php selected( $options['style_posts'], "false", true) ?>>No</option>
-			<select>
-		</div>
-		
-	</div>
-
-<!-- Misc Colors -->
-	<div class="options-wrapper">
-		
-		<h3>Misc Colors</h3>
-
-		<div class="color_option option" style="position: relative;">
-			<label>Post Titles Bottom Border</label>
-
-			<input class="minicolors" name="kjd_posts_misc_settings[kjd_posts_misc][post_info_border]" 
-				value="<?php echo $options['post_info_border'] ? $options['post_info_border'] : ''; ?>"/>
-			<a class="clearColor">Clear</a>
-		</div>
-
-		<div class="color_option option" style="position: relative;">
-			<label>Blockquote Color</label>
-
-			<input class="minicolors" name="kjd_posts_misc_settings[kjd_posts_misc][blockquote]" 
-				value="<?php echo $options['blockquote'] ? $options['blockquote'] : ''; ?>"/>
-			<a class="clearColor">Clear</a>
-		</div>
-	</div>
 
 	<div class="options-wrapper">
 
@@ -477,17 +479,17 @@ function kjd_posts_misc_settings_callback()
 
 
 /* ---------------------------  Footer Misc settings ----------------------------- */
-function kjd_footer_misc_settings_callback(){
+function kjd_footer_misc_settings_callback($section){
 	settings_fields( 'kjd_footer_misc_settings' );
 	$options = get_option('kjd_footer_misc_settings');
 	$options = $options['kjd_footer_misc'];
 
-	$glowSettings = array('none','left-right','top-bottom', 'all-sides','top','bottom');	
+	
 ?>
 	<div class="optionsWrapper">
 
 		<?php 
-			echo kjd_confine_section_toggle($section);
+			echo kjd_confine_section_toggle($section, $options);
 		?>
 
 		<div class="option">
@@ -527,35 +529,35 @@ function kjd_footer_misc_settings_callback(){
 
 /* --------------------------------- repeated settings --------------------------------- */
 
-function kjd_confine_section_toggle($section) {
+function kjd_confine_section_toggle($section, $options) {
 
 	$option_markup ='';
 	$option_markup .= '<div class="option">';
 		$option_markup .= '<label>Confine Background?</label>';
 		$option_markup .= '<select name="kjd_'.$section.'_misc_settings[kjd_'.$section.'_misc][kjd_'.$section.'_confine_background]">';
-			$option_markup .= '<option value="true" '. selected( $options['kjd_'.$section.'_confine_background'], 'true', true) .'>Yes</option>';
-			$option_markup .= '<option value="false" '. selected( $options['kjd_'.$section.'_confine_background'], 'false', true ) .'>No</option>';
+			$option_markup .= '<option value="true" '. selected( $options['kjd_'.$section.'_confine_background'], 'true', false) .'>Yes</option>';
+			$option_markup .= '<option value="false" '. selected( $options['kjd_'.$section.'_confine_background'], 'false', false ) .'>No</option>';
 		$option_markup .= '</select>';
 	$option_markup .= '</div>';
 
 	return $option_markup;
 }
 
-function kjd_float_section_toggle($section) {
+function kjd_float_section_toggle($section, $options) {
 
 	$option_markup ='';
 	$option_markup .= '<div class="option float-toggle">';
 		$option_markup .= '<label>Float Navbar Area</label>';
 		$option_markup .= '<select name="kjd_'.$section.'_misc_settings[kjd_'.$section.'_misc][float][toggle]">';
-				$option_markup .= '<option value="true" '.selected( $options['float']['toggle'], 'true', true) .'>Yes</option>';
-				$option_markup .= '<option value="false" '.selected( $options['float']['toggle'], 'false', true) .'>No</option>';
+				$option_markup .= '<option value="true" '.selected( $options["float"]["toggle"], "true", false) .'>Yes</option>';
+				$option_markup .= '<option value="false" '.selected( $options["float"]["toggle"], "false", false) .'>No</option>';
 		$option_markup .= '</select>';
 	$option_markup .= '</div>';
 	
 	return $option_markup;
 }
 
-function kjd_set_section_margin($section) {
+function kjd_set_section_margin($section, $options) {
 	$option_markup ='';
 	
 	$toggle_class = $options['float']['toggle']=='true' ? 'style="display:block;"' : 'style="display:none;"' ;
@@ -579,18 +581,22 @@ function kjd_set_section_margin($section) {
 	return $option_markup;
 }
 
-function kjd_section_glow_toggle($section) {
+function kjd_section_glow_toggle($section, $options) {
 	
-	$option_markup = '';
-	$option_markup .= '<div class="option">';
-	$option_markup .= '<label>Outer glow</label>';
-	$option_markup .= '<select name="kjd_'.$section.'_misc_settings[kjd_'.$section.'_misc][kjd_'.$section.'_section_shadow]">';
-	foreach($glowSettings as $glow){ 
-			$option_markup .= '<option value="'.$glow.' '.selected( $options['kjd_'.$section.'_section_shadow'], $glow, true) . '>';
-				$option_markup .= $glow;
-			$option_markup .= '</option>';
-	}
-	$option_markup .= '</select>';
+// 	$sides = array('none','left and right','top and bottom', 'top','bottom', 'all sides');
 
-return $option_markup;
+// 	$option_markup = '';
+// 	$option_markup .= '<div class="option">';
+// 	$option_markup .= '<label>Outer glow</label>';
+// 	$option_markup .= '<select name="kjd_'.$section.'_misc_settings[kjd_'.$section.'_misc]['.$section.'_section_shadow]">';
+
+// 	foreach($sides as $shadow){ 
+// 			$option_markup .= '<option value="'.$shadow.'" '.selected( $options[$section.'_section_shadow'], $shadow, false) . '>';
+// 				$option_markup .= $shadow;
+// 			$option_markup .= '</option>';
+// 	}
+
+// 	$option_markup .= '</select>';
+// 	$option_markup .= '</div>';
+// return $option_markup;
 }

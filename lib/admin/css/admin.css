@@ -36,17 +36,30 @@ form.kjd-options{
   height:100%;
 }
 div.preview-options{
+  border:1px solid black;
   float:left;
-  display:none;
+  height: 600px;
+  overflow:auto;
+  width: auto;
+  max-width:1000px ;
 }
 
 form .fields-wrapper{
-  /*float:left;*/
-  /*width:650px;*/
+  float:left;
+  width:350px;
 }
-.optionsWrapper{clear:both; float:left; margin-bottom:20px; width:99%;}
+
+.kjd-options_page_kjd_cycler_settings form .fields-wrapper{
+   width:100%;
+}
+
+.optionsWrapper, .options-wrapper{clear:both; float:left; margin-bottom:20px; width:99%;}
+
 .option{clear:both; float:left; margin-bottom:20px; width:99%;}
-.option label{display:inline-block; float:left;  width:200px;}
+/*.option label{display:inline-block; float:left;  width:200px;}*/
+
+.option label{display:block; font-weight: bold;}
+
 .option select{float:left;}
 .option input{float:left;}
 .option input.smallInput{width:50px;}
@@ -300,7 +313,15 @@ bootstrap stuff for component settings
   clear:both;
   display: block;
   line-height: 24px; 
+}
+
+.cycler_mgmt .ui-state-highlight {
+
   min-height: 320px;
+}
+
+#frontpage-sortables .ui-state-highlight {
+  min-height: 35px;
 }
 
 .cycler_mgmt textarea{resize:none;}

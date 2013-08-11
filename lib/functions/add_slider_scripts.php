@@ -87,7 +87,7 @@ function kjd_bootstrap_slider_hook(){
 	$script_output .= '<script>';
 		$script_output .= 'jQuery(function($) {';
     		$script_output .= '$(".carousel").carousel({';
-			  $script_output .= 'interval: 2000';
+			  $script_output .= 'interval: 3000';
 			  // $script_output .= 'pause: "hover"';
 			$script_output .= '})';
 		$script_output .= '});';

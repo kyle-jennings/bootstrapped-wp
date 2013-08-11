@@ -26,6 +26,7 @@ function kjd_misc_backgrounds_display() {
 
     <?php settings_errors(); ?>  
 	<form method="post" action="options.php">  
+		<div class="fields-wrapper">
 	<?php 
 	if( $active_tab == 'htmlTag' ) { 
 		kjd_htmlTag_background_callback('htmlTag');
@@ -38,6 +39,18 @@ function kjd_misc_backgrounds_display() {
 	}
 	submit_button(); 
 	?>  
+			</div>
+
+		<?php if( $active_tab != 'cycler Images' && $active_tab != 'cycler Settings'){ ?>
+		<div class="preview-options">
+			<iframe src="<?php echo get_site_url(); ?>" width="1200" height="600"></iframe>
+
+		</div>
+		
+		
+		<?php } ?>
+
+
 	</form>
 
 <?php

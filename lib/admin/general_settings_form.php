@@ -203,7 +203,12 @@ function kjd_theme_widget_areas_callback(){
 				<label>
 					<span><?php echo ucwords($area); ?></span>
 					<input type="checkbox" name="kjd_widget_areas_settings[widget_areas][<?php echo $area;?>]" value="true" 
-					<?php checked( $options['widget_areas'][$area], 'true', true ) ?> />
+					<?php 
+					if( isset($options['widget_areas'][$area]) ){
+						checked( $options['widget_areas'][$area], 'true', true ); 
+					} 
+					?>
+					 />
 				</label>
 			</li>
 		<?php } ?>

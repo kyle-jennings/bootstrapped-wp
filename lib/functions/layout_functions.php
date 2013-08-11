@@ -237,15 +237,15 @@ function kjd_build_breadcrumbs() {
 	$show_on_home   = 0; // 1 - show breadcrumbs on the homepage, 0 - don't show
 	$show_home_link = 1; // 1 - show the 'Home' link, 0 - don't show
 	$show_title     = 1; // 1 - show the title for the links, 0 - don't show
-	$delimiter      = ' &raquo; '; // delimiter between crumbs
-	$before         = '<span class="current">'; // tag before the current crumb
-	$after          = '</span>'; // tag after the current crumb
+	$delimiter      = '<span class="divider"> &#47; </span>'; // delimiter between crumbs
+	$before         = '<li class="current">'; // tag before the current crumb
+	$after          = '</li>'; // tag after the current crumb
 	/* === END OF OPTIONS === */
 
 	global $post;
 	$home_link    = home_url('/');
-	$link_before  = '<span typeof="v:Breadcrumb">';
-	$link_after   = '</span>';
+	$link_before  = '<li>';
+	$link_after   = '</li>';
 	$link_attr    = ' rel="v:url" property="v:title"';
 	$link         = $link_before . '<a' . $link_attr . ' href="%1$s">%2$s</a>' . $link_after;
 	$parent_id    = $parent_id_2 = $post->post_parent;
@@ -259,7 +259,7 @@ function kjd_build_breadcrumbs() {
 
 	} else {
 
-		$breadcrumbs_output .= '<div class="breadcrumbs" xmlns:v="http://rdf.data-vocabulary.org/#">';
+		$breadcrumbs_output .= '<ul class="breadcrumb">';
 		
 		if ($show_home_link == 1) {
 			$breadcrumbs_output .=  sprintf($link, $home_link, $text['home']);
@@ -368,7 +368,7 @@ function kjd_build_breadcrumbs() {
 			if ( is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author() ) $breadcrumbs_output .= ')';
 		}
 
-		$breadcrumbs_output .= '</div><!-- .breadcrumbs -->';
+		$breadcrumbs_output .= '</ul><!-- .breadcrumbs -->';
 
 		return $breadcrumbs_output;
 	}

@@ -90,7 +90,7 @@ function kjd_post_templates_callback(){
 // form
 /////////////////////////
 function kjd_layout_form_callback($settings,$type, $layout){ 
-	$deviceViews = array('all','visible-desktop','hidden-phone','hidden-tablet');
+	$deviceViews = array('visible-phone','visible-tablet','visible-desktop','hidden-phone','hidden-tablet','hidden-desktop','all');
 ?>
 <input type="hidden" name="kjd_<?php echo $type;?>_layout_settings[kjd_<?php echo $type; ?>_layouts][<?php echo $layout;?>][name]" value = "<?php echo $layout;?>">
 	<div class="option"> 
@@ -153,6 +153,9 @@ function kjd_front_page_settings(){
 	$layoutOrder = $options['kjd_frontPage_layout'];
 	
 	$components = array('widget_area_1','widget_area_2','content','secondary_content');//'image_slider'
+	
+	$deviceViews = array('all','visible-phone','visible-tablet','visible-desktop','hidden-phone','hidden-tablet','hidden-desktop');
+
 	$activeComponents = array();
 	if(!empty($layoutOrder)){
 		foreach($layoutOrder as $orderNum){
@@ -166,30 +169,32 @@ function kjd_front_page_settings(){
 ?>
 
 	<h3>Frontpage layout</h3>
-	<div id='frontpage-sortables' class="option">
-<?php 
-// echo "<pre>"; 
-// var_dump($layoutOrder);
-// echo "</pre>"; 
-
-?>
-		<div class="postbox frontPageLayoutList">
-			<h3><span>Active Page Components</span></h3>
-			
-				<ul id="activeComponents" class="connectedSortable">
-				<?php foreach($activeComponents as $key => $value){
-					?>
-					<li class="menu-item-handle" id="<?php echo 'componentOrder_'.$key; ?>">
-						<?php echo $layoutOrder[$key]['component'] ? ucwords(str_replace('_',' ',$layoutOrder[$key]['component'])) : ucwords(str_replace('_',' ',$value));?>
-						<div>
-							<input class="component" type="hidden" name="kjd_frontPage_layout_settings[kjd_frontPage_layout][<?php echo $key;?>][component]" value="<?php echo $layoutOrder[$key]['component'] ? $layoutOrder[$key]['component'] : $value;?>"/>
-							
-							<input class="componentDisplay" type="hidden" name="kjd_frontPage_layout_settings[kjd_frontPage_layout][<?php echo $key;?>][display]" value="<?php echo $layoutOrder[$key]['componentDisplay'] ? $layoutOrder[$key]['componentDisplay'] : '';?>" />
-						</div>
-					</li>
-				<?php
-				}?>
-				</ul>
+<div id='frontpage-sortables' class="option">
+	<div class="postbox frontPageLayoutList">
+		<h3><span>Active Page Components</span></h3>
+		
+			<ul id="activeComponents" class="connectedSortable">
+			<?php foreach($activeComponents as $key => $value){
+				?>
+				<li class="menu-item-handle" id="<?php echo 'componentOrder_'.$key; ?>">
+					<?php echo $layoutOrder[$key]['component'] ? ucwords(str_replace('_',' ',$layoutOrder[$key]['component'])) : ucwords(str_replace('_',' ',$value));?>
+					<div>
+						<input class="component" type="hidden" name="kjd_frontPage_layout_settings[kjd_frontPage_layout][<?php echo $key;?>][component]" value="<?php echo $layoutOrder[$key]['component'] ? $layoutOrder[$key]['component'] : $value;?>"/>
+						
+						<select class="componentDeviceView" name="kjd_frontPage_layout_settings[kjd_frontPage_layout][<?php echo $key;?>][componentDeviceView]">
+						<?php foreach($deviceViews as $view){ ?>
+							<option value="<?php echo $view; ?>" <?php selected( $layoutOrder[$key]['componentDeviceView'], $view, true); ?>>
+								<?php echo $view; ?>
+							</option>
+						<?php } ?>
+						</select>
+						
+						<input class="componentDisplay" type="hidden" name="kjd_frontPage_layout_settings[kjd_frontPage_layout][<?php echo $key;?>][display]" value="<?php echo $layoutOrder[$key]['componentDisplay'] ? $layoutOrder[$key]['componentDisplay'] : '';?>" />
+					</div>
+				</li>
+			<?php
+			}?>
+			</ul>
 			
 		</div>
 		<div class="postbox frontPageLayoutList">
@@ -204,6 +209,14 @@ function kjd_front_page_settings(){
 					<div>
 						<input class="component" type="hidden" value="<?php echo $value;?>" name=""/>
 						<input class="componentDisplay" type="hidden" name="" value=""/>
+
+						<select class="componentDeviceView" name="">
+						<?php foreach($deviceViews as $view){ ?>
+							<option value="" >
+								<?php echo $view; ?>
+							</option>
+						<?php } ?>
+						</select>
 					</div>
 				</li>
 				<?php
@@ -216,7 +229,9 @@ function kjd_front_page_settings(){
 
 	<div class="option">
 		<label>Front Page Content</label>
-			<?php wp_editor( $options['kjd_frontPage_secondaryContent'], 'kjd_frontPage_layout_settings[kjd_frontPage_secondaryContent]' );?>
+			<?php wp_editor( $options['kjd_frontPage_secondaryContent'], 
+			'kjd_frontPage_layout_settings[kjd_frontPage_secondaryContent]', 
+			$settings = array('content_css' => get_stylesheet_directory_uri() . '/lib/styles/bootstrap/bootstrap.css')  );?>
 	</div>
 <?php
 }

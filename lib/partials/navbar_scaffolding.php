@@ -4,29 +4,6 @@ $navbarSettings = get_option('kjd_navbar_misc_settings');
 $navSettings = $navbarSettings['kjd_navbar_misc'];
 $sideNav = $navSettings['side_nav'];
 $root=get_stylesheet_directory_uri(); 
-	if(empty($navbarSettings) || !has_nav_menu( 'primary-menu' )){ 
-	?>
-		<div class="container">
-
-
-	<?php
-	
-	if(empty($navbarSettings)){ 
-	?>
-		<a href="<?php echo $root; ?>wp-admin/admin.php?page=kjd_navbar_settings&tab=misc" class="btn btn-primary btn-large">
-			Dont forget to configure your navbar settings
-	    </a>
-	<?php
-	}
-	if( !has_nav_menu( 'primary-menu' ) ){
-?>
-		<a href="<?php echo $root; ?>wp-admin/nav-menus.php"class="btn btn-primary btn-large">
-			Dont forget to set a menu.
-	    </a>
-<?php
-	}
-	echo '</div>';
-}else{
 
 	
 	
@@ -36,36 +13,48 @@ $form = $navbarSetting['form_type'];
 
 $confineNavbarBackground = $navbarSettings['kjd_navbar_confine_background'];
 
-if($navbarLinkStyle == "dividers"){
-	?>
-	<script>
-	jQuery(document).ready(function() {  
-		jQuery('.nav > .menu-item').after('<li class="divider-vertical"></li>');
+	if($navbarSettings['hideNav'] != "true"){
 		
-	});
-	</script>
-<?php
-}
+		$nav_wrapper ='';
+		
+		switch( $navbarSettings['navbar_style'] ){
+			
+			case 'full_width':
+				$navbar_style .= 'navbar navbar-static-top';
+				break ;
 
-	if($navbarSettings['hideNav'] == "false"){
+			case 'contained':
+				$navbar_style .= 'container';
+				$nav_wrapper ='<div class="navbar">';
+				break ;
 
-		if($navbarSettings['navbar_style'] == "full_width"){
-			$navbar_open = '<div id="navbar" class="navbar navbar-static-top">';
-		}elseif($navbarSettings['navbar_style'] =="contained"){
-			$navbar_open = '<div id="navbar" class="navbarWrapper container"><div class="navbar">';
-		}elseif($navbarSettings['navbar_style'] == "sticky-top"){
-			$navbar_open = '<div id="navbar" class="navbar navbar-fixed-top">';
-		}elseif($navbarSettings['navbar_style'] == "sticky-bottom"){
-			$navbar_open = '<div id="navbar" class="navbar navbar-fixed-bottom">';
-		}elseif($navbarSettings['navbar_style'] == "page-top"){
-			$navbar_open = '<div id="navbar" class="navbar navbar-static-top">';
-		}else{ 
-			$navbar_open = '<div id="navbar" class="navbar navbar-static-top">';
-		} 
+			case 'sticky-top':
+				$navbar_style .= 'navbar navbar-fixed-top';
+				break ;
+		
+			case 'sticky-bottom':
+				$navbar_style .= 'navbar navbar-fixed-bottom';
+				break ;
+		
+			case 'page-top':
+				$navbar_style .= 'navbar navbar-static-top';
+				break ;
+		
+		default:
+				$navbar_style .= 'navbar navbar-static-top';
+				break ;
+		}
+
+		$navbar_open = '<div id="navbar" class="'. $navbar_style . '">';
+		$navbar_open .= $nav_wrapper;
 
 		$navbar_inner = '';
 			$navbar_inner .= '<div class="navbar-inner">';
-			$navbar_inner .= '<div class="container">';
+
+			if( $navbar_style != 'contained' ){
+				$navbar_inner .= '<div class="container">';
+			}
+			
 			if($sideNav == 'true'){
 				$navbar_inner .= '<a id="sidr-toggle" class="btn btn-navbar">
 				    <span class="icon-bar"></span>
@@ -81,49 +70,26 @@ if($navbarLinkStyle == "dividers"){
 			}
 				
 					$navbar_inner .='<div class="nav-collapse collapse navbar-responsive-collapse">';
-					ob_start();
-					menuStyleCallback($navbarLinkStyle);
-					$navbar_contents = ob_get_contents();
-					ob_end_clean();
+						ob_start();
+						menuStyleCallback($navbarLinkStyle);
+						$navbar_contents = ob_get_contents();
+						ob_end_clean();
 					$navbar_inner .= $navbar_contents;
 					$navbar_inner .= '</div>';
+				
+				if( $navbar_style != 'contained' ){
+					$navbar_inner .='</div>'; // end container -->
+				}
 
-				$navbar_inner .='</div>'; // end container -->
 			$navbar_inner .='</div>'; // end navbar-inner-->
 
-		 if($navbarSettings['navbar_style'] == "full_width"){
-			$navbar_close = '</div>';
-		}elseif($navbarSettings['navbar_style'] =="contained"){
+
+
+		if($navbarSettings['navbar_style'] =="contained"){
 			$navbar_close = '</div></div>';
-		}elseif($navbarSettings['navbar_style'] == "sticky-top"){
-			$navbar_close = '</div>';
-		}elseif($navbarSettings['navbar_style'] == "sticky-bottom"){
-			$navbar_close = '</div>';
 		}else{
 			$navbar_close = '</div>';
 		} 
 	}
-echo $navbar_open; 
-echo $navbar_inner;
-echo $navbar_close; 
-}
-	
 
-
-function menuStyleCallback($navbarLinkStyle){
-	if($navbarLinkStyle == "none" ){
-		wp_nav_menu(array('theme_location' => 'primary-menu', 'menu_class' =>'nav nav-noBG','container'=> '','walker'=> new dropDown() ) );
-	}elseif($navbarLinkStyle == "dividers" ){
-		wp_nav_menu(array('theme_location' => 'primary-menu', 'menu_class' =>'nav','container'=> '','walker'=> new dropDown() ) );
-	}elseif($navbarLinkStyle == "highlighted" ){
-		wp_nav_menu(array('theme_location' => 'primary-menu', 'menu_class' =>'nav','container'=> '','walker'=> new dropDown() ) );
-	}elseif($navbarLinkStyle == "pills"){
-			wp_nav_menu(array('theme_location' => 'primary-menu', 'menu_class' =>'nav nav-pills','container'=> '','walker'=> new dropDown() ) );
-	}elseif($navbarLinkStyle == "tabs"){
-			wp_nav_menu(array('theme_location' => 'primary-menu', 'menu_class' =>'nav nav-tabs','container'=> '','walker'=> new dropDown() ) );
-	}elseif($navbarLinkStyle == "tabs-below"){
-			wp_nav_menu(array('theme_location' => 'primary-menu', 'menu_class' =>'nav nav-tabs tabs-below','container'=> '','walker'=> new dropDown() ) );
-	}else{
-
-	}
-}
+echo $navbar_open . $navbar_inner . $navbar_close; 

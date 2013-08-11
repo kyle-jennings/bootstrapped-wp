@@ -60,6 +60,11 @@
 						<option value="vertical" <?php selected( $colorSettings['gradient'], "vertical", true) ?>>Vertical</option>
 						<option value="horizontal" <?php selected( $colorSettings['gradient'], "horizontal", true) ?>>Horizontal</option>
 						<option value="radial" <?php selected( $colorSettings['gradient'], "radial", true) ?>>Radial</option>
+						<?php if($section =='navbar'){ ?>
+						
+						<option value="bootstrap_default" <?php selected( $colorSettings['gradient'], "bootstrap_default", true) ?>>Bootstrap Default</option>
+
+						<?php } ?>
 				</select>
 			</div>
 

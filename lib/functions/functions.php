@@ -386,3 +386,35 @@ function kjd_get_featured_image($position = null, $wrapper = 'div'){
 
 	return $featured_image_markup;
 }
+
+/* ------------------------- Navbar functions -------------------------------*/
+function menuStyleCallback($navbarLinkStyle){
+	
+	$menu_class = 'nav';
+	
+	switch($navbarLinkStyle){
+		case 'none':
+
+			$menu_class .= ' nav-noBG';
+			break;
+		case 'dividers':
+
+			$menu_class .= ' nav-dividers';
+			break;
+		case 'pills':
+
+			$menu_class .= ' nav-pills';
+			break;
+		case 'tabs':
+
+			$menu_class .= ' nav-tabs';
+			break;
+		case 'tabs-below':
+
+			$menu_class .= ' nav-tabs tabs-below';	
+			break;
+	}
+
+	wp_nav_menu(array('theme_location' => 'primary-menu', 'menu_class' =>$menu_class,'container'=> '','walker'=> new dropDown() ) );
+
+}

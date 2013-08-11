@@ -2,7 +2,7 @@
 	settings_fields('kjd_'.$section.'_links_settings' );
 	$options = get_option('kjd_'.$section.'_links_settings'); 
 
-	$linkElements = array('Normal Link' => 'link','Hovered Link' => 'linkHovered','Active Link' => 'linkActive','Visted Link' => 'linkVisited');
+	$linkElements = array('Normal Link' => 'link','Hovered Link' => 'linkHovered','Active Link' => 'linkActive','Visited Link' => 'linkVisited');
 	
 	$backgroundStyles = array('none','highlighted','pills');
 	$decorationStyles = array('none','overline','underline','line-through','text-shadow','outline');

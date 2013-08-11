@@ -304,6 +304,7 @@ function kjd_cycler_images_callback(){
 		<li>All images should be the EXACT same size. Otherwise, you will not see smooth transitions.</li>
 		<li>We reccommend uploading images which are at least 1200 pixels wide, and no more than 400 pixels tall.</li>
 		<li>To reorder your images, just click and drag them!</li>
+		<li>When you remove or reorder an image, <b>dont forget to click "save changes"</b>. We are working on this.</li>
 	</ol>
 
 	<div class="option banner_image_options">
@@ -347,12 +348,19 @@ function kjd_cycler_images_callback(){
 
 			<div class="halfWidth">
 				<div class="option">
-					<label class="banner">Banner Text</label>
+					<label class="banner">Banner Text <?php echo $key; ?></label>
 <?php 
-wp_editor( $cycler[$key]['text'], 'kjd_cycler_images_settings[kjd_cycler_images]['.$key.'][text]',
-$settings = array('textarea_rows' =>1,'editor_class'=>'whiteBackground',
-	'editor_css'=>'<style>.mceIframeContainer{background:url('.esc_url( $cycler[$key]['url'] ).') ;}</style>',
-	'textarea_name' =>'kjd_cycler_images_settings[kjd_cycler_images]['.$key.'][text]') );
+
+	$mce_instance = $cycler[$key]['text'];
+	$mce_ID = 'kjd_cycler_images_settings[kjd_cycler_images]['.$key.'][text]';
+	$style = '.mceIframeContainer{background-image:url('. $cycler[$key]['url'] .'); background-size:cover; }';
+	$settings = array(
+				'textarea_rows' =>1,
+				'editor_class'=>'whiteBackground',
+				'editor_css'=>'<style scoped>' . $style . '</style>',
+			);
+	wp_editor( $mce_instance, $mce_ID, $settings );
+
 ?>
 				</div>
 			</div>
@@ -371,4 +379,3 @@ $settings = array('textarea_rows' =>1,'editor_class'=>'whiteBackground',
 	</div>
 <?php 
 }
-?>

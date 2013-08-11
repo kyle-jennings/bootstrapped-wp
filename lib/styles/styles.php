@@ -95,6 +95,8 @@ function kjd_get_theme_options(){
 			'a:visited' => $sectionLinkVisited,
 			'a:active' => $sectionLinkActive
 		);
+
+
 		// // Form Options
 		$options_components = get_option('kjd_'.$section.'_components_settings');
 		$sectionComponents = $options_components['kjd_'.$section.'_components'];
@@ -161,7 +163,7 @@ function section_markup_callback($section,$section_options){
 	extract($section_options);
 	extract($backgroundSettings);
 
-
+	
 switch($section)
 {
 	case 'dropdown-menu':
@@ -171,11 +173,9 @@ switch($section)
 		$section_name = '#imageSliderWrapper';
 		break;
 	case 'navbar':
-		if($miscSettings['navbar_style'] =="contained"){
-			$section_name = '#'.$section;
-		}else{
+
 			$section_name = '#'.$section.' .navbar-inner';
-		}
+		
 		break;
 	case 'htmlTag':
 		$section_name =  'html';
@@ -221,35 +221,48 @@ switch($section)
 	}
 
 
-//move the box shadow from .navbar-inner to #navbar
-	if($section == 'navbar' && $miscSettings['navbar_style'] =="contained"){
-		// print_r($miscSettings);die();
-		$sectionArea_markup .= 	$section_name.' .navbar-inner{box-shadow:none !important;}';
+
+
+
+	if($section == 'posts'){
+		if($miscSettings['style_posts'] == 'true'){
+			$sectionArea_markup .= 	'.content-list > .the-content-wrapper.well{';
+				$sectionArea_markup .= 'margin-bottom:40px;';
+			$sectionArea_markup .=' }';
+
+			$sectionArea_markup .= 	'.content-list > .the-content-wrapper.well h3 {';
+				$sectionArea_markup .= 'margin-top:0;';
+			$sectionArea_markup .=' }';
+		}
+
 	}
-
-
-if($section == 'posts'){
-	if($miscSettings['style_posts'] == 'true'){
-		$sectionArea_markup .= 	'.content-list > .the-content-wrapper.well{';
-			$sectionArea_markup .= 'margin-bottom:40px;';
-		$sectionArea_markup .=' }';
-
-		$sectionArea_markup .= 	'.content-list > .the-content-wrapper.well h3 {';
-			$sectionArea_markup .= 'margin-top:0;';
-		$sectionArea_markup .=' }';
-	}
-
-}
 
 
 // start section markup
 	$sectionArea_markup .= $section_name.'{';
 
-	if($section == 'navbar' && $miscSettings['navbar_style'] =="contained"){
-		// print_r($miscSettings);die();
-		$sectionArea_markup .= 'box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067); padding:0 20px;';
-	}
 
+	if(!empty($miscSettings[$section.'_section_shadow']) && $miscSettings[$section.'_section_shadow'] != 'none'){
+
+
+		switch( $miscSettings[$section.'_section_shadow'] ){
+			case 'left and right':
+
+				$sectionArea_markup .= 'box-shadow: 0 9px 0px 0px white, 0 -9px 0px 0px white, ';
+				$sectionArea_markup .= '12px 0 15px -4px rgba(31, 73, 125, 0.8), -12px 0 15px -4px rgba(31, 73, 125, 0.8);';
+				break;
+			case 'top and bottom':
+				break;
+			case 'top':
+				break;
+			case 'bottom':
+				break;
+			case 'all sides':
+				break;
+
+		}
+
+	}
 
 	if(!empty($miscSettings['float']['toggle']) && $miscSettings['float']['toggle'] == 'true'){
 
@@ -299,6 +312,7 @@ if($section == 'posts'){
 
 	//color
 	$sectionArea_markup .= 'color:'.$sectionText['color'].';';
+	
 	//hide header
 	if($section =='header' && $hideHeader == 'true'){
 		$sectionArea_markup .= 'display:none !important;';
@@ -342,12 +356,13 @@ if($section == 'posts'){
 
 
 	// Link and HTgag styles
-	if($section !='bodyTag' && $section !='htmlTag' && $section != 'mastArea' && $section !='cycler' && $section !="navbar" && $section !='dropdown-menu' && $section !='contentArea'){
+	if(	 $section !='bodyTag' && $section !='htmlTag' && $section != 'mastArea' &&
+		 $section !='cycler' && $section !="navbar" && $section !='dropdown-menu' && $section !='contentArea'){
 		
 		//Link settings
 		foreach($linkSettings as $link_type => $v){
 			$sectionArea_markup .= $section_name.' '.$link_type.'{';
-			$sectionArea_markup .= linkSettingsCallback($v);
+			$sectionArea_markup .= linkSettingsCallback($v, $section);
 			$sectionArea_markup .= '}';
 		}
 
@@ -472,12 +487,12 @@ function background_type_callback($type = null,$backgroundColorSettings = array(
 		$background_type .= radialGradientCallback($start_color, $end_color);
 	}elseif($type =='solid'){
 		$background_type .= 'background-color: '.$start_color.' !important;';
+		$background_type .= verticalGradientCallback($start_color, $start_color);
 	}elseif($type =='none'){
 		$background_type .= 'background-color:transparent;';
 		$background_type .= 'background-image: none;';
-	}else{
-		$background_type .= 'background-color:transparent;';
-		$background_type .= 'background-image: none;';
+	}elseif($type =='bootstrap_default'){
+
 	}
 	
 	return $background_type;
@@ -680,12 +695,13 @@ function hTagSettingsCallback($hTag){
 }
 
 // /* ------------------------- links -----------------------------*/
-function linkSettingsCallback($link){
+function linkSettingsCallback($link, $section){
 	//print_r($link);die();
 	$bg_style = $link['bg_style'];
 	$bg_color = $link['bg_color'];
 	$color = $link['color'];
 	$decoration = $link['decoration'];
+
 	if(!empty($link['text_shadow'])){
 		$shadow = $link['text_shadow'];	
 	}
@@ -696,15 +712,18 @@ function linkSettingsCallback($link){
 		$link_style_markup .= 'background:'.$bg_color.';';
 		$link_style_markup .= 'padding:4px;';
 		$link_style_markup .= 'word-break:hyphenate;';
-	}elseif($bg_style == "highlighted"){
+	}elseif( $bg_style == "highlighted" ){
 		$link_style_markup .= 'background:'.$bg_color.';';
 	}
+	
 	if(isset($color) && $color!=""){
 		$link_style_markup .= 'color:'.$color.';';
 	}
+	
 	if(isset($decoration) && $decoration!=""){
 		$link_style_markup .= 'text-decoration:'.$decoration.';';
 	}
+
 	if(isset($shadow) && $shadow!=""){
 		$link_style_markup .= 'text-shadow:'.$shadow.';';
 	}
@@ -767,35 +786,47 @@ $table_markup = '';
 
 // /* ------------------------- pagination -------------------------*/
 function paginationMarkupCallback($section, $paginationContent){
+
+$border = $paginationContent['pagination_border'];
+$background  = $paginationContent['pagination_background'];
+$text  = $paginationContent['pagination_text'];
+$link  = $paginationContent['pagination_link'];
+$background_hover  = $paginationContent['pagination_hover_background'];
+$link_hover  = $paginationContent['pagination_hover_link'];
+$background_current  = $paginationContent['pagination_current_background'];
+$text_current  = $paginationContent['pagination_current_text'];
+
 $pagination_markup = '';
 
-	$pagination_markup .= '.pagination ul li > *';
+	$pagination_markup .= '.pagination ul li > *,';
+	$pagination_markup .= '.pagination ul>li>a, .pagination ul>li>span';
 	$pagination_markup .= '{';
-		$pagination_markup .= 'background:'. $paginationContent['pagination_background'].' ;';
-		$pagination_markup .= 'border-color:'. $paginationContent['pagination_border'].' ;';
+		$pagination_markup .= 'background:'. $background.' ;';
+		$pagination_markup .= 'border-color:'. $border.' ;';
 	$pagination_markup .= '}';
 
-	$pagination_markup .= '.pagination li span.current{';
-		$pagination_markup .= 'background:'. $paginationContent['pagination_current_background'].' ;';
-		$pagination_markup .= 'color:'. $paginationContent['pagination_current_text'].' ;';
-	$pagination_markup .= '}';
-
-
-	$pagination_markup .= '.pagination li a.page-numbers';
-	$pagination_markup .= '{';
-		$pagination_markup .= 'color:'. $paginationContent['pagination_link'].' ;';
-	$pagination_markup .= '}';
-
-	$pagination_markup .= '.pagination li:hover a';
-	$pagination_markup .= '{';
-		$pagination_markup .= 'background:'.$paginationContent['pagination_hover_background'].' ;';
-		$pagination_markup .= 'color:'. $paginationContent['pagination_hover_link'].' ;';
+	$pagination_markup .= '.pagination ul > li span.current{';
+		$pagination_markup .= 'background:'. $background_current.' ;';
+		$pagination_markup .= 'color:'. $text_current.' ;';
 	$pagination_markup .= '}';
 
 
-	$pagination_markup .= '.pagination li span.page-numbers';
+	$pagination_markup .= '.pagination ul > li a.page-numbers';
 	$pagination_markup .= '{';
-		$pagination_markup .= 'color:'. $paginationContent['pagination_text'].' ;	';
+		$pagination_markup .= 'color:'. $link.' ;';
+	$pagination_markup .= '}';
+
+	$pagination_markup .= '.pagination ul > li > a:hover, .pagination ul > li > a:focus, .pagination ul > .active > a,';
+	$pagination_markup .=  '.pagination ul > .active > span';
+	$pagination_markup .= '{';
+		$pagination_markup .= 'background:'.$background_hover.' ;';
+		$pagination_markup .= 'color:'. $link_hover.' ;';
+	$pagination_markup .= '}';
+
+
+	$pagination_markup .= '.pagination ul > li span.page-numbers';
+	$pagination_markup .= '{';
+		$pagination_markup .= 'color:'. $text.' ;	';
 	$pagination_markup .= '}';
 
 
@@ -1150,7 +1181,7 @@ function navbarStylesCallback(&$media_979_markup){
 	}
 
 
-	$flush_left = $navSettings['flush_first_link'];
+	$flush_links = $navSettings['flush_first_link'];
 	$sidr_nav = $navSettings['side_nav'];
 	$dropdown_bg = $navSettings['dropdown_bg'];
 
@@ -1158,6 +1189,8 @@ function navbarStylesCallback(&$media_979_markup){
 	$navbarBackgroundOptions = get_option('kjd_navbar_background_settings');
 	$navbarBackgroundColors = $navbarBackgroundOptions['kjd_navbar_background_colors'];
 	$navbarWallpaper = $navbarBackgroundOptions['kjd_navbar_background_wallpaper'];
+
+
 
 	/* borders */
 	$navbarBordersOptions = get_option('kjd_navbar_borders_settings');
@@ -1185,9 +1218,12 @@ function navbarStylesCallback(&$media_979_markup){
 	$dropdownMenuBackgroundOptions = get_option('kjd_dropdown-menu_background_settings');
 	$dropdownMenuBackgroundColors = $dropdownMenuBackgroundOptions['kjd_dropdown-menu_background_colors'];
 
+
 	$dropdownStartColor = !empty($dropdownMenuBackgroundColors['start_rgba']) ? $dropdownMenuBackgroundColors['start_rgba'] : $dropdownMenuBackgroundColors['color'] ;
-	$dropdownEndColor =  !empty($dropdownMenuBackgroundColors['end_rgba']) ? $dropdownMenuBackgroundColors['end_rgba'] : $dropdownMenuBackgroundColors['endcolor'] ;
 	$dropdownStartColor = !empty($dropdownStartColor) ? $dropdownStartColor : 'transparent' ;
+	
+	$dropdownEndColor =  !empty($dropdownMenuBackgroundColors['end_rgba']) ? $dropdownMenuBackgroundColors['end_rgba'] : $dropdownMenuBackgroundColors['endcolor'] ;
+	$dropdownEndColor = !empty($dropdownStartEndColor) ? $dropdownEndColor : 'transparent';
 
 	$dropdownMenuWallpaper = $dropdownMenuBackgroundOptions['kjd_dropdown-menu_background_wallpaper'];
 
@@ -1208,27 +1244,40 @@ function navbarStylesCallback(&$media_979_markup){
  	
  	$navbar_markup ='';
 
+
+$navbar_markup .=".nav .divider-vertical{
+	border-left: 1px solid ".$navbarBackgroundColors['endcolor'].";
+	border-right: 1px solid ".$navbarBackgroundColors['color'].";
+}";
+
 // Positions navbar
 	if($navSettings['navbar_alignment'] =='left'){
+	
 		$navbar_markup .='#navbar .nav{ float:left;}';
+	
 	}elseif($navSettings['navbar_alignment'] =='center'){
+	
 		$navbar_markup .='#navbar ul.nav {margin:0 auto; text-align: center; width:100%;}';
 		$navbar_markup .='#navbar ul.nav > li{ display:inline-block; float:none;}';
 		$media_979_markup .='#navbar ul.nav > li{ display:block; float:none;}';
+	
 	}elseif($navSettings['navbar_alignment'] =='right'){
+	
 		$navbar_markup .='#navbar .nav{ float:right;}';
+	
 	}
 
 	if($navSettings['kjd_navbar_pull_up'] == 'true'){
+	
 		$navbar_markup .="#navbar{
 					float:left;		
 					margin-top:".$navSettings['kjd_navbar_margin_top']."px;
 				}";
+	
 	}
 
 	// Removes box shadow if there is no background color on the navbar - should probably just remove it period
-	if($navbarBackgroundColors['gradient'] == 'none' || (!isset($navbarBackgroundColors['color']) || 
-		$navbarBackgroundColors['color'] == '' || empty($navbarBackgroundColors['color'])) ){
+	if($navbarBackgroundColors['gradient'] == 'none' || $navSettings['kjd_navbar_section_shadow'] == 'none'){
 
 		$navbar_markup .='.navbar-fixed-top .navbar-inner, .navbar-static-top .navbar-inner,.navbar-inner {   
 					box-shadow: none !important;		
@@ -1236,12 +1285,22 @@ function navbarStylesCallback(&$media_979_markup){
 	}
 
 // remove left padding on first link
-if($flush_left == 'true')
+if($flush_links == 'true')
 {
+
 	if($navSettings['navbar_alignment'] == 'left' || $navSettings['navbar_alignment'] =='right'){
+		
+		if( $navSettings['navbar_link_style'] == 'pills' || $navSettings['navbar_link_style'] == 'tabs' 
+			|| $navSettings['navbar_link_style'] == 'tabs-below' ) {
+
+			$navbar_markup .= '.navbar .nav > li:first-child { padding-'.$navSettings['navbar_alignment'].':0; }';
+		
+		}else{
+		
 		$navbar_markup .= '.navbar .nav > li:first-child > a{padding-'.$navSettings['navbar_alignment'].':0;}';
+		
+		}
 	}
- 
 }
 //disable link inner shaddow
 if($navSettings['link_shadows'] =='true'){
@@ -1289,7 +1348,7 @@ $navbar_markup .=".navbar .nav > li.active > a.dropdown-toggle > .caret{
 }";
 
 //  toplevel nav when hovered 
-$navbar_markup .=" .navbar .nav > li > a:hover,.navbar .nav > li > a:focus{
+$navbar_markup .=" .navbar .nav > li > a:hover, .navbar .nav > li > a:focus{
 	
 	background-color:".$navbarLinkHovered['bg_color']." !important;
 	color:".$navbarLinkHovered['color']." !important;
@@ -1424,9 +1483,6 @@ $navbar_markup .="..nav-collapse.sub-menu li.active >a{
 $navbar_markup .=".sidr
 	{
 		background-color:".$dropdownStartColor." !important;
-		-webkit-box-shadow:inset 0 0 5px 5px rgba(0,0,0,.2);
-		-moz-box-shadow:inset 0 0 5px 5px rgba(0,0,0,.2);
-		box-shadow:inset 0 0 5px 5px rgba(0,0,0,.2)}
 	}";
 
 	$navbar_markup .=".sidr ul
@@ -1449,17 +1505,7 @@ $navbar_markup .=".sidr
 		{
 			color:".$dropdownMenuLinkHovered['color']." !important;
 		}";
-	$navbar_markup .=".sidr ul li ul li:hover>a,
-		.sidr ul li ul li:hover>span,
-		.sidr ul li ul li.active>a,
-		.sidr ul li ul li.active>span,
-		.sidr ul li ul li.sidr-class-active>a,
-		.sidr ul li ul li.sidr-class-active>span
-		{
-			-webkit-box-shadow:none;
-			-moz-box-shadow:none;
-			box-shadow:none;
-		}";
+
 
 // collapsed navbar button -->
 $navbar_markup .=".btn-navbar{ 
@@ -1470,10 +1516,7 @@ $navbar_markup .=".btn-navbar:hover,.btn-navbar:active{
 	background:".$navSettings['menu_btn_bg_hovered'].";
 	
 }";
-$navbar_markup .=".nav .divider-vertical{
-	border-left: 1px solid ".$navbarBackground['end_rgba'].";
-	border-right: 1px solid ".$navbarBackground['start_rgba'].";
-}";
+
 
 // Navlink Tyles -->
 

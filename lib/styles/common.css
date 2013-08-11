@@ -65,10 +65,25 @@ html,body{
 
 
 /* Navbar */	
+#header #navbar {
+	margin-left: 30px;
+}
+
+.navbar {
+	margin-bottom: 0px;
+}
 
 .navbar-inner {
 	border:none;
 }
+
+.navbar-inner .nav.nav-pills li a {
+	line-height: 18px;
+}
+
+.navbar-inner .nav.nav-tabs li a {
+	min-height: 19px;
+} 
 
 .navbar .form-search {
 	margin: 6px 0 0;
@@ -89,7 +104,11 @@ html,body{
 	width: 100%;
 }
 
-
+/* Title bar */
+.breadcrumb {
+	background:none; 
+	padding:0;
+}
 /* Page Settings */
 
 #mainContent{min-height:1px;}
@@ -411,8 +430,8 @@ div.img-circle img{
 
 	.thumbnails .span2{
 		float:left;
-		margin:0 20px 20px 0;
-		width:140px;
+		margin:0 18px 20px 0;
+		width:115px;
 	}
 
 	.kjd-thumbnail-nav > li {

@@ -553,7 +553,7 @@ function kjd_build_theme_css($input){
 
 	if(file_exists($file)){
 		chmod($file, 0777);
-		unlink($file);
+		// unlink($file);
 		$file = fopen($file, "w+");	
 	}else{
 		$file = fopen($file, "x+");
@@ -563,11 +563,6 @@ function kjd_build_theme_css($input){
 		echo kjd_get_theme_options();
 		$buffered_content = ob_get_contents();
 	ob_end_clean();
-
-	
-	// if(file_exists($file)){
-	// 	chmod($file, 777);
-	// }
 
 	fwrite($file, $buffered_content);
 	fclose($file);

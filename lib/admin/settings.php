@@ -35,13 +35,6 @@ function kjd_settings_display($section) {
 		unset($tabs[4]);
 	}
 
-	if($options['style_posts'] !='true' && $section == 'posts'){
-		unset($tabs[0]);
-		unset($tabs[1]);
-		unset($tabs[2]);
-		unset($tabs[3]);
-		unset($tabs[4]);
-	}
 	//include 'lib/kjd_field_settings.php';
 	screen_icon('themes'); 
 ?> 
@@ -49,6 +42,7 @@ function kjd_settings_display($section) {
 <h2><?php echo ucfirst($section); ?> Area Settings</h2>
 
 <?php
+
 	if( isset( $_GET[ 'tab' ] ) ) {  
 	 $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'background'; 
 	}else{
@@ -68,44 +62,54 @@ function kjd_settings_display($section) {
     <?php settings_errors(); ?>  
 	<form method="post" action="options.php"> 
 		<div class="fields-wrapper">
-	<?php 
-	if( $active_tab == 'background' ) { 
-		kjd_section_background_callback($section);
-	
-	}elseif($active_tab == 'borders' && ($section !='login' && $section !='bodyTag' && $section !='htmlTag')){
-	
-		kjd_section_borders_callback($section);
-	
-	}elseif($active_tab == 'text' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler' && $section!='dropdown-menu')){
-	
-		kjd_section_text_callback($section);
-	
-	}elseif($active_tab == 'links' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler')){
-	
-		kjd_section_link_callback($section);
-	
-	}elseif($active_tab == 'components' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler') ){
-	
-		kjd_section_components_callback($section);
-	
-	}elseif($active_tab == 'misc' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler') ){
-	
-		kjd_section_misc_callback($section);
-	
-	}elseif($active_tab == 'cycler Settings'){ // image cycler settings
-	
-		kjd_image_cycler_display_callback();
-		kjd_cycler_settings_callback();
-	
-	}elseif($active_tab == 'cycler Images'){ // image cycler iamges
-	
-		kjd_image_cycler_display_callback();
-		kjd_cycler_images_callback();
-	}
-	submit_button(); 
-	?>  
+		<?php 
+		if( $active_tab == 'background' ) { 
+			kjd_section_background_callback($section);
+		
+		}elseif($active_tab == 'borders' && ($section !='login' && $section !='bodyTag' && $section !='htmlTag')){
+		
+			kjd_section_borders_callback($section);
+		
+		}elseif($active_tab == 'text' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler' && $section!='dropdown-menu')){
+		
+			kjd_section_text_callback($section);
+		
+		}elseif($active_tab == 'links' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler')){
+		
+			kjd_section_link_callback($section);
+		
+		}elseif($active_tab == 'components' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler') ){
+		
+			kjd_section_components_callback($section);
+		
+		}elseif($active_tab == 'misc' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler') ){
+		
+			kjd_section_misc_callback($section);
+		
+		}elseif($active_tab == 'cycler Settings'){ // image cycler settings
+		
+			kjd_image_cycler_display_callback();
+			kjd_cycler_settings_callback();
+		
+		}elseif($active_tab == 'cycler Images'){ // image cycler iamges
+		
+			kjd_image_cycler_display_callback();
+			kjd_cycler_images_callback();
+		}
+		submit_button(); 
+		?>  
+
 		</div>
-		<div class="preview-options">preview</div>
+
+		<?php if( $active_tab != 'cycler Images' && $active_tab != 'cycler Settings'){ ?>
+		<div class="preview-options">
+			<iframe src="http://kylejenningsdesign.com" height="600"></iframe>
+
+		</div>
+		
+		
+		<?php } ?>
+
 	</form>
 
 <?php
