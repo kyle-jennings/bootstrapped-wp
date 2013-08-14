@@ -4,8 +4,12 @@
 function kjd_misc_backgrounds_display() {  
 	screen_icon('themes'); 
 ?> 
-
-<h2>Misc Background Settings</h2>
+<div class="kjd-admin-page-title">
+	<h2>Misc Background Settings</h2>
+	<span>
+		<?php echo kjd_nav_select(); ?>
+	</span>
+</div>
 
 <?php
 	if( isset( $_GET[ 'tab' ] ) ) {  
@@ -42,9 +46,9 @@ function kjd_misc_backgrounds_display() {
 			</div>
 
 		<?php if( $active_tab != 'cycler Images' && $active_tab != 'cycler Settings'){ ?>
-		<div class="preview-options">
-			<iframe src="<?php echo get_site_url(); ?>" width="1200" height="600"></iframe>
 
+		<div class="preview-options">
+			<?php echo kjd_site_preview();?>
 		</div>
 		
 		

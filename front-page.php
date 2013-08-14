@@ -2,16 +2,16 @@
 
 get_header();
 
-	$template = 'front_page';
 	
-	$layoutSettings = kjd_get_layout_settings($template);
-
+	$layoutSettings = kjd_get_layout_settings();
+	
 	$frontPageOptions = get_option('kjd_frontPage_layout_settings');
 	$frontPageSidebar = $frontPageOptions['kjd_frontPage_sidebar'];
+	$device_view = $layoutSettings['deviceView'];
 
 	$components = $frontPageOptions['kjd_frontPage_layout'];
 	$secondayContent = $frontPageOptions['kjd_frontPage_secondaryContent'];
-	$arrayLength = count($components) -1;
+	$arrayLength = count($components)-1;
 	
 	$bodySettings = get_option('kjd_body_misc_settings');
 	$bodySettings = $bodySettings['kjd_body_misc'];	
@@ -39,10 +39,15 @@ if(!empty($components))
 	<div class="row">
 <?php 
 	if($layoutSettings['position'] != 'right' && $layoutSettings['position'] !='left'){ 
+
+		if($layoutSettings['position'] == 'top'){
+			echo kjd_get_sidebar($template,'horizontal',$position, $device_view);
+		}
+		
 		echo '<div class="span12">';
 	}else{
 		if($layoutSettings['position'] == 'left'){
-			echo kjd_get_sidebar('front_page');
+			echo kjd_get_sidebar($template,null,$position, $device_view);
 		}
 
 		echo '<div class="span9">';
@@ -54,10 +59,15 @@ if(!empty($components))
 	{
 		echo '</div>'; // end left content
 		if($layoutSettings['position'] == 'right'){
-			echo kjd_get_sidebar('front_page');
+			echo kjd_get_sidebar($template,null,$position, $device_view);
 		}
 	}else{
 		echo '</div>';
+
+		if($layoutSettings['position'] == 'bottom'){
+			echo kjd_get_sidebar($template,'horizontal',$position, $device_view);
+		}
+		
 	}
 
 	//end row, container, and body divs	

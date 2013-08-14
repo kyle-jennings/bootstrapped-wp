@@ -1,6 +1,4 @@
 <?php
-
-
     
 
 function kjd_settings_display($section) {  
@@ -37,10 +35,14 @@ function kjd_settings_display($section) {
 
 	//include 'lib/kjd_field_settings.php';
 	screen_icon('themes'); 
+
+
+
 ?> 
 
-<h2><?php echo ucfirst($section); ?> Area Settings</h2>
-
+	<h2><?php echo ucfirst($section); ?> Area Settings 
+	<?php #echo kjd_nav_select(); ?>
+	</h2>
 <?php
 
 	if( isset( $_GET[ 'tab' ] ) ) {  
@@ -64,6 +66,8 @@ function kjd_settings_display($section) {
 		<div class="fields-wrapper">
 		<?php 
 		if( $active_tab == 'background' ) { 
+			wp_enqueue_media();
+
 			kjd_section_background_callback($section);
 		
 		}elseif($active_tab == 'borders' && ($section !='login' && $section !='bodyTag' && $section !='htmlTag')){
@@ -102,9 +106,9 @@ function kjd_settings_display($section) {
 		</div>
 
 		<?php if( $active_tab != 'cycler Images' && $active_tab != 'cycler Settings'){ ?>
-		<div class="preview-options">
-			<iframe src="http://kylejenningsdesign.com" height="600"></iframe>
 
+		<div class="preview-options">
+			<?php echo kjd_site_preview();?>
 		</div>
 		
 		

@@ -68,6 +68,7 @@
 				</select>
 			</div>
 
+		</div>
 <?php 
 
 if($section !=='posts')
@@ -77,19 +78,20 @@ if($section !=='posts')
 			<!-- ********** -->
 			<!-- Wallpaper  -->
 			<!-- ********** -->
+		<div class="optionsWrapper">
 			<h2>Background wallpaper</h2>
 			<div class="option">
 				<label>Use wallpaper?</label>
 				<select name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_wallpaper][use_wallpaper]">
-					<option value="true" <?php selected( $wallpaperSettings['use_wallpaper'], 'true', true ) ?>>Yes</option>
 					<option value="false" <?php selected( $wallpaperSettings['use_wallpaper'], 'false', true ) ?>>No</option>
+					<option value="true" <?php selected( $wallpaperSettings['use_wallpaper'], 'true', true ) ?>>Yes</option>
 				</select>
 			</div>
 
 			<div class="option">
 				<label>Upload wallpaper</label>
-					<input type="text" id="logo_url" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_wallpaper][image]" value="<?php echo $wallpaperSettings['image'] ? $wallpaperSettings['image'] : ''; ?>" />  
-					<input type="button" class="button upload_option upload_logo_button" value="Upload image" /> 
+					<input type="text" class="media_input" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_wallpaper][image]" value="<?php echo $wallpaperSettings['image'] ? $wallpaperSettings['image'] : ''; ?>" />  
+					<input type="button" class="button upload_image" value="Upload image" /> 
 			</div>
 
 			<!-- background repeat -->
@@ -123,13 +125,14 @@ if($section !=='posts')
 				value="<?php echo $wallpaperSettings['positionY'] ? $wallpaperSettings['positionY'] : '' ;?>" style="width:40px;"><span class="explanation">from top </span>
 			</div>
 		</div>
-	<div class="optionsWrapper">
-		<label>Background Attachment</label>		
-		<select name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_wallpaper][attachment]">
-			<option value="scroll" <?php selected( $wallpaperSettings['attachment'], 'scroll', true) ?>>Scroll</option>
-			<option value="fixed" <?php selected( $wallpaperSettings['attachment'], 'fixed', true) ?>>Fixed</option>
-			<option value="local" <?php selected( $wallpaperSettings['attachment'], 'local', true) ?>>Local</option>
-		</select>
-	</div>
+		<div class="option">
+			<label>Background Attachment</label>		
+			<select name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_wallpaper][attachment]">
+				<option value="scroll" <?php selected( $wallpaperSettings['attachment'], 'scroll', true) ?>>Scroll</option>
+				<option value="fixed" <?php selected( $wallpaperSettings['attachment'], 'fixed', true) ?>>Fixed</option>
+				<option value="local" <?php selected( $wallpaperSettings['attachment'], 'local', true) ?>>Local</option>
+			</select>
+		</div>
+
 <?php 
 }

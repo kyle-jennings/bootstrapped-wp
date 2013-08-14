@@ -288,12 +288,6 @@ switch($section)
 
 	}
 
-// if($section == 'mastArea'){
-// 	print_r($backgroundSettings); echo "<hr />";
-// 	print_r($backgroundWallpaperSettings);die();
-// }
-	// //background functions
-
 	$sectionArea_markup .= background_type_callback($type,$backgroundColorSettings);
 	//wallpaper function
 	$sectionArea_markup .= wallpaper_callback($backgroundWallpaperSettings);
@@ -473,6 +467,7 @@ function kjd_image_cycler_settings_callback($miscSettings){
 
  //background type takes the $type argument and uses it to return the appropriate function
 function background_type_callback($type = null,$backgroundColorSettings = array()){
+	if( !empty($backgroundColorSettings) )
 	extract($backgroundColorSettings); 
 
 	$start_color = !empty($backgroundColorSettings['start_rgba']) ? $backgroundColorSettings['start_rgba'] : $backgroundColorSettings['color'];

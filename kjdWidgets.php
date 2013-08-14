@@ -29,7 +29,7 @@ function set_width($template,$frontpage_area = null)
 {
 	// print_r($template); die();
 
-	if($template['name']== 'front_page_widgets'){
+	if($template['name']== 'kjd_front_page_widgets'){
 		$i = 1;
 		$template = $layouts[$frontpage_area];
 		$sidebars = wp_get_sidebars_widgets($frontpage_area);
@@ -100,10 +100,7 @@ $templates = array('header_widgets', 'front_page_widget_area_1', 'front_page_wid
 foreach($templates as $template){
 	
 	if($template == 'front_page_widget_area_1' || $template == 'front_page_widget_area_2' ){
-				
-		$temp = array('name' => 'front_page_widgets', 'position' =>"top");
-		$width = set_width($temp,$template);
-
+		$width = set_width($layouts['kjd_front_page_widgets'],$template );
 	}elseif($template == 'header_widgets' || $template == 'footer_widgets' ){
 		$temp = array('name' => $template, 'position' =>"top");
 		$width = set_width($temp);

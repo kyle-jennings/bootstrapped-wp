@@ -328,11 +328,13 @@ function kjd_cycler_images_callback(){
 				<div class="option">
 					<label>Upload Image</label>
 
-					<input class="url" name="kjd_cycler_images_settings[kjd_cycler_images][<?php echo $key;?>][url]" type="text" value="<?php echo $cycler[$key]['url'] ? $cycler[$key]['url'] : ''; ?>"/>  
-	    			<a href="#" class="button upload_option upload_logo_button"> Upload image</a>
+					<input class="url media_input" name="kjd_cycler_images_settings[kjd_cycler_images][<?php echo $key;?>][url]" type="text" value="<?php echo $cycler[$key]['url'] ? $cycler[$key]['url'] : ''; ?>"/>  
+	    			<a href="#" class="button upload_image"> Upload image</a>
 
-    				<div class="logo_preview" style="min-height: 100px; clear:both;">  
-		      			<img style="max-width:100%; height:100px;" src="<?php echo esc_url( $cycler[$key]['url'] ); ?>" />  
+    				<div class="image_preview" style="height: 100px; clear:both;">  
+					<?php if( !empty($cycler[$key]['url']) ){
+				      echo '<img src="'.esc_url( $cycler[$key]['url'] ).'" style="max-width:auto; height:100px;" /> ';
+					} ?>
 		  			</div> 
 				</div>
 

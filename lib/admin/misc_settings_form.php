@@ -77,8 +77,8 @@ function kjd_login_misc_settings_callback($section){
 	<h2>Login Logo</h2>
 	<div class="option">
 		<label>Upload logo</label>
-		<input type="text" class="url" id="logo_url" name="kjd_login_misc_settings[kjd_loginPage_logo]" value="<?php echo $logo ? $logo : ''; ?>" />  
-		<input type="button" class="button upload_option upload_logo_button" value="Upload image" /> 
+		<input type="text" class="media_input" id="logo_url" name="kjd_login_misc_settings[kjd_loginPage_logo]" value="<?php echo $logo ? $logo : ''; ?>" />  
+		<input type="button" class="button upload_image" value="Upload image" /> 
 		<div class="logo_preview" style="min-height: 100px; clear:both;">  
   			<img src="<?php echo esc_url( $logo ); ?>" />  
 		</div> 
@@ -281,34 +281,34 @@ function kjd_navbar_misc_settings_callback($section){
 			</div>
 
 			<h3>Open Menu Button Settings</h3>
-				<div class="color_option option" style="position: relative;">
-					<label>Background</label>
+			<div class="color_option option" style="position: relative;">
+				<label>Background</label>
 
-					<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_bg]" 
-						value="<?php echo  $options['menu_btn_bg'] ?  $options['menu_btn_bg'] : ''; ?>"/>
-					<a class="clearColor">Clear</a>
-				</div>
-				<div class="color_option option" style="position: relative;">
-					<label>Border</label>
+				<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_bg]" 
+					value="<?php echo  $options['menu_btn_bg'] ?  $options['menu_btn_bg'] : ''; ?>"/>
+				<a class="clearColor">Clear</a>
+			</div>
+			<div class="color_option option" style="position: relative;">
+				<label>Border</label>
 
-					<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_border]" 
-						value="<?php echo $options['menu_btn_border'] ? $options['menu_btn_border'] : ''; ?>"/>
-					<a class="clearColor">Clear</a>
-				</div>
+				<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_border]" 
+					value="<?php echo $options['menu_btn_border'] ? $options['menu_btn_border'] : ''; ?>"/>
+				<a class="clearColor">Clear</a>
+			</div>
 
-				<div class="color_option option" style="position: relative;">
-					<label>Background - hovered/active</label>
+			<div class="color_option option" style="position: relative;">
+				<label>Background - hovered/active</label>
 
-					<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_bg_hovered]" 
-						value="<?php echo  $options['menu_btn_bg_hovered'] ?  $options['menu_btn_bg_hovered'] : ''; ?>"/>
-					<a class="clearColor">Clear</a>
-				</div>
-				<div class="color_option option" style="position: relative;">
-					<label>Border - hovered/active</label>
+				<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_bg_hovered]" 
+					value="<?php echo  $options['menu_btn_bg_hovered'] ?  $options['menu_btn_bg_hovered'] : ''; ?>"/>
+				<a class="clearColor">Clear</a>
+			</div>
+			<div class="color_option option" style="position: relative;">
+				<label>Border - hovered/active</label>
 
-					<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_border_hovered]" 
-						value="<?php echo $navbarSettings['menu_btn_border_hovered'] ? $navbarSettings['menu_btn_border_hovered'] : ''; ?>"/>
-					<a class="clearColor">Clear</a>
+				<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_border_hovered]" 
+					value="<?php echo $navbarSettings['menu_btn_border_hovered'] ? $navbarSettings['menu_btn_border_hovered'] : ''; ?>"/>
+				<a class="clearColor">Clear</a>
 				</div>
 
 

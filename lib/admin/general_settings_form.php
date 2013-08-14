@@ -53,21 +53,24 @@ function kjd_theme_settings_callback(){
 		<div class="option">
 
 			<label>Upload your site logo</label>
-			<input type="text" id="logo_url" name="kjd_theme_settings[kjd_site_logo]" value="<?php echo $options['kjd_site_logo'] ? $options['kjd_site_logo'] : ' '; ?>" />  
-		  <input type="button" class="button upload_option upload_logo_button" value="Upload image" />  
 
-			<div class="logo_preview" style="min-height: 100px; clear:both;">  
-		      <img style="max-width:100%;" src="<?php echo esc_url( $options['kjd_site_logo'] ); ?>" />  
+			<input type="text" class="media_input" name="kjd_theme_settings[kjd_site_logo]" value="<?php echo $options['kjd_site_logo'] ? $options['kjd_site_logo'] : ' '; ?>" />  
+		  	<input type="button" class="button upload_image" value="Upload image" />  
+
+			<div class="image_preview">  
+			<?php if( !empty($options['kjd_site_logo']) ){
+		      echo '<img src="'.esc_url( $options['kjd_site_logo'] ).'" /> ';
+			} ?>
 		  </div> 
 		</div>
 
 	<div class="option">
 
 		<label>Upload favicon</label>
-		<input type="text" id="logo_url" name="kjd_theme_settings[kjd_favicon]" value="<?php echo $options['kjd_favicon'] ? $options['kjd_favicon'] : ' '; ?>" />  
-	  <input type="button" class="button upload_option upload_logo_button" value="Upload image" />  
+		<input type="text" class="media_input" name="kjd_theme_settings[kjd_favicon]" value="<?php echo $options['kjd_favicon'] ? $options['kjd_favicon'] : ' '; ?>" />  
+	  <input type="button" class="button upload_image" value="Upload image" />  
 
-		<div class="logo_preview" style="min-height: 100px; clear:both;">  
+		<div class="image_preview" style="min-height: 100px; clear:both;">  
 	      <img style="max-width:100%;" src="<?php echo esc_url( $options['kjd_favicon'] ); ?>" />  
 	  </div> 
 	</div>

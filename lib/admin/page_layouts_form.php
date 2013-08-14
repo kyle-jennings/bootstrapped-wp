@@ -60,24 +60,15 @@ function kjd_post_templates_callback(){
 	$options = get_option('kjd_post_layout_settings');
 	$postLayoutSettings = $options['kjd_post_layouts'];
 
-	$options = get_option('kjd_widget_areas_settings');
-	$available_sidebars = array( 'default' => 'default' );
+	$widget_areas = array('default','front_page','page','single','404','category','archive','tag','author','date','search','attachment');
   ?>
 
 	<h3>Page layouts</h3>
 
 	<?php
 
-	if( !empty($options['widget_areas']) ){			
 
-		foreach($options['widget_areas'] as $k => $v){
-		
-			$available_sidebars[] = $k;
-		
-		}
-	}
-
-	foreach($available_sidebars as $k => $v){
+	foreach($widget_areas as $v){
 	
 		kjd_layout_form_callback($postLayoutSettings,'post',$v);
 	
@@ -90,34 +81,48 @@ function kjd_post_templates_callback(){
 // form
 /////////////////////////
 function kjd_layout_form_callback($settings,$type, $layout){ 
-	$deviceViews = array('visible-phone','visible-tablet','visible-desktop','hidden-phone','hidden-tablet','hidden-desktop','all');
+	
+	$deviceViews = array('all','visible-phone','visible-tablet','visible-desktop','hidden-phone','hidden-tablet','hidden-desktop');
+	
+
+	if( $settings[$layout]['toggled'] != 'true' && $type=='post' && $layout !='default' ){
+		$disabled = 'disabled="disabled"';
+	}
+
 ?>
+
 <input type="hidden" name="kjd_<?php echo $type;?>_layout_settings[kjd_<?php echo $type; ?>_layouts][<?php echo $layout;?>][name]" value = "<?php echo $layout;?>">
 	<div class="option"> 
 		<a id="<?php echo $layout;?>"></a>
 		<label><?php echo ucwords(str_replace("_"," ",$layout));?></label>
-		<div class="optionComponent">
-			<span class="sublabel">Widgets Area</span>
-			<select class="layout_select" name="kjd_<?php echo $type;?>_layout_settings[kjd_<?php echo $type; ?>_layouts][<?php echo $layout;?>][position]">
-				<option value="none" <?php selected( $settings[$layout]['position'], "none", true); ?>>
-					No Sidebar
-				</option>
-				<option value="left" <?php selected( $settings[$layout]['position'], "left", true); ?>>
-				Left
-				</option>
-				<option value="right" <?php selected( $settings[$layout]['position'], "right", true); ?>>
-				Right
-				</option>
+			<?php if($type=='post' && $layout !='default'){
+			?>
+					<div class="option-component">
+						<span class="sub-label" >Enable</span>
+						<input type="checkbox"
+								name="kjd_<?php echo $type;?>_layout_settings[kjd_<?php echo $type; ?>_layouts][<?php echo $layout;?>][toggled]"
+								<?php checked( $settings[$layout]['toggled'], "true", true); ?>
+								value="true"
+						/>
+					</div>
+
+			<?php
+			} ?>
+
+		<div class="option-component">
+
+			<span class="sub-label">Position</span>
+			<select class="layout_select" <?php echo $disabled; ?> name="kjd_<?php echo $type;?>_layout_settings[kjd_<?php echo $type; ?>_layouts][<?php echo $layout;?>][position]">
+				<option value="none" <?php selected( $settings[$layout]['position'], "none", true); ?>> No Sidebar </option>
+				<option value="left" <?php selected( $settings[$layout]['position'], "left", true); ?>> Left </option>
+				<option value="right" <?php selected( $settings[$layout]['position'], "right", true); ?>> Right </option>
 				<?php if($layout != 'front_page'){ ?>
-					<option value="top" <?php selected( $settings[$layout]['position'], "top", true); ?>>
-					Top
-					</option>
-					<option value="bottom" <?php selected( $settings[$layout]['position'], "bottom", true); ?>>
-					Bottom
-					</option>
+					<option value="top" <?php selected( $settings[$layout]['position'], "top", true); ?>> Top </option>
+					<option value="bottom" <?php selected( $settings[$layout]['position'], "bottom", true); ?>> Bottom </option>
 				<?php
 				}?>
 			</select>
+
 			<div class="layout_preview">
 				<img src="<?php bloginfo('template_directory'); ?>/images/widgetsright.png" class="right">
 				<img src="<?php bloginfo('template_directory'); ?>/images/widgetstop.png" class="top">
@@ -130,11 +135,12 @@ function kjd_layout_form_callback($settings,$type, $layout){
 				<?php 
 				}?>
 			</div>
+		
 		</div>
 
-		<div class="optionComponent">
-			<span class="sublabel">Device Visibility<span>
-			<select name="kjd_<?php echo $type; ?>_layout_settings[kjd_<?php echo $type; ?>_layouts][<?php echo $layout;?>][deviceView]">
+		<div class="option-component">
+			<span class="sub-label">Device Visibility</span>
+			<select  <?php echo $disabled; ?> name="kjd_<?php echo $type; ?>_layout_settings[kjd_<?php echo $type; ?>_layouts][<?php echo $layout;?>][deviceView]">
 				<?php foreach($deviceViews as $view){ ?>
 					<option value="<?php echo $view; ?>" <?php selected( $settings[$layout]['deviceView'], $view, true); ?>>
 						<?php echo $view; ?>

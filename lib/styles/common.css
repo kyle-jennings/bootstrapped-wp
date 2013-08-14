@@ -146,6 +146,10 @@ html,body{
 	margin-bottom:20px;
 }
 
+.the-content {
+	margin-bottom:20px;
+}
+
 .post-meta .cat-label{
 	float:left;
 	margin-right:10px;
@@ -160,7 +164,10 @@ html,body{
 		margin-right:10px;
 
 	}
-
+/* sidebar */
+.horizontal-widgets {
+	margin-bottom:20px;
+}
 /* attachment page */
 .image-pagination,
 .attachment-pagination{

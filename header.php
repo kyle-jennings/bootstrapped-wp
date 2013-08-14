@@ -3,6 +3,8 @@
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width" />
+
+
 	<title>
 	<?php
 	global $page, $paged;
@@ -27,6 +29,9 @@
 
 	$themeSettings = get_option('kjd_theme_settings');
 	$logo = $themeSettings['kjd_site_logo'];	
+	$favicon = $themeSettings['kjd_favicon'];
+	$analytics = $themeSettings['kjd_google_analytics'];
+
 	$confinePage = $themeSettings['kjd_confine_page'];
 	$responsiveDesign = $themeSettings['kjd_responsive_design'];
 
@@ -85,6 +90,12 @@
 
   	wp_head();
 ?>
+
+	<link rel="icon" 
+      type="image/png" 
+      href="<?php echo $favicon; ?>">
+      
+      <?php echo $analytics; ?>
 </head>
 
 <body>

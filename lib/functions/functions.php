@@ -12,7 +12,10 @@ if(is_admin()){
  require_once('kjd_adminbar_menu.php');
 
  require_once('layout_functions.php');
-add_action( 'wp_enqueue_scripts', 'kjd_add_assets' );
+
+
+
+/* ----------------------- kjd add js and css --------------------- */
 function kjd_add_assets(){
 
 	// set variables
@@ -53,8 +56,59 @@ function kjd_add_assets(){
 	}
 
 }
+add_action( 'wp_enqueue_scripts', 'kjd_add_assets' );
 
 
+/* ------------------------- Update Style sheet after settigns are saved ------------------------------------ */
+// function kjd_update_stylesheet( $oldvalue, $_newvalue ){
+// 	echo 'updated!';
+// 	die();
+// }
+// add_action('update_option_kjd_body_background_settings','kjd_update_stylesheet',10, 2);
+
+// function kjd_export_theme_settings(){
+// 	//gets all rows with the stuff
+// 	$myrows = $wpdb->get_results( "SELECT * FROM `wp_options` WHERE option_name LIKE 'kjd_%';" );
+// 	foreach($myrows as $k => $v){
+// 		// echo $v->option_name.' =>'.$v->option_value;
+// 	}
+
+// }
+
+/* ------------------------- select form for admin pages ------------------------ */
+function kjd_nav_select(){
+	$nav_markup = '';
+	$nav_markup .= '<select class="kjd-admin-page-title">';
+	foreach( array(
+		'General Settings'=>'admin.php?page=kjd_theme_settings',
+		'Header Settings'=>'admin.php?page=kjd_header_settings',
+		'Navbar Settings'=>'admin.php?page=kjd_navbar_settings',
+		'Navbar Dropdown Settings'=>'admin.php?page=kjd_dropdown-menu_settings',
+		'Image Carousel Settings'=>'admin.php?page=kjd_cycler_settings',
+		'Page Title Settings'=>'admin.php?page=kjd_pageTitle_settings',
+		'Body Settings'=>'admin.php?page=kjd_body_settings',
+		'Footer Settings'=>'admin.php?page=kjd_footer_settings',
+		'Login Page Settings'=>'admin.php?page=kjd_login_settings',
+		'Special Backgrounds'=>'admin.php?page=kjd_misc_background_settings',
+		'Page Layouts'=>'admin.php?page=kjd_page_layout_settings' 
+			) as $page => $path )
+	{
+		$nav_markup .= '<option value="'.$path.'">' . $page . '</option>';
+
+	}
+	$nav_markup .= '</select>';
+
+	return $nav_markup;
+}
+
+/* ------------------------ site preview iframe ----------------------------*/
+function kjd_site_preview(){
+	$site_preview ='';
+
+	$site_preview .='<iframe src="'.get_site_url().'" width="1000" height="600"></iframe>';
+
+	return $site_preview;
+}
 
 
 ///////////////////////////
@@ -157,8 +211,7 @@ function kjd_get_layout_settings($template = NULL) {
 
 
 
-		//if no template was hardcoded and passed in
-		if( isset($template) && !empty($template) ){
+
 
 
 			//	if the page is a post type
@@ -258,8 +311,9 @@ function kjd_get_layout_settings($template = NULL) {
 				$template = 'default';
 			}
 			
-		}
-	$layoutSettings = !empty($layoutSettings[$template]) ? $layoutSettings[$template] : $layoutSettings['default'] ;
+
+	$layoutSettings = $layoutSettings[$template]['toggled'] == 'true' ? $layoutSettings[$template] : $layoutSettings['default'] ;
+
 
 	return $layoutSettings;
 }
@@ -313,7 +367,8 @@ function kjd_gallery_image_links(){
 
 	$navigation_markup = '<div class="image-pagination">';
 	$parent_id = $post->post_parent;
-	if (strpos(get_post($parent_id)->post_content,'[gallery') === false){
+	
+	if (strpos(get_post($parent_id)->post_content,'[gallery') == false){
 		$navigation_markup .= 'no gallery';
 	}else{
 

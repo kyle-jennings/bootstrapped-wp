@@ -32,16 +32,27 @@
 .divider{clear:both;}
 .explanation{float:left; padding:0 10px;}
 
+.kjd-admin-page-title{
+  border: 0;
+  height: 1em;  
+  margin: 0;
+  padding: 0;
+}
+
+.kjd-admin-page-title:active{
+outline: none;
+}
+
 form.kjd-options{
   height:100%;
 }
+
 div.preview-options{
   border:1px solid black;
   float:left;
   height: 600px;
-  overflow:auto;
-  width: auto;
-  max-width:1000px ;
+  overflow: hidden;
+  width:1000px;
 }
 
 form .fields-wrapper{
@@ -89,6 +100,8 @@ form .fields-wrapper{
 }
 
 
+a.button.upload_image{margin-bottom:-10px;}
+.image_preview {clear: both;}
 /*   
 
 bootstrap stuff for component settings
@@ -120,7 +133,7 @@ bootstrap stuff for component settings
 
 .nav-tabs > li > a,
 .nav-pills > li > a {
-	text-decoration: none;
+  text-decoration: none;
   padding-right: 12px;
   padding-left: 12px;
   margin-right: 2px;
@@ -331,7 +344,8 @@ bootstrap stuff for component settings
 
 .cycler_image{width:100%; float:left;}
 .cycler_mgmt > li > div > div {float:left; margin-right:10px; padding:5px; width:45%;}
-a.button.upload_option.upload_logo_button{margin-bottom:-10px;}
+
+
 li.cycler_image > div.option,li.cycler_image > h3{padding:5px;}
 
 
@@ -358,10 +372,11 @@ li.cycler_image > div.option,li.cycler_image > h3{padding:5px;}
 	.pickcolor{margin-left:20px;}
 	.colorpicker{background:white; top:-60px; left:500px; z-index:9999;}
 
-#wallpaper_preview,#ribbon_preview{height:25px; float:left; margin-left:50px; overflow:hidden; position:relative; width:120px;}
-#ribbon_preview img{margin-left:-200px;}
+.option-component{ float: left; margin:0 10px 0 0;}
+.sub-label{display:block; clear:both; }
 
-.layout_preview{float:left; height:75px; margin-right:20px; position:relative; width:75px;}
+.layout_select{clear:both;}
+.layout_preview{ float:left; height:75px; padding:5px 0 0 5px; position:relative; width:75px;}
 .layout_preview img{height:75px; position:absolute; width:75px;}
 
 

@@ -41,7 +41,7 @@ add_action('print_media_templates', function(){
 
   <script type="text/html" id="tmpl-kjd-gallery-image-size-settings">
     <label class="setting">
-      <span><?php _e('Link image to:'); ?></span>
+      <span><?php _e('Image Size:'); ?></span>
       <select data-setting="image_size">
 
         <option>Choose</option>

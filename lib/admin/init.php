@@ -37,9 +37,16 @@ function kjd_load_style_sheets_and_scripts() {
 
 	wp_enqueue_script("jquery", $adminDir."js/jquery.js", false, "1.0"); 
 	wp_enqueue_script("bsjs", get_bloginfo('template_directory').'/lib/scripts/bootstrap.min.js'); 
-	wp_enqueue_script('thickbox');  
-	wp_enqueue_style('thickbox');  
-	wp_enqueue_script('media-upload');  
+
+	// wp_enqueue_media();
+
+	// old media uploader stuff till
+	// wp_enqueue_script('thickbox');  
+	// wp_enqueue_style('thickbox');  
+	// wp_enqueue_script('media-upload');  
+	wp_enqueue_script('jquery-ui-sortable'); 	
+
+
 	wp_enqueue_script('jquery-ui-sortable'); 	
 
 	wp_enqueue_style("colorPicker", $adminDir."css/minicolors.css");
