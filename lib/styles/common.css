@@ -53,7 +53,9 @@ html,body{
 }
 
 .frontPageBody{position:relative;}
-
+.frontpage-component{
+	margin-bottom: 30px;
+}
 #mastArea{position:relative;}
 
 #logoWrapper{float: left ; margin-left:30px;}

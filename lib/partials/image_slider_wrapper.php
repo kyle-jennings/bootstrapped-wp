@@ -5,13 +5,12 @@
 		$images = $options['kjd_cycler_images'];
 
 		$sliderOptions = $cyclerOptions['kjd_cycler_misc'];
-
-		// $cyclerOptions = get_option('kjd_cycler_misc_settings');
-		// $cyclerOptions = $cyclerOptions['kjd_cycler_misc'];	
+		$device_view = $cyclerOptions['kjd_cycler_misc']['deviceVisibilty'];
+	
 		$confineCyclerBackground = ($cyclerOptions['kjd_cycler_misc']['kjd_cycler_confine_background'] =='true') ? 'container confined' : '' ;	
 ?>
 
-<div id="imageSliderWrapper" class="frontPageBody <?php echo $confineCyclerBackground; ?>">
+<div id="imageSliderWrapper" class="frontPageBody <?php echo $confineCyclerBackground.' '.$device_view ; ?>">
 
 
 	<?php echo ( $plugin == 'responsive_slider' || ( $plugin == 'bootstrap_slider' ) ) ? '' : '<div class="container">' ; ?>

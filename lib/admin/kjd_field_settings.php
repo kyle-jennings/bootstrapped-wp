@@ -62,7 +62,7 @@
 				'kjd_theme_settings_section' // parent section
 			);
 
-		register_setting('kjd_theme_settings','kjd_theme_settings', 'kjd_build_theme_css');
+		register_setting('kjd_theme_settings','kjd_theme_settings');
 
 		// settings components
 		add_settings_section(
@@ -113,7 +113,7 @@
 				'kjd_component_settings_section'
 			);
 
-		register_setting('kjd_component_settings','kjd_component_settings', 'kjd_build_theme_css');
+		register_setting('kjd_component_settings','kjd_component_settings');
 
 		// Widget Areas
 		add_settings_section(
@@ -131,7 +131,7 @@
 				'kjd_widget_areas_settings_section'
 			);
 
-		register_setting('kjd_widget_areas_settings','kjd_widget_areas_settings', 'kjd_build_theme_css');
+		register_setting('kjd_widget_areas_settings','kjd_widget_areas_settings');
 
 		///////////////////
 		// cycler settings
@@ -175,8 +175,8 @@
 				'kjd_cycler_images_settings_section' //
 			);
 
-		register_setting('kjd_cycler_misc_settings','kjd_cycler_misc_settings', 'kjd_build_theme_css');
-		register_setting('kjd_cycler_images_settings','kjd_cycler_images_settings', 'kjd_build_theme_css');
+		register_setting('kjd_cycler_misc_settings','kjd_cycler_misc_settings');
+		register_setting('kjd_cycler_images_settings','kjd_cycler_images_settings');
 
 
 		///////////////////
@@ -196,7 +196,7 @@
 			'kjd_navbar_options_settings_section'
 		);
 
-		register_setting('kjd_navbar_options_settings','kjd_navbar_options_settings', 'kjd_build_theme_css');
+		register_setting('kjd_navbar_options_settings','kjd_navbar_options_settings');
 
 		/////////////////////
 		// page layouts
@@ -274,10 +274,10 @@
 				'kjd_post_listing_layout_settings_section' // parent section
 			);
 
- 		register_setting('kjd_post_layout_settings','kjd_post_layout_settings', 'kjd_build_theme_css');
- 		register_setting('kjd_page_layout_settings','kjd_page_layout_settings', 'kjd_build_theme_css');
- 		register_setting('kjd_frontPage_layout_settings','kjd_frontPage_layout_settings', 'kjd_build_theme_css');
- 		register_setting('kjd_post_listing_layout_settings','kjd_post_listing_layout_settings', 'kjd_build_theme_css');
+ 		register_setting('kjd_post_layout_settings','kjd_post_layout_settings');
+ 		register_setting('kjd_page_layout_settings','kjd_page_layout_settings');
+ 		register_setting('kjd_frontPage_layout_settings','kjd_frontPage_layout_settings');
+ 		register_setting('kjd_post_listing_layout_settings','kjd_post_listing_layout_settings');
 
 /* ------------------------------------------------------------------------------------------------------- */
 /* ------------------------------------------- Page sections --------------------------------------------- */
@@ -297,6 +297,7 @@ foreach($sections as $section){
 		'kjd_'.$section.'_background_settings_callback', // function name
 		'kjd_'.$section.'_background_settings' // page name
 	);
+
 
 		//background colors - start color, end color, fill type (gradients, solid, none), opacity
 		add_settings_field(
@@ -325,7 +326,7 @@ foreach($sections as $section){
 				'kjd_'.$section.'_background_settings', // page name
 				'kjd_'.$section.'_background_settings_section' // parent section
 			);
-	register_setting('kjd_'.$section.'_background_settings','kjd_'.$section.'_background_settings', 'kjd_build_theme_css');
+	register_setting('kjd_'.$section.'_background_settings','kjd_'.$section.'_background_settings');
 
 
 	// The body, html, and login sections dont need border control
@@ -385,7 +386,7 @@ foreach($sections as $section){
 				'kjd_'.$section.'_borders_settings_section' // parent section
 			);
 		
-		register_setting('kjd_'.$section.'_borders_settings','kjd_'.$section.'_borders_settings', 'kjd_build_theme_css');
+		register_setting('kjd_'.$section.'_borders_settings','kjd_'.$section.'_borders_settings');
 	} //end if not login, body, or html
 
 	// the body, html, and cycler sections dont need text or form controls
@@ -456,7 +457,7 @@ foreach($sections as $section){
 				'kjd_'.$section.'_text_settings_section' // parent section
 
 			);
-			register_setting('kjd_'.$section.'_text_settings','kjd_'.$section.'_text_settings', 'kjd_build_theme_css');
+			register_setting('kjd_'.$section.'_text_settings','kjd_'.$section.'_text_settings');
 		}
 		//////////////////////
 		// text and link styles
@@ -464,8 +465,8 @@ foreach($sections as $section){
 		add_settings_section(
 			'kjd_'.$section.'_link_settings_section', // ID hook name
 			'Text color settings', // label
-			'kjd_'.$section.'_link_settings_callback', // function name
-			'kjd_'.$section.'_link_settings' // page name
+			'kjd_'.$section.'_links_settings_callback', // function name
+			'kjd_'.$section.'_links_settings' // page name
 		);
 
 			// link settings - color, background color, border color
@@ -473,8 +474,8 @@ foreach($sections as $section){
 				'kjd_'.$section.'_link', // ID hook name
 				null,
 				null,
-				'kjd_'.$section.'_link_settings', // page name
-				'kjd_'.$section.'_link_settings_section' // parent section
+				'kjd_'.$section.'_links_settings', // page name
+				'kjd_'.$section.'_links_settings_section' // parent section
 			);
 
 			// hovered link settings - color, background color, border color
@@ -482,8 +483,8 @@ foreach($sections as $section){
 				'kjd_'.$section.'_linkHovered', // ID hook name
 				null,
 				null,
-				'kjd_'.$section.'_link_settings', // page name
-				'kjd_'.$section.'_link_settings_section' // parent section
+				'kjd_'.$section.'_links_settings', // page name
+				'kjd_'.$section.'_links_settings_section' // parent section
 			);
 
 			// visited link  - color, background color, border color
@@ -491,8 +492,8 @@ foreach($sections as $section){
 				'kjd_'.$section.'_linkVisited', // ID hook name
 				null,
 				null,
-				'kjd_'.$section.'_link_settings', // page name
-				'kjd_'.$section.'_link_settings_section' // parent section
+				'kjd_'.$section.'_links_settings', // page name
+				'kjd_'.$section.'_links_settings_section' // parent section
 			);
 
 			// active link - color, background color, border color
@@ -500,8 +501,8 @@ foreach($sections as $section){
 				'kjd_'.$section.'_linkActive', // ID hook name
 				null,
 				null,
-				'kjd_'.$section.'_link_settings', // page name
-				'kjd_'.$section.'_link_settings_section' // parent section
+				'kjd_'.$section.'_links_settings', // page name
+				'kjd_'.$section.'_links_settings_section' // parent section
 			);
 
 		///////////////////
@@ -522,8 +523,8 @@ foreach($sections as $section){
 			);
 
 		
-		register_setting('kjd_'.$section.'_links_settings','kjd_'.$section.'_links_settings', 'kjd_build_theme_css');
-		register_setting('kjd_'.$section.'_components_settings','kjd_'.$section.'_components_settings', 'kjd_build_theme_css');
+		register_setting('kjd_'.$section.'_links_settings','kjd_'.$section.'_links_settings');
+		register_setting('kjd_'.$section.'_components_settings','kjd_'.$section.'_components_settings');
 
 	} //end if not body or html
 
@@ -540,30 +541,5 @@ foreach($sections as $section){
 			'kjd_'.$section.'_misc_settings',
 			'kjd_'.$section.'_misc_settings_section'
 		);
-	register_setting('kjd_'.$section.'_misc_settings','kjd_'.$section.'_misc_settings', 'kjd_build_theme_css');
+	register_setting('kjd_'.$section.'_misc_settings','kjd_'.$section.'_misc_settings');
 }//end loop
-
-function kjd_build_theme_css($input){
-
-	$root=dirname(dirname(__FILE__)); 
-	$root = $root.'/styles';
-	$file = $root.'/custom.css';
-
-	if(file_exists($file)){
-		chmod($file, 0777);
-		unlink($file);
-		$file = fopen($file, "w+");	
-	}else{
-		$file = fopen($file, "x+");
-	}
-
-	ob_start();
-		echo kjd_get_theme_options();
-		$buffered_content = ob_get_contents();
-	ob_end_clean();
-
-	fwrite($file, $buffered_content);
-	fclose($file);
-
-	return $input;
-}

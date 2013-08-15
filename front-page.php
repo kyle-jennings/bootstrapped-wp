@@ -107,20 +107,20 @@ function kjd_image_slider_callback($confineBodyBackground,$position,$arrayLength
 }
 
 function kjd_widget_area_1_callback($layoutSettings, $deviceView){
-	echo '<div class="row '.$deviceView.'">'; 
+	echo '<div class="row '.$deviceView.' frontpage-component">'; 
 		dynamic_sidebar('front_page_widget_area_1');
 	echo '</div>'; 
 }
 
 function kjd_widget_area_2_callback($layoutSettings, $deviceView){
-	echo '<div class="row '.$deviceView.'">'; 
+	echo '<div class="row '.$deviceView.' frontpage-component">'; 
 		dynamic_sidebar('front_page_widget_area_2');
 	echo '</div>';
 }
 
 
 function kjd_content_callback($layoutSettings, $deviceView){
-	echo '<div class="'.$deviceView.'">';
+	echo '<div class="'.$deviceView.' frontpage-component">';
 	
 	if (have_posts()){
 
@@ -145,11 +145,11 @@ function kjd_content_callback($layoutSettings, $deviceView){
 
 function kjd_secondary_content_callback($frontPageOptions,$layoutSettings, $deviceView){ 
 	if($layoutSettings['position'] != 'right' && $layoutSettings['position'] !='left'){ 
-		echo '<div class="row '.$deviceView.'"><div class="span12">'; 
+		echo '<div class="row '.$deviceView.' frontpage-component"><div class="span12">'; 
 			echo do_shortcode($frontPageOptions['kjd_frontPage_secondaryContent']);
 		echo '</div></div>'; 
 	}else{
-		echo '<div class="row '.$deviceView.'"><div class="span9">'; 
+		echo '<div class="row '.$deviceView.' frontpage-component"><div class="span9">'; 
 			echo do_shortcode($frontPageOptions['kjd_frontPage_secondaryContent']);
 		echo '</div></div>'; 
 	}

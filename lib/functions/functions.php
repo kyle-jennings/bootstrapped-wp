@@ -60,12 +60,43 @@ add_action( 'wp_enqueue_scripts', 'kjd_add_assets' );
 
 
 /* ------------------------- Update Style sheet after settigns are saved ------------------------------------ */
-// function kjd_update_stylesheet( $oldvalue, $_newvalue ){
-// 	echo 'updated!';
-// 	die();
-// }
-// add_action('update_option_kjd_body_background_settings','kjd_update_stylesheet',10, 2);
 
+function kjd_build_theme_css(){
+
+	$root=dirname(dirname(__FILE__)); 
+	$root = $root.'/styles';
+	$file = $root.'/custom.css';
+
+	if(file_exists($file)){
+		chmod($file, 0777);
+		$file = fopen($file, "w+");	
+	}else{
+		$file = fopen($file, "x+");
+	}
+
+	ob_start();
+		echo kjd_get_theme_options();
+		$buffered_content = ob_get_contents();
+	ob_end_clean();
+
+	fwrite($file, $buffered_content);
+	fclose($file);
+
+	return $input;
+}
+
+$sections = array('login','htmlTag','bodyTag','mastArea','contentArea','header',
+	'navbar','dropdown-menu','cycler','pageTitle','body','posts','widgets','footer');
+foreach($sections as $section){
+	add_action('update_option_kjd_'.$section.'_background_settings','kjd_build_theme_css');
+	add_action('update_option_kjd_'.$section.'_borders_settings','kjd_build_theme_css');
+	add_action('update_option_kjd_'.$section.'_text_settings','kjd_build_theme_css');
+	add_action('update_option_kjd_'.$section.'_links_settings','kjd_build_theme_css');
+	add_action('update_option_kjd_'.$section.'_components_settings','kjd_build_theme_css');
+	add_action('update_option_kjd_'.$section.'_misc_settings','kjd_build_theme_css');
+}
+
+/* ------------------------- import and export kjd settings ------------------------------------ */
 // function kjd_export_theme_settings(){
 // 	//gets all rows with the stuff
 // 	$myrows = $wpdb->get_results( "SELECT * FROM `wp_options` WHERE option_name LIKE 'kjd_%';" );
