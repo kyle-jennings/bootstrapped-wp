@@ -367,8 +367,11 @@ function kjd_gallery_image_links(){
 
 	$navigation_markup = '<div class="image-pagination">';
 	$parent_id = $post->post_parent;
-	
-	if (strpos(get_post($parent_id)->post_content,'[gallery') == false){
+
+	// echo strpos(get_post($parent_id)->post_content,'[gallery ');
+	// die();
+
+	if ( strpos(get_post($parent_id)->post_content,'[gallery ') == false ){
 		$navigation_markup .= 'no gallery';
 	}else{
 

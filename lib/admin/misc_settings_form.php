@@ -366,8 +366,8 @@ function kjd_posts_misc_settings_callback()
 		<div class="option"> 
 			<label>Style Posts?</label>
 			<select name="kjd_posts_misc_settings[kjd_posts_misc][style_posts]">
-				<option value="true" <?php selected( $options['style_posts'], "true", true) ?>>Yes</option>
 				<option value="false" <?php selected( $options['style_posts'], "false", true) ?>>No</option>
+				<option value="true" <?php selected( $options['style_posts'], "true", true) ?>>Yes</option>
 			<select>
 		</div>
 
@@ -399,8 +399,8 @@ function kjd_posts_misc_settings_callback()
 		<div class="option">
 			<label>Display paginator at top of posts</label>
 			<select name="kjd_posts_misc_settings[kjd_posts_misc][pagination_top]">
-				<option value="true" <?php selected( $options['pagination_top'], "true", true) ?>>Yes</option>
 				<option value="false" <?php selected( $options['pagination_top'], "false", true) ?>>No</option>
+				<option value="true" <?php selected( $options['pagination_top'], "true", true) ?>>Yes</option>
 			</select>
 
 		</div>

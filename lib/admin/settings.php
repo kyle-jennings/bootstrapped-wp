@@ -10,7 +10,7 @@ function kjd_settings_display($section) {
 	$tabs = array(0 =>'background',1=>'borders',2=>'text',3=>'links',4=>'components',5=>'misc');
 	if($section == "cycler"){
 		array_pop($tabs);
-		array_push($tabs, 'cycler Settings', 'cycler Images');
+		array_push($tabs, 'cycler_settings', 'cycler_images');
 	}
 	if($section =='bodyTag' || $section =='htmlTag' || $section =='cycler'){
 		unset($tabs[2]);
@@ -37,7 +37,6 @@ function kjd_settings_display($section) {
 	screen_icon('themes'); 
 
 
-
 ?> 
 
 	<h2><?php echo ucfirst($section); ?> Area Settings 
@@ -55,19 +54,24 @@ function kjd_settings_display($section) {
 <h2 class="nav-tab-wrapper">  
 
 	<?php foreach($tabs as $tab){ ?>
-		<a href="?page=kjd_<?php echo $section;?>_settings&tab=<?php echo $tab; ?>" class="nav-tab"<?php echo $active_tab == $tab ? 'id="active"' : 'none'; ?>><?php echo ucfirst($tab)?></a>  
+		<a href="?page=kjd_<?php echo $section;?>_settings&tab=<?php echo $tab; ?>" class="nav-tab"<?php echo $active_tab == $tab ? 'id="active"' : 'none'; ?>><?php echo ucwords( str_replace('_',' ',$tab) )?></a>  
 	<?php }
+
+
+	$fields_wrapper_class = ( $active_tab != 'cycler_images' && $active_tab != 'cycler_settings') ? 'fields-wrapper ' : '' ;
  ?>
 
 </h2>
 
     <?php settings_errors(); ?>  
 	<form method="post" action="options.php"> 
-		<div class="fields-wrapper">
-		<?php 
-		if( $active_tab == 'background' ) { 
-			wp_enqueue_media();
 
+		<div class="<?php echo $fields_wrapper_class; ?>" >
+		<?php 
+
+		if( $active_tab == 'background' ) { 
+		
+			wp_enqueue_media();
 			kjd_section_background_callback($section);
 		
 		}elseif($active_tab == 'borders' && ($section !='login' && $section !='bodyTag' && $section !='htmlTag')){
@@ -88,24 +92,26 @@ function kjd_settings_display($section) {
 		
 		}elseif($active_tab == 'misc' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler') ){
 		
+			wp_enqueue_media();
 			kjd_section_misc_callback($section);
 		
-		}elseif($active_tab == 'cycler Settings'){ // image cycler settings
+		}elseif($active_tab == 'cycler_settings'){ // image cycler settings
 		
 			kjd_image_cycler_display_callback();
 			kjd_cycler_settings_callback();
 		
-		}elseif($active_tab == 'cycler Images'){ // image cycler iamges
-		
+		}elseif($active_tab == 'cycler_images'){ // image cycler iamges
+			wp_enqueue_media();		
 			kjd_image_cycler_display_callback();
 			kjd_cycler_images_callback();
 		}
+		
 		submit_button(); 
 		?>  
 
 		</div>
 
-		<?php if( $active_tab != 'cycler Images' && $active_tab != 'cycler Settings'){ ?>
+		<?php if( $active_tab != 'cycler_images' && $active_tab != 'cycler_settings'){ ?>
 
 		<div class="preview-options">
 			<?php echo kjd_site_preview();?>

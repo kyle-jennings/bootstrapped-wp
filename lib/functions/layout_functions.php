@@ -507,7 +507,7 @@ function kjd_attachment_layout($post_options){
 		$the_content_markup .= kjd_get_the_content();
 		//the content	
 
-		if($decription_position == 'below_image'){
+		if($decription_position != 'over_image'){
 			$the_content_markup .= '<p class="attachment-description '. $decription_position .'">'.get_the_content().'</p>';
 		}
 	

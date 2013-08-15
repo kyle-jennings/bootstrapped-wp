@@ -344,7 +344,7 @@ function kjd_cycler_images_callback(){
 				</div>
 				
 				<div class="option">
-					<a href="#" class="remove_image">Remove Image</a>
+					<a href="#" class="remove_image" >Remove Image</a>
 				</div>
 			</div>
 

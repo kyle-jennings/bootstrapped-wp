@@ -17,7 +17,6 @@ screen_icon('themes'); ?>
 <h2 class="nav-tab-wrapper">  
 	<a href="?page=kjd_theme_settings&tab=settings" class="nav-tab"<?php echo $active_tab == 'settings' ? 'id="active"' : 'none'; ?>>General Settings </a>  	
 	<a href="?page=kjd_theme_settings&tab=components" class="nav-tab"<?php echo $active_tab == 'components' ? 'id="active"' : 'none'; ?>>Components</a>
-	<a href="?page=kjd_theme_settings&tab=widget_areas" class="nav-tab"<?php echo $active_tab == 'widget_areas' ? 'id="active"' : 'none'; ?>>Widget Areas</a>
 </h2>
 
     <?php settings_errors(); ?>  
@@ -27,10 +26,10 @@ screen_icon('themes'); ?>
 				kjd_theme_settings_callback();
 			}elseif( $active_tab == 'components' ) { 
 				kjd_theme_components_callback();
-			}elseif( $active_tab == 'widget_areas' ) { 
-				kjd_theme_widget_areas_callback();
 			}
 			submit_button(); 
+
+			wp_enqueue_media();
 		?>  
 	</form>
 

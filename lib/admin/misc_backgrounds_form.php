@@ -42,6 +42,8 @@ function kjd_misc_backgrounds_display() {
 		kjd_contentArea_background_callback('contentArea');
 	}
 	submit_button(); 
+
+	wp_enqueue_media();
 	?>  
 			</div>
 
