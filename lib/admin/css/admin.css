@@ -49,10 +49,9 @@ form.kjd-options{
 
 div.preview-options{
   border:1px solid black;
-  float:left;
   height: 600px;
   overflow: hidden;
-  width:1000px;
+  margin-left: 320px;
 }
 
 form .fields-wrapper{

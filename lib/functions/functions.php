@@ -136,7 +136,7 @@ function kjd_nav_select(){
 function kjd_site_preview(){
 	$site_preview ='';
 
-	$site_preview .='<iframe src="'.get_site_url().'" width="1000" height="600"></iframe>';
+	$site_preview .='<iframe src="'.get_site_url().'" width="100%" height="600"></iframe>';
 
 	return $site_preview;
 }
@@ -358,6 +358,7 @@ function kjd_excerpt_more_link($more) {
 }
 add_filter('excerpt_more', 'kjd_excerpt_more_link');
 
+
 /* -------------------------------- pagination  ------------------------------- */
 function kjd_get_posts_pagination(){
 	
@@ -399,10 +400,7 @@ function kjd_gallery_image_links(){
 	$navigation_markup = '<div class="image-pagination">';
 	$parent_id = $post->post_parent;
 
-	// echo strpos(get_post($parent_id)->post_content,'[gallery ');
-	// die();
-
-	if ( strpos(get_post($parent_id)->post_content,'[gallery ') == false ){
+	if ( strpos(get_post($parent_id)->post_content,'[gallery ') === false ){
 		$navigation_markup .= 'no gallery';
 	}else{
 
@@ -440,6 +438,7 @@ function kjd_the_404(){
 	return $page404;
 }
  
+/* ---------------------------- set featured image size ------------------------------ */
 function kjd_get_featured_image($position = null, $wrapper = 'div'){
 	
 	if($position == 'left_of_post'){

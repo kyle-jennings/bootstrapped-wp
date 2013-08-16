@@ -40,6 +40,8 @@ function kjd_load_style_sheets_and_scripts() {
 
 	wp_enqueue_style("colorPicker", $adminDir."css/minicolors.css");
 	wp_enqueue_script("colorPicker", $adminDir."js/colorpicker/minicolors.js");  
+
+	// wp_enqueue_script("scoped", $adminDir."js/jquery.scoped.js", false, "1.0");   
 	wp_enqueue_script("admin", $adminDir."js/admin.js", false, "1.0");   
 
 }  

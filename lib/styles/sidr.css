@@ -5,20 +5,16 @@
 	height:100%;
 	z-index:999999;
 	top: 0;
-	width:150px;
+	width:250px;
 	overflow-x:none;
 	overflow-y:auto;
-	
+	padding: 40px 25px 0 ;
 }
 
 .sidr .sidr-inner
 {
-	padding:0 0 15px}
-
-.sidr .sidr-inner>p
-{
-	margin-left:15px;
-	margin-right:15px}
+	padding:0 0 15px;
+}
 
 .sidr.right
 {
@@ -27,118 +23,11 @@
 
 .sidr.left
 {
-	left:-150px;
+	left:-250px;
 	right:auto;
 }
 
-
-
-.sidr p
+.sidr ul
 {
-	font-size:13px;
-	margin:0 0 12px}
-
-	.sidr p a
-	{
-		color:rgba(51,51,51,0.9)}
-
-	.sidr>p
-	{
-		margin-left:15px;
-	margin-right:15px}
-
-	.sidr ul
-	{
-		display:block;
-	margin:0 0 15px;
-padding:0;
+	list-style: none;
 }
-
-.sidr ul li
-{
-	display:block;
-	margin:0;
-	line-height:48px;
-}
-
-
-.sidr ul li a,
-.sidr ul li span
-{
-	padding:0 15px;
-	display:block;
-text-decoration:none;
-color:#333}
-
-.sidr ul li ul
-{
-	margin:0;
-	padding-left:30px;
-}
-
-	.sidr ul li ul li
-	{
-		line-height:40px;
-		font-size:13px;	
-	}
-
-
-	.sidr ul li ul li:hover,.sidr ul li ul li.active,.sidr ul li ul li.sidr-class-active
-	{
-
-	line-height:41px}
-
-
-.sidr ul li ul li a,
-.sidr ul li ul li span
-{
-	color:rgba(51,51,51,0.8);
-	padding-left:30px;
-}
-
-	.sidr form
-	{
-		margin:0 15px}
-
-	.sidr label
-	{
-		font-size:13px}
-
-	.sidr input[type="text"],
-	.sidr input[type="password"],
-	.sidr input[type="date"],
-	.sidr input[type="datetime"],
-	.sidr input[type="email"],
-	.sidr input[type="number"],
-	.sidr input[type="search"],
-	.sidr input[type="tel"],
-	.sidr input[type="time"],
-	.sidr input[type="url"],
-	.sidr textarea,
-	.sidr select
-	{
-		width:100%;
-	font-size:13px;
-padding:5px;
-
-background:rgba(0,0,0,0.1);
-color:rgba(51,51,51,0.6);
-display:block;
-clear:both}
-
-.sidr input[type=checkbox]
-{
-	width:auto;
-	display:inline;
-clear:none}
-
-.sidr input[type=button],.sidr input[type=submit]
-{
-	color:#f8f8f8;
-	background:#333}
-
-	.sidr input[type=button]:hover,.sidr input[type=submit]:hover
-	{
-		background:rgba(51,51,51,0.9)}
-
-
