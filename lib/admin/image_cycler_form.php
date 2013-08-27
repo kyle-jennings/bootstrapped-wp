@@ -6,6 +6,7 @@ settings_fields('kjd_cycler_misc_settings');
 $options = get_option('kjd_cycler_misc_settings');
 
 
+$deviceViews = array('all','visible-phone','visible-tablet','visible-desktop','hidden-phone','hidden-tablet','hidden-desktop');
 $plugins = array('single image','nivo','flexslider2','responsive_slider','bootstrap_slider',); //'piecemaker3d'
 $themes = array('dark','light');
 $glowSettings = array('none','left-right','top-bottom', 'all-sides','top','bottom');
@@ -25,7 +26,7 @@ $effects = array('fade','slide');
 $effects = '';
 
 }
-	$deviceViews = array('visible-phone','visible-tablet','visible-desktop','hidden-phone','hidden-tablet','hidden-desktop','visible-all','first-image');
+
 ?>
 	<h3>Image Cycler settings</h3>
 
@@ -188,10 +189,10 @@ $effects = '';
 <hr />
 	<div class="option">
 		<label>Phone View</label>
-		<select name="kjd_cycler_misc_settings[kjd_cycler_misc][deviceVisibilty]">
+		<select name="kjd_cycler_misc_settings[kjd_cycler_misc][deviceView]">
 			<?php foreach($deviceViews as $view){ ?>
-				<option value="<?php echo $plugin; ?>"
-				<?php selected( $options['kjd_cycler_misc']['deviceVisibilty'], $view, true) ?>>
+				<option value="<?php echo $view; ?>"
+				<?php selected( $options['kjd_cycler_misc']['deviceView'], $view, true) ?>>
 					<?php echo ucwords(str_replace('-', ' ', $view));?>
 				</option>
 			<?php }?>

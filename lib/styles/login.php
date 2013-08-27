@@ -42,12 +42,15 @@ $root.= $root.'/lib/';
 		{
 		    var width = $(this).width();
 		    var height = $(this).height();
-
-		    if(width > 320){
-		    	$('#login,.login h1 a').width(width);	
-		    }
-    		$('.login h1 a').css('background-size',width+"px");
+		    
+		    if($(window).width() > 480){
+			    if(width > 320){
+			    	$('#login,.login h1 a').width(width);	
+			    }
+    			$('.login h1 a').css('background-size',width+"px");
     		$('.login h1 a').height(height);
+		    }
+
 
 			
 		});
@@ -136,6 +139,13 @@ form input:focus, #rememberme:focus{
 }
 
 }
+
+@media (max-width: 480px) {
+	#login, .login h1 a{
+		width: 90%;
+	}
+}
+
 </style>
 
 

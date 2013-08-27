@@ -114,6 +114,12 @@ function kjd_header_misc_settings_callback($section){
 				</select>
 			</div>
 
+			<div class="option">
+				<label>Pull Logo up or down?</label>
+				<input name="kjd_header_misc_settings[kjd_header_misc][logo_margin]" 
+				value="<?php echo $options['logo_margin'] ? $options['logo_margin'] : ''; ?>"
+				style="width:40px;"/>px.
+			</div>	
 
 			<div class="option">
 				<label>Force Header height</label>
@@ -189,16 +195,7 @@ function kjd_navbar_misc_settings_callback($section){
 				</select>
 			</div>
 
-			<div class="option">
-				<label>Move to header and align?</label>
-				<select name="kjd_navbar_misc_settings[kjd_navbar_misc][kjd_navbar_pull_up]">
-					<option value="false" <?php selected( $options['kjd_navbar_pull_up'], 'false', true ) ?>>No</option>
-					<option value="true" <?php selected( $options['kjd_navbar_pull_up'], 'true', true) ?>>Yes</option>
-				</select>
-				<input name="kjd_navbar_misc_settings[kjd_navbar_misc][kjd_navbar_margin_top]" 
-				value="<?php echo  $options['kjd_navbar_margin_top'] ?  $options['kjd_navbar_margin_top'] : ''; ?>"
-				style="width:40px;"/>px.
-			</div>	
+
 
 			<div class="option">
 				<label>Nav link style</label>
@@ -307,7 +304,7 @@ function kjd_navbar_misc_settings_callback($section){
 				<label>Border - hovered/active</label>
 
 				<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_border_hovered]" 
-					value="<?php echo $navbarSettings['menu_btn_border_hovered'] ? $navbarSettings['menu_btn_border_hovered'] : ''; ?>"/>
+					value="<?php echo $options['menu_btn_border_hovered'] ? $options['menu_btn_border_hovered'] : ''; ?>"/>
 				<a class="clearColor">Clear</a>
 				</div>
 

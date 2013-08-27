@@ -48,10 +48,18 @@ form.kjd-options{
 }
 
 div.preview-options{
-  border:1px solid black;
+  border:none;
   height: 600px;
   overflow: hidden;
   margin-left: 320px;
+}
+
+
+
+div.preview-options > .preview-window,
+div.preview-options > .preview-size{
+  clear: both;
+  display: block;
 }
 
 form .fields-wrapper{

@@ -33,14 +33,15 @@ function kjd_settings_display($section) {
 		unset($tabs[4]);
 	}
 
-	//include 'lib/kjd_field_settings.php';
 	screen_icon('themes'); 
 
 
 ?> 
 
 	<h2><?php echo ucfirst($section); ?> Area Settings 
+	
 	<?php #echo kjd_nav_select(); ?>
+
 	</h2>
 <?php
 
@@ -57,7 +58,7 @@ function kjd_settings_display($section) {
 		<a href="?page=kjd_<?php echo $section;?>_settings&tab=<?php echo $tab; ?>" class="nav-tab"<?php echo $active_tab == $tab ? 'id="active"' : 'none'; ?>><?php echo ucwords( str_replace('_',' ',$tab) )?></a>  
 	<?php }
 
-
+	kjd_build_theme_css();
 	$fields_wrapper_class = ( $active_tab != 'cycler_images' && $active_tab != 'cycler_settings') ? 'fields-wrapper ' : '' ;
  ?>
 

@@ -2,7 +2,6 @@
 // gets options function
 if(is_admin()){
 	include(dirname(dirname(__FILE__)).'/admin/init.php' ); 	
-	include(dirname(dirname(__FILE__)).'/styles/styles.php');
 }
 
  require_once('kjd_bootstrap_menus.php');
@@ -58,101 +57,7 @@ function kjd_add_assets(){
 }
 add_action( 'wp_enqueue_scripts', 'kjd_add_assets' );
 
-
-/* ------------------------- Update Style sheet after settigns are saved ------------------------------------ */
-
-function kjd_build_theme_css(){
-
-	$root=dirname(dirname(__FILE__)); 
-	$root = $root.'/styles';
-	$file = $root.'/custom.css';
-
-	if(file_exists($file)){
-		chmod($file, 0777);
-		$file = fopen($file, "w+");	
-	}else{
-		$file = fopen($file, "x+");
-	}
-
-	ob_start();
-		echo kjd_get_theme_options();
-		$buffered_content = ob_get_contents();
-	ob_end_clean();
-
-	fwrite($file, $buffered_content);
-	fclose($file);
-
-	return $input;
-}
-
-$sections = array('login','htmlTag','bodyTag','mastArea','contentArea','header',
-	'navbar','dropdown-menu','cycler','pageTitle','body','posts','widgets','footer');
-foreach($sections as $section){
-	add_action('update_option_kjd_'.$section.'_background_settings','kjd_build_theme_css');
-	add_action('update_option_kjd_'.$section.'_borders_settings','kjd_build_theme_css');
-	add_action('update_option_kjd_'.$section.'_text_settings','kjd_build_theme_css');
-	add_action('update_option_kjd_'.$section.'_links_settings','kjd_build_theme_css');
-	add_action('update_option_kjd_'.$section.'_components_settings','kjd_build_theme_css');
-	add_action('update_option_kjd_'.$section.'_misc_settings','kjd_build_theme_css');
-}
-
-/* ------------------------- import and export kjd settings ------------------------------------ */
-// function kjd_export_theme_settings(){
-// 	//gets all rows with the stuff
-// 	$myrows = $wpdb->get_results( "SELECT * FROM `wp_options` WHERE option_name LIKE 'kjd_%';" );
-// 	foreach($myrows as $k => $v){
-// 		// echo $v->option_name.' =>'.$v->option_value;
-// 	}
-
-// }
-
-/* ------------------------- select form for admin pages ------------------------ */
-function kjd_nav_select(){
-	$nav_markup = '';
-	$nav_markup .= '<select class="kjd-admin-page-title">';
-	foreach( array(
-		'General Settings'=>'admin.php?page=kjd_theme_settings',
-		'Header Settings'=>'admin.php?page=kjd_header_settings',
-		'Navbar Settings'=>'admin.php?page=kjd_navbar_settings',
-		'Navbar Dropdown Settings'=>'admin.php?page=kjd_dropdown-menu_settings',
-		'Image Carousel Settings'=>'admin.php?page=kjd_cycler_settings',
-		'Page Title Settings'=>'admin.php?page=kjd_pageTitle_settings',
-		'Body Settings'=>'admin.php?page=kjd_body_settings',
-		'Footer Settings'=>'admin.php?page=kjd_footer_settings',
-		'Login Page Settings'=>'admin.php?page=kjd_login_settings',
-		'Special Backgrounds'=>'admin.php?page=kjd_misc_background_settings',
-		'Page Layouts'=>'admin.php?page=kjd_page_layout_settings' 
-			) as $page => $path )
-	{
-		$nav_markup .= '<option value="'.$path.'">' . $page . '</option>';
-
-	}
-	$nav_markup .= '</select>';
-
-	return $nav_markup;
-}
-
-/* ------------------------ site preview iframe ----------------------------*/
-function kjd_site_preview(){
-	$site_preview ='';
-
-	$site_preview .='<iframe src="'.get_site_url().'" width="100%" height="600"></iframe>';
-
-	return $site_preview;
-}
-
-
-///////////////////////////
-// featured image settings
-///////////////////////////
-
-if (function_exists('add_theme_support')) {  
-    add_theme_support('post-thumbnails');  
-
-	$options = get_option('kjd_component_settings');
-	$image = $options['featured_image'];
-    add_image_size( 'featured-image', $image['width'], $image['height'] ); 
-}  
+ 
 
 
 //gets featured image meta info
@@ -240,11 +145,6 @@ add_action('login_head', 'kjd_login_css');
 /* ------------------------------------- get page template layout settings ************************* */
 function kjd_get_layout_settings($template = NULL) {
 
-
-
-
-
-
 			//	if the page is a post type
 
 			$layoutOptions = get_option('kjd_post_layout_settings');
@@ -294,10 +194,10 @@ function kjd_get_layout_settings($template = NULL) {
 
 				// if current page is page template
 				if( is_page_template() ){
-
+					
 					$options = get_option('kjd_page_layout_settings');
 					$layoutSettings = $options['kjd_page_layouts'];
-
+						$is_page_template = true;
 					
 						if ( is_page_template('pageTemplate1.php') ){
 
@@ -331,7 +231,6 @@ function kjd_get_layout_settings($template = NULL) {
 
 				// if current page is a page but not a template
 				}else{
-
 					$template = 'page';
 				
 				}
@@ -342,9 +241,14 @@ function kjd_get_layout_settings($template = NULL) {
 				$template = 'default';
 			}
 			
+if( !empty($layoutSettings[$template]) && ($layoutSettings[$template]['toggled'] == 'true' || $is_page_template == true) ){
+	
+	$layoutSettings = $layoutSettings[$template];
 
-	$layoutSettings = $layoutSettings[$template]['toggled'] == 'true' ? $layoutSettings[$template] : $layoutSettings['default'] ;
+}else{
 
+	$layoutSettings = $layoutSettings['default'];
+}
 
 	return $layoutSettings;
 }
@@ -381,7 +285,9 @@ function kjd_get_posts_pagination(){
 		      'total' => $total_pages,  
 		      'type' => 'list',
 		      'prev_text' => 'Prev',  
-		      'next_text' => 'Next'  
+		      'next_text' => 'Next',
+		      'mid_size' => 1,
+		      'end_size' => 1
 		    ));  
 		  $pagination_markup .= '</div>';
 	  $pagination_markup .= '</div>';  

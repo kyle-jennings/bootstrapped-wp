@@ -3,8 +3,10 @@ include 'general_settings_form.php';
 include 'page_layouts_form.php';
 include 'misc_backgrounds_form.php';
 
-include 'settings.php';
+// include the file which builds the CSS
+include(dirname(dirname(__FILE__)).'/styles/styles.php');
 
+include 'settings.php';
 include('admin_functions.php');
 
 //////////////////////////////////////

@@ -6,8 +6,7 @@
 	z-index:999999;
 	top: 0;
 	width:250px;
-	overflow-x:none;
-	overflow-y:auto;
+	overflow: visible;
 	padding: 40px 25px 0 ;
 }
 
@@ -27,7 +26,9 @@
 	right:auto;
 }
 
-.sidr ul
+.sidr .dropdown-menu
 {
 	list-style: none;
+	margin-top:-1px;
+
 }

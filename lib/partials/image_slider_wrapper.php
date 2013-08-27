@@ -5,8 +5,8 @@
 		$images = $options['kjd_cycler_images'];
 
 		$sliderOptions = $cyclerOptions['kjd_cycler_misc'];
-		$device_view = $cyclerOptions['kjd_cycler_misc']['deviceVisibilty'];
-	
+		$device_view = $cyclerOptions['kjd_cycler_misc']['deviceView'];
+
 		$confineCyclerBackground = ($cyclerOptions['kjd_cycler_misc']['kjd_cycler_confine_background'] =='true') ? 'container confined' : '' ;	
 ?>
 

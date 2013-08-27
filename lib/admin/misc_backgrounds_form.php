@@ -28,7 +28,10 @@ function kjd_misc_backgrounds_display() {
  	
 </h2>
 
-    <?php settings_errors(); ?>  
+    <?php 
+    	settings_errors();
+		kjd_build_theme_css();
+     ?>  
 	<form method="post" action="options.php">  
 		<div class="fields-wrapper">
 	<?php 
