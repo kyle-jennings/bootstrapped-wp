@@ -8,7 +8,6 @@
 	$decorationStyles = array('none','overline','underline','line-through','text-shadow','outline');
 ?>
 
-	<div class="optionsWrapper"> <!-- started background stuff-->
 
 	<?php foreach($linkElements as $elementName => $element){  
 		
@@ -18,6 +17,7 @@
 			continue;
 		}
 	?>
+	<div class="options-wrapper float-options"> <!-- started background stuff-->
 		<h2><?php echo ucwords($elementName); ?> Settings</h2>
 		<!-- font and link colors -->
 		<div class="color_option option" style="position: relative;">
@@ -28,6 +28,21 @@
 				value="<?php echo $value['color'] ? $value['color'] : ''; ?>"/>
 			<a class="clearColor">Clear</a>
 		</div>
+
+		
+		<?php if($section !='navbar' && $section != 'dropdown-menu'){ ?>
+		<div class="option">
+			<label>Background Style</label>
+			<select name="kjd_<?php echo $section;?>_links_settings[kjd_<?php echo $section;?>_<?php echo $element;?>][bg_style]">
+				<?php foreach($backgroundStyles as $style){ ?>
+					<option value="<?php echo $style;?>" <?php selected( $value['bg_style'], $style, true) ?>><?php echo ucwords(str_replace("_"," ",$style));?>
+					</option>
+				<?php } ?>
+			</select>
+		</div>
+		<?php
+		}
+		?>
 
 		<div class="option">
 			<label>Decoration</label>
@@ -45,19 +60,7 @@
 				value="<?php echo $value['textShadowColor'] ? $value['textShadowColor'] : ''; ?>"/>
 			<a class="clearColor">Clear</a>
 		</div>
-		<?php if($section !='navbar' && $section != 'dropdown-menu'){ ?>
-		<div class="option">
-			<label>Background Style</label>
-			<select name="kjd_<?php echo $section;?>_links_settings[kjd_<?php echo $section;?>_<?php echo $element;?>][bg_style]">
-				<?php foreach($backgroundStyles as $style){ ?>
-					<option value="<?php echo $style;?>" <?php selected( $value['bg_style'], $style, true) ?>><?php echo ucwords(str_replace("_"," ",$style));?>
-					</option>
-				<?php } ?>
-			</select>
-		</div>
-		<?php
-		}
-		?>
+
 		<div class="color_option option" style="position: relative;">
 			<label><?php echo $elementName;?> BG Color</label>
 
@@ -78,8 +81,8 @@
 		<?php
 			}
 		 // settings for H tags
+  ?>
 
+</div> <?php
 		} //end foreach loop through font and link colors 
 ?>
-
-</div> <!-- end of option -->

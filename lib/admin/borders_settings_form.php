@@ -20,8 +20,7 @@
 		<!--**************-->
 		<!-- Border stuff -->
 		<!--***************-->
-		<div class="optionsWrapper">
-			<h2>Border style and colors</h2>
+		<h2>Border style and colors</h2>
 
 			<?php foreach($borders as $border){ 
 
@@ -30,12 +29,12 @@
 				$size = $options['kjd_'.$section.'_'.$border.'_border']['size'];
 				$style = $options['kjd_'.$section.'_'.$border.'_border']['style'];
 
-
 			?>
 			
+		<div class="optionsWrapper float-options">
 			<h3><?echo ucfirst($border);?> Border</h3>
 			<!-- border color -->
-			<div class="color_option option" style="position: relative;">
+			<div class="color-option option" style="position: relative;">
 
 				<label>Border color</label>
 				<input class="minicolors" name="kjd_<?php echo $section;?>_borders_settings[kjd_<?php echo $section;?>_<?php echo $border;?>_border][color]"
@@ -63,11 +62,13 @@
 					<?php }?>
 				</select>
 			</div>
-
-			<?php }	?>
 			
 		</div><!-- end options wrapper -->
-		<div class="optionsWrapper">
+
+			<?php }	?>
+
+
+		<div class="optionsWrapper float-options">
 						<!-- border radius -->
 			<h2>Border Radius</h2>
 			<?php 
