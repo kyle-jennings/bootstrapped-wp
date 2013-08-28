@@ -8,59 +8,18 @@
 			'kjd_theme_settings' // page (settings group) name
 		);
 
-			// site logo
+		$general_settings = array('site_logo','misc_settings','google_analytics','confine_page','responsive_design','_disable_BGs');
+		foreach($general_settings as $setting){
+
 			add_settings_field(
-				'kjd_site_logo', // ID hook name
+				'kjd_'.$setting, // ID hook name
 				 null, //label
 				 null, //callback
 				'kjd_theme_settings', // page name
 				'kjd_theme_settings_section' // parent section
 			);
-
-			// misc settings
-			add_settings_field(
-				'kjd_misc_settings', // ID hook name
-				 null, //label
-				 null, //callback
-				'kjd_theme_settings', // page name
-				'kjd_theme_settings_section' // parent section
-			);
-
-			//google analytics code
-			add_settings_field(
-				'kjd_google_analytics', // ID hook name
-				 null, //label
-				 null, //callback
-				'kjd_theme_settings', // page name
-				'kjd_theme_settings_section' // parent section
-			);
-
-			//confine Page - also shows body and html bgs
-			add_settings_field(
-				'kjd_confine_page', // ID hook name
-				 null, //label
-				 null, //callback
-				'kjd_theme_settings', // page name
-				'kjd_theme_settings_section' // parent section
-			);
-
-			//Use responsive design
-			add_settings_field(
-				'kjd_responsive_design', // ID hook name
-				 null, //label
-				 null, //callback
-				'kjd_responsive_design', // page name
-				'kjd_responsive_design_section' // parent section
-			);
-
-			//disable body and html BGs
-			add_settings_field(
-				'kjd_disable_BGs', // ID hook name
-				 null, //label
-				 null, //callback
-				'kjd_theme_settings', // page name
-				'kjd_theme_settings_section' // parent section
-			);
+			
+		}
 
 		register_setting('kjd_theme_settings','kjd_theme_settings');
 
@@ -72,46 +31,17 @@
 			'kjd_component_settings' // page name
 		);
 
+		$general_settings_misc = array('style_widgets','style_posts','featured_image','author_image');
+		foreach($general_settings_misc as $setting){
 			add_settings_field(
-				'kjd_style_widgets',
+				$setting,
 				 null, //label
 				 null, //callback
 				'kjd_component_settings',
 				'kjd_component_settings_section'
 			);
-
-
-			add_settings_field(
-				'kjd_style_posts',
-				 null, //label
-				 null, //callback
-				'kjd_component_settings',
-				'kjd_component_settings_section'
-			);
-
-			add_settings_field(
-				'featured_image',
-				null,
-				null,
-				'kjd_component_settings',
-				'kjd_component_settings_section'
-			);
-
-			add_settings_field(
-				'author_image',
-				null,
-				null,
-				'kjd_component_settings',
-				'kjd_component_settings_section'
-			);			
-
-			add_settings_field(
-				'kjd_style_image_cycler_section',
-				null,
-				null,
-				'kjd_component_settings',
-				'kjd_component_settings_section'
-			);
+		}
+	
 
 		register_setting('kjd_component_settings','kjd_component_settings');
 
@@ -133,23 +63,6 @@
 
 		register_setting('kjd_widget_areas_settings','kjd_widget_areas_settings');
 
-		///////////////////
-		// cycler settings
-		///////////////////
-		add_settings_section(
-			'kjd_cycler_misc_settings_section', // ID hook name
-			null,
-			null,
-			'kjd_cycler_misc_settings' // page name
-		);
-			add_settings_field(
-				'kjd_cycler_misc',
-				null,
-				null,
-				'kjd_cycler_misc_settings',
-				'kjd_cycler_misc_settings_section'
-			);
-		
 		////////////////
 		//cycler images
 		add_settings_section(
@@ -175,28 +88,7 @@
 				'kjd_cycler_images_settings_section' //
 			);
 
-		register_setting('kjd_cycler_misc_settings','kjd_cycler_misc_settings');
 		register_setting('kjd_cycler_images_settings','kjd_cycler_images_settings');
-
-
-		///////////////////
-		// navbar settings
-		///////////////////
-		add_settings_section(
-			'kjd_navbar_options_settings_section', // ID hook name
-			'navbar settings', // label
-			'kjd_navbar_options_settings_callback', // function name
-			'kjd_navbar_options_settings' // page name
-		);
-		add_settings_field(
-			'kjd_navbar_options',
-			null,
-			null,
-			'kjd_navbar_options_settings',
-			'kjd_navbar_options_settings_section'
-		);
-
-		register_setting('kjd_navbar_options_settings','kjd_navbar_options_settings');
 
 		/////////////////////
 		// page layouts
@@ -240,21 +132,14 @@
 			add_settings_field(
 				'kjd_frontPage_layout', // ID hook name
 				null,
-			null,
-				'kjd_frontPage_layout_settings', // page name
-				'kjd_frontPage_layout_section' // parent section
-			);
-			add_settings_field(
-				'kjd_frontPage_contentPage', // ID hook name
 				null,
-			null,
 				'kjd_frontPage_layout_settings', // page name
 				'kjd_frontPage_layout_section' // parent section
 			);
 			add_settings_field(
 				'kjd_frontPage_secondaryContent', // ID hook name
 				null,
-			null,
+				null,
 				'kjd_frontPage_layout_settings', // page name
 				'kjd_frontPage_layout_section' // parent section
 			);		
@@ -298,34 +183,17 @@ foreach($sections as $section){
 		'kjd_'.$section.'_background_settings' // page name
 	);
 
-
-		//background colors - start color, end color, fill type (gradients, solid, none), opacity
+	$background_settings = array('colors','wallpaper','misc');
+	foreach($background_settings as $setting){
 		add_settings_field(
-			'kjd_'.$section.'_background_colors', // ID hook name
+			'kjd_'.$section.'_background_'.$setting, // ID hook name
 			null,
 			null,
 			'kjd_'.$section.'_background_settings', // page name
 			'kjd_'.$section.'_background_settings_section' // parent section
 		);
+	}
 
-		//background wallpaper - url to file, use wallpaper, repeat, position, custom position
-		add_settings_field(
-			'kjd_'.$section.'_background_wallpaper', // ID hook name
-			null,
-			null,
-			'kjd_'.$section.'_background_settings', // page name
-			'kjd_'.$section.'_background_settings_section' // parent section
-		);
-		// if($section == 'mastArea'){
-			
-		// }
-			add_settings_field(
-				'kjd_'.$section.'_background_misc', // ID hook name
-				null,
-			null,
-				'kjd_'.$section.'_background_settings', // page name
-				'kjd_'.$section.'_background_settings_section' // parent section
-			);
 	register_setting('kjd_'.$section.'_background_settings','kjd_'.$section.'_background_settings');
 
 
@@ -341,47 +209,27 @@ foreach($sections as $section){
 			'kjd_'.$section.'_borders_settings_callback', // function name
 			'kjd_'.$section.'_borders_settings' // page name
 		);
+	
+			// create settings for each border side
+	  		$border_sides = array('top', 'right', 'bottom', 'left');
+	  		foreach ($border_sides as $side){
 
-			//top borders
-			add_settings_field(
-				'kjd_'.$section.'_top_border', // ID hook name
-				null,
-				null,
-				'kjd_'.$section.'_borders_settings', // page name
-				'kjd_'.$section.'_borders_settings_section' // parent section
-			);
-			//right borders
-			add_settings_field(
-				'kjd_'.$section.'_right_border', // ID hook name
-				null,
-				null,
-				'kjd_'.$section.'_borders_settings', // page name
-				'kjd_'.$section.'_borders_settings_section' // parent section
-			);
-			//bottom borders
-			add_settings_field(
-				'kjd_'.$section.'_bottom_border', // ID hook name
-				null,
-			null,
-				'kjd_'.$section.'_borders_settings', // page name
-				'kjd_'.$section.'_borders_settings_section' // parent section
-			);
-
-			//left borders
-			add_settings_field(
-				'kjd_'.$section.'_left_border', // ID hook name
-				null,
-			null,
-				'kjd_'.$section.'_borders_settings', // page name
-				'kjd_'.$section.'_borders_settings_section' // parent section
-			);
-
+				//top borders
+				add_settings_field(
+					'kjd_'.$section.'_'.side.'_border', // ID hook name
+					null,
+					null,
+					'kjd_'.$section.'_borders_settings', // page name
+					'kjd_'.$section.'_borders_settings_section' // parent section
+				);
+	  		
+	  		}
 
 			//border Radius - top left, top right, bottom right, bottom left - should be array, each key only holds an int
 			add_settings_field(
 				'kjd_'.$section.'_border_radius', // ID hook name
 				null,
-			null,
+				null,
 				'kjd_'.$section.'_borders_settings', // page name
 				'kjd_'.$section.'_borders_settings_section' // parent section
 			);
@@ -414,53 +262,20 @@ foreach($sections as $section){
 
 			);
 
-			// H1 settings - color, backbground, border, decoration
-			add_settings_field(
-				'kjd_'.$section.'_H1', // ID hook name
-				null,
-			null,
-				'kjd_'.$section.'_text_settings', // page name
-
-				'kjd_'.$section.'_text_settings_section' // parent section
-
-			);
-
-			// H2 settings - color, backbground, border, decoration
-			add_settings_field(
-				'kjd_'.$section.'_H2', // ID hook name
-				null,
-			null,
-				'kjd_'.$section.'_text_settings', // page name
-
-				'kjd_'.$section.'_text_settings_section' // parent section
-
-			);
-
-			// H3 settings - color, backbground, border, decoration
-			add_settings_field(
-				'kjd_'.$section.'_H3', // ID hook name
-				null,
-			null,
-				'kjd_'.$section.'_text_settings', // page name
-
-				'kjd_'.$section.'_text_settings_section' // parent section
-
-			);
-
-			// H4 settings - color, backbground, border, decoration
-			add_settings_field(
-				'kjd_'.$section.'_H4', // ID hook name
-				null,
-			null,
-				'kjd_'.$section.'_text_settings', // page name
-
-				'kjd_'.$section.'_text_settings_section' // parent section
-
-			);
+			$htags = array('H1', 'H2', 'H3','H4');
+			foreach($htags as $size){
+				add_settings_field(
+					'kjd_'.$section.'_'.$size, // ID hook name
+					null,
+					null,
+					'kjd_'.$section.'_text_settings', // page name
+					'kjd_'.$section.'_text_settings_section' // parent section
+				);
+			}
 			register_setting('kjd_'.$section.'_text_settings','kjd_'.$section.'_text_settings');
 		}
 		//////////////////////
-		// text and link styles
+		// link styles
 		//////////////////////
 		add_settings_section(
 			'kjd_'.$section.'_link_settings_section', // ID hook name
@@ -469,44 +284,22 @@ foreach($sections as $section){
 			'kjd_'.$section.'_links_settings' // page name
 		);
 
-			// link settings - color, background color, border color
-			add_settings_field(
-				'kjd_'.$section.'_link', // ID hook name
-				null,
-				null,
-				'kjd_'.$section.'_links_settings', // page name
-				'kjd_'.$section.'_links_settings_section' // parent section
-			);
+		$link_types = array('link','linkHovered','linkVisited','linkActive');
 
-			// hovered link settings - color, background color, border color
+		foreach( $link_types as $type){
 			add_settings_field(
-				'kjd_'.$section.'_linkHovered', // ID hook name
+				'kjd_'.$section.'_'.$type, // ID hook name
 				null,
 				null,
 				'kjd_'.$section.'_links_settings', // page name
 				'kjd_'.$section.'_links_settings_section' // parent section
-			);
-
-			// visited link  - color, background color, border color
-			add_settings_field(
-				'kjd_'.$section.'_linkVisited', // ID hook name
-				null,
-				null,
-				'kjd_'.$section.'_links_settings', // page name
-				'kjd_'.$section.'_links_settings_section' // parent section
-			);
-
-			// active link - color, background color, border color
-			add_settings_field(
-				'kjd_'.$section.'_linkActive', // ID hook name
-				null,
-				null,
-				'kjd_'.$section.'_links_settings', // page name
-				'kjd_'.$section.'_links_settings_section' // parent section
-			);
+			);			
+		}
+		register_setting('kjd_'.$section.'_links_settings','kjd_'.$section.'_links_settings');
+		
 
 		///////////////////
-		// forms
+		// components
 		///////////////////
 		add_settings_section(
 			'kjd_'.$section.'_components_settings_section', // ID hook name
@@ -523,7 +316,6 @@ foreach($sections as $section){
 			);
 
 		
-		register_setting('kjd_'.$section.'_links_settings','kjd_'.$section.'_links_settings');
 		register_setting('kjd_'.$section.'_components_settings','kjd_'.$section.'_components_settings');
 
 	} //end if not body or html
