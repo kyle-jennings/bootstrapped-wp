@@ -6,7 +6,7 @@ Version: 1.0
 Author: Kyle Jennings Design
 
 */
-*{outline:none !important; text-shadow:none !important; word-break:hyphenate; word-wrap:break-word;}
+*{outline:none !important; word-break:hyphenate; word-wrap:break-word;}
 
 #sidr{
 	display:none;
@@ -58,25 +58,33 @@ html,body{
 }
 #mastArea{position:relative;}
 
-#logoWrapper{float: left ; margin-left:20px;}
-#logoWrapper > a > img:hover, 
-#logoWrapper > img:hover 
-{box-shadow: none !important;}
+.logo-wrapper{ display:block; margin-left:20px; }
+.logo-wrapper > a > img:hover, 
+.logo-wrapper > img:hover { box-shadow: none !important; }
 
-
-
+h1.logo-wrapper,
+h2.logo-wrapper{ font-size: 60px;}
 
 /* Navbar */	
 #header #navbar {
+	line-height: 40px;
 	margin-left: 20px;
 }
 
+#navbar {
+	position: relative;
+}
 
 .navbar {
 	margin-bottom: 0px;
 }
-.navbar a{
+
+.navbar .nav > li > a:focus, 
+.navbar .nav > li > a:hover,
+.navbar .nav > li > a{
+
 	box-shadow: none;
+	text-shadow: none;
 }
 
 .navbar-inner {
@@ -272,7 +280,7 @@ html,body{
 	border:none !important;
 }
 
-
+.hero-unit.no-background { background-color: transparent;}
 .well-light-grey{background-color: #eeeeee;}
 .well-grey{background-color: #eeeeee;}
 .well-dark-grey{background-color:#999; color:#EEEEEE;}
@@ -410,7 +418,7 @@ div.img-circle img{
 		border-width: 0;
 	}
 
-	#logoWrapper{
+	.logo-wrapper{
 		margin-left:0px;
 		float: none !important;
 	}
@@ -498,8 +506,12 @@ div.img-circle img{
 
 	.thumbnails .span2{
 		float:left;
-		margin:0 15px 15px 0;
-		width:29%;
+		margin:0 2% 15px 0;
+		width:32%;
+	}
+
+	.thumbnails .span2:nth-child(3n+3){
+		margin-right: 0px;
 	}
 
 	.kjd-thumbnail-nav > li {

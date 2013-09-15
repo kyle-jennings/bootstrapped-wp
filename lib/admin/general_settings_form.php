@@ -63,6 +63,25 @@ function kjd_theme_settings_callback(){
 		  </div> 
 		</div>
 
+		<div class="option">
+			<label>Toggle site title</label>
+
+			<select name="kjd_theme_settings[kjd_logo_toggle]">
+				<option value="logo" <?php selected( $options['kjd_logo_toggle'], "logo", true) ?>>Logo</option>
+				<option value="text" <?php selected( $options['kjd_logo_toggle'], "text", true) ?>>Custom</option>
+				<option value="title" <?php selected( $options['kjd_logo_toggle'], "title", true) ?>>Site Title</option>
+			</select>
+
+		</div>
+
+	<div class="option">
+		<label>Custom Header</label>
+		<?php 
+
+		wp_editor( $options['kjd_custom_header'], 'kjd_theme_settings[kjd_custom_header]', array( 'textarea_rows' =>1 ) 
+		);?>
+	</div>
+
 	<div class="option">
 
 		<label>Upload favicon</label>

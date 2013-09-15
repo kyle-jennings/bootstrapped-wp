@@ -17,10 +17,10 @@
 			continue;
 		}
 	?>
-	<div class="options-wrapper float-options"> <!-- started background stuff-->
+<div class="options-wrapper float-options"> <!-- started background stuff-->
 		<h2><?php echo ucwords($elementName); ?> Settings</h2>
 		<!-- font and link colors -->
-		<div class="color_option option" style="position: relative;">
+		<div class="color-option option">
 
 			<label>Color</label>
 
@@ -30,7 +30,9 @@
 		</div>
 
 		
-		<?php if($section !='navbar' && $section != 'dropdown-menu'){ ?>
+	<div class='full-option'>		
+	
+	<?php if($section !='navbar' && $section != 'dropdown-menu'){ ?>
 		<div class="option">
 			<label>Background Style</label>
 			<select name="kjd_<?php echo $section;?>_links_settings[kjd_<?php echo $section;?>_<?php echo $element;?>][bg_style]">
@@ -44,6 +46,18 @@
 		}
 		?>
 
+		<div class="color_option option" style="position: relative;">
+			<label><?php echo $elementName;?> BG Color</label>
+
+			<input class="minicolors" 
+			name="kjd_<?php echo $section;?>_links_settings[kjd_<?php echo $section;?>_<?php echo $element;?>][bg_color]" 
+				value="<?php echo $value['bg_color'] ? $value['bg_color'] : 'none'; ?>" />
+				<a class="clearColor">Clear</a>
+		</div>		
+	
+	</div> <!-- end bg colors -->
+
+	<div class='full-option'>
 		<div class="option">
 			<label>Decoration</label>
 			<select class="decorationList" name="kjd_<?php echo $section;?>_links_settings[kjd_<?php echo $section;?>_<?php echo $element;?>][decoration]">
@@ -51,7 +65,6 @@
 					<option value="<?php echo $decoration;?>" <?php selected( $value['decoration'], $decoration, true) ?>><?php echo $decoration ?></option>
 				<?php } ?>
 			</select>
-
 		</div>
 
 		<div class="shadowColor color_option option" style="<?php echo $value['decoration'] == 'text-shadow'? 'display:block;' : 'display:none;' ;?>">
@@ -60,15 +73,9 @@
 				value="<?php echo $value['textShadowColor'] ? $value['textShadowColor'] : ''; ?>"/>
 			<a class="clearColor">Clear</a>
 		</div>
+	</div> <!-- end decoration -->
 
-		<div class="color_option option" style="position: relative;">
-			<label><?php echo $elementName;?> BG Color</label>
-
-			<input class="minicolors" 
-			name="kjd_<?php echo $section;?>_links_settings[kjd_<?php echo $section;?>_<?php echo $element;?>][bg_color]" 
-				value="<?php echo $value['bg_color'] ? $value['bg_color'] : 'none'; ?>" />
-				<a class="clearColor">Clear</a>
-		</div>
+	<div class='full-option'>
 		<?php if($section == "navbar"){ ?>
 		<div class="color_option option" style="position: relative;">
 			<label><?php echo $elementName;?> Border Color</label>
@@ -80,9 +87,9 @@
 		</div>
 		<?php
 			}
-		 // settings for H tags
-  ?>
+		 ?>
+	</div> <!-- end border-->
 
-</div> <?php
+</div> <!-- end wrapper-->
+<?php
 		} //end foreach loop through font and link colors 
-?>

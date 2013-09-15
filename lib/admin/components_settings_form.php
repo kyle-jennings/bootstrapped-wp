@@ -3,18 +3,32 @@
 		$options = get_option('kjd_'.$section.'_components_settings'); 
 		$sectionSettings = $options['kjd_'.$section.'_components'];
 
-		$tabParts = array('tabbed_content_background','tabbed_content_border','tabbed_content_text_color','active_tab_background','active_tab_link_color','inactive_tab_background', 'inactive_tab_link_color','hovered_tab_background','hovered_tab_link_color');
-		$collapsibleParts = array('collapible_content_background','collapible_content_border','collapible_content_text_color','active_title_background','active_title_link_color','inactive_title_background', 'inactive_title_link_color','hovered_title_background','hovered_title_link_color');
-		$tableParts = array('table_header_background','table_border','table_header_text_color','even_row_background','even_row_link_color','even_row_text_color','odd_row_background', 'odd_row_link_color','odd_row_text_color','hovered_row_background','hovered_row_link_color','hovered_row_text_color');
+		$tabParts = array('tabbed_content_background',
+			'tabbed_content_border',
+			'tabbed_content_text_color',
+			'tabbed_content_link_color',
+			'active_tab_background',
+			'active_tab_border',
+			'active_tab_link_color',
+			'inactive_tab_border',
+			'inactive_tab_background',
+			'inactive_tab_link_color',
+			'hovered_tab_background',
+			'hovered_tab_border',
+			'hovered_tab_link_color'
+		);
+		$collapsibleParts = array('collapible_content_background','collapible_content_border','collapible_content_link_color','collapible_content_text_color','active_title_background','active_title_link_color','inactive_title_background', 'inactive_title_link_color','hovered_title_background','hovered_title_link_color');
+		$tableParts = array('table_header_background','table_border','table_header_link_color','table_header_text_color','even_row_background','even_row_link_color','even_row_text_color','odd_row_background', 'odd_row_link_color','odd_row_text_color','hovered_row_background','hovered_row_link_color','hovered_row_text_color');
 		$formParts =array('form_background','form_border','form_text','field_background','field_border','field_glow','field_text', 'button_background','button_background_end','button_border','button_text');		
 		$paginationParts =array('pagination_border','pagination_background','pagination_text','pagination_link','pagination_hover_background','pagination_hover_link', 'pagination_current_background','pagination_current_text');
-		$listParts = array('text_color','text_hover_color','link_color','link_hover_color','border_color','background_color','background_hover_color','border_hover_color')
+		// $listParts = array('text_color','text_hover_color','link_color','link_hover_color','border_color','background_color','background_hover_color','border_hover_color')
 ?>
 	<input type="hidden" id="active_tab" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][tabID]" 
 value="<?php echo $sectionSettings['tabID'] ? $sectionSettings['tabID'] : 'none'; ?>"  />		
   <script>
-  	jQuery(document).ready(function(){
-  		jQuery('.tabbable a[href="#<?php echo $sectionSettings["tabID"]; ?>"]').tab('show');
+  	jQuery(document).ready(function($){
+  		$('.tabbable a[href="#<?php echo $sectionSettings["tabID"]; ?>"]').tab('show');
+
   	});
   </script>
 
@@ -27,14 +41,14 @@ value="<?php echo $sectionSettings['tabID'] ? $sectionSettings['tabID'] : 'none'
     <li class="active"><a href="#tabs" data-toggle="tab">Tabbed Content</a></li>
     <li><a href="#collapsibles" data-toggle="tab">Collapsibles</a></li>
     <li><a href="#tables" data-toggle="tab">Tables</a></li>
-    <li><a href="#thumbnails" data-toggle="tab">Images</a></li>
+    <li><a href="#image-settings" data-toggle="tab">Images</a></li>
     <li><a href="#pagination" data-toggle="tab">Pagination</a></li>
-    <li><a href="#lists" data-toggle="tab">Lists</a></li>
 
   <?php endif; ?>
   	<li <?php echo $section == 'navbar' ? 'class="active"' : '' ; ?> ><a href="#forms" data-toggle="tab">Forms</a></li>
 
   </ul>
+  <hr />
 
   <div class="tab-content">
   
@@ -102,9 +116,12 @@ value="<?php echo $sectionSettings['tabID'] ? $sectionSettings['tabID'] : 'none'
 	?>
     </div>
 
-    <div class="tab-pane" id="thumbnails">
- 		<?php kjd_images_form_fields($section,$sectionSettings); ?>
+<!-- ***************** -->
+<!-- Form Colors -->
+<!-- ***************** -->
 
+    <div class="tab-pane" id="image-settings">
+ 		<?php kjd_image_colors($section,$sectionSettings); ?>
     </div>
 
 
@@ -120,27 +137,6 @@ value="<?php echo $sectionSettings['tabID'] ? $sectionSettings['tabID'] : 'none'
 
 			<label><?php echo ucwords(str_replace('_', ' ', $part));?></label>
 			<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][pagination][<?php echo $part;?>]" value="<?php echo $sectionSettings['pagination'][$part] ? $sectionSettings['pagination'][$part] : 'none'; ?>"  />		
-		<a class="clearColor">Clear</a>
-		</div> 
-	<?php
-	}
-	?>
-    </div>
-
-
-<!-- ***************** -->
-<!--     List Colors   -->
-<!-- ***************** -->
-
-    <div class="tab-pane" id="lists">
-     <h3>Lists</h3>
-	<?php foreach($listParts as $part){ ?>
-
-		<div class="option" style="position: relative;">
-
-			<label><?php echo ucwords(str_replace('_', ' ', $part));?></label>
-			<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][list][<?php echo $part;?>]" 
-			value="<?php echo $sectionSettings['list'][$part] ? $sectionSettings['list'][$part] : 'none'; ?>"  />		
 		<a class="clearColor">Clear</a>
 		</div> 
 	<?php
@@ -176,86 +172,120 @@ value="<?php echo $sectionSettings['tabID'] ? $sectionSettings['tabID'] : 'none'
 
 
 <?php 
-function kjd_images_form_fields($section,$sectionSettings){
+function kjd_image_colors($section,$sectionSettings){
 	$borderSizes = range(0,20);
 	$borderStyles = array('none','solid','dotted','dashed','double','groove','ridge','inset','outset');
+	$image_types = array('thumbnails','images','captions');
+?>
+<div class="tabbable">
+	
+	<!-- tabs nav -->
+	<ul class="nav nav-tabs" id="images-tabs">
+	<?php  
+		foreach($image_types as $image_type){
+			echo '<li><a href="#'.$image_type.'" data-toggle="tab" >'.ucwords($image_type).'</a></li>';
+	} ?>
+	</ul>  <!-- end tabs nav -->
+	<!-- tabbed content  -->
+	<div class="tab-content">
 
-	foreach(array('thumbnails','images') as $image_type){
-		?>
+	<?php foreach($image_types as $image_type){ ?>
 
-		<h2><?php echo ucwords($image_type);?></h2>
-			<div class="option">
-			<label>Background color</label>
-			<input class="minicolors" 
-			name="kjd_<?php echo $section;?>_components_settings[kjd_<?php echo $section;?>_components][<?php echo $image_type;?>][background_color]"
-				value="<?php echo $sectionSettings[$image_type]['background_color'] ? $sectionSettings[$image_type]['background_color'] : '' ;?>"
-				 />		
+	  	<div class="tab-pane active" id="<?php echo $image_type;?>">
+			
+			<h2><?php echo ucwords($image_type);?></h2>
+				<div class="option">
+				<label>Background color</label>
+				<input class="minicolors" 
+				name="kjd_<?php echo $section;?>_components_settings[kjd_<?php echo $section;?>_components][<?php echo $image_type;?>][background_color]"
+					value="<?php echo $sectionSettings[$image_type]['background_color'] ? $sectionSettings[$image_type]['background_color'] : '' ;?>"
+					 />		
+					<a class="clearColor">Clear</a>
+				</div> 
+				<div class="option">
+				<label>Border color</label>
+				<input class="minicolors" 
+				name="kjd_<?php echo $section;?>_components_settings[kjd_<?php echo $section;?>_components][<?php echo $image_type;?>][border_color]"
+					value="<?php echo $sectionSettings[$image_type]['border_color'] ? $sectionSettings[$image_type]['border_color'] : '' ;?>"
+					 />		
 				<a class="clearColor">Clear</a>
 			</div> 
-			<div class="option">
-			<label>Border color</label>
-			<input class="minicolors" 
-			name="kjd_<?php echo $section;?>_components_settings[kjd_<?php echo $section;?>_components][<?php echo $image_type;?>][border_color]"
-				value="<?php echo $sectionSettings[$image_type]['border_color'] ? $sectionSettings[$image_type]['border_color'] : '' ;?>"
-				 />		
-			<a class="clearColor">Clear</a>
-		</div> 
-		<?php
-		if($image_type =='thumbnails'){
+			<?php
+			if($image_type =='thumbnails' || $image_type =='captions'){
+				?>
+				<div class="option">
+				<label>Thumbnail Hover Glow</label>
+				<input class="minicolors" 
+				name="kjd_<?php echo $section;?>_components_settings[kjd_<?php echo $section;?>_components][<?php echo $image_type;?>][thumbnail_glow]"
+					value="<?php echo $sectionSettings[$image_type]['thumbnail_glow'] ? $sectionSettings[$image_type]['thumbnail_glow'] : '' ;?>"
+					 />		
+					<a class="clearColor">Clear</a>
+				</div> 
+			<?php
+			}
+
+			if($image_type =='captions'){
+				?>
+				<div class="option">
+				<label>Text Color</label>
+				<input class="minicolors" 
+				name="kjd_<?php echo $section;?>_components_settings[kjd_<?php echo $section;?>_components][<?php echo $image_type;?>][text_color]"
+					value="<?php echo $sectionSettings[$image_type]['text_color'] ? $sectionSettings[$image_type]['text_color'] : '' ;?>"
+					 />		
+					<a class="clearColor">Clear</a>
+				</div> 
+			<?php
+			}
 			?>
+
+			<!-- border size -->
 			<div class="option">
-			<label>Thumbnail Hover Glow</label>
-			<input class="minicolors" 
-			name="kjd_<?php echo $section;?>_components_settings[kjd_<?php echo $section;?>_components][<?php echo $image_type;?>][thumbnail_glow]"
-				value="<?php echo $sectionSettings[$image_type]['thumbnail_glow'] ? $sectionSettings[$image_type]['thumbnail_glow'] : '' ;?>"
-				 />		
-				<a class="clearColor">Clear</a>
-			</div> 
-		<?php
-		}
-		?>
+				<label>Border size</label>
+				<select name="kjd_<?php echo $section;?>_components_settings[kjd_<?php echo $section;?>_components][<?php echo $image_type;?>][border_size]">
+					<?php foreach($borderSizes as $size){?>
+						<option value="<?php echo $size.'px';?>" <?php selected( $sectionSettings[$image_type]['border_size'], $size.'px', true) ?>><?php echo $size.'px';?></option>
+					<?php }?>
+				</select>
+			</div>
 
-		<!-- border size -->
-		<div class="option">
-			<label>Border size</label>
-			<select name="kjd_<?php echo $section;?>_components_settings[kjd_<?php echo $section;?>_components][<?php echo $image_type;?>][border_size]">
-				<?php foreach($borderSizes as $size){?>
-					<option value="<?php echo $size.'px';?>" <?php selected( $sectionSettings[$image_type]['border_size'], $size.'px', true) ?>><?php echo $size.'px';?></option>
-				<?php }?>
-			</select>
-		</div>
+			<!-- border style -->
+			<div class="option">
+				<label>Border style</label>
+				<select name="kjd_<?php echo $section;?>_components_settings[kjd_<?php echo $section;?>_components][<?php echo $image_type;?>][border_style]">
+					<?php foreach($borderStyles as $style){?>
+						<option value="<?php echo $style;?>"<?php selected( $sectionSettings[$image_type]['border_style'], $style, true) ?>><?php echo $style;?></option>
+					<?php }?>
+				</select>
+			</div>
 
-		<!-- border style -->
-		<div class="option">
-			<label>Border style</label>
-			<select name="kjd_<?php echo $section;?>_components_settings[kjd_<?php echo $section;?>_components][<?php echo $image_type;?>][border_style]">
-				<?php foreach($borderStyles as $style){?>
-					<option value="<?php echo $style;?>"<?php selected( $sectionSettings[$image_type]['border_style'], $style, true) ?>><?php echo $style;?></option>
-				<?php }?>
-			</select>
-		</div>
+			<?php if($image_type !='captions'){ ?>
+			<div class="option">
+				<label>Padding</label>
+				<select
+			name="kjd_<?php echo $section;?>_components_settings[kjd_<?php echo $section;?>_components][<?php echo $image_type;?>][padding]">
+					<?php foreach($borderSizes as $size){?>
+						<option value="<?php echo $size.'px';?>"<?php selected( $sectionSettings[$image_type]['padding'], $size.'px', true) ?>><?php echo $size.'px';?></option>
+					<?php }?>
 
-		<div class="option">
-			<label>Padding</label>
-			<select
-		name="kjd_<?php echo $section;?>_components_settings[kjd_<?php echo $section;?>_components][<?php echo $image_type;?>][padding]">
-				<?php foreach($borderSizes as $size){?>
-					<option value="<?php echo $size.'px';?>"<?php selected( $sectionSettings[$image_type]['padding'], $size.'px', true) ?>><?php echo $size.'px';?></option>
-				<?php }?>
+				</select>
+			</div>
+			<?php } ?>
 
-			</select>
-		</div>
+			<div class="option">
+				<label>Border Radius</label>
+				<select name="kjd_<?php echo $section;?>_components_settings[kjd_<?php echo $section;?>_components][<?php echo $image_type;?>][border_radius]">
+					<?php foreach($borderSizes as $size){?>
+						<option value="<?php echo $size.'px';?>"<?php selected( $sectionSettings[$image_type]['border_radius'], $size.'px', true) ?>><?php echo $size.'px';?></option>
+					<?php }?>
+					<option value="50%"<?php selected( $sectionSettings[$image_type]['border_radius'], '50%', true) ?>>50%</option>
+				</select>
+			</div>
 
-		<div class="option">
-			<label>Border Radius</label>
-			<select name="kjd_<?php echo $section;?>_components_settings[kjd_<?php echo $section;?>_components][<?php echo $image_type;?>][border_radius]">
-				<?php foreach($borderSizes as $size){?>
-					<option value="<?php echo $size.'px';?>"<?php selected( $sectionSettings[$image_type]['border_radius'], $size.'px', true) ?>><?php echo $size.'px';?></option>
-				<?php }?>
-				<option value="50%"<?php selected( $sectionSettings[$image_type]['border_radius'], '50%', true) ?>>50%</option>
-			</select>
-		</div>
+			<?php
+			echo '</div>'; // end tab
+		} // end foreach
 
-		<?php
-	}
+	echo '</div>'; // end .tab-content
+	echo'</div>'; // end .tabblable
+
 }

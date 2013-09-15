@@ -29,6 +29,9 @@
 
 	$themeSettings = get_option('kjd_theme_settings');
 	$logo = $themeSettings['kjd_site_logo'];	
+	$custom_header = $themeSettings['kjd_custom_header'];
+
+	$logo_toggle = $themeSettings['kjd_logo_toggle'];
 	$favicon = $themeSettings['kjd_favicon'];
 	$analytics = $themeSettings['kjd_google_analytics'];
 
@@ -37,6 +40,7 @@
 
 	$headerSettings = get_option('kjd_header_misc_settings');
 	$headerSettings = $headerSettings['kjd_header_misc'];
+	$header_contents = $headerSettings['header_contents'];
 	$confineHeaderBackground = $headerSettings['kjd_header_confine_background'];
 
 	$options = get_option('kjd_navbar_misc_settings');
@@ -118,23 +122,7 @@
 			<div id="header" class="<?php echo $confineHeaderBackground =='true' ? 'container confined' : '' ;?>">
 				<div class="container">
 					<div class="row">
-					<?php if($headerSettings['header_contents'] == 'widgets'){ 
-
-						dynamic_sidebar('header_widgets');
-					
-					}else{ ?>
-
-						<a id="logoWrapper" href="<?php bloginfo('url'); ?>">
-							<img src="<?php echo $logo; ?>" alt=""/>
-						</a>
-						<?php 
-						if( $alignNavWithLogo =='true'){ 
-							include($navbar); 	
-						}
-						?>
-
-					<?php } ?>
-
+					<?php  kjd_site_logo($header_contents, $logo_toggle, $logo, $custom_header); ?>
 					</div> <!-- end row -->
 				</div><!-- end header container -->
 
@@ -146,3 +134,47 @@
 		}
 	?>
 	</div> <!-- end mast -->
+<?php
+
+function kjd_site_logo($header_contents, $logo_toggle, $logo, $custom_header){
+	
+	$heading = is_front_page() ? 'h1' : 'h2' ;
+
+	if($headerSettings['header_contents'] == 'widgets'){ 
+
+		dynamic_sidebar('header_widgets');
+	
+	}else{ 
+
+		if($logo_toggle == 'text'){
+		
+			echo '<div class="header-wrapper">';
+				echo $custom_header;
+			echo '</div>';
+		
+		}elseif($logo_toggle == 'logo' ){
+			
+			echo '<'.$heading.' class="logo-wrapper">';
+				echo '<a href="'.get_bloginfo('url').' ">';
+					echo '<img src="'.$logo.'" alt=""/>';
+				echo '</a>';
+			echo '</'.$heading.'>';
+		
+		}else{
+			
+			echo '<div class="hero-unit no-background">';
+			echo '<'.$heading.' class="logo-wrapper" >';
+				echo '<a href="'.get_bloginfo('url').' ">';
+					echo get_bloginfo( 'name');
+				echo '</a>';
+			echo '</'.$heading.'>';
+				echo '<div class="logo-wrapper">'.get_bloginfo('description').'</div>';
+			echo '</div>';
+
+		}
+		
+
+	 }
+
+
+}

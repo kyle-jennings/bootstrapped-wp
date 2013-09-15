@@ -8,7 +8,7 @@
 			'kjd_theme_settings' // page (settings group) name
 		);
 
-		$general_settings = array('site_logo','misc_settings','google_analytics','confine_page','responsive_design','_disable_BGs');
+		$general_settings = array('site_logo','logo_toggle','misc_settings','google_analytics','confine_page','responsive_design','_disable_BGs');
 		foreach($general_settings as $setting){
 
 			add_settings_field(
@@ -168,7 +168,7 @@
 /* ------------------------------------------- Page sections --------------------------------------------- */
 /* ------------------------------------------------------------------------------------------------------- */
 
-$sections = array('login','htmlTag','bodyTag','mastArea','contentArea','header',
+$sections = array('login','htmlTag','bodyTag','mastArea','contentArea','sidrDrawer','header',
 	'navbar','dropdown-menu','cycler','pageTitle','body','posts','widgets','footer');
 foreach($sections as $section){
 
@@ -198,7 +198,7 @@ foreach($sections as $section){
 
 
 	// The body, html, and login sections dont need border control
-	if($section !='login' && $section !='bodyTag' && $section !='htmlTag'  && $section !='mastArea'  && $section !='contentArea'){
+	if($section !='login' && $section !='bodyTag' && $section !='htmlTag' && $section != 'sidrDrawer'  && $section !='mastArea'  && $section !='contentArea'){
 	
 		//////////////////////
 		// borders
@@ -238,7 +238,7 @@ foreach($sections as $section){
 	} //end if not login, body, or html
 
 	// the body, html, and cycler sections dont need text or form controls
-	if($section !='bodyTag' && $section !='htmlTag' && $section !='cycler'){
+	if($section !='bodyTag' && $section !='htmlTag' && $section != 'sidrDrawer' && $section !='cycler'){
 
 		///////////////////////////
 		// text and H tag Settings

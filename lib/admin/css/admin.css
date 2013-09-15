@@ -208,7 +208,9 @@ bootstrap stuff for component settings
 .tabs-stacked .open > a:hover {
   border-color: #999999;
 }
-
+.tabbable .nav.nav-tabs{
+  height: 25px;
+}
 .tabbable {
   *zoom: 1;
 }

@@ -23,9 +23,10 @@ function kjd_misc_backgrounds_display() {
 
 	  <a href="?page=kjd_misc_background_settings&tab=htmlTag" class="nav-tab"<?php echo $active_tab == 'htmlTag' ? 'id="active"' : 'none'; ?>>HTML tag</a>  	
 	  <a href="?page=kjd_misc_background_settings&tab=bodyTag" class="nav-tab"<?php echo $active_tab == 'bodyTag' ? 'id="active"' : 'none'; ?>>BODY Tag</a>  	
-	  <a href="?page=kjd_misc_background_settings&tab=mastArea" class="nav-tab"<?php echo $active_tab == 'mastArea' ? 'id="active"' : 'none'; ?>>Header &amp; Nav Wrapper</a>  	
-	  <a href="?page=kjd_misc_background_settings&tab=contentArea" class="nav-tab"<?php echo $active_tab == 'contentArea' ? 'id="active"' : 'none'; ?>>Title &amp; Body Wrapper</a>  	
- 	
+	  <a href="?page=kjd_misc_background_settings&tab=mastArea" class="nav-tab"<?php echo $active_tab == 'mastArea' ? 'id="active"' : 'none'; ?>>Mast</a>  	
+	  <a href="?page=kjd_misc_background_settings&tab=contentArea" class="nav-tab"<?php echo $active_tab == 'contentArea' ? 'id="active"' : 'none'; ?>>Main Content</a>  	
+	  <a href="?page=kjd_misc_background_settings&tab=sidrDrawer" class="nav-tab"<?php echo $active_tab == 'sidrDrawer' ? 'id="active"' : 'none'; ?>>Sidr Drawer</a>  	
+ 	 	
 </h2>
 
     <?php 
@@ -43,7 +44,10 @@ function kjd_misc_backgrounds_display() {
 		kjd_mastArea_background_callback('mastArea');
 	}elseif($active_tab == 'contentArea'){
 		kjd_contentArea_background_callback('contentArea');
+	}elseif($active_tab == 'sidrDrawer'){
+		kjd_sidrDrawer_background_callback('sidrDrawer');
 	}
+
 	submit_button(); 
 
 	wp_enqueue_media();
@@ -147,5 +151,21 @@ function kjd_contentArea_background_callback($section){
 	<?php
 }
 
+////////////////////////////////////
+// Sidr Drawer background
+////////////////////////////////////
+
+function kjd_sidrDrawer_background_callback($section){
+	include	'background_settings_form.php';
 
 ?>
+
+	<div class="color_option option" style="position: relative;">
+		<label>Border Color</label>
+
+		<input class="minicolors" name="kjd_<?php echo $section;?>_background_settings[kjd_<?php echo $section; ?>_background_colors][sidr_border]" 
+			value="<?php echo $colorSettings['sidr_border'] ? $colorSettings['sidr_border'] : ''; ?>"/>
+		<a class="clearColor">Clear</a>
+	</div>
+<?php 
+}
