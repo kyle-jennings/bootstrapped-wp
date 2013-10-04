@@ -1575,13 +1575,13 @@ $dropdown_markup .=".nav-collapse.sub-menu li.active >a{
 
 
 	$sidr_markup .='.sidr .nav-tabs.nav-stacked > li > a,
-	.sidr .nav-tabs.nav-stacked > li > ul > li > a
-		{
+	.sidr .nav-tabs.nav-stacked > li > ul > li > a{
 			background-color:'.$dropdownStartColor.';
 			border:1px solid '.$dropdownMenuTopBorder['color'].';
 			color:'.$dropdownMenuLink['color'].';
 			background-image: none !important;
 		}';
+
 
 	$sub_bg = $dropdownMenuLink['bg_color'] ? $dropdownMenuLink['bg_color'] : $dropdownStartColor ;
 	$sidr_markup .= '.sidr .nav-tabs.nav-stacked > li > ul > li > a{background-color:'.$sub_bg.'}';
@@ -1596,8 +1596,11 @@ $dropdown_markup .=".nav-collapse.sub-menu li.active >a{
 	}';
 
 	$sidr_markup .= '.sidr .nav-tabs.nav-stacked > li > ul > li > a, .sidr .sub-menu a{
-		border:none;
 		color:'.$dropdownMenuLink['color'].';
+		border-left:1px solid '.$dropdownMenuTopBorder['color'].';	
+		border-right:1px solid '.$dropdownMenuTopBorder['color'].';
+		border-top: none;
+		border-bottom: none;
 	}';
 
 	$sidr_markup .= '.sidr .dropdown-menu{
@@ -1605,19 +1608,30 @@ $dropdown_markup .=".nav-collapse.sub-menu li.active >a{
 		background-image: none !important;
 	}';
 
+	// $sidr_markup .= '.sidr .sub-menu{ position: relative; }';
+ 	$sidr_markup .= '#sidr ul.sub-menu > li > a{';
+ 		// $sidr_markup .= 'border-top-color:white;';
+ 		$sidr_markup .= 'border-bottom-color:'.$dropdownMenuTopBorder['color'].';';
+ 	$sidr_markup .= ' }';
+
+ 	$sidr_markup .= '#sidr ul.sub-menu > li > a:before{ 
+ 		  border-left-color:'.$dropdownMenuTopBorder['color'].' !important;
+	}';
+
+
 	$sidr_markup .= '.sidr .dropdown-menu > li > a:hover,
 	.sidr .nav > li.dropdown.open.active > a:hover{
 		background-color:'.$dropdownMenuLinkHovered['bg_color'].';
 		color:'.$dropdownMenuLinkHovered['color'].';
-		border:none;
 		background-image: none !important;
+				border:none;
 	}';
  
 	$sidr_markup .= '.sidr .nav-tabs.nav-stacked > li > ul > li > a:hover, 
 	.sidr .sub-menu a:hover{
 		color:'.$dropdownMenuLinkHovered['color'].';
 		background-color:'.$dropdownMenuLinkHovered['bg_color'].';
-		border:none;
+		
 		background-image: none !important;
 	}';
 

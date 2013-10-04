@@ -107,7 +107,7 @@
 	$menu_class = 'nav nav-tabs nav-stacked';
 	?>
 		<div id="sidr">
-			<?php wp_nav_menu(array('theme_location' => 'sidr-menu', 'menu_class' =>$menu_class,'container'=> '','walker'=> new dropDown() ) ); ?>
+			<?php wp_nav_menu(array('theme_location' => 'sidr-menu', 'menu_class' =>$menu_class,'container'=> '') ); ?>
 		</div>	
 	<?php endif; ?>
 

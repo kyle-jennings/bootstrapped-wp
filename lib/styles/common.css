@@ -63,7 +63,12 @@ html,body{
 .logo-wrapper > img:hover { box-shadow: none !important; }
 
 h1.logo-wrapper,
-h2.logo-wrapper{ font-size: 60px;}
+h2.logo-wrapper{ 
+	font-size: 60px;
+	letter-spacing: -1px;
+	line-height: 60px;
+	margin-bottom: 0;
+}
 
 /* Navbar */	
 #header #navbar {
@@ -383,6 +388,38 @@ div.img-circle img{
 		margin-top: 6px;
 	}
 
+	#sidr ul.sub-menu {
+		list-style-type: none;
+		margin: 0;
+	}
+		#sidr ul.sub-menu > li{
+		
+		}
+
+		#sidr ul.sub-menu > li > a{
+			/*border-top-width: 1px;*/
+			border-bottom-width: 1px;
+			border-bottom-color: rgba(255,255,255, .25);
+			border-bottom-style: solid;
+			display: block;
+			padding: 8px 12px 8px 30px;
+			position: relative;
+		}
+
+		#sidr ul.sub-menu > li > a:before {
+			border-color: transparent;
+			border-style: solid;
+			border-width: 5px 0 5px 5px;
+			content: " ";
+			display: block;
+			float: right;
+			height: 0;
+			margin-top: 5px;
+			margin-right: -10px;
+			position: absolute;
+			left: 13px;
+			width: 0;
+		}
 
 }
 
