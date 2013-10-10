@@ -4,8 +4,7 @@
 /* ------------------------- Update Style sheet after settigns are saved ------------------------------------ */
 
 function kjd_build_theme_css(){
-
-  $root=dirname(dirname(__FILE__)); 
+  $root=dirname( dirname(dirname(__FILE__)) ); 
   $root = $root.'/styles';
   $file = $root.'/custom.css';
 

@@ -2,9 +2,25 @@
 /*
 Template Name: Style Sheet
 */
+function kjd_get_temp_setting($section, $array, $preview, $part) {
+
+	if($preview != null){
+
+		if( $section == $preview['section'] ){
+
+			if($part == $preview['arrayName']){
+				
+				$array[ $preview['field'] ] = $preview['val'];
+				return $array;
+			}
+		}
+		
+	}
+	return $array;
+}
 
 
-function kjd_get_theme_options(){
+function kjd_get_theme_options($preview = null){
 
 
 	settings_fields( 'kjd_component_settings' ); 
@@ -41,109 +57,121 @@ function kjd_get_theme_options(){
 		// Misc Settings
 		$miscSettings = get_option('kjd_'.$section.'_misc_settings');
 		$miscSettings = $miscSettings['kjd_'.$section.'_misc'];
-		$confineSectionBackground = $miscSettings['kjd_'.$section.'_confine_background'];
+		$kjd_section_confine_background = $miscSettings['kjd_'.$section.'_confine_background'];
 
 
 		// // Background Options
 		$options_backgrounds = get_option('kjd_'.$section.'_background_settings');
-		$backgroundColorSettings = $options_backgrounds['kjd_'.$section.'_background_colors'];
+		$kjd_section_background_colors = kjd_get_temp_setting($section,  $options_backgrounds['kjd_'.$section.'_background_colors'], $preview, 'kjd_section_background_colors' );
 
-		$backgroundWallpaperSettings = $options_backgrounds['kjd_'.$section.'_background_wallpaper'];
-		$backgroundSettings = array('backgroundColorSettings'=>$backgroundColorSettings,'backgroundWallpaperSettings'=>$backgroundWallpaperSettings);
+
+		$kjd_section_background_wallpaper = kjd_get_temp_setting($section, $options_backgrounds['kjd_'.$section.'_background_wallpaper'], $preview, 'kjd_section_background_wallpaper');
+		$backgroundSettings = array('kjd_section_background_colors'=>$kjd_section_background_colors,'kjd_section_background_wallpaper'=>$kjd_section_background_wallpaper);
 
 		// //Border Options
 		$options_border = get_option('kjd_'.$section.'_borders_settings');
-		$sectionTopBorder = $options_border['kjd_'.$section.'_top_border'];
-		$sectionRightBorder = $options_border['kjd_'.$section.'_right_border'];
-		$sectionBottomBorder = $options_border['kjd_'.$section.'_bottom_border'];
-		$sectionLeftBorder = $options_border['kjd_'.$section.'_left_border'];
+		$kjd_section_top_border = $options_border['kjd_'.$section.'_top_border'];
+		$kjd_section_right_border = $options_border['kjd_'.$section.'_right_border'];
+		$kjd_section_bottom_border = $options_border['kjd_'.$section.'_bottom_border'];
+		$kjd_section_left_border = $options_border['kjd_'.$section.'_left_border'];
 
-		if($confineSectionBackground =='true' || $section =='dropdown-menu' || $section =='posts'){
-			$sectionBorders = array('top'=>$sectionTopBorder,'right'=>$sectionRightBorder,'bottom'=>$sectionBottomBorder,'left'=>$sectionBottomBorder);
+		if($kjd_section_confine_background =='true' || $section =='dropdown-menu' || $section =='posts'){
+			$sectionBorders = array('top'=>$kjd_section_top_border,'right'=>$kjd_section_right_border,'bottom'=>$kjd_section_bottom_border,'left'=>$kjd_section_bottom_border);
 		}else{
-			$sectionBorders = array('top'=>$sectionTopBorder,'bottom'=>$sectionBottomBorder);
+			$sectionBorders = array('top'=>$kjd_section_top_border,'bottom'=>$kjd_section_bottom_border);
 		}
 
 		
 
-		$sectionBorderRadius = $options_border['kjd_'.$section.'_border_radius'];
+		$kjd_section_border_radius = $options_border['kjd_'.$section.'_border_radius'];
 		$sectionBordersRadiuses = array(
-			'top-left'=>$sectionBorderRadius['top-left'],
-			'top-right'=>$sectionBorderRadius['top-right'],
-			'bottom-right'=>$sectionBorderRadius['bottom-right'],
-			'bottom-left'=>$sectionBorderRadius['bottom-left']
+			'top-left'=>$kjd_section_border_radius['top-left'],
+			'top-right'=>$kjd_section_border_radius['top-right'],
+			'bottom-right'=>$kjd_section_border_radius['bottom-right'],
+			'bottom-left'=>$kjd_section_border_radius['bottom-left']
 		);
 		
 		// // Htag Options
 		$options_htag = get_option('kjd_'.$section.'_text_settings');
-		$sectionText = $options_htag['kjd_'.$section.'_text'];
-		$sectionH1 = $options_htag['kjd_'.$section.'_H1'];
-		$sectionH2 = $options_htag['kjd_'.$section.'_H2'];
-		$sectionH3 = $options_htag['kjd_'.$section.'_H3'];
-		$sectionH4 = $options_htag['kjd_'.$section.'_H4'];
-		$hTags = array('h1' => $sectionH1,'h2' => $sectionH2,'h3' => $sectionH3,'h4' => $sectionH4);
-		//print_r($options_htag);die();
+
+		$kjd_section_text = $options_htag['kjd_'.$section.'_text'];
+		$kjd_section_H1 = $options_htag['kjd_'.$section.'_H1'];
+		$kjd_section_H2 = $options_htag['kjd_'.$section.'_H2'];
+		$kjd_section_H3 = $options_htag['kjd_'.$section.'_H3'];
+		$kjd_section_H4 = $options_htag['kjd_'.$section.'_H4'];
+
+		$hTags = array('h1' => $kjd_section_H1,'h2' => $kjd_section_H2,'h3' => $kjd_section_H3 ,'h4' => $kjd_section_H4);
 
 		// // Link Options
 		$options_links = get_option('kjd_'.$section.'_links_settings');
-		$sectionLink = $options_links['kjd_'.$section.'_link'];
-		$sectionLinkHovered = $options_links['kjd_'.$section.'_linkHovered'];
-		$sectionLinkVisited = $options_links['kjd_'.$section.'_linkVisited'];
-		$sectionLinkActive = $options_links['kjd_'.$section.'_linkActive'];
-		$linkSettings = array('a' => $sectionLink,
-			'a:hover' => $sectionLinkHovered,
-			'a:visited' => $sectionLinkVisited,
-			'a:active' => $sectionLinkActive
+
+		$kjd_section_link = $options_links['kjd_'.$section.'_link'];
+		$kjd_section_linkHovered = $options_links['kjd_'.$section.'_linkHovered'];
+		$kjd_section_linkVisited = $options_links['kjd_'.$section.'_linkVisited'];
+		$kjd_section_linkActive = $options_links['kjd_'.$section.'_linkActive'];
+		$linkSettings = array('a' => $kjd_section_link,
+			'a:hover' => $kjd_section_linkHovered,
+			'a:visited' => $kjd_section_linkVisited,
+			'a:active' => $kjd_section_linkActive
 		);
 
 
 		// // Form Options
 		$options_components = get_option('kjd_'.$section.'_components_settings');
-		$sectionComponents = $options_components['kjd_'.$section.'_components'];
-		$tabbedContent = $sectionComponents['tabbed_content'];
-		$collapsibleContent = $sectionComponents['collapsible_content'];
-		$tableContent = $sectionComponents['table_content'];	
-		$paginationContent = $sectionComponents['pagination'];
-		$listContent = $sectionComponents['list'];
-		$formStyles = $sectionComponents['forms'];
 
-		$images = $sectionComponents['images'];
-		$thumbnails = $sectionComponents['thumbnails'];
-		$captions = $sectionComponents['captions'];
+		$kjd_section_components = $options_components['kjd_'.$section.'_components'];
+		$tabbed_content = $kjd_section_components['tabbed_content'];
+		$collapsible_content = $kjd_section_components['collapsible_content'];
+		$table_content = $kjd_section_components['table_content'];	
+		$pagination_content = $kjd_section_components['pagination'];
+		$list = $kjd_section_components['list'];
+		$forms = $kjd_section_components['forms'];
+
+		$images = $kjd_section_components['images'];
+		$thumbnails = $kjd_section_components['thumbnails'];
+		$captions = $kjd_section_components['captions'];
 		// // Misc Options
 		$options_misc = get_option('kjd_'.$section.'_misc_settings');
-		$options_misc = $options_misc['kjd_'.$section.'_misc'];
+		$kjd_section_misc = $kjd_section_misc['kjd_'.$section.'_misc'];
 		
 		// // Confine BG
-		$confineSectionBackground = $options_misc['kjd_'.$section.'_confine_background'];
-		if($confineSectionBackground=='true' || $section =='dropdown-menu'){
-			$borders = array('top' =>$sectionTopBorder,'right' =>$sectionRightBorder,'bottom' =>$sectionBottomBorder,'left' =>$sectionLeftBorder);
+		$kjd_section_confine_background = $kjd_section_misc['kjd_'.$section.'_confine_background'];
+		
+		if($kjd_section_confine_background=='true' || $section =='dropdown-menu'){
+		
+			$borders = array('top' =>$kjd_section_top_border,'right' =>$kjd_section_right_border,'bottom' =>$kjd_section_bottom_border,'left' =>$kjd_section_left_border);
+		
 		}else{
-			$borders = array('top' =>$sectionTopBorder,'bottom' =>$sectionBottomBorder);
+		
+			$borders = array('top' =>$kjd_section_top_border,'bottom' =>$kjd_section_bottom_border);
+		
 		}
 
 		$section_options = array(
 			'backgroundSettings' =>$backgroundSettings,
 			'sectionBorders' =>$sectionBorders,
 			'sectionBordersRadiuses' =>$sectionBordersRadiuses,
-			'sectionText' =>$sectionText,
+			'kjd_section_text' =>$kjd_section_text,
 			'linkSettings' =>$linkSettings,
 			'hTags' =>$hTags,
-			'tabbedContent' =>$tabbedContent,
-			'collapsibleContent' =>$collapsibleContent,
-			'tableContent'=>$tableContent,
-			'paginationContent'=>$paginationContent,
-			'listContent' =>$listContent,
-			'formStyles'=>$formStyles,
+			'tabbed_content' =>$tabbed_content,
+			'collapsible_content' =>$collapsible_content,
+			'table_content'=>$table_content,
+			'pagination_content'=>$pagination_content,
+			'list' =>$list,
+			'forms'=>$forms,
 			'images'=>$images,
 			'thumbnails'=>$thumbnails,
 			'captions'=>$captions,
 			'miscSettings'=>$miscSettings
 		);
+
+
 		$section_output .= section_markup_callback($section,$section_options);
 		
 	}
 
+		
 	$section_output .= postSettingsCallback();
 	
 
@@ -200,7 +228,7 @@ switch($section)
 }
 
 
-	$type = $backgroundColorSettings['gradient'];
+	$type = $kjd_section_background_colors['gradient'];
 	if(!empty($miscSettings['kjd_'.$section.'_section_shadow'])){
 		$sectionShadow = $miscSettings['kjd_'.$section.'_section_shadow'];	
 	}
@@ -293,10 +321,12 @@ switch($section)
 		$sectionArea_markup .= "height:".$height."px;";	
 
 	}
-
-	$sectionArea_markup .= background_type_callback($type,$backgroundColorSettings);
+/* ----------------------------------------------------------------------------- *
+						background stuff
+----------------------------------------------------------------------------- */
+	$sectionArea_markup .= background_type_callback($type,$kjd_section_background_colors);
 	//wallpaper function
-	$sectionArea_markup .= wallpaper_callback($backgroundWallpaperSettings);
+	$sectionArea_markup .= wallpaper_callback($kjd_section_background_wallpaper);
 
 			
 	//borders function
@@ -311,7 +341,7 @@ switch($section)
 	
 
 	//color
-	$sectionArea_markup .= 'color:'.$sectionText['color'].';';
+	$sectionArea_markup .= 'color:'.$kjd_section_text['color'].';';
 	
 	//hide header
 	if($section =='header' && $hideHeader == 'true'){
@@ -334,7 +364,7 @@ switch($section)
 	}
 
 	if($section =='sidrDrawer'){
-		$sectionArea_markup .= 'border-right: 5px solid'.$backgroundColorSettings['sidr_border'];
+		$sectionArea_markup .= 'border-right: 5px solid'.$kjd_section_background_colors['sidr_border'];
 	}
 	$sectionArea_markup .= '}';
 
@@ -395,15 +425,15 @@ switch($section)
 
 	if($section =='body' || $section =='footer' || $section =='header'){
 		//tabbed
-		$sectionArea_markup .= tabbedMarkupCallback($section, $tabbedContent);
+		$sectionArea_markup .= tabbedMarkupCallback($section, $tabbed_content);
 		//collapsibles
-		$sectionArea_markup .= collapsibleMarkupCallback($section, $collapsibleContent);
+		$sectionArea_markup .= collapsibleMarkupCallback($section, $collapsible_content);
 		//tables
-		$sectionArea_markup .= tableMarkupCallback($section, $tableContent);
+		$sectionArea_markup .= tableMarkupCallback($section, $table_content);
 		//pagination
-		$sectionArea_markup .= paginationMarkupCallback($section, $paginationContent);
+		$sectionArea_markup .= paginationMarkupCallback($section, $pagination_content);
 		//forms
-		$sectionArea_markup .= formsMarkupCallback($section, $formStyles);
+		$sectionArea_markup .= formsMarkupCallback($section, $forms);
 		//images
 		$sectionArea_markup .= imagesMarkupCallback($section, $images);
 		//thumbnails
@@ -411,11 +441,11 @@ switch($section)
 		//image captions
 		$sectionArea_markup .= captionImagesMarkupCallback($section, $captions);
 		//lists
-		$sectionArea_markup .= listsMarkupCallback($section, $listContent);
+		$sectionArea_markup .= listsMarkupCallback($section, $list);
 	}
 
 	if($section =='navbar') {
-		$sectionArea_markup .= formsMarkupCallback($section, $formStyles);
+		$sectionArea_markup .= formsMarkupCallback($section, $forms);
 	}
 	return $sectionArea_markup;
 
@@ -483,12 +513,14 @@ function kjd_image_cycler_settings_callback($miscSettings){
 // /* ------------------------- backgrounds -----------------------------*/
 
  //background type takes the $type argument and uses it to return the appropriate function
-function background_type_callback($type = null,$backgroundColorSettings = array()){
-	if( !empty($backgroundColorSettings) )
-	extract($backgroundColorSettings); 
+function background_type_callback($type = null,$kjd_section_background_colors = array()){
+	if( !empty($kjd_section_background_colors) )
+		extract($kjd_section_background_colors); 
 
-	$start_color = !empty($backgroundColorSettings['start_rgba']) ? $backgroundColorSettings['start_rgba'] : $backgroundColorSettings['color'];
-	$end_color = !empty($backgroundColorSettings['endcolor']) ? $backgroundColorSettings['endcolor'] : $backgroundColorSettings['endcolor'];
+	// $start_color = !empty($kjd_section_background_colors['start_rgba']) ? $kjd_section_background_colors['start_rgba'] : $kjd_section_background_colors['color'];
+	// $end_color = !empty($kjd_section_background_colors['endcolor']) ? $kjd_section_background_colors['endcolor'] : $kjd_section_background_colors['endcolor'];
+$start_color =  $kjd_section_background_colors['color'];
+	$end_color =  $kjd_section_background_colors['endcolor'];
 
 	$background_type = '';
 	if($type =='vertical'){
@@ -572,21 +604,21 @@ function radialGradientCallback($startColor, $endColor){
 		return $gradient_markup;
 }
 // /* ------------------------- wallpaper settings -----------------------------*/
-function wallpaper_callback($backgroundWallpaperSettings){
-	$backgroundImage = $backgroundWallpaperSettings['image'];
+function wallpaper_callback($kjd_section_background_wallpaper){
+	$backgroundImage = $kjd_section_background_wallpaper['image'];
 	
-	$backgroundPosition = $backgroundWallpaperSettings['position'];
-	$backgroundPositionX = !empty($backgroundWallpaperSettings['positionX'])? $backgroundWallpaperSettings['positionX'] : '0' ;
-	$backgroundPositionY = !empty($backgroundWallpaperSettings['positionY'])? $backgroundWallpaperSettings['positionY'] : '0' ;
-	$backgroundRepeat = $backgroundWallpaperSettings['repeat'];
+	$backgroundPosition = $kjd_section_background_wallpaper['position'];
+	$backgroundPositionX = !empty($kjd_section_background_wallpaper['positionX'])? $kjd_section_background_wallpaper['positionX'] : '0' ;
+	$backgroundPositionY = !empty($kjd_section_background_wallpaper['positionY'])? $kjd_section_background_wallpaper['positionY'] : '0' ;
+	$backgroundRepeat = $kjd_section_background_wallpaper['repeat'];
 
 	$wallpaper_markup ='';
 
-	if(!empty($backgroundWallpaperSettings['attachment'])){
-		$wallpaper_markup .= 'background-attachment:'.$backgroundWallpaperSettings['attachment'].';';	
+	if(!empty($kjd_section_background_wallpaper['attachment'])){
+		$wallpaper_markup .= 'background-attachment:'.$kjd_section_background_wallpaper['attachment'].';';	
 	}
 
-	if($backgroundWallpaperSettings['use_wallpaper']=='true'){
+	if($kjd_section_background_wallpaper['use_wallpaper']=='true'){
 
 		if(isset($backgroundImage) && $backgroundImage!=""){
 			$wallpaper_markup .= 'background-image:url('.$backgroundImage.');';
@@ -616,7 +648,7 @@ function borderSettingsCallback($position, $border){
 //	extract($sectionBorders); //
 
 	$border_style_markup = '';
-//$borders = array('top' =>$sectionTopBorder,'right' =>$sectionRightBorder,'bottom' =>$sectionBottomBorder,'left' =>$sectionLeftBorder);
+//$borders = array('top' =>$kjd_section_top_border,'right' =>$kjd_section_right_border,'bottom' =>$kjd_section_bottom_border,'left' =>$kjd_section_left_border);
 
 	$borderStyle = $border['style'];
 	$borderColor = $border['color'];
@@ -747,56 +779,56 @@ function linkSettingsCallback($link, $section){
 
 
 // /* ------------------------- tables -----------------------------*/
-function tableMarkupCallback($section, $tableContent){
+function tableMarkupCallback($section, $table_content){
 $table_markup = '';
 
 
 	$table_markup .= '#'.$section.' .table,';
 	$table_markup .= '#'.$section.' .table td,';
 	$table_markup .= '#'.$section.' .table th{';
-	$table_markup .= 'border-color:'.$tableContent['table_border'].';';
+	$table_markup .= 'border-color:'.$table_content['table_border'].';';
 	$table_markup .= '}';
 
 	$table_markup .= '#'.$section.' .table thead,';
 	$table_markup .= '#'.$section.' .table tfoot{';
-	$table_markup .= 'color:'.$tableContent['table_header_text_color'].';';
-	$table_markup .= 'background:'.$tableContent['table_header_background'].';';
-	$table_markup .= 'border-color:'.$tableContent['table_border'].';';
+	$table_markup .= 'color:'.$table_content['table_header_text_color'].';';
+	$table_markup .= 'background:'.$table_content['table_header_background'].';';
+	$table_markup .= 'border-color:'.$table_content['table_border'].';';
 	$table_markup .= '}';
 
 	$table_markup .= '#'.$section.' .table thead a,';
 	$table_markup .= '#'.$section.' .table tfoot a{';
-	$table_markup .= 'color:'.$tableContent['table_header_link_color'].';';
+	$table_markup .= 'color:'.$table_content['table_header_link_color'].';';
 	$table_markup .= '}';
 
 	$table_markup .= '#'.$section.' .table-striped tbody tr:nth-child(even) td a{';
-	$table_markup .= 'color:'.$tableContent['even_row_link_color'].';';
+	$table_markup .= 'color:'.$table_content['even_row_link_color'].';';
 	$table_markup .= '}';
 
 
 	$table_markup .= '#'.$section.' .table-striped tbody tr:nth-child(even) td,';
 	$table_markup .= '#'.$section.' .table-striped tbody tr:nth-child(even) th,';
 	$table_markup .= '#'.$section.' .table tbody tr:nth-child(even) td{';
-	$table_markup .= 'background:'.$tableContent['even_row_background'].';';
-	$table_markup .= 'color:'.$tableContent['even_row_text_color'].';';
+	$table_markup .= 'background:'.$table_content['even_row_background'].';';
+	$table_markup .= 'color:'.$table_content['even_row_text_color'].';';
 	$table_markup .= '}';
 
 	
 	$table_markup .= '#'.$section.' .table-striped tbody tr:nth-child(odd) td,';
 	$table_markup .= '#'.$section.' .table-striped tbody tr:nth-child(odd) th{';
-	$table_markup .= 'background:'.$tableContent['odd_row_background'].';';
-	$table_markup .= 'color:'.$tableContent['odd_row_text_color'].';';
+	$table_markup .= 'background:'.$table_content['odd_row_background'].';';
+	$table_markup .= 'color:'.$table_content['odd_row_text_color'].';';
 	$table_markup .= '}';
 
 	$table_markup .= '#'.$section.' .table-striped tbody tr:nth-child(odd) td a{';
-	$table_markup .= 'color:'.$tableContent['odd_row_link_color'].';';
+	$table_markup .= 'color:'.$table_content['odd_row_link_color'].';';
 	$table_markup .= '}';
 
 
 	$table_markup .= '#'.$section.' .table-hover tbody tr:hover > td,';
 	$table_markup .= '#'.$section.' .table-hover tbody tr:hover > td{';
-	$table_markup .= 'background:'.$tableContent['hovered_row_background'].';';
-	$table_markup .= 'color:'.$tableContent['hovered_row_text_color'].';';
+	$table_markup .= 'background:'.$table_content['hovered_row_background'].';';
+	$table_markup .= 'color:'.$table_content['hovered_row_text_color'].';';
 	$table_markup .= '}';
 
 	return $table_markup;
@@ -804,16 +836,16 @@ $table_markup = '';
 
 
 // /* ------------------------- pagination -------------------------*/
-function paginationMarkupCallback($section, $paginationContent){
+function paginationMarkupCallback($section, $pagination_content){
 
-$border = $paginationContent['pagination_border'];
-$background  = $paginationContent['pagination_background'];
-$text  = $paginationContent['pagination_text'];
-$link  = $paginationContent['pagination_link'];
-$background_hover  = $paginationContent['pagination_hover_background'];
-$link_hover  = $paginationContent['pagination_hover_link'];
-$background_current  = $paginationContent['pagination_current_background'];
-$text_current  = $paginationContent['pagination_current_text'];
+$border = $pagination_content['pagination_border'];
+$background  = $pagination_content['pagination_background'];
+$text  = $pagination_content['pagination_text'];
+$link  = $pagination_content['pagination_link'];
+$background_hover  = $pagination_content['pagination_hover_background'];
+$link_hover  = $pagination_content['pagination_hover_link'];
+$background_current  = $pagination_content['pagination_current_background'];
+$text_current  = $pagination_content['pagination_current_text'];
 
 $pagination_markup = '';
 
@@ -853,40 +885,40 @@ return $pagination_markup;
 }
 
 // /* ------------------------- Lists -------------------------*/
-function listsMarkupCallback($section, $listContent){
+function listsMarkupCallback($section, $list){
 
-	$background = !empty($listContent['background_color']) ? $listContent['background_color'] : 'transparent' ;
-	$background_hover = !empty($listContent['background_hover_color']) ? $listContent['background_hover_color'] : 'transparent';
+	$background = !empty($list['background_color']) ? $list['background_color'] : 'transparent' ;
+	$background_hover = !empty($list['background_hover_color']) ? $list['background_hover_color'] : 'transparent';
 
 	$list_markup = '';
 	$list_markup .= '#'. $section.' .content-nav.li > nav > span{';
-		$list_markup .= 'color:'.$listContent['text_color'].';';
+		$list_markup .= 'color:'.$list['text_color'].';';
 	$list_markup .= '}';
 
 	$list_markup .= '#'. $section.' .content-nav.nav > li > span:hover{';
-		$list_markup .= 'color:'.$listContent['text_hover_color'].';';
+		$list_markup .= 'color:'.$list['text_hover_color'].';';
 	$list_markup .= '}';
 
 	$list_markup .= '#'. $section.' .content-nav.nav > li > a,';
 	$list_markup .= '#'. $section.' .content-nav.nav > li > span {';
 		$list_markup .= 'background-color:'.$background.';';
-		$list_markup .= 'border-color:'.$listContent['border_color'].';';
+		$list_markup .= 'border-color:'.$list['border_color'].';';
 	$list_markup .= '}';
 
 	$list_markup .= '#'. $section.' .content-nav.nav > li > a{';
-		$list_markup .= 'color:'.$listContent['link_color'].';';
+		$list_markup .= 'color:'.$list['link_color'].';';
 	$list_markup .= '}';
 
 	$list_markup .= '#'. $section.' .content-nav.nav > li > a:hover,';
 	$list_markup .= '#'. $section.' .content-nav.nav > li.current-menu-item > a,';
 	$list_markup .= '#'. $section.' .content-nav.nav > li > span:hover {';
 		$list_markup .= 'background-color:'.$background_hover.';';
-		$list_markup .= 'border-color:'.$listContent['border_hover_color'].';';
+		$list_markup .= 'border-color:'.$list['border_hover_color'].';';
 	$list_markup .= '}';
 
 	$list_markup .= '#'. $section.' .content-nav.nav > li > a:hover,';
 	$list_markup .= '#'. $section.' .content-nav.nav > li.current-menu-item > a{';
-		$list_markup .= 'color:'.$listContent['link_hover_color'].';';	
+		$list_markup .= 'color:'.$list['link_hover_color'].';';	
 	$list_markup .= '}';
 
 	return $list_markup;
@@ -894,14 +926,14 @@ function listsMarkupCallback($section, $listContent){
 }
 
 // /* ------------------------- forms -----------------------------*/
-function formsMarkupCallback($section, $formStyles){
+function formsMarkupCallback($section, $forms){
 $form_markup = '';
 $form_markup .= '#'. $section.' form{';
-	$form_markup .= 'background:'. $formStyles['form_background'].' ; ';
-	$form_markup .= 'border-color:'. $formStyles['form_border'].';';
-	$form_markup .= 'color:'. $formStyles['container_text'].';';
+	$form_markup .= 'background:'. $forms['form_background'].' ; ';
+	$form_markup .= 'border-color:'. $forms['form_border'].';';
+	$form_markup .= 'color:'. $forms['container_text'].';';
 
-if( (isset($formStyles['form_background']) && $formStyles['form_background']!= '' && $formStyles['form_background']!= ' ' ) || (isset($formStyles['container_border']) && $formStyles['container_border']!= '' && $formStyles['container_border']!= ' ') ){
+if( (isset($forms['form_background']) && $forms['form_background']!= '' && $forms['form_background']!= ' ' ) || (isset($forms['container_border']) && $forms['container_border']!= '' && $forms['container_border']!= ' ') ){
 	$form_markup .= ' "padding:10px; border-radius:4px;";';
 }
 $form_markup .= '}';
@@ -927,9 +959,9 @@ $form_markup .= '#'. $section.' input[type="tel"],';
 $form_markup .= '#'. $section.' input[type="color"],';
 $form_markup .= '#'. $section.' select,';
 $form_markup .= '#'. $section.' input[type="file"] {';
-	$form_markup .= 'color:'. $formStyles['field_text'].';';
-	$form_markup .= 'background:'. $formStyles['field_background'].';';
-	$form_markup .= 'border-color:'. $formStyles['field_border'].';';
+	$form_markup .= 'color:'. $forms['field_text'].';';
+	$form_markup .= 'background:'. $forms['field_background'].';';
+	$form_markup .= 'border-color:'. $forms['field_border'].';';
 $form_markup .= '}';
 
 //input areas on focus
@@ -950,24 +982,24 @@ $form_markup .= '#'. $section.' input[type="radio"]:focus,
 #'. $section.'  input[type="tel"]:focus,
 #'. $section.'  input[type="color"]:focus,
 #'. $section.'  .uneditable-input:focus {';
-	$form_markup .= 'border-color: :'. $formStyles['field_border'].';';
-	$form_markup .= 'box-shadow: 0 0 8px '. $formStyles['field_glow'].';';
+	$form_markup .= 'border-color: :'. $forms['field_border'].';';
+	$form_markup .= 'box-shadow: 0 0 8px '. $forms['field_glow'].';';
 $form_markup .= '}';
 
 $form_markup .= '#'. $section.' form button,';
 $form_markup .=' #'. $section.' form input[type=submit],';
 $form_markup .= '#'. $section.' form .btn {';
 	$form_markup .= 'background-image:none;';
-	$form_markup .= verticalGradientCallback($formStyles['button_background'], $formStyles['button_background_end']);
-	$form_markup .= 'border-color:'. $formStyles['button_border'].' !important;';
-	$form_markup .= 'color:'. $formStyles['button_text'].' !important;';
+	$form_markup .= verticalGradientCallback($forms['button_background'], $forms['button_background_end']);
+	$form_markup .= 'border-color:'. $forms['button_border'].' !important;';
+	$form_markup .= 'color:'. $forms['button_text'].' !important;';
 $form_markup .= '}';
 
 //form buttons - mostly the submit button on hover
 $form_markup .= '#'. $section.' form button:hover,';
 $form_markup .= '#'. $section.' form input[type=submit]:hover,';
 $form_markup .= '#'. $section.' form .btn:hover{';
-	$form_markup .= 'background-color:'. $formStyles['button_background_end'].' !important;';
+	$form_markup .= 'background-color:'. $forms['button_background_end'].' !important;';
 	$form_markup .= '}';
 
 // echo $form_markup;die();
@@ -975,40 +1007,40 @@ $form_markup .= '#'. $section.' form .btn:hover{';
 }
 
 // /* ----------------------------- Collapsibles ------------------------------ */
-function collapsibleMarkupCallback($section, $collapsibleContent)
+function collapsibleMarkupCallback($section, $collapsible_content)
 {
 	$collapsible_markup =''; 
 $collapsible_markup .= '#'. $section.' .accordion-group{';
-$collapsible_markup .= 'background:'. $collapsibleContent['collapible_content_background'].'; ';
-$collapsible_markup .= 'border-color:'. $collapsibleContent['collapible_content_border'].' ;';
+$collapsible_markup .= 'background:'. $collapsible_content['collapible_content_background'].'; ';
+$collapsible_markup .= 'border-color:'. $collapsible_content['collapible_content_border'].' ;';
 $collapsible_markup .= '}';
 /*the title*/
 $collapsible_markup .= '#'. $section.' .accordion-heading > a.collapsed{';
-$collapsible_markup .= 'background:'. $collapsibleContent['inactive_title_background'].'; ';
-$collapsible_markup .= 'color:'. $collapsibleContent['inactive_title_link_color'].';';
+$collapsible_markup .= 'background:'. $collapsible_content['inactive_title_background'].'; ';
+$collapsible_markup .= 'color:'. $collapsible_content['inactive_title_link_color'].';';
 $collapsible_markup .= '}';
 $collapsible_markup .= '#'. $section.' .accordion-heading a{';
-$collapsible_markup .= 'background:'. $collapsibleContent['active_title_background'].'; ';
-$collapsible_markup .= 'color:'. $collapsibleContent['active_title_link_color'].';';
+$collapsible_markup .= 'background:'. $collapsible_content['active_title_background'].'; ';
+$collapsible_markup .= 'color:'. $collapsible_content['active_title_link_color'].';';
 $collapsible_markup .= '}';
 /* when closed*/
 $collapsible_markup .= '#'. $section.' .accordion-heading > .collapsed{';
-$collapsible_markup .= 'background:'. $collapsibleContent['inactive_title_background'].' ;';
-$collapsible_markup .= 'color:'. $collapsibleContent['inactive_title_link_color'].' ;';
+$collapsible_markup .= 'background:'. $collapsible_content['inactive_title_background'].' ;';
+$collapsible_markup .= 'color:'. $collapsible_content['inactive_title_link_color'].' ;';
 $collapsible_markup .= '}';
 $collapsible_markup .= '#'. $section.' .accordion-heading a:hover{';
-$collapsible_markup .= 'background:'. $collapsibleContent['hovered_title_background'].' ;';
-$collapsible_markup .= 'color:'. $collapsibleContent['hovered_title_link_color'].' ;';
+$collapsible_markup .= 'background:'. $collapsible_content['hovered_title_background'].' ;';
+$collapsible_markup .= 'color:'. $collapsible_content['hovered_title_link_color'].' ;';
 $collapsible_markup .= '}';
 /*the content */
 $collapsible_markup .= '#'. $section.' .accordion-inner {';
-$collapsible_markup .= 'border-top-color:'. $collapsibleContent['collapible_content_border'].' ;';
-$collapsible_markup .= 'color:'. $collapsibleContent['collapible_content_text_color'].';';
+$collapsible_markup .= 'border-top-color:'. $collapsible_content['collapible_content_border'].' ;';
+$collapsible_markup .= 'color:'. $collapsible_content['collapible_content_text_color'].';';
 $collapsible_markup .= '}';
 
 /*the content */
 $collapsible_markup .= '#'. $section.' .accordion-inner a{';
-$collapsible_markup .= 'color:'. $collapsibleContent['collapible_content_link_color'].';';
+$collapsible_markup .= 'color:'. $collapsible_content['collapible_content_link_color'].';';
 $collapsible_markup .= '}';
 
 
@@ -1020,7 +1052,7 @@ return $collapsible_markup;
 }
 
 // /* -------------------------  Tabbed content ----------------------------------*/
-function tabbedMarkupCallback($section, $tabbedContent){
+function tabbedMarkupCallback($section, $tabbed_content){
 $tabbed_markup = '';
 
 $tabbed_markup .= '#'. $section.' .tabbable > ul.nav{';
@@ -1028,49 +1060,49 @@ $tabbed_markup .= '#'. $section.' .tabbable > ul.nav{';
 $tabbed_markup .= '}';
 
 $tabbed_markup .= '#'. $section.' .tabbable > ul.nav > li > a{ ';
-	$tabbed_markup .= 'background:'. $tabbedContent['inactive_tab_background'].'; ';
-	$tabbed_markup .= 'border-color:'. $tabbedContent['inactive_tab_border'].'; ';
-	$tabbed_markup .= 'border-bottom-color: '. $tabbedContent['tabbed_content_background'].' ; ';
-	$tabbed_markup .= 'color:'. $tabbedContent['inactive_tab_link_color'].';';
+	$tabbed_markup .= 'background:'. $tabbed_content['inactive_tab_background'].'; ';
+	$tabbed_markup .= 'border-color:'. $tabbed_content['inactive_tab_border'].'; ';
+	$tabbed_markup .= 'border-bottom-color: '. $tabbed_content['tabbed_content_background'].' ; ';
+	$tabbed_markup .= 'color:'. $tabbed_content['inactive_tab_link_color'].';';
 $tabbed_markup .= '}';
 
 $tabbed_markup .= '#'. $section.' .tabbable > ul.nav > li > a:hover{';
-	$tabbed_markup .= 'background:'. $tabbedContent['hovered_tab_background'].';';
-	$tabbed_markup .= 'border-color:'. $tabbedContent['hovered_tab_border'].'; ';
-	$tabbed_markup .= 'border-bottom-color: '. $tabbedContent['tabbed_content_background'].' ; ';	
-	$tabbed_markup .= 'color:'. $tabbedContent['hovered_tab_link_color'].';';
+	$tabbed_markup .= 'background:'. $tabbed_content['hovered_tab_background'].';';
+	$tabbed_markup .= 'border-color:'. $tabbed_content['hovered_tab_border'].'; ';
+	$tabbed_markup .= 'border-bottom-color: '. $tabbed_content['tabbed_content_background'].' ; ';	
+	$tabbed_markup .= 'color:'. $tabbed_content['hovered_tab_link_color'].';';
 $tabbed_markup .= '}';
 
 $tabbed_markup .= '#'. $section.' .tabbable > ul.nav > li.active > a{';
-	$tabbed_markup .= 'background:'. $tabbedContent['tabbed_content_background'].';';
-	$tabbed_markup .= 'border-color:'. $tabbedContent['active_tab_border'].'; ';
-	$tabbed_markup .= 'border-bottom-color: '. $tabbedContent['tabbed_content_background'].' ; ';	
-	$tabbed_markup .= 'color:'. $tabbedContent['active_tab_link_color'].';';
+	$tabbed_markup .= 'background:'. $tabbed_content['tabbed_content_background'].';';
+	$tabbed_markup .= 'border-color:'. $tabbed_content['active_tab_border'].'; ';
+	$tabbed_markup .= 'border-bottom-color: '. $tabbed_content['tabbed_content_background'].' ; ';	
+	$tabbed_markup .= 'color:'. $tabbed_content['active_tab_link_color'].';';
 $tabbed_markup .= '}';
 
 $tabbed_markup .= '#'. $section.' .tabbable > .tab-content{';
-	$tabbed_markup .= 'background:'. $tabbedContent['tabbed_content_background'].'; ';
-	$tabbed_markup .= 'border-color:'. $tabbedContent['tabbed_content_border'].'; ';
-	$tabbed_markup .= 'color:'. $tabbedContent['tabbed_content_text_color'].';';
+	$tabbed_markup .= 'background:'. $tabbed_content['tabbed_content_background'].'; ';
+	$tabbed_markup .= 'border-color:'. $tabbed_content['tabbed_content_border'].'; ';
+	$tabbed_markup .= 'color:'. $tabbed_content['tabbed_content_text_color'].';';
 	$tabbed_markup .= 'border-style: solid; border-width: 1px; padding:20px;';
 $tabbed_markup .= '}';
 
 
 $tabbed_markup .= '#'. $section.' .tabbable > .tab-content a{';
-$tabbed_markup .= 'color:'. $tabbedContent['tabbed_content_link_color'].';';
+$tabbed_markup .= 'color:'. $tabbed_content['tabbed_content_link_color'].';';
 $tabbed_markup .= '}';
 
 $tabbed_markup .= '#'. $section.' .tabbable > .tab-content > a{';
-	$tabbed_markup .= 'color:'. $tabbedContent['tabbed_content_link_color'].';';
+	$tabbed_markup .= 'color:'. $tabbed_content['tabbed_content_link_color'].';';
 $tabbed_markup .= '}';
 
 /* tab directions */
 $tabbed_markup .= '#'. $section.' .tabs-left > ul > li > a{';
-	$tabbed_markup .= 'border-right-color:'. $tabbedContent['tabbed_content_border'].';';
+	$tabbed_markup .= 'border-right-color:'. $tabbed_content['tabbed_content_border'].';';
 $tabbed_markup .= '}';
 
 $tabbed_markup .= '#'. $section.' .tabs-left > ul > li.active > a{';
-	$tabbed_markup .= 'border-right-color:'. $tabbedContent['tabbed_content_background'].';';
+	$tabbed_markup .= 'border-right-color:'. $tabbed_content['tabbed_content_background'].';';
 $tabbed_markup .= '}';
 
 $tabbed_markup .= '#'. $section.' .tabs-left .tab-content{';
@@ -1083,11 +1115,11 @@ $tabbed_markup .= 'border-top-left-radius: 0;';
 $tabbed_markup .= '}';
 
 $tabbed_markup .= '#'. $section.' .tabs-right > ul > li > a{';
-$tabbed_markup .= 'border-left-color:'. $tabbedContent['tabbed_content_border'].'; ';
+$tabbed_markup .= 'border-left-color:'. $tabbed_content['tabbed_content_border'].'; ';
 $tabbed_markup .= '}';
 
 $tabbed_markup .= '#'. $section.' .tabs-right > ul > li.active > a{';
-$tabbed_markup .= 'border-left-color:'. $tabbedContent['tabbed_content_background'].'; ';
+$tabbed_markup .= 'border-left-color:'. $tabbed_content['tabbed_content_background'].'; ';
 $tabbed_markup .= '}';
 
 $tabbed_markup .= '#'. $section.' .tabs-right .tab-content{';
@@ -1100,11 +1132,11 @@ $tabbed_markup .= 'border-top-right-radius: 0;';
 $tabbed_markup .= '}';
 
 $tabbed_markup .= '#'. $section.' .tabbable.tabs > ul > li a{';
-$tabbed_markup .= 'border-bottom-color:'. $tabbedContent['tabbed_content_border'].';';
+$tabbed_markup .= 'border-bottom-color:'. $tabbed_content['tabbed_content_border'].';';
 $tabbed_markup .= '}';
 
 $tabbed_markup .= '#'. $section.' .tabbable.tabs > ul > li.active a{';
-$tabbed_markup .= 'border-bottom-color:'. $tabbedContent['tabbed_content_background'].';';
+$tabbed_markup .= 'border-bottom-color:'. $tabbed_content['tabbed_content_background'].';';
 $tabbed_markup .= '}';
 
 
@@ -1118,11 +1150,11 @@ $tabbed_markup .= 'border-top-left-radius: 0;';
 $tabbed_markup .= '}';
 
 $tabbed_markup .= '#'. $section.' .tabs-below > ul > li > a{';
-$tabbed_markup .= 'border-top-color:'. $tabbedContent['tabbed_content_border'].'; ';
+$tabbed_markup .= 'border-top-color:'. $tabbed_content['tabbed_content_border'].'; ';
 $tabbed_markup .= '}';
 
 $tabbed_markup .= '#'. $section.' .tabs-below > ul > li.active > a{';
-$tabbed_markup .= 'border-top-color:'. $tabbedContent['tabbed_content_background'].'; ';
+$tabbed_markup .= 'border-top-color:'. $tabbed_content['tabbed_content_background'].'; ';
 $tabbed_markup .= '}';
 
 $tabbed_markup .= '#'. $section.' .tabs-below .tab-content{';

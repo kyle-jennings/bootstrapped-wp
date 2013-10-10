@@ -4,10 +4,11 @@ include 'page_layouts_form.php';
 include 'misc_backgrounds_form.php';
 
 // include the file which builds the CSS
-include(dirname(dirname(__FILE__)).'/styles/styles.php');
+
+include('functions/styles.php');
 
 include 'settings.php';
-include('admin_functions.php');
+include('functions/admin_functions.php');
 
 //////////////////////////////////////
 // Google font selection
@@ -43,8 +44,14 @@ function kjd_load_style_sheets_and_scripts() {
 	wp_enqueue_style("colorPicker", $adminDir."css/minicolors.css");
 	wp_enqueue_script("colorPicker", $adminDir."js/colorpicker/minicolors.js");  
 
-	// wp_enqueue_script("scoped", $adminDir."js/jquery.scoped.js", false, "1.0");   
-	wp_enqueue_script("admin", $adminDir."js/admin.js", false, "1.0");   
+wp_register_script( 'script_handle', $adminDir."js/admin.js", false, '1.0' ); //register script
+
+
+	wp_register_script( 'admin', $adminDir."js/admin.js", false, '1.0' ); //register script
+
+	$wp_paths = array( 'template_url' => $adminDir.'functions/live_preview.php', 'root_url' => get_bloginfo('template_directory') );
+	wp_localize_script( 'admin', 'object_name', $wp_paths );
+	wp_enqueue_script("admin"); //enqueue
 
 }  
 add_action('admin_init', 'kjd_load_style_sheets_and_scripts');  
@@ -53,11 +60,7 @@ function kjd_initialize_kjd_settings(){
 	 include 'kjd_field_settings.php';
 }
 add_action('admin_init', 'kjd_initialize_kjd_settings');  
-/*
-// checks to see if user has proper privs
-if (!current_user_can('manage_options')) {  
-    wp_die('You do not have sufficient permissions to access this page.');  
-}*/ 
+
 
 // makes new menu
 function kjd_setup_theme_menus() {  
