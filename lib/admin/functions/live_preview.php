@@ -22,8 +22,10 @@ if(isset($_POST['data']))
   $file = $root.'/styles/preview.css';
 
   if(file_exists($file)){
+
     chmod($file, 0777);
-    $file = fopen($file, "w+"); 
+    unlink($file);
+    $file = fopen($file, "x+"); 
   }else{
     $file = fopen($file, "x+");
   }
