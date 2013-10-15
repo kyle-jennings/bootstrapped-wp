@@ -2,20 +2,40 @@
 /*
 Template Name: Style Sheet
 */
-function kjd_get_temp_setting($section, $array, $preview, $part) {
-
+/*
+	$section = section
+	$array =
+	$preview = js object containing the section, field name
+*/
+function kjd_get_temp_settings($section, $array, $preview, $part) {
 	if($preview != null){
-
 		if( $section == $preview['section'] ){
+			// echo 'Part: '.$part;
+			// echo 'preview settings:';
+			// print_r($preview['settings'] ); die();
+			foreach( $preview['settings'] as $settings ){
 
-			if($part == $preview['arrayName']){
+				if($settings['name'] == $part){
+
+					// echo 'Part: '.$part;
+					// echo'old'."\n";
+					// print_r($array);
+					// echo 'preview: '."\n";
+					// print_r($settings);
+					$array[ $settings['field'] ] = $settings['value'];
+					// echo 'NEW: '."\n";
+					// print_r($array);
+					// die();
+				} // end field matching
 				
-				$array[ $preview['field'] ] = $preview['val'];
-				return $array;
-			}
-		}
-		
-	}
+
+			} // end looping through preview settings
+
+			// if($part == 'kjd_section_link'){
+			// 	print_r($array); die();
+			// }
+		} // end setting section checking
+	} // end preview
 	return $array;
 }
 
@@ -60,20 +80,48 @@ function kjd_get_theme_options($preview = null){
 		$kjd_section_confine_background = $miscSettings['kjd_'.$section.'_confine_background'];
 
 
-		// // Background Options
+		/* -----------------------------------------------------
+		 Background Options 
+		 ----------------------------------------------------- */
 		$options_backgrounds = get_option('kjd_'.$section.'_background_settings');
-		$kjd_section_background_colors = kjd_get_temp_setting($section,  $options_backgrounds['kjd_'.$section.'_background_colors'], $preview, 'kjd_section_background_colors' );
+
+		$kjd_section_background_colors = kjd_get_temp_settings(	$section,  
+																$options_backgrounds['kjd_'.$section.'_background_colors'], 
+																$preview, 
+																'kjd_section_background_colors' 
+															);
 
 
-		$kjd_section_background_wallpaper = kjd_get_temp_setting($section, $options_backgrounds['kjd_'.$section.'_background_wallpaper'], $preview, 'kjd_section_background_wallpaper');
+		$kjd_section_background_wallpaper = kjd_get_temp_settings($section, $options_backgrounds['kjd_'.$section.'_background_wallpaper'], $preview, 'kjd_section_background_wallpaper');
 		$backgroundSettings = array('kjd_section_background_colors'=>$kjd_section_background_colors,'kjd_section_background_wallpaper'=>$kjd_section_background_wallpaper);
 
-		// //Border Options
+		/* ----------------------------------------------------- 
+		Border Options
+		 ----------------------------------------------------- */
 		$options_border = get_option('kjd_'.$section.'_borders_settings');
-		$kjd_section_top_border = $options_border['kjd_'.$section.'_top_border'];
-		$kjd_section_right_border = $options_border['kjd_'.$section.'_right_border'];
-		$kjd_section_bottom_border = $options_border['kjd_'.$section.'_bottom_border'];
-		$kjd_section_left_border = $options_border['kjd_'.$section.'_left_border'];
+
+		$kjd_section_top_border = kjd_get_temp_settings(	$section, 
+															$options_border['kjd_'.$section.'_top_border'],
+															$preview, 
+															'kjd_section_top_border' 
+															);
+
+		$kjd_section_right_border = kjd_get_temp_settings(	$section,
+															$options_border['kjd_'.$section.'_right_border'],
+															$preview, 
+															'kjd_section_right_border' 
+															);
+		$kjd_section_bottom_border = kjd_get_temp_settings(	$section,
+															$options_border['kjd_'.$section.'_bottom_border'],
+															$preview, 
+															'kjd_section_bottom_border' 															
+															);
+		$kjd_section_left_border = kjd_get_temp_settings(	$section,
+															$options_border['kjd_'.$section.'_left_border'],
+															$preview, 
+															'kjd_section_left_border' 
+															);
+
 
 		if($kjd_section_confine_background =='true' || $section =='dropdown-menu' || $section =='posts'){
 			$sectionBorders = array('top'=>$kjd_section_top_border,'right'=>$kjd_section_right_border,'bottom'=>$kjd_section_bottom_border,'left'=>$kjd_section_bottom_border);
@@ -82,8 +130,14 @@ function kjd_get_theme_options($preview = null){
 		}
 
 		
-
-		$kjd_section_border_radius = $options_border['kjd_'.$section.'_border_radius'];
+		/* ----------------------------------------------------- 
+		Border Radius Options
+		 ----------------------------------------------------- */
+		$kjd_section_border_radius = kjd_get_temp_settings(	$section,
+															$options_border['kjd_'.$section.'_border_radius'],
+															$preview,
+															'kjd_section_border_radius'
+															);
 		$sectionBordersRadiuses = array(
 			'top-left'=>$kjd_section_border_radius['top-left'],
 			'top-right'=>$kjd_section_border_radius['top-right'],
@@ -91,62 +145,190 @@ function kjd_get_theme_options($preview = null){
 			'bottom-left'=>$kjd_section_border_radius['bottom-left']
 		);
 		
-		// // Htag Options
+		/* ----------------------------------------------------- 
+		Heading Tag Options
+		 ----------------------------------------------------- */
 		$options_htag = get_option('kjd_'.$section.'_text_settings');
 
-		$kjd_section_text = $options_htag['kjd_'.$section.'_text'];
-		$kjd_section_H1 = $options_htag['kjd_'.$section.'_H1'];
-		$kjd_section_H2 = $options_htag['kjd_'.$section.'_H2'];
-		$kjd_section_H3 = $options_htag['kjd_'.$section.'_H3'];
-		$kjd_section_H4 = $options_htag['kjd_'.$section.'_H4'];
+		$kjd_section_text = kjd_get_temp_settings(	$section,
+													$options_htag['kjd_'.$section.'_text'],
+													$preview,
+													'kjd_section_text'
+													);
 
-		$hTags = array('h1' => $kjd_section_H1,'h2' => $kjd_section_H2,'h3' => $kjd_section_H3 ,'h4' => $kjd_section_H4);
 
-		// // Link Options
+		$kjd_section_H1 =  kjd_get_temp_settings(	$section,
+													$options_htag['kjd_'.$section.'_H1'],
+													$preview,
+													'kjd_section_H1'
+												);
+		
+		$kjd_section_H2 = kjd_get_temp_settings(	$section,
+													$options_htag['kjd_'.$section.'_H2'],
+													$preview,
+													'kjd_section_H2'
+												);
+		
+		$kjd_section_H3 = kjd_get_temp_settings(	$section,
+													$options_htag['kjd_'.$section.'_H3'],
+													$preview,
+													'kjd_section_H3'
+												);
+		
+		$kjd_section_H4 = kjd_get_temp_settings(	$section,
+													$options_htag['kjd_'.$section.'_H4'],
+													$preview,
+													'kjd_section_H4'
+												);
+
+		$hTags = array(
+						'h1' => $kjd_section_H1,
+						'h2' => $kjd_section_H2,
+						'h3' => $kjd_section_H3,
+						'h4' => $kjd_section_H4
+					);
+
+		/* ----------------------------------------------------- 
+		Link Options
+		 ----------------------------------------------------- */
 		$options_links = get_option('kjd_'.$section.'_links_settings');
 
-		$kjd_section_link = $options_links['kjd_'.$section.'_link'];
-		$kjd_section_linkHovered = $options_links['kjd_'.$section.'_linkHovered'];
-		$kjd_section_linkVisited = $options_links['kjd_'.$section.'_linkVisited'];
-		$kjd_section_linkActive = $options_links['kjd_'.$section.'_linkActive'];
-		$linkSettings = array('a' => $kjd_section_link,
+		$kjd_section_link = kjd_get_temp_settings(	$section,
+													$options_links['kjd_'.$section.'_link'],
+													$preview,
+													'kjd_section_link'
+												);
+
+		$kjd_section_linkHovered = kjd_get_temp_settings(	$section,
+															 $options_links['kjd_'.$section.'_linkHovered'], 
+															 $preview,
+													'kjd_section_linkHovered'
+								);
+		$kjd_section_linkVisited = kjd_get_temp_settings(	$section,
+															 $options_links['kjd_'.$section.'_linkVisited'], 
+															 $preview,
+													'kjd_section_linkVisited'
+								);
+		$kjd_section_linkActive =  kjd_get_temp_settings(	$section,
+																$options_links['kjd_'.$section.'_linkActive'], 
+																$preview,
+													'kjd_section_linkActive'
+								);
+
+
+		$linkSettings = array(
+			'a' => $kjd_section_link,
 			'a:hover' => $kjd_section_linkHovered,
 			'a:visited' => $kjd_section_linkVisited,
 			'a:active' => $kjd_section_linkActive
 		);
 
 
-		// // Form Options
+		/* ----------------------------------------------------- 
+		Componenets Options
+		 ----------------------------------------------------- */
 		$options_components = get_option('kjd_'.$section.'_components_settings');
 
 		$kjd_section_components = $options_components['kjd_'.$section.'_components'];
-		$tabbed_content = $kjd_section_components['tabbed_content'];
-		$collapsible_content = $kjd_section_components['collapsible_content'];
-		$table_content = $kjd_section_components['table_content'];	
-		$pagination_content = $kjd_section_components['pagination'];
-		$list = $kjd_section_components['list'];
-		$forms = $kjd_section_components['forms'];
 
-		$images = $kjd_section_components['images'];
-		$thumbnails = $kjd_section_components['thumbnails'];
-		$captions = $kjd_section_components['captions'];
-		// // Misc Options
+		$tabbed_content = kjd_get_temp_settings(	
+											$section,
+											$kjd_section_components['tabbed_content'],
+											$preview,
+											'tabbed_content'
+										);
+		$collapsible_content = kjd_get_temp_settings(	
+											$section,
+											$kjd_section_components['collapsible_content'],
+											$preview,
+											'collapsible_content'
+										);
+		$table_content = kjd_get_temp_settings(	
+											$section,
+											$kjd_section_components['table_content'],
+											$preview,
+											'table_content'
+										);	
+		$pagination_content = kjd_get_temp_settings(	
+											$section,
+											$kjd_section_components['pagination'],
+											$preview,
+											'pagination'
+										);
+		$list = kjd_get_temp_settings(	
+											$section,
+											$kjd_section_components['list'],
+											$preview,
+											'list'
+										);
+		$forms = kjd_get_temp_settings(	
+											$section,
+											$kjd_section_components['forms'],
+											$preview,
+											'forms'
+										);
+
+
+
+
+		/* ----------------------------------------------------- 
+		Images Options
+		 ----------------------------------------------------- */
+		$images = kjd_get_temp_settings(	
+											$section,
+											$kjd_section_components['images'],
+											$preview,
+											'images'
+										);
+		$thumbnails = kjd_get_temp_settings(	
+											$section,
+											$kjd_section_components['thumbnails'],
+											$preview,
+											'thumbnails'
+										);
+		$captions = kjd_get_temp_settings(	
+											$section,
+											$kjd_section_components['captions'],
+											$preview,
+											'captions'
+										);
+		/* ----------------------------------------------------- 
+		Misc Options
+		----------------------------------------------------- */
 		$options_misc = get_option('kjd_'.$section.'_misc_settings');
-		$kjd_section_misc = $kjd_section_misc['kjd_'.$section.'_misc'];
+		$kjd_section_misc = kjd_get_temp_settings(	
+											$section,
+											$kjd_section_misc['kjd_'.$section.'_misc'],
+											$preview,
+											'kjd_section_misc'
+									);
 		
-		// // Confine BG
+		/* ----------------------------------------------------- 
+		Confine Section - activates left and right borders
+		 ----------------------------------------------------- */
 		$kjd_section_confine_background = $kjd_section_misc['kjd_'.$section.'_confine_background'];
 		
 		if($kjd_section_confine_background=='true' || $section =='dropdown-menu'){
 		
-			$borders = array('top' =>$kjd_section_top_border,'right' =>$kjd_section_right_border,'bottom' =>$kjd_section_bottom_border,'left' =>$kjd_section_left_border);
+			$borders = array(	
+				'top' =>$kjd_section_top_border,
+				'right' =>$kjd_section_right_border,
+				'bottom' =>$kjd_section_bottom_border,
+				'left' =>$kjd_section_left_border
+			);
 		
 		}else{
 		
-			$borders = array('top' =>$kjd_section_top_border,'bottom' =>$kjd_section_bottom_border);
+			$borders = array(
+				'top' =>$kjd_section_top_border,
+				'bottom' =>$kjd_section_bottom_border
+			);
 		
 		}
 
+		/* ----------------------------------------------------- 
+		Add all options to a large array for each section
+		----------------------------------------------------- */
 		$section_options = array(
 			'backgroundSettings' =>$backgroundSettings,
 			'sectionBorders' =>$sectionBorders,
@@ -174,7 +356,9 @@ function kjd_get_theme_options($preview = null){
 		
 	$section_output .= postSettingsCallback();
 	
-
+	/* ----------------------------------------------------- 
+	Responsive markup
+	 ----------------------------------------------------- */
 	$media_767_output = '@media(max-width: 768px){ #navbar{';
 			$media_767_output .= 'clear: both;';
 			$media_767_output .= 'float: none;';
@@ -185,6 +369,8 @@ function kjd_get_theme_options($preview = null){
 	return $miscMarkup.$section_output.$navArea_markup.$media_979_markup.$media_767_output; 
 	
 } // end build css function
+
+
 
 /* -------------------------------------------------------------------------------------------
 						Build markup - calls th eappropriate fucntions for each section
@@ -321,15 +507,17 @@ switch($section)
 		$sectionArea_markup .= "height:".$height."px;";	
 
 	}
-/* ----------------------------------------------------------------------------- *
-						background stuff
------------------------------------------------------------------------------ */
+	/* ----------------------------------------------------------------------------- *
+							background stuff
+	----------------------------------------------------------------------------- */
 	$sectionArea_markup .= background_type_callback($type,$kjd_section_background_colors);
 	//wallpaper function
 	$sectionArea_markup .= wallpaper_callback($kjd_section_background_wallpaper);
 
 			
-	//borders function
+	/* ----------------------------------------------------------------------------- *
+						borders stuff
+	----------------------------------------------------------------------------- */
 	foreach($sectionBorders as $k =>$v){
 		$sectionArea_markup .= borderSettingsCallback($k, $v);	
 	}
@@ -340,18 +528,20 @@ switch($section)
 	}
 	
 
-	//color
+	/* ----------------------------------------------------------------------------- *
+						font colors
+	---------------------------------------------------------------------------- */
 	$sectionArea_markup .= 'color:'.$kjd_section_text['color'].';';
 	
-	//hide header
+	/* ----------------------------------------------------------------------------- *
+						Misc section styles
+	----------------------------------------------------------------------------- */
 	if($section =='header' && $hideHeader == 'true'){
 		$sectionArea_markup .= 'display:none !important;';
 		$sectionArea_markup .= 'height:0 !important;';
 	}
 	
-	//height -- if header, footer, or mast
-	//margin -- if floated
-	//padding -- if floated or specified
+
 	if($section =='mastArea'){
 		$miscOptions = get_option('kjd_mastArea_background_settings');
 		$miscSettings = $miscOptions['kjd_mastArea_background_misc'];
@@ -394,14 +584,16 @@ switch($section)
 	}
 
 
-	// Link and HTgag styles
+/* ----------------------------------------------------------------------------- *
+						Link and heading tag styles
+----------------------------------------------------------------------------- */
 	if(	 $section !='bodyTag' && $section !='htmlTag' && $section != 'mastArea' && $section != 'sidrDrawer' &&
 		 $section !='cycler' && $section !="navbar" && $section !='dropdown-menu' && $section !='contentArea'){
 		
-
+		// Links
 		foreach($linkSettings as $link_type => $v){
 			$sectionArea_markup .= $section_name.' '.$link_type.'{';
-			$sectionArea_markup .= linkSettingsCallback($v, $section);
+				$sectionArea_markup .= linkSettingsCallback($v, $section);
 			$sectionArea_markup .= '}';
 		}
 
@@ -409,7 +601,7 @@ switch($section)
 		foreach($hTags as $htag => $v){
 
 			$sectionArea_markup .= $section_name.' '.$htag.'{';
-			$sectionArea_markup .= hTagSettingsCallback($v);
+				$sectionArea_markup .= hTagSettingsCallback($v);
 			$sectionArea_markup .= '}';
 		}
 
@@ -422,7 +614,9 @@ switch($section)
 	}
 
 
-
+/* ----------------------------------------------------------------------------- *
+						Components
+----------------------------------------------------------------------------- */
 	if($section =='body' || $section =='footer' || $section =='header'){
 		//tabbed
 		$sectionArea_markup .= tabbedMarkupCallback($section, $tabbed_content);
@@ -450,7 +644,10 @@ switch($section)
 	return $sectionArea_markup;
 
 }
-/* ------------------------------- image cycler settings--------------------------------- */
+/* ---------------------------------------------------------------- 
+					image cycler settings
+------------------------------------------------------------------- */
+
 function kjd_image_cycler_settings_callback($miscSettings){
 		$cycler_output = '';
 
@@ -510,7 +707,9 @@ function kjd_image_cycler_settings_callback($miscSettings){
 		return $cycler_output;
 }
 
-// /* ------------------------- backgrounds -----------------------------*/
+/* ----------------------------------------------------------------------------- *
+						background functions
+----------------------------------------------------------------------------- */
 
  //background type takes the $type argument and uses it to return the appropriate function
 function background_type_callback($type = null,$kjd_section_background_colors = array()){
@@ -740,7 +939,8 @@ function hTagSettingsCallback($hTag){
 
 // /* ------------------------- links -----------------------------*/
 function linkSettingsCallback($link, $section){
-	//print_r($link);die();
+
+
 	$bg_style = $link['bg_style'];
 	$bg_color = $link['bg_color'];
 	$color = $link['color'];

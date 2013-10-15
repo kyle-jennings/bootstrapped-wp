@@ -29,7 +29,7 @@
 
 			<label>Color</label>
 
-			<input class="minicolors" name="kjd_<?php echo $section;?>_text_settings[kjd_<?php echo $section;?>_<?php echo $element;?>][color];" 
+			<input class="minicolors" name="kjd_<?php echo $section;?>_text_settings[kjd_<?php echo $section;?>_<?php echo $element;?>][color]" 
 				value="<?php echo $value['color'] ? $value['color'] : ''; ?>"/>
 			<a class="clearColor">Clear</a>
 		</div>
