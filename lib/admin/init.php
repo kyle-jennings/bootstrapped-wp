@@ -49,7 +49,10 @@ wp_register_script( 'script_handle', $adminDir."js/admin.js", false, '1.0' ); //
 
 	wp_register_script( 'admin', $adminDir."js/admin.js", false, '1.0' ); //register script
 
-	$wp_paths = array( 'template_url' => $adminDir.'functions/live_preview.php', 'root_url' => get_bloginfo('template_directory') );
+	$wp_paths = array( 'template_url' => $adminDir.'functions/live_preview.php',
+					   'root_url' => get_bloginfo('template_directory'),
+					   ' site_url' => get_bloginfo('url')
+				    );
 	wp_localize_script( 'admin', 'object_name', $wp_paths );
 	wp_enqueue_script("admin"); //enqueue
 
