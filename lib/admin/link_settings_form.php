@@ -69,7 +69,7 @@
 
 		<div class="shadowColor color_option option" style="<?php echo $value['decoration'] == 'text-shadow'? 'display:block;' : 'display:none;' ;?>">
 			<label>Text-shadow Color</label>
-			<input class="minicolors" name="kjd_<?php echo $section;?>_links_settings[kjd_<?php echo $section;?>_<?php echo $element;?>][textShadowColor];" 
+			<input class="minicolors" name="kjd_<?php echo $section;?>_links_settings[kjd_<?php echo $section;?>_<?php echo $element;?>][textShadowColor]" 
 				value="<?php echo $value['textShadowColor'] ? $value['textShadowColor'] : ''; ?>"/>
 			<a class="clearColor">Clear</a>
 		</div>
