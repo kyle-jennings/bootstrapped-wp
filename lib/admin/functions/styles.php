@@ -1678,12 +1678,18 @@ $navbar_markup .=".navbar .nav > li.active > a,
 
 
 //  toplevel nav when hovered 
-$navbar_markup .=" .navbar .nav > li > a:hover, .navbar .nav > li > a:focus{
+$navbar_markup .=" .navbar .nav > li > a:hover, 
+.navbar .nav > li > a:focus{
 	
 	background-color:".$kjd_section_linkHovered['bg_color']." !important;
+	border-color: ".$kjd_section_linkHovered['bg_color'].";
 	color:".$kjd_section_linkHovered['color']." !important;
 	text-decoration:".$kjd_section_linkHovered['decoration']." !important;
 }";
+
+$navbar_markup .= "#navbar .nav-tabs { border-bottom: none; }";
+$navbar_markup .= "#navbar .nav-tabs > li {margin-bottom: 0;}";
+
 //hovered carret -->
 $navbar_markup .=".navbar .nav > li > a:hover.dropdown-toggle > .caret{
 		border-top-color:".$kjd_section_linkHovered['color']." !important;

@@ -80,6 +80,11 @@ h2.logo-wrapper{
 	position: relative;
 }
 
+#navbar.navbar-fixed-top,
+#navbar.navbar-fixed-bottom{
+	position: absolute;
+}
+
 .navbar {
 	margin-bottom: 0px;
 }
@@ -104,6 +109,14 @@ h2.logo-wrapper{
 	min-height: 19px;
 } 
 
+.navbar-inner .nav-tabs.tabs-below > li > a {
+	border-radius: 0 0 4px 4px;
+}
+
+.navbar-inner .nav-tabs.tabs-below {
+	margin-bottom: 1px;
+}
+
 .navbar .form-search {
 	margin: 6px 0 0;
 }
@@ -112,7 +125,7 @@ h2.logo-wrapper{
 	margin: 0;
 }
 
-.navbar-fixed-bottom.navbar .nav .sub-menu{margin-bottom:-32px;}
+.navbar-fixed-bottom.navbar .nav .sub-menu{ margin-bottom:-32px; }
 /* page title */
 #pageTitle.container.confined {
 	padding:0 20px;
