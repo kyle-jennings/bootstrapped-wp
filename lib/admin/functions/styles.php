@@ -18,6 +18,7 @@ function kjd_get_temp_settings($section, $array, $preview, $part) {
 			// echo 'Part: '.$part."\n";
 			// echo 'preview settings:';
 			// print_r($preview['settings'] ); die();
+
 			foreach( $preview['settings'] as $settings ){
 
 				if($settings['name'] == $part){
@@ -1496,7 +1497,17 @@ function navbarStylesCallback(&$media_979_markup, $preview){
 	$section = 'navbar';
 
 	$navSettings = get_option('kjd_navbar_misc_settings');
-	$kjd_section_misc_settings = $kjd_section_misc_settings['kjd_navbar_misc'];
+	$kjd_section_misc_settings = kjd_get_temp_settings(	$section,
+														$navSettings['kjd_navbar_misc'],
+														$preview, 
+														'kjd_section_misc' 
+														);
+
+	
+	// if($preview != null ){
+	// 	echo "\n".'Passed Array'."\n";
+	// 	print_r($kjd_section_misc_settings ); die();
+	// }
 
 	if(!empty($kjd_section_misc_settings['float']) && $kjd_section_misc_settings['float']=='true'){
 
@@ -1536,10 +1547,7 @@ function navbarStylesCallback(&$media_979_markup, $preview){
 												'kjd_section_link'
 										);
 
-		// if($preview != null ){
-		// 	echo "\n".'Passed Array'."\n";
-		// 	print_r($kjd_section_link ); die();
-		// }
+
 
 	$kjd_section_linkHovered = kjd_get_temp_settings(	'navbar',
 												$navbarLinksOptions['kjd_navbar_linkHovered'],
@@ -1579,8 +1587,10 @@ $navbar_markup .=".nav .divider-vertical{
 }";
 
 // Positions navbar
+
+
 	if($kjd_section_misc_settings['navbar_alignment'] =='left'){
-	
+		
 		$navbar_markup .='#navbar .nav{ float:left;}';
 	
 	}elseif($kjd_section_misc_settings['navbar_alignment'] =='center'){
@@ -1734,8 +1744,8 @@ $navbar_markup .=".navbar .nav li.open > a:after{
 
 function dropdown_menu_callback($kjd_section_misc_settings, &$media_979_markup){
 
-	$sidr_nav = $navSettings['side_nav'];
-	$dropdown_bg = $navSettings['dropdown_bg'];
+	$sidr_nav = $kjd_section_misc_settings['side_nav'];
+	$dropdown_bg = $kjd_section_misc_settings['dropdown_bg'];
 
 	/* dropdown settings */
 
@@ -1986,7 +1996,7 @@ $dropdown_markup .=".nav-collapse.sub-menu li.active >a{
 
 
 	// Link styles
-	if($navSettings['navbar_link_style'] == 'none'){
+	if($kjd_section_misc_settings['navbar_link_style'] == 'none'){
 	
 		$collapsed_markup .=".navbar .nav > li > a,";
 		$collapsed_markup .=".navbar .nav > li.open > a,";
@@ -1994,22 +2004,22 @@ $dropdown_markup .=".nav-collapse.sub-menu li.active >a{
 		$collapsed_markup .=".navbar .nav > li > a:hover{";
 		$collapsed_markup .="background:none !important;}";
 	
-	}elseif($navSettings['navbar_link_style'] == 'highlighted'){
+	}elseif($kjd_section_misc_settings['navbar_link_style'] == 'highlighted'){
 	
 		$collapsed_markup .="#navbar .nav li{margin:0 4px 0 0;}";		
 	
-	}elseif($navSettings['navbar_link_style'] == 'pills'){
+	}elseif($kjd_section_misc_settings['navbar_link_style'] == 'pills'){
 	
 		$collapsed_markup .=".nav-pills li a{border-color:".$kjd_section_link['border_color']."; border-top:0 !important; border-radius: 4px !important; height:17px;}";		
 	
-	}elseif($navSettings['navbar_link_style'] == 'tabs-below'){
+	}elseif($kjd_section_misc_settings['navbar_link_style'] == 'tabs-below'){
 	
 		$collapsed_markup .=".nav-tabs, .nav{border-bottom:0 !important; margin-bottom:-2px;}";
 		$collapsed_markup .=".nav-tabs li a{border-color:".$kjd_section_link['border_color']."; border-top:0 !important; border-radius: 0 0 4px 4px !important; height:17px;}";
 		$collapsed_markup .=".nav-tabs li a:hover, .navbar .nav li a:hover, .active a{border-color:".$kjd_section_linkHovered['border_color']." !important; }";
 		$collapsed_markup .=".current_page_item a{border-color:".$kjd_section_LinkActive['border_color']." !important;}";
 
-	}elseif($navSettings['navbar_link_style'] == 'tabs'){
+	}elseif($kjd_section_misc_settings['navbar_link_style'] == 'tabs'){
 	
 		$collapsed_markup .=".nav-tabs, .nav{border-bottom:0 !important; margin-bottom:-2px;}";
 		$collapsed_markup .=".nav-tabs li a, .navbar .nav li a{border-color:".$kjd_section_link['border_color']."; border-bottom:0 !important; height:17px;}";
@@ -2022,13 +2032,13 @@ $dropdown_markup .=".nav-collapse.sub-menu li.active >a{
 
 		// mobile bar button
 		$media_979_markup .='.navbar .btn-navbar{ 
-			background:'.$navSettings['menu_btn_bg'].';
-			border-color:'.$navSettings['menu_btn_border'].';
+			background:'.$kjd_section_misc_settings['menu_btn_bg'].';
+			border-color:'.$kjd_section_misc_settings['menu_btn_border'].';
 		}';
 
 		$media_979_markup .='.navbar .btn-navbar:hover, .navbar .btn-navbar:active{ 
-			background:'.$navSettings['menu_btn_bg_hovered'].';
-			border-color:'.$navSettings['menu_btn_border_hovered'].';
+			background:'.$kjd_section_misc_settings['menu_btn_bg_hovered'].';
+			border-color:'.$kjd_section_misc_settings['menu_btn_border_hovered'].';
 		}';
 		
 		$media_979_markup .= '.navbar .btn-navbar .icon-bar{ background: rgba(0,0,0,.1);}';
