@@ -83,9 +83,9 @@ function kjd_get_theme_options($preview = null){
 
 
 		// Misc Settings
-		$miscSettings = get_option('kjd_'.$section.'_misc_settings');
-		$miscSettings = $miscSettings['kjd_'.$section.'_misc'];
-		$kjd_section_confine_background = $miscSettings['kjd_'.$section.'_confine_background'];
+		$kjd_section_misc_settings = get_option('kjd_'.$section.'_misc_settings');
+		$kjd_section_misc_settings = $kjd_section_misc_settings['kjd_'.$section.'_misc'];
+		$kjd_section_confine_background = $kjd_section_misc_settings['kjd_'.$section.'_confine_background'];
 
 
 		/* -----------------------------------------------------
@@ -306,9 +306,9 @@ function kjd_get_theme_options($preview = null){
 		Misc Options
 		----------------------------------------------------- */
 		$options_misc = get_option('kjd_'.$section.'_misc_settings');
-		$kjd_section_misc = kjd_get_temp_settings(	
+		$kjd_section_misc_settings = kjd_get_temp_settings(	
 											$section,
-											$kjd_section_misc['kjd_'.$section.'_misc'],
+											$kjd_section_misc_settings['kjd_'.$section.'_misc'],
 											$preview,
 											'kjd_section_misc'
 									);
@@ -316,7 +316,7 @@ function kjd_get_theme_options($preview = null){
 		/* ----------------------------------------------------- 
 		Confine Section - activates left and right borders
 		 ----------------------------------------------------- */
-		$kjd_section_confine_background = $kjd_section_misc['kjd_'.$section.'_confine_background'];
+		$kjd_section_confine_background = $kjd_section_misc_settings['kjd_'.$section.'_confine_background'];
 		
 		if($kjd_section_confine_background=='true' || $section =='dropdown-menu'){
 		
@@ -355,7 +355,7 @@ function kjd_get_theme_options($preview = null){
 			'images'=>$images,
 			'thumbnails'=>$thumbnails,
 			'captions'=>$captions,
-			'miscSettings'=>$miscSettings
+			'kjd_section_misc_settings'=>$kjd_section_misc_settings
 		);
 
 
@@ -425,25 +425,25 @@ switch($section)
 
 
 	$type = $kjd_section_background_colors['gradient'];
-	if(!empty($miscSettings['kjd_'.$section.'_section_shadow'])){
-		$sectionShadow = $miscSettings['kjd_'.$section.'_section_shadow'];	
+	if(!empty($kjd_section_misc_settings['kjd_'.$section.'_section_shadow'])){
+		$sectionShadow = $kjd_section_misc_settings['kjd_'.$section.'_section_shadow'];	
 	}
 	
 	if($section =="header"){
-		$hideHeader = $miscSettings['hide_header']; 
-		$forceHeight = $miscSettings['force_height'];
-		$logo_alignment = $miscSettings['logo_align'];
-		$logo_pull = $miscSettings['logo_margin'];
-		//$useMast = $miscSettings['use_mastArea'];				
+		$hideHeader = $kjd_section_misc_settings['hide_header']; 
+		$forceHeight = $kjd_section_misc_settings['force_height'];
+		$logo_alignment = $kjd_section_misc_settings['logo_align'];
+		$logo_pull = $kjd_section_misc_settings['logo_margin'];
+		//$useMast = $kjd_section_misc_settings['use_mastArea'];				
 	}
 
 
 	$sectionArea_markup = '';
 
 	if($section =="cycler"){
-		$forceHeight = $miscSettings['force_height'];
+		$forceHeight = $kjd_section_misc_settings['force_height'];
 		if($forceHeight =='true'){
-			$section_height = !empty($miscSettings['height']) ? $miscSettings['height'] : '' ;
+			$section_height = !empty($kjd_section_misc_settings['height']) ? $kjd_section_misc_settings['height'] : '' ;
 		}
 		$sectionArea_markup .= $section_name.' #imageSlider, .rslides{';
 			$sectionArea_markup .= "height:".$section_height."px;";
@@ -455,7 +455,7 @@ switch($section)
 
 
 	if($section == 'posts'){
-		if($miscSettings['style_posts'] == 'true'){
+		if($kjd_section_misc_settings['style_posts'] == 'true'){
 			$sectionArea_markup .= 	'.content-list > .the-content-wrapper.well{';
 				$sectionArea_markup .= 'margin-bottom:40px;';
 			$sectionArea_markup .=' }';
@@ -472,10 +472,10 @@ switch($section)
 	$sectionArea_markup .= $section_name.'{';
 
 
-	if(!empty($miscSettings[$section.'_section_shadow']) && $miscSettings[$section.'_section_shadow'] != 'none'){
+	if(!empty($kjd_section_misc_settings[$section.'_section_shadow']) && $kjd_section_misc_settings[$section.'_section_shadow'] != 'none'){
 
 
-		switch( $miscSettings[$section.'_section_shadow'] ){
+		switch( $kjd_section_misc_settings[$section.'_section_shadow'] ){
 			case 'left and right':
 
 				$sectionArea_markup .= 'box-shadow: 0 9px 0px 0px white, 0 -9px 0px 0px white, ';
@@ -494,26 +494,44 @@ switch($section)
 
 	}
 
-	if(!empty($miscSettings['float']['toggle']) && $miscSettings['float']['toggle'] == 'true'){
+	// if( $kjd_section_misc_settings['float'] == 'true'){
 
-		$margin_top = !empty($miscSettings['float']['margin_top']) ? $miscSettings['float']['margin_top'] : '0' ;
-		$margin_bottom = !empty($miscSettings['float']['margin_bottom']) ? $miscSettings['float']['margin_bottom'] : '0' ;
+	// 	$margin_top = !empty($kjd_section_misc_settings['margin_top']) ? $kjd_section_misc_settings['margin_top'] : '0' ;
+	// 	$margin_bottom = !empty($kjd_section_misc_settings['margin_bottom']) ? $kjd_section_misc_settings['margin_bottom'] : '0' ;
+		
+	// 	$sectionArea_markup .= "margin-top:".$margin_top."px;";
+	// 	$sectionArea_markup .= "margin-bottom:".$margin_bottom."px;";
+	// }
+
+
+	if( $kjd_section_misc_settings['float'] =='true'){
+
+
+		$margin_top = $kjd_section_misc_settings['margin_top'] ? $kjd_section_misc_settings['margin_top'] : '0' ;
+		$margin_bottom = $kjd_section_misc_settings['margin_bottom'] ? $kjd_section_misc_settings['margin_bottom'] : '0' ;
 		
 		$sectionArea_markup .= "margin-top:".$margin_top."px;";
 		$sectionArea_markup .= "margin-bottom:".$margin_bottom."px;";
+
+		if($preview != null && $section =='body'){
+		// echo $margin_top; die();
+		// echo "\n".'Passed Array'."\n";
+		print_r($kjd_section_misc_settings ); die();
+		}
+		
 	}
 
-	if($section=='header' && $forceHeight =="true" && !empty($miscSettings['header_height'])){
-		$sectionArea_markup .= "height:".$miscSettings['header_height']."px;";
+	if($section=='header' && $forceHeight =="true" && !empty($kjd_section_misc_settings['header_height'])){
+		$sectionArea_markup .= "height:".$kjd_section_misc_settings['header_height']."px;";
 	}
 
-	if($section=='cycler' && $forceHeight =="true" && !empty($miscSettings['height'])){
-		$sectionArea_markup .= "height:".$miscSettings['height']."px;";
+	if($section=='cycler' && $forceHeight =="true" && !empty($kjd_section_misc_settings['height'])){
+		$sectionArea_markup .= "height:".$kjd_section_misc_settings['height']."px;";
 	}
 
 	if($section =='footer'){
 
-		$height = !empty($miscSettings['height']) ? $miscSettings['height'] : '300' ;
+		$height = !empty($kjd_section_misc_settings['height']) ? $kjd_section_misc_settings['height'] : '300' ;
 		$sectionArea_markup .= "height:".$height."px;";	
 
 	}
@@ -554,12 +572,12 @@ switch($section)
 
 	if($section =='mastArea'){
 		$miscOptions = get_option('kjd_mastArea_background_settings');
-		$miscSettings = $miscOptions['kjd_mastArea_background_misc'];
-		if(!empty($miscSettings['use_top_padding']) && $miscSettings['use_top_padding'] =="true"){
-			$sectionArea_markup .= "padding-top:".$miscSettings['top_padding']."px;";
+		$kjd_section_misc_settings = $miscOptions['kjd_mastArea_background_misc'];
+		if(!empty($kjd_section_misc_settings['use_top_padding']) && $kjd_section_misc_settings['use_top_padding'] =="true"){
+			$sectionArea_markup .= "padding-top:".$kjd_section_misc_settings['top_padding']."px;";
 		}
-		if(!empty($miscSettings['use_bottom_padding']) && $miscSettings['use_bottom_padding'] =="true"){
-			$sectionArea_markup .= "padding-bottom:".$miscSettings['bottom_padding']."px;";
+		if(!empty($kjd_section_misc_settings['use_bottom_padding']) && $kjd_section_misc_settings['use_bottom_padding'] =="true"){
+			$sectionArea_markup .= "padding-bottom:".$kjd_section_misc_settings['bottom_padding']."px;";
 		}
 	}
 
@@ -620,7 +638,7 @@ switch($section)
 
 
 	if($section =="cycler"){
-		$sectionArea_markup .= kjd_image_cycler_settings_callback($miscSettings);
+		$sectionArea_markup .= kjd_image_cycler_settings_callback($kjd_section_misc_settings);
 	}
 
 
@@ -658,27 +676,27 @@ switch($section)
 					image cycler settings
 ------------------------------------------------------------------- */
 
-function kjd_image_cycler_settings_callback($miscSettings){
+function kjd_image_cycler_settings_callback($kjd_section_misc_settings){
 		$cycler_output = '';
 
-		if($miscSettings['shadow'] == "true"){ 
+		if($kjd_section_misc_settings['shadow'] == "true"){ 
 			$cycler_output .= '#imageSlider{';
 				$cycler_output .= 'background:url(../images/shadow.png) no-repeat bottom center; ';
 				$cycler_output .= 'padding:20px 0 60px; ';
 			$cycler_output .= '}';
 		}
 
-		if($miscSettings['plugin'] == "single image"){
+		if($kjd_section_misc_settings['plugin'] == "single image"){
 	
 			$cycler_output .=".singleImage{
-						background:".$miscSettings['backgroundColor'].";
-						border:".$miscSettings['borderSize']." ".$miscSettings['borderColor']." solid; 
-						-webkit-border-radius:".$miscSettings['borderRadius'].";
-						-moz-border-radius:".$miscSettings['borderRadius'].";
-						border-radius:".$miscSettings['borderRadius'].";
+						background:".$kjd_section_misc_settings['backgroundColor'].";
+						border:".$kjd_section_misc_settings['borderSize']." ".$kjd_section_misc_settings['borderColor']." solid; 
+						-webkit-border-radius:".$kjd_section_misc_settings['borderRadius'].";
+						-moz-border-radius:".$kjd_section_misc_settings['borderRadius'].";
+						border-radius:".$kjd_section_misc_settings['borderRadius'].";
 						}";
 
-			if($miscSettings['borderTransparency'] == 'true'){ 
+			if($kjd_section_misc_settings['borderTransparency'] == 'true'){ 
 				$cycler_output .=".singleImage{
 									-moz-background-clip: border;    
 									-webkit-background-clip: border;  
@@ -686,27 +704,27 @@ function kjd_image_cycler_settings_callback($miscSettings){
 								}";
 			}
 			
-			if($miscSettings['singleCaption'] == "top"){
+			if($kjd_section_misc_settings['singleCaption'] == "top"){
 				$cycler_output .=".singleImage .caption{left:50%; width:100%;}";
-			}elseif($miscSettings['singleCaption'] == "right"){
+			}elseif($kjd_section_misc_settings['singleCaption'] == "right"){
 				$cycler_output .=".singleImage .caption{ width:25%;}";
-			}elseif($miscSettings['singleCaption'] == "bottom"){
+			}elseif($kjd_section_misc_settings['singleCaption'] == "bottom"){
 				$cycler_output .=".singleImage .caption{left:50%; width:100%;}";
-			}elseif($miscSettings['singleCaption'] == "left"){
+			}elseif($kjd_section_misc_settings['singleCaption'] == "left"){
 				$cycler_output .=".singleImage .caption{ width:25%;}";
 			}else{
 				$cycler_output .=".singleImage .caption{display:none !important;}";
 			}
 
-		}elseif($miscSettings['plugin'] == "nivo"){
+		}elseif($kjd_section_misc_settings['plugin'] == "nivo"){
 			
-			if($miscSettings['nivoCaption'] == "top"){
+			if($kjd_section_misc_settings['nivoCaption'] == "top"){
 				$cycler_output .=".nivo-caption{top:0; bottom:auto !important;}";
-			}elseif($miscSettings['nivoCaption'] == "right"){
+			}elseif($kjd_section_misc_settings['nivoCaption'] == "right"){
 				$cycler_output .=".nivo-caption{height:100% !important; left:auto !important; right:0  !important; width:25%  !important;}";
-			}elseif($miscSettings['nivoCaption'] == "bottom"){ 
+			}elseif($kjd_section_misc_settings['nivoCaption'] == "bottom"){ 
 				
-			}elseif($miscSettings['nivoCaption'] == "left"){ 
+			}elseif($kjd_section_misc_settings['nivoCaption'] == "left"){ 
 				$cycler_output .=".nivo-caption{height:100% !important; width:25% !important;}";
 			}else{ 
 				$cycler_output .=".nivo-caption{display:none !important;}";
@@ -1504,19 +1522,16 @@ function navbarStylesCallback(&$media_979_markup, $preview){
 														);
 
 	
-	// if($preview != null ){
-	// 	echo "\n".'Passed Array'."\n";
-	// 	print_r($kjd_section_misc_settings ); die();
-	// }
 
-	if(!empty($kjd_section_misc_settings['float']) && $kjd_section_misc_settings['float']=='true'){
+	if( $kjd_section_misc_settings['float'] =='true'){
 
 
-		$margin_top = !empty($kjd_section_misc_settings['float']['margin_top']) ? $kjd_section_misc_settings['float']['margin_top'] : '0' ;
-		$margin_bottom = !empty($kjd_section_misc_settings['float']['margin_bottom']) ? $kjd_section_misc_settings['float']['margin_bottom'] : '0' ;
+		$margin_top = $kjd_section_misc_settings['margin_top'] ? $kjd_section_misc_settings['margin_top'] : '0' ;
+		$margin_bottom = $kjd_section_misc_settings['margin_bottom'] ? $kjd_section_misc_settings['margin_bottom'] : '0' ;
 		
 		$sectionArea_markup .= "margin-top:".$margin_top."px;";
 		$sectionArea_markup .= "margin-bottom:".$margin_bottom."px;";
+		
 	}
 
 
@@ -2160,12 +2175,12 @@ function miscStylesCallback(){
 function postSettingsCallback(){
 
 
-		$miscSettings = get_option('kjd_posts_misc_settings');
-		$miscSettings = $miscSettings['kjd_posts_misc'];
+		$kjd_section_misc_settings = get_option('kjd_posts_misc_settings');
+		$kjd_section_misc_settings = $kjd_section_misc_settings['kjd_posts_misc'];
 
 		//color of the line underneath the post info
-		$postInfoBorder = $miscSettings['post_info_border'] ? $miscSettings['post_info_border'] : 'rgba(0,0,0,.5)';
-		$blockquote = $miscSettings['blockquote'] ? $miscSettings['blockquote'] : 'rgba(0,0,0,.5)';
+		$postInfoBorder = $kjd_section_misc_settings['post_info_border'] ? $kjd_section_misc_settings['post_info_border'] : 'rgba(0,0,0,.5)';
+		$blockquote = $kjd_section_misc_settings['blockquote'] ? $kjd_section_misc_settings['blockquote'] : 'rgba(0,0,0,.5)';
 
 		$post_misc_markup ='';
 

@@ -545,9 +545,9 @@ function kjd_float_section_toggle($section, $options) {
 	$option_markup ='';
 	$option_markup .= '<div class="option float-toggle">';
 		$option_markup .= '<label>Float Navbar Area</label>';
-		$option_markup .= '<select name="kjd_'.$section.'_misc_settings[kjd_'.$section.'_misc][float][toggle]">';
-				$option_markup .= '<option value="true" '.selected( $options["float"]["toggle"], "true", false) .'>Yes</option>';
-				$option_markup .= '<option value="false" '.selected( $options["float"]["toggle"], "false", false) .'>No</option>';
+		$option_markup .= '<select name="kjd_'.$section.'_misc_settings[kjd_'.$section.'_misc][float]">';
+				$option_markup .= '<option value="true" '.selected( $options["float"], "true", false) .'>Yes</option>';
+				$option_markup .= '<option value="false" '.selected( $options["float"], "false", false) .'>No</option>';
 		$option_markup .= '</select>';
 	$option_markup .= '</div>';
 	
@@ -557,19 +557,19 @@ function kjd_float_section_toggle($section, $options) {
 function kjd_set_section_margin($section, $options) {
 	$option_markup ='';
 	
-	$toggle_class = $options['float']['toggle']=='true' ? 'style="display:block;"' : 'style="display:none;"' ;
-	$margin_top_toggle = $options['float']['margin_top'] ? $options['float']['margin_top'] : '0';
-	$margin_bottom_toggle = $options['float']['margin_bottom'] ? $options['float']['margin_bottom'] : '0';
+	$toggle_class = $options['float'] =='true' ? 'style="display:block;"' : 'style="display:none;"' ;
+	$margin_top_toggle = $options['margin_top'] ? $options['margin_top'] : '0';
+	$margin_bottom_toggle = $options['margin_bottom'] ? $options['margin_bottom'] : '0';
 
 	$option_markup .= '<div class="option float-option" '. $toggle_class .'>';
 		$option_markup .= '<label>Navbar Margin</label>';
 		$option_markup .= '<div class="margin-label"><span>Top</span>';
-			$option_markup .= '<input name="kjd_'.$section.'_misc_settings[kjd_'.$section.'_misc][float][margin_top]" ';
+			$option_markup .= '<input name="kjd_'.$section.'_misc_settings[kjd_'.$section.'_misc][margin_top]" ';
 				$option_markup .= 'value="'. $margin_top_toggle .'"';
 				$option_markup .= 'style="width:40px;"/>px.';
 		$option_markup .= '</div>';
 	$option_markup .= '<div class="margin-label"><span>Bottom</span>';
-		$option_markup .= '<input name="kjd_'.$section.'_misc_settings[kjd_'.$section.'_misc][float][margin_bottom]" ';
+		$option_markup .= '<input name="kjd_'.$section.'_misc_settings[kjd_'.$section.'_misc][margin_bottom]" ';
 			$option_markup .= 'value="'. $margin_bottom_toggle .'"';
 			$option_markup .= 'style="width:40px;"/>px.';
 		$option_markup .= '</div>';
