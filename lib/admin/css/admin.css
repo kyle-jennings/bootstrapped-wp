@@ -49,7 +49,9 @@ form.kjd-options{
 
 div.preview-options{
   border:none;
-  height: 600px;
+  height: 100%;
+  height:auto;
+  min-height: 100%;
   overflow: hidden;
   margin-left: 320px;
 }
@@ -61,8 +63,17 @@ div.preview-options > .preview-size{
   clear: both;
   display: block;
 }
+.preview-window {
+  height: 100%;
+  height:auto;
+  min-height: 700px
+}
 
-
+.preview-window:after{
+  clear:both;
+  content: '';
+  display: block;
+}
 
 form .fields-wrapper{
   float:left;

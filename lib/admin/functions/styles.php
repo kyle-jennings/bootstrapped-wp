@@ -99,8 +99,13 @@ function kjd_get_theme_options($preview = null){
 																'kjd_section_background_colors' 
 															);
 
+		
 
-		$kjd_section_background_wallpaper = kjd_get_temp_settings($section, $options_backgrounds['kjd_'.$section.'_background_wallpaper'], $preview, 'kjd_section_background_wallpaper');
+		$kjd_section_background_wallpaper = kjd_get_temp_settings(	$section, 
+																	$options_backgrounds['kjd_'.$section.'_background_wallpaper'], 	
+																	$preview, 
+																	'kjd_section_background_wallpaper'
+																);
 		$backgroundSettings = array('kjd_section_background_colors'=>$kjd_section_background_colors,'kjd_section_background_wallpaper'=>$kjd_section_background_wallpaper);
 
 		/* ----------------------------------------------------- 
@@ -302,6 +307,9 @@ function kjd_get_theme_options($preview = null){
 											$preview,
 											'captions'
 										);
+
+
+		
 		/* ----------------------------------------------------- 
 		Misc Options
 		----------------------------------------------------- */
@@ -494,15 +502,6 @@ switch($section)
 
 	}
 
-	// if( $kjd_section_misc_settings['float'] == 'true'){
-
-	// 	$margin_top = !empty($kjd_section_misc_settings['margin_top']) ? $kjd_section_misc_settings['margin_top'] : '0' ;
-	// 	$margin_bottom = !empty($kjd_section_misc_settings['margin_bottom']) ? $kjd_section_misc_settings['margin_bottom'] : '0' ;
-		
-	// 	$sectionArea_markup .= "margin-top:".$margin_top."px;";
-	// 	$sectionArea_markup .= "margin-bottom:".$margin_bottom."px;";
-	// }
-
 
 	if( $kjd_section_misc_settings['float'] =='true'){
 
@@ -513,12 +512,7 @@ switch($section)
 		$sectionArea_markup .= "margin-top:".$margin_top."px;";
 		$sectionArea_markup .= "margin-bottom:".$margin_bottom."px;";
 
-		if($preview != null && $section =='body'){
-		// echo $margin_top; die();
-		// echo "\n".'Passed Array'."\n";
-		print_r($kjd_section_misc_settings ); die();
-		}
-		
+
 	}
 
 	if($section=='header' && $forceHeight =="true" && !empty($kjd_section_misc_settings['header_height'])){
@@ -744,10 +738,15 @@ function background_type_callback($type = null,$kjd_section_background_colors = 
 	if( !empty($kjd_section_background_colors) )
 		extract($kjd_section_background_colors); 
 
-	// $start_color = !empty($kjd_section_background_colors['start_rgba']) ? $kjd_section_background_colors['start_rgba'] : $kjd_section_background_colors['color'];
-	// $end_color = !empty($kjd_section_background_colors['endcolor']) ? $kjd_section_background_colors['endcolor'] : $kjd_section_background_colors['endcolor'];
-$start_color =  $kjd_section_background_colors['color'];
-	$end_color =  $kjd_section_background_colors['endcolor'];
+	$start_color = !empty($kjd_section_background_colors['start_rgba']) ?
+					$kjd_section_background_colors['start_rgba'] : 
+					$kjd_section_background_colors['color'];
+	$end_color = !empty($kjd_section_background_colors['endcolor']) ? 
+					$kjd_section_background_colors['endcolor'] : 
+					$kjd_section_background_colors['endcolor'];
+
+	// $start_color =  $kjd_section_background_colors['color'];
+	// $end_color =  $kjd_section_background_colors['endcolor'];
 
 	$background_type = '';
 	if($type =='vertical'){
@@ -1236,7 +1235,6 @@ $form_markup .= '#'. $section.' form .btn:hover{';
 	$form_markup .= 'background-color:'. $forms['button_background_end'].' !important;';
 	$form_markup .= '}';
 
-// echo $form_markup;die();
 	return $form_markup;
 }
 
