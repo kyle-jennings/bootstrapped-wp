@@ -99,7 +99,7 @@ function kjd_get_theme_options($preview = null){
 																'kjd_section_background_colors' 
 															);
 
-		
+
 
 		$kjd_section_background_wallpaper = kjd_get_temp_settings(	$section, 
 																	$options_backgrounds['kjd_'.$section.'_background_wallpaper'], 	
@@ -421,7 +421,7 @@ switch($section)
 		$section_name = '#sidr';
 		break;
 	case 'posts':
-			$section_name = '.the-content-wrapper.well';
+			$section_name = '#body .the-content-wrapper.well';
 		break;
 	case 'widgets':
 			$section_name = '#sideContent widget';
@@ -985,10 +985,15 @@ function linkSettingsCallback($link, $section){
 	$link_style_markup = '';
 	 if($bg_style == 'pills'){
 		$link_style_markup .= 'background:'.$bg_color.';';
-		$link_style_markup .= 'padding:4px;';
+		$link_style_markup .= 'padding:4px 6px;';
+		$link_style_markup .= 'border-radius: 4px;';
 		$link_style_markup .= 'word-break:hyphenate;';
 	}elseif( $bg_style == "highlighted" ){
 		$link_style_markup .= 'background:'.$bg_color.';';
+	}else {
+		$link_style_markup .= 'background:none;';
+				$link_style_markup .= 'padding:0;';
+		$link_style_markup .= 'border-radius: 0px;';
 	}
 	
 	if(isset($color) && $color!=""){

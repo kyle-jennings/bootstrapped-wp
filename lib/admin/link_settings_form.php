@@ -58,6 +58,7 @@
 	</div> <!-- end bg colors -->
 
 	<div class='full-option'>
+		<?php if($section !='navbar' && $section != 'dropdown-menu'){ ?>
 		<div class="option">
 			<label>Decoration</label>
 			<select class="decorationList" name="kjd_<?php echo $section;?>_links_settings[kjd_<?php echo $section;?>_<?php echo $element;?>][decoration]">
@@ -66,7 +67,7 @@
 				<?php } ?>
 			</select>
 		</div>
-
+		<?php } ?>
 		<div class="shadowColor color_option option" style="<?php echo $value['decoration'] == 'text-shadow'? 'display:block;' : 'display:none;' ;?>">
 			<label>Text-shadow Color</label>
 			<input class="minicolors" name="kjd_<?php echo $section;?>_links_settings[kjd_<?php echo $section;?>_<?php echo $element;?>][textShadowColor]" 

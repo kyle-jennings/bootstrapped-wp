@@ -241,7 +241,7 @@ foreach($sections as $section){
 	if($section !='bodyTag' && $section !='htmlTag' && $section != 'sidrDrawer' && $section !='cycler'){
 
 		///////////////////////////
-		// text and H tag Settings
+		// text 
 		///////////////////////////
 		if($section !='dropdown-menu'){
 		add_settings_section(
@@ -262,14 +262,25 @@ foreach($sections as $section){
 
 			);
 
-			$htags = array('H1', 'H2', 'H3','H4');
+		///////////////////////////
+		// H tag Settings
+		///////////////////////////
+		if($section !='dropdown-menu'){
+		add_settings_section(
+			'kjd_'.$section.'_htag_settings_section', // ID hook name
+			null,
+			null,
+			'kjd_'.$section.'_htag_settings' // page name
+		);
+
+			$htags = array('H1','H1a','H1ahover', 'H2','H2a','H2ahover', 'H3','H3a','H3ahover','H4','H4a','H4ahover');
 			foreach($htags as $size){
 				add_settings_field(
 					'kjd_'.$section.'_'.$size, // ID hook name
 					null,
 					null,
-					'kjd_'.$section.'_text_settings', // page name
-					'kjd_'.$section.'_text_settings_section' // parent section
+					'kjd_'.$section.'_htag_settings', // page name
+					'kjd_'.$section.'_htag_settings_section' // parent section
 				);
 			}
 			register_setting('kjd_'.$section.'_text_settings','kjd_'.$section.'_text_settings');

@@ -188,6 +188,9 @@ h2.logo-wrapper{
 .the-content-wrapper.well.media .media-body-right {
 	float:left;
 }
+.media, .media-body {
+	padding-bottom: 4px;
+}
 
 .post-info
 {
