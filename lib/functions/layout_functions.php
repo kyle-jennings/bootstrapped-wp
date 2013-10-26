@@ -492,23 +492,30 @@ function kjd_posts_layout($post_options) {
 
 function kjd_attachment_layout($post_options){
 
-	$decription_position = !empty($post_options['attachment_position']) ? $post_options['attachment_position'] : 'do_not_display'  ;
+	$attachment_options = get_option('kjd_attachment_page_layout_settings');
+	$attachment_info = $attachment_options['kjd_attachment_info'];
+	// $attachment_layout = $attachment_options['kjd_attachment_layout'];
+
+
+	$attachment_layout = !empty($attachment_options['kjd_attachment_layout']) ? $attachment_options['kjd_attachment_layout'] : 'do_not_display'  ;
 	$the_content_markup = '';
 
-	$the_content_markup .= '<div class="the-content-inner">';
+	$the_content_markup .= '<div class="the-content-inner attachment-'. $attachment_layout .'">';
 
-		$the_content_markup .= kjd_get_the_post_info();
+		if($attachment_info == 'yes'){
+			$the_content_markup .= kjd_get_the_post_info();
+		}
 
-		if($decription_position == 'over_image'){
-			$the_content_markup .= '<p class="attachment-description '. $decription_position .'">'.get_the_content().'</p>';
+		if($attachment_layout == 'text-above' || $attachment_layout == 'text-left' ){
+			$the_content_markup .= '<p class="attachment-description">'.get_the_content().'</p>';
 		}
 
 		// the content
 		$the_content_markup .= kjd_get_the_content();
 		//the content	
 
-		if($decription_position != 'over_image'){
-			$the_content_markup .= '<p class="attachment-description '. $decription_position .'">'.get_the_content().'</p>';
+		if($attachment_layout == 'text-below' || $attachment_layout == 'text-right'){
+			$the_content_markup .= '<p class="attachment-description">'.get_the_content().'</p>';
 		}
 	
 

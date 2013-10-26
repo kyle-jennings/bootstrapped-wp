@@ -8,7 +8,7 @@
 	settings_fields('kjd_'.$section.'_htag_settings' );
 	$options = get_option('kjd_'.$section.'_htag_settings'); 
 
-	$htags = array('H1','H1a','H1ahover', 'H2','H2a','H2ahover', 'H3','H3a','H3ahover','H4','H4a','H4ahover');
+	$htags = array('text','H1','H2','H3','H4');
 
 	$backgroundStyles = array('none','tabs','squared','pills');
 	$decorationStyles = array('none','overline','underline','line-through','text-shadow');

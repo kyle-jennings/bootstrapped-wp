@@ -308,15 +308,14 @@ function kjd_gallery_image_links(){
 	$parent_id = $post->post_parent;
 
 	if ( strpos(get_post($parent_id)->post_content,'[gallery ') === false ){
-		$navigation_markup .= 'no gallery';
+		// $navigation_markup .= 'no gallery';
 	}else{
 
 		$images = kjd_get_post_images($parent_id);
 		foreach($images as $k=>$image)
 		{
 			
-			// print_r($image);
-			// echo "<br />";
+
 			if($image['image_id'] == $post->ID){
 				// $next_url = '<a href="'.get_attachment_link( $id ).'"><img src="'.$url[0].'" /></a>';
 				$prev =  $images[$k-1]['image_id'];

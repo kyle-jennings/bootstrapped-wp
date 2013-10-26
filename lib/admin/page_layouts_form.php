@@ -6,7 +6,7 @@
 function kjd_page_layout_settings_display() {  ?>
 <div class="optionsWrapper wrap">  
 	  <?php screen_icon('themes'); ?> 
-	  <h2>Template Layouts</h2>  
+	  <h2>Page Layouts</h2>  
 
 <?php
 
@@ -20,6 +20,7 @@ function kjd_page_layout_settings_display() {  ?>
 	  <a href="?page=kjd_page_layout_settings&tab=posts" class="nav-tab"<?php echo $active_tab == 'posts' ? 'id="active"' : 'none'; ?>>Page Layouts</a> 
 	  <a href="?page=kjd_page_layout_settings&tab=pages" class="nav-tab"<?php echo $active_tab == 'pages' ? 'id="active"' : 'none'; ?>>Template Layouts</a> 
 	  <a href="?page=kjd_page_layout_settings&tab=frontPage" class="nav-tab"<?php echo $active_tab == 'frontPage' ? 'id="active"' : 'none'; ?>>Front Page Layout</a> 
+	  <a href="?page=kjd_page_layout_settings&tab=attachments" class="nav-tab"<?php echo $active_tab == 'attachments' ? 'id="active"' : 'none'; ?>>Attachment Page</a> 
 	 </h2>
     <?php settings_errors(); ?>  
 	  <form method="post" action="options.php">  
@@ -31,10 +32,60 @@ function kjd_page_layout_settings_display() {  ?>
 				kjd_page_templates_callback();
 			}elseif($active_tab == 'frontPage'){
 				kjd_front_page_settings();
+			}elseif($active_tab == 'attachments'){
+				kjd_attachment_page_callback();
 			}
 		 submit_button(); ?>  
 	</form>
 </div>
+<?php
+}
+
+function kjd_attachment_page_callback(){
+
+	settings_fields( 'kjd_attachment_page_layout_settings' );
+	$options = get_option('kjd_attachment_page_layout_settings');
+
+	$post_info = $options['kjd_attachment_info'];
+	$page_layout = $options['kjd_attachment_layout'];
+	$layouts = array(
+		// 'text-left' =>'Text on the Left',
+		// 'text-right' =>'Text on the Right',
+		'text-below' => 'Text Below',
+		'text-above' => 'Text Above'
+	 );
+?>
+	<h3>Attachment Page Layout</h3>
+	<div class='options-wrapper'>
+		
+		<div class="option">
+			<label>Attachment Info</label>
+			<select name="kjd_attachment_page_layout_settings[kjd_attachment_info]">
+					<option value="no" <?php selected( $post_info, 'no', true) ?>>
+						No
+					</option>
+					<option value="yes" <?php selected( $post_info, 'yes', true) ?>>
+						Yes
+					</option>
+			</select>			
+		</div>
+
+		<div class="option">
+			<label>Layout</label>
+			<select name="kjd_attachment_page_layout_settings[kjd_attachment_layout]">
+				<?php
+					foreach($layouts as $k => $v){
+					?>
+					<option value="<?php echo $k;?>" <?php selected( $page_layout, $k, true) ?> >
+						<?php echo $v;?>
+					</option>
+					<?php	
+					}
+				?>
+			</select>			
+		</div>
+
+	</div>
 <?php
 }
 

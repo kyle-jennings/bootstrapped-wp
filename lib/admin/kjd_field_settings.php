@@ -142,7 +142,32 @@
 				null,
 				'kjd_frontPage_layout_settings', // page name
 				'kjd_frontPage_layout_section' // parent section
-			);		
+			);	
+
+		// front page layout
+		add_settings_section(
+			'kjd_attachment_page_layout_section', // ID hook name
+			'Attachment Page Layout', // label
+			'kjd_attachment_page_layout_callback', // function name
+			'kjd_attachment_page_layout_settings' // page name
+		);
+			add_settings_field(
+				'kjd_attachment_layout', // ID hook name
+				null,
+				null,
+				'kjd_attachment_page_layout_settings', // page name
+				'kjd_attachment_page_layout_section' // parent section
+			);
+
+			add_settings_field(
+				'kjd_attachment_info', // ID hook name
+				null,
+				null,
+				'kjd_attachment_page_layout_settings', // page name
+				'kjd_attachment_page_layout_section' // parent section
+			);
+
+ 		register_setting('kjd_attachment_page_layout_settings','kjd_attachment_page_layout_settings');
 				
 		//post listings layouts
 		add_settings_section(
@@ -170,7 +195,8 @@
 
 $sections = array('login','htmlTag','bodyTag','mastArea','contentArea','sidrDrawer','header',
 	'navbar','dropdown-menu','cycler','pageTitle','body','posts','widgets','footer');
-foreach($sections as $section){
+foreach($sections as $section)
+{
 
 	
 	///////////////////////
@@ -198,7 +224,9 @@ foreach($sections as $section){
 
 
 	// The body, html, and login sections dont need border control
-	if($section !='login' && $section !='bodyTag' && $section !='htmlTag' && $section != 'sidrDrawer'  && $section !='mastArea'  && $section !='contentArea'){
+	if($section !='login' && $section !='bodyTag' && $section !='htmlTag' && 
+		$section != 'sidrDrawer'  && $section !='mastArea'  && $section !='contentArea')
+	{
 	
 		//////////////////////
 		// borders
@@ -237,8 +265,9 @@ foreach($sections as $section){
 		register_setting('kjd_'.$section.'_borders_settings','kjd_'.$section.'_borders_settings');
 	} //end if not login, body, or html
 
-	// the body, html, and cycler sections dont need text or form controls
-	if($section !='bodyTag' && $section !='htmlTag' && $section != 'sidrDrawer' && $section !='cycler'){
+	// the body, html, cycler sections, and sidr drawer dont need text or form controls
+	if($section !='bodyTag' && $section !='htmlTag' && $section != 'sidrDrawer' && $section !='cycler')
+	{
 
 		///////////////////////////
 		// text 
@@ -265,7 +294,7 @@ foreach($sections as $section){
 		///////////////////////////
 		// H tag Settings
 		///////////////////////////
-		if($section !='dropdown-menu'){
+
 		add_settings_section(
 			'kjd_'.$section.'_htag_settings_section', // ID hook name
 			null,
@@ -273,7 +302,7 @@ foreach($sections as $section){
 			'kjd_'.$section.'_htag_settings' // page name
 		);
 
-			$htags = array('H1','H1a','H1ahover', 'H2','H2a','H2ahover', 'H3','H3a','H3ahover','H4','H4a','H4ahover');
+			$htags = array('H1','H2','H3','H4');
 			foreach($htags as $size){
 				add_settings_field(
 					'kjd_'.$section.'_'.$size, // ID hook name
@@ -284,7 +313,8 @@ foreach($sections as $section){
 				);
 			}
 			register_setting('kjd_'.$section.'_text_settings','kjd_'.$section.'_text_settings');
-		}
+		} // if not dropdown menu
+
 		//////////////////////
 		// link styles
 		//////////////////////
@@ -329,7 +359,7 @@ foreach($sections as $section){
 		
 		register_setting('kjd_'.$section.'_components_settings','kjd_'.$section.'_components_settings');
 
-	} //end if not body or html
+	} //end if not body, html, cycler, or sidr drawer
 
 	add_settings_section(
 		'kjd_'.$section.'_misc_settings_section', // ID hook name
