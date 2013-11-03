@@ -507,12 +507,12 @@ switch($section)
 
 	if( $kjd_section_misc_settings['float'] =='true'){
 
-
 		$margin_top = $kjd_section_misc_settings['margin_top'] ? $kjd_section_misc_settings['margin_top'] : '0' ;
 		$margin_bottom = $kjd_section_misc_settings['margin_bottom'] ? $kjd_section_misc_settings['margin_bottom'] : '0' ;
 		
-		echo "margin-top:".$margin_top."px;";
-		echo "margin-bottom:".$margin_bottom."px;";
+
+		$sectionArea_markup .=  "margin-top:".$margin_top."px;";
+		$sectionArea_markup .=  "margin-bottom:".$margin_bottom."px;";
 
 	}
 

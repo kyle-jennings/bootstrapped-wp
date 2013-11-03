@@ -247,7 +247,7 @@ value="<?php echo $options['kjd_cycler_misc']['timeout']?$options['kjd_cycler_mi
 		</select>
 	</div>
 
-	<div class="option">
+	<div class="option float-toggle">
 		<label>Float cycler</label>
 		<select name="kjd_cycler_misc_settings[kjd_cycler_misc][float]">
 				<option value="true" <?php selected( $options['kjd_cycler_misc']['float'], 'true', true) ?>>Yes</option>
@@ -255,7 +255,31 @@ value="<?php echo $options['kjd_cycler_misc']['timeout']?$options['kjd_cycler_mi
 		</select>
 	</div>
 
+<?php
+	$option_markup ='';
+	
+	$toggle_class = $options['kjd_cycler_misc']['float'] =='true' ? 'style="display:block;"' : 'style="display:none;"' ;
+	$margin_top_toggle = $options['kjd_cycler_misc']['margin_top'] ? $options['kjd_cycler_misc']['margin_top'] : '0';
+	$margin_bottom_toggle = $options['kjd_cycler_misc']['margin_bottom'] ? $options['kjd_cycler_misc']['margin_bottom'] : '0';
 
+	$option_markup .= '<div class="option float-option" '. $toggle_class .'>';
+		$option_markup .= '<label>Floated Section Margin</label>';
+		$option_markup .= '<div class="margin-label"><span>Top</span>';
+			$option_markup .= '<input name="kjd_cycler_misc_settings[kjd_cycler_misc][margin_top]" ';
+				$option_markup .= 'value="'. $margin_top_toggle .'"';
+				$option_markup .= 'style="width:40px;"/>px.';
+		$option_markup .= '</div>';
+	$option_markup .= '<div class="margin-label"><span>Bottom</span>';
+		$option_markup .= '<input name="kjd_cycler_misc_settings[kjd_cycler_misc][margin_bottom]" ';
+			$option_markup .= 'value="'. $margin_bottom_toggle .'"';
+			$option_markup .= 'style="width:40px;"/>px.';
+		$option_markup .= '</div>';
+	$option_markup .= '</div>';
+
+	echo $option_markup;
+
+
+?>
 	<div class="option">
 		<label>Outer glow</label>
 		<select name="kjd_cycler_misc_settings[kjd_cycler_misc][kjd_cycler_section_shadow]">

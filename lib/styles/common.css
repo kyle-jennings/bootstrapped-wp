@@ -63,8 +63,7 @@ body {
 #cycler.container.confined,
 #body.container.confined,
 #footer.container.confined{
-	padding:20px !important;
-	margin:0 auto;
+	padding:0 20px;
 }
 
 .frontPageBody{
@@ -155,13 +154,13 @@ h2.logo-wrapper{
 
 
 /* Carousel Settings*/
-#imageSliderWrapper,
+/*#imageSliderWrapper,
 #imageSlider{
 	float: left;
 	padding: 0;
 	width: 100%;
 }
-
+*/
 #imageSlider .carousel {
 	margin-bottom: 0;
 }

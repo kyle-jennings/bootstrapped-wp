@@ -524,7 +524,7 @@ function kjd_float_section_toggle($section, $options) {
 
 	$option_markup ='';
 	$option_markup .= '<div class="option float-toggle">';
-		$option_markup .= '<label>Float Navbar Area</label>';
+		$option_markup .= '<label>Float Section?</label>';
 		$option_markup .= '<select name="kjd_'.$section.'_misc_settings[kjd_'.$section.'_misc][float]">';
 				$option_markup .= '<option value="true" '.selected( $options["float"], "true", false) .'>Yes</option>';
 				$option_markup .= '<option value="false" '.selected( $options["float"], "false", false) .'>No</option>';
@@ -542,7 +542,7 @@ function kjd_set_section_margin($section, $options) {
 	$margin_bottom_toggle = $options['margin_bottom'] ? $options['margin_bottom'] : '0';
 
 	$option_markup .= '<div class="option float-option" '. $toggle_class .'>';
-		$option_markup .= '<label>Navbar Margin</label>';
+		$option_markup .= '<label>Floated Section Margin</label>';
 		$option_markup .= '<div class="margin-label"><span>Top</span>';
 			$option_markup .= '<input name="kjd_'.$section.'_misc_settings[kjd_'.$section.'_misc][margin_top]" ';
 				$option_markup .= 'value="'. $margin_top_toggle .'"';
