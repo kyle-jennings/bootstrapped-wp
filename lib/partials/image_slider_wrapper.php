@@ -10,7 +10,7 @@
 		$confineCyclerBackground = ($cyclerOptions['kjd_cycler_misc']['kjd_cycler_confine_background'] =='true') ? 'container confined' : '' ;	
 ?>
 
-<div id="imageSliderWrapper" class="frontPageBody <?php echo $confineCyclerBackground.' '.$device_view ; ?>">
+<div id="imageSliderWrapper" class="<?php echo $confineCyclerBackground.' '.$device_view ; ?>">
 
 
 	<?php echo ( $plugin == 'responsive_slider' || ( $plugin == 'bootstrap_slider' ) ) ? '' : '<div class="container">' ; ?>

@@ -40,6 +40,15 @@ body {
     height: 100%;
 	}
 
+#imageSliderWrapper,
+#header,
+#navbar,
+#cycler,
+#body,
+#footer{
+	clear: both;
+}
+
 #imageSliderWrapper > .container,
 #header > .container,
 #navbar > .container,
@@ -58,7 +67,9 @@ body {
 	margin:0 auto;
 }
 
-.frontPageBody{position:relative;}
+.frontPageBody{
+	/*position:relative;*/
+}
 .frontpage-component{
 	margin-bottom: 30px;
 }
@@ -147,12 +158,14 @@ h2.logo-wrapper{
 #imageSliderWrapper,
 #imageSlider{
 	float: left;
-	padding: 20px 0;
+	padding: 0;
 	width: 100%;
 }
-#imageSliderWrapper{
-	padding: 0;
+
+#imageSlider .carousel {
+	margin-bottom: 0;
 }
+
 /* Title bar */
 .breadcrumb {
 	background:none; 
@@ -616,10 +629,6 @@ div.img-circle img{
 	margin: 0 15px;
 }
 
-#body ol.process li:first-child {
-	margin:0
-}
-
 #body ol.process li span a {
 	background-image:url(http://kylejenningsdesign.com/wp-content/uploads/2013/10/process_sprite2.png) !important;
 
@@ -660,7 +669,7 @@ div.img-circle img{
 	overflow:visible;margin-bottom:60px;padding-bottom:20px;position:relative
 }
 .processText {
-	display:none;position:absolute;top:0;left:0; text-align: center;
+	display:none;position:absolute;top:0;left:0; text-align: center; min-height: 50px
 }
 .learn .clickArea {
 	opacity:0

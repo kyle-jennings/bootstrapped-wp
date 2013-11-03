@@ -207,13 +207,6 @@ $effects = '';
 		</select>
 	</div>
 
-	<div class="option">
-		<label>Full Width?</label>
-		<select name="kjd_cycler_misc_settings[kjd_cycler_misc][full_width]">
-			<option value="false" <?php selected( $options['kjd_cycler_misc']['full_width'], 'false', true) ?>>No</option>
-			<option value="true" <?php selected( $options['kjd_cycler_misc']['full_width'], 'true', true) ?>>Yes</option>
-		</select>
-	</div>
 
 	<div class="option" style="display:<?php echo $options['kjd_cycler_misc']['plugin'] != 'single image' ? 'block': 'none' ;?>;" >
 		<label>Transition effect</label>
@@ -236,6 +229,8 @@ $effects = '';
 value="<?php echo $options['kjd_cycler_misc']['timeout']?$options['kjd_cycler_misc']['timeout'] : '30000' ;?>" type="text" />
 	</div>
 
+
+
 	<div class="option">
 		<label>Confine Background?</label>
 		<select name="kjd_cycler_misc_settings[kjd_cycler_misc][kjd_cycler_confine_background]">
@@ -245,13 +240,10 @@ value="<?php echo $options['kjd_cycler_misc']['timeout']?$options['kjd_cycler_mi
 	</div>	
 
 	<div class="option">
-		<label>Outer glow</label>
-		<select name="kjd_cycler_misc_settings[kjd_cycler_misc][kjd_cycler_section_shadow]">
-			<?php foreach($glowSettings as $glow){ ?>
-				<option value="<?php echo $glow;?>" <?php selected( $options['kjd_cycler_misc']['kjd_cycler_section_shadow'], $glow, true) ?>>
-					<?php echo $glow; ?>
-				</option>
-			<?php } ?>
+		<label>Full Width?</label>
+		<select name="kjd_cycler_misc_settings[kjd_cycler_misc][full_width]">
+			<option value="false" <?php selected( $options['kjd_cycler_misc']['full_width'], 'false', true) ?>>No</option>
+			<option value="true" <?php selected( $options['kjd_cycler_misc']['full_width'], 'true', true) ?>>Yes</option>
 		</select>
 	</div>
 
@@ -264,17 +256,17 @@ value="<?php echo $options['kjd_cycler_misc']['timeout']?$options['kjd_cycler_mi
 	</div>
 
 
-
-
 	<div class="option">
-		<label>Force Header height</label>
-		<select name="kjd_cycler_misc_settings[kjd_cycler_misc][force_height]">
-			<option value="false" <?php selected( $options['kjd_cycler_misc']['force_height'], 'false', true ) ?>>No</option>
-			<option value="true" <?php selected( $options['kjd_cycler_misc']['force_height'], 'true', true ) ?>>Yes</option>
+		<label>Outer glow</label>
+		<select name="kjd_cycler_misc_settings[kjd_cycler_misc][kjd_cycler_section_shadow]">
+			<?php foreach($glowSettings as $glow){ ?>
+				<option value="<?php echo $glow;?>" <?php selected( $options['kjd_cycler_misc']['kjd_cycler_section_shadow'], $glow, true) ?>>
+					<?php echo $glow; ?>
+				</option>
+			<?php } ?>
 		</select>
-		<input type="text" name="kjd_cycler_misc_settings[kjd_cycler_misc][height]"
-		value="<?php echo $options['kjd_cycler_misc']['height'] ? $options['kjd_cycler_misc']['height'] : '' ;?>" style="width:40px;">px
 	</div>
+
 
 <?php
 }
