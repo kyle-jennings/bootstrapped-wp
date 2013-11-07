@@ -226,3 +226,34 @@ function kjd_elastislide_nav_gallery( $attachments, $link, $image_size){
 			return $output;
 
 }
+
+function kjd_responsive_gallery( $attachments, $link, $image_size ){
+	$output ='';
+
+
+	$output .= '<ul class="rslides-gallery">';
+
+	foreach ( $attachments as $id => $attachment ) {
+		$display = wp_get_attachment_image_src($id, 'thumbnail');
+		$large = wp_get_attachment_image_src($id, 'large');
+		$full = wp_get_attachment_image_src($id, 'full');
+
+		if($link == 'post'){
+			$link_to = get_attachment_link( $id );
+		}elseif($link =='file'){
+			$link_to = wp_get_attachment_url($id);
+		}else{
+			$link_to = '';
+		}
+
+		$output .= '</li><a href=#">';
+		$output .= '<img src="'.$display[0].'" alt="'.$title.'"
+			    		alt="'.$image['alt'].'"  />';
+		$output .= '</a></li>';
+
+
+	}
+	
+	$output .= '</ul>';
+
+}

@@ -96,14 +96,31 @@ add_action('print_media_templates', function(){
   <script type="text/html" id="tmpl-kjd-gallery-settings">
     <h3>Gallery Settings</h3>
 
-    <label class="setting">
+    <label id ="type" class="setting">
       <span><?php _e('Gallery Type:'); ?></span>
       <select data-setting="style">
 
         <option>Choose</option>
         <option value="default"> Default </option>
         <option value="elastislide"> Elastislide</option>      
-        <option value="elastislideNav"> Elastislide with Nav </option>        
+        <option value="elastislideNav"> Elastislide with Nav </option>  
+        <option value="responsiveSlides"> Responsive Slides </option>        
+      </select>
+    </label>
+
+  </script>
+
+  <script type="text/html" id="tmpl-kjd-gallery-responsive-layout">
+    <label id="layout" class="setting">
+      <span><?php _e('Responsive Slides Layout:'); ?></span>
+      <select data-setting="layout">
+
+        <option>Choose</option>
+        <option value="three-nine"> Three - Nine </option>
+        <option value="nine-three"> Nine - Three </option>
+        <option value="three-six"> Three - Six </option>
+        <option value="six-three"> Six- Three </option>
+      
       </select>
     </label>
 
@@ -158,10 +175,21 @@ add_action('print_media_templates', function(){
           // return wp.media.template('gallery-settings')(view)
           return wp.media.template('kjd-gallery-settings')(view)
                + wp.media.template('kjd-gallery-link-settings')(view)
-               + wp.media.template('kjd-gallery-image-size-settings')(view)               
+               + wp.media.template('kjd-gallery-image-size-settings')(view)    
+               + wp.media.template('kjd-gallery-responsive-layout')(view)               
           }
       });
 
+      $('#type select').change(function(){
+        console.log('boom');
+        if($(this).val =='responsiveSlides'){
+          $('#layout').fadeIn();
+        }else{
+          $('#layout').fadeOut();
+        }
+      });
+
+    
     });
 
   </script>

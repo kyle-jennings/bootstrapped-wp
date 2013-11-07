@@ -349,7 +349,22 @@ h2.logo-wrapper{
 .well.alert{padding:19px;}
 
 /* images */
-.thumbnail{text-align:center;}
+.thumbnail{
+	text-align:center;
+}
+#header .thumbnail a,
+#body .thumbnail a,
+#footer .thumbnail a,
+#header .thumbnail a:hover,
+#body .thumbnail a:hover,
+#footer .thumbnail a:hover,
+#body .attachment > a,
+#body .attachment > a:hover {
+	padding: 0;
+	background:none;
+	border-radius: none;
+}
+
 div.img-rounded,div.img-polaroid,div.img-circle{ margin:0 5px;}
 div.img-rounded img{
   -webkit-border-radius: 6px;

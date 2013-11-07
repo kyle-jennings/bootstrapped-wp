@@ -615,7 +615,7 @@ switch($section)
 		
 		// Links
 		foreach($linkSettings as $link_type => $v){
-			$sectionArea_markup .= $section_name.' '.$link_type.'{';
+			$sectionArea_markup .= $section_name.' '.$link_type.':not(.btn) {';
 				$sectionArea_markup .= linkSettingsCallback($v, $section);
 			$sectionArea_markup .= '}';
 		}
