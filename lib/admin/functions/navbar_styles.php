@@ -271,7 +271,7 @@ function dropdown_menu_callback($kjd_section_misc_settings, &$media_979_markup, 
 	
 	$options = get_option('kjd_dropdown-menu_misc_settings');
 	$options = $options['kjd_dropdown-menu_misc'];
-	if($options['remove_padding'] == 'yes') {
+	if($options['remove_padding'] == 'true') {
 		$dropdown_markup .= '.dropdown-menu {padding: 0;}';
 	}
 
