@@ -40,7 +40,7 @@ function kjd_get_temp_settings($section, $array, $preview, $part) {
 			} // end looping through preview settings
 
 			// if($part == 'kjd_section_link'){
-				// print_r($array); die();
+			// 	print_r($array); die();
 			// }
 		} // end setting section checking
 	} // end preview

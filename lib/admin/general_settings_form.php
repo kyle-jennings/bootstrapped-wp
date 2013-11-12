@@ -8,34 +8,76 @@ screen_icon('themes'); ?>
 <?php
 
 	if( isset( $_GET[ 'tab' ] ) ) {  
-	 $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'settings'; 
+	 $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'home'; 
 	}else{
-	 $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'settings'; 
+	 $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'home'; 
 	}
 ?> 
 
 <h2 class="nav-tab-wrapper">  
+	<a href="?page=kjd_theme_settings&tab=home" class="nav-tab"<?php echo $active_tab == 'home' ? 'id="active"' : 'none'; ?>>Home</a>  	
 	<a href="?page=kjd_theme_settings&tab=settings" class="nav-tab"<?php echo $active_tab == 'settings' ? 'id="active"' : 'none'; ?>>General Settings </a>  	
 	<a href="?page=kjd_theme_settings&tab=components" class="nav-tab"<?php echo $active_tab == 'components' ? 'id="active"' : 'none'; ?>>Components</a>
 </h2>
 
     <?php settings_errors(); ?>  
-	  <form method="post" action="options.php">  
+	  
 		<?php 
-			if( $active_tab == 'settings' ) { 
-				kjd_theme_settings_callback();
-			}elseif( $active_tab == 'components' ) { 
-				kjd_theme_components_callback();
-			}
-			submit_button(); 
+			if( $active_tab == 'home' ) { 
+				kjd_theme_home_callback();
+			}else{
+				echo '<form method="post" action="options.php"> ';
+				if( $active_tab == 'settings' ) { 
+					kjd_theme_settings_callback();
+				}elseif( $active_tab == 'components' ) { 
+					kjd_theme_components_callback();
+				}
 
-			wp_enqueue_media();
+				submit_button(); 
+				wp_enqueue_media();
+				echo '</form>';
+			}
 		?>  
-	</form>
+	
 
 <?php
 }
+function kjd_theme_home_callback(){
+	include('functions/kjd_export_settings.php'); 
+?>
+	<div class="optionsWrapper">
+		<h3>What do you want to style?</h3>
+		<div class="option">
+			<ul class="unstyled">
 
+
+			</ul>
+		</div>
+	</div>
+
+
+
+
+	<div class="optionsWrapper">
+		<h3>Export your settings</h3>
+		<div class="option">
+			<?php kjd_get_settings(); ?>
+			<!-- <a class='export-xml' href='#' >Export database as XML</a> -->
+		</div>
+	</div>
+
+
+	<div class="optionsWrapper">
+		<h3>Import a style file.</h3>
+		<div class="option">
+			<label for="file">Filename:</label>
+			<input type="file" name="file" id="file">
+			<!-- <a class='export-xml' href='#' >Export database as XML</a> -->
+		</div>
+	</div>
+
+<?php
+}
 ////////////////////
 // theme settings
 ////////////////////

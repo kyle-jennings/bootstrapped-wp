@@ -329,7 +329,9 @@ h2.logo-wrapper{
 	border:none !important;
 }
 
-.hero-unit.no-background { background-color: transparent;}
+.hero-unit.no-background,
+.alert-transparent { background-color: transparent;}
+
 .well-light-grey{background-color: #eeeeee;}
 .well-grey{background-color: #eeeeee;}
 .well-dark-grey{background-color:#999; color:#EEEEEE;}

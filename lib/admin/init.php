@@ -10,6 +10,8 @@ include('functions/styles.php');
 include 'settings.php';
 include('functions/admin_functions.php');
 
+
+
 //////////////////////////////////////
 // Google font selection
 //////////////////////////////////////
@@ -44,12 +46,13 @@ function kjd_load_style_sheets_and_scripts() {
 	wp_enqueue_style("colorPicker", $adminDir."css/minicolors.css");
 	wp_enqueue_script("colorPicker", $adminDir."js/colorpicker/minicolors.js");  
 
-wp_register_script( 'script_handle', $adminDir."js/admin.js", false, '1.0' ); //register script
+	wp_register_script( 'script_handle', $adminDir."js/admin.js", false, '1.0' ); //register script
 
 
 	wp_register_script( 'admin', $adminDir."js/admin.js", false, '1.0' ); //register script
 
 	$wp_paths = array( 'template_url' => $adminDir.'functions/live_preview.php',
+					   'export_file_url' => $adminDir.'functions/kjd_export_settings.php',
 					   'root_url' => get_bloginfo('template_directory'),
 					   ' site_url' => get_bloginfo('url')
 				    );

@@ -1,12 +1,12 @@
 <?php
-
-
-function navbarStylesCallback(&$media_979_markup, $preview){
 	// $navSettings = kjd_get_temp_settings(	$section,
 	// 										$navSettings['kjd_navbar_misc'],
 	// 										$preview, 
 	// 										'kjd_navbar_misc_settings' 
 	// 									);
+
+
+function navbarStylesCallback(&$media_979_markup, $preview){
 	
 	$section = 'navbar';
 
@@ -71,6 +71,7 @@ function navbarStylesCallback(&$media_979_markup, $preview){
 												$preview,
 												'kjd_section_linkActive'
 										);
+
 	$kjd_section_LinkVisted =  kjd_get_temp_settings(	
 												'navbar',
 												$navbarLinksOptions['kjd_navbar_linkVisited'],
@@ -184,7 +185,10 @@ $navbar_markup .="
 $navbar_markup .=".navbar .nav > li.active > a,
 .navbar .nav li.dropdown.open > .dropdown-toggle,
 .navbar .nav li.dropdown.active > .dropdown-toggle,
-.navbar .nav li.dropdown.open.active > .dropdown-toggle{
+.navbar .nav li.dropdown.open.active > .dropdown-toggle,
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus{
 	background-color:".$kjd_section_LinkActive['bg_color'].";
 	color:".$kjd_section_LinkActive['color'].";
 	text-decoration:".$kjd_section_LinkActive['decoration']." !important;
@@ -249,14 +253,27 @@ $navbar_markup .=".navbar .nav li.open > a:after{
 	border-color:".$kjd_section_linkHovered['color']." !important;
 }";
 
-	$navbar_markup .= dropdown_menu_callback($kjd_section_misc_settings, $media_979_markup);
+	$navbar_markup .= dropdown_menu_callback($kjd_section_misc_settings, $media_979_markup, $preview);
 	return ($navbar_markup);
 }
 
-function dropdown_menu_callback($kjd_section_misc_settings, &$media_979_markup){
+
+/* ---------------------------------------------------------------------------------------
+						drop down colors
+--------------------------------------------------------------------------------------- */
+
+function dropdown_menu_callback($kjd_section_misc_settings, &$media_979_markup, $preview){
+
+	$section = 'dropdown-menu';
 
 	$sidr_nav = $kjd_section_misc_settings['side_nav'];
 	$dropdown_bg = $kjd_section_misc_settings['dropdown_bg'];
+	
+	$options = get_option('kjd_dropdown-menu_misc_settings');
+	$options = $options['kjd_dropdown-menu_misc'];
+	if($options['remove_padding'] == 'yes') {
+		$dropdown_markup .= '.dropdown-menu {padding: 0;}';
+	}
 
 	/* dropdown settings */
 
@@ -264,30 +281,86 @@ function dropdown_menu_callback($kjd_section_misc_settings, &$media_979_markup){
 	$dropdownMenuSettings = $dropdownMenuSettings['kjd_dropdown-menu_options'];
 
 	$dropdownMenuBackgroundOptions = get_option('kjd_dropdown-menu_background_settings');
-	$dropdownMenuBackgroundColors = $dropdownMenuBackgroundOptions['kjd_dropdown-menu_background_colors'];
-
+	// $dropdownMenuBackgroundColors = $dropdownMenuBackgroundOptions['kjd_dropdown-menu_background_colors'];
+	$dropdownMenuBackgroundColors = kjd_get_temp_settings(	$section,
+											$dropdownMenuBackgroundOptions['kjd_dropdown-menu_background_colors'],
+											$preview, 
+											'kjd_section_background_colors'
+										);
 
 	$dropdownStartColor = !empty($dropdownMenuBackgroundColors['start_rgba']) ? $dropdownMenuBackgroundColors['start_rgba'] : $dropdownMenuBackgroundColors['color'] ;
 	$dropdownStartColor = $dropdownStartColor ? $dropdownStartColor : 'transparent' ;
 	
 	$dropdownEndColor =  !empty($dropdownMenuBackgroundColors['end_rgba']) ? $dropdownMenuBackgroundColors['end_rgba'] : $dropdownMenuBackgroundColors['endcolor'] ;
+
 	$dropdownEndColor = !empty($dropdownStartEndColor) ? $dropdownEndColor : 'transparent';
 
-	$dropdownMenuWallpaper = $dropdownMenuBackgroundOptions['kjd_dropdown-menu_background_wallpaper'];
+	// $dropdownMenuWallpaper = $dropdownMenuBackgroundOptions['kjd_dropdown-menu_background_wallpaper'];
+	$dropdownMenuWallpaper = kjd_get_temp_settings(	$section,
+											$dropdownMenuBackgroundOptions['kjd_dropdown-menu_background_wallpaper'],
+											$preview, 
+											'kjd_section_background_wallpaper'
+										);
 
 	/* dropdown-menu borders */
 	$dropdownMenuBordersOptions = get_option('kjd_dropdown-menu_borders_settings');
-	$dropdownMenuTopBorder = $dropdownMenuBordersOptions['kjd_dropdown-menu_top_border'];
-	$dropdownMenuRightBorder = $dropdownMenuBordersOptions['kjd_dropdown-menu_right_border'];
-	$dropdownMenuBottomBorder = $dropdownMenuBordersOptions['kjd_dropdown-menu_bottom_border'];
-	$dropdownMenuLeftBorder = $dropdownMenuBordersOptions['kjd_dropdown-menu_left_border'];
+
+	// $dropdownMenuTopBorder = $dropdownMenuBordersOptions['kjd_dropdown-menu_top_border'];
+	$dropdownMenuLinkHovered = kjd_get_temp_settings(	$section,
+											$dropdownMenuBordersOptions['kjd_dropdown-menu_top_border'],
+											$preview, 
+											'kjd_section_top_border' 
+										);
+	// $dropdownMenuRightBorder = $dropdownMenuBordersOptions['kjd_dropdown-menu_right_border'];
+	$dropdownMenuLinkHovered = kjd_get_temp_settings(	$section,
+											$dropdownMenuBordersOptions['kjd_dropdown-menu_right_border'],
+											$preview, 
+											'kjd_section_right_border' 
+										);
+
+	// $dropdownMenuBottomBorder = $dropdownMenuBordersOptions['kjd_dropdown-menu_bottom_border'];
+	$dropdownMenuLinkHovered = kjd_get_temp_settings(	$section,
+											$dropdownMenuBordersOptions['kjd_dropdown-menu_bottom_border'],
+											$preview, 
+											'kjd_section_bottom_border' 
+										);
+	// $dropdownMenuLeftBorder = $dropdownMenuBordersOptions['kjd_dropdown-menu_left_border'];
+	$dropdownMenuLinkHovered = kjd_get_temp_settings(	$section,
+											$dropdownMenuBordersOptions['kjd_dropdown-menu_left_border'],
+											$preview, 
+											'kjd_section_left_border' 
+										);
+
+
 	/* dropdown-menu link style */
 	$dropdownMenuLinksOptions = get_option('kjd_dropdown-menu_links_settings');
-	$dropdownMenuLink = $dropdownMenuLinksOptions['kjd_dropdown-menu_link'];
-	$dropdownMenuLinkHovered = $dropdownMenuLinksOptions['kjd_dropdown-menu_linkHovered'];
-	$dropdownMenuLinkActive = $dropdownMenuLinksOptions['kjd_dropdown-menu_linkActive'];
-	$dropdownMenuLinkVisted = $dropdownMenuLinksOptions['kjd_dropdown-menu_linkVisited'];
+	$dropdownMenuLink = kjd_get_temp_settings(	$section,
+		$dropdownMenuLinksOptions['kjd_dropdown-menu_link'],
+		$preview, 
+		'kjd_section_link' 
+	);
 
+	$dropdownMenuLinkHovered = kjd_get_temp_settings(	$section,
+											$dropdownMenuLinksOptions['kjd_dropdown-menu_linkHovered'],
+											$preview, 
+											'kjd_section_linkHovered' 
+										);
+
+	// $dropdownMenuLinkActive = $dropdownMenuLinksOptions['kjd_dropdown-menu_linkActive'];
+
+	$dropdownMenuLinkActive = kjd_get_temp_settings(	$section,
+											$dropdownMenuLinksOptions['kjd_dropdown-menu_linkActive'],
+											$preview, 
+											'kjd_section_linkActive' 
+										);
+
+
+	// $dropdownMenuLinkVisted = $dropdownMenuLinksOptions['kjd_dropdown-menu_linkVisited'];
+	$dropdownMenuLinkVisted  = kjd_get_temp_settings(	$section,
+											$dropdownMenuLinksOptions['kjd_dropdown-menu_linkActive'],
+											$preview, 
+											'kjd_section_linkVisted' 
+										);
 /* --------------------------- first level dropdown stuff  --------------------------- */
 
 /* the triangle at the top of the dropdown */
@@ -343,9 +416,12 @@ $dropdown_markup .=".dropdown-menu li > a:after {
 }";
 
 // active link -->
-$sub_bg_active['bg_color'] = $dropdownMenuLinkActive['bg_color'] ? $dropdownMenuLinkActive['bg_color'] : 'transparent';
+$sub_bg_active = $dropdownMenuLinkActive['bg_color'] ? $dropdownMenuLinkActive['bg_color'] : 'transparent';
 
-$dropdown_markup .=".dropdown-menu li.active > a{
+$dropdown_markup .=".dropdown-menu li.active > a,
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus{
 	background:".$sub_bg_active." !important; 
 	color:".$dropdownMenuLinkActive['color']." !important;
 	text-decoration:".$dropdownMenuLinkActive['decoration']." !important;

@@ -19,9 +19,18 @@
 		);
 		$collapsibleParts = array('collapible_content_background','collapible_content_border','collapible_content_link_color','collapible_content_text_color','active_title_background','active_title_link_color','inactive_title_background', 'inactive_title_link_color','hovered_title_background','hovered_title_link_color');
 		$tableParts = array('table_header_background','table_border','table_header_link_color','table_header_text_color','even_row_background','even_row_link_color','even_row_text_color','odd_row_background', 'odd_row_link_color','odd_row_text_color','hovered_row_background','hovered_row_link_color','hovered_row_text_color');
-		$formParts =array('form_background','form_border','form_text','field_background','field_border','field_glow','field_text', 'button_background','button_background_end','button_border','button_text');		
+		$formParts =array('form_background',
+							'form_border',
+							'form_text',
+							'field_background',
+							'field_border',
+							'field_glow',
+							'field_text',
+							'button_background',
+							'button_background_end',
+							'button_border',
+							'button_text');		
 		$paginationParts =array('pagination_border','pagination_background','pagination_text','pagination_link','pagination_hover_background','pagination_hover_link', 'pagination_current_background','pagination_current_text');
-		// $listParts = array('text_color','text_hover_color','link_color','link_hover_color','border_color','background_color','background_hover_color','border_hover_color')
 ?>
 	<input type="hidden" id="active_tab" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][tabID]" 
 value="<?php echo $sectionSettings['tabID'] ? $sectionSettings['tabID'] : 'none'; ?>"  />		
@@ -117,7 +126,7 @@ value="<?php echo $sectionSettings['tabID'] ? $sectionSettings['tabID'] : 'none'
     </div>
 
 <!-- ***************** -->
-<!-- Form Colors -->
+<!-- Image Colors -->
 <!-- ***************** -->
 
     <div class="tab-pane" id="image-settings">
@@ -153,12 +162,14 @@ value="<?php echo $sectionSettings['tabID'] ? $sectionSettings['tabID'] : 'none'
 <!-- ***************** -->
     <div class="tab-pane <?php echo $section == 'navbar' ? 'active' : '' ; ?>" id="forms">
     	<h3>Forms</h3>
-<?php foreach($formParts as $part){ ?>
+	<?php foreach($formParts as $part){ ?>
 
 		<div class="option" style="position: relative;">
 
 			<label><?php echo ucwords(str_replace('_', ' ', $part));?></label>
-			<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][forms][<?php echo $part;?>]" value="<?php echo $sectionSettings['forms'][$part] ? $sectionSettings['forms'][$part] : 'none'; ?>"  />		
+			<input class="minicolors" 
+			name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][forms][<?php echo $part;?>]" 
+			value="<?php echo $sectionSettings['forms'][$part] ? $sectionSettings['forms'][$part] : 'none'; ?>"  />		
 		<a class="clearColor">Clear</a>
 		</div> 
 	<?php

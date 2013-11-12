@@ -57,8 +57,8 @@
 	
 	</div> <!-- end bg colors -->
 
+	<?php if($section !='navbar' && $section != 'dropdown-menu'){ ?>
 	<div class='full-option'>
-		<?php if($section !='navbar' && $section != 'dropdown-menu'){ ?>
 		<div class="option">
 			<label>Decoration</label>
 			<select class="decorationList" name="kjd_<?php echo $section;?>_links_settings[kjd_<?php echo $section;?>_<?php echo $element;?>][decoration]">
@@ -67,17 +67,19 @@
 				<?php } ?>
 			</select>
 		</div>
-		<?php } ?>
+
 		<div class="shadowColor color_option option" style="<?php echo $value['decoration'] == 'text-shadow'? 'display:block;' : 'display:none;' ;?>">
 			<label>Text-shadow Color</label>
 			<input class="minicolors" name="kjd_<?php echo $section;?>_links_settings[kjd_<?php echo $section;?>_<?php echo $element;?>][textShadowColor]" 
 				value="<?php echo $value['textShadowColor'] ? $value['textShadowColor'] : ''; ?>"/>
 			<a class="clearColor">Clear</a>
 		</div>
+		
 	</div> <!-- end decoration -->
+	<?php } ?>
 
+	<?php if($section == "navbar"){ ?>
 	<div class='full-option'>
-		<?php if($section == "navbar"){ ?>
 		<div class="color_option option" style="position: relative;">
 			<label><?php echo $elementName;?> Border Color</label>
 
@@ -86,10 +88,8 @@
 				value="<?php echo $value['border_color'] ? $value['border_color'] : 'none'; ?>" />
 				<a class="clearColor">Clear</a>
 		</div>
-		<?php
-			}
-		 ?>
 	</div> <!-- end border-->
+	<?php } ?>
 
 </div> <!-- end wrapper-->
 <?php
