@@ -371,8 +371,9 @@ function kjd_get_theme_options($preview = null){
 		
 	}
 
-		
-	$section_output .= postSettingsCallback();
+    if($options['style_posts']=='true'){
+		$section_output .= postSettingsCallback();
+	}
 	
 	/* ----------------------------------------------------- 
 	Responsive markup
@@ -559,6 +560,9 @@ switch($section)
 	/* ----------------------------------------------------------------------------- *
 						Misc section styles
 	----------------------------------------------------------------------------- */
+
+		
+
 	if($section =='header' && $hideHeader == 'true'){
 		$sectionArea_markup .= 'display:none !important;';
 		$sectionArea_markup .= 'height:0 !important;';
@@ -604,6 +608,53 @@ switch($section)
 			$sectionArea_markup .= borderRadiusCallback($k, $v);	
 		}
 		$sectionArea_markup .= '}';
+	}
+
+	if($section == 'body'){
+
+		$kjd_section_misc_settings = get_option('kjd_body_misc_settings');
+		$kjd_section_misc_settings = $kjd_section_misc_settings['kjd_body_misc'];
+
+		//color of the line underneath the post info
+		$postInfoBorder = $kjd_section_misc_settings['post_info_border'] ? $kjd_section_misc_settings['post_info_border'] : 'rgba(0,0,0,.5)';
+		$blockquote = $kjd_section_misc_settings['blockquote'] ? $kjd_section_misc_settings['blockquote'] : 'inherit';
+
+		$sectionArea_markup .= '#body .post-info';
+		$sectionArea_markup .= '{';
+			$sectionArea_markup .= 'border-bottom:1px solid '. $postInfoBorder.';';
+		$sectionArea_markup .= '}';
+
+		$sectionArea_markup .= '#body blockquote';
+		$sectionArea_markup .= '{';
+			$sectionArea_markup .= 'border-color:'. $blockquote.';';
+		$sectionArea_markup .= '}';
+
+
+		foreach(array('pre','code') as $type){
+			$background = $kjd_section_misc_settings[$type.'_background'] ? $kjd_section_misc_settings[$type.'_background'] : 'inherit';
+			$text = $kjd_section_misc_settings[$type.'_text'] ? $kjd_section_misc_settings[$type.'_text'] : 'inherit';
+			$link = $kjd_section_misc_settings[$type.'_link'] ? $kjd_section_misc_settings[$type.'_link'] : 'inherit';
+			$hovered_link = $kjd_section_misc_settings[$type.'_hovered_link'] ? $kjd_section_misc_settings[$type.'_hovered_link'] : 'inherit';
+
+			$sectionArea_markup .= '#body '.$type.'';
+			$sectionArea_markup .= '{';
+				$sectionArea_markup .= 'border:'.$background.';';
+				$sectionArea_markup .= 'background:'.$background.';';
+				$sectionArea_markup .= 'color:'.$text.';';
+			$sectionArea_markup .= '}';
+
+			$sectionArea_markup .= '#body '.$type.' a';
+			$sectionArea_markup .= '{';
+				$sectionArea_markup .= 'color:'.$link.';';
+			$sectionArea_markup .= '}';
+
+			$sectionArea_markup .= '#body '.$type.' a:hover';
+			$sectionArea_markup .= '{';
+				$sectionArea_markup .= 'color:'.$hovered_link .';';
+			$sectionArea_markup .= '}';
+		}
+
+
 	}
 
 

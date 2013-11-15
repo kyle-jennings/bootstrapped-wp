@@ -13,8 +13,22 @@ if(is_admin()){
 
  require_once('layout_functions.php');
 
-
-
+/* ----------------------- Set featured image and User Image Sizes --------------------- */
+function kjd_set_featured_image_size(){
+// kjd_component_settings[featured_image][height]
+	$image_size_settings = get_option('kjd_component_settings');
+	$featured_size = $image_size_settings['featured_image'];
+	$w = $featured_size['width'] ? $featured_size['width'] : 300 ;
+	$h = $featured_size['height'] ? $featured_size['height'] : 300 ;
+	$c = $featured_size['crop'] ? $featured_size['crop'] : false ;
+	if( function_exists ('add_theme_support') ){
+		add_theme_support('post_tumbnails');
+		add_image_size(
+			'featured-image', $w, $h, true
+		);
+	}
+}
+add_action( 'init', 'kjd_set_featured_image_size' );
 /* ----------------------- kjd add js and css --------------------- */
 function kjd_add_assets(){
 

@@ -393,7 +393,7 @@ div.img-circle img{
 /* pagination */
 .pagination{
 	clear:both;
-	margin-left:20px;
+   margin-left: 30px;
 }
 
 /* posts */
@@ -663,22 +663,28 @@ div.img-circle img{
 #body .launch span {background-position:-866px -97px;}
 
 
-#body .learn span .clickArea {
+#body .learn span .clickArea,
+#body .learn span .clickArea:hover {
 	background-position:0 0
 }
-#body .brainStorm span .clickArea {
+#body .brainStorm span .clickArea,
+#body .brainStorm span .clickArea:hover {
 	background-position:-173px 0
 }
-#body .proposal span .clickArea {
+#body .proposal span .clickArea,
+#body .proposal span .clickArea:hover {
 	background-position:-346px 0
 }
-#body .create span .clickArea {
+#body .create span .clickArea,
+#body .create span .clickArea:hover {
 	background-position:-519px 0
 }
-#body .touchUp span .clickArea {
+#body .touchUp span .clickArea,
+#body .touchUp span .clickArea:hover {
 	background-position:-692px 0
 }
-#body .launch span .clickArea {
+#body .launch span .clickArea,
+#body .launch span .clickArea:hover {
 	background-position:-866px 0
 }
 .textContainer {

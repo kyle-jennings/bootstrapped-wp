@@ -46,13 +46,86 @@ function kjd_the_content_wrapper(){
 	return $the_content_markup;
 }
 
-/* ---------------------------- content and content list scaffolding functions ----------------------------- */
+/* ---------------------------- content and content list scaffolding functions ------------------------=---- */
+
+function kjd_comment_form() {
+
+ 	global $current_user;
+
+	$fields =  array(
+
+	  'author' =>
+	    '<div class="control-group"><label class="control-label" for="author">' . __( 'Name', 'domainreference' ) . '</label> ' .
+	    ( $req ? '<span class="required">*</span>' : '' ) .
+	    '<div class="controls"><input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) .
+	    '" size="30"' . $aria_req . ' /></div></div>',
+
+	  'email' =>
+	    '<div class="control-group"><label class="control-label" for="email">' . __( 'Email', 'domainreference' ) . '</label> ' .
+	    ( $req ? '<span class="required">*</span>' : '' ) .
+	    '<div class="controls"><input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) .
+	    '" size="30"' . $aria_req . ' /></div></div>',
+
+	  'url' =>
+	    '<div class="control-group"><label class="control-label" for="url">' . __( 'Website', 'domainreference' ) . '</label>' .
+	    '<div class="controls"><input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) .
+	    '" size="30" /></div></div>',
+	);
+
+	$args = array(
+	  'id_form'           => 'commentform',
+	  'id_submit'         => 'submit',
+	  'title_reply'       => __( 'Leave a Reply' ),
+	  'title_reply_to'    => __( 'Leave a Reply to %s' ),
+	  'cancel_reply_link' => __( 'Cancel Reply' ),
+	  'label_submit'      => __( 'Post Comment' ),
+
+	  'comment_field' =>  '<div class="control-group"><label class="control-label" for="comment">' . _x( 'Comment', 'noun' ) .
+	    '</label><div class="controls"><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true">' .
+	    '</textarea></div></div>',
+
+	  'must_log_in' => '<p class="must-log-in">' .
+	    sprintf(
+	      __( 'You must be <a href="%s">logged in</a> to post a comment.' ),
+	      wp_login_url( apply_filters( 'the_permalink', get_permalink() ) )
+	    ) . '</p>',
+
+	  'logged_in_as' => '<p class="logged-in-as">' .
+	    sprintf(
+	    __( 'Logged in as <a href="%1$s">%2$s</a>. <a href="%3$s" title="Log out of this account">Log out?</a>' ),
+	      admin_url( 'profile.php' ),
+	      $current_user->user_login,
+	      wp_logout_url( apply_filters( 'the_permalink', get_permalink( ) ) )
+	    ) . '</p>',
+
+	  'comment_notes_before' => '',
+
+	  'comment_notes_after' => '',
+
+	  'fields' => apply_filters( 'comment_form_default_fields', $fields  ),
+	);
+
+
+
+
+	
+	ob_start();
+		comment_form($args);
+		$buffered_comments = ob_get_contents();
+	ob_end_clean();
+
+	return $buffered_comments;
+}
+
 /*
 	This just grabs the post/page/attachment content.
 */
 
 function kjd_get_the_content($post_display = null)
 {
+	$allow_comments = get_option('kjd_pageTitle_misc_settings');
+	$allow_comments = $allow_comments['kjd_pageTitle_misc'];
+
 	$the_content_markup = '';
 
 	$the_content_markup .= '<div class="the-content">';
@@ -85,6 +158,10 @@ function kjd_get_the_content($post_display = null)
 		ob_end_clean();
 
 		$the_content_markup .= $buffered_content;
+		if($allow_comments == 'true' && is_single() ){
+			$the_content_markup .= kjd_comment_form();
+		}
+	
 	
 	}else{
 		ob_start();

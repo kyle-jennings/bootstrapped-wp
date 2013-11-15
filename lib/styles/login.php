@@ -28,6 +28,9 @@ $loginForm = $formOptions['kjd_login_components']['forms'];
 
 $root=get_bloginfo('template_directory'); 
 $root.= $root.'/lib/';
+
+$site_url = '"'.site_url().'"';
+
 ?>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="<?php echo $root; ?>/scripts/jquery.js" type="text/javascript"></script>
@@ -56,6 +59,7 @@ $root.= $root.'/lib/';
 		});
 		$('.login h1 a').append(bgImg);
 		bgImg.attr('src', url);
+		$('#login a').attr('href', <?php echo $site_url; ?> );
 
 	});
 </script>

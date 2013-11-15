@@ -285,7 +285,7 @@ function kjd_front_page_settings(){
 	</div>
 
 	<div class="option">
-		<label>Front Page Content</label>
+		<label>Secondary Content</label>
 			<?php wp_editor( $options['kjd_frontPage_secondaryContent'], 
 			'kjd_frontPage_layout_settings[kjd_frontPage_secondaryContent]', 
 			$settings = array('content_css' => get_stylesheet_directory_uri() . '/lib/styles/bootstrap/bootstrap.css')  );?>

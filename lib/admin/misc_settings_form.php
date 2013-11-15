@@ -364,6 +364,26 @@ function kjd_body_misc_settings_callback($section){
 		?>
 
 		
+		<h3>Misc Colors</h3>
+
+		<div class="color_option option" style="position: relative;">
+			<label>Post Titles Bottom Border</label>
+
+			<input class="minicolors" name="kjd_body_misc_settings[kjd_body_misc][post_info_border]" 
+				value="<?php echo $options['post_info_border'] ? $options['post_info_border'] : ''; ?>"/>
+			<a class="clearColor">Clear</a>
+		</div>
+
+		<div class="color_option option" style="position: relative;">
+			<label>Blockquote Color</label>
+
+			<input class="minicolors" name="kjd_body_misc_settings[kjd_body_misc][blockquote]" 
+				value="<?php echo $options['blockquote'] ? $options['blockquote'] : ''; ?>"/>
+			<a class="clearColor">Clear</a>
+		</div>
+
+		<?php echo kjd_pre_code_colors($section, $options, 'pre'); ?>
+		<?php echo kjd_pre_code_colors($section, $options, 'code'); ?>
 	</div>			
 <?php
 }
@@ -410,6 +430,9 @@ function kjd_posts_misc_settings_callback()
 				value="<?php echo $options['blockquote'] ? $options['blockquote'] : ''; ?>"/>
 			<a class="clearColor">Clear</a>
 		</div>
+	
+		<?php echo kjd_pre_code_colors($section, $options, 'pre'); ?>
+		<?php echo kjd_pre_code_colors($section, $options, 'code'); ?>
 	
 	</div>
 
@@ -580,6 +603,48 @@ function kjd_set_section_margin($section, $options) {
 	$option_markup .= '</div>';
 
 	return $option_markup;
+}
+
+
+function kjd_pre_code_colors($section, $options, $type){
+
+?>
+		<h3><?php echo ucwords($type);?></h3>
+		<div class="color_option option" style="position: relative;">
+			<label><?php echo ucwords($type);?> Background</label>
+
+			<input class="minicolors" name="kjd_<?php echo $section; ?>_misc_settings[kjd_<?php echo $section; ?>_misc][<?php echo $type;?>_background]" 
+				value="<?php echo $options[$type.'_background'] ? $options[$type.'_background'] : ''; ?>"/>
+			<a class="clearColor">Clear</a>
+		</div>
+
+		<div class="color_option option" style="position: relative;">
+			<label><?php echo ucwords($type);?> Text</label>
+
+			<input class="minicolors" name="kjd_<?php echo $section; ?>_misc_settings[kjd_<?php echo $section; ?>_misc][<?php echo $type;?>_text]" 
+				value="<?php echo $options[$type.'_text'] ? $options[$type.'_text'] : ''; ?>"/>
+			<a class="clearColor">Clear</a>
+		</div>
+
+		<div class="color_option option" style="position: relative;">
+			<label><?php echo ucwords($type);?> Link</label>
+
+			<input class="minicolors" name="kjd_<?php echo $section; ?>_misc_settings[kjd_<?php echo $section; ?>_misc][<?php echo $type;?>_link]" 
+				value="<?php echo $options[$type.'_link'] ? $options[$type.'_link'] : ''; ?>"/>
+			<a class="clearColor">Clear</a>
+		</div>
+
+		<div class="color_option option" style="position: relative;">
+			<label><?php echo ucwords($type);?> Hovered Link</label>
+
+			<input class="minicolors" name="kjd_<?php echo $section; ?>_misc_settings[kjd_<?php echo $section; ?>_misc][<?php echo $type;?>_hovered_link]" 
+				value="<?php echo $options[$type.'_hovered_link'] ? $options[$type.'_hovered_link'] : ''; ?>"/>
+			<a class="clearColor">Clear</a>
+		</div>
+
+
+
+<?php
 }
 
 function kjd_section_glow_toggle($section, $options) {

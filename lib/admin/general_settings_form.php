@@ -191,6 +191,9 @@ function kjd_theme_components_callback(){
 
 	settings_fields( 'kjd_component_settings' ); 
 	$options = get_option('kjd_component_settings');
+	// echo $options['featured_image']['width'] ? $options['featured_image']['width'] : 300 ;
+	// echo $options['featured_image']['height'] ? $options['featured_image']['height'] : 300 ;
+
 ?>
 <div class="options_wrapper">
 
@@ -224,23 +227,22 @@ function kjd_theme_components_callback(){
 			value="<?php echo $options['featured_image']['width'] ? $options['featured_image']['width'] : ''; ?>"
 			style="width:40px;"/>px.
 		</div>
+
+		<div class="margin-label"><span>Hard Crop?</span>
+			<select name="kjd_component_settings[featured_image][crop]">
+				<option value="false" <?php selected( $options['featured_image']['crop'], 'false', true ) ?>>No</option>
+				<option value="true" <?php selected( $options['featured_image']['crop'], 'true', true) ?>>Yes</option>
+			</select>
+		</div>
 	</div>
 
 	<div class="option">
-		<label>Author Image Size</label>
-		
-		<div class="margin-label"><span>Height</span>
-		<input name="kjd_component_settings[author_image][height]" 
-			value="<?php echo $options['author_image']['height'] ? $options['author_image']['height'] : ''; ?>"
-			style="width:40px;"/>px.
-		</div>
-
-		<div class="margin-label"><span>Width</span>
-		<input name="kjd_component_settings[author_image][width]" 
-			value="<?php echo $options['author_image']['width'] ? $options['author_image']['width'] : ''; ?>"
-			style="width:40px;"/>px.
-		</div>
-	</div>
+		<label>Allow Commenting?</label>
+		<select name="kjd_component_settings[allow_comments]">
+			<option value="false" <?php selected( $options['allow_comments'], 'false', true ) ?>>No</option>
+			<option value="true" <?php selected( $options['allow_comments'], 'true', true) ?>>Yes</option>
+		</select>
+	</div>	
 
 </div>
 
