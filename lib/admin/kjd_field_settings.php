@@ -194,7 +194,7 @@
 /* ------------------------------------------------------------------------------------------------------- */
 
 $sections = array('login','htmlTag','bodyTag','mastArea','contentArea','sidrDrawer','header',
-	'navbar','dropdown-menu','cycler','pageTitle','body','posts','widgets','footer');
+	'navbar','dropdown-menu','mobileNav','cycler','pageTitle','body','posts','widgets','footer');
 foreach($sections as $section)
 {
 

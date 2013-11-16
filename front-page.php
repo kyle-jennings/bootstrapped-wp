@@ -31,7 +31,6 @@ if($showImageSlider =='true')
 
 if(!empty($components))
 { 
-
 ?>
 
 <div id="body" class="frontPageBody <?php echo $confineBodyBackground =='true' ? 'container confined' : '' ;?>">
@@ -53,7 +52,8 @@ if(!empty($components))
 		echo '<div class="span9">';
 	}
 
-	kjd_front_page_layout($components,$layoutSettings);
+	kjd_front_page_layout($components, $layoutSettings, $frontPageOptions);
+
 
 	if($layoutSettings['position'] == 'right' || $layoutSettings['position'] =='left')
 	{
@@ -156,8 +156,9 @@ function kjd_secondary_content_callback($frontPageOptions,$layoutSettings, $devi
 
 }
 
-function kjd_front_page_layout($components,$layoutSettings)
+function kjd_front_page_layout($components, $layoutSetting, $frontPageOptions)
 {
+
 	foreach($components as $position => $component)
 	{
 		$deviceView = $component['componentDeviceView'];

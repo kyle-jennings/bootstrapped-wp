@@ -474,7 +474,7 @@ $dropdown_markup .=".nav-collapse.sub-menu li.active >a{
 
 	$sidr_markup .='.sidr .nav-tabs.nav-stacked > li > a,
 	.sidr .nav-tabs.nav-stacked > li > ul > li > a{
-			background-color:'.$dropdownStartColor.';
+			background-color:'.$dropdownMenuLink['bg_color'].';
 			border:1px solid '.$dropdownMenuTopBorder['color'].';
 			color:'.$dropdownMenuLink['color'].';
 			background-image: none !important;

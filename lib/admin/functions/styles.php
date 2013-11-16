@@ -54,7 +54,7 @@ function kjd_get_theme_options($preview = null){
 	settings_fields( 'kjd_component_settings' ); 
 	$options = get_option('kjd_component_settings');
 
-	$sections = array('htmlTag','bodyTag','mastArea','sidrDrawer','header','navbar','dropdown-menu',
+	$sections = array('htmlTag','bodyTag','mastArea','sidrDrawer','header','navbar','dropdown-menu','mobileNav',
 		'cycler','contentArea','pageTitle','body','footer');
 
 
@@ -405,6 +405,11 @@ switch($section)
 	case 'dropdown-menu':
 		$section_name = '.dropdown-menu';
 		break;
+	
+	case 'mobileNav':
+		$section_name = '.mobile-nav';
+		break;
+
 	case 'cycler':
 		$section_name = '#imageSliderWrapper';
 		break;
@@ -580,9 +585,6 @@ switch($section)
 		}
 	}
 
-	if($section =='sidrDrawer'){
-		$sectionArea_markup .= 'border-right: 5px solid'.$kjd_section_background_colors['sidr_border'];
-	}
 	$sectionArea_markup .= '}';
 
 	if($section == 'header'){
@@ -662,7 +664,8 @@ switch($section)
 						Link and heading tag styles
 ----------------------------------------------------------------------------- */
 	if(	 $section !='bodyTag' && $section !='htmlTag' && $section != 'mastArea' && $section != 'sidrDrawer' &&
-		 $section !='cycler' && $section !="navbar" && $section !='dropdown-menu' && $section !='contentArea'){
+		 $section !='cycler' && $section !="navbar" && $section !='dropdown-menu'  && $section !='mobileNav' 
+		 && $section !='contentArea'){
 		
 		// Links
 		foreach($linkSettings as $link_type => $v){

@@ -110,7 +110,17 @@ function kjd_setup_theme_menus() {
 		'manage_options',   //member access
 	    'kjd_dropdown-menu_settings', // id for submenu
 		create_function('', 'kjd_settings_display("dropdown-menu");')
-	);   	
+	); 
+
+	add_submenu_page(
+		'kjd_theme_settings',   // belongs to id
+  		'Mobile Nav', // title bar
+		'Mobile Nav', // menu title
+		'manage_options',   //member access
+	    'kjd_mobileNav_settings', // id for submenu
+		create_function('', 'kjd_settings_display("mobileNav");')
+	); 
+
 		// customize cycler
     add_submenu_page(
 		'kjd_theme_settings',   // belongs to id
