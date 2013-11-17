@@ -136,13 +136,20 @@ function kjd_get_theme_options($preview = null){
 															);
 
 
-		if($kjd_section_confine_background =='true' || $section =='dropdown-menu' || $section =='posts'){
-			$sectionBorders = array('top'=>$kjd_section_top_border,'right'=>$kjd_section_right_border,'bottom'=>$kjd_section_bottom_border,'left'=>$kjd_section_bottom_border);
+		if($kjd_section_confine_background =='true' || $section =='dropdown-menu' || $section =='posts' || $section == "mobileNav"){
+			$sectionBorders = array('top'=>$kjd_section_top_border,
+									'right'=>$kjd_section_right_border,
+									'bottom'=>$kjd_section_bottom_border,
+									'left'=>$kjd_section_left_border
+									);
 		}else{
-			$sectionBorders = array('top'=>$kjd_section_top_border,'bottom'=>$kjd_section_bottom_border);
+			$sectionBorders = array('top'=>$kjd_section_top_border,
+									'bottom'=>$kjd_section_bottom_border
+									);
 		}
 
-		
+
+
 		/* ----------------------------------------------------- 
 		Border Radius Options
 		 ----------------------------------------------------- */
@@ -321,28 +328,7 @@ function kjd_get_theme_options($preview = null){
 											'kjd_section_misc'
 									);
 
-		/* ----------------------------------------------------- 
-		Confine Section - activates left and right borders
-		 ----------------------------------------------------- */
-		$kjd_section_confine_background = $kjd_section_misc_settings['kjd_'.$section.'_confine_background'];
-		
-		if($kjd_section_confine_background=='true' || $section =='dropdown-menu'){
-		
-			$borders = array(	
-				'top' =>$kjd_section_top_border,
-				'right' =>$kjd_section_right_border,
-				'bottom' =>$kjd_section_bottom_border,
-				'left' =>$kjd_section_left_border
-			);
-		
-		}else{
-		
-			$borders = array(
-				'top' =>$kjd_section_top_border,
-				'bottom' =>$kjd_section_bottom_border
-			);
-		
-		}
+
 
 		/* ----------------------------------------------------- 
 		Add all options to a large array for each section
@@ -407,7 +393,7 @@ switch($section)
 		break;
 	
 	case 'mobileNav':
-		$section_name = '.mobile-nav';
+		$section_name = '#navbar .collapse.in .nav';
 		break;
 
 	case 'cycler':
@@ -718,7 +704,7 @@ switch($section)
 		$sectionArea_markup .= paginationMarkupCallback($section, $pagination_content);
 	}
 
-	if($section =='navbar') {
+	if($section =='navbar' || $section !='mobileNav') {
 		$sectionArea_markup .= formsMarkupCallback($section, $forms);
 	}
 	return $sectionArea_markup;
@@ -1575,6 +1561,7 @@ $thumbnail_markup ='';
 			get navbr styles
 -------------------------------------------------------------------*/
 include('navbar_styles.php');
+
 /* ----------------------------------------------------------------
 			end navbar styles
 -------------------------------------------------------------------*/

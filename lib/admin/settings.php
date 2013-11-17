@@ -32,7 +32,9 @@ function kjd_settings_display($section) {
 	if($section =="pageTitle"){
 		unset($tabs[4]);
 	}
-
+	if($section == "mobileNav"){
+		unset($tabs[2]);
+	}
 	screen_icon('themes'); 
 
 

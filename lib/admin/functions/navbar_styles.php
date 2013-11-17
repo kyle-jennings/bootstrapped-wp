@@ -206,10 +206,10 @@ $navbar_markup .=".navbar .nav > li.active > a,
 $navbar_markup .=" .navbar .nav > li > a:hover, 
 .navbar .nav > li > a:focus{
 	
-	background-color:".$kjd_section_linkHovered['bg_color']." !important;
+	background-color:".$kjd_section_linkHovered['bg_color'].";
 	border-color: ".$kjd_section_linkHovered['bg_color'].";
-	color:".$kjd_section_linkHovered['color']." !important;
-	text-decoration:".$kjd_section_linkHovered['decoration']." !important;
+	color:".$kjd_section_linkHovered['color'].";
+	text-decoration:".$kjd_section_linkHovered['decoration'].";
 }";
 
 $navbar_markup .= "#navbar .nav-tabs { border-bottom: none; }";
@@ -217,40 +217,40 @@ $navbar_markup .= "#navbar .nav-tabs > li {margin-bottom: 0;}";
 
 //hovered carret -->
 $navbar_markup .=".navbar .nav > li > a:hover.dropdown-toggle > .caret{
-		border-top-color:".$kjd_section_linkHovered['color']." !important;
+		border-top-color:".$kjd_section_linkHovered['color'].";
 	}";
 
 // carret when on bottom 
 $navbar_markup .=".navbar-fixed-bottom .nav > li > a.dropdown-toggle > .caret{
-		border-top-color:transparent !important;
-	border-bottom-color:".$kjd_section_link['color']." !important;
+		border-top-color:transparent;
+	border-bottom-color:".$kjd_section_link['color'].";
 }";
 // carret when on bottom:hovered -->
 $navbar_markup .=".navbar-fixed-bottom .nav > li > a:hover.dropdown-toggle > .caret{
-	border-top-color:transparent !important;
-	border-bottom-color:".$kjd_section_linkHovered['color']." !important;
+	border-top-color:transparent;
+	border-bottom-color:".$kjd_section_linkHovered['color'].";
 }";
 //carret when on bottom:active -->
 $navbar_markup .=".navbar-fixed-bottom .nav > li.active > a.dropdown-toggle > .caret{
-		border-top-color:transparent !important;
-		border-bottom-color:".$kjd_section_LinkActive['color']." !important;
+		border-top-color:transparent;
+		border-bottom-color:".$kjd_section_LinkActive['color'].";
 }";
 
 // top level nav when opened  -->
 $navbar_markup .=".navbar .nav > li.open > a{
-	background-color:".$kjd_section_linkHovered['bg_color']." !important;
-	color:".$kjd_section_linkHovered['color']." !important;
+	background-color:".$kjd_section_linkHovered['bg_color'].";
+	color:".$kjd_section_linkHovered['color'].";
 }";
 
 
 // carret when opened  -->
 $navbar_markup .=".navbar .nav > li.open > a.dropdown-toggle > .caret{
-	border-top-color:".$kjd_section_linkHovered['color']." !important;
+	border-top-color:".$kjd_section_linkHovered['color'].";
 }";
 
 // top level nav when opened  -->
 $navbar_markup .=".navbar .nav li.open > a:after{
-	border-color:".$kjd_section_linkHovered['color']." !important;
+	border-color:".$kjd_section_linkHovered['color'].";
 }";
 
 	$navbar_markup .= dropdown_menu_callback($kjd_section_misc_settings, $media_979_markup, $preview);
@@ -406,8 +406,8 @@ $dropdown_markup .=".navbar-fixed-bottom.navbar .nav .sub-menu{margin-bottom:-32
 $sub_bg = $dropdownMenuLink['bg_color'] ? $dropdownMenuLink['bg_color'] : 'transparent' ;
 $dropdown_markup .=".dropdown-menu li > a{
 	background-color:".$sub_bg." !important;
-	color:".$dropdownMenuLink['color']." !important;
-	text-decoration:".$dropdownMenuLink['decoration']." !important;
+	color:".$dropdownMenuLink['color']." ;
+	text-decoration:".$dropdownMenuLink['decoration']." ;
 }";
 
 //Drop down triangle
@@ -422,9 +422,9 @@ $dropdown_markup .=".dropdown-menu li.active > a,
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:hover,
 .dropdown-menu > .active > a:focus{
-	background:".$sub_bg_active." !important; 
-	color:".$dropdownMenuLinkActive['color']." !important;
-	text-decoration:".$dropdownMenuLinkActive['decoration']." !important;
+	background:".$sub_bg_active." ; 
+	color:".$dropdownMenuLinkActive['color']." ;
+	text-decoration:".$dropdownMenuLinkActive['decoration']." ;
 }";
 
 $dropdown_markup .=".dropdown-menu li.active > a:after{
@@ -435,9 +435,9 @@ $dropdown_markup .=".dropdown-menu li.active > a:after{
 $sub_bg_hover = $dropdownMenuLinkHovered['bg_color'] ? $dropdownMenuLinkHovered['bg_color'] : 'transparent';
 
 $dropdown_markup .=".dropdown-menu li > a:hover{
-	background:".$sub_bg_hover." !important; 
-	color:".$dropdownMenuLinkHovered['color']." !important;
-	text-decoration:".$dropdownMenuLinkHovered['decoration']." !important;
+	background:".$sub_bg_hover." ; 
+	color:".$dropdownMenuLinkHovered['color']." ;
+	text-decoration:".$dropdownMenuLinkHovered['decoration']." ;
 }";
 
 $submenu_after_caret = $dropdownMenuLinkHovered['color'] ? $dropdownMenuLinkHovered['color'] : $dropdownMenuLink['color'] ;
@@ -451,269 +451,27 @@ $dropdown_markup .= '.dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus,
 .dropdown-submenu:hover > a,
 .dropdown-submenu:focus > a:hover{
-	background:'.$dropdownMenuLinkHovered['bg_color'].' !important; 
-	color:'.$dropdownMenuLinkHovered['color'].' !important;
+	background:'.$dropdownMenuLinkHovered['bg_color'].' ; 
+	color:'.$dropdownMenuLinkHovered['color'].' ;
 }
 ';
 
 $dropdown_markup .=".dropdown-menu.sub-menu li.active >a,
 .nav-collapse.navbar-responsive-collapse.in.collapse > ul > li.active > ul > li > ul >li >a,
 .current_page_item > a,.current-menu-item > a ,.current-page-ancestor > a,{
-	background-color:none!important;
-	color:".$kjd_section_linkHovered['color']." !important;	
+	background-color:none;
+	color:".$kjd_section_linkHovered['color']." ;	
 }";
 
 $dropdown_markup .=".nav-collapse.sub-menu li.active >a{
-	background-color:none!important;
-	color:".$kjd_section_link['color']." !important;	
+	background-color:none;
+	color:".$kjd_section_link['color']." ;	
 }";
 
+/* ----------------------------------------------------------------------
+				mobile nav
+------------------------------------------------------------------------ */
+	include('mobile_nav_settings.php');
 
-/* ************************ sidr Nav ******************************* */
-
-
-	$sidr_markup .='.sidr .nav-tabs.nav-stacked > li > a,
-	.sidr .nav-tabs.nav-stacked > li > ul > li > a{
-			background-color:'.$dropdownMenuLink['bg_color'].';
-			border:1px solid '.$dropdownMenuTopBorder['color'].';
-			color:'.$dropdownMenuLink['color'].';
-			background-image: none !important;
-		}';
-
-
-	$sub_bg = $dropdownMenuLink['bg_color'] ? $dropdownMenuLink['bg_color'] : $dropdownStartColor ;
-	$sidr_markup .= '.sidr .nav-tabs.nav-stacked > li > ul > li > a{background-color:'.$sub_bg.'}';
-
-	$sidr_markup .= '.sidr .nav li.dropdown.open > a,
-	.sidr .nav-pills .open .dropdown-toggle, 
-	.sidr .nav li.dropdown.open > a,
-	.sidr .nav li.dropdown.open:hover > a, 
-	.sidr .nav li.dropdown.open:focus > a{
-		background-color:'.$dropdownMenuLinkHovered['bg_color'].';
-		color:'.$dropdownMenuLinkHovered['color'].';
-	}';
-
-	$sidr_markup .= '.sidr .nav-tabs.nav-stacked > li > ul > li > a, .sidr .sub-menu a{
-		color:'.$dropdownMenuLink['color'].';
-		border-left:1px solid '.$dropdownMenuTopBorder['color'].';	
-		border-right:1px solid '.$dropdownMenuTopBorder['color'].';
-		border-top: none;
-		border-bottom: none;
-	}';
-
-	$sidr_markup .= '.sidr .dropdown-menu{
-		background-color:'.$dropdownMenuLink['bg_color'].';
-		background-image: none !important;
-	}';
-
-	// $sidr_markup .= '.sidr .sub-menu{ position: relative; }';
- 	$sidr_markup .= '#sidr ul.sub-menu > li > a{';
- 		// $sidr_markup .= 'border-top-color:white;';
- 		$sidr_markup .= 'border-bottom-color:'.$dropdownMenuTopBorder['color'].';';
- 	$sidr_markup .= ' }';
-
- 	$sidr_markup .= '#sidr ul.sub-menu > li > a:before{ 
- 		  border-left-color:'.$dropdownMenuTopBorder['color'].' !important;
-	}';
-
-
-	$sidr_markup .= '.sidr .dropdown-menu > li > a:hover,
-	.sidr .nav > li.dropdown.open.active > a:hover{
-		background-color:'.$dropdownMenuLinkHovered['bg_color'].';
-		color:'.$dropdownMenuLinkHovered['color'].';
-		background-image: none !important;
-				border:none;
-	}';
- 
-	$sidr_markup .= '.sidr .nav-tabs.nav-stacked > li > ul > li > a:hover, 
-	.sidr .sub-menu a:hover{
-		color:'.$dropdownMenuLinkHovered['color'].';
-		background-color:'.$dropdownMenuLinkHovered['bg_color'].';
-		
-		background-image: none !important;
-	}';
-
-	$sidr_markup .='.sidr .nav-tabs.nav-stacked > li > a:hover
-	{
-		background-color:'.$dropdownMenuLinkHovered['bg_color'].';
-		color:'.$dropdownMenuLinkHovered['color'].';
-
-	}';
-
-
-/* carets reg*/
-
-	$sidr_markup .= '
-	.sidr .nav .dropdown-toggle .caret{
-		border-top-color:'.$dropdownMenuLink['color'].';
-	}';
-
-	$sidr_markup .= '
-	.sidr .nav .dropdown-toggle:hover .caret{
-		border-top-color:'.$dropdownMenuLinkHovered['color'].';
-	}';
-
-	$sidr_markup .= '.sidr .nav li.dropdown.open:hover a .caret, 
-	.sidr .nav li.dropdown.open:focus a .caret{
-		border-top-color:'.$dropdownMenuLinkHovered['color'].';
-	}';
-
-	$sidr_markup .= '
-	.sidr .dropdown-submenu > a:after{
-		border-color: transparent transparent transparent '.$dropdownMenuLink['color'].';
-	}';
-
-	$sidr_markup .= '
-	.sidr .dropdown-submenu > a:hover:after{
-		border-color: transparent transparent transparent '.$dropdownMenuLinkHovered['color'].';
-	}';
-
-	$sidr_markup .= '
-	.sidr .dropdown-submenu.open > a:after,
-	.sidr .dropdown-submenu:focus > a:after{
-		border-color: transparent transparent transparent '.$dropdownMenuLinkHovered['color'].';
-	}';
-
-
-/* ------------------ collapsed navbar button -------------------------------- */
-
-
-
-// Navlink styles -->
-
-
-	// Link styles
-	if($kjd_section_misc_settings['navbar_link_style'] == 'none'){
-	
-		$collapsed_markup .=".navbar .nav > li > a,";
-		$collapsed_markup .=".navbar .nav > li.open > a,";
-		$collapsed_markup .=".navbar .nav > li.active > a,";
-		$collapsed_markup .=".navbar .nav > li > a:hover{";
-		$collapsed_markup .="background:none !important;}";
-	
-	}elseif($kjd_section_misc_settings['navbar_link_style'] == 'highlighted'){
-	
-		$collapsed_markup .="#navbar .nav li{margin:0 4px 0 0;}";		
-	
-	}elseif($kjd_section_misc_settings['navbar_link_style'] == 'pills'){
-	
-		$collapsed_markup .=".nav-pills li a{border-color:".$kjd_section_link['border_color']."; border-top:0 !important; border-radius: 4px !important; height:17px;}";		
-	
-	}elseif($kjd_section_misc_settings['navbar_link_style'] == 'tabs-below'){
-	
-		$collapsed_markup .=".nav-tabs, .nav{border-bottom:0 !important; margin-bottom:-2px;}";
-		$collapsed_markup .=".nav-tabs li a{border-color:".$kjd_section_link['border_color']."; border-top:0 !important; border-radius: 0 0 4px 4px !important; height:17px;}";
-		$collapsed_markup .=".nav-tabs li a:hover, .navbar .nav li a:hover, .active a{border-color:".$kjd_section_linkHovered['border_color']." !important; }";
-		$collapsed_markup .=".current_page_item a{border-color:".$kjd_section_LinkActive['border_color']." !important;}";
-
-	}elseif($kjd_section_misc_settings['navbar_link_style'] == 'tabs'){
-	
-		$collapsed_markup .=".nav-tabs, .nav{border-bottom:0 !important; margin-bottom:-2px;}";
-		$collapsed_markup .=".nav-tabs li a, .navbar .nav li a{border-color:".$kjd_section_link['border_color']."; border-bottom:0 !important; height:17px;}";
-		$collapsed_markup .=".nav-tabs li a:hover, .navbar .nav li a:hover, .active a{border-color:".$kjd_section_linkHovered['border_color']." !important; }";
-		$collapsed_markup .= ".current_page_item a{ border-color:".$kjd_section_LinkActive['border_color']." !important;}";
-	
-	}
-
-/*---------------------------------- mobile only -----------------------------------*/
-
-		// mobile bar button
-		$media_979_markup .='.navbar .btn-navbar{ 
-			background:'.$kjd_section_misc_settings['menu_btn_bg'].';
-			border-color:'.$kjd_section_misc_settings['menu_btn_border'].';
-		}';
-
-		$media_979_markup .='.navbar .btn-navbar:hover, .navbar .btn-navbar:active{ 
-			background:'.$kjd_section_misc_settings['menu_btn_bg_hovered'].';
-			border-color:'.$kjd_section_misc_settings['menu_btn_border_hovered'].';
-		}';
-		
-		$media_979_markup .= '.navbar .btn-navbar .icon-bar{ background: rgba(0,0,0,.1);}';
-
-if($dropdown_bg != 'true'){
-		$media_979_markup .= ".nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > a:hover,
-				.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul, 
-				.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > a:hover,
-				.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > a:hover:after,
-				.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > ul,
-				.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > ul >li >a:hover{
-		
-					background-color:none!important;
-					color:".$kjd_section_linkHovered['color']." !important;	
-				}";
-	}else{
-	  $media_979_markup .= '#navbar .navbar-inner {height: 40px}';
-	  $media_979_markup .= ".nav-collapse.collapse > .nav:before
-	  	  {
-	  	     border-bottom: 7px solid ".$dropdownMenuTopBorder['color']." !important;
-	  	      border-left: 7px solid transparent;
-	  	      border-right: 7px solid transparent;
-	  	      content: '';
-	  	      display: inline-block;
-	  	      right: 9px;
-	  	      position: absolute;
-	  	      top: -7px;
-	  	  }";
-
-	  $media_979_markup .= ".nav-collapse.collapse > .nav:after
-	  	  {
-	  	      border-bottom: 6px solid ".$dropdownStartColor." !important;
-	  	      border-left: 6px solid transparent;
-	  	      border-right: 6px solid transparent;
-	  	      content: '';
-	  	      display: inline-block;
-	  	      right: 10px;
-	  	      position: absolute;
-	  	      top: -6px;
-	  	  }";
-
-$mobile_dropdown_raidii = $dropdownMenuBordersOptions['kjd_dropdown-menu_border_radius'] ? $dropdownMenuBordersOptions['kjd_dropdown-menu_border_radius'] : '4px';
-$top_left = $mobile_dropdown_raidii['top-left'];
-$top_right = $mobile_dropdown_raidii['top-right'];
-$bottom_right = $mobile_dropdown_raidii['bottom-right'];
-$bottom_left = $mobile_dropdown_raidii['bottom-left'];
-
-	  $media_979_markup .= "#navbar .nav-collapse.collapse > .nav
-	  	  {    
-	  	      background-clip: padding-box;
-	  	      background-color:".$dropdownStartColor." !important;
-	  	      border: 1px solid ". $dropdownMenuTopBorder['color'] .";
-	  	      border-radius: ".$top_left." ".$top_right." ".$bottom_right." ".$bottom_left.";
-	  	      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-	  	      float: right;
-	  	      left: 0;
-	  	      list-style: none outside none;
-	  	      margin: 10px 0 0;
-	  	      min-width: 160px;
-	  	      padding: 5px 0;
-	  	      z-index: 1000;
-	  	      width: 99%;
-	  	  } ";
-
-
-	  $media_979_markup .= ".navbar .nav > li:first-child > a { padding:9px 15px;}";
-
-	  $media_979_markup .= ".nav-collapse .nav > li > a, .nav-collapse .dropdown-menu a {
-	  	color:". $dropdownMenuLink['color'] ." !important;
-	  }";
-
-	  $media_979_markup .= ".nav-collapse .nav > li > a:hover, .nav-collapse .dropdown-menu a:hover {
-	  	color:". $dropdownMenuLinkHovered['color'] ." !important;
-	  }";
-
-		$media_979_markup .= ".nav-collapse .navbar .nav > li > a.dropdown-toggle > .caret,";
-		$media_979_markup .= ".navbar .nav > li.open > a.dropdown-toggle > .caret,";
-		$media_979_markup .= ".nav-collapse .navbar .nav > li > a.dropdown-toggle > .caret:hover{";
-			$media_979_markup .= "border-top-color:". $dropdownMenuLink['color'] ." !important;";
-		$media_979_markup .= "}";
-
-		$media_979_markup .= ".dropdown-menu li > a:after,";
-		$media_979_markup .= ".dropdown-menu li > a:hover:after{";
-			$media_979_markup .= "border-left-color:". $dropdownMenuLink['color'] ." !important;";
-		$media_979_markup .= "}";
-
-
-	} 
-
-	return $dropdown_markup.$sidr_markup.$collapsed_markup;
+	return $dropdown_markup.$collapsed_markup;
 }
