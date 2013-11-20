@@ -416,10 +416,7 @@ div.img-circle img{
 @media (max-width: 979px) {
 
 	.navbar .dropdown-menu{background:transparent !important;}
-	.nav-collapse .dropdown-menu {
-		display:none;
-	}
-
+	
 	.open > .dropdown-menu {
 		display:block;
 	}

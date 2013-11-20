@@ -268,13 +268,15 @@ $bottom_left = $mobile_dropdown_raidii['bottom-left'];
 
 	/* ------------------------ Active Links ------------------------ */
 
-  	$media_979_markup .= ".nav-collapse .navbar .nav > li.active > a,
-  	.nav-collapse .navbar .nav li.dropdown.open > .dropdown-toggle,
-  	.nav-collapse .navbar .nav li.dropdown.active > .dropdown-toggle,
-  	.nav-collapse .navbar .nav li.dropdown.open.active > .dropdown-toggle,
-  	.nav-collapse .dropdown-menu > .active > a,
-  	.nav-collapse .dropdown-menu > .active > a:hover,
-  	.nav-collapse .dropdown-menu > .active > a:focus {";
+  	$media_979_markup .= ".navbar .nav > li.active > a,
+  	.navbar .nav li.dropdown.open > .dropdown-toggle,
+  	.navbar .nav li.dropdown.active > .dropdown-toggle,
+  	.navbar .nav li.dropdown.open.active > .dropdown-toggle,
+  	.dropdown-menu > .active > a,
+  	.dropdown-menu > .active > a:hover,
+  	.dropdown-menu > .active > a:focus {";
+
+	
 	  	$media_979_markup .= "color:". $kjd_section_linkActive['color'] .";";
  	  	 if($kjd_section_linkActive['bg_style'] != 'none'){
 	  	 	$media_979_markup .= 'background-color:'.$kjd_section_linkActive['bg_color'].';';

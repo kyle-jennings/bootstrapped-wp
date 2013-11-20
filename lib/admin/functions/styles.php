@@ -1034,10 +1034,6 @@ function linkSettingsCallback($link, $section){
 		$link_style_markup .= 'word-break:hyphenate;';
 	}elseif( $bg_style == "highlighted" ){
 		$link_style_markup .= 'background:'.$bg_color.';';
-	}else {
-		$link_style_markup .= 'background:none;';
-				$link_style_markup .= 'padding:0;';
-		$link_style_markup .= 'border-radius: 0px;';
 	}
 	
 	if(isset($color) && $color!=""){
@@ -1356,21 +1352,21 @@ $tabbed_markup .= '}';
 $tabbed_markup .= '#'. $section.' .tabbable > ul.nav > li > a{ ';
 	$tabbed_markup .= 'background:'. $tabbed_content['inactive_tab_background'].'; ';
 	$tabbed_markup .= 'border-color:'. $tabbed_content['inactive_tab_border'].'; ';
-	$tabbed_markup .= 'border-bottom-color: '. $tabbed_content['tabbed_content_background'].' ; ';
+	$tabbed_markup .= 'border-bottom-color: '. $tabbed_content['inactive_tab_border'].' ; ';
 	$tabbed_markup .= 'color:'. $tabbed_content['inactive_tab_link_color'].';';
 $tabbed_markup .= '}';
 
 $tabbed_markup .= '#'. $section.' .tabbable > ul.nav > li > a:hover{';
 	$tabbed_markup .= 'background:'. $tabbed_content['hovered_tab_background'].';';
 	$tabbed_markup .= 'border-color:'. $tabbed_content['hovered_tab_border'].'; ';
-	$tabbed_markup .= 'border-bottom-color: '. $tabbed_content['tabbed_content_background'].' ; ';	
+	$tabbed_markup .= 'border-bottom-color: '. $tabbed_content['hovered_tab_border'].' ; ';	
 	$tabbed_markup .= 'color:'. $tabbed_content['hovered_tab_link_color'].';';
 $tabbed_markup .= '}';
 
 $tabbed_markup .= '#'. $section.' .tabbable > ul.nav > li.active > a{';
 	$tabbed_markup .= 'background:'. $tabbed_content['tabbed_content_background'].';';
 	$tabbed_markup .= 'border-color:'. $tabbed_content['active_tab_border'].'; ';
-	$tabbed_markup .= 'border-bottom-color: '. $tabbed_content['tabbed_content_background'].' ; ';	
+	$tabbed_markup .= 'border-bottom-color: '. $tabbed_content['active_tab_border'].' ; ';	
 	$tabbed_markup .= 'color:'. $tabbed_content['active_tab_link_color'].';';
 $tabbed_markup .= '}';
 
@@ -1390,12 +1386,16 @@ $tabbed_markup .= '#'. $section.' .tabbable > .tab-content > a{';
 	$tabbed_markup .= 'color:'. $tabbed_content['tabbed_content_link_color'].';';
 $tabbed_markup .= '}';
 
-/* tab directions */
-$tabbed_markup .= '#'. $section.' .tabs-left > ul > li > a{';
+/* tabs on teh left */
+$tabbed_markup .= '#'. $section.' .tabs-left > ul.nav > li > a{';
 	$tabbed_markup .= 'border-right-color:'. $tabbed_content['tabbed_content_border'].';';
 $tabbed_markup .= '}';
 
-$tabbed_markup .= '#'. $section.' .tabs-left > ul > li.active > a{';
+$tabbed_markup .= '#'. $section.' .tabs-left > ul.nav > li.active > a{';
+	$tabbed_markup .= 'border-right-color:'. $tabbed_content['tabbed_content_background'].';';
+$tabbed_markup .= '}';
+
+$tabbed_markup .= '#'. $section.' .tabs-left > ul.nav > li > a:hover{';
 	$tabbed_markup .= 'border-right-color:'. $tabbed_content['tabbed_content_background'].';';
 $tabbed_markup .= '}';
 
@@ -1408,11 +1408,17 @@ $tabbed_markup .= 'border-radius: 4px;';
 $tabbed_markup .= 'border-top-left-radius: 0;';
 $tabbed_markup .= '}';
 
-$tabbed_markup .= '#'. $section.' .tabs-right > ul > li > a{';
+// tabs on teh right
+$tabbed_markup .= '#'. $section.' .tabs-right > ul.nav > li > a{';
 $tabbed_markup .= 'border-left-color:'. $tabbed_content['tabbed_content_border'].'; ';
+
 $tabbed_markup .= '}';
 
-$tabbed_markup .= '#'. $section.' .tabs-right > ul > li.active > a{';
+$tabbed_markup .= '#'. $section.' .tabs-right > ul.nav > li.active > a{';
+$tabbed_markup .= 'border-left-color:'. $tabbed_content['tabbed_content_background'].'; ';
+$tabbed_markup .= '}';
+
+$tabbed_markup .= '#'. $section.' .tabs-right > ul.nav > li > a:hover{';
 $tabbed_markup .= 'border-left-color:'. $tabbed_content['tabbed_content_background'].'; ';
 $tabbed_markup .= '}';
 
@@ -1425,11 +1431,16 @@ $tabbed_markup .= 'border-radius: 4px;';
 $tabbed_markup .= 'border-top-right-radius: 0;';
 $tabbed_markup .= '}';
 
-$tabbed_markup .= '#'. $section.' .tabbable.tabs > ul > li a{';
+// normal tabs
+$tabbed_markup .= '#'. $section.' .tabbable.tabs > ul.nav > li a{';
 $tabbed_markup .= 'border-bottom-color:'. $tabbed_content['tabbed_content_border'].';';
 $tabbed_markup .= '}';
 
-$tabbed_markup .= '#'. $section.' .tabbable.tabs > ul > li.active a{';
+$tabbed_markup .= '#'. $section.' .tabbable.tabs > ul.nav > li.active a{';
+$tabbed_markup .= 'border-bottom-color:'. $tabbed_content['tabbed_content_background'].';';
+$tabbed_markup .= '}';
+
+$tabbed_markup .= '#'. $section.' .tabbable.tabs > ul.nav > li a:hover{';
 $tabbed_markup .= 'border-bottom-color:'. $tabbed_content['tabbed_content_background'].';';
 $tabbed_markup .= '}';
 
@@ -1442,12 +1453,16 @@ $tabbed_markup .= '-moz-border-radius-topleft: 0;';
 $tabbed_markup .= 'border-radius: 4px;';
 $tabbed_markup .= 'border-top-left-radius: 0;';
 $tabbed_markup .= '}';
-
-$tabbed_markup .= '#'. $section.' .tabs-below > ul > li > a{';
+// tabs on teh bottom
+$tabbed_markup .= '#'. $section.' .tabs-below > ul.nav > li > a{';
 $tabbed_markup .= 'border-top-color:'. $tabbed_content['tabbed_content_border'].'; ';
 $tabbed_markup .= '}';
 
-$tabbed_markup .= '#'. $section.' .tabs-below > ul > li.active > a{';
+$tabbed_markup .= '#'. $section.' .tabs-below > ul.nav > li.active > a{';
+$tabbed_markup .= 'border-top-color:'. $tabbed_content['tabbed_content_background'].'; ';
+$tabbed_markup .= '}';
+
+$tabbed_markup .= '#'. $section.' .tabs-below > ul.nav > li > a:hover{';
 $tabbed_markup .= 'border-top-color:'. $tabbed_content['tabbed_content_background'].'; ';
 $tabbed_markup .= '}';
 
