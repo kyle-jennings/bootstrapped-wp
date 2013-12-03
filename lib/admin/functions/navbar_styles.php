@@ -166,81 +166,109 @@ if($kjd_section_misc_settings['link_shadows'] =='true'){
 
 
 // /* *************** link colors ******************** */
-//  normal link colors 
 
-$navbar_markup .="
-.navbar .nav > li > a{
-		color:".$kjd_section_link['color'].";
-		background-color:".$kjd_section_link['bg_color'].";
-	}";
+
+/* ----------------------------
+ link colors 
+ ------------------------------*/
+
+$navbar_markup .= '.navbar .nav > li > a {';
+		$navbar_markup .= 'color:'.$kjd_section_link['color'].';';
+		
+		if( $kjd_section_link['bg_color']){
+			$navbar_markup .= 'background-color:'.$kjd_section_link['bg_color'].';';
+
+		}else{
+			$navbar_markup .= 'background-color: transparent;';
+		}
+
+$navbar_markup .= '}';
 
 	//  inactive carret
-	$navbar_markup .=".navbar .nav > li > a.dropdown-toggle > .caret,
-					  .navbar .nav li.dropdown > .dropdown-toggle .caret{
-						border-top-color:".$kjd_section_link['color'].";
-					}";
+	$navbar_markup .= '.navbar .nav > li > a.dropdown-toggle > .caret,';
+    $navbar_markup .= '.navbar .nav li.dropdown > .dropdown-toggle .caret {';
+		$navbar_markup .= 'border-top-color:'.$kjd_section_link['color'].';';
+	$navbar_markup .= '}';
 
 
-// active link colors 
-$navbar_markup .=".navbar .nav > li.active > a,
-.navbar .nav li.dropdown.open > .dropdown-toggle,
-.navbar .nav li.dropdown.active > .dropdown-toggle,
-.navbar .nav li.dropdown.open.active > .dropdown-toggle,
-.dropdown-menu > .active > a,
-.dropdown-menu > .active > a:hover,
-.dropdown-menu > .active > a:focus{
-	background-color:".$kjd_section_LinkActive['bg_color'].";
-	color:".$kjd_section_LinkActive['color'].";
-	text-decoration:".$kjd_section_LinkActive['decoration']." !important;
-}";
-	//  active carret 
-	$navbar_markup .=".navbar .nav > li.active > a.dropdown-toggle > .caret,
-	 .navbar .nav li.dropdown.open > .dropdown-toggle .caret,
-	 .navbar .nav li.dropdown.active > .dropdown-toggle .caret,
-	 .navbar .nav li.dropdown.open.active > .dropdown-toggle .caret{
-		border-top-color:".$kjd_section_LinkActive['color'].";
-	  }";
+/* ----------------------------
+ active link colors 
+ ------------------------------*/
 
+ // da link
+$navbar_markup .= '.navbar .nav > li.active > a,';
+$navbar_markup .= '.navbar .nav li.dropdown.open > .dropdown-toggle,';
+$navbar_markup .= '.navbar .nav li.dropdown.active > .dropdown-toggle,';
+$navbar_markup .= '.navbar .nav li.dropdown.open.active > .dropdown-toggle,';
+$navbar_markup .= '.dropdown-menu > .active > a,';
+$navbar_markup .= '.dropdown-menu > .active > a:hover,';
+$navbar_markup .= '.dropdown-menu > .active > a:focus {';
+	if( $kjd_section_LinkActive['bg_color']){
 
-//  toplevel nav when hovered 
-$navbar_markup .=" .navbar .nav > li > a:hover, 
-.navbar .nav > li > a:focus{
+		$navbar_markup .= 'background-color:'.$kjd_section_LinkActive['bg_color'].';';
+		
+	}else{
+		$navbar_markup .= 'background-color: transparent;';
+
+	}
 	
-	background-color:".$kjd_section_linkHovered['bg_color'].";
-	border-color: ".$kjd_section_linkHovered['bg_color'].";
-	color:".$kjd_section_linkHovered['color'].";
-	text-decoration:".$kjd_section_linkHovered['decoration'].";
-}";
+	$navbar_markup .= 'color:'.$kjd_section_LinkActive['color'].';';
+	$navbar_markup .= 'text-decoration:'.$kjd_section_LinkActive['decoration'].' !important;';
 
-$navbar_markup .= "#navbar .nav-tabs { border-bottom: none; }";
-$navbar_markup .= "#navbar .nav-tabs > li {margin-bottom: 0;}";
+$navbar_markup .= '}';
+
+//  active carret 
+$navbar_markup .='.navbar .nav > li.active > a.dropdown-toggle > .caret, ';
+$navbar_markup .= '.navbar .nav li.dropdown.open > .dropdown-toggle .caret,';
+$navbar_markup .= '.navbar .nav li.dropdown.active > .dropdown-toggle .caret,';
+$navbar_markup .= '.navbar .nav li.dropdown.open.active > .dropdown-toggle .caret{';
+	$navbar_markup .= 'border-top-color:'.$kjd_section_LinkActive['color'].';';
+$navbar_markup .= '}';
+
+/* ----------------------------
+ hovered link colors 
+ ------------------------------*/
+
+// the link
+$navbar_markup .= '.navbar .nav > li > a:hover,';
+$navbar_markup .= '.navbar .nav > li > a:focus {';
+	$navbar_markup .= 'background-color:'.$kjd_section_linkHovered['bg_color'].';';
+	$navbar_markup .= 'border-color: '.$kjd_section_linkHovered['bg_color'].';';
+	$navbar_markup .= 'color:'.$kjd_section_linkHovered['color'].';';
+	$navbar_markup .= 'text-decoration:'.$kjd_section_linkHovered['decoration'].';';
+$navbar_markup .= '}';
+
+$navbar_markup .= '#navbar .nav-tabs { border-bottom: none; }';
+$navbar_markup .= '#navbar .nav-tabs > li {margin-bottom: 0;}';
 
 //hovered carret -->
-$navbar_markup .=".navbar .nav > li > a:hover.dropdown-toggle > .caret{
-		border-top-color:".$kjd_section_linkHovered['color'].";
-	}";
+$navbar_markup .='.navbar .nav > li > a:hover.dropdown-toggle > .caret{';
+	$navbar_markup .=' border-top-color:'.$kjd_section_linkHovered['color'].';';
+$navbar_markup .='}';
 
 // carret when on bottom 
-$navbar_markup .=".navbar-fixed-bottom .nav > li > a.dropdown-toggle > .caret{
-		border-top-color:transparent;
-	border-bottom-color:".$kjd_section_link['color'].";
-}";
+$navbar_markup .='.navbar-fixed-bottom .nav > li > a.dropdown-toggle > .caret{';
+	$navbar_markup .='border-top-color:transparent;';
+	$navbar_markup .='border-bottom-color:'.$kjd_section_link['color'].';';
+$navbar_markup .='}';
+
 // carret when on bottom:hovered -->
-$navbar_markup .=".navbar-fixed-bottom .nav > li > a:hover.dropdown-toggle > .caret{
-	border-top-color:transparent;
-	border-bottom-color:".$kjd_section_linkHovered['color'].";
-}";
+$navbar_markup .='.navbar-fixed-bottom .nav > li > a:hover.dropdown-toggle > .caret{';
+	$navbar_markup .= 'border-top-color:transparent;';
+	$navbar_markup .= 'border-bottom-color:'.$kjd_section_linkHovered['color'].';';
+$navbar_markup .='}';
+
 //carret when on bottom:active -->
-$navbar_markup .=".navbar-fixed-bottom .nav > li.active > a.dropdown-toggle > .caret{
-		border-top-color:transparent;
-		border-bottom-color:".$kjd_section_LinkActive['color'].";
-}";
+$navbar_markup .= '.navbar-fixed-bottom .nav > li.active > a.dropdown-toggle > .caret{';
+	$navbar_markup .= 'border-top-color:transparent;';
+	$navbar_markup .= 'border-bottom-color:'.$kjd_section_LinkActive['color'].';';
+$navbar_markup .= '}';
 
 // top level nav when opened  -->
-$navbar_markup .=".navbar .nav > li.open > a{
-	background-color:".$kjd_section_linkHovered['bg_color'].";
-	color:".$kjd_section_linkHovered['color'].";
-}";
+$navbar_markup .='.navbar .nav > li.open > a{';
+	$navbar_markup .= 'background-color:'.$kjd_section_linkHovered['bg_color'].';';
+	$navbar_markup .= 'color:'.$kjd_section_linkHovered['color'].';';
+$navbar_markup .= '}';
 
 
 // carret when opened  -->
@@ -254,6 +282,7 @@ $navbar_markup .=".navbar .nav li.open > a:after{
 }";
 
 	$navbar_markup .= dropdown_menu_callback($kjd_section_misc_settings, $media_979_markup, $preview);
+	
 	return ($navbar_markup);
 }
 

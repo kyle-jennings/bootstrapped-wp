@@ -14,6 +14,8 @@
 													'kjd_section_link'
 												);
 
+
+
 		$kjd_section_linkHovered = kjd_get_temp_settings(	$section,
 															$options_links['kjd_'.$section.'_linkHovered'], 
 															$preview,
@@ -35,6 +37,15 @@
 						'bottom'=>$kjd_section_bottom_border,
 						'left'=>$kjd_section_bottom_border
 						);
+/* ---------------------------------------------------------
+				Settings
+------------------------------------------------------------ */
+
+
+$media_979_markup .= '.nav-collapse .dropdown-menu';
+$media_979_markup .= '{';
+	$media_979_markup .= 'display: block;';
+$media_979_markup .= '}';
 
 /* ------------------------- sidr ------------------------ */
 	$media_979_markup .='.sidr .nav-tabs.nav-stacked > li > a,
@@ -141,7 +152,7 @@
 
 
 
-/*---------------------------------- mobile only -----------------------------------*/
+/*---------------------------------- Dropdown -----------------------------------*/
 
 		// mobile bar button
 		$media_979_markup .='.navbar .btn-navbar{ 
@@ -234,11 +245,16 @@ $bottom_left = $mobile_dropdown_raidii['bottom-left'];
 
 /* ------------------------ Normal Links ------------------------ */
 
-	  $media_979_markup .= '.nav-collapse .nav > li > a, .nav-collapse .dropdown-menu a {';
+	  $media_979_markup .= '.nav-collapse .nav > li > a,
+	   .nav-collapse .dropdown-menu a,
+	   .dropdown-menu li > a {';
 	  	 $media_979_markup .= 'color:'. $kjd_section_link['color'] .';';
 	  	 
 	  	 if($kjd_section_link['bg_style'] != 'none'){
 	  	 	$media_979_markup .= 'background-color:'.$kjd_section_link['bg_color'].';';
+	  	 }else{
+	  	 	$media_979_markup .= 'background-color: transparent;';
+
 	  	 }
 
 	  	 $media_979_markup .= 'text-decoration:'.$kjd_section_link['decoration'].';';
@@ -253,11 +269,16 @@ $bottom_left = $mobile_dropdown_raidii['bottom-left'];
 	/* ------------------------ Hovered Links ------------------------ */
 
 
-	  $media_979_markup .= '.nav-collapse .nav > li > a:hover, .nav-collapse .dropdown-menu a:hover{';
+	  $media_979_markup .= '.nav-collapse .nav > li > a:hover, .nav-collapse .dropdown-menu a:hover,
+	  .dropdown-menu li > a:hover {';
 	  	 $media_979_markup .= 'color:'. $kjd_section_linkHovered['color'] .';';
+ 	  	 
  	  	 if($kjd_section_linkHovered['bg_style'] != 'none'){
 	  	 	$media_979_markup .= 'background-color:'.$kjd_section_linkHovered['bg_color'].';';
+	  	 }else{
+	  	 	$media_979_markup .= 'background-color: transparent;';
 	  	 }
+
 	  	 $media_979_markup .= 'text-decoration:'.$kjd_section_linkHovered['decoration'].';';
 	   $media_979_markup .= '}';
 
@@ -274,18 +295,39 @@ $bottom_left = $mobile_dropdown_raidii['bottom-left'];
   	.navbar .nav li.dropdown.open.active > .dropdown-toggle,
   	.dropdown-menu > .active > a,
   	.dropdown-menu > .active > a:hover,
-  	.dropdown-menu > .active > a:focus {";
+  	.dropdown-menu > .active > a:focus,
+  	.navbar .nav > li.active > a, 
+	.navbar .nav li.dropdown.open > .dropdown-toggle, 
+	.navbar 
+	.nav li.dropdown.active > 
+	.dropdown-toggle, 
+	.navbar 
+	.nav li.dropdown.open.active > 
+	.dropdown-toggle, 
+	.dropdown-menu > 
+	.active > a, 
+	.dropdown-menu > 
+	.active > a:hover, 
+	.dropdown-menu > 
+	.active > a:focus,
+	.dropdown-menu li.active > a {";
 
-	
 	  	$media_979_markup .= "color:". $kjd_section_linkActive['color'] .";";
+ 	  	
  	  	 if($kjd_section_linkActive['bg_style'] != 'none'){
 	  	 	$media_979_markup .= 'background-color:'.$kjd_section_linkActive['bg_color'].';';
+	  	 }else{
+	  	 	$media_979_markup .= 'background-color: transparent;';
 	  	 }
+	  	
 	  	$media_979_markup .= "text-decoration:".$kjd_section_linkActive['decoration'].";";
-	  $media_979_markup .= "}";
+	
+	$media_979_markup .= "}";
 
 
 	$media_979_markup .= '#navbar .nav > li.open > a.dropdown-toggle > .caret,';
 	$media_979_markup .= '#navbar .nav li.dropdown.open > .dropdown-toggle .caret {';
 		$media_979_markup .= 'border-top-color:'. $kjd_section_linkActive['color'] .';';
 	$media_979_markup .= '}';
+
+	$media_979_markup .= '.navbar .nav > li > .dropdown-menu:before { display: none;}';

@@ -246,7 +246,7 @@ function kjd_responsive_gallery( $attachments, $link, $image_size ){
 			$link_to = '';
 		}
 
-		$output .= '</li><a href=#">';
+		$output .= '<li><a href=#">';
 		$output .= '<img src="'.$display[0].'" alt="'.$title.'"
 			    		alt="'.$image['alt'].'"  />';
 		$output .= '</a></li>';

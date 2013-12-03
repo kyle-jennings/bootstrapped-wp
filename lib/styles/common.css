@@ -548,19 +548,8 @@ div.img-circle img{
 		float: none;
 	}
 
-/*	#header {height:auto !important;}
-	#header > .container,
-	.navbar-fixed-top,
-	.navbar-fixed-bottom,
-	.navbar-inner,
-	#imageSliderWrapper > .container,
-	#pageTitle > .container,
-	#body > .container,
-	#footer > .container{
-          padding-left: 20px;
-          padding-right: 20px;
-	}*/
 
+=
 	#imageSliderWrapper.container > .container,
 	#header.container > .container,
 	#navbar.container > .container,

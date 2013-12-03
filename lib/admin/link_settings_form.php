@@ -13,7 +13,7 @@
 		
 		$value = $options['kjd_'.$section.'_'.$element];
 					
-		if(($section =="navbar" || $section =="dropdown-menu") && $element == 'linkVisited'){
+		if(($section =="navbar" || $section =="dropdown-menu" || $section == 'mobileNav') && $element == 'linkVisited'){
 			continue;
 		}
 	?>
