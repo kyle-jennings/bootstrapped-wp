@@ -455,10 +455,6 @@ div.img-circle img{
 		}
 
 		#sidr ul.sub-menu > li > a{
-			/*border-top-width: 1px;*/
-			border-bottom-width: 1px;
-			border-bottom-color: rgba(255,255,255, .25);
-			border-bottom-style: solid;
 			display: block;
 			padding: 8px 12px 8px 30px;
 			position: relative;
@@ -478,6 +474,49 @@ div.img-circle img{
 			left: 13px;
 			width: 0;
 		}
+
+		
+		#sidr ul.sub-menu > li > ul.sub-menu > li > a{
+			display: block;
+			padding: 8px 12px 8px 40px;
+			position: relative;	
+		}
+
+		#sidr ul.sub-menu > li > ul.sub-menu > li > a:before{
+			left: 25px;
+		}
+
+
+		#sidr .nav-tabs.nav-stacked > li:first-child > a,
+		.nav-tabs.nav-stacked > li:last-child > a
+		{
+			-webkit-border-radius: 0px;
+			-moz-border-radius: 0px;
+			border-radius: 0px;
+		}
+
+		#sidr > ul {
+			-webkit-border-radius: 4px;
+			-moz-border-radius: 4px;
+			border-radius: 4px;
+
+			padding-bottom: 1px;
+		}
+
+
+#sidr > ul > li a {
+	border-left: none;
+	border-right: none;
+}
+		#sidr > ul > li:first-child > a {
+		  	border-top: none;
+		}
+
+		#sidr > ul > li:last-child > a {
+			border-bottom: none;
+		}
+
+
 
 }
 
@@ -548,8 +587,6 @@ div.img-circle img{
 		float: none;
 	}
 
-
-=
 	#imageSliderWrapper.container > .container,
 	#header.container > .container,
 	#navbar.container > .container,

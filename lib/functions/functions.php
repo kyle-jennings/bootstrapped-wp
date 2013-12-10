@@ -395,7 +395,20 @@ function kjd_get_featured_image($position = null, $wrapper = 'div'){
 	return $featured_image_markup;
 }
 
-/* ------------------------- Navbar functions -------------------------------*/
+
+
+/* --------------------------------------------------
+ Navbar functions 
+ --------------------------------------------------------*/
+function kjd_empty_nav_fallback_callback( $args ) {
+	if ( ! isset( $args['show_home'] ) )
+					 
+		$args['show_home'] = true;
+
+	return $args;
+}
+
+
 function menuStyleCallback($navbarLinkStyle){
 	
 	$menu_class = 'nav';
@@ -421,8 +434,34 @@ function menuStyleCallback($navbarLinkStyle){
 
 			$menu_class .= ' nav-tabs tabs-below';	
 			break;
+		default:
+			$menu_class .= ' nav-pills';
 	}
 
-	wp_nav_menu(array('theme_location' => 'primary-menu', 'menu_class' =>$menu_class,'container'=> '','walker'=> new dropDown() ) );
+
+	
+
+	if ( has_nav_menu( 'primary-menu' ) ){
+			wp_nav_menu(array('theme_location' => 'primary-menu', 
+				'menu_class' =>$menu_class,
+				'container'=> '',
+				'walker'=> new dropDown()
+			 ) );
+
+	} else {
+	    
+	    echo '<ul class="nav nav-pills">';
+		echo '<li><a href="'. home_url() .'/" title="home">Home</a></li>';
+		if( is_user_logged_in() ){
+			echo '<li><a href="'. home_url() .'/wp-admin/nav-menus.php" title="set menus" >Set Menu</a></li>';
+
+		}else{
+
+			echo '<li><a href="'. wp_login_url() .'/" title="login" >Login</a></li>';
+		}
+	    echo '</ul>';
+
+	} 
+
 
 }

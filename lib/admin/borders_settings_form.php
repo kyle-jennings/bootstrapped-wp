@@ -1,18 +1,22 @@
 <?php
 	settings_fields('kjd_'.$section.'_borders_settings');
 	$options = get_option('kjd_'.$section.'_borders_settings'); 
+	
+	$mobile_background = get_option('kjd_navbar_misc_settings');
+	$mobile_background = $mobile_background['kjd_navbar_misc'];
+
 
 	$borderRadius = $options['kjd_'.$section.'_border_radius'];
 
-	// $generalSettings = get_option('kjd_general_settings');
-	// $confinePage = $generalSettings['kjd_confine_page'];
-	// if($confinePage == 'true'){ 
-
-	// }else{
-
-	// }
 	$confinePage ='true';
-	$borders = array("top","right","bottom","left");
+	if($section =='mobileNav' && $mobile_background['side_nav'] == 'true') {
+		$borders = array("right");
+
+	}else{
+
+		$borders = array("top","right","bottom","left");
+	}
+
 	$corners = array('top-left', 'top-right','bottom-left','bottom-right');
 	$borderSizes = range(0,20);
 	$borderStyles = array('none','solid','dotted','dashed','double','groove','ridge','inset','outset');
@@ -65,10 +69,16 @@
 			
 		</div><!-- end options wrapper -->
 
-			<?php }	?>
-
-
+			<?php }
+?>
 		<div class="optionsWrapper float-options">
+<?php
+if($section !='mobileNav' && $mobile_background['side_nav'] != 'true') {
+		
+
+			?>
+
+
 						<!-- border radius -->
 			<h2>Border Radius</h2>
 			<?php 
@@ -86,6 +96,11 @@
 				</select>
 			</div>
 
-			<?php } } ?>
+<?php
+					 }
+			 }
+	  	}
+
+	?>
 			
 		</div><!-- end options wrapper -->

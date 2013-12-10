@@ -16,6 +16,10 @@ if($section =="header"){
 
 	kjd_dropdown_misc_settings_callback($section);
 
+}elseif($section =="mobileNav"){
+
+	kjd_mobileNav_misc_settings_callback($section);
+
 }elseif($section =="pageTitle"){
 
 	kjd_title_misc_settings_callback($section);
@@ -33,6 +37,19 @@ if($section =="header"){
 	kjd_footer_misc_settings_callback($section);
 
 }
+/* --------------------------------------------
+				Mobile  Nav
+-------------------------------------------- */
+
+function kjd_mobileNav_misc_settings_callback(){
+	settings_fields( 'kjd_mpobileNav_misc_settings' );
+	$options = get_option('kjd_mpobileNav_misc_settings');
+	$options = $options['kjd_mpobileNav_misc'];
+}
+
+/* --------------------------------------------
+					title area
+-------------------------------------------- */
 
 function kjd_title_misc_settings_callback($section){
 	settings_fields( 'kjd_pageTitle_misc_settings' );
@@ -69,6 +86,9 @@ function kjd_title_misc_settings_callback($section){
 <?php
 }
 
+/* --------------------------------------------
+			Login Page
+-------------------------------------------- */
 
 function kjd_login_misc_settings_callback($section){	
 	settings_fields( 'kjd_login_misc_settings' );
@@ -90,6 +110,10 @@ function kjd_login_misc_settings_callback($section){
 
 <?php
 }
+
+/* --------------------------------------------
+				header area
+-------------------------------------------- */
 
 function kjd_header_misc_settings_callback($section){
 		settings_fields( 'kjd_header_misc_settings' );
@@ -175,6 +199,11 @@ function kjd_header_misc_settings_callback($section){
 		</div>
 <?php
 }
+
+
+/* --------------------------------------------
+					nav bar
+-------------------------------------------- */
 
 function kjd_navbar_misc_settings_callback($section){ 
 	settings_fields( 'kjd_navbar_misc_settings' );
@@ -317,7 +346,10 @@ function kjd_navbar_misc_settings_callback($section){
 <?php
 }
 
-/* ------------------------- Drop Down Misc Settings --------------------------- */
+/* --------------------------------------------
+					Navbar Dropdown 
+-------------------------------------------- */
+
 function kjd_dropdown_misc_settings_callback($section) { 
 	settings_fields( 'kjd_dropdown-menu_misc_settings' );
 	$options = get_option('kjd_dropdown-menu_misc_settings');
@@ -337,7 +369,10 @@ function kjd_dropdown_misc_settings_callback($section) {
 <?php
 }
 
-/* ------------------------- Body Misc Settings --------------------------- */
+/* --------------------------------------------
+				Body Area
+-------------------------------------------- */
+
 function kjd_body_misc_settings_callback($section){
 	settings_fields( 'kjd_body_misc_settings' );
 	$options = get_option('kjd_body_misc_settings');
@@ -388,7 +423,10 @@ function kjd_body_misc_settings_callback($section){
 <?php
 }
 
-/* ---------------------------  Posts Misc settings ----------------------------- */
+/* --------------------------------------------
+			Posts - Content 
+-------------------------------------------- */
+
 function kjd_posts_misc_settings_callback()
 {
 	settings_fields('kjd_posts_misc_settings');
@@ -502,7 +540,10 @@ function kjd_posts_misc_settings_callback()
 }
 
 
-/* ---------------------------  Footer Misc settings ----------------------------- */
+/* --------------------------------------------
+			Footer
+-------------------------------------------- */
+
 function kjd_footer_misc_settings_callback($section){
 	settings_fields( 'kjd_footer_misc_settings' );
 	$options = get_option('kjd_footer_misc_settings');
@@ -551,7 +592,13 @@ function kjd_footer_misc_settings_callback($section){
 <?php
 }
 
-/* --------------------------------- repeated settings --------------------------------- */
+/*
+----------------------------------------------------------------- 
+----------------------------------------------------------------- 
+Setings Functions 
+------------------------------------------------------------------
+-----------------------------------------------------------------
+ */
 
 function kjd_confine_section_toggle($section, $options) {
 

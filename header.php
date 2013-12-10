@@ -162,7 +162,7 @@ function kjd_site_logo($header_contents, $logo_toggle, $logo, $custom_header){
 		
 		}else{
 			
-			echo '<div class="hero-unit no-background">';
+			echo '<div class="jumbotron no-background">';
 			echo '<'.$heading.' class="logo-wrapper" >';
 				echo '<a href="'.get_bloginfo('url').' ">';
 					echo get_bloginfo( 'name');

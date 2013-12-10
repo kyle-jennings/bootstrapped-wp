@@ -3,7 +3,7 @@
 $navbarSettings = get_option('kjd_navbar_misc_settings');
 $navSettings = $navbarSettings['kjd_navbar_misc'];
 $sideNav = $navSettings['side_nav'];
-$root=get_stylesheet_directory_uri(); 
+$root = get_stylesheet_directory_uri(); 
 
 	
 	
@@ -40,9 +40,8 @@ $confineNavbarBackground = $navbarSettings['kjd_navbar_confine_background'];
 				$navbar_style .= 'navbar navbar-static-top';
 				break ;
 		
-		default:
+			default:
 				$navbar_style .= 'navbar navbar-static-top';
-				break ;
 		}
 
 		$navbar_open = '<div id="navbar" class="'. $navbar_style . '">';
@@ -93,3 +92,4 @@ $confineNavbarBackground = $navbarSettings['kjd_navbar_confine_background'];
 	}
 
 echo $navbar_open . $navbar_inner . $navbar_close; 
+

@@ -78,13 +78,13 @@ if(!empty($components))
 ?>
 <div id="body" class="<?php echo $confineBodyBackground =='true' ? 'container confined' : '' ;?>">
 	<div class="container">
-		<br /><br /><br /><br />
-		<div class="hero-unit">
-		  <h1>Please set up your theme</h1>
-		  <p>so this ugly message goes away</p>
+
+		<div class="jumbotron">
+		  <h1>Please set up your front page!</h1>
+		  <p>And this ugly message goes away</p>
 		  <p>
 		    <a href="wp-admin/admin.php?page=kjd_page_layout_settings&tab=frontPage"class="btn btn-primary btn-large">
-		      go to your dashboard
+		      Go to your dashboard
 		    </a>
 		  </p>
 		</div>

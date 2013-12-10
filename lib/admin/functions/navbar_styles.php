@@ -394,7 +394,7 @@ function dropdown_menu_callback($kjd_section_misc_settings, &$media_979_markup, 
 
 /* the triangle at the top of the dropdown */
 $dropdown_markup .=".dropdown-menu:after {  
-	border-bottom-color:".$dropdownStartColor." !important;
+	border-bottom-color:".$dropdownStartColor.";
 }";
 
 $dropdown_markup .=".navbar .nav > li > .dropdown-menu:before{  
@@ -434,7 +434,7 @@ $dropdown_markup .=".navbar-fixed-bottom.navbar .nav .sub-menu{margin-bottom:-32
 /* ---------------------------- Dropdown links -------------------------------- */
 $sub_bg = $dropdownMenuLink['bg_color'] ? $dropdownMenuLink['bg_color'] : 'transparent' ;
 $dropdown_markup .=".dropdown-menu li > a{
-	background-color:".$sub_bg." !important;
+	background-color:".$sub_bg.";
 	color:".$dropdownMenuLink['color']." ;
 	text-decoration:".$dropdownMenuLink['decoration']." ;
 }";

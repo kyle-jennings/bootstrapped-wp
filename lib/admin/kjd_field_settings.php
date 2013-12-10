@@ -193,8 +193,8 @@
 /* ------------------------------------------- Page sections --------------------------------------------- */
 /* ------------------------------------------------------------------------------------------------------- */
 
-$sections = array('login','htmlTag','bodyTag','mastArea','contentArea','sidrDrawer','header',
-	'navbar','dropdown-menu','mobileNav','cycler','pageTitle','body','posts','widgets','footer');
+$sections = array('login','htmlTag','bodyTag','mastArea','contentArea','header',
+	'navbar','dropdown-menu','mobileNav','mobileNavArea','cycler','pageTitle','body','posts','widgets','footer');
 foreach($sections as $section)
 {
 
