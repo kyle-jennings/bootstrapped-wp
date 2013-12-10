@@ -393,8 +393,14 @@ function dropdown_menu_callback($kjd_section_misc_settings, &$media_979_markup, 
 /* --------------------------- first level dropdown stuff  --------------------------- */
 
 /* the triangle at the top of the dropdown */
-$dropdown_markup .=".dropdown-menu:after {  
-	border-bottom-color:".$dropdownStartColor.";
+
+
+$dropdown_markup .= '.navbar .nav > li > .dropdown-menu:after {';  
+ 	$dropdown_markup .= 'border-bottom: 7px solid '.$dropdownStartColor.';';
+$dropdown_markup.= '}';
+
+$dropdown_markup .=".navbar-fixed-bottom.navbar .nav > li > .dropdown-menu:after{
+	border-top: 7px solid ".$dropdownEndColor.";
 }";
 
 $dropdown_markup .=".navbar .nav > li > .dropdown-menu:before{  
