@@ -54,7 +54,7 @@ function kjd_get_theme_options($preview = null){
 	settings_fields( 'kjd_component_settings' ); 
 	$options = get_option('kjd_component_settings');
 
-	$sections = array('htmlTag','bodyTag','mastArea','header','navbar','dropdown-menu','mobileNav',
+	$sections = array('htmlTag','bodyTag','mastArea','header','navbar','dropdown-menu',
 		'cycler','contentArea','pageTitle','body','footer');
 
 
@@ -72,12 +72,8 @@ function kjd_get_theme_options($preview = null){
 
 
 	$section_output = '';
-	$media_979_markup ='@media(max-width:979px){';
-
 	$miscMarkup = miscStylesCallback();
 
-	$navArea_markup = navbarStylesCallback($media_979_markup, $preview);
-	$media_979_markup .= mediaQuery979Callback($media_979_markup);
 
 	foreach($sections as $section){
 
@@ -365,13 +361,26 @@ function kjd_get_theme_options($preview = null){
 	/* ----------------------------------------------------- 
 	Responsive markup
 	 ----------------------------------------------------- */
-	$media_767_output = '@media(max-width: 768px){ #navbar{';
-			$media_767_output .= 'clear: both;';
-			$media_767_output .= 'float: none;';
-			$media_767_output .= 'margin-top: 0;';
-		$media_767_output .= '} }';
+	$media_767_output = '@media(max-width: 768px){';
+			$media_767_output .= '#navbar{';
+				$media_767_output .= 'clear: both;';
+				$media_767_output .= 'float: none;';
+				$media_767_output .= 'margin-top: 0;';
+			$media_767_output .= '}';
+		$media_767_output .= '}';
 
 	// return $section_output;
+
+
+/* ----------------------------------------------------------------
+			get navbr styles
+-------------------------------------------------------------------*/
+	include('navbar_styles.php');
+	$navArea_markup = navbarStylesCallback( $preview );
+
+	include('mobile_nav_settings.php');
+	$media_979_markup = kjd_build_mobile_styles_callback();
+
 	return $miscMarkup.$section_output.$navArea_markup.$media_979_markup.$media_767_output; 
 	
 } // end build css function
@@ -379,7 +388,13 @@ function kjd_get_theme_options($preview = null){
 
 
 /* -------------------------------------------------------------------------------------------
-						Build markup - calls th eappropriate fucntions for each section
+-------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
+
+			Build markup - calls th eappropriate fucntions for each section
+
+-------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------- */
 function section_markup_callback($section,$section_options){
 
@@ -392,18 +407,12 @@ switch($section)
 	case 'dropdown-menu':
 		$section_name = '.dropdown-menu';
 		break;
-	
-	case 'mobileNav':
-		$section_name = '#navbar .nav-collapse.collapse > .nav, .sidr';
-		break;
 
 	case 'cycler':
 		$section_name = '#imageSliderWrapper';
 		break;
 	case 'navbar':
-
-			$section_name = '#'.$section.' .navbar-inner';
-		
+		$section_name = '#'.$section.' .navbar-inner';
 		break;
 	case 'htmlTag':
 		$section_name =  'html';
@@ -448,9 +457,6 @@ switch($section)
 			$sectionArea_markup .= "height:".$section_height."px;";
 		$sectionArea_markup .= '}';		
 	}
-
-
-
 
 
 	if($section == 'posts'){
@@ -523,27 +529,15 @@ switch($section)
 	/* ----------------------------------------------------------------------------- *
 							background stuff
 	----------------------------------------------------------------------------- */
-	$mobile_background = get_option('kjd_navbar_misc_settings');
-	$mobile_background = $mobile_background['kjd_navbar_misc'];
-	
-	if( $section == 'mobileNav' ){
-		if( $mobile_background['dropdown_bg'] == 'true' || $mobile_background['side_nav'] == 'true' ){
-			$sectionArea_markup .= background_type_callback($type,$kjd_section_background_colors);
-			//wallpaper function
-			$sectionArea_markup .= wallpaper_callback($kjd_section_background_wallpaper);
-		}
-	}else{
-		$sectionArea_markup .= background_type_callback($type,$kjd_section_background_colors);
-		//wallpaper function
-		$sectionArea_markup .= wallpaper_callback($kjd_section_background_wallpaper);
-	}
 
-			
+	$sectionArea_markup .= background_type_callback($type,$kjd_section_background_colors);
+
+	//wallpaper function
+	$sectionArea_markup .= wallpaper_callback($kjd_section_background_wallpaper);
+
 	/* ----------------------------------------------------------------------------- *
 						borders stuff
 	----------------------------------------------------------------------------- */
-	if($section !== 'mobileNav'){
-
 		foreach($sectionBorders as $k =>$v){
 			$sectionArea_markup .= borderSettingsCallback($k, $v);	
 		}
@@ -552,24 +546,7 @@ switch($section)
 		foreach($sectionBordersRadiuses as $k =>$v){
 			$sectionArea_markup .= borderRadiusCallback($k, $v);	
 		}
-		
-	}
 
-	if( $section == 'mobileNav' ){
-		if( $mobile_background['dropdown_bg'] == 'true' && $mobile_background['side_nav'] != 'true' ){
-
-			foreach($sectionBorders as $k =>$v){
-				$sectionArea_markup .= borderSettingsCallback($k, $v);	
-			}
-
-			//border radius function
-			foreach($sectionBordersRadiuses as $k =>$v){
-				$sectionArea_markup .= borderRadiusCallback($k, $v);	
-			}
-
-
-		}
-	}
 	/* ----------------------------------------------------------------------------- *
 						font colors
 	---------------------------------------------------------------------------- */
@@ -805,7 +782,9 @@ function kjd_image_cycler_settings_callback($kjd_section_misc_settings){
 ----------------------------------------------------------------------------- */
 
  //background type takes the $type argument and uses it to return the appropriate function
-function background_type_callback($type = null,$kjd_section_background_colors = array()){
+function background_type_callback($type = null,$kjd_section_background_colors = array(), $section = null ){
+
+
 	if( !empty($kjd_section_background_colors) )
 		extract($kjd_section_background_colors); 
 
@@ -1599,22 +1578,8 @@ $thumbnail_markup ='';
 }
 
 
-/* ----------------------------------------------------------------
-			get navbr styles
--------------------------------------------------------------------*/
-include('navbar_styles.php');
 
-/* ----------------------------------------------------------------
-			end navbar styles
--------------------------------------------------------------------*/
 
-function mediaQuery979Callback(&$media_979_markup){
-
-  	$media_979_markup .= '#navbar .nav .dropdown-menu{ border-width:0px !important; }';
-
-	$media_979_markup .= '}';
-	return $media_979_markup;
-}
 
 function miscStylesCallback(){
 

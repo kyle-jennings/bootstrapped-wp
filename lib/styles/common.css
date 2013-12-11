@@ -510,6 +510,7 @@ div.img-circle img{
 	border-right: none;
 }
 		#sidr > ul > li:first-child > a {
+			border-bottom: none;
 		  	border-top: none;
 		}
 

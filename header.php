@@ -103,13 +103,39 @@
 </head>
 
 <body>
-	<?php if($sideNav =='true'): 
-	$menu_class = 'nav nav-tabs nav-stacked';
+	<?php 
+
+if($sideNav =='true'){
+	echo '<div id="sidr">';
+
+	// if location is set, else use fallback
+	if ( has_nav_menu( 'sidr-menu' ) ){
+
+		wp_nav_menu(array(
+			'theme_location' => 'sidr-menu', 
+			'menu_class' =>'nav nav-tabs nav-stacked',
+			'container'=> '') 
+		); 
+
+
+	}else {
+	    echo '<ul class="nav nav-tabs nav-stacked">';
+		echo '<li><a href="'. home_url() .'/" title="home">Home</a></li>';
+		if( is_user_logged_in() ){
+			echo '<li><a href="'. home_url() .'/wp-admin/nav-menus.php" title="set menus" >Set Menu</a></li>';
+
+		}else{
+
+			echo '<li><a href="'. wp_login_url() .'/" title="login" >Login</a></li>';
+		}
+	    echo '</ul>';
+	    
+	} // end  has menu location set
+	
+	echo '</div>';
+} // end using sidr
+
 	?>
-		<div id="sidr">
-			<?php wp_nav_menu(array('theme_location' => 'sidr-menu', 'menu_class' =>$menu_class,'container'=> '') ); ?>
-		</div>	
-	<?php endif; ?>
 
 <div id="pageWrapper">
 	<div id="mastArea" class="<?php echo $confineMast == 'true' ? 'container' : '' ;?>">

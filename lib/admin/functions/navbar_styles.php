@@ -6,7 +6,7 @@
 	// 									);
 
 
-function navbarStylesCallback(&$media_979_markup, $preview){
+function navbarStylesCallback( $preview ){
 	
 	$section = 'navbar';
 
@@ -17,8 +17,8 @@ function navbarStylesCallback(&$media_979_markup, $preview){
 														'kjd_section_misc' 
 														);
 
-	
 
+	
 	if( $kjd_section_misc_settings['float'] =='true'){
 
 
@@ -100,7 +100,6 @@ $navbar_markup .=".nav .divider-vertical{
 
 // Positions navbar
 
-
 	if($kjd_section_misc_settings['navbar_alignment'] =='left'){
 		
 		$navbar_markup .='#navbar .nav{ float:left;}';
@@ -109,7 +108,6 @@ $navbar_markup .=".nav .divider-vertical{
 	
 		$navbar_markup .='#navbar ul.nav {margin:0 auto; text-align: center; width:100%;}';
 		$navbar_markup .='#navbar ul.nav > li{ display:inline-block; float:none;}';
-		$media_979_markup .='#navbar ul.nav > li{ display:block; float:none;}';
 	
 	}elseif($kjd_section_misc_settings['navbar_alignment'] =='right'){
 	
@@ -281,7 +279,7 @@ $navbar_markup .=".navbar .nav li.open > a:after{
 	border-color:".$kjd_section_linkHovered['color'].";
 }";
 
-	$navbar_markup .= dropdown_menu_callback($kjd_section_misc_settings, $media_979_markup, $preview);
+	$navbar_markup .= dropdown_menu_callback($kjd_section_misc_settings, $preview);
 	
 	return ($navbar_markup);
 }
@@ -291,7 +289,7 @@ $navbar_markup .=".navbar .nav li.open > a:after{
 						drop down colors
 --------------------------------------------------------------------------------------- */
 
-function dropdown_menu_callback($kjd_section_misc_settings, &$media_979_markup, $preview){
+function dropdown_menu_callback($kjd_section_misc_settings, $preview){
 
 	$section = 'dropdown-menu';
 
@@ -506,7 +504,6 @@ $dropdown_markup .=".nav-collapse.sub-menu li.active >a{
 /* ----------------------------------------------------------------------
 				mobile nav
 ------------------------------------------------------------------------ */
-	include('mobile_nav_settings.php');
 
 	return $dropdown_markup.$collapsed_markup;
 }
