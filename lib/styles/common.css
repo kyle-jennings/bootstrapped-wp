@@ -564,6 +564,8 @@ div.img-circle img{
 		max-width: 97%;
 	}
 
+/* ----------------- navbar shit ---------------------- */
+
 	#navbar .collapse{
 		overflow: hidden !important;
 	}
@@ -609,16 +611,30 @@ div.img-circle img{
 		padding:0 20px;
 	}
 
+	/* ----------------- image carousel shit --------------- */
+	#imageSliderWrapper img{
+		max-width: 100%;
+		width: 100%;
+	}
 
+	#imageSliderWrapper .slider-copy-wrapper {
+		padding:0 20px;
+		width: auto;
+	}
+
+	#imageSliderWrapper > .container #imageSlider .flexslider {
+		margin: 0 20px;
+	}
+
+	#imageSliderWrapper {
+		padding: 0 0px;
+	}
 	#imageSliderWrapper > .container #imageSlider {
 		background: none;
 		padding:20px 0 20px;
 	}
 
-	#imageSliderWrapper > .container #imageSlider .flexslider {
-		margin: 0;
-	}
-	
+
 	#imageSliderWrapper .flexslider .slides img{
 		margin: 0 auto;
 	}
