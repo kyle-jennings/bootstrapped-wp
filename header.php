@@ -87,7 +87,7 @@
 
 
  if ( is_user_logged_in() ) { 
- 	echo '<style>body{padding-top:28px !important;}</style>';
+ 	echo '<style>body{ margin-top:28px !important;}</style>';
   }
 
 	$navbar .= dirname(__FILE__).'/lib/partials/navbar_scaffolding.php';

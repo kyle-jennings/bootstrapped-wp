@@ -1,12 +1,12 @@
 <?php
 /**/
 // TEMP: Enable update check on every request. Normally you don't need this! This is for testing only!
-//set_site_transient('update_themes', null);
+set_site_transient('update_themes', null);
 
 // NOTE: All variables and functions will need to be prefixed properly to allow multiple plugins to be updated
 
 /******************Change this*******************/
-$api_url = 'http://kylejenningsdesign.com/api/';
+$api_url = 'http://update.kylejenningsdesign.com/';
 /************************************************/
 
 /*******************Child Theme******************
@@ -36,7 +36,7 @@ $theme_base = get_option('template');
 /**************************************************/
 
 //Uncomment below to find the theme slug that will need to be setup on the api server
-//var_dump($theme_base);
+// var_dump($theme_base);
 
 add_filter('pre_set_site_transient_update_themes', 'check_for_update');
 
