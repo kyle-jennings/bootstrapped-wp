@@ -453,9 +453,8 @@ function kjd_build_breadcrumbs() {
 
 
 /* ----------------------------- the sidebar ----------------------------- */
-function kjd_get_sidebar($sidebar, $location = null, $width = null, $device_view = null)
+function kjd_get_sidebar($sidebar = 'default', $location = null, $width = null, $device_view = null)
 {
-
 
 	$location_class = ($location == 'horizontal') ? 'span12' : 'span3' ;
 
@@ -465,9 +464,10 @@ function kjd_get_sidebar($sidebar, $location = null, $width = null, $device_view
 		$the_buffered_sidebar = ob_get_contents();
 	ob_end_clean();
 	$the_sidebar_markup = '<div id="sideContent" class="'.$location_class.' '.$location.'-widgets '.$device_view.'">';
-		$the_sidebar_markup .= ($location == 'horizontal') ? '<div class="row">' : '' ;
-			$the_sidebar_markup .= $the_buffered_sidebar;
-		$the_sidebar_markup .= ($location == 'horizontal') ? '</div>' : '' ;
+		// $the_sidebar_markup .= ($location == 'horizontal') ? '<div class="row">' : '' ;
+
+			$the_sidebar_markup .= '<div class="row">' . $the_buffered_sidebar .'</div>';
+		// $the_sidebar_markup .= ($location == 'horizontal') ? '</div>' : '' ;
 	$the_sidebar_markup .= '</div>';
 
 
@@ -479,13 +479,16 @@ function kjd_get_sidebar($sidebar, $location = null, $width = null, $device_view
 
 function kjd_set_sidebar_area($sidebar = null){
 
-	$options = get_option('kjd_widget_areas_settings');
+	// echo $sidebar; die();
+	$post_templates = get_option('kjd_post_layout_settings');
+	$post_templates = $post_templates['kjd_post_layouts'];
+
 	$available_sidebars = array(
 		'template_1', 'template_2', 'template_3', 'template_4', 'template_5', 'template_6',
 		'front_page_widget_area_1', 'front_page_widget_area_2', 'header_widgets', 'footer_widgets','default'
 	);
-	if( !empty($options['widget_areas']) ){
-		foreach($options['widget_areas'] as $k => $v){
+	if( !empty($post_templates) ){
+		foreach($post_templates as $k => $v){
 			$available_sidebars[] = $k; 
 		}
 	}

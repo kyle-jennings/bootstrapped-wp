@@ -20,7 +20,9 @@
 	padding: 2px;
 	margin-right: -1px;
 }
-
+.version-3-8 .minicolors.minicolors-theme-default .minicolors-input {
+	height: 22px;
+}
 .minicolors-theme-default.minicolors .minicolors-input {
 	vertical-align: middle;
 	outline: none;

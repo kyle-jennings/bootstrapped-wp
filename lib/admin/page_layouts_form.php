@@ -60,7 +60,7 @@ function kjd_attachment_page_callback(){
 		
 		<div class="option">
 			<label>Attachment Info</label>
-			<select name="kjd_attachment_page_layout_settings[kjd_attachment_info]">
+			<select name="kjd_attachment_page_layout_settings[kjd_attachment_info]" >
 					<option value="no" <?php selected( $post_info, 'no', true) ?>>
 						No
 					</option>
@@ -154,13 +154,15 @@ function kjd_layout_form_callback($settings,$type, $layout){
 								name="kjd_<?php echo $type;?>_layout_settings[kjd_<?php echo $type; ?>_layouts][<?php echo $layout;?>][toggled]"
 								<?php checked( $settings[$layout]['toggled'], "true", true); ?>
 								value="true"
+								class="toggle-widgetarea"
 						/>
 					</div>
 
 			<?php
 			} ?>
 
-		<div class="option-component">
+
+		<div class="option-component" <?php echo $layout =='default' ? 'style="padding-left: 50px;"' : '' ; ?> >
 
 			<span class="sub-label">Position</span>
 			<select class="layout_select" <?php echo $disabled; ?> name="kjd_<?php echo $type;?>_layout_settings[kjd_<?php echo $type; ?>_layouts][<?php echo $layout;?>][position]">

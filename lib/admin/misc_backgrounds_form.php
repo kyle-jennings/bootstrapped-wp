@@ -6,9 +6,9 @@ function kjd_misc_backgrounds_display() {
 ?> 
 <div class="kjd-admin-page-title">
 	<h2>Misc Background Settings</h2>
-	<span>
+<!-- 	<span>
 		<?php echo kjd_nav_select(); ?>
-	</span>
+	</span> -->
 </div>
 
 <?php

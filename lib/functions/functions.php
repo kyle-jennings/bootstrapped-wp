@@ -1,8 +1,9 @@
 <?php 
+
+
 // gets options function
 if(is_admin()){
-	include(dirname(dirname(__FILE__)).'/admin/init.php' ); 	
-	include('update.php');
+	include(dirname(dirname(__FILE__)).'/admin/init.php' );
 }
 
  require_once('kjd_bootstrap_menus.php');
@@ -11,7 +12,123 @@ if(is_admin()){
  require_once('kjdWidgets.php');
  require_once('kjd_adminbar_menu.php');
 
- require_once('layout_functions.php');
+ require_once('kjd_layout_functions.php');
+
+
+/* ------------------------------------- get page template layout settings ************************* */
+function kjd_get_layout_settings($template = NULL) {
+
+			//	if the page is a post type
+
+			$layoutOptions = get_option('kjd_post_layout_settings');
+			$layoutSettings = $layoutOptions['kjd_post_layouts'];
+			
+			if( is_single() ){
+			
+				$template = 'single';
+
+			}elseif( is_attachment() ){
+
+				$template = 'attachment';
+
+			}elseif( is_404() ){
+			
+				$template = '404';
+			
+			}elseif( is_category() ){
+			
+				$template = 'category';
+
+			}elseif( is_archive() ){
+			
+				$template = 'archive';
+			
+			}elseif( is_tag() ){
+
+				$template = 'tag';
+
+			}elseif( is_author() ){
+
+				$template = 'author';
+
+			}elseif( is_date() ){
+
+				$template = 'date';
+
+			}elseif( is_search() ){
+
+				$template = 'search';
+
+			}elseif( is_front_page() ){
+
+				$template = 'front_page';
+
+			}elseif( is_page() ){
+
+
+				// if current page is page template
+				if( is_page_template() ){
+					
+					$options = get_option('kjd_page_layout_settings');
+					$layoutSettings = $options['kjd_page_layouts'];
+				// $is_page_template = true;
+					
+						if ( is_page_template('pageTemplate1.php') ){
+
+							$template = 'template_1';
+						
+						}elseif( is_page_template('pageTemplate2.php') ){
+
+							$template = 'template_2';
+						
+						}elseif( is_page_template('pageTemplate3.php') ){
+
+							$template = 'template_3';
+						
+						}elseif( is_page_template('pageTemplate4.php') ){
+
+							$template = 'template_4';
+						
+						}elseif( is_page_template('pageTemplate5.php') ){
+
+							$template = 'template_5';
+						
+						}elseif( is_page_template('pageTemplate6.php') ){
+
+							$template = 'template_6';
+						
+						}else{
+							
+							$template = 'page';							
+						}
+		
+
+				// if current page is a page but not a template
+				}else{
+					$template = 'page';
+				
+				}
+
+			//fallback - if not a post template OR a page
+			}else{
+
+				$template = 'default';
+			}
+			
+	if( !empty($layoutSettings[$template]) && ($layoutSettings[$template]['toggled'] == 'true' || $is_page_template == true) ){
+		
+		$layoutSettings = $layoutSettings[$template];
+
+	}else{
+
+		$layoutSettings = $layoutSettings['default'];
+	}
+
+
+	// echo $template; die();
+	return $layoutSettings;
+}
+
 
 /* ----------------------- Set featured image and User Image Sizes --------------------- */
 function kjd_set_featured_image_size(){
@@ -155,118 +272,6 @@ function kjd_login_css() {
 }
 add_action('login_head', 'kjd_login_css');
 
-
-
-/* ------------------------------------- get page template layout settings ************************* */
-function kjd_get_layout_settings($template = NULL) {
-
-			//	if the page is a post type
-
-			$layoutOptions = get_option('kjd_post_layout_settings');
-			$layoutSettings = $layoutOptions['kjd_post_layouts'];
-			
-			if( is_single() ){
-			
-				$template = 'single';
-
-			}elseif( is_attachment() ){
-
-				$template = 'attachment';
-
-			}elseif( is_404() ){
-			
-				$template = '404';
-			
-			}elseif( is_category() ){
-			
-				$template = 'category';
-
-			}elseif( is_archive() ){
-			
-				$template = 'archive';
-			
-			}elseif( is_tag() ){
-
-				$template = 'tag';
-
-			}elseif( is_author() ){
-
-				$template = 'author';
-
-			}elseif( is_date() ){
-
-				$template = 'date';
-
-			}elseif( is_search() ){
-
-				$template = 'search';
-
-			}elseif( is_front_page() ){
-
-				$template = 'front_page';
-
-			}elseif( is_page() ){
-
-				// if current page is page template
-				if( is_page_template() ){
-					
-					$options = get_option('kjd_page_layout_settings');
-					$layoutSettings = $options['kjd_page_layouts'];
-						$is_page_template = true;
-					
-						if ( is_page_template('pageTemplate1.php') ){
-
-							$template = 'template_1';
-						
-						}elseif( is_page_template('pageTemplate2.php') ){
-
-							$template = 'template_2';
-						
-						}elseif( is_page_template('pageTemplate3.php') ){
-
-							$template = 'template_3';
-						
-						}elseif( is_page_template('pageTemplate4.php') ){
-
-							$template = 'template_4';
-						
-						}elseif( is_page_template('pageTemplate5.php') ){
-
-							$template = 'template_5';
-						
-						}elseif( is_page_template('pageTemplate6.php') ){
-
-							$template = 'template_6';
-						
-						}else{
-							
-							$template = 'page';							
-						}
-		
-
-				// if current page is a page but not a template
-				}else{
-					$template = 'page';
-				
-				}
-
-			//fallback - if not a post template OR a page
-			}else{
-
-				$template = 'default';
-			}
-			
-if( !empty($layoutSettings[$template]) && ($layoutSettings[$template]['toggled'] == 'true' || $is_page_template == true) ){
-	
-	$layoutSettings = $layoutSettings[$template];
-
-}else{
-
-	$layoutSettings = $layoutSettings['default'];
-}
-
-	return $layoutSettings;
-}
 
 
 

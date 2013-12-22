@@ -24,13 +24,15 @@ get_header();
 	$pagination_top = $pagination_top['pagination_top'];
 
 
-if($showImageSlider =='true')
-{
-	kjd_image_slider_callback($confineBodyBackground,$position,$arrayLength,$layoutSettings);
-}
+	$template = 'front_page';
 
-if(!empty($components))
-{ 
+	if($showImageSlider =='true')
+	{
+		kjd_image_slider_callback($confineBodyBackground,$position,$arrayLength,$layoutSettings);
+	}
+
+	if(!empty($components))
+	{ 
 ?>
 
 <div id="body" class="frontPageBody <?php echo $confineBodyBackground =='true' ? 'container confined' : '' ;?>">
@@ -46,11 +48,12 @@ if(!empty($components))
 		echo '<div class="span12">';
 	}else{
 		if($layoutSettings['position'] == 'left'){
-			echo kjd_get_sidebar($template,null,$position, $device_view);
+			echo kjd_get_sidebar($template, null, $position, $device_view);
 		}
 
 		echo '<div class="span9">';
 	}
+
 
 	kjd_front_page_layout($components, $layoutSettings, $frontPageOptions);
 
@@ -58,8 +61,9 @@ if(!empty($components))
 	if($layoutSettings['position'] == 'right' || $layoutSettings['position'] =='left')
 	{
 		echo '</div>'; // end left content
+		
 		if($layoutSettings['position'] == 'right'){
-			echo kjd_get_sidebar($template,null,$position, $device_view);
+			echo kjd_get_sidebar($template, null, $position, $device_view);
 		}
 	}else{
 		echo '</div>';
@@ -100,12 +104,15 @@ get_footer(); // End page, start function
 
 
 /* ---------------------------------------------------------------------------------------------- */
-/* ------------------------------- Front Page Functions ----------------------------------------- */
+/* ------------------------------- Front Page Components ----------------------------------------- */
 /* ---------------------------------------------------------------------------------------------- */
 function kjd_image_slider_callback($confineBodyBackground,$position,$arrayLength,$layoutSettings){
 		include(dirname(__FILE__).'/lib/partials/image_slider_wrapper.php');
 }
 
+/* -------------------------------------------------------------------- 
+			Widget Areas
+ -------------------------------------------------------------------- */
 function kjd_widget_area_1_callback($layoutSettings, $deviceView){
 	echo '<div class="row '.$deviceView.' frontpage-component">'; 
 		dynamic_sidebar('front_page_widget_area_1');
@@ -118,7 +125,9 @@ function kjd_widget_area_2_callback($layoutSettings, $deviceView){
 	echo '</div>';
 }
 
-
+/* -------------------------------------------------------------------- 
+			Default Content
+ -------------------------------------------------------------------- */
 function kjd_content_callback($layoutSettings, $deviceView){
 	echo '<div class="'.$deviceView.' frontpage-component">';
 	
@@ -143,6 +152,9 @@ function kjd_content_callback($layoutSettings, $deviceView){
 	echo '</div>';
 }
 
+/* -------------------------------------------------------------------- 
+			Secondary Content
+ -------------------------------------------------------------------- */
 function kjd_secondary_content_callback($frontPageOptions,$layoutSettings, $deviceView){ 
 	if($layoutSettings['position'] != 'right' && $layoutSettings['position'] !='left'){ 
 		echo '<div class="row '.$deviceView.' frontpage-component"><div class="span12">'; 
@@ -156,9 +168,9 @@ function kjd_secondary_content_callback($frontPageOptions,$layoutSettings, $devi
 
 }
 
-function kjd_front_page_layout($components, $layoutSetting, $frontPageOptions)
+function kjd_front_page_layout($components, $layoutSettings, $frontPageOptions)
 {
-
+	
 	foreach($components as $position => $component)
 	{
 		$deviceView = $component['componentDeviceView'];
@@ -169,7 +181,7 @@ function kjd_front_page_layout($components, $layoutSetting, $frontPageOptions)
 		}elseif($component['component'] =='content'){
 			kjd_content_callback($layoutSettings, $deviceView);
 		}elseif($component['component'] =='secondary_content'){
-			kjd_secondary_content_callback($frontPageOptions,$layoutSettings, $deviceView);
+			kjd_secondary_content_callback($frontPageOptions, $layoutSettings, $deviceView);
 		}
 	}
 }

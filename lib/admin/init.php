@@ -1,14 +1,13 @@
 <?php
+// include the file which builds the CSS
+
+
 include 'general_settings_form.php';
 include 'page_layouts_form.php';
 include 'misc_backgrounds_form.php';
-
-// include the file which builds the CSS
-
-include('functions/styles.php');
-
 include 'settings.php';
-include('functions/admin_functions.php');
+include 'functions/styles.php';
+include 'functions/admin_functions.php';
 
 
 
@@ -38,15 +37,14 @@ function kjd_load_style_sheets_and_scripts() {
 	$adminDir=get_bloginfo('template_directory');  
 	$adminDir = $adminDir."/lib/admin/";
 	wp_enqueue_style("admin", $adminDir."css/admin.css");  
-  	// wp_enqueue_style("bs", get_bloginfo('template_directory').'/lib/styles/bootstrap/bootstrap.css'); 
+  	wp_enqueue_style("bs",$adminDir."css/bootstrap-tabs.css");  
 
 	wp_enqueue_script("bsjs", get_bloginfo('template_directory').'/lib/scripts/bootstrap.min.js'); 
 
 
+	// mini colors
 	wp_enqueue_style("colorPicker", $adminDir."css/minicolors.css");
 	wp_enqueue_script("colorPicker", $adminDir."js/colorpicker/minicolors.js");  
-
-	wp_register_script( 'script_handle', $adminDir."js/admin.js", false, '1.0' ); //register script
 
 
 	wp_register_script( 'admin', $adminDir."js/admin.js", false, '1.0' ); //register script
@@ -76,7 +74,7 @@ function kjd_setup_theme_menus() {
 
     add_menu_page(
 		'Theme settings', //title bar
-		'KJD Options', // menu bar title
+		'BSWP Home', // menu bar title
 		'manage_options',  //member access 
 		'kjd_theme_settings', // id for menu
 		'kjd_theme_settings_display' //function

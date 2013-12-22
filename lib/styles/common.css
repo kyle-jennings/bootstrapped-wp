@@ -1,12 +1,6 @@
-/*
-Theme Name: KJD
-Theme URI: http://kylejenningsdesign.com
-Description: Modeled after my portfolio site.
-Version: 1.0
-Author: Kyle Jennings Design
-
-*/
-*{outline:none !important; word-break:hyphenate; word-wrap:break-word;}
+*{
+	outline:none !important;
+}
 
 #sidr{
 	display:none;
@@ -27,7 +21,7 @@ html,body{
 		height: 100%;
 		margin:0 !important;
 		position:relative;
-		}
+}
 
 body {
 	height: auto;
