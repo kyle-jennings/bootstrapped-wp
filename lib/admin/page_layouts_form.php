@@ -161,7 +161,7 @@ function kjd_layout_form_callback($settings,$type, $layout){
 			<?php
 			} ?>
 
-
+  
 		<div class="option-component" <?php echo $layout =='default' ? 'style="padding-left: 50px;"' : '' ; ?> >
 
 			<span class="sub-label">Position</span>
