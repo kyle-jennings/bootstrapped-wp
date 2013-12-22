@@ -4,10 +4,7 @@
 // gets options function
 if(is_admin()){
 	include(dirname(dirname(__FILE__)).'/admin/init.php' );
-<<<<<<< HEAD
-=======
 	include(dirname(dirname(__FILE__)).'/update/update.php');
->>>>>>> 9c5eec90adaafc1a92582f493e6b1c59214840c3
 }
 
  require_once('kjd_bootstrap_menus.php');
