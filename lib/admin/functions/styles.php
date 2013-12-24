@@ -9,11 +9,14 @@ Template Name: Style Sheet
 */
 function kjd_get_temp_settings($section, $array, $preview, $part) {
 	if($preview != null){
+
+		// this makes sure that the new settings were passed in
 		// echo $part."\n"; 
 		// print_r($preview); 
 
 		// die();
 
+		//ensures we are in the correct section
 		if( $section == $preview['section'] ){
 			// echo 'Part: '.$part."\n";
 			// echo 'preview settings:';

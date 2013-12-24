@@ -165,7 +165,7 @@ if($use_mobile_background == 'true' && $using_sidr == 'true'){
 				Sidr
 ------------------------------------------------------------ */
 
-if ( $using_sidr != 'dljg'){
+if ( $using_sidr == 'true'){
 
 		$media_979_markup .= '#sidr {';
 			$media_979_markup .= 'border-right-color:'.$kjd_section_right_border['color'].';';

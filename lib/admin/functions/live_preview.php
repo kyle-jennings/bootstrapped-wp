@@ -1,5 +1,5 @@
 <?php 
-echo 'boom';
+// echo 'boom';
 $wp_dir = dirname(dirname( dirname( dirname( dirname (dirname( dirname(__FILE__) ) ) ) ) ) )  ;
 //        root >  wp-content > themes > kjd    > lib    > admin > functions  > this
 

@@ -57,7 +57,9 @@ function navbarStylesCallback( $preview ){
 												$preview,
 												'kjd_section_link'
 										);
-
+	// if($preview != null){
+	// 	print_r($kjd_section_link); die();
+	// }
 
 
 	$kjd_section_linkHovered = kjd_get_temp_settings(	'navbar',
@@ -125,31 +127,31 @@ $navbar_markup .=".nav .divider-vertical{
 				}';
 	}
 
-// remove left padding on first link
-if($flush_links == 'true')
-{
+	// remove left padding on first link
+	if($flush_links == 'true')
+	{
 
-	if($kjd_section_misc_settings['navbar_alignment'] == 'left' || $kjd_section_misc_settings['navbar_alignment'] =='right'){
-		
-		if( $kjd_section_misc_settings['navbar_link_style'] == 'pills' || $kjd_section_misc_settings['navbar_link_style'] == 'tabs' 
-			|| $kjd_section_misc_settings['navbar_link_style'] == 'tabs-below' ) {
+		if($kjd_section_misc_settings['navbar_alignment'] == 'left' || $kjd_section_misc_settings['navbar_alignment'] =='right'){
+			
+			if( $kjd_section_misc_settings['navbar_link_style'] == 'pills' || $kjd_section_misc_settings['navbar_link_style'] == 'tabs' 
+				|| $kjd_section_misc_settings['navbar_link_style'] == 'tabs-below' ) {
 
-			$navbar_markup .= '.navbar .nav > li:first-child { padding-'.$kjd_section_misc_settings['navbar_alignment'].':0; }';
-		
-		}else{
-		
-		$navbar_markup .= '.navbar .nav > li:first-child > a{padding-'.$kjd_section_misc_settings['navbar_alignment'].':0;}';
-		
+				$navbar_markup .= '.navbar .nav > li:first-child { padding-'.$kjd_section_misc_settings['navbar_alignment'].':0; }';
+			
+			}else{
+			
+			$navbar_markup .= '.navbar .nav > li:first-child > a{padding-'.$kjd_section_misc_settings['navbar_alignment'].':0;}';
+			
+			}
 		}
 	}
-}
-//disable link inner shaddow
-if($kjd_section_misc_settings['link_shadows'] =='true'){
-	$navbar_markup .='.navbar .nav > .active > a, ';
-	$navbar_markup .='.navbar .nav > .active > a:hover,';
-	$navbar_markup .='.navbar .nav > .active > a:focus{box-shadow:none !important;}';
-	//echo "box-shadow:none !important;"
-}
+	//disable link inner shaddow
+	if($kjd_section_misc_settings['link_shadows'] =='true'){
+		$navbar_markup .='.navbar .nav > .active > a, ';
+		$navbar_markup .='.navbar .nav > .active > a:hover,';
+		$navbar_markup .='.navbar .nav > .active > a:focus{box-shadow:none !important;}';
+		//echo "box-shadow:none !important;"
+	}
 
 //layouts
 	//confines layout to like, 960 and has border radius
@@ -173,7 +175,7 @@ if($kjd_section_misc_settings['link_shadows'] =='true'){
 $navbar_markup .= '.navbar .nav > li > a {';
 		$navbar_markup .= 'color:'.$kjd_section_link['color'].';';
 		
-		if( $kjd_section_link['bg_color']){
+		if( $kjd_section_link['bg_color'] != ''){
 			$navbar_markup .= 'background-color:'.$kjd_section_link['bg_color'].';';
 
 		}else{
@@ -234,7 +236,16 @@ $navbar_markup .= '}';
 // the link
 $navbar_markup .= '.navbar .nav > li > a:hover,';
 $navbar_markup .= '.navbar .nav > li > a:focus {';
-	$navbar_markup .= 'background-color:'.$kjd_section_linkHovered['bg_color'].';';
+
+	if( $kjd_section_linkHovered['bg_color'] ){
+
+		$navbar_markup .= 'background-color:'.$kjd_section_linkHovered['bg_color'].';';
+		
+	}else{
+		$navbar_markup .= 'background-color: transparent;';
+
+	}
+	
 	$navbar_markup .= 'border-color: '.$kjd_section_linkHovered['bg_color'].';';
 	$navbar_markup .= 'color:'.$kjd_section_linkHovered['color'].';';
 	$navbar_markup .= 'text-decoration:'.$kjd_section_linkHovered['decoration'].';';
