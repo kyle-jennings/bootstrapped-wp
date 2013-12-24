@@ -8,7 +8,14 @@
 			'kjd_theme_settings' // page (settings group) name
 		);
 
-		$general_settings = array('site_logo','logo_toggle','misc_settings','google_analytics','confine_page','responsive_design','_disable_BGs');
+		$general_settings = array('site_logo',
+						'logo_toggle',
+						'misc_settings',
+						'google_analytics',
+						'confine_page',
+						'responsive_design',
+						'kjd_404_page'
+		);
 		foreach($general_settings as $setting){
 
 			add_settings_field(
@@ -22,8 +29,9 @@
 		}
 
 		register_setting('kjd_theme_settings','kjd_theme_settings');
-
-		// settings components
+/* ---------------------------------------------
+			Misc Components
+----------------------------------------------- */
 		add_settings_section(
 			'kjd_component_settings_section', // ID hook name
 			null,
@@ -45,7 +53,29 @@
 
 		register_setting('kjd_component_settings','kjd_component_settings');
 
-		// Widget Areas
+/* ---------------------------------------------
+			Custom Styles
+----------------------------------------------- */
+		add_settings_section(
+			'kjd_custom_styles_settings_section', // ID hook name
+			null,
+			null,
+			'kjd_custom_styles_settings' // page name
+		);
+
+			add_settings_field(
+				'kjd_custom_styles',
+				null,
+				null,
+				'kjd_custom_styles_settings',
+				'kjd_custom_styles_settings_section'
+			);
+
+		register_setting('kjd_custom_styles_settings','kjd_custom_styles_settings');
+
+/* ---------------------------------------------
+			Widget Areas - not yet used
+----------------------------------------------- */
 		add_settings_section(
 			'kjd_widget_areas_settings_section', // ID hook name
 			null,
@@ -63,8 +93,9 @@
 
 		register_setting('kjd_widget_areas_settings','kjd_widget_areas_settings');
 
-		////////////////
-		//cycler images
+/* ---------------------------------------------
+			Image carousel
+----------------------------------------------- */
 		add_settings_section(
 			'kjd_cycler_images_settings_section', // ID hook name
 			null,
@@ -90,9 +121,9 @@
 
 		register_setting('kjd_cycler_images_settings','kjd_cycler_images_settings');
 
-		/////////////////////
-		// page layouts
-		////////////////////
+/* ---------------------------------------------
+			Page layouts
+----------------------------------------------- */
 		add_settings_section(
 			'kjd_page_layout_settings_section', // ID hook name
 			'Page Layout settings', // label
@@ -107,7 +138,11 @@
 				'kjd_page_layout_settings', // page name
 				'kjd_page_layout_settings_section' // parent section
 			);
-		//posts layouts
+		
+
+/* ---------------------------------------------
+			Post Layouts
+----------------------------------------------- */
 		add_settings_section(
 			'kjd_post_layout_settings_section', // ID hook name
 			null,
@@ -122,7 +157,9 @@
 				'kjd_post_layout_settings_section' // parent section
 			);
 
-		// front page layout
+/* ---------------------------------------------
+			Front Page layouts
+----------------------------------------------- */
 		add_settings_section(
 			'kjd_frontPage_layout_section', // ID hook name
 			'Page front page layout', // label
@@ -144,7 +181,9 @@
 				'kjd_frontPage_layout_section' // parent section
 			);	
 
-		// front page layout
+/* ---------------------------------------------
+			Attachment Page
+----------------------------------------------- */
 		add_settings_section(
 			'kjd_attachment_page_layout_section', // ID hook name
 			'Attachment Page Layout', // label
@@ -169,7 +208,9 @@
 
  		register_setting('kjd_attachment_page_layout_settings','kjd_attachment_page_layout_settings');
 				
-		//post listings layouts
+/* --------------------------------------------------------------------------
+			I dont remember what post "listings" are
+----------------------------------------------------------------------------- */
 		add_settings_section(
 			'kjd_post_listing_layout_settings_section', // ID hook name
 			'Page Layout settings', // label
@@ -189,9 +230,9 @@
  		register_setting('kjd_frontPage_layout_settings','kjd_frontPage_layout_settings');
  		register_setting('kjd_post_listing_layout_settings','kjd_post_listing_layout_settings');
 
-/* ------------------------------------------------------------------------------------------------------- */
-/* ------------------------------------------- Page sections --------------------------------------------- */
-/* ------------------------------------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------------------- */
+/* ------------------------------------------- Structure sections ---------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------------------- */
 
 $sections = array('login','htmlTag','bodyTag','mastArea','contentArea','header',
 	'navbar','dropdown-menu','mobileNav','mobileNavArea','cycler','pageTitle','body','posts','widgets','footer');

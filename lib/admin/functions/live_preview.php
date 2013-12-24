@@ -22,20 +22,19 @@ if(isset($_POST['data']))
   $file = $root.'/styles/preview.css';
 
   if(file_exists($file)){
-
-    chmod($file, 0777);
+    // chmod($file, 0777);
     unlink($file);
-    $file = fopen($file, "x+"); 
-  }else{
-    $file = fopen($file, "x+");
   }
 
-  ob_start();
-    echo kjd_get_theme_options($data);
-    $buffered_content = ob_get_contents();
-  ob_end_clean();
+    $file = fopen($file, "x+");
+  
+    ob_start();
+      echo kjd_get_theme_options($data);
+      $buffered_content = ob_get_contents();
+    ob_end_clean();
 
-  fwrite($file, $buffered_content);
-  fclose($file);
+    fwrite($file, $buffered_content);
+    fclose($file);
+  
 
 }

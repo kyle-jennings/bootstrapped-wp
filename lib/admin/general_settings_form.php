@@ -18,6 +18,7 @@ screen_icon('themes'); ?>
 	<a href="?page=kjd_theme_settings&tab=home" class="nav-tab"<?php echo $active_tab == 'home' ? 'id="active"' : 'none'; ?>>Home</a>  	
 	<a href="?page=kjd_theme_settings&tab=settings" class="nav-tab"<?php echo $active_tab == 'settings' ? 'id="active"' : 'none'; ?>>General Settings </a>  	
 	<a href="?page=kjd_theme_settings&tab=components" class="nav-tab"<?php echo $active_tab == 'components' ? 'id="active"' : 'none'; ?>>Components</a>
+	<a href="?page=kjd_theme_settings&tab=styles" class="nav-tab"<?php echo $active_tab == 'sty;es' ? 'id="active"' : 'none'; ?>>Custom Styles</a>
 </h2>
 
     <?php settings_errors(); ?>  
@@ -31,6 +32,8 @@ screen_icon('themes'); ?>
 					kjd_theme_settings_callback();
 				}elseif( $active_tab == 'components' ) { 
 					kjd_theme_components_callback();
+				}elseif( $active_tab == 'styles' ){
+					kjd_custom_styles_callback();
 				}
 
 				submit_button(); 
@@ -90,6 +93,7 @@ function kjd_theme_settings_callback(){
 
 
 	<div class="optionsWrapper">
+
 		<h3>Logo</h3>
 		<div class="option">
 
@@ -177,12 +181,19 @@ function kjd_theme_settings_callback(){
 		</div>	
 	</div>	
 
-</div>	
+	
 
 	<div class="option">
 		<label>404 Page Content</label>
 			<?php wp_editor( $options['kjd_404_page'], 'kjd_theme_settings[kjd_404_page]' );?>
 	</div>
+
+
+</div>	
+
+
+
+
 
 <?php
 }
@@ -282,4 +293,22 @@ function kjd_theme_widget_areas_callback(){
 </div>
 
 <?php
+}
+
+
+function kjd_custom_styles_callback(){
+	settings_fields('kjd_custom_styles_settings');
+	$options = get_option('kjd_custom_styles_settings');
+	$options = $options['kjd_custom_styles'];
+?>
+
+	<div class="optionsWrapper">
+		
+		<div class="option">
+			<label>Custom Styles</label>
+			<textarea class="long_textarea tall-textarea" name='kjd_custom_styles_settings[kjd_custom_styles]'><?php echo $options ? $options : '' ;?></textarea>
+		</div>
+	
+	</div>
+	<?php
 }

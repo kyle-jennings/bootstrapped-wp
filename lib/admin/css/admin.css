@@ -131,7 +131,13 @@ form .fields-wrapper{
   }
   
 .submit{clear:both;}
-.long_textarea{height:150px; width:70%;}
+
+.long_textarea{ height:150px; width:70%;}
+
+.tall-textarea {
+  height: 400px;
+}
+
 .divider{clear:both;}
 .explanation{float:left; padding:0 10px;}
 

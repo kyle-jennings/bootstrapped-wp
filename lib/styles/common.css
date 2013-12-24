@@ -408,7 +408,20 @@ div.img-circle img{
 /* =============================== ============= ===================================== */
 /* =============================== media queries ===================================== */
 /* =============================== ============= ===================================== */
+
+@media(min-width:980px){ 
+	#sidr {
+		display: none !important;
+	}
+
+}
+
 @media (max-width: 979px) {
+	
+	h1.logo-wrapper, 
+	h2.logo-wrapper {
+		margin-left: 20px;
+	}
 
 	.navbar .dropdown-menu{background:transparent !important;}
 	
@@ -664,73 +677,9 @@ div.img-circle img{
 
 @media (max-width: 480px) {
 
-}
+	h1.logo-wrapper, 
+	h2.logo-wrapper {
+		margin-left: 0px;
+	}
 
-#body ol.process {
-	list-style-type:none;margin:10px 0 20px;overflow:hidden;
-	text-align:center;
-}
-#body ol.process li span{
-	background-image:url(http://kylejenningsdesign.com/wp-content/uploads/2013/10/process_sprite2.png);float:left;overflow:none; display:block;
-}
-#body ol.process li {
-	height:94px;
-	width:95px;
-	display:inline-block;
-	margin: 0 15px;
-}
-
-#body ol.process li span a {
-	background-image:url(http://kylejenningsdesign.com/wp-content/uploads/2013/10/process_sprite2.png) !important;
-
-	cursor:pointer;
-	display:block;
-	height:94px;
-	text-indent:-9999px;
-	width:95px;
-	 display:block;
-}
-#body .learn span {background-position:0px -97px;}
-#body .brainStorm span {background-position:-173px -97px;}
-#body .proposal span {background-position:-346px -97px;}
-#body .create span {background-position:-519px -97px;}
-#body .touchUp span {background-position:-692px -97px;}
-#body .launch span {background-position:-866px -97px;}
-
-
-#body .learn span .clickArea,
-#body .learn span .clickArea:hover {
-	background-position:0 0
-}
-#body .brainStorm span .clickArea,
-#body .brainStorm span .clickArea:hover {
-	background-position:-173px 0
-}
-#body .proposal span .clickArea,
-#body .proposal span .clickArea:hover {
-	background-position:-346px 0
-}
-#body .create span .clickArea,
-#body .create span .clickArea:hover {
-	background-position:-519px 0
-}
-#body .touchUp span .clickArea,
-#body .touchUp span .clickArea:hover {
-	background-position:-692px 0
-}
-#body .launch span .clickArea,
-#body .launch span .clickArea:hover {
-	background-position:-866px 0
-}
-.textContainer {
-	overflow:visible;margin-bottom:60px;padding-bottom:20px;position:relative
-}
-.processText {
-	display:none;position:absolute;top:0;left:0; text-align: center; min-height: 50px
-}
-.learn .clickArea {
-	opacity:0
-}
-.processText:first-child {
-	display:block
 }

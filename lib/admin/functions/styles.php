@@ -381,7 +381,16 @@ function kjd_get_theme_options($preview = null){
 	include('mobile_nav_settings.php');
 	$media_979_markup = kjd_build_mobile_styles_callback();
 
-	return $miscMarkup.$section_output.$navArea_markup.$media_979_markup.$media_767_output; 
+
+/* ----------------------------------------------------------------
+			User Custom Styles
+-------------------------------------------------------------------*/
+
+	$user_styles = get_option('kjd_custom_styles_settings');
+	$user_styles = $user_styles['kjd_custom_styles'];
+
+
+	return $miscMarkup.$section_output.$navArea_markup.$media_979_markup.$media_767_output.$user_styles; 
 	
 } // end build css function
 
