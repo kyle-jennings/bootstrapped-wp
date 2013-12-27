@@ -73,9 +73,10 @@ function kjd_theme_home_callback(){
 	<div class="optionsWrapper">
 		<h3>Import a style file.</h3>
 		<div class="option">
-			<label for="file">Filename:</label>
-			<input type="file" name="file" id="file">
-			<!-- <a class='export-xml' href='#' >Export database as XML</a> -->
+				<label for="file">Filename:</label>
+				<input type="file" name="file" id="file">
+				<a class='input-xml' href='#' >Import Theme Settings</a>
+			</form>
 		</div>
 	</div>
 

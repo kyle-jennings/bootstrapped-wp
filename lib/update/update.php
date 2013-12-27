@@ -1,4 +1,5 @@
 <?php
+
 /**/
 // testing
 // TEMP: Enable update check on every request. Normally you don't need this! This is for testing only!
@@ -33,6 +34,8 @@ if(function_exists('wp_get_theme')){
     $theme_data = get_theme_data( TEMPLATEPATH . '/style.css');
     $theme_version = $theme_data['Version'];
 }    
+
+
 $theme_base = get_option('template');
 /**************************************************/
 
@@ -42,12 +45,15 @@ $theme_base = get_option('template');
 add_filter('pre_set_site_transient_update_themes', 'check_for_update');
 
 function check_for_update($checked_data) {
+
 	global $wp_version, $theme_version, $theme_base, $api_url;
 
 	$request = array(
 		'slug' => $theme_base,
 		'version' => $theme_version 
 	);
+
+
 	// Start checking for an update
 	$send_for_check = array(
 		'body' => array(
@@ -57,7 +63,11 @@ function check_for_update($checked_data) {
 		),
 		'user-agent' => 'WordPress/' . $wp_version . '; ' . get_bloginfo('url')
 	);
+
+
 	$raw_response = wp_remote_post($api_url, $send_for_check);
+
+
 	if (!is_wp_error($raw_response) && ($raw_response['response']['code'] == 200))
 		$response = unserialize($raw_response['body']);
 
@@ -81,6 +91,7 @@ function my_theme_api_call($def, $action, $args) {
 
 	$args->version = $theme_version;
 	$request_string = prepare_request($action, $args);
+
 	$request = wp_remote_post($api_url, $request_string);
 
 	if (is_wp_error($request)) {
