@@ -117,7 +117,7 @@ function kjd_get_layout_settings($template = NULL) {
 			}
 			
 	if( !empty($layoutSettings[$template]) && ($layoutSettings[$template]['toggled'] == 'true' || $is_page_template == true) ){
-		
+		// echo $template;die();
 		$layoutSettings = $layoutSettings[$template];
 
 	}else{

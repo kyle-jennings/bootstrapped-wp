@@ -5,6 +5,9 @@ get_header();
 	
 	$layoutSettings = kjd_get_layout_settings();
 	
+
+	$template = $layoutSettings['name'];
+
 	$frontPageOptions = get_option('kjd_frontPage_layout_settings');
 	$frontPageSidebar = $frontPageOptions['kjd_frontPage_sidebar'];
 	$device_view = $layoutSettings['deviceView'];
@@ -24,7 +27,6 @@ get_header();
 	$pagination_top = $pagination_top['pagination_top'];
 
 
-	$template = 'front_page';
 
 	if($showImageSlider =='true')
 	{
