@@ -2,7 +2,7 @@
 
 	$full_width = ( !empty($sliderOptions['full_width']) && $sliderOptions['full_width'] == 'true') ? 'carousel_full_width' : '' ;
 ?>
-<div id="myCarousel" class="carousel slide <?php echo $full_width; ?>">
+<div id="myCarousel" class="bootstrap-carousel slide <?php echo $full_width; ?>">
   <?php if( count($images) > 1 ){ ?>
 
   <ol class="carousel-indicators">

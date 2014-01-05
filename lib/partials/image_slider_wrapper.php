@@ -7,13 +7,16 @@
 		$sliderOptions = $cyclerOptions['kjd_cycler_misc'];
 		$device_view = $cyclerOptions['kjd_cycler_misc']['deviceView'];
 
+		$full_width = ($cyclerOptions['kjd_cycler_misc']['full_width'] == 'true') ? 'true' : 'false' ;	
+
+		// echo $full_width; die();
 		$confineCyclerBackground = ($cyclerOptions['kjd_cycler_misc']['kjd_cycler_confine_background'] =='true') ? 'container confined' : '' ;	
 ?>
 
 <div id="imageSliderWrapper" class="<?php echo $confineCyclerBackground.' '.$device_view ; ?>">
 
 
-	<?php echo ( $plugin == 'responsive_slider' || ( $plugin == 'bootstrap_slider' ) ) ? '' : '<div class="container">' ; ?>
+	<?php echo $full_width == 'true' ? '' : '<div class="container">' ; ?>
 
 		<div id="imageSlider">
 <?php
@@ -54,7 +57,7 @@
 ?>
 		</div> <!-- end imageSlider -->
 		
-	<?php echo ( $plugin == 'responsive_slider' || $plugin == 'bootstrap_slider' ) ? '' : '</div>' ; ?> <!-- end container -->
+	<?php echo $full_width == 'true' ? '' : '</div>' ; ?> <!-- end container -->
 
 </div> <!-- end imageSliderWrapper -->
 

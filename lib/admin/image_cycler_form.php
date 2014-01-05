@@ -374,7 +374,7 @@ function kjd_cycler_images_callback(){
 	$mce_ID = 'kjd_cycler_images_settings[kjd_cycler_images]['.$key.'][text]';
 	$style = '.mceIframeContainer{background-image:url('. $cycler[$key]['url'] .'); background-size:cover; }';
 	$settings = array(
-				'textarea_rows' =>1,
+				'textarea_rows' =>4,
 				'editor_class'=>'whiteBackground',
 				'editor_css'=>'<style scoped>' . $style . '</style>',
 			);

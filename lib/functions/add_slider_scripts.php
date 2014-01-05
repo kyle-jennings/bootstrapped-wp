@@ -2,11 +2,24 @@
 
 
 	$cyclerOptions = get_option('kjd_cycler_misc_settings');
-	
+
+	// print('<pre>');
+	// print_r($cyclerOptions);
+	// die();
+
 	$plugin = $cyclerOptions['kjd_cycler_misc']['plugin'];
 
+	$theme = $cyclerOptions['kjd_cycler_misc']['nivoTheme'];
+
+	$effect = $cyclerOptions['kjd_cycler_misc']['effect'];
+
+	$timeout = $cyclerOptions['kjd_cycler_misc']['timeout'];
+	
 	switch($plugin){
 
+/* --------------------------------------------------
+Nivo Slider
+-------------------------------------------------- */
 		case($plugin =="nivo"):
 		
 			$theme = $cyclerOptions['kjd_cycler_misc']['nivoTheme'];
@@ -31,6 +44,9 @@
 			add_action('wp_head', 'kjd_nivo_settings_hook');
 
 			break;
+/* --------------------------------------------------
+Piecemaker 3D - not working
+-------------------------------------------------- */			
 		case($plugin =="piecemaker3d"):
 			
 			// all settings are in those xml files, google the instructions
@@ -38,6 +54,9 @@
 			
 			add_action('wp_head', 'kjd_piecemakerSettings',10, 5);
 			break;
+/* --------------------------------------------------
+Flex Slider
+-------------------------------------------------- */			
 		case($plugin =="flexslider2"):
 			
 			wp_enqueue_style("slider", $root."/scripts/flexslider/flexslider.css");	
@@ -45,6 +64,9 @@
 			
 			add_action('wp_head', 'kjd_flexslider_settings_hook');
 			break;
+/* --------------------------------------------------
+Parallax - not working
+-------------------------------------------------- */			
 		case($plugin =="parallax"):
 		
 			wp_enqueue_style("slider", $root."/scripts/parallax/parallax.css");	
@@ -53,24 +75,36 @@
 
 			add_action('wp_head', 'kjd_parallax_slider_settings',10, 5);
 			break;
+/* --------------------------------------------------
+Responsive Slider
+-------------------------------------------------- */			
 		case($plugin =='responsive_slider'):
 			
 			wp_enqueue_style("slider", $root."/scripts/responsiveslider/responsiveslides.css");	
 			wp_enqueue_script("slider", $root."/scripts/responsiveslider/responsiveslides.min.js", false, "1.0", true);  
 
-			add_action('wp_head', 'kjd_responsive_slider_hook');
+			add_action('wp_head', 'kjd_responsive_slider_hook',10, 1);
 
 		break;
+/* --------------------------------------------------
+Single Image
+-------------------------------------------------- */		
 		case($plugin =="single image"):
 
 			kjd_singleImage();
 		break;
+/* --------------------------------------------------
+Bootstrap Slider
+-------------------------------------------------- */		
 		case($plugin =="bootstrap_slider"):
 			
 			wp_enqueue_style("slider", $root."/scripts/bootstrap/bootstrap_slider.css");	
 			add_action('wp_head', 'kjd_bootstrap_slider_hook');
 			
 			break;
+/* --------------------------------------------------
+No Image
+-------------------------------------------------- */			
 		default:
 
 			kjd_noImage();
@@ -78,17 +112,29 @@
 
 	}
 
+/* --------------------------------------------------
+--------------------------------------------------
+The functions!
+-------------------------------------------------- 
+-------------------------------------------------- */	
+
+
+
 /////////////////////////////
 // boot strap slider
-////////////////////////
+
 function kjd_bootstrap_slider_hook(){
+
+	$cyclerOptions = get_option('kjd_cycler_misc_settings');
+	$timeout = $cyclerOptions['kjd_cycler_misc']['timeout'] ? $cyclerOptions['kjd_cycler_misc']['timeout'] : 5000 ;
+
 	$script_output = '';
 
 	$script_output .= '<script>';
 		$script_output .= 'jQuery(function($) {';
-    		$script_output .= '$(".carousel").carousel({';
-			  $script_output .= 'interval: 3000';
-			  // $script_output .= 'pause: "hover"';
+    		$script_output .= '$(".bootstrap-carousel").carousel({';
+			  $script_output .= 'interval: '.$timeout.', ';
+			  $script_output .= 'pause: "hover"';
 			$script_output .= '})';
 		$script_output .= '});';
 	$script_output .= '</script>';
@@ -98,18 +144,21 @@ function kjd_bootstrap_slider_hook(){
 
 /////////////////////////////
 //		responsive slider
-/////////////////////////////
+
 function kjd_add_responsive_slider_script(){
 	wp_enqueue_style("slider", $root."/scripts/responsiveslider/responsiveslides.css");	
 	wp_enqueue_script("slider", $root."/scripts/responsiveslider/responsiveslides.min.js", false, "1.0", true);  
 
 }
 
-function kjd_responsive_slider_hook(){
+function kjd_responsive_slider_hook($timeout){
+	$cyclerOptions = get_option('kjd_cycler_misc_settings');
+	$timeout = $cyclerOptions['kjd_cycler_misc']['timeout'] ? $cyclerOptions['kjd_cycler_misc']['timeout'] : 4000 ;
+
 	$script_output = '';
 	$script_output .= '<script>';
 		$script_output .= 'jQuery(function() {';
-    		$script_output .= 'jQuery(".rslides").responsiveSlides();';
+    		$script_output .= 'jQuery(".rslides").responsiveSlides({ timeout: '.$timeout.'});';
 		$script_output .= '});';
 	$script_output .= '</script>';
 
@@ -118,7 +167,7 @@ function kjd_responsive_slider_hook(){
 
 ////////////////////////
 // Nivo Slider Settingsion: "fade",
-////////////////////////
+
 function kjd_nivo_settings_hook(){	
 
 	$cyclerOptions = get_option('kjd_cycler_misc_settings');
@@ -159,7 +208,7 @@ function kjd_nivo_settings_hook(){
 
 /////////////////////
 // piecemaker
-/////////////////////
+
 function kjd_piecemakerSettings($root, $plugin, $theme, $effect, $timeout){ 
 
 
@@ -168,7 +217,7 @@ function kjd_piecemakerSettings($root, $plugin, $theme, $effect, $timeout){
 
 /////////////////////
 // flexslider
-/////////////////////
+
 function kjd_flexslider_settings_hook(){
 
 		$cyclerOptions = get_option('kjd_cycler_misc_settings');
@@ -240,4 +289,7 @@ function kjd_singleImage(){
 
 }
 
-function kjd_noImage(){}
+function kjd_noImage(){
+
+
+}

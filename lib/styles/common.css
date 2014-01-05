@@ -454,6 +454,13 @@ div.img-circle img{
 		margin-top: 6px;
 	}
 
+
+	#navbar .navbar .container .btn-navbar,
+	#navbar .container #sidr-toggle{
+		margin-right: 20px;
+		
+	}
+
 	#sidr ul.sub-menu {
 		list-style-type: none;
 		margin: 0;
@@ -594,9 +601,16 @@ div.img-circle img{
 		margin-left: 0;
 	}
 
+	#navbar .navbar .container .btn-navbar,
+	#navbar .container #sidr-toggle{
+		margin-right: 20px;
+		
+	}
+	
 	#navbar .collapse .nav{
 		float: none;
 	}
+
 
 	#imageSliderWrapper.container > .container,
 	#header.container > .container,

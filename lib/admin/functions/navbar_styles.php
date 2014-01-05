@@ -157,7 +157,7 @@ $navbar_markup .=".nav .divider-vertical{
 	//confines layout to like, 960 and has border radius
 	if($kjd_section_misc_settings['navbar_style'] =="contained"){
 		$navbar_markup .='.navbar-inner{padding:0;}';
-		$navbar_markup .='.navbar-inner .nav li:first-child a{border-radius:4px 0 0 4px;}';
+		// $navbar_markup .='.navbar-inner .nav li:first-child a{ border-radius:4px 0 0 4px;}';
 	}
 	//stickys to top of page
 	if($kjd_section_misc_settings['navbar_style'] =="sticky-top"){

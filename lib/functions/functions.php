@@ -72,7 +72,7 @@ function kjd_get_layout_settings($template = NULL) {
 					
 					$options = get_option('kjd_page_layout_settings');
 					$layoutSettings = $options['kjd_page_layouts'];
-				// $is_page_template = true;
+				$is_page_template = true;
 					
 						if ( is_page_template('pageTemplate1.php') ){
 
@@ -117,7 +117,7 @@ function kjd_get_layout_settings($template = NULL) {
 			}
 			
 	if( !empty($layoutSettings[$template]) && ($layoutSettings[$template]['toggled'] == 'true' || $is_page_template == true) ){
-		// echo $template;die();
+		
 		$layoutSettings = $layoutSettings[$template];
 
 	}else{

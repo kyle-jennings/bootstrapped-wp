@@ -298,6 +298,8 @@ function kjd_theme_widget_areas_callback(){
 
 
 function kjd_custom_styles_callback(){
+	kjd_build_theme_css();
+	
 	settings_fields('kjd_custom_styles_settings');
 	$options = get_option('kjd_custom_styles_settings');
 	$options = $options['kjd_custom_styles'];
