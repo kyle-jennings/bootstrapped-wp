@@ -5,6 +5,7 @@
 if(is_admin()){
 	include(dirname(dirname(__FILE__)).'/admin/init.php' );
 	include(dirname(dirname(__FILE__)).'/update/update.php');
+
 }
 
  require_once('kjd_bootstrap_menus.php');

@@ -48,7 +48,7 @@
 
 		}elseif($plugin =="single image"){
 		
-			kjd_single_image_callback();
+			kjd_single_image_callback($images, $full_width );
 			
 		}
 
@@ -64,22 +64,31 @@
 
 <?php
 
-function kjd_single_image_callback() {
+function kjd_single_image_callback( $images, $full_width = null ) {
 
+
+$image = $images[0]['url'];
+// $style = ($full_width  == 'true') ? 'style="width: 100%; height: auto;"' : 'style="margin: 0 auto; display: block;"' ;
+$style = 'style="width: 100%; height: auto;"';
 ?>
-	<div class="singleImage">
-		<?php if(!empty($images[0]['url'])){ ?>
-		<img alt="<?php echo '0'; ?>" src="<?php echo $images[0]['url'];?>" />
-			<?php if(!empty($images[0]['text'])){ ?>
-		<div class="caption">
-			<p>
-				<?php echo $images[0]['text'];?>
-			</p>
-		</div>
-		<?php } ?>
-		<?php }else{
-			 echo "<div id='emptyImage'></div>"; 
-		} ?>
+	<div class="single-image">
+
+		<img alt="<?php echo '0'; ?>" src="<?php echo $image; ?>" <?php echo $style; ?> />
+		
+		<?php 
+		if( !empty($images[0]['text']) ){
+
+			$caption =  '<div class="nivo-caption">';
+				$caption .=  '<p>';
+					$caption .=  $images[0]['text'];;
+				$caption .=  '</p>';
+			$caption .=  '</div>';
+
+			// echo $caption;
+		} 
+
+		?>
+
 
 	</div>
 

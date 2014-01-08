@@ -201,10 +201,8 @@ $navbar_markup .= '.navbar .nav li.dropdown.open > .dropdown-toggle,';
 $navbar_markup .= '.navbar .nav li.dropdown.active > .dropdown-toggle,';
 $navbar_markup .= '.navbar .nav li.dropdown.open.active > .dropdown-toggle,';
 $navbar_markup .= '.navbar .nav > .active > a,';
-$navbar_markup .= '.navbar .nav > .active > a:hover,';
 $navbar_markup .= '.navbar .nav > .active > a:focus,';
 $navbar_markup .= '.dropdown-menu > .active > a,';
-$navbar_markup .= '.dropdown-menu > .active > a:hover,';
 $navbar_markup .= '.dropdown-menu > .active > a:focus {';
 
 	if( $kjd_section_LinkActive['bg_color']){
@@ -234,6 +232,8 @@ $navbar_markup .= '}';
  ------------------------------*/
 
 // the link
+ $navbar_markup .= '.navbar .nav > .active > a:hover,';
+$navbar_markup .= '.dropdown-menu > .active > a:hover,';
 $navbar_markup .= '.navbar .nav > li > a:hover,';
 $navbar_markup .= '.navbar .nav > li > a:focus {';
 

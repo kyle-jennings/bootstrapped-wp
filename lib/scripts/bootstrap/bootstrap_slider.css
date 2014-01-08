@@ -14,7 +14,7 @@
   width: 100%;
   z-index:1;
 }
-  .carousel .slider-copy-wrapper 
+  .carousel .slider-copy-wrapper, 
   .bootstrap-carousel .slider-copy-wrapper {
       position: absolute;
 
@@ -34,4 +34,3 @@
     padding: 40px 0 0;
     /*width: 90%;*/
   }
-

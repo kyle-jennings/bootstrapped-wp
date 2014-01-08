@@ -28,13 +28,13 @@ $effects = '';
 }
 
 ?>
-	<h3>Image Cycler settings</h3>
+	<h3>Image Banner settings</h3>
 
 <!-- ******** -->
 <!-- buttons  -->
 <!-- ******** -->
 	<div class="option">
-		<label>Enable Image Cycler?</label>
+		<label>Enable Image Banner?</label>
 		<select name="kjd_cycler_misc_settings[kjd_cycler_misc][enable]">
 			<option value="true"<?php selected( $options['kjd_cycler_misc']['enable'], $plugin, true) ?>>
 			Yes</option>
@@ -44,7 +44,7 @@ $effects = '';
 	</div>
 
 	<div class="option">
-		<label>Cycler Plugin</label>
+		<label>Banner Plugin</label>
 		<select name="kjd_cycler_misc_settings[kjd_cycler_misc][plugin]" class="pluginSelect pre_option">
 			<?php foreach($plugins as $plugin){ ?>
 				<option value="<?php echo $plugin; ?>"
@@ -372,7 +372,7 @@ function kjd_cycler_images_callback(){
 
 	$mce_instance = $cycler[$key]['text'];
 	$mce_ID = 'kjd_cycler_images_settings[kjd_cycler_images]['.$key.'][text]';
-	$style = '.mceIframeContainer{background-image:url('. $cycler[$key]['url'] .'); background-size:cover; }';
+	// $style = '.mceIframeContainer{background-image:url('. $cycler[$key]['url'] .'); background-size:cover; }';
 	$settings = array(
 				'textarea_rows' =>4,
 				'editor_class'=>'whiteBackground',

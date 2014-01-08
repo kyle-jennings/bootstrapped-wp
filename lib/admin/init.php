@@ -122,8 +122,8 @@ function kjd_setup_theme_menus() {
 		// customize cycler
     add_submenu_page(
 		'kjd_theme_settings',   // belongs to id
- 		'Customize Frontpage Cycler', // title bar
-		'Image Cycler', // menu title
+ 		'Customize Frontpage Image Banner', // title bar
+		'Image Banner', // menu title
 		'manage_options',   //member access
 	    'kjd_cycler_settings', // id for submenu
 		create_function('', 'kjd_settings_display("cycler");')
