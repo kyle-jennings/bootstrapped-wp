@@ -402,6 +402,8 @@ foreach($sections as $section)
 
 	} //end if not body, html, cycler, or sidr drawer
 
+
+
 	add_settings_section(
 		'kjd_'.$section.'_misc_settings_section', // ID hook name
 		null,
@@ -416,4 +418,6 @@ foreach($sections as $section)
 			'kjd_'.$section.'_misc_settings_section'
 		);
 	register_setting('kjd_'.$section.'_misc_settings','kjd_'.$section.'_misc_settings');
+
+
 }//end loop

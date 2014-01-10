@@ -152,9 +152,10 @@ add_action( 'init', 'kjd_set_featured_image_size' );
 function kjd_add_assets(){
 
 	// set variables
-	$navbarSettings = get_option('kjd_navbar_misc_settings');
-	$navbarSettings = $navbarSettings['kjd_navbar_misc'];
-	$sideNav = $navbarSettings['side_nav'];
+	$mobileNavSettings = get_option('kjd_mobileNav_misc_settings');
+	$mobileNavSettings = $mobileNavSettings['kjd_mobileNav_misc'];
+	$sideNav = $mobileNavSettings['side_nav'];
+
 	$generalSettings = get_option('kjd_theme_settings');
 	$responsive = $generalSettings['kjd_responsive_design'];
 

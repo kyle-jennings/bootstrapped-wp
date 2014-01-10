@@ -113,10 +113,34 @@ function set_width($template,$frontpage_area = null)
 //////////////////////////////////////////
 // header, footer, front page areas, index
 //////////////////////////////////////////
+// print('<pre>');
+// print_r($layouts);
+// print('</pre>');
+
+$wrap_entire_widget = 'false';
+$wrap_inner_widget = 'false';
 
 $templates = array('header_widgets', 'front_page_widget_area_1', 'front_page_widget_area_2', 'footer_widgets', 'default');
 foreach($templates as $template){
+
+
+
+	// $start_outer_well = '';
+	// $end_outer_well = '';
 	
+	// $start_inner_well = '';
+	// $end_inner_well = '';
+	// // set inner well if needed 
+	// if(  $wrap_entire_widget == 'true') {
+	// 	$start_outer_well .= '<div class="well">';
+	// 	$end_outer_well .= '</div>';
+	// }
+
+	// if( $wrap_inner_widget == 'true' ){
+	// 	$start_inner_well .= '<div class="well">';
+	// 	$end_inner_well .= '</div>';
+	// }
+
 	if($template == 'front_page_widget_area_1' || $template == 'front_page_widget_area_2' ){
 				
 		$temp = array('name' => 'front_page_widgets', 'position' =>"top");
@@ -129,16 +153,16 @@ foreach($templates as $template){
 		$width = set_width($layouts[$template]);
 	}
 
-	
+
 	register_sidebar(
 		 array(
 			'name' => ucwords(str_replace('_',' ',$template)),
 			'id' => $template,
 			'description' => 'Widgets for the ' .ucwords(str_replace('_',' ',$template)),
-			'before_widget' =>'<div class="widget '.$width.'">',
+			'before_widget' =>'<div class="widget '.$width.'">'.$start_outer_well,
 			'before_title' => '<h3>',
-			'after_title' => '</h3>',
-			'after_widget' => '</div>'
+			'after_title' => '</h3>'.$start_inner_well,
+			'after_widget' => $end_inner_well.$end_outer_well.'</div>'
 		)
 	);
 

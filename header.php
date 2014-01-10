@@ -46,7 +46,10 @@
 	$options = get_option('kjd_navbar_misc_settings');
 	$navbarSettings = $options['kjd_navbar_misc'];
 	$alignNavWithLogo = $navbarSettings['kjd_navbar_pull_up'];
-	$sideNav = $navbarSettings['side_nav'];
+
+	$mobileNavSettings = get_option('kjd_mobileNav_misc_settings');
+	$mobileNavSettings = $mobileNavSettings['kjd_mobileNav_misc'];
+	$sideNav = $mobileNavSettings['side_nav'];
 
 	$useMast = $headerSettings['use_mast'];
 	$useLogo = $headerSettings['use_logo'];

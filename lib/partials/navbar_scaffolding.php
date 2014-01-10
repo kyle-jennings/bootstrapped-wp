@@ -1,17 +1,21 @@
 <?php 
 
-$navbarSettings = get_option('kjd_navbar_misc_settings');
-$navSettings = $navbarSettings['kjd_navbar_misc'];
-$sideNav = $navSettings['side_nav'];
 $root = get_stylesheet_directory_uri(); 
 
-	
-	
-$navbarSettings = $navbarSettings['kjd_navbar_misc'];
-$navbarLinkStyle = $navbarSettings['navbar_link_style'];
-$form = $navbarSetting['form_type'];
 
+$navbarSettings = get_option('kjd_navbar_misc_settings');
+$navbarSettings = $navbarSettings['kjd_navbar_misc'];
+
+$navbarLinkStyle = $navbarSettings['navbar_link_style'];
 $confineNavbarBackground = $navbarSettings['kjd_navbar_confine_background'];
+// $form = $navbarSetting['form_type'];
+
+// mobile shit
+$mobileNavSettings = get_option('kjd_mobileNav_misc_settings');
+$mobileNavSettings = $mobileNavSettings['kjd_mobileNav_misc'];
+
+$sideNav = $mobileNavSettings['side_nav'];
+
 
 	if($navbarSettings['hideNav'] != "true"){
 		

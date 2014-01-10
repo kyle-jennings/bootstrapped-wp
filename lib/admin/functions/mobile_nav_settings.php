@@ -91,12 +91,14 @@ function kjd_build_mobile_styles_callback()
 			$type = $kjd_section_background_colors['gradient'];
 
 			// Misc Settings
-			$navSettings = get_option('kjd_navbar_misc_settings');
+			$mobileNav_misc = get_option('kjd_mobileNav_misc_settings');
+			
 			$kjd_section_misc_settings = kjd_get_temp_settings(	$section,
-																$navSettings['kjd_navbar_misc'],
+																$mobileNav_misc['kjd_mobileNav_misc'],
 																$preview, 
 																'kjd_section_misc' 
 																);
+
 			$use_mobile_background = $kjd_section_misc_settings['dropdown_bg'];
 			$using_sidr = $kjd_section_misc_settings['side_nav'];
 
@@ -104,7 +106,14 @@ function kjd_build_mobile_styles_callback()
 /* ---------------------------------------------------------
 				Settings
 ------------------------------------------------------------ */
-	if($kjd_section_misc_settings['navbar_alignment'] =='center'){
+	$navbar_misc = get_option('kjd_navbar_misc_settings');
+	$kjd_navbar_misc_settings = kjd_get_temp_settings(	$section,
+														$navbar_misc['kjd_navbar_misc'],
+														$preview, 
+														'kjd_section_misc' 
+														);
+
+	if($kjd_navbar_misc_settings['navbar_alignment'] =='center'){
 
 		$media_979_markup .='#navbar ul.nav > li{ display:block; float:none;}';
 	}
@@ -112,10 +121,56 @@ function kjd_build_mobile_styles_callback()
 /* ---------------------------------------------------------
 				Backgrounds and borders
 ------------------------------------------------------------ */
-if($use_mobile_background == 'true' && $using_sidr == 'true'){
+if( $use_mobile_background == 'true' ){
 
-	$media_979_markup .= '#navbar .nav-collapse.collapse > .nav,';
-	$media_979_markup .= '.sidr {';
+	$media_979_markup .= '#navbar .nav-collapse.collapse > .nav{';
+
+
+		// bg color and wallpaper
+		$media_979_markup .= background_type_callback($type,$kjd_section_background_colors, 'mobileNav');
+		$media_979_markup .= wallpaper_callback($kjd_section_background_wallpaper);
+
+		// borders
+		foreach($kjd_section_borders as $k =>$v){
+			$media_979_markup .= borderSettingsCallback($k, $v);	
+		}
+
+		//border radius function
+		foreach($kjd_section_border_radii as $k =>$v){
+			$media_979_markup .= borderRadiusCallback($k, $v);	
+		}
+
+	$media_979_markup .= '}';
+
+// print('<pre>');	
+// print_r($kjd_section_background_colors); die();
+
+	$media_979_markup .= "#navbar .nav-collapse.collapse > .nav:before {";
+		$media_979_markup .= "border-bottom: 7px solid ".$kjd_section_background_colors['color'].";";
+		$media_979_markup .= "border-left: 7px solid rgba(0, 0, 0, 0);";
+		$media_979_markup .= "border-right: 7px solid rgba(0, 0, 0, 0);";
+		$media_979_markup .= "content: '';";
+		$media_979_markup .= "display: inline-block;";
+		$media_979_markup .= "right: 9px;";
+		$media_979_markup .= "position: absolute;";
+		$media_979_markup .= "top: -7px;";
+	$media_979_markup .= "}";
+
+	$media_979_markup .= "#navbar .nav-collapse.collapse > .nav:after {";
+		$media_979_markup .= "border-bottom: 7px solid ".$kjd_section_background_colors['color'].";";
+		$media_979_markup .= "border-left: 7px solid rgba(0, 0, 0, 0);";
+		$media_979_markup .= "border-right: 7px solid rgba(0, 0, 0, 0);";
+		$media_979_markup .= "content: '';";
+		$media_979_markup .= "display: inline-block;";
+		$media_979_markup .= "right: 9px;";
+		$media_979_markup .= "position: absolute;";
+		$media_979_markup .= "top: -7px;";
+	$media_979_markup .= "}";
+}
+
+if( $using_sidr == 'true'){
+
+	$media_979_markup .= '.sidr{';
 
 		// bg color and wallpaper
 		$media_979_markup .= background_type_callback($type,$kjd_section_background_colors, 'mobileNav');
@@ -138,20 +193,11 @@ if($use_mobile_background == 'true' && $using_sidr == 'true'){
 
 	if($use_mobile_background == 'true' && $using_sidr != 'true'){
 
-		$media_979_markup .= "#navbar .nav-collapse.collapse > .nav
-			  {    
-			      background-clip: padding-box;
-			      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-			      float: right;
-			      left: 0;
-			      list-style: none outside none;
-			      margin: 10px 0 0;
-			      min-width: 160px;
-			      padding: 5px 0;
-			      z-index: 1000;
-			      width: 99%;";
+		$media_979_markup .= "#navbar .nav-collapse.collapse > .nav { ";
+			      $media_979_markup .= "background-clip: padding-box;";
+			      $media_979_markup .= "margin-top:10px;";
+			      $media_979_markup .= "width: 99%;";
 		$media_979_markup .=  " } ";
-
 	}
 
 

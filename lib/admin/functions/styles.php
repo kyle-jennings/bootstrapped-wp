@@ -534,7 +534,7 @@ switch($section)
 
 	if($section =='footer'){
 
-		$height = !empty($kjd_section_misc_settings['height']) ? $kjd_section_misc_settings['height'] : '300' ;
+		$height = !empty($kjd_section_misc_settings['height']) ? $kjd_section_misc_settings['height'] : '' ;
 		$sectionArea_markup .= "height:".$height."px;";	
 
 	}
@@ -1598,7 +1598,7 @@ function miscStylesCallback(){
 	//get footer height
 	$footerOptions = get_option('kjd_footer_misc_settings');
 	$footerOptions = $footerOptions['kjd_footer_misc'];
-	$footerHeight = !empty($footerOptions["height"]) ? $footerOptions["height"] : '300' ;
+	$footerHeight = !empty($footerOptions["height"]) ? $footerOptions["height"] : '' ;
 	if($footerOptions['kjd_footer_confine_background'] =='true'){
 		$footerHeight = $footerHeight+'40';
 	}

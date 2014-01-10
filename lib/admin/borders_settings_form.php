@@ -2,14 +2,16 @@
 	settings_fields('kjd_'.$section.'_borders_settings');
 	$options = get_option('kjd_'.$section.'_borders_settings'); 
 	
-	$mobile_background = get_option('kjd_navbar_misc_settings');
-	$mobile_background = $mobile_background['kjd_navbar_misc'];
+	$mobileNavSettings = get_option('kjd_mobileNav_misc_settings');
+	$mobileNavSettings = $mobileNavSettings['kjd_mobileNav_misc'];
+
+	$sideNav = $mobileNavSettings['side_nav'];
 
 
 	$borderRadius = $options['kjd_'.$section.'_border_radius'];
 
 	$confinePage ='true';
-	if($section =='mobileNav' && $mobile_background['side_nav'] == 'true') {
+	if($section =='mobileNav' && $sideNav == 'true') {
 		$borders = array("right");
 
 	}else{

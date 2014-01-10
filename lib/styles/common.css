@@ -429,6 +429,11 @@ div.img-circle img{
 		display:block;
 	}
 
+	#navbar .collapse .nav{
+		width: auto;
+		padding: 10px 20px;
+	}
+
 	.navbar .nav > li.open > .dropdown-menu:before,
 	.navbar .nav > li.open > .dropdown-menu:after {
 		display: none;
@@ -558,11 +563,11 @@ div.img-circle img{
 @media (max-width: 767px) {
 	
 
-		#navbar{
-			clear: both;
-			float: none;
-			margin-top: 0;
-		}
+	#navbar{
+		clear: both;
+		float: none;
+		margin-top: 0;
+	}
 
 	.nav-collapse .dropdown-menu{
 		border-width: 0;
@@ -590,7 +595,8 @@ div.img-circle img{
 
 
 	#navbar .collapse .nav{
-	width: 100%;
+		width: 100%;
+		padding: 10px 0;
 	}
 
 	.navbar .dropdown-menu{background:transparent !important;}

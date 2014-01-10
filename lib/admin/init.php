@@ -70,16 +70,27 @@ add_action('admin_init', 'kjd_initialize_kjd_settings');
 function kjd_setup_theme_menus() {  
 
 	$options = get_option('kjd_component_settings');
-    
+	// print('<pre>');
+ //   print_r($GLOBALS['menu']);
+	// print('</pre>');
 
     add_menu_page(
 		'Theme settings', //title bar
 		'BSWP Home', // menu bar title
 		'manage_options',  //member access 
 		'kjd_theme_settings', // id for menu
-		'kjd_theme_settings_display' //function
+		'kjd_theme_settings_display', //function
+		null,
+		null
 	);  
-
+    add_submenu_page(
+		'kjd_theme_settings',   // belongs to id
+  		'General Settings', // title bar
+		'General Settings', // menu title
+		'manage_options',   //member access
+		'kjd_theme_settings', // id for submenu
+		'kjd_theme_settings_display' //function
+	);   
 		
 		// customize header
     add_submenu_page(

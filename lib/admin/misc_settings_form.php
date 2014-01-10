@@ -42,9 +42,63 @@ if($section =="header"){
 -------------------------------------------- */
 
 function kjd_mobileNav_misc_settings_callback(){
-	settings_fields( 'kjd_mpobileNav_misc_settings' );
-	$options = get_option('kjd_mpobileNav_misc_settings');
-	$options = $options['kjd_mpobileNav_misc'];
+
+	settings_fields( 'kjd_mobileNav_misc_settings' );
+
+	$options = get_option('kjd_mobileNav_misc_settings');
+	$options = $options['kjd_mobileNav_misc'];
+
+?>
+
+	<div class="option">
+		<label>Side Sliding Nav</label>
+		<select name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][side_nav]">
+				<option value="false" <?php selected( $options['side_nav'], 'false', true) ?>>No</option>
+				<option value="true" <?php selected( $options['side_nav'], 'true', true) ?>>Yes</option>
+		</select>
+	</div>
+
+	<div class="option">
+		<label>Dropdown Background on Mobile?</label>
+		<select name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][dropdown_bg]">
+			<option value="true" <?php selected( $options['dropdown_bg'], 'true', true) ?>>Yes</option>
+			<option value="false" <?php selected( $options['dropdown_bg'], 'false', true ) ?>>No</option>
+		</select>
+	</div>
+
+	<h3>Open Menu Button Settings</h3>
+	<div class="color_option option" style="position: relative;">
+		<label>Background</label>
+
+		<input class="minicolors" name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][menu_btn_bg]" 
+			value="<?php echo  $options['menu_btn_bg'] ?  $options['menu_btn_bg'] : ''; ?>"/>
+		<a class="clearColor">Clear</a>
+	</div>
+	<div class="color_option option" style="position: relative;">
+		<label>Border</label>
+
+		<input class="minicolors" name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][menu_btn_border]" 
+			value="<?php echo $options['menu_btn_border'] ? $options['menu_btn_border'] : ''; ?>"/>
+		<a class="clearColor">Clear</a>
+	</div>
+
+	<div class="color_option option" style="position: relative;">
+		<label>Background - hovered/active</label>
+
+		<input class="minicolors" name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][menu_btn_bg_hovered]" 
+			value="<?php echo  $options['menu_btn_bg_hovered'] ?  $options['menu_btn_bg_hovered'] : ''; ?>"/>
+		<a class="clearColor">Clear</a>
+	</div>
+	<div class="color_option option" style="position: relative;">
+		<label>Border - hovered/active</label>
+
+		<input class="minicolors" name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][menu_btn_border_hovered]" 
+			value="<?php echo $options['menu_btn_border_hovered'] ? $options['menu_btn_border_hovered'] : ''; ?>"/>
+		<a class="clearColor">Clear</a>
+	</div>
+<?php
+
+
 }
 
 /* --------------------------------------------
@@ -291,58 +345,7 @@ function kjd_navbar_misc_settings_callback($section){
 
 		</div>
 
-		<div class='options-wrapper'>
-			<h2>Mobile Settings</h2>
-
-			<div class="option">
-				<label>Side Sliding Nav</label>
-				<select name="kjd_navbar_misc_settings[kjd_navbar_misc][side_nav]">
-						<option value="false" <?php selected( $options['side_nav'], 'false', true) ?>>No</option>
-						<option value="true" <?php selected( $options['side_nav'], 'true', true) ?>>Yes</option>
-				</select>
-			</div>
-
-			<div class="option">
-				<label>Dropdown Background on Mobile?</label>
-				<select name="kjd_navbar_misc_settings[kjd_navbar_misc][dropdown_bg]">
-					<option value="true" <?php selected( $options['dropdown_bg'], 'true', true) ?>>Yes</option>
-					<option value="false" <?php selected( $options['dropdown_bg'], 'false', true ) ?>>No</option>
-				</select>
-			</div>
-
-			<h3>Open Menu Button Settings</h3>
-			<div class="color_option option" style="position: relative;">
-				<label>Background</label>
-
-				<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_bg]" 
-					value="<?php echo  $options['menu_btn_bg'] ?  $options['menu_btn_bg'] : ''; ?>"/>
-				<a class="clearColor">Clear</a>
-			</div>
-			<div class="color_option option" style="position: relative;">
-				<label>Border</label>
-
-				<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_border]" 
-					value="<?php echo $options['menu_btn_border'] ? $options['menu_btn_border'] : ''; ?>"/>
-				<a class="clearColor">Clear</a>
-			</div>
-
-			<div class="color_option option" style="position: relative;">
-				<label>Background - hovered/active</label>
-
-				<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_bg_hovered]" 
-					value="<?php echo  $options['menu_btn_bg_hovered'] ?  $options['menu_btn_bg_hovered'] : ''; ?>"/>
-				<a class="clearColor">Clear</a>
-			</div>
-			<div class="color_option option" style="position: relative;">
-				<label>Border - hovered/active</label>
-
-				<input class="minicolors" name="kjd_navbar_misc_settings[kjd_navbar_misc][menu_btn_border_hovered]" 
-					value="<?php echo $options['menu_btn_border_hovered'] ? $options['menu_btn_border_hovered'] : ''; ?>"/>
-				<a class="clearColor">Clear</a>
-				</div>
-
-
-		</div>
+	
 <?php
 }
 

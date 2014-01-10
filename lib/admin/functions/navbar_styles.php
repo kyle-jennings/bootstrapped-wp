@@ -75,40 +75,39 @@ function navbarStylesCallback( $preview ){
 										);
 
 	$kjd_section_LinkVisted =  kjd_get_temp_settings(	
-												'navbar',
-												$navbarLinksOptions['kjd_navbar_linkVisited'],
-												$preview,
-												'kjd_section_linkVisited'
+											'navbar',
+											$navbarLinksOptions['kjd_navbar_linkVisited'],
+											$preview,
+											'kjd_section_linkVisited'
 										);
 
 
 	/* forms and wells */
 	$navbarFormsOptions = get_option('kjd_navbar_forms_settings');
 	$navbarForms = kjd_get_temp_settings(	
-												'navbar',
-												$navbarFormsOptions['kjd_navbar_forms'],
-												$preview,
-												'kjd_section_forms_settings'
-										);
+										'navbar',
+										$navbarFormsOptions['kjd_navbar_forms'],
+										$preview,
+										'kjd_section_forms_settings'
+									);
 
  	$navbar_markup ='';
  	$dropdown_markup ='';
 	$collapsed_markup = '';
 
-$navbar_markup .=".nav .divider-vertical{
-	border-left: 1px solid ".$navbarBackgroundColors['endcolor'].";
-	border-right: 1px solid ".$navbarBackgroundColors['color'].";
-}";
+	$navbar_markup .=".nav .divider-vertical{
+		border-left: 1px solid ".$navbarBackgroundColors['endcolor'].";
+		border-right: 1px solid ".$navbarBackgroundColors['color'].";
+	}";
 
-// Positions navbar
-
+	// Positions navbar
 	if($kjd_section_misc_settings['navbar_alignment'] =='left'){
 		
 		$navbar_markup .='#navbar .nav{ float:left;}';
 	
 	}elseif($kjd_section_misc_settings['navbar_alignment'] =='center'){
 	
-		$navbar_markup .='#navbar ul.nav {margin:0 auto; text-align: center; width:100%;}';
+		$navbar_markup .='#navbar ul.nav { margin:0 auto; text-align: center; width:100%;}';
 		$navbar_markup .='#navbar ul.nav > li{ display:inline-block; float:none;}';
 	
 	}elseif($kjd_section_misc_settings['navbar_alignment'] =='right'){
