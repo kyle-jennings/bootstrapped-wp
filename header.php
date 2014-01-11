@@ -49,7 +49,10 @@
 
 	$mobileNavSettings = get_option('kjd_mobileNav_misc_settings');
 	$mobileNavSettings = $mobileNavSettings['kjd_mobileNav_misc'];
-	$sideNav = $mobileNavSettings['side_nav'];
+	$override_nav = $mobileNavSettings['override_nav'];
+	if( $override_nav == 'true') {
+		$mobilenav_style = $mobileNavSettings['mobilenav_style'];
+	}
 
 	$useMast = $headerSettings['use_mast'];
 	$useLogo = $headerSettings['use_logo'];
@@ -108,7 +111,7 @@
 <body>
 	<?php 
 
-if($sideNav =='true'){
+if($mobilenav_style =='sidr'){
 	echo '<div id="sidr">';
 
 	// if location is set, else use fallback

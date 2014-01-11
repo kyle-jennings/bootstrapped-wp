@@ -14,7 +14,10 @@ $confineNavbarBackground = $navbarSettings['kjd_navbar_confine_background'];
 $mobileNavSettings = get_option('kjd_mobileNav_misc_settings');
 $mobileNavSettings = $mobileNavSettings['kjd_mobileNav_misc'];
 
-$sideNav = $mobileNavSettings['side_nav'];
+$override_nav = $mobileNavSettings['override_nav'];
+if( $override_nav == 'true') {
+	$mobilenav_style = $mobileNavSettings['mobilenav_style'];
+}
 
 
 	if($navbarSettings['hideNav'] != "true"){
@@ -58,7 +61,7 @@ $sideNav = $mobileNavSettings['side_nav'];
 				$navbar_inner .= '<div class="container">';
 			}
 			
-			if($sideNav == 'true'){
+			if($mobilenav_style =='sidr'){
 				$navbar_inner .= '<a id="sidr-toggle" class="btn btn-navbar">
 				    <span class="icon-bar"></span>
 				    <span class="icon-bar"></span>

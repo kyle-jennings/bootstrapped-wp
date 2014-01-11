@@ -381,8 +381,16 @@ function kjd_get_theme_options($preview = null){
 	include('navbar_styles.php');
 	$navArea_markup = navbarStylesCallback( $preview );
 
-	include('mobile_nav_settings.php');
-	$media_979_markup = kjd_build_mobile_styles_callback();
+	$mobileNavSettings = get_option('kjd_mobileNav_misc_settings');
+	$mobileNavSettings = $mobileNavSettings['kjd_mobileNav_misc'];
+	$override_nav = $mobileNavSettings['override_nav'];
+	
+	if( $override_nav == 'true') {
+
+		include('mobile_nav_settings.php');
+		$media_979_markup = kjd_build_mobile_styles_callback();
+	
+	}
 
 
 /* ----------------------------------------------------------------
@@ -419,7 +427,6 @@ switch($section)
 	case 'dropdown-menu':
 		$section_name = '.dropdown-menu';
 		break;
-
 	case 'cycler':
 		$section_name = '#imageSliderWrapper';
 		break;
@@ -541,6 +548,7 @@ switch($section)
 	/* ----------------------------------------------------------------------------- *
 							background stuff
 	----------------------------------------------------------------------------- */
+
 
 	$sectionArea_markup .= background_type_callback($type,$kjd_section_background_colors);
 
@@ -942,13 +950,13 @@ function borderSettingsCallback($position, $border){
 	$borderSize = $border['size'];
 
 	if(isset($borderStyle) && $borderStyle!="none"){
-		$border_style_markup .= 'border-'.$position.'-style:'.$borderStyle.' !important;';
+		$border_style_markup .= 'border-'.$position.'-style:'.$borderStyle.';';
 
 		if (isset($borderColor)&& !empty($borderColor)){
-			$border_style_markup .= 'border-'.$position.'-color:'.$borderColor.' !important;';
+			$border_style_markup .= 'border-'.$position.'-color:'.$borderColor.';';
 		}
 		if (isset($borderSize) && !empty($borderSize)){
-			$border_style_markup .= 'border-'.$position.'-width:'.$borderSize.' !important;'; 
+			$border_style_markup .= 'border-'.$position.'-width:'.$borderSize.';'; 
 		}
 	}
 

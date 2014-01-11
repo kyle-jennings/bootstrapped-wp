@@ -465,7 +465,12 @@ div.img-circle img{
 		margin-right: 20px;
 		
 	}
-
+	
+	#navbar ul.nav > li{ 
+		display:block; 
+		float:none;
+	}
+	
 	#sidr ul.sub-menu {
 		list-style-type: none;
 		margin: 0;
@@ -562,6 +567,10 @@ div.img-circle img{
 
 @media (max-width: 767px) {
 	
+	#navbar ul.nav > li{ 
+		display:block; 
+		float:none;
+	}
 
 	#navbar{
 		clear: both;

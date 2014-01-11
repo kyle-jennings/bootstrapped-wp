@@ -154,7 +154,12 @@ function kjd_add_assets(){
 	// set variables
 	$mobileNavSettings = get_option('kjd_mobileNav_misc_settings');
 	$mobileNavSettings = $mobileNavSettings['kjd_mobileNav_misc'];
-	$sideNav = $mobileNavSettings['side_nav'];
+	
+	$override_nav = $mobileNavSettings['override_nav'];
+	if( $override_nav == 'true') {
+		$mobilenav_style = $mobileNavSettings['mobilenav_style'];
+	}
+
 
 	$generalSettings = get_option('kjd_theme_settings');
 	$responsive = $generalSettings['kjd_responsive_design'];
@@ -166,7 +171,7 @@ function kjd_add_assets(){
 	wp_enqueue_script("jquery", $root."/scripts/jquery.js", false, "1.0", false);  
 	wp_enqueue_script("bootstrap", $root."/scripts/bootstrap.min.js", false, "1.0", true);  
 
-	if($sideNav =='true'){
+	if( $mobilenav_style == 'sidr' ){
 		wp_enqueue_script("sidr", $root."/scripts/sidr.min.js", false, "1.0", true);  
 		wp_enqueue_style("sidr", $root."/styles/sidr.css");
 	}
@@ -181,8 +186,8 @@ function kjd_add_assets(){
 	}
 
 	wp_enqueue_style("wpstyles", $root."/styles/wpstyles.css");	
-	wp_enqueue_style("scaffolding", $root."/styles/common.css");	
 	wp_enqueue_style("custom", $root."/styles/custom.css");
+	wp_enqueue_style("scaffolding", $root."/styles/common.css");	
 
 	// Add slider scripts if on front page
 	if( is_front_page() ){

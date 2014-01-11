@@ -59,13 +59,23 @@ function kjd_build_mobile_styles_callback()
 															);
 
 			$kjd_section_right_border = $kjd_section_borders['kjd_mobileNav_right_border'];
-
+			$kjd_section_top_border = $kjd_section_borders['kjd_mobileNav_top_border'];
+			$kjd_section_bottom_border = $kjd_section_borders['kjd_mobileNav_bottom_border'];
+			$kjd_section_left_border = $kjd_section_borders['kjd_mobileNav_left_border'];
+			
+			$kjd_borders = array(
+				'top'=>$kjd_section_top_border,
+				'right'=>$kjd_section_right_border,
+				'bottom'=>$kjd_section_bottom_border,
+				'left'=>$kjd_section_left_border
+			);
 			// border radius
 			$kjd_section_border_radius = kjd_get_temp_settings(	$section,
-																$options_border['kjd_'.$section.'_border_radius'],
+																$options_borders['kjd_'.$section.'_border_radius'],
 																$preview,
 																'kjd_section_border_radius'
-																);
+															);
+
 			$kjd_section_border_radii = array(
 				'top-left'=>$kjd_section_border_radius['top-left'],
 				'top-right'=>$kjd_section_border_radius['top-right'],
@@ -99,9 +109,21 @@ function kjd_build_mobile_styles_callback()
 																'kjd_section_misc' 
 																);
 
-			$use_mobile_background = $kjd_section_misc_settings['dropdown_bg'];
-			$using_sidr = $kjd_section_misc_settings['side_nav'];
+			// $use_dropdown = $kjd_section_misc_settings['dropdown_bg'];
+			// $using_sidr = $kjd_section_misc_settings['side_nav'];
 
+			$mobileNavSettings = $kjd_section_misc_settings;
+			$override_nav = $mobileNavSettings['override_nav'];
+			if( $override_nav == 'true') {
+
+				$mobilenav_style = $mobileNavSettings['mobilenav_style'];
+					
+				if( $mobilenav_style == 'dropdown') {
+					$use_dropdown = 'true';
+				}elseif( $mobilenav_style == 'sidr' ) {
+					$using_sidr = 'true';
+				}
+			}
 
 /* ---------------------------------------------------------
 				Settings
@@ -121,7 +143,20 @@ function kjd_build_mobile_styles_callback()
 /* ---------------------------------------------------------
 				Backgrounds and borders
 ------------------------------------------------------------ */
-if( $use_mobile_background == 'true' ){
+
+
+if( $use_dropdown == 'true' ){
+
+
+	$media_979_markup .= '#navbar .navbar-inner {';
+			$media_979_markup .= 'background: none;';
+			$media_979_markup .= 'background-color: none;';
+			$media_979_markup .= 'background-image: none;';
+			$media_979_markup .= 'border-top: 0 none transparent;';
+			$media_979_markup .= 'border-bottom: 0 none transparent;';
+			$media_979_markup .= 'box-shadow: 0 0 0 transparent;';
+	$media_979_markup .= '}';
+		
 
 	$media_979_markup .= '#navbar .nav-collapse.collapse > .nav{';
 
@@ -131,7 +166,7 @@ if( $use_mobile_background == 'true' ){
 		$media_979_markup .= wallpaper_callback($kjd_section_background_wallpaper);
 
 		// borders
-		foreach($kjd_section_borders as $k =>$v){
+		foreach($kjd_borders as $k =>$v){
 			$media_979_markup .= borderSettingsCallback($k, $v);	
 		}
 
@@ -146,14 +181,14 @@ if( $use_mobile_background == 'true' ){
 // print_r($kjd_section_background_colors); die();
 
 	$media_979_markup .= "#navbar .nav-collapse.collapse > .nav:before {";
-		$media_979_markup .= "border-bottom: 7px solid ".$kjd_section_background_colors['color'].";";
-		$media_979_markup .= "border-left: 7px solid rgba(0, 0, 0, 0);";
-		$media_979_markup .= "border-right: 7px solid rgba(0, 0, 0, 0);";
+		$media_979_markup .= "border-bottom: 8px solid ".$kjd_section_top_border['color'].";";
+		$media_979_markup .= "border-left: 8px solid rgba(0, 0, 0, 0);";
+		$media_979_markup .= "border-right: 8px solid rgba(0, 0, 0, 0);";
 		$media_979_markup .= "content: '';";
 		$media_979_markup .= "display: inline-block;";
-		$media_979_markup .= "right: 9px;";
+		$media_979_markup .= "right: 8px;";
 		$media_979_markup .= "position: absolute;";
-		$media_979_markup .= "top: -7px;";
+		$media_979_markup .= "top: -8px;";
 	$media_979_markup .= "}";
 
 	$media_979_markup .= "#navbar .nav-collapse.collapse > .nav:after {";
@@ -169,7 +204,7 @@ if( $use_mobile_background == 'true' ){
 }
 
 if( $using_sidr == 'true'){
-
+	
 	$media_979_markup .= '.sidr{';
 
 		// bg color and wallpaper
@@ -191,13 +226,14 @@ if( $using_sidr == 'true'){
 }
 
 
-	if($use_mobile_background == 'true' && $using_sidr != 'true'){
+	if($use_dropdown == 'true'){
 
-		$media_979_markup .= "#navbar .nav-collapse.collapse > .nav { ";
-			      $media_979_markup .= "background-clip: padding-box;";
-			      $media_979_markup .= "margin-top:10px;";
-			      $media_979_markup .= "width: 99%;";
-		$media_979_markup .=  " } ";
+		$media_979_markup .= '#navbar .nav-collapse.collapse > .nav { ';
+			      $media_979_markup .= 'background-clip: padding-box;';
+			      $media_979_markup .= 'margin-top:10px;';
+			      $media_979_markup .= 'padding: 10px;';
+			      $media_979_markup .= 'width: auto;';
+		$media_979_markup .=  ' } ';
 	}
 
 

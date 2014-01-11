@@ -32,7 +32,7 @@ function navbarStylesCallback( $preview ){
 
 
 	$flush_links = $kjd_section_misc_settings['flush_first_link'];
-	$sidr_nav = $kjd_section_misc_settings['side_nav'];
+	// $sidr_nav = $kjd_section_misc_settings['side_nav'];
 	$dropdown_bg = $kjd_section_misc_settings['dropdown_bg'];
 
 
@@ -307,7 +307,7 @@ function dropdown_menu_callback($kjd_section_misc_settings, $preview){
 
 	$section = 'dropdown-menu';
 
-	$sidr_nav = $kjd_section_misc_settings['side_nav'];
+	// $sidr_nav = $kjd_section_misc_settings['side_nav'];
 	$dropdown_bg = $kjd_section_misc_settings['dropdown_bg'];
 	
 	$options = get_option('kjd_dropdown-menu_misc_settings');

@@ -1,8 +1,19 @@
 <?php
-	$options = get_option('kjd_navbar_misc_settings');
-	$navbarSettings = $options['kjd_navbar_misc'];
-	$sideNav = $navbarSettings['side_nav'];
+	// $options = get_option('kjd_navbar_misc_settings');
+	// $navbarSettings = $options['kjd_navbar_misc'];
+	// $sideNav = $navbarSettings['side_nav'];
 
+
+	$mobileNavSettings = get_option('kjd_mobileNav_misc_settings');
+	$mobileNavSettings = $mobileNavSettings['kjd_mobileNav_misc'];
+	$override_nav = $mobileNavSettings['override_nav'];
+	if( $override_nav == 'true') {
+		$mobilenav_style = $mobileNavSettings['mobilenav_style'];
+
+		if( $mobilenav_style =='sidr'){
+			$sideNav = 'true';
+		}
+	}
 ////////////////////////
 // register navbar menu
 ////////////////////////

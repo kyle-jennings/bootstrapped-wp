@@ -4,14 +4,16 @@
 	
 	$mobileNavSettings = get_option('kjd_mobileNav_misc_settings');
 	$mobileNavSettings = $mobileNavSettings['kjd_mobileNav_misc'];
-
-	$sideNav = $mobileNavSettings['side_nav'];
+	$override_nav = $mobileNavSettings['override_nav'];
+	if( $override_nav == 'true') {
+		$mobilenav_style = $mobileNavSettings['mobilenav_style'];
+	}
 
 
 	$borderRadius = $options['kjd_'.$section.'_border_radius'];
 
 	$confinePage ='true';
-	if($section =='mobileNav' && $sideNav == 'true') {
+	if($section =='mobileNav' && $mobilenav_style == 'sidr') {
 		$borders = array("right");
 
 	}else{
@@ -75,7 +77,7 @@
 ?>
 		<div class="optionsWrapper float-options">
 <?php
-if($section !='mobileNav' && $mobile_background['side_nav'] != 'true') {
+if($section !='mobileNav' || $mobilenav_style == 'dropdown') {
 		
 
 			?>

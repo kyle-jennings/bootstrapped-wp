@@ -37,9 +37,11 @@ if($section =="header"){
 	kjd_footer_misc_settings_callback($section);
 
 }
-/* --------------------------------------------
+
+
+/* -----------------------------------------------------------------------------------
 				Mobile  Nav
--------------------------------------------- */
+----------------------------------------------------------------------------------- */
 
 function kjd_mobileNav_misc_settings_callback(){
 
@@ -49,6 +51,33 @@ function kjd_mobileNav_misc_settings_callback(){
 	$options = $options['kjd_mobileNav_misc'];
 
 ?>
+
+	<div class="option">
+		<label>Override navbar on Mobile?</label>
+		<select class="toggle-switch" name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][override_nav]">
+			<option value="false" <?php selected( $options['override_nav'], 'false', true ) ?>>No</option>
+			<option value="true" <?php selected( $options['override_nav'], 'true', true) ?>>Yes</option>
+		</select>
+	</div>
+
+	<div class="option toggle-options" <?php echo  $options['override_nav'] == 'true' ? 'style="display:block;"' : 'style="display:none;"' ;?> >
+		<label>Navbar Style</label>
+		<select name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][mobilenav_style]">
+			<option value="default" <?php selected( $options['mobilenav_style'], 'default', true) ?>>Same as Desktop</option>
+			<option value="sidr" <?php selected( $options['mobilenav_style'], 'sidr', true ) ?>>Sidr</option>
+			<option value="dropdown" <?php selected( $options['mobilenav_style'], 'dropdown', true ) ?>>In Dropdown</option>
+
+		</select>
+	</div>
+<!-- 
+	if override is set to yes and navbar style is:
+		default - then the colors selected in the other tabs affects the navbar area
+		sidr - builds the sidr nav like it already is being done
+		dropdown - removes the navbar styles and applies the mobilenav style settings 
+					to a dropdown wrapped around the .nav menu
+ -->
+<hr />
+
 
 	<div class="option">
 		<label>Side Sliding Nav</label>
@@ -66,7 +95,12 @@ function kjd_mobileNav_misc_settings_callback(){
 		</select>
 	</div>
 
+
+
+
+
 	<h3>Open Menu Button Settings</h3>
+	
 	<div class="color_option option" style="position: relative;">
 		<label>Background</label>
 
@@ -96,14 +130,20 @@ function kjd_mobileNav_misc_settings_callback(){
 			value="<?php echo $options['menu_btn_border_hovered'] ? $options['menu_btn_border_hovered'] : ''; ?>"/>
 		<a class="clearColor">Clear</a>
 	</div>
+
+
+
+
 <?php
 
 
 }
 
-/* --------------------------------------------
+
+
+/* -----------------------------------------------------------------------------------
 					title area
--------------------------------------------- */
+----------------------------------------------------------------------------------- */
 
 function kjd_title_misc_settings_callback($section){
 	settings_fields( 'kjd_pageTitle_misc_settings' );
@@ -140,9 +180,12 @@ function kjd_title_misc_settings_callback($section){
 <?php
 }
 
-/* --------------------------------------------
+
+
+
+/* -----------------------------------------------------------------------------------
 			Login Page
--------------------------------------------- */
+----------------------------------------------------------------------------------- */
 
 function kjd_login_misc_settings_callback($section){	
 	settings_fields( 'kjd_login_misc_settings' );
@@ -165,9 +208,10 @@ function kjd_login_misc_settings_callback($section){
 <?php
 }
 
-/* --------------------------------------------
+
+/* -----------------------------------------------------------------------------------
 				header area
--------------------------------------------- */
+----------------------------------------------------------------------------------- */
 
 function kjd_header_misc_settings_callback($section){
 		settings_fields( 'kjd_header_misc_settings' );
@@ -255,9 +299,12 @@ function kjd_header_misc_settings_callback($section){
 }
 
 
-/* --------------------------------------------
+
+
+
+/* -----------------------------------------------------------------------------------
 					nav bar
--------------------------------------------- */
+----------------------------------------------------------------------------------- */
 
 function kjd_navbar_misc_settings_callback($section){ 
 	settings_fields( 'kjd_navbar_misc_settings' );
@@ -349,9 +396,12 @@ function kjd_navbar_misc_settings_callback($section){
 <?php
 }
 
-/* --------------------------------------------
+
+
+
+/* -----------------------------------------------------------------------------------
 					Navbar Dropdown 
--------------------------------------------- */
+----------------------------------------------------------------------------------- */
 
 function kjd_dropdown_misc_settings_callback($section) { 
 	settings_fields( 'kjd_dropdown-menu_misc_settings' );
@@ -372,9 +422,12 @@ function kjd_dropdown_misc_settings_callback($section) {
 <?php
 }
 
-/* --------------------------------------------
+
+
+
+/* -----------------------------------------------------------------------------------
 				Body Area
--------------------------------------------- */
+----------------------------------------------------------------------------------- */
 
 function kjd_body_misc_settings_callback($section){
 	settings_fields( 'kjd_body_misc_settings' );
@@ -426,9 +479,12 @@ function kjd_body_misc_settings_callback($section){
 <?php
 }
 
-/* --------------------------------------------
+
+
+
+/* ----------------------------------------------------------------------------------------
 			Posts - Content 
--------------------------------------------- */
+---------------------------------------------------------------------------------------- */
 
 function kjd_posts_misc_settings_callback()
 {
@@ -595,13 +651,15 @@ function kjd_footer_misc_settings_callback($section){
 <?php
 }
 
-/*
+
+
+/*  -------------------------------------------------------------
 ----------------------------------------------------------------- 
 ----------------------------------------------------------------- 
-Setings Functions 
-------------------------------------------------------------------
+Repeated Setings Functions 
 -----------------------------------------------------------------
- */
+-----------------------------------------------------------------
+-----------------------------------------------------------------   */
 
 function kjd_confine_section_toggle($section, $options) {
 
