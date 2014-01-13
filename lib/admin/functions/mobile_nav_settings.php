@@ -137,13 +137,30 @@ function kjd_build_mobile_styles_callback()
 
 	if($kjd_navbar_misc_settings['navbar_alignment'] =='center'){
 
-		$media_979_markup .='#navbar ul.nav > li{ display:block; float:none;}';
 	}
+	$media_979_markup .='#navbar ul.nav > li{ display:block; float:none;}';
 
 /* ---------------------------------------------------------
 				Backgrounds and borders
 ------------------------------------------------------------ */
+if($mobilenav_style == 'default') {
+	$media_979_markup .= '#navbar .navbar-inner {';
+		// bg color and wallpaper
+		$media_979_markup .= background_type_callback($type,$kjd_section_background_colors, 'mobileNav');
+		$media_979_markup .= wallpaper_callback($kjd_section_background_wallpaper);
 
+				// borders
+		foreach($kjd_borders as $k =>$v){
+			$media_979_markup .= borderSettingsCallback($k, $v);	
+		}
+
+		//border radius function
+		foreach($kjd_section_border_radii as $k =>$v){
+			$media_979_markup .= borderRadiusCallback($k, $v);	
+		}
+
+	$media_979_markup .= '}';
+}
 
 if( $use_dropdown == 'true' ){
 

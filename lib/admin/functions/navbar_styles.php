@@ -347,26 +347,26 @@ function dropdown_menu_callback($kjd_section_misc_settings, $preview){
 	$dropdownMenuBordersOptions = get_option('kjd_dropdown-menu_borders_settings');
 
 	// $dropdownMenuTopBorder = $dropdownMenuBordersOptions['kjd_dropdown-menu_top_border'];
-	$dropdownMenuLinkHovered = kjd_get_temp_settings(	$section,
+	$dropdownMenuTopBorder = kjd_get_temp_settings(	$section,
 											$dropdownMenuBordersOptions['kjd_dropdown-menu_top_border'],
 											$preview, 
 											'kjd_section_top_border' 
 										);
 	// $dropdownMenuRightBorder = $dropdownMenuBordersOptions['kjd_dropdown-menu_right_border'];
-	$dropdownMenuLinkHovered = kjd_get_temp_settings(	$section,
+	$dropdownMenuRightBorder = kjd_get_temp_settings(	$section,
 											$dropdownMenuBordersOptions['kjd_dropdown-menu_right_border'],
 											$preview, 
 											'kjd_section_right_border' 
 										);
 
 	// $dropdownMenuBottomBorder = $dropdownMenuBordersOptions['kjd_dropdown-menu_bottom_border'];
-	$dropdownMenuLinkHovered = kjd_get_temp_settings(	$section,
+	$dropdownMenuBottomBorder = kjd_get_temp_settings(	$section,
 											$dropdownMenuBordersOptions['kjd_dropdown-menu_bottom_border'],
 											$preview, 
 											'kjd_section_bottom_border' 
 										);
 	// $dropdownMenuLeftBorder = $dropdownMenuBordersOptions['kjd_dropdown-menu_left_border'];
-	$dropdownMenuLinkHovered = kjd_get_temp_settings(	$section,
+	$dropdownMenuLeftBorder = kjd_get_temp_settings(	$section,
 											$dropdownMenuBordersOptions['kjd_dropdown-menu_left_border'],
 											$preview, 
 											'kjd_section_left_border' 

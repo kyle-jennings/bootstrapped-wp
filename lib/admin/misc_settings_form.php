@@ -76,27 +76,6 @@ function kjd_mobileNav_misc_settings_callback(){
 		dropdown - removes the navbar styles and applies the mobilenav style settings 
 					to a dropdown wrapped around the .nav menu
  -->
-<hr />
-
-
-	<div class="option">
-		<label>Side Sliding Nav</label>
-		<select name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][side_nav]">
-				<option value="false" <?php selected( $options['side_nav'], 'false', true) ?>>No</option>
-				<option value="true" <?php selected( $options['side_nav'], 'true', true) ?>>Yes</option>
-		</select>
-	</div>
-
-	<div class="option">
-		<label>Dropdown Background on Mobile?</label>
-		<select name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][dropdown_bg]">
-			<option value="true" <?php selected( $options['dropdown_bg'], 'true', true) ?>>Yes</option>
-			<option value="false" <?php selected( $options['dropdown_bg'], 'false', true ) ?>>No</option>
-		</select>
-	</div>
-
-
-
 
 
 	<h3>Open Menu Button Settings</h3>

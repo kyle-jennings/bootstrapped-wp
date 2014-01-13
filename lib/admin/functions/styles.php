@@ -491,6 +491,17 @@ switch($section)
 
 	}
 
+if($section == 'cycler') {
+	if( $kjd_section_misc_settings['plugin'] == 'nivo' && $kjd_section_misc_settings['full_width'] == 'true'){
+		$sectionArea_markup .= '.nivo-controlNav {
+					position: absolute;
+					bottom: 0;
+					left: 50%;
+					z-index: 999;
+				}';
+	}
+}
+
 
 // start section markup
 	$sectionArea_markup .= $section_name.'{';

@@ -17,6 +17,55 @@ if(is_admin()){
  require_once('kjd_layout_functions.php');
 
 
+/* ----------------------- kjd add js and css --------------------- */
+function kjd_add_assets(){
+
+	// set variables
+	$mobileNavSettings = get_option('kjd_mobileNav_misc_settings');
+	$mobileNavSettings = $mobileNavSettings['kjd_mobileNav_misc'];
+	
+	$override_nav = $mobileNavSettings['override_nav'];
+	if( $override_nav == 'true') {
+		$mobilenav_style = $mobileNavSettings['mobilenav_style'];
+	}
+
+
+	$generalSettings = get_option('kjd_theme_settings');
+	$responsive = $generalSettings['kjd_responsive_design'];
+
+	//set tempplate root
+	$root=get_bloginfo('template_directory'); 
+	$root = $root.'/lib';
+
+	wp_enqueue_script("jquery", $root."/scripts/jquery.js", false, "1.0", false);  
+	wp_enqueue_script("bootstrap", $root."/scripts/bootstrap.min.js", false, "1.0", true);  
+
+	if( $mobilenav_style == 'sidr' ){
+		wp_enqueue_script("sidr", $root."/scripts/sidr.min.js", false, "1.0", true);  
+		wp_enqueue_style("sidr", $root."/styles/sidr.css");
+	}
+
+	
+	wp_enqueue_script("script", $root."/scripts/application.js", false, "1.0", true);  
+
+	wp_enqueue_style("bootstrap", $root."/styles/bootstrap/bootstrap.min.css");
+
+	if($responsive == 'true'){
+		wp_enqueue_style("bootstrap-responsive", $root."/styles/bootstrap/bootstrap-responsive.min.css");
+	}
+
+	wp_enqueue_style("custom", $root."/styles/custom.css");
+	wp_enqueue_style("scaffolding", $root."/styles/common.css");	
+
+	// Add slider scripts if on front page
+	if( is_front_page() ){
+		 include( 'add_slider_scripts.php');
+	}
+
+}
+add_action( 'wp_enqueue_scripts', 'kjd_add_assets' );
+
+
 /* ------------------------------------- get page template layout settings ************************* */
 function kjd_get_layout_settings($template = NULL) {
 
@@ -148,54 +197,6 @@ function kjd_set_featured_image_size(){
 	}
 }
 add_action( 'init', 'kjd_set_featured_image_size' );
-/* ----------------------- kjd add js and css --------------------- */
-function kjd_add_assets(){
-
-	// set variables
-	$mobileNavSettings = get_option('kjd_mobileNav_misc_settings');
-	$mobileNavSettings = $mobileNavSettings['kjd_mobileNav_misc'];
-	
-	$override_nav = $mobileNavSettings['override_nav'];
-	if( $override_nav == 'true') {
-		$mobilenav_style = $mobileNavSettings['mobilenav_style'];
-	}
-
-
-	$generalSettings = get_option('kjd_theme_settings');
-	$responsive = $generalSettings['kjd_responsive_design'];
-
-	//set tempplate root
-	$root=get_bloginfo('template_directory'); 
-	$root = $root.'/lib';
-
-	wp_enqueue_script("jquery", $root."/scripts/jquery.js", false, "1.0", false);  
-	wp_enqueue_script("bootstrap", $root."/scripts/bootstrap.min.js", false, "1.0", true);  
-
-	if( $mobilenav_style == 'sidr' ){
-		wp_enqueue_script("sidr", $root."/scripts/sidr.min.js", false, "1.0", true);  
-		wp_enqueue_style("sidr", $root."/styles/sidr.css");
-	}
-
-	
-	wp_enqueue_script("script", $root."/scripts/application.js", false, "1.0", true);  
-
-	wp_enqueue_style("bootstrap", $root."/styles/bootstrap/bootstrap.min.css");
-
-	if($responsive == 'true'){
-		wp_enqueue_style("bootstrap-responsive", $root."/styles/bootstrap/bootstrap-responsive.min.css");
-	}
-
-	wp_enqueue_style("wpstyles", $root."/styles/wpstyles.css");	
-	wp_enqueue_style("custom", $root."/styles/custom.css");
-	wp_enqueue_style("scaffolding", $root."/styles/common.css");	
-
-	// Add slider scripts if on front page
-	if( is_front_page() ){
-		 include( 'add_slider_scripts.php');
-	}
-
-}
-add_action( 'wp_enqueue_scripts', 'kjd_add_assets' );
 
  
 

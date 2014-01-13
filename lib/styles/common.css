@@ -1,22 +1,15 @@
+/* ---------------------------------------------------------------------------------- 
+			globals
+----------------------------------------------------------------------------------  */
+
 *{
 	outline:none !important;
 }
 
-#sidr{
-	display:none;
-}
 
-/* image slider for gallery 1 */
-.navSlides li{margin:0 10px 0 0;}
-.navSlides li img{height:75px; width:75px;}
-.clearfix{clear:both;}
-
-/*input[type="text"], textarea{padding:4px;}*/
-
-
-/* Scaffolding */
-/* ****************** */
-/* Sticky Footer Stuff */
+/* ---------------------------------------------------------------------------------- 
+			Scaffolding
+----------------------------------------------------------------------------------  */
 html,body{		
 		height: 100%;
 		margin:0 !important;
@@ -60,6 +53,10 @@ body {
 	padding:0 20px;
 }
 
+/* ---------------------------------------------------------------------------------- 
+			Front page
+----------------------------------------------------------------------------------  */
+
 .frontPageBody{
 	/*position:relative;*/
 }
@@ -67,11 +64,15 @@ body {
 	margin-bottom: 30px;
 }
 
-/*#mastArea{position:relative;}*/
 
+
+/* ---------------------------------------------------------------------------------- 
+			Header
+----------------------------------------------------------------------------------  */
 
 .logo-wrapper > a > img:hover, 
-.logo-wrapper > img:hover { box-shadow: none !important; }
+.logo-wrapper > img:hover { 
+	box-shadow: none !important; }
 
 h1.logo-wrapper,
 h2.logo-wrapper{ 
@@ -80,9 +81,19 @@ h2.logo-wrapper{
 	letter-spacing: -1px;
 	line-height: 60px;
 	margin: 0 0 0 30px;
+	position: relative;
+	z-index: 99;
 }
 
-/* Navbar */	
+
+/* ---------------------------------------------------------------------------------- 
+			Navbar
+----------------------------------------------------------------------------------  */	
+
+#sidr{
+	display:none;
+}
+
 #header #navbar {
 	line-height: 40px;
 	margin-left: 20px;
@@ -107,8 +118,13 @@ h2.logo-wrapper{
 
 	box-shadow: none;
 	text-shadow: none;
+	position: relative;
+	z-index: 999;
 }
-
+.btn.btn-navbar{
+	position: relative;
+	z-index: 999;
+}
 .navbar-inner {
 	border:none;
 }
@@ -144,34 +160,44 @@ h2.logo-wrapper{
 	margin:0 auto;	
 }
 
-	
+/* ---------------------------------------------------------------------------------- 
+			Image Slider
+----------------------------------------------------------------------------------  */
 
-
-
-/* Carousel Settings*/
-/*#imageSliderWrapper,
-#imageSlider{
-	float: left;
-	padding: 0;
-	width: 100%;
+.rslides,
+#imageSliderWrapper #imageSlider {
+	position: relative;
 }
-*/
+
+
 #imageSlider .carousel {
 	margin-bottom: 0;
 }
 
-/* Title bar */
+
+/* image slider for gallery 1 */
+.navSlides li{margin:0 10px 0 0;}
+.navSlides li img{height:75px; width:75px;}
+.clearfix{clear:both;}
+
+/* ---------------------------------------------------------------------------------- 
+			title bar area
+----------------------------------------------------------------------------------  */
 .breadcrumb {
 	background:none; 
 	padding:0;
 }
-/* Page Settings */
+/* ---------------------------------------------------------------------------------- 
+			Page Settings
+----------------------------------------------------------------------------------  */
 
 #mainContent{min-height:1px;}
 #sideContent{min-height:1px;}
 
 
-/* content */	
+/* ---------------------------------------------------------------------------------- 
+			PAge Content
+----------------------------------------------------------------------------------  */
 .frontPageBody .the_content:first-child h3
 {
 	line-height: 24px;
@@ -183,10 +209,6 @@ h2.logo-wrapper{
 }
 
 
-/*.content-list > .the-content-wrapper.well {
-	float:left;
-	width: 100%;
-}*/
 
 .the-content-wrapper.well.media .media-object{
 	padding-top: 9px;
@@ -223,10 +245,16 @@ h2.logo-wrapper{
 		margin-right:10px;
 
 	}
-/* sidebar */
+
+/* ---------------------------------------------------------------------------------- 
+			Widget
+----------------------------------------------------------------------------------  */
+
+
 .widget {
 	margin-bottom:30px;
 }
+
 /* attachment page */
 .image-pagination,
 .attachment-pagination{
@@ -265,7 +293,12 @@ h2.logo-wrapper{
 {
 	margin:0;
 }
-/* ------------ bootstrap stuff ------------------ */
+
+
+
+/* ---------------------------------------------------------------------------------- 
+			Bootstrap
+----------------------------------------------------------------------------------  */
 .image{float:left;}
 
 .jumbotron {
@@ -404,6 +437,91 @@ div.img-circle img{
 }
 .paginationLinks{clear:both;}
 
+/* ---------------------------------------------------------------------------------- 
+			WP styles
+----------------------------------------------------------------------------------  */
+/* =WordPress Core
+-------------------------------------------------------------- */
+.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 0 auto 20px;
+}
+
+.alignright {
+    float:right;
+    margin:0 20px 0 0;
+}
+
+.alignleft {
+    float: left;
+    margin:0 0 0 20px;
+}
+
+.aligncenter {
+    display: block;
+
+}
+
+a img.alignright {
+    float: right;
+     margin:0 0 0 20px;
+}
+
+a img.alignnone {
+
+}
+
+a img.alignleft {
+    float: left;
+    margin:0 20px 0 0;
+}
+
+a img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.wp-caption {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    max-width: 96%; /* Image does not overflow the content area */
+    padding: 5px 3px 10px;
+    text-align: center;
+}
+
+.wp-caption.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignleft {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignright {
+    margin: 5px 0 20px 20px;
+}
+
+.wp-caption img {
+    border: 0 none;
+    height: auto;
+    margin: 0;
+    max-width: 98.5%;
+    padding: 0;
+    width: auto;
+}
+
+.wp-caption p.wp-caption-text {
+    font-size: 11px;
+    line-height: 17px;
+    margin: 0;
+    padding: 0 4px 5px;
+}
 
 /* =============================== ============= ===================================== */
 /* =============================== media queries ===================================== */
@@ -417,7 +535,10 @@ div.img-circle img{
 }
 
 @media (max-width: 979px) {
-	
+	#navbar .nav  {
+		float: none;
+	}
+
 	h1.logo-wrapper, 
 	h2.logo-wrapper {
 		margin-left: 20px;
