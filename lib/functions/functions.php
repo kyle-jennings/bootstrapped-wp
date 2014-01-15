@@ -423,11 +423,91 @@ function kjd_empty_nav_fallback_callback( $args ) {
 }
 
 
-function menuStyleCallback($navbarLinkStyle){
+function kjd_build_navbar( $menu_id, $navbar_type, $style, $position, $mobilenav_style, $misc ){
+
+switch( $style ){
+			// navbar in default position
+			case 'full_width':
+				$navbar_style .= 'navbar navbar-static-top';
+				break ;
+
+			// navbar in default position, but is not full width
+			case 'contained':
+				$navbar_style .= 'container';
+				$nav_wrapper ='<div class="navbar">';
+				break ;
+
+			// we want to STICK the navbar to the top of the page - it will scroll WITH the page
+			case 'sticky-top':
+				$navbar_style .= 'navbar navbar-fixed-top';
+				break ;
+			// we want to STICK the navbar to the bottom of the page - it will scroll WITH the page
+			case 'sticky-bottom':
+				$navbar_style .= 'navbar navbar-fixed-bottom';
+				break ;
+			// navbar is just placed at the top of the page
+			case 'page-top':
+				$navbar_style .= 'navbar navbar-static-top';
+				break ;
+		
+			default:
+				$navbar_style .= 'navbar navbar-static-top';
+		}
+
+		$navbar_open = '<div id="navbar" class="'. $navbar_style . '">';
+		$navbar_open .= $nav_wrapper;
+
+		$navbar_inner = '';
+			$navbar_inner .= '<div class="navbar-inner">';
+
+			if( $navbar_style != 'contained' ){
+				$navbar_inner .= '<div class="container">';
+			}
+			
+			if($mobilenav_style =='sidr'){
+				$navbar_inner .= '<a id="sidr-toggle" class="btn btn-navbar">
+				    <span class="icon-bar"></span>
+				    <span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</a>';
+			}else{
+				$navbar_inner .= '<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar">
+				    <span class="icon-bar"></span>
+				    <span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>';
+			}
+				
+					$navbar_inner .='<div class="nav-collapse collapse navbar-responsive-collapse">';
+						ob_start();
+						kjd_menu_style_callback($navbar_link_style, $menu_id);
+						$navbar_contents = ob_get_contents();
+						ob_end_clean();
+					$navbar_inner .= $navbar_contents;
+					$navbar_inner .= '</div>';
+				
+				if( $navbar_style != 'contained' ){
+					$navbar_inner .='</div>'; // end container -->
+				}
+
+			$navbar_inner .='</div>'; // end navbar-inner-->
+
+
+
+		if($navbarSettings['navbar_style'] =="contained"){
+			$navbar_close = '</div></div>';
+		}else{
+			$navbar_close = '</div>';
+		} 
+	
+		return $navbar_open . $navbar_inner . $navbar_close;
+}
+
+function kjd_menu_style_callback($navbar_link_style = 'none', $menu_id = 'primary-menu'){
 	
 	$menu_class = 'nav';
 	
-	switch($navbarLinkStyle){
+	switch($navbar_link_style){
 		case 'none':
 
 			$menu_class .= ' nav-noBG';
@@ -477,5 +557,51 @@ function menuStyleCallback($navbarLinkStyle){
 
 	} 
 
+
+}
+
+
+/* --------------------------------------------------
+ Site logo
+ --------------------------------------------------------*/
+function kjd_site_logo($header_contents, $logo_toggle, $logo, $custom_header){
+	
+	$heading = is_front_page() ? 'h1' : 'h2' ;
+
+	if($headerSettings['header_contents'] == 'widgets'){ 
+
+		dynamic_sidebar('header_widgets');
+	
+	}else{ 
+
+		if($logo_toggle == 'text'){
+		
+			echo '<div class="header-wrapper">';
+				echo $custom_header;
+			echo '</div>';
+		
+		}elseif($logo_toggle == 'logo' ){
+			
+			echo '<'.$heading.' class="logo-wrapper">';
+				echo '<a href="'.get_bloginfo('url').' ">';
+					echo '<img src="'.$logo.'" alt=""/>';
+				echo '</a>';
+			echo '</'.$heading.'>';
+		
+		}else{
+			
+			echo '<div class="jumbotron no-background">';
+			echo '<'.$heading.' class="logo-wrapper" >';
+				echo '<a href="'.get_bloginfo('url').' ">';
+					echo get_bloginfo( 'name');
+				echo '</a>';
+			echo '</'.$heading.'>';
+				echo '<div class="logo-wrapper">'.get_bloginfo('description').'</div>';
+			echo '</div>';
+
+		}
+		
+
+	 }
 
 }

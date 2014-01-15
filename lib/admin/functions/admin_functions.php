@@ -36,7 +36,7 @@ function kjd_nav_select(){
     'Header Settings'=>'admin.php?page=kjd_header_settings',
     'Navbar Settings'=>'admin.php?page=kjd_navbar_settings',
     'Navbar Dropdown Settings'=>'admin.php?page=kjd_dropdown-menu_settings',
-    'Image Carousel Settings'=>'admin.php?page=kjd_cycler_settings',
+    'Image Banner Settings'=>'admin.php?page=kjd_cycler_settings',
     'Page Title Settings'=>'admin.php?page=kjd_pageTitle_settings',
     'Body Settings'=>'admin.php?page=kjd_body_settings',
     'Footer Settings'=>'admin.php?page=kjd_footer_settings',

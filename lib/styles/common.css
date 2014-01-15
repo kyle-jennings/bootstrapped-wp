@@ -105,11 +105,11 @@ h2.logo-wrapper{
 
 #navbar.navbar-fixed-top,
 #navbar.navbar-fixed-bottom{
-	position: absolute;
+	position: fixed;
 }
 
 .navbar {
-	margin-bottom: 0px;
+	/*margin-bottom: 0px;*/
 }
 
 .navbar .nav > li > a:focus, 
@@ -550,6 +550,7 @@ a img.aligncenter {
 		display:block;
 	}
 
+
 	#navbar .collapse .nav{
 		width: auto;
 		padding: 10px 20px;
@@ -560,9 +561,6 @@ a img.aligncenter {
 		display: none;
 	}
 
-	.navbar-fixed-top, .navbar-fixed-bottom {
-	    position: fixed !important;
-	}
 
 	.nav-collapse .dropdown-menu{
 		border-width: 0px !important;

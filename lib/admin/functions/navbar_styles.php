@@ -160,7 +160,7 @@ function navbarStylesCallback( $preview ){
 	}
 	//stickys to top of page
 	if($kjd_section_misc_settings['navbar_style'] =="sticky-top"){
-		$navbar_markup .='#header{ padding-top:60px; }';
+		// $navbar_markup .='#header{ padding-top:50px; }';
 	}	
 
 
@@ -259,7 +259,9 @@ $navbar_markup .='.navbar .nav > li > a:hover.dropdown-toggle > .caret{';
 $navbar_markup .='}';
 
 // carret when on bottom 
-$navbar_markup .='.navbar-fixed-bottom .nav > li > a.dropdown-toggle > .caret{';
+$navbar_markup .= '.navbar-fixed-bottom .nav > li > a.dropdown-toggle > .caret,';
+$navbar_markup .= '.navbar-fixed-bottom .nav li.dropdown > .dropdown-toggle .caret,';
+$navbar_markup .= '.navbar-fixed-bottom .nav > li > a.dropdown-toggle > .caret{';
 	$navbar_markup .='border-top-color:transparent;';
 	$navbar_markup .='border-bottom-color:'.$kjd_section_link['color'].';';
 $navbar_markup .='}';
@@ -271,6 +273,9 @@ $navbar_markup .='.navbar-fixed-bottom .nav > li > a:hover.dropdown-toggle > .ca
 $navbar_markup .='}';
 
 //carret when on bottom:active -->
+$navbar_markup .= '.navbar-fixed-bottom .nav li.dropdown.open > .dropdown-toggle .caret,';
+$navbar_markup .= '.navbar-fixed-bottom .nav li.dropdown.active > .dropdown-toggle .caret,';
+$navbar_markup .= '.navbar-fixed-bottom .nav li.dropdown.open.active > .dropdown-toggle .caret,';
 $navbar_markup .= '.navbar-fixed-bottom .nav > li.active > a.dropdown-toggle > .caret{';
 	$navbar_markup .= 'border-top-color:transparent;';
 	$navbar_markup .= 'border-bottom-color:'.$kjd_section_LinkActive['color'].';';
@@ -300,7 +305,7 @@ $navbar_markup .=".navbar .nav li.open > a:after{
 
 
 /* ---------------------------------------------------------------------------------------
-						drop down colors
+						dropdown colors
 --------------------------------------------------------------------------------------- */
 
 function dropdown_menu_callback($kjd_section_misc_settings, $preview){
@@ -411,12 +416,12 @@ $dropdown_markup .= '.navbar .nav > li > .dropdown-menu:after {';
  	$dropdown_markup .= 'border-bottom: 7px solid '.$dropdownStartColor.';';
 $dropdown_markup.= '}';
 
-$dropdown_markup .=".navbar-fixed-bottom.navbar .nav > li > .dropdown-menu:after{
-	border-top: 7px solid ".$dropdownEndColor.";
-}";
+// $dropdown_markup .=".navbar-fixed-bottom.navbar .nav > li > .dropdown-menu:after{
+// 	border-top: 7px solid ".$dropdownEndColor.";
+// }";
 
 $dropdown_markup .=".navbar .nav > li > .dropdown-menu:before{  
- 	border-bottom: 7px solid ".$dropdownMenuTopBorder['color']." !important;
+ 	border-bottom: 7px solid ".$dropdownMenuTopBorder['color'].";
     border-left: 7px solid transparent;
     border-right: 7px solid transparent;
     content: '';
@@ -431,20 +436,25 @@ $dropdown_markup .=".navbar .nav > li > .dropdown-menu:before{
 $dropdown_markup.= "}";
 
 $dropdown_markup .=".navbar-fixed-bottom.navbar .nav > li > .dropdown-menu:before{
-	border-top: 7px solid ".$dropdownMenuBottomBorder['color']." !important;
-	border-bottom: none !important;
+	border-top: 7px solid ".$dropdownMenuBottomBorder['color'].";
+	border-bottom:0 none transparent;
 	border-left: 7px solid transparent;
     border-right: 7px solid transparent;
-    content: '';
-    display: inline-block;
     left: 9px;
-    position: absolute;
     bottom: -7px;
     top:auto;
 }";
 
-$dropdown_markup .=".navbar-fixed-bottom .nav > li > .dropdown-menu:after{
-border-top-color: ".$dropdownStartColor." !important;
+/* -------------------------------- 
+     Navbar fixed to bottom 
+----------------------------------- */
+
+$dropdown_markup .= ".navbar-fixed-bottom .nav > li > .dropdown-menu:after{
+	border-top: 7px solid ".$dropdownStartColor.";
+	border-bottom: 0 none transparent;
+    left: 10px;
+    bottom: -6px;
+    top:auto;
 }";
 $dropdown_markup .=".navbar-fixed-bottom.navbar .nav .sub-menu{margin-bottom:-32px;}";
 

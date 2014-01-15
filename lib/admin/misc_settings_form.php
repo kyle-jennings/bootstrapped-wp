@@ -69,14 +69,15 @@ function kjd_mobileNav_misc_settings_callback(){
 
 		</select>
 	</div>
-<!-- 
-	if override is set to yes and navbar style is:
-		default - then the colors selected in the other tabs affects the navbar area
-		sidr - builds the sidr nav like it already is being done
-		dropdown - removes the navbar styles and applies the mobilenav style settings 
-					to a dropdown wrapped around the .nav menu
- -->
 
+	<div class="option toggle-options" >
+		<label>Navbar Style</label>
+		<select name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][mobilenav_position]">
+			<option value="default" <?php selected( $options['mobilenav_position'], 'default', true) ?>>Default</option>
+			<option value="fixed" <?php selected( $options['mobilenav_position'], 'fixed', true ) ?>>Fixed at top</option>
+			<option value="sticky" <?php selected( $options['mobilenav_position'], 'sticky', true ) ?>>Sticky to top</option>
+		</select>
+	</div>
 
 	<h3>Open Menu Button Settings</h3>
 	

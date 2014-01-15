@@ -188,7 +188,7 @@ $effects = '';
 <h4>General settings</h4>
 <hr />
 	<div class="option">
-		<label>Phone View</label>
+		<label>Device Visibiity</label>
 		<select name="kjd_cycler_misc_settings[kjd_cycler_misc][deviceView]">
 			<?php foreach($deviceViews as $view){ ?>
 				<option value="<?php echo $view; ?>"

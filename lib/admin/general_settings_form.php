@@ -93,22 +93,37 @@ function kjd_theme_settings_callback(){
 <!-- upload logo -->
 
 
-	<div class="optionsWrapper">
+<div class="optionsWrapper options-wrapper">
 
-		<h3>Logo</h3>
-		<div class="option">
+		<!-- logo -->
+		<div id="site-logo" class="option">
 
 			<label>Upload your site logo</label>
 
 			<input type="text" class="media_input" name="kjd_theme_settings[kjd_site_logo]" value="<?php echo $options['kjd_site_logo'] ? $options['kjd_site_logo'] : ' '; ?>" />  
+		  	<input type="button"  class="button upload_image" value="Upload image" />  
+
+			<div id="logo-preview" class="image_preview"> 
+				<img style="max-width:100%;" src="<?php echo esc_url( $options['kjd_site_logo'] ); ?>" />  
+			</div> 
+		</div>
+
+		<!-- Favicon -->
+		<div id="site-favicon" class="option">
+
+			<label>Upload favicon</label>
+			
+			<input type="text" class="media_input" name="kjd_theme_settings[kjd_favicon]" value="<?php echo $options['kjd_favicon'] ? $options['kjd_favicon'] : ' '; ?>" />  
 		  	<input type="button" class="button upload_image" value="Upload image" />  
 
-			<div class="image_preview">  
-			<?php if( !empty($options['kjd_site_logo']) ){
-		      echo '<img src="'.esc_url( $options['kjd_site_logo'] ).'" /> ';
-			} ?>
-		  </div> 
+			<div id="favicon-preview" class="image_preview">  
+				<img style="max-width:100%;" src="<?php echo esc_url( $options['kjd_favicon'] ); ?>" />  
+			</div> 
+
 		</div>
+</div>
+
+<div class="optionsWrapper options-wrapper">
 
 		<div class="option">
 			<label>Toggle site title</label>
@@ -127,17 +142,6 @@ function kjd_theme_settings_callback(){
 
 		wp_editor( $options['kjd_custom_header'], 'kjd_theme_settings[kjd_custom_header]', array( 'textarea_rows' =>1 ) 
 		);?>
-	</div>
-
-	<div class="option">
-
-		<label>Upload favicon</label>
-		<input type="text" class="media_input" name="kjd_theme_settings[kjd_favicon]" value="<?php echo $options['kjd_favicon'] ? $options['kjd_favicon'] : ' '; ?>" />  
-	  <input type="button" class="button upload_image" value="Upload image" />  
-
-		<div class="image_preview" style="min-height: 100px; clear:both;">  
-	      <img style="max-width:100%;" src="<?php echo esc_url( $options['kjd_favicon'] ); ?>" />  
-	  </div> 
 	</div>
 
 
@@ -190,7 +194,7 @@ function kjd_theme_settings_callback(){
 	</div>
 
 
-</div>	
+</div>
 
 
 
