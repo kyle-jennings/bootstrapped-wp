@@ -5,8 +5,13 @@ BootstrappedWP - By Kyle Jennings
 Customizable Bootstrap Wordpress theme with tons of options, and dozens of cool features. 
 
 ===========================
-Current Version: 1.5
+Current Version: 1.6
 ===========================
+Version 1.6 - 1/14/2014
+*	fixed the accursed uploaded image preview bug
+*	moved the navbar partial into a function for future reusability
+*	cleaned up header.php
+*	fixed the sticky bottom menu styles
 
 Version 1.5 - 1/8/2014
 *	Renamed image cyler to image banner

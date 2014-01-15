@@ -52,7 +52,7 @@ function kjd_theme_home_callback(){
 		<h3>What do you want to style?</h3>
 		<div class="option">
 			<ul class="unstyled">
-
+				Map coming soon
 
 			</ul>
 		</div>
@@ -64,7 +64,8 @@ function kjd_theme_home_callback(){
 	<div class="optionsWrapper">
 		<h3>Export your settings</h3>
 		<div class="option">
-			<?php kjd_get_settings(); ?>
+			feature coming soon!
+			<?php #kjd_get_settings(); ?>
 			<!-- <a class='export-xml' href='#' >Export database as XML</a> -->
 		</div>
 	</div>
@@ -72,12 +73,14 @@ function kjd_theme_home_callback(){
 
 	<div class="optionsWrapper">
 		<h3>Import a style file.</h3>
-		<div class="option">
+			feature coming soon!
+
+<!-- 		<div class="option">
 				<label for="file">Filename:</label>
 				<input type="file" name="file" id="file">
 				<a class='input-xml' href='#' >Import Theme Settings</a>
 			</form>
-		</div>
+		</div> -->
 	</div>
 
 <?php

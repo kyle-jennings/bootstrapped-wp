@@ -423,7 +423,7 @@ function kjd_empty_nav_fallback_callback( $args ) {
 }
 
 
-function kjd_build_navbar( $menu_id, $navbar_type, $style, $position, $mobilenav_style, $misc ){
+function kjd_build_navbar( $menu_id, $navbar_type, $style, $position, $mobilenav_style, $misc = null ){
 
 switch( $style ){
 			// navbar in default position
