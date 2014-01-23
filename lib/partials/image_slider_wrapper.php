@@ -1,26 +1,50 @@
 <?php
-		$options = get_option('kjd_cycler_images_settings');
-		$cyclerOptions = get_option('kjd_cycler_misc_settings');
-		$plugin = $cyclerOptions['kjd_cycler_misc']['plugin'];
-		$images = $options['kjd_cycler_images'];
+	$options = get_option('kjd_cycler_images_settings');
+	$cyclerOptions = get_option('kjd_cycler_misc_settings');
+	$plugin = $cyclerOptions['kjd_cycler_misc']['plugin'];
+	$images = $options['kjd_cycler_images'];
 
-		$sliderOptions = $cyclerOptions['kjd_cycler_misc'];
-		$device_view = $cyclerOptions['kjd_cycler_misc']['deviceView'];
+	$sliderOptions = $cyclerOptions['kjd_cycler_misc'];
+	$device_view = $cyclerOptions['kjd_cycler_misc']['deviceView'];
 
-		$full_width = ($cyclerOptions['kjd_cycler_misc']['full_width'] == 'true') ? 'true' : 'false' ;	
+	$full_width = ($cyclerOptions['kjd_cycler_misc']['full_width'] == 'true') ? 'true' : 'false' ;	
 
-		// echo $full_width; die();
-		$confineCyclerBackground = ($cyclerOptions['kjd_cycler_misc']['kjd_cycler_confine_background'] =='true') ? 'container confined' : '' ;	
-?>
+	$confineCyclerBackground = ($cyclerOptions['kjd_cycler_misc']['kjd_cycler_confine_background'] =='true') ? 'container confined' : '' ;	
 
-<div id="imageSliderWrapper" class="<?php echo $confineCyclerBackground.' '.$device_view ; ?>">
+if($location != 'sortable'){  ?>
+
+	<div id="imageSliderWrapper" class="<?php echo $confineCyclerBackground.' '.$device_view ; ?>">
 
 
-	<?php echo $full_width == 'true' ? '' : '<div class="container">' ; ?>
+		<?php echo $full_width == 'true' ? '' : '<div class="container">' ; ?>
 
-		<div id="imageSlider">
+			<div id="imageSlider">
+			<?php
+				
+				echo kjd_build_image_carousels( $plugin, $images, $full_width);
+
+			?>
+			</div> <!-- end imageSlider -->
+			
+		<?php echo $full_width == 'true' ? '' : '</div>' ; ?> <!-- end container -->
+
+	</div> <!-- end imageSliderWrapper -->
+
+
 <?php
-	 if( $plugin !="none" && isset( $plugin ) ){ 
+
+}else{
+	echo '<div id="imageSlider" class="frontpage-component sortable-image-slider-wrapper '. $deviceView .'">';
+		echo kjd_build_image_carousels( $plugin, $images, $full_width);
+	echo '</div>';
+}
+/* -----------------------------------------------------
+			Single Image Callback
+------------------------------------------------------- */
+function kjd_build_image_carousels( $plugin, $images, $full_width){
+
+
+ if( $plugin !="none" && isset( $plugin ) ){ 
 
 		if($plugin =="nivo"){
 		
@@ -53,19 +77,14 @@
 		}
 
 	}
-	
-?>
-		</div> <!-- end imageSlider -->
-		
-	<?php echo $full_width == 'true' ? '' : '</div>' ; ?> <!-- end container -->
 
-</div> <!-- end imageSliderWrapper -->
+}
 
 
-<?php
-
+/* -----------------------------------------------------
+			Single Image Callback
+------------------------------------------------------- */
 function kjd_single_image_callback( $images, $full_width = null ) {
-
 
 $image = $images[0]['url'];
 // $style = ($full_width  == 'true') ? 'style="width: 100%; height: auto;"' : 'style="margin: 0 auto; display: block;"' ;

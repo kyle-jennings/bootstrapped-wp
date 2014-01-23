@@ -21,16 +21,17 @@ get_header();
 	$confineBodyBackground = $bodySettings['kjd_body_confine_background'];
 
 	$showImageSlider = get_option('kjd_cycler_misc_settings');
-	$showImageSlider = $showImageSlider['kjd_cycler_misc']['enable'];
+	$showImageSlider = $showImageSlider['kjd_cycler_misc'];
 
 	$pagination_top = get_option('kjd_posts_misc_settings');
 	$pagination_top = $pagination_top['pagination_top'];
 
 
 
-	if($showImageSlider =='true')
+
+	if( $showImageSlider['enable'] =='true' && $showImageSlider['location'] != 'sortable')
 	{
-		kjd_image_slider_callback($confineBodyBackground,$position,$arrayLength,$layoutSettings);
+		kjd_image_slider_callback( $confineBodyBackground, $position, $arrayLength, $layoutSettings, 'default' );
 	}
 
 	if(!empty($components))
@@ -57,10 +58,16 @@ get_header();
 	}
 
 
-	kjd_front_page_layout($components, $layoutSettings, $frontPageOptions);
+	kjd_front_page_layout( $components, 
+							$layoutSettings, 
+							$frontPageOptions, 
+							$confineBodyBackground, 
+							$arrayLength, 
+							$showImageSlider 
+						);
 
 
-	if($layoutSettings['position'] == 'right' || $layoutSettings['position'] =='left')
+	if($layoutSettings['position'] == 'right' )//|| $layoutSettings['position'] =='left'
 	{
 		echo '</div>'; // end left content
 		
@@ -108,7 +115,11 @@ get_footer(); // End page, start function
 /* ---------------------------------------------------------------------------------------------- */
 /* ------------------------------- Front Page Components ----------------------------------------- */
 /* ---------------------------------------------------------------------------------------------- */
-function kjd_image_slider_callback($confineBodyBackground,$position,$arrayLength,$layoutSettings){
+
+/* -------------------------------------------------------------------- 
+			Image Banner
+ -------------------------------------------------------------------- */
+function kjd_image_slider_callback( $confineBodyBackground, $position, $arrayLength, $layoutSettings, $location = 'defualt',$deviceView = null ){
 		include(dirname(__FILE__).'/lib/partials/image_slider_wrapper.php');
 }
 
@@ -124,6 +135,12 @@ function kjd_widget_area_1_callback($layoutSettings, $deviceView){
 function kjd_widget_area_2_callback($layoutSettings, $deviceView){
 	echo '<div class="row '.$deviceView.' frontpage-component">'; 
 		dynamic_sidebar('front_page_widget_area_2');
+	echo '</div>';
+}
+
+function kjd_widget_area_3_callback($layoutSettings, $deviceView){
+	echo '<div class="row '.$deviceView.' frontpage-component">'; 
+		dynamic_sidebar('front_page_widget_area_3');
 	echo '</div>';
 }
 
@@ -170,20 +187,42 @@ function kjd_secondary_content_callback($frontPageOptions,$layoutSettings, $devi
 
 }
 
-function kjd_front_page_layout($components, $layoutSettings, $frontPageOptions)
-{
-	
+/* -----------------------------------------------------------------
+		Choose layout
+------------------------------------------------------------------- */
+function kjd_front_page_layout( $components, 
+								$layoutSettings, 
+								$frontPageOptions, 
+								$confineBodyBackground, 
+								$arrayLength, 
+								$showImageSlider
+								){
 	foreach($components as $position => $component)
 	{
 		$deviceView = $component['componentDeviceView'];
+
 		if($component['component'] =='widget_area_1'){
-			 kjd_widget_area_1_callback($layoutSettings, $deviceView); 
+			 
+			 kjd_widget_area_1_callback($layoutSettings, $deviceView);
+
 		}elseif($component['component'] =='widget_area_2'){
+			 
 			 kjd_widget_area_2_callback($layoutSettings, $deviceView);
+
+		}elseif($component['component'] =='widget_area_3'){
+			 
+			 kjd_widget_area_3_callback($layoutSettings, $deviceView);
+
 		}elseif($component['component'] =='content'){
+			
 			kjd_content_callback($layoutSettings, $deviceView);
+
 		}elseif($component['component'] =='secondary_content'){
+			
 			kjd_secondary_content_callback($frontPageOptions, $layoutSettings, $deviceView);
+
+		}elseif($component['component'] == 'image_banner' && ( $showImageSlider['enable'] =='true' && $showImageSlider['location'] == 'sortable' ) ){
+			kjd_image_slider_callback( $confineBodyBackground, $position, $arrayLength, $layoutSettings, 'sortable', $deviceView );
 		}
 	}
 }

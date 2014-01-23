@@ -1,7 +1,5 @@
 <?php
 // include the file which builds the CSS
-
-
 include 'general_settings_form.php';
 include 'page_layouts_form.php';
 include 'misc_backgrounds_form.php';
@@ -172,7 +170,7 @@ function kjd_setup_theme_menus() {
 	); 
   
 
-    if($options['style_widgets']=='true'){
+    if($options['style_widgets'] =='true'){
 		// customize post
 	    add_submenu_page(
 			'kjd_theme_settings',   // belongs to id

@@ -49,11 +49,20 @@ function kjd_mobileNav_misc_settings_callback(){
 
 	$options = get_option('kjd_mobileNav_misc_settings');
 	$options = $options['kjd_mobileNav_misc'];
+	$navBarLinkStyles = array('none','highlighted','pills','tabs', 'tabs-below');	
 
 ?>
 
 	<div class="option">
-		<label>Override navbar on Mobile?</label>
+		<label>Use mobile menu?</label>
+		<select name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][use_mobile_menu]">
+			<option value="false" <?php selected( $options['use_mobile_menu'], 'false', true ) ?>>No</option>
+			<option value="true" <?php selected( $options['use_mobile_menu'], 'true', true) ?>>Yes</option>
+		</select>
+	</div>
+
+	<div class="option">
+		<label>Override navbar styles on mobile?</label>
 		<select class="toggle-switch" name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][override_nav]">
 			<option value="false" <?php selected( $options['override_nav'], 'false', true ) ?>>No</option>
 			<option value="true" <?php selected( $options['override_nav'], 'true', true) ?>>Yes</option>
@@ -61,23 +70,43 @@ function kjd_mobileNav_misc_settings_callback(){
 	</div>
 
 	<div class="option toggle-options" <?php echo  $options['override_nav'] == 'true' ? 'style="display:block;"' : 'style="display:none;"' ;?> >
-		<label>Navbar Style</label>
-		<select name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][mobilenav_style]">
-			<option value="default" <?php selected( $options['mobilenav_style'], 'default', true) ?>>Same as Desktop</option>
-			<option value="sidr" <?php selected( $options['mobilenav_style'], 'sidr', true ) ?>>Sidr</option>
-			<option value="dropdown" <?php selected( $options['mobilenav_style'], 'dropdown', true ) ?>>In Dropdown</option>
+		<div class="option">
+			<label>Navbar Style</label>
+			<select name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][mobilenav_style]" class="toggle-switch">
+				<option value="default" <?php selected( $options['mobilenav_style'], 'default', true) ?>>Same as Desktop</option>
+				<option value="sidr" <?php selected( $options['mobilenav_style'], 'sidr', true ) ?>>Sidr</option>
+				<option value="dropdown" <?php selected( $options['mobilenav_style'], 'dropdown', true ) ?>>In Dropdown</option>
 
-		</select>
+			</select>
+		</div>
+
+		<div class="option">
+			<label>Navbar Width</label>
+			<select name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][mobilenav_width]">
+				<option value="default" <?php selected( $options['mobilenav_width'], 'default', true) ?>>Full Width</option>
+				<option value="contained" <?php selected( $options['mobilenav_width'], 'contained', true ) ?>>Contained</option>
+			</select>
+		</div>
+		<div class="option">
+			<label>Position</label>
+			<select name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][mobilenav_position]" >
+				<option value="default" <?php selected( $options['mobilenav_position'], 'default', true) ?>>Default</option>
+				<option value="fixed-top" <?php selected( $options['mobilenav_position'], 'fixed', true ) ?>>Fixed at top</option>
+				<option value="fixed-bottom" <?php selected( $options['mobilenav_position'], 'fixed', true ) ?>>Fixed at bottom</option>
+				<option value="sticky" <?php selected( $options['mobilenav_position'], 'sticky', true ) ?>>Top of Page</option>
+			</select>
+		</div>
+		<div class="option">
+			<label>Link style</label>
+			<select name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][mobilenav_link_style]">
+				<?php foreach($navBarLinkStyles as $style){ ?>
+					<option value="<?php echo $style;?>" <?php selected( $options['mobilenav_link_style'], $style, true) ?>><?php echo ucwords(str_replace("_"," ",$style));?></option>
+				<?php } ?>
+			</select>
+		</div>
+
 	</div>
 
-	<div class="option toggle-options" >
-		<label>Navbar Style</label>
-		<select name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][mobilenav_position]">
-			<option value="default" <?php selected( $options['mobilenav_position'], 'default', true) ?>>Default</option>
-			<option value="fixed" <?php selected( $options['mobilenav_position'], 'fixed', true ) ?>>Fixed at top</option>
-			<option value="sticky" <?php selected( $options['mobilenav_position'], 'sticky', true ) ?>>Sticky to top</option>
-		</select>
-	</div>
 
 	<h3>Open Menu Button Settings</h3>
 	
@@ -135,13 +164,9 @@ function kjd_title_misc_settings_callback($section){
 
 		<?php 
 			echo kjd_confine_section_toggle($section, $options);
-		?>
-	
-		<?php
-			echo kjd_float_section_toggle($section, $options);
-		?>
 
-		<?php
+			echo kjd_float_section_toggle($section, $options);
+
 			echo kjd_set_section_margin($section, $options);
 		?>
 
@@ -291,7 +316,7 @@ function kjd_navbar_misc_settings_callback($section){
 	$options = get_option('kjd_navbar_misc_settings');
 	$options = $options['kjd_navbar_misc'];
 
-	$navBarStyles = array('full_width','contained','page-top','sticky-top','sticky-bottom');	
+	$navBarStyles = array('default','page-top','sticky-top','sticky-bottom');	
 	$navBarLinkStyles = array('none','highlighted','pills','tabs', 'tabs-below');	
 
 	$glowSettings = array('none','left-right','top-bottom', 'all-sides','top','bottom');
@@ -300,42 +325,50 @@ function kjd_navbar_misc_settings_callback($section){
 		<div class="optionsWrapper">
 
 			<h3>Navbar settings</h3>
-			<div class="option">
-				<label><?php echo ucwords(str_replace("_"," ",$section));?> navbar style</label>
-				<select name="kjd_navbar_misc_settings[kjd_navbar_misc][navbar_style]">
-					<?php foreach($navBarStyles as $style){ ?>
-						<option value="<?php echo $style;?>" <?php selected( $options['navbar_style'], $style, true) ?>><?php echo ucwords(str_replace("_"," ",$style));?></option>
-					<?php } ?>
-				</select>
-			</div>
 
 
+	<div class="option">
+			<label>Navbar Style</label>
+			<select name="kjd_navbar_misc_settings[kjd_navbar_misc][navbar_style]">
+				<option value="default" <?php selected( $options['navbar_style'], 'default', true) ?>>Full Width</option>
+				<option value="contained" <?php selected( $options['navbar_style'], 'contained', true ) ?>>Contained</option>
+			</select>
+		</div>
+		<div class="option">
+			<label>Position</label>
+			<select name="kjd_navbar_misc_settings[kjd_navbar_misc][navbar_position]" >
+				<option value="default" <?php selected( $options['navbar_position'], 'default', true) ?>>Default</option>
+				<option value="fixed-top" <?php selected( $options['navbar_position'], 'fixed-top', true ) ?>>Fixed at top</option>
+				<option value="fixed-bottom" <?php selected( $options['navbar_position'], 'fixed-bottom', true ) ?>>Fixed at bottom</option>
+				<option value="static-top" <?php selected( $options['navbar_position'], 'static-top', true ) ?>>Top of Page</option>
+			</select>
+		</div>
+		<div class="option">
+			<label>Link style</label>
+			<select name="kjd_navbar_misc_settings[kjd_navbar_misc][navbar_link_style]">
+				<?php foreach($navBarLinkStyles as $style){ ?>
+					<option value="<?php echo $style;?>" <?php selected( $options['navbar_link_style'], $style, true) ?>><?php echo ucwords(str_replace("_"," ",$style));?></option>
+				<?php } ?>
+			</select>
+		</div>
 
-			<div class="option">
-				<label>Nav link style</label>
-				<select name="kjd_navbar_misc_settings[kjd_navbar_misc][navbar_link_style]">
-					<?php foreach($navBarLinkStyles as $style){ ?>
-						<option value="<?php echo $style;?>" <?php selected( $options['navbar_link_style'], $style, true) ?>><?php echo ucwords(str_replace("_"," ",$style));?></option>
-					<?php } ?>
-				</select>
-			</div>
 
-			<div class="option">
-				<label>Nav alignment</label>
-				<select name="kjd_navbar_misc_settings[kjd_navbar_misc][navbar_alignment]">
-					<option value="left" <?php selected( $options['navbar_alignment'], 'left', true) ?>>Left</option>
-					<option value="center" <?php selected( $options['navbar_alignment'], 'center', true) ?>>Center</option>
-					<option value="right" <?php selected( $options['navbar_alignment'], 'right', true) ?>>Right</option>
-				</select>
-			</div>
+		<div class="option">
+			<label>Nav alignment</label>
+			<select name="kjd_navbar_misc_settings[kjd_navbar_misc][navbar_alignment]">
+				<option value="left" <?php selected( $options['navbar_alignment'], 'left', true) ?>>Left</option>
+				<option value="center" <?php selected( $options['navbar_alignment'], 'center', true) ?>>Center</option>
+				<option value="right" <?php selected( $options['navbar_alignment'], 'right', true) ?>>Right</option>
+			</select>
+		</div>
 
-			<div class="option">
-				<label>Disable Link Inner Shadows?</label>
-				<select name="kjd_navbar_misc_settings[kjd_navbar_misc][link_shadows]">
-					<option value="true" <?php selected( $options['link_shadows'], 'true', true) ?>>Yes</option>
-					<option value="false" <?php selected( $options['link_shadows'], 'false', true ) ?>>No</option>
-				</select>
-			</div>
+		<div class="option">
+			<label>Disable Link Inner Shadows?</label>
+			<select name="kjd_navbar_misc_settings[kjd_navbar_misc][link_shadows]">
+				<option value="true" <?php selected( $options['link_shadows'], 'true', true) ?>>Yes</option>
+				<option value="false" <?php selected( $options['link_shadows'], 'false', true ) ?>>No</option>
+			</select>
+		</div>
 
 		<?php 
 			// echo kjd_confine_section_toggle($section, $options);

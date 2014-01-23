@@ -5,6 +5,7 @@
 	$confineFooterBackground = $footerSettings['kjd_footer_confine_background'];
 ?>
 	<div id="push"></div>
+		</div><!-- end contentArea -->
 	</div> <!-- end pageWrapper-->
 	<div id="footer" <?php echo $confineFooterBackground == 'true' ? 'class="container confined"': '' ; ?>>
 		<div class="container">

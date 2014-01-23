@@ -120,28 +120,30 @@ function set_width($template,$frontpage_area = null)
 $wrap_entire_widget = 'false';
 $wrap_inner_widget = 'false';
 
-$templates = array('header_widgets', 'front_page_widget_area_1', 'front_page_widget_area_2', 'footer_widgets', 'default');
+$templates = array(
+				'header_widgets',
+				'front_page_widget_area_1',
+				'front_page_widget_area_2',
+				'front_page_widget_area_3',
+				'footer_widgets',
+				'default'
+			);
+
+
 foreach($templates as $template){
 
 
-
-	// $start_outer_well = '';
-	// $end_outer_well = '';
 	
 	// $start_inner_well = '';
 	// $end_inner_well = '';
 	// // set inner well if needed 
-	// if(  $wrap_entire_widget == 'true') {
-	// 	$start_outer_well .= '<div class="well">';
-	// 	$end_outer_well .= '</div>';
-	// }
 
 	// if( $wrap_inner_widget == 'true' ){
 	// 	$start_inner_well .= '<div class="well">';
 	// 	$end_inner_well .= '</div>';
 	// }
 
-	if($template == 'front_page_widget_area_1' || $template == 'front_page_widget_area_2' ){
+	if($template == 'front_page_widget_area_1' || $template == 'front_page_widget_area_2' || $template == 'front_page_widget_area_3' ){
 				
 		$temp = array('name' => 'front_page_widgets', 'position' =>"top");
 		$width = set_width($temp,$template);
@@ -151,6 +153,19 @@ foreach($templates as $template){
 		$width = set_width($temp);
 	}else{
 		$width = set_width($layouts[$template]);
+
+
+		$options = get_option('kjd_component_settings');
+
+	    if($options['style_widgets'] =='true') {
+		
+			$start_outer_well = '';
+			$end_outer_well = '';
+
+			$start_outer_well .= '<div class="well">';
+			$end_outer_well .= '</div>';
+	    	
+	    }
 	}
 
 

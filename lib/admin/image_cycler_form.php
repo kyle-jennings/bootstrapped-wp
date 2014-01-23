@@ -35,11 +35,19 @@ $effects = '';
 <!-- ******** -->
 	<div class="option">
 		<label>Enable Image Banner?</label>
-		<select name="kjd_cycler_misc_settings[kjd_cycler_misc][enable]">
-			<option value="true"<?php selected( $options['kjd_cycler_misc']['enable'], $plugin, true) ?>>
+		<select  class="toggle-switch" name="kjd_cycler_misc_settings[kjd_cycler_misc][enable]">
+			<option value="true"<?php selected( $options['kjd_cycler_misc']['enable'], 'true', true) ?>>
 			Yes</option>
-			<option value="false"<?php selected( $options['kjd_cycler_misc']['enable'], $plugin, true) ?>>
+			<option value="false"<?php selected( $options['kjd_cycler_misc']['enable'], 'false', true) ?>>
 			No</option>
+		</select>
+	</div>
+
+	<div class="option toggle-options" <?php echo $options['kjd_cycler_misc']['enable'] == 'true' ? 'style="display:block;"' : 'style="display:none;"' ;?> >
+		<label>Location</label>
+		<select  name="kjd_cycler_misc_settings[kjd_cycler_misc][location]">
+			<option value="default" <?php selected( $options['kjd_cycler_misc']['location'], 'default', true) ?>>Default</option>
+			<option value="sortable" <?php selected( $options['kjd_cycler_misc']['location'], 'sortable', true ) ?>>Sortable</option>
 		</select>
 	</div>
 

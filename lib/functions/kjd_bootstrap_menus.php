@@ -17,17 +17,17 @@
 ////////////////////////
 // register navbar menu
 ////////////////////////
-if($sideNav == 'true'){
+if( $override_nav == 'true') {
 	register_nav_menus(
 	    array(
-	      'primary-menu' => __( 'Header Menu' ),
-	      'sidr-menu' => __( 'Side Drawer Menu' )
+	      'primary-menu' => __( 'Primary Nav' ),
+	      'mobile-menu' => __( 'Mobile Nav' )
 	    )
 	);
 }else{
 	register_nav_menus(
 	    array(
-	      'primary-menu' => __( 'Header Menu' ),
+	      'primary-menu' => __( 'Primary Nav' ),
 	    )
 	);
 }

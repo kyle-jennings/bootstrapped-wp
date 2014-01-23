@@ -211,7 +211,14 @@ function kjd_front_page_settings(){
 	$options = get_option('kjd_frontPage_layout_settings');
 	$layoutOrder = $options['kjd_frontPage_layout'];
 	
-	$components = array('widget_area_1','widget_area_2','content','secondary_content');//'image_slider'
+	$image_banner = get_option('kjd_cycler_misc_settings');
+	$image_banner = $image_banner['kjd_cycler_misc'];
+
+	$components = array('widget_area_1','widget_area_2','widget_area_3','content','secondary_content');//'image_slider'
+	if($image_banner['enable'] == 'true' && $image_banner['location'] == 'sortable'){
+		$components[] = 'image_banner';
+	}
+	
 	
 	$deviceViews = array('all','visible-phone','visible-tablet','visible-desktop','hidden-phone','hidden-tablet','hidden-desktop');
 

@@ -130,16 +130,19 @@ function navbarStylesCallback( $preview ){
 	if($flush_links == 'true')
 	{
 
-		if($kjd_section_misc_settings['navbar_alignment'] == 'left' || $kjd_section_misc_settings['navbar_alignment'] =='right'){
+		if($kjd_section_misc_settings['navbar_alignment'] == 'left' || 
+			$kjd_section_misc_settings['navbar_alignment'] =='right'){
 			
-			if( $kjd_section_misc_settings['navbar_link_style'] == 'pills' || $kjd_section_misc_settings['navbar_link_style'] == 'tabs' 
-				|| $kjd_section_misc_settings['navbar_link_style'] == 'tabs-below' ) {
+			if( $kjd_section_misc_settings['navbar_link_style'] != 'pills' || $kjd_section_misc_settings['navbar_link_style'] != 'tabs' 
+				|| $kjd_section_misc_settings['navbar_link_style'] != 'tabs-below' ) {
 
-				$navbar_markup .= '.navbar .nav > li:first-child { padding-'.$kjd_section_misc_settings['navbar_alignment'].':0; }';
-			
-			}else{
-			
-			$navbar_markup .= '.navbar .nav > li:first-child > a{padding-'.$kjd_section_misc_settings['navbar_alignment'].':0;}';
+				if( $kjd_section_misc_settings['navbar_alignment'] == 'left' ) {
+					$navbar_markup .= '.navbar .nav > li:first-child { padding-'.$kjd_section_misc_settings['navbar_alignment'].':0; }';
+
+				}else {
+					$navbar_markup .= '.navbar .nav > li:last-child { padding-'.$kjd_section_misc_settings['navbar_alignment'].':0; }';
+					
+				}
 			
 			}
 		}
@@ -200,9 +203,8 @@ $navbar_markup .= '.navbar .nav li.dropdown.open > .dropdown-toggle,';
 $navbar_markup .= '.navbar .nav li.dropdown.active > .dropdown-toggle,';
 $navbar_markup .= '.navbar .nav li.dropdown.open.active > .dropdown-toggle,';
 $navbar_markup .= '.navbar .nav > .active > a,';
-$navbar_markup .= '.navbar .nav > .active > a:focus,';
-$navbar_markup .= '.dropdown-menu > .active > a,';
-$navbar_markup .= '.dropdown-menu > .active > a:focus {';
+$navbar_markup .= '.dropdown-menu > .active > a';
+$navbar_markup .= '{';
 
 	if( $kjd_section_LinkActive['bg_color']){
 
@@ -234,6 +236,8 @@ $navbar_markup .= '}';
  $navbar_markup .= '.navbar .nav > .active > a:hover,';
 $navbar_markup .= '.dropdown-menu > .active > a:hover,';
 $navbar_markup .= '.navbar .nav > li > a:hover,';
+$navbar_markup .= '.navbar .nav > .active > a:focus,';
+$navbar_markup .= '.navbar .dropdown-menu > .active > a:focus,';
 $navbar_markup .= '.navbar .nav > li > a:focus {';
 
 	if( $kjd_section_linkHovered['bg_color'] ){

@@ -128,7 +128,10 @@ h2.logo-wrapper{
 .navbar-inner {
 	border:none;
 }
-
+.navbar-inner .nav-noBG > li > a,
+.navbar-inner .nav-noBG > li > a:hover{
+	background: none !important;
+}
 .navbar-inner .nav.nav-pills li a {
 	line-height: 18px;
 }
@@ -180,6 +183,14 @@ h2.logo-wrapper{
 .navSlides li img{height:75px; width:75px;}
 .clearfix{clear:both;}
 
+.sortable-image-slider-wrapper {
+	overflow: hidden;
+	position: relative;
+}
+
+.sortable-image-slider-wrapper .carousel-indicators{
+	top: 25px;
+}
 /* ---------------------------------------------------------------------------------- 
 			title bar area
 ----------------------------------------------------------------------------------  */
@@ -249,7 +260,9 @@ h2.logo-wrapper{
 /* ---------------------------------------------------------------------------------- 
 			Widget
 ----------------------------------------------------------------------------------  */
-
+.widget .well input, select, textarea {
+	max-width: 90%;
+}
 
 .widget {
 	margin-bottom:30px;
@@ -354,7 +367,7 @@ h2.logo-wrapper{
 
 .hero-unit, 
 .well{ 
-	border:none !important;
+	/*border:none !important;*/
 }
 
 .hero-unit.no-background,
@@ -708,7 +721,7 @@ a img.aligncenter {
 
 	img{
 		height:auto;
-		max-width: 97%;
+		/*max-width: 97%;*/
 	}
 
 /* ----------------- navbar shit ---------------------- */
@@ -760,10 +773,13 @@ a img.aligncenter {
 	#header,
 	#cycler,
 	#body,
-	#footer{
+	#footer,
+	#mastArea,
+	#contentArea{
 		margin-right: -20px;
 		margin-left: -20px;
-		padding:0 20px;
+		padding-right: 20px;
+		padding-left: 20px;
 	}
 
 	/* ----------------- image carousel shit --------------- */

@@ -1,8 +1,8 @@
 <?php
 
-function kjd_build_mobile_styles_callback()
+function kjd_build_mobile_styles_callback( $section = 'navbar' )
 {
-	$section = 'mobileNav';
+	
 		
 	$media_979_markup = '';
 
@@ -31,6 +31,8 @@ function kjd_build_mobile_styles_callback()
 																$preview,
 																'kjd_section_linkHovered'
 									);
+
+			
 			$kjd_section_linkVisited = kjd_get_temp_settings(	$section,
 																$options_links['kjd_'.$section.'_linkVisited'], 
 																$preview,
@@ -194,8 +196,6 @@ if( $use_dropdown == 'true' ){
 
 	$media_979_markup .= '}';
 
-// print('<pre>');	
-// print_r($kjd_section_background_colors); die();
 
 	$media_979_markup .= "#navbar .nav-collapse.collapse > .nav:before {";
 		$media_979_markup .= "border-bottom: 8px solid ".$kjd_section_top_border['color'].";";
@@ -487,7 +487,7 @@ if ( $using_sidr == 'true'){
 		   .dropdown-menu li > a {';
 		  	 $media_979_markup .= 'color:'. $kjd_section_link['color'] .';';
 		  	 
-		  	 if($kjd_section_link['bg_style'] != 'none'){
+		  	 if($kjd_section_link['bg_style'] != 'none' && $kjd_section_link['bg_style'] != ''){
 		  	 	$media_979_markup .= 'background-color:'.$kjd_section_link['bg_color'].';';
 		  	 }else{
 		  	 	$media_979_markup .= 'background-color: transparent;';
@@ -514,18 +514,17 @@ if ( $using_sidr == 'true'){
 	  	$media_979_markup .= ".navbar .nav > li.active > a,
 	  	.dropdown-menu > .active > a,
 	  	.navbar .nav > li.active > a, 
-		.navbar .nav li.dropdown.active > 
-		.navbar .nav li.dropdown.open.active > 
-		.active .dropdown-toggle, 
+		.navbar .nav li.dropdown.active > , 
+		.navbar .nav li.dropdown.open.active > .active .dropdown-toggle, 
 	  	.navbar .nav li.dropdown.open > .dropdown-toggle,
 	  	.navbar .nav li.dropdown.active > .dropdown-toggle,
 	  	.navbar .nav li.dropdown.open.active > .dropdown-toggle,
-		.dropdown-menu > .active > a, 
-		.dropdown-menu li.active > a {";
+		.navbar .dropdown-menu > .active > a, 
+		.navbar .dropdown-menu li.active > a {";
 
 		  	$media_979_markup .= "color:". $kjd_section_linkActive['color'] .";";
 	 	  	
-	 	  	 if($kjd_section_linkActive['bg_style'] != 'none'){
+	 	  	 if($kjd_section_linkActive['bg_style'] != 'none' && $kjd_section_linkActive['bg_style'] != ''){
 		  	 	$media_979_markup .= 'background-color:'.$kjd_section_linkActive['bg_color'].';';
 		  	 }else{
 		  	 	$media_979_markup .= 'background-color: transparent;';
@@ -559,13 +558,16 @@ if ( $using_sidr == 'true'){
 		$media_979_markup .= '.navbar .nav > li.active > a:hover, ';
 		$media_979_markup .= '.navbar .nav li.dropdown.open > .dropdown-toggle:hover,';
 		$media_979_markup .= '.navbar .nav li.dropdown.active > .dropdown-toggle:hover,';
-		$media_979_markup .= '.navbar .nav li.dropdown.open.active > .dropdown-toggle:hover';
-
+		$media_979_markup .= '.navbar .nav li.dropdown.open.active > .dropdown-toggle:hover,';
+		$media_979_markup .= '.navbar .nav-collapse .nav > li > a:hover,';
+		$media_979_markup .= '.navbar .nav-collapse .nav > li > a:focus,';
+		$media_979_markup .= '.navbar .nav-collapse .dropdown-menu a:hover,';
+		$media_979_markup .= '.navbar .nav-collapse .dropdown-menu a:focus';
 		  $media_979_markup .= '{';
 
 		  	 $media_979_markup .= 'color:'. $kjd_section_linkHovered['color'] .';';
 	 	  	 
-	 	  	 if($kjd_section_linkHovered['bg_style'] != 'none'){
+	 	  	 if( $kjd_section_linkHovered['bg_style'] != 'none' && $kjd_section_linkHovered['bg_color'] != ''){
 		  	 	$media_979_markup .= 'background-color:'.$kjd_section_linkHovered['bg_color'].';';
 		  	 }else{
 		  	 	$media_979_markup .= 'background-color: transparent;';

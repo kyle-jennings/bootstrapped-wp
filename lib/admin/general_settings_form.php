@@ -224,13 +224,6 @@ function kjd_theme_components_callback(){
 		</select>
 	</div>	
 
-	<div class="option">
-		<label>Style image cycler section?</label>
-		<select name="kjd_component_settings[style_image_cycler_section]">
-			<option value="false" <?php selected( $options['style_image_cycler_section'], 'false', true ) ?>>No</option>
-			<option value="true" <?php selected( $options['style_image_cycler_section'], 'true', true) ?>>Yes</option>
-		</select>
-	</div>		
 
 	<div class="option">
 		<label>Featured Image Size</label>

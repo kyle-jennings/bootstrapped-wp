@@ -5,7 +5,6 @@
 if(is_admin()){
 	include(dirname(dirname(__FILE__)).'/admin/init.php' );
 	include(dirname(dirname(__FILE__)).'/update/update.php');
-
 }
 
  require_once('kjd_bootstrap_menus.php');
@@ -422,31 +421,26 @@ function kjd_empty_nav_fallback_callback( $args ) {
 	return $args;
 }
 
+//							menu id,  nav style,   link style, sidr/dropdown/ect,     devise visibility,  position
+function kjd_build_navbar( $menu_id, $navbar_type, $link_type, $mobilenav_style, $visibility = null, $position ){
 
-function kjd_build_navbar( $menu_id, $navbar_type, $style, $position, $mobilenav_style, $misc = null ){
-
-switch( $style ){
+	
+		// sets the navbar type
+		switch( $position ){
 			// navbar in default position
-			case 'full_width':
+			case 'default':
 				$navbar_style .= 'navbar navbar-static-top';
 				break ;
-
-			// navbar in default position, but is not full width
-			case 'contained':
-				$navbar_style .= 'container';
-				$nav_wrapper ='<div class="navbar">';
-				break ;
-
 			// we want to STICK the navbar to the top of the page - it will scroll WITH the page
-			case 'sticky-top':
+			case 'fixed-top':
 				$navbar_style .= 'navbar navbar-fixed-top';
 				break ;
 			// we want to STICK the navbar to the bottom of the page - it will scroll WITH the page
-			case 'sticky-bottom':
+			case 'fixed-bottom':
 				$navbar_style .= 'navbar navbar-fixed-bottom';
 				break ;
 			// navbar is just placed at the top of the page
-			case 'page-top':
+			case 'static-top':
 				$navbar_style .= 'navbar navbar-static-top';
 				break ;
 		
@@ -454,56 +448,62 @@ switch( $style ){
 				$navbar_style .= 'navbar navbar-static-top';
 		}
 
-		$navbar_open = '<div id="navbar" class="'. $navbar_style . '">';
-		$navbar_open .= $nav_wrapper;
+		if( $navbar_type == 'contained' ){
+			$navbar_style .= ' container' ;
+		}
 
-		$navbar_inner = '';
-			$navbar_inner .= '<div class="navbar-inner">';
 
-			if( $navbar_style != 'contained' ){
-				$navbar_inner .= '<div class="container">';
-			}
-			
-			if($mobilenav_style =='sidr'){
-				$navbar_inner .= '<a id="sidr-toggle" class="btn btn-navbar">
-				    <span class="icon-bar"></span>
-				    <span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					</a>';
-			}else{
-				$navbar_inner .= '<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar">
-				    <span class="icon-bar"></span>
-				    <span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</a>';
-			}
+		$navbar_open = '<div id="navbar" class=" '. $visibility .' '. $menu_id .' '. $navbar_style . '">';
+
+
+			$navbar_open .= $nav_wrapper;
+
+				$navbar_inner = '';
+
 				
+				$navbar_inner .= '<div class="navbar-inner">';
+
+					// if the navbar type is not set to contained then we need to put the container inside the inner
+					if( $navbar_type != 'contained' ){
+						$navbar_inner .= '<div class="container">';
+					}
+
+					if($mobilenav_style =='sidr'){
+						$navbar_inner .= '<a id="sidr-toggle" class="btn btn-navbar">
+						    <span class="icon-bar"></span>
+						    <span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							</a>';
+					}else{
+						$navbar_inner .= '<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar">
+						    <span class="icon-bar"></span>
+						    <span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</a>';
+					}
+					
+					// The nav-collapse - it holds the menu
 					$navbar_inner .='<div class="nav-collapse collapse navbar-responsive-collapse">';
 						ob_start();
-						kjd_menu_style_callback($navbar_link_style, $menu_id);
+						kjd_menu_style_callback( $link_type, $menu_id );
 						$navbar_contents = ob_get_contents();
 						ob_end_clean();
 					$navbar_inner .= $navbar_contents;
-					$navbar_inner .= '</div>';
-				
-				if( $navbar_style != 'contained' ){
-					$navbar_inner .='</div>'; // end container -->
-				}
+					$navbar_inner .= '</div>'; // en nav collapse
+					
+					// if the navbar type is not set to contained then we need to put the container inside the inner
+					if( $navbar_type != 'contained' ){
+						$navbar_inner .='</div>'; // end container -->
+					}
 
-			$navbar_inner .='</div>'; // end navbar-inner-->
-
-
-
-		if($navbarSettings['navbar_style'] =="contained"){
-			$navbar_close = '</div></div>';
-		}else{
-			$navbar_close = '</div>';
-		} 
+				$navbar_inner .='</div>'; // end navbar-inner-->
 	
+
+			$navbar_close = '</div>'; // end #navbar
 		return $navbar_open . $navbar_inner . $navbar_close;
 }
 
-function kjd_menu_style_callback($navbar_link_style = 'none', $menu_id = 'primary-menu'){
+function kjd_menu_style_callback( $navbar_link_style = 'none', $menu_id = 'primary-menu'){
 	
 	$menu_class = 'nav';
 	
@@ -529,33 +529,79 @@ function kjd_menu_style_callback($navbar_link_style = 'none', $menu_id = 'primar
 			$menu_class .= ' nav-tabs tabs-below';	
 			break;
 		default:
-			$menu_class .= ' nav-pills';
+			$menu_class .= ' nav-noBG';
 	}
 
 
-	
+/*
+	if the mobile nav is activated and set we use that. if its not set but its activated, then we use the primary nav,
+	otherwise, we display the default menu
+*/
 
-	if ( has_nav_menu( 'primary-menu' ) ){
+	if ( $menu_id == 'mobile-menu' ){
+
+		if (has_nav_menu( 'mobile-menu' ) ){
+			wp_nav_menu(array('theme_location' => 'mobile-menu', 
+				'menu_class' =>$menu_class,
+				'container'=> '',
+				'walker'=> new dropDown()
+			 ) );
+
+		}elseif( has_nav_menu( 'primary-menu' ) ){
+
 			wp_nav_menu(array('theme_location' => 'primary-menu', 
 				'menu_class' =>$menu_class,
 				'container'=> '',
 				'walker'=> new dropDown()
 			 ) );
 
-	} else {
-	    
-	    echo '<ul class="nav nav-pills">';
-		echo '<li><a href="'. home_url() .'/" title="home">Home</a></li>';
-		if( is_user_logged_in() ){
-			echo '<li><a href="'. home_url() .'/wp-admin/nav-menus.php" title="set menus" >Set Menu</a></li>';
+		}else {
+		    
+		    echo '<ul class="nav nav-pills hidden-desktop">';
+			echo '<li><a href="'. home_url() .'/" title="home">Home</a></li>';
+			if( is_user_logged_in() ){
+				echo '<li><a href="'. home_url() .'/wp-admin/nav-menus.php" title="set menus" >Set Menu</a></li>';
 
-		}else{
+			}else{
 
-			echo '<li><a href="'. wp_login_url() .'/" title="login" >Login</a></li>';
-		}
-	    echo '</ul>';
+				echo '<li><a href="'. wp_login_url() .'/" title="login" >Login</a></li>';
+			}
+		    echo '</ul>';
 
-	} 
+		} 
+
+	}elseif( $menu_id == 'primary-menu' ){
+	/*
+		If the primary nav is set, then we use that.
+		otherwise, we display the default menu
+	*/
+		if ( has_nav_menu( 'primary-menu' ) ){
+				wp_nav_menu(array('theme_location' => 'primary-menu', 
+					'menu_class' =>$menu_class,
+					'container'=> '',
+					'walker'=> new dropDown()
+				 ) );
+
+		} else {
+		    
+		    echo '<ul class="nav nav-pills visible-desktop">';
+			echo '<li><a href="'. home_url() .'/" title="home">Home</a></li>';
+			if( is_user_logged_in() ){
+				echo '<li><a href="'. home_url() .'/wp-admin/nav-menus.php" title="set menus" >Set Menu</a></li>';
+
+			}else{
+
+				echo '<li><a href="'. wp_login_url() .'/" title="login" >Login</a></li>';
+			}
+		    echo '</ul>';
+
+		} 
+
+
+	}
+
+
+		
 
 
 }
@@ -564,11 +610,12 @@ function kjd_menu_style_callback($navbar_link_style = 'none', $menu_id = 'primar
 /* --------------------------------------------------
  Site logo
  --------------------------------------------------------*/
-function kjd_site_logo($header_contents, $logo_toggle, $logo, $custom_header){
+function kjd_header_content($header_contents, $logo_toggle, $logo, $custom_header){
 	
 	$heading = is_front_page() ? 'h1' : 'h2' ;
-
-	if($headerSettings['header_contents'] == 'widgets'){ 
+	$header_output = '';
+	
+	if($header_contents == 'widgets'){ 
 
 		dynamic_sidebar('header_widgets');
 	
@@ -576,32 +623,32 @@ function kjd_site_logo($header_contents, $logo_toggle, $logo, $custom_header){
 
 		if($logo_toggle == 'text'){
 		
-			echo '<div class="header-wrapper">';
-				echo $custom_header;
-			echo '</div>';
+			$header_output .= '<div class="header-wrapper">';
+				$header_output .= $custom_header;
+			$header_output .= '</div>';
 		
 		}elseif($logo_toggle == 'logo' ){
 			
-			echo '<'.$heading.' class="logo-wrapper">';
-				echo '<a href="'.get_bloginfo('url').' ">';
-					echo '<img src="'.$logo.'" alt=""/>';
-				echo '</a>';
-			echo '</'.$heading.'>';
+			$header_output .= '<'.$heading.' class="logo-wrapper">';
+				$header_output .= '<a href="'.get_bloginfo('url').' ">';
+					$header_output .= '<img src="'.$logo.'" alt=""/>';
+				$header_output .= '</a>';
+			$header_output .= '</'.$heading.'>';
 		
 		}else{
 			
-			echo '<div class="jumbotron no-background">';
-			echo '<'.$heading.' class="logo-wrapper" >';
-				echo '<a href="'.get_bloginfo('url').' ">';
-					echo get_bloginfo( 'name');
-				echo '</a>';
-			echo '</'.$heading.'>';
-				echo '<div class="logo-wrapper">'.get_bloginfo('description').'</div>';
-			echo '</div>';
+			$header_output .= '<div class="jumbotron no-background">';
+			$header_output .= '<'.$heading.' class="logo-wrapper" >';
+				$header_output .= '<a href="'.get_bloginfo('url').' ">';
+					$header_output .= get_bloginfo( 'name');
+				$header_output .= '</a>';
+			$header_output .= '</'.$heading.'>';
+				$header_output .= '<div class="logo-wrapper">'.get_bloginfo('description').'</div>';
+			$header_output .= '</div>';
 
 		}
-		
 
+		echo $header_output;
 	 }
 
 }
