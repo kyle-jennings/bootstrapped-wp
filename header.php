@@ -49,6 +49,7 @@
 	$mobileNavLinkStyle = $mobileNavSettings['mobilenav_link_style'];
 	$mobileNavWidth = $mobileNavSettings['mobilenav_width'];
 	$mobileNavPosition = $mobileNavSettings['mobilenav_position'];	
+	$mobileNavLogo = $mobileNavSettings['display_logo'];	
 
 	$use_mobile_menu = $mobileNavSettings['use_mobile_menu'];
 	$override_nav = $mobileNavSettings['override_nav'];
@@ -62,7 +63,6 @@
 			
 		}
 	}
-
 
 	// mast settings
 	$options = get_option('kjd_mastArea_background_settings');
@@ -159,30 +159,8 @@ if($mobilenav_style =='sidr'){
 
 	echo '<div id="sidr">';
 
-	// if location is set, else use fallback
-	if ( has_nav_menu( 'mobile-menu' ) ){
+	echo kjd_build_menu( 'mobile-menu', 'sidr-style', $use_mobile_menu, 'false' );
 
-		wp_nav_menu(array(
-			'theme_location' => 'mobile-menu', 
-			'menu_class' =>'nav nav-tabs nav-stacked',
-			'container'=> '') 
-		); 
-
-
-	}else {
-	    echo '<ul class="nav nav-tabs nav-stacked">';
-		echo '<li><a href="'. home_url() .'/" title="home">Home</a></li>';
-		if( is_user_logged_in() ){
-			echo '<li><a href="'. home_url() .'/wp-admin/nav-menus.php" title="set menus" >Set Menu</a></li>';
-
-		}else{
-
-			echo '<li><a href="'. wp_login_url() .'/" title="login" >Login</a></li>';
-		}
-	    echo '</ul>';
-	    
-	} // end  has menu location set
-	
 	echo '</div>';
 
 } // end using sidr
@@ -221,13 +199,12 @@ if($mobilenav_style =='sidr'){
 			if($navbarSettings['hideNav'] != "true"){
 
 				if( $override_nav  == 'true'){
-
-					echo kjd_build_navbar('mobile-menu', $mobileNavStyle, $mobileNavLinkStyle, $mobilenav_style, 'hidden-desktop', $mobileNavPosition );
+					echo kjd_build_navbar('mobile-menu', $mobileNavWidth, $mobileNavLinkStyle, $mobilenav_style, 'hidden-desktop', $mobileNavPosition, $mobileNavLogo, $use_mobile_menu );
 					echo kjd_build_navbar('primary-menu', $navbarStyle, $navbarLinkStyle, $mobilenav_style, 'visible-desktop', $navbarPosition );
 				
 				}else{
 
-					echo kjd_build_navbar('primary-menu', $navbarStyle, $navbarLinkStyle, $mobilenav_style, null, $navbarPosition);
+					echo kjd_build_navbar('primary-menu', $navbarStyle, $navbarLinkStyle, $mobilenav_style, null, $navbarPosition, $mobileNavLogo);
 					
 				}
 			}

@@ -624,6 +624,11 @@ if($section == 'cycler') {
 			}
 			
 		$sectionArea_markup .= '}';
+
+		if( $kjd_section_misc_settings['mobile_hide_header'] == 'true' ){
+			$sectionArea_markup .= '@media(max-width:979px){ #header{ display: none; } }';
+		}
+
 	}
 
 	if($section == 'dropdown-menu'){

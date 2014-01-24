@@ -33,8 +33,26 @@ function kjd_settings_display($section) {
 		unset($tabs[4]);
 	}
 	if($section == "mobileNav"){
+
 		unset($tabs[2]);
+	
+		//	mobile nav settings
+		$mobileNavSettings = get_option('kjd_mobileNav_misc_settings');
+		$mobileNavSettings = $mobileNavSettings['kjd_mobileNav_misc'];
+		$override_nav = $mobileNavSettings['override_nav'];
+		if( $override_nav == 'true') {
+
+			$mobilenav_style = $mobileNavSettings['mobilenav_style'];
+			if( $mobilenav_style == 'sidr'){
+
+				array_push($tabs, 'sidr');
+			}
+		}
+
 	}
+
+	
+
 	screen_icon('themes'); 
 
 
@@ -107,6 +125,10 @@ function kjd_settings_display($section) {
 			wp_enqueue_media();		
 			kjd_image_cycler_display_callback();
 			kjd_cycler_images_callback();
+
+		}elseif($active_tab == 'sidr'){ // image cycler iamges
+			wp_enqueue_media();
+			kjd_section_background_callback('sidrDrawer');
 		}
 		
 		submit_button(); 

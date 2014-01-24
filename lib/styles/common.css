@@ -163,6 +163,20 @@ h2.logo-wrapper{
 	margin:0 auto;	
 }
 
+/* Navbar Brand Styles */
+.brand.logo img{
+	display:block;
+	float: left;
+	height: 20px;
+	padding-left: 20px;
+}
+
+.brand.title {
+	display:block;
+	padding-left: 20px;		
+}
+
+
 /* ---------------------------------------------------------------------------------- 
 			Image Slider
 ----------------------------------------------------------------------------------  */
@@ -548,9 +562,7 @@ a img.aligncenter {
 }
 
 @media (max-width: 979px) {
-	#navbar .nav  {
-		float: none;
-	}
+
 
 	h1.logo-wrapper, 
 	h2.logo-wrapper {
@@ -618,7 +630,10 @@ a img.aligncenter {
 		}
 
 		#sidr ul.sub-menu > li > a:before {
-			border-color: transparent;
+			border-right-color: transparent;
+			border-top-color: transparent;
+			border-bottom-color: transparent;
+
 			border-style: solid;
 			border-width: 5px 0 5px 5px;
 			content: " ";

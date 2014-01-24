@@ -51,8 +51,13 @@ function kjd_mobileNav_misc_settings_callback(){
 	$options = $options['kjd_mobileNav_misc'];
 	$navBarLinkStyles = array('none','highlighted','pills','tabs', 'tabs-below');	
 
-?>
 
+	$corners = array('top-left', 'top-right','bottom-left','bottom-right');
+	$borderSizes = range(0,20);
+	$borderStyles = array('none','solid','dotted','dashed','double','groove','ridge','inset','outset');
+?>
+	
+	<h3>Mobile Nav Styles</h3>
 	<div class="option">
 		<label>Use mobile menu?</label>
 		<select name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][use_mobile_menu]">
@@ -60,6 +65,34 @@ function kjd_mobileNav_misc_settings_callback(){
 			<option value="true" <?php selected( $options['use_mobile_menu'], 'true', true) ?>>Yes</option>
 		</select>
 	</div>
+
+	<div class="option">
+		<label>Display logo in navbar?</label>
+		<select class="toggle-switch" name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][display_logo]">
+			<option value="none" <?php selected( $options['display_logo'], 'none', true ) ?>>None</option>
+			<option value="logo" <?php selected( $options['display_logo'], 'logo', true) ?>>Logo</option>
+			<option value="title" <?php selected( $options['display_logo'], 'title', true) ?>>Title</option>
+
+		</select>
+	</div>
+
+<div class="option toggle-options" 
+<?php echo ( $options['display_logo'] != 'none' && $options['display_logo'] != '') ? 
+	'style="display:block;"' : 'style="display:none;"' ;?> >
+
+	<div id="mobile-site-logo" class="option">
+
+		<label>Upload your site logo</label>
+
+		<input type="text" class="media_input" name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][mobile_site_logo]" value="<?php echo $options['mobile_site_logo'] ? $options['mobile_site_logo'] : ' '; ?>" />  
+	  	<input type="button"  class="button upload_image" value="Upload image" />  
+
+		<div id="logo-preview" class="image_preview"> 
+			<img style="max-width:100%;" src="<?php echo esc_url( $options['mobile_site_logo'] ); ?>" />  
+		</div> 
+	</div>
+
+</div>
 
 	<div class="option">
 		<label>Override navbar styles on mobile?</label>
@@ -91,9 +124,9 @@ function kjd_mobileNav_misc_settings_callback(){
 			<label>Position</label>
 			<select name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][mobilenav_position]" >
 				<option value="default" <?php selected( $options['mobilenav_position'], 'default', true) ?>>Default</option>
-				<option value="fixed-top" <?php selected( $options['mobilenav_position'], 'fixed', true ) ?>>Fixed at top</option>
-				<option value="fixed-bottom" <?php selected( $options['mobilenav_position'], 'fixed', true ) ?>>Fixed at bottom</option>
-				<option value="sticky" <?php selected( $options['mobilenav_position'], 'sticky', true ) ?>>Top of Page</option>
+				<option value="fixed-top" <?php selected( $options['mobilenav_position'], 'fixed-top', true ) ?>>Fixed at top</option>
+				<option value="fixed-bottom" <?php selected( $options['mobilenav_position'], 'fixed-bottom', true ) ?>>Fixed at bottom</option>
+				<option value="static-top" <?php selected( $options['mobilenav_position'], 'static-top', true ) ?>>Top of Page</option>
 			</select>
 		</div>
 		<div class="option">
@@ -105,7 +138,43 @@ function kjd_mobileNav_misc_settings_callback(){
 			</select>
 		</div>
 
+
+
+		<div class="optionsWrapper float-options">
+			<h3>Drawer Border</h3>
+			<!-- border color -->
+			<div class="color-option option" style="position: relative;">
+
+				<label>Border color</label>
+				<input class="minicolors" name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][drawer_border_color]"
+				value="<?php echo $options['drawer_border_color'] ? $options['drawer_border_color'] : '' ;?>"
+				 />		
+				<a class="clearColor">Clear</a>
+			</div> 
+
+			<!-- border size -->
+			<div class="option">
+				<label>Border size</label>
+				<select name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][drawer_border_size]">
+					<?php foreach($borderSizes as $size){?>
+						<option value="<?php echo $size.'px';?>" <?php selected( $options['drawer_border_size'], $size.'px', true) ?>><?php echo $size.'px';?></option>
+					<?php }?>
+				</select>
+			</div>
+
+			<!-- border style -->
+			<div class="option">
+				<label>Border style</label>
+				<select name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][drawer_border_style]">
+					<?php foreach($borderStyles as $style){?>
+						<option value="<?php echo $style;?>"<?php selected( $options['drawer_border_style'], $style, true) ?>><?php echo $style;?></option>
+					<?php }?>
+				</select>
+			</div>
+			
+		</div><!-- end options wrapper -->
 	</div>
+
 
 
 	<h3>Open Menu Button Settings</h3>

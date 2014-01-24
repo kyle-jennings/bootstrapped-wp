@@ -108,7 +108,7 @@ function background_type_callback($type = null,$kjd_section_background_colors = 
 
 ////////////////////////
 // vertical gradient
-function verticalGradientCallback($startColor, $endColor){ 
+function verticalGradientCallback($startColor, $endColor, $section = null){ 
 $gradient_markup = '';
 	if(isset($startColor) && $startColor !=""){ 
 		if(!isset($endcolor) || $endcolor == ""){
