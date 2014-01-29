@@ -127,6 +127,24 @@ if($section !=='posts')
 				value="<?php echo $wallpaperSettings['positionY'] ? $wallpaperSettings['positionY'] : '' ;?>" style="width:40px;"><span class="explanation">from top </span>
 			</div>
 		</div>
+
+		<div class="option">
+			<label>Background Size</label>		
+			<select class="toggle-switch" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_wallpaper][size]">
+				<option value="default" <?php selected( $wallpaperSettings['size'], 'percentage', true) ?>>Default</option>
+				<option value="cover" <?php selected( $wallpaperSettings['size'], 'cover', true) ?>>Cover</option>
+				<option value="contain" <?php selected( $wallpaperSettings['size'], 'contain', true) ?>>Contained</option>
+				<option value="percentage" <?php selected( $wallpaperSettings['size'], 'percentage', true) ?>>Percentage</option>
+			</select>
+		</div>
+
+
+		<div class="option">
+			<label>Background width percentage</label>		
+			<input type="text" name="kjd_<?php echo $section;?>_background_settings[kjd_<?php echo $section;?>_background_wallpaper][percentage]"
+			value="<?php echo $wallpaperSettings['percentage'] ? $wallpaperSettings['percentage'] : '' ;?>" style="width:40px;"><span class="explanation">%</span>
+		</div>
+
 		<div class="option">
 			<label>Background Attachment</label>		
 			<select name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_wallpaper][attachment]">

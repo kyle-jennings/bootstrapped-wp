@@ -444,7 +444,7 @@ switch($section)
 			$section_name = '#body .the-content-wrapper.well';
 		break;
 	case 'widgets':
-			$section_name = '#sideContent .widget .well';
+			$section_name = '#sideContent .widget .styled';
 		break;
 	default:
 		$section_name = '#'.$section;

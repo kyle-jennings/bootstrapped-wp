@@ -138,7 +138,14 @@ function kjd_mobileNav_misc_settings_callback(){
 			</select>
 		</div>
 
-
+		<div class="option">
+			<label>Nav alignment</label>
+			<select name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][menu_alignment]">
+				<option value="left" <?php selected( $options['menu_alignment'], 'left', true) ?>>Left</option>
+				<option value="center" <?php selected( $options['menu_alignment'], 'center', true) ?>>Center</option>
+				<option value="right" <?php selected( $options['menu_alignment'], 'right', true) ?>>Right</option>
+			</select>
+		</div>
 
 		<div class="optionsWrapper float-options">
 			<h3>Drawer Border</h3>

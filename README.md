@@ -5,8 +5,16 @@ BootstrappedWP - By Kyle Jennings
 Customizable Bootstrap Wordpress theme with tons of options, and dozens of cool features. 
 
 ===========================
-Current Version: 1.6
+Current Version: 1.7
 ===========================
+Version 1.7 - 1/14/2014
+*	finished the mobile navbar features. You can now choose to style mobile navs, or use a different menu for mobile.
+*	sidr styles were extended as well to include a new background color for both the navbar and the drawer.
+*	Mobile navs also no have the option to display the site title or logo in the navbar area.
+*	Sidebar Widgets can now be styled
+*	Finally, the  code was all abstracted and cleaned up
+
+
 Version 1.6 - 1/14/2014
 *	fixed the accursed uploaded image preview bug
 *	moved the navbar partial into a function for future reusability
@@ -45,5 +53,3 @@ Coming Soon
 *	Google Fonts for text, and heading tags ( only 2 fonts to keep load time low)
 *	4 more gallery types
 *	More front page image carousels
-*	Customizable body area widgets
-*	Mobile view options for navbar area and header visiblity

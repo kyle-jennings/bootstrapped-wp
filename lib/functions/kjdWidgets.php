@@ -133,15 +133,7 @@ $templates = array(
 foreach($templates as $template){
 
 
-	
-	// $start_inner_well = '';
-	// $end_inner_well = '';
-	// // set inner well if needed 
 
-	// if( $wrap_inner_widget == 'true' ){
-	// 	$start_inner_well .= '<div class="well">';
-	// 	$end_inner_well .= '</div>';
-	// }
 
 	if($template == 'front_page_widget_area_1' || $template == 'front_page_widget_area_2' || $template == 'front_page_widget_area_3' ){
 				
@@ -155,17 +147,17 @@ foreach($templates as $template){
 		$width = set_width($layouts[$template]);
 
 
-		$options = get_option('kjd_component_settings');
+		// $options = get_option('kjd_component_settings');
 
-	    if($options['style_widgets'] =='true') {
+	 //    if($options['style_widgets'] =='true') {
 		
-			$start_outer_well = '';
-			$end_outer_well = '';
+		// 	$start_outer_well = '';
+		// 	$end_outer_well = '';
 
-			$start_outer_well .= '<div class="well">';
-			$end_outer_well .= '</div>';
+		// 	$start_outer_well .= '<div class="well">';
+		// 	$end_outer_well .= '</div>';
 	    	
-	    }
+	 //    }
 	}
 
 

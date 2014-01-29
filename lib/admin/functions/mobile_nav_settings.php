@@ -111,6 +111,7 @@ function kjd_build_mobile_styles_callback( $section = 'navbar' )
 																'kjd_section_misc' 
 																);
 
+		
 
 			// $use_dropdown = $kjd_section_misc_settings['dropdown_bg'];
 			// $using_sidr = $kjd_section_misc_settings['side_nav'];
@@ -156,11 +157,24 @@ function kjd_build_mobile_styles_callback( $section = 'navbar' )
 														);
 
 
-
-	if($kjd_navbar_misc_settings['navbar_alignment'] =='center'){
-
-	}
 	$media_979_markup .='#navbar ul.nav > li{ display:block; float:none;}';
+
+	// Positions navbar
+	if($kjd_section_misc_settings['menu_alignment'] =='left'){
+		
+		$media_979_markup .='#navbar.mobile-menu ul.nav{ float:left;}';
+	
+	}elseif($kjd_section_misc_settings['menu_alignment'] =='center'){
+
+		$media_979_markup .='#navbar.mobile-menu ul.nav { margin:0 auto; text-align: center; width:100%;}';
+		$media_979_markup .='#navbar.mobile-menu ul.nav > li{ display:block; float:none;}';
+	
+	}elseif($kjd_section_misc_settings['menu_alignment'] =='right'){
+	
+		$media_979_markup .='#navbar.mobile-menu ul.nav{ float:right;}';
+	
+	}
+
 
 /* ---------------------------------------------------------
 				Backgrounds and borders

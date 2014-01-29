@@ -6,6 +6,15 @@
 	outline:none !important;
 }
 
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
 
 /* ---------------------------------------------------------------------------------- 
 			Scaffolding
@@ -101,16 +110,23 @@ h2.logo-wrapper{
 
 #navbar {
 	position: relative;
+	/*margin-bottom: 20px;*/
+}
+
+
+
+/*#navbar.navbar,*/
+#navbar .navbar {
+	margin-bottom: 0px;
+	padding: 0 10px;
 }
 
 #navbar.navbar-fixed-top,
 #navbar.navbar-fixed-bottom{
 	position: fixed;
+	margin-bottom: 0;
 }
 
-.navbar {
-	/*margin-bottom: 0px;*/
-}
 
 .navbar .nav > li > a:focus, 
 .navbar .nav > li > a:hover,
@@ -221,7 +237,7 @@ h2.logo-wrapper{
 
 
 /* ---------------------------------------------------------------------------------- 
-			PAge Content
+			Page Content
 ----------------------------------------------------------------------------------  */
 .frontPageBody .the_content:first-child h3
 {
@@ -242,6 +258,12 @@ h2.logo-wrapper{
 .the-content-wrapper.well.media .media-body-right {
 	float:left;
 }
+
+.content-single > .the-content-wrapper {
+	padding-bottom: 0;
+}
+
+
 .media, .media-body {
 	padding-bottom: 4px;
 }
@@ -274,9 +296,14 @@ h2.logo-wrapper{
 /* ---------------------------------------------------------------------------------- 
 			Widget
 ----------------------------------------------------------------------------------  */
+#sideContent .widget .no-well.styled {
+	background: none;
+	border: none;
+}
 .widget .well input, select, textarea {
 	max-width: 90%;
 }
+
 
 .widget {
 	margin-bottom:30px;
@@ -299,11 +326,11 @@ h2.logo-wrapper{
 }
 
 .the-content-inner.attachment-text-above .attachment-description{
-	margin-bottom:40px;
+	/*margin-bottom:40px;*/
 
 }
 .the-content-inner.attachment-text-below .attachment-description{
-	margin-top: 40px;
+	/*margin-top: 40px;*/
 }
 
 
@@ -859,6 +886,28 @@ a img.aligncenter {
 	h1.logo-wrapper, 
 	h2.logo-wrapper {
 		margin-left: 0px;
+	}
+
+	select,
+	textarea,
+	input[type="text"],
+	input[type="password"],
+	input[type="datetime"],
+	input[type="datetime-local"],
+	input[type="date"],
+	input[type="month"],
+	input[type="time"],
+	input[type="week"],
+	input[type="number"],
+	input[type="email"],
+	input[type="url"],
+	input[type="search"],
+	input[type="tel"],
+	input[type="color"],
+	.uneditable-input {
+		/*padding: 10px 5px;
+		width: 97%;*/
+		width; auto;
 	}
 
 }

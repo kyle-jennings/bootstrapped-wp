@@ -12,15 +12,7 @@
 
 	$borderRadius = $options['kjd_'.$section.'_border_radius'];
 
-	$confinePage ='true';
-	if($section =='mobileNav' && $mobilenav_style == 'sidr') {
-		$borders = array("right");
-
-	}else{
-
-		$borders = array("top","right","bottom","left");
-	}
-
+	$borders = array("top","right","bottom","left");
 	$corners = array('top-left', 'top-right','bottom-left','bottom-right');
 	$borderSizes = range(0,20);
 	$borderStyles = array('none','solid','dotted','dashed','double','groove','ridge','inset','outset');
@@ -76,11 +68,7 @@
 			<?php }
 ?>
 		<div class="optionsWrapper float-options">
-<?php
-if($section !='mobileNav' || $mobilenav_style == 'dropdown') {
-		
 
-			?>
 
 
 						<!-- border radius -->
@@ -101,7 +89,7 @@ if($section !='mobileNav' || $mobilenav_style == 'dropdown') {
 			</div>
 
 <?php
-					 }
+
 			 }
 	  	}
 

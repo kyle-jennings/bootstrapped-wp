@@ -16,7 +16,9 @@ if(is_admin()){
  require_once('kjd_layout_functions.php');
 
 
-/* ----------------------- kjd add js and css --------------------- */
+/* ------------------------------------------------
+ kjd add js and css 
+ -------------------------------------------------- */
 function kjd_add_assets(){
 
 	// set variables
@@ -65,7 +67,9 @@ function kjd_add_assets(){
 add_action( 'wp_enqueue_scripts', 'kjd_add_assets' );
 
 
-/* ------------------------------------- get page template layout settings ************************* */
+/* -------------------------------------------------
+ get page template layout settings 
+------------------------------------------------------ */
 function kjd_get_layout_settings($template = NULL) {
 
 			//	if the page is a post type
@@ -180,7 +184,9 @@ function kjd_get_layout_settings($template = NULL) {
 }
 
 
-/* ----------------------- Set featured image and User Image Sizes --------------------- */
+/* ----------------------------------------------------
+ Set featured image and User Image Sizes 
+ ----------------------------------------------------- */
 function kjd_set_featured_image_size(){
 // kjd_component_settings[featured_image][height]
 	$image_size_settings = get_option('kjd_component_settings');
@@ -200,7 +206,9 @@ add_action( 'init', 'kjd_set_featured_image_size' );
  
 
 
-//gets featured image meta info
+/* -----------------------------------------------
+gets featured image meta info
+------------------------------------------------- */
 function kjd_the_post_thumbnail_description($args) {
   $thumbnail_id    = get_post_thumbnail_id($args->ID);
   $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
@@ -263,7 +271,9 @@ $attachments = get_children( array(
 }
 
 
-/* -------------------device views ----------------------- */
+/* ------------------------------------------------------
+device views 
+--------------------------------------------------------- */
 
 function kjd_deviceViewSettings($deviceView){
 		if(isset($deviceView) && $deviceView !="all"){
@@ -283,7 +293,9 @@ add_action('login_head', 'kjd_login_css');
 
 
 
-/* --------------------------- read more link --------------------------*/
+/* --------------------------------------------
+ read more link 
+ ---------------------------------------------*/
 function kjd_excerpt_more_link($more) {
        global $post;
 	return '<a class="moretag" href="'. get_permalink($post->ID) . '"> Read More</a>';
@@ -291,7 +303,9 @@ function kjd_excerpt_more_link($more) {
 add_filter('excerpt_more', 'kjd_excerpt_more_link');
 
 
-/* -------------------------------- pagination  ------------------------------- */
+/* --------------------------------------------
+ pagination  
+ ------------------------------------------- */
 function kjd_get_posts_pagination(){
 	
 	$pagination_markup ='';
@@ -326,12 +340,14 @@ function kjd_get_posts_pagination(){
 
 
 
-/* ----------------------------------- single image nav links for gallery images ------------------------------------ */
+/* ----------------------------------------------------
+ single image nav links for gallery images 
+ ----------------------------------------------------- */
 function kjd_gallery_image_links(){
 
 	global $post;
 
-	$navigation_markup = '<div class="image-pagination">';
+	$navigation_markup = '<div class="image-pagination cf">';
 	$parent_id = $post->post_parent;
 
 	if ( strpos(get_post($parent_id)->post_content,'[gallery ') === false ){
@@ -362,7 +378,9 @@ function kjd_gallery_image_links(){
 	return $navigation_markup;
 }
 
-/* ------------------------ the 404 ------------------------ */
+/* --------------------------------------------
+ the 404 
+------------------------------------------------ */
 
 function kjd_the_404(){
 
@@ -371,7 +389,9 @@ function kjd_the_404(){
 	return $page404;
 }
  
-/* ---------------------------- set featured image size ------------------------------ */
+/* -----------------------------------------------
+ set featured image size 
+ ------------------------------------------------- */
 function kjd_get_featured_image($position = null, $wrapper = 'div'){
 	
 	if($position == 'left_of_post'){
@@ -408,10 +428,102 @@ function kjd_get_featured_image($position = null, $wrapper = 'div'){
 	return $featured_image_markup;
 }
 
+/* -----------------------------------------------------
+	Add widget styling classes to front end
+--------------------------------------------------------*/
+function kjd_add_widget_style( $params ){
+
+	global $wp_registered_widgets, $widget_number;
+
+
+
+	$arr_registered_widgets = wp_get_sidebars_widgets(); // Get an array of ALL registered widgets
+	$this_id                = $params[0]['id']; // Get the id for the current sidebar we're processing
+	$widget_id              = $params[0]['widget_id'];
+	$widget_obj             = $wp_registered_widgets[$widget_id];
+	$widget_num             = $widget_obj['params'][0]['number'];
+	$widget_opt             = null;
+	$widget_opt = get_option( $widget_obj['callback'][0]->option_name );
+
+
+			$widget_opt = get_option( $widget_obj['callback'][0]->option_name );
+
+	if ( isset( $widget_opt[$widget_num]['widget_style'] ) && !empty( $widget_opt[$widget_num]['widget_style'] ) ){
+		// $params[0]['before_widget'] = preg_replace( '/class="/', "class=\"{$widget_opt[$widget_num]['widget_style']} ", $params[0]['before_widget'], 1 );
+		$params[0]['before_widget'] = $params[0]['before_widget'].' <div class="' . $widget_opt[$widget_num]['widget_style'] . '"> ';
+		$params[0]['after_widget'] = ' </div> '.$params[0]['after_widget'];
+		
+		// $params[0]['after_widget'] = str_replace('</div>', '</div></div>', $params[0]['after_widget']);
+
+	}
+
+
+	return $params;
+}
+
+add_filter( 'dynamic_sidebar_params', 'kjd_add_widget_style' );
+
+function kjd_add_device_visibility( $params ){
+
+	global $wp_registered_widgets, $widget_number;
+
+
+
+	$arr_registered_widgets = wp_get_sidebars_widgets(); // Get an array of ALL registered widgets
+	$this_id                = $params[0]['id']; // Get the id for the current sidebar we're processing
+	$widget_id              = $params[0]['widget_id'];
+	$widget_obj             = $wp_registered_widgets[$widget_id];
+	$widget_num             = $widget_obj['params'][0]['number'];
+	$widget_opt             = null;
+	$widget_opt = get_option( $widget_obj['callback'][0]->option_name );
+
+
+	// if Widget Logic plugin is enabled, use it's callback
+	if ( in_array( 'widget-logic/widget_logic.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+		$widget_logic_options = get_option( 'widget_logic' );
+		if ( isset( $widget_logic_options['widget_logic-options-filter'] ) && 'checked' == $widget_logic_options['widget_logic-options-filter'] ) {
+			$widget_opt = get_option( $widget_obj['callback_wl_redirect'][0]->option_name );
+		} else {
+			$widget_opt = get_option( $widget_obj['callback'][0]->option_name );
+		}
+
+	// if Widget Context plugin is enabled, use it's callback
+	} elseif ( in_array( 'widget-context/widget-context.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+		$callback = isset($widget_obj['callback_original_wc']) ? $widget_obj['callback_original_wc'] : null;
+		$callback = !$callback && isset($widget_obj['callback']) ? $widget_obj['callback'] : null;
+
+		if ($callback && is_array($widget_obj['callback'])) {
+			$widget_opt = get_option( $callback[0]->option_name );
+		}
+	}
+	
+	// Default callback
+	else {
+		// Check if WP Page Widget is in use
+		$custom_sidebarcheck = get_post_meta( get_the_ID(), '_customize_sidebars' );
+		if ( isset( $custom_sidebarcheck[0] ) && ( $custom_sidebarcheck[0] == 'yes' ) ) {
+			$widget_opt = get_option( 'widget_'.get_the_id().'_'.substr($widget_obj['callback'][0]->option_name, 7) );
+		}
+		else {
+			$widget_opt = get_option( $widget_obj['callback'][0]->option_name );
+		}
+	}
+
+
+
+	if ( isset( $widget_opt[$widget_num]['device_visibility'] ) && !empty( $widget_opt[$widget_num]['device_visibility'] ) ){
+		$params[0]['before_widget'] = preg_replace( '/class="/', "class=\"{$widget_opt[$widget_num]['device_visibility']} ", $params[0]['before_widget'], 1 );
+	}
+
+
+	return $params;
+}
+
+add_filter( 'dynamic_sidebar_params', 'kjd_add_device_visibility' );
 
 /* --------------------------------------------------
  Site logo
- --------------------------------------------------------*/
+ ----------------------------------------------------*/
 function kjd_header_content($header_contents, $logo_toggle, $logo, $custom_header){
 	
 	$heading = is_front_page() ? 'h1' : 'h2' ;
@@ -469,31 +581,33 @@ function kjd_empty_nav_fallback_callback( $args ) {
 //							menu id,  nav style,   link style, sidr/dropdown/ect,     devise visibility,  position
 function kjd_build_navbar( $menu_id, $navbar_width, $link_type, $mobilenav_style, $visibility = null, $position, $logo = '', $use_mobile_menu = 'false' ){
 
+		$navbar_style = 'navbar ';
 
 		// sets the navbar type
 		switch( $position ){
 			// navbar in default position
 			case 'default':
-				$navbar_style .= 'navbar navbar-static-top';
+				$navbar_style .= 'navbar-static-top';
 				break ;
 			// we want to STICK the navbar to the top of the page - it will scroll WITH the page
 			case 'fixed-top':
-				$navbar_style .= 'navbar navbar-fixed-top';
+				$navbar_style .= 'navbar-fixed-top';
 				break ;
 			// we want to STICK the navbar to the bottom of the page - it will scroll WITH the page
 			case 'fixed-bottom':
-				$navbar_style .= 'navbar navbar-fixed-bottom';
+				$navbar_style .= 'navbar-fixed-bottom';
 				break ;
 			// navbar is just placed at the top of the page
 			case 'static-top':
-				$navbar_style .= 'navbar navbar-static-top';
+				$navbar_style .= 'navbar-static-top';
 				break ;
 		
 			default:
-				$navbar_style .= 'navbar navbar-static-top';
+				$navbar_style .= 'navbar-static-top';
 		}
 
 		if( $navbar_width == 'contained' ){
+			$navbar_style = str_replace( 'navbar', '', $navbar_style );
 			$navbar_style .= ' container' ;
 		}
 
@@ -507,9 +621,10 @@ function kjd_build_navbar( $menu_id, $navbar_width, $link_type, $mobilenav_style
 				
 				$navbar_inner .= '<div class="navbar-inner">';
 					
-					// if the navbar type is not set to contained then we need to put the container inside the inner
+					// if the navbar type is not set to contained then we need to put the container inside the inn=er
 					if( $navbar_width != 'contained' ){
 						$navbar_inner .= '<div class="container">';
+							$navbar_inner .= '<div class="navbar">';
 					}
 
 					if( ($logo != 'none' && $logo != '') ){
@@ -555,6 +670,8 @@ function kjd_build_navbar( $menu_id, $navbar_width, $link_type, $mobilenav_style
 
 					// if the navbar type is not set to contained then we need to put the container inside the inner
 					if( $navbar_width != 'contained' ){
+							$navbar_inner .='</div>'; // end navbar -->
+
 						$navbar_inner .='</div>'; // end container -->
 					}
 

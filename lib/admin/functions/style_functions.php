@@ -174,6 +174,9 @@ function wallpaper_callback($kjd_section_background_wallpaper){
 	$backgroundPositionY = !empty($kjd_section_background_wallpaper['positionY'])? $kjd_section_background_wallpaper['positionY'] : '0' ;
 	$backgroundRepeat = $kjd_section_background_wallpaper['repeat'];
 
+	$backgroundSize = $kjd_section_background_wallpaper['size'];
+	$backgroundPercentage = !empty($kjd_section_background_wallpaper['percentage'])? $kjd_section_background_wallpaper['percentage'] : '0' ;;
+
 	$wallpaper_markup ='';
 
 	if(!empty($kjd_section_background_wallpaper['attachment'])){
@@ -196,6 +199,16 @@ function wallpaper_callback($kjd_section_background_wallpaper){
 			$wallpaper_markup .= 'background-repeat:'.$backgroundRepeat.';';	
 		}
 
+		if( isset($backgroundSize) && $backgroundSize != 'default'){
+			if( $backgroundSize == 'percentage' ){
+
+				$wallpaper_markup .= 'background-size:'.$backgroundPercentage .'% auto ;';
+
+			}else{
+
+				$wallpaper_markup .= 'background-size:'.$backgroundSize .';';
+			}
+		}
 
 	}
 	return $wallpaper_markup;

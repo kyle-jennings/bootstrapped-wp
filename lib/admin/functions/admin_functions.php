@@ -196,3 +196,73 @@ add_action('print_media_templates', function(){
   <?php
 
 });
+
+
+/* ------------------------------------------------
+    Widget Styles
+ -------------------------------------------------*/
+
+// Add style dropdown
+
+function add_widget_style_dropdown( $widget, $return, $instance ){
+
+  $widget_styles = array('not styled' => 'unstyled', 'use background' =>'well styled','no background' => 'no-well styled');
+  $output = '';
+  $output .= '<div>';
+  
+    $output .= "\t<label for='widget-{$widget->id_base}-{$widget->number}-widget_style'>"."Widget Style:</label>\n";
+    $output .= "\t<select name='widget-{$widget->id_base}[{$widget->number}][widget_style]' id='widget-{$widget->id_base}-{$widget->number}-widget_style'>\n";
+    foreach ( $widget_styles as $k => $v ) {
+      if ( $v != '' ) {
+        $output .= "\t<option value='".$v."' ".selected( $instance['widget_style'], $v, 0 ).">".$k."</option>\n";
+      }
+    }
+    $output .= "</select>\n";
+  $output .= '</div>';
+
+  echo $output;
+  return $instance;
+
+}
+add_action( 'in_widget_form', 'add_widget_style_dropdown', 10, 3 );
+
+function add_widget_device_visibility_dropdown( $widget, $return, $instance ){
+
+  $widget_styles = array(
+    'Visible Desktop' => 'visible-desktop',
+    'Visible Tablet' => 'visible-tablet',
+    'Visible Phone' => 'visible-phone',
+    'Hidden Desktop' => 'hidden-desktop',
+    'Hidden Tablet' => 'hidden-tablet',
+    'Hidden Phone' => 'hidden-phone',
+   );
+
+  $output = '';
+
+  $output .= '<div>';
+    $output .= "\t<label for='widget-{$widget->id_base}-{$widget->number}-device_visibility'> Device Visibility:</label>\n";
+    $output .= "\t<select name='widget-{$widget->id_base}[{$widget->number}][device_visibility]' id='widget-{$widget->id_base}-{$widget->number}-device_visibility'>\n";
+    foreach ( $widget_styles as $k => $v ) {
+      if ( $v != '' ) {
+        $output .= "\t<option value='".$v."' ".selected( $instance['device_visibility'], $v, 0 ).">".$k."</option>\n";
+      }
+    }
+    $output .= "</select>\n";
+  $output .= '</div>';
+
+  echo $output;
+  return $instance;
+
+}
+add_action( 'in_widget_form', 'add_widget_device_visibility_dropdown', 10, 3 );
+
+// update widget
+
+function update_widget( $instance, $new_instance ) {
+  $instance['widget_style'] = $new_instance['widget_style'];
+  $instance['device_visibility'] = $new_instance['device_visibility'];
+  // do_action( 'widget_css_classes_update', $instance, $new_instance );
+  return $instance;
+
+}
+add_filter( 'widget_update_callback', 'update_widget', 10, 2 );
