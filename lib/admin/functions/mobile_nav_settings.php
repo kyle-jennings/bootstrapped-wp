@@ -8,6 +8,15 @@ function kjd_build_mobile_styles_callback( $section = 'navbar' )
 
 	$media_979_markup .= '@media(max-width:979px){';
 		
+		$media_979_markup .= '#navbar .navbar-inner .nav-tabs.tabs > li > a, ';
+		$media_979_markup .= '#navbar .navbar-inner .nav-tabs.tabs-below > li > a {';
+			$media_979_markup .= 'border-radius: 4px 4px 4px 4px;';
+			$media_979_markup .= '-moz-border-radius: 4px 4px 4px 4px;';
+			$media_979_markup .= '-webkit-border-radius: 4px 4px 4px 4px;';
+			$media_979_markup .= '-0-border-radius: 4px 4px 4px 4px;';
+		$media_979_markup .= '}';
+
+
 		$media_979_markup .= '#navbar .nav .dropdown-menu{ border-width:0px !important; }';
 		
 	/* -------------------------------------------------

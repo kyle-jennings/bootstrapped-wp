@@ -353,13 +353,13 @@ function kjd_get_theme_options($preview = null){
 		);
 
 
-		$section_output .= section_markup_callback($section,$section_options);
+		$section_output .= section_markup_callback( $section, $section_options );
 		
 	}
 
-    if($options['style_posts']=='true'){
-		$section_output .= postSettingsCallback();
-	}
+
+
+
 	
 	/* ----------------------------------------------------- 
 	Responsive markup
@@ -423,33 +423,34 @@ function section_markup_callback($section,$section_options){
 	extract($backgroundSettings);
 
 	
-switch($section)
-{
-	case 'dropdown-menu':
-		$section_name = '.dropdown-menu';
-		break;
-	case 'cycler':
-		$section_name = '#imageSliderWrapper';
-		break;
-	case 'navbar':
-		$section_name = '#'.$section.'.primary-menu .navbar-inner';
-		break;
-	case 'htmlTag':
-		$section_name =  'html';
-		break;		
-	case 'bodyTag':
-		$section_name = 'body';
-		break;
-	case 'posts':
-			$section_name = '#body .the-content-wrapper.well';
-		break;
-	case 'widgets':
-			$section_name = '#sideContent .widget .styled';
-		break;
-	default:
-		$section_name = '#'.$section;
-		break;
-}
+	switch($section)
+	{
+		case 'dropdown-menu':
+			$section_name = '.dropdown-menu';
+			break;
+		case 'cycler':
+			$section_name = '#imageSliderWrapper';
+			break;
+		case 'navbar':
+			$section_name = '#'.$section.'.primary-menu .navbar-inner';
+			break;
+		case 'htmlTag':
+			$section_name =  'html';
+			break;		
+		case 'bodyTag':
+			$section_name = 'body';
+			break;
+		case 'posts':
+				$section_name = '#body .the-content-wrapper.well';
+			break;
+		case 'widgets':
+				$section_name = '#sideContent .widget .styled';
+			break;
+		default:
+			$section_name = '#'.$section;
+			break;
+	}
+
 
 
 	$type = $kjd_section_background_colors['gradient'];
@@ -468,15 +469,6 @@ switch($section)
 
 	$sectionArea_markup = '';
 
-	if($section =="cycler"){
-		$forceHeight = $kjd_section_misc_settings['force_height'];
-		if($forceHeight =='true'){
-			$section_height = !empty($kjd_section_misc_settings['height']) ? $kjd_section_misc_settings['height'] : '' ;
-		}
-		$sectionArea_markup .= $section_name.' #imageSlider, .rslides{';
-			$sectionArea_markup .= "height:".$section_height."px;";
-		$sectionArea_markup .= '}';		
-	}
 
 
 	if($section == 'posts'){
@@ -492,46 +484,65 @@ switch($section)
 
 	}
 
-if($section == 'cycler') {
-	if( $kjd_section_misc_settings['plugin'] == 'nivo' && $kjd_section_misc_settings['full_width'] == 'true'){
-		$sectionArea_markup .= '.nivo-controlNav {
-					position: absolute;
-					bottom: 0;
-					left: 50%;
-					z-index: 999;
-				}';
+	if($section == 'cycler') {
+		if( $kjd_section_misc_settings['plugin'] == 'nivo' && $kjd_section_misc_settings['full_width'] == 'true'){
+			$sectionArea_markup .= '.nivo-controlNav {
+						position: absolute;
+						bottom: 0;
+						left: 50%;
+						z-index: 999;
+					}';
+		}
 	}
-}
 
 
-// start section markup
+/* ---------------------------------------------------
+ 			start section markup
+ ----------------------------------------------------- */
+
 	$sectionArea_markup .= $section_name.'{';
 
-// adds a box shaddow to the section, must finish building
-	if(!empty($kjd_section_misc_settings[$section.'_section_shadow']) 
-		&& $kjd_section_misc_settings[$section.'_section_shadow'] != 'none') {
+	
+	// adds a box shaddow to the section, must finish building
+	if(!empty($kjd_section_misc_settings[$section.'_section_shadow']) ) {
+
 
 
 		switch( $kjd_section_misc_settings[$section.'_section_shadow'] ){
 			case 'left and right':
-
-				$sectionArea_markup .= 'box-shadow: 0 9px 0px 0px white, 0 -9px 0px 0px white, ';
-				$sectionArea_markup .= '12px 0 15px -4px rgba(31, 73, 125, 0.8), -12px 0 15px -4px rgba(31, 73, 125, 0.8);';
+				$sectionArea_markup .='-moz-box-shadow: 10px 0px 10px -10px rgba(0,0,0, 0.8), -7px 0px 10px -10px rgba(0,0,0, 0.8);';
+				$sectionArea_markup .='-webkit-box-shadow: 10px 0px 10px -10px rgba(0,0,0, 0.8), -7px 0px 10px -10px rgba(0,0,0, 0.8);';
+				$sectionArea_markup .='box-shadow: 10px 0px 10px -10px rgba(0,0,0, 0.8), -7px 0px 10px -10px rgba(0,0,0, 0.8);';				
 				break;
 			case 'top and bottom':
+				$sectionArea_markup .= '-webkit-box-shadow: 0 -7px 10px -10px rgba(0, 0, 0, 0.8),  0 10px 10px -10px rgba(0, 0, 0, 0.8);';
+				$sectionArea_markup .= '-moz-box-shadow: 0 -7px 10px -10px rgba(0, 0, 0, 0.8),  0 10px 10px -10px rgba(0, 0, 0, 0.8);';
+				$sectionArea_markup .= 'box-shadow: 0 -7px 10px -10px rgba(0, 0, 0, 0.8),  0 10px 10px -10px rgba(0, 0, 0, 0.8);';
 				break;
 			case 'top':
+				$sectionArea_markup .= '-webkit-box-shadow: 0 -7px 10px -10px rgba(0, 0, 0, 0.8);';
+				$sectionArea_markup .= '-moz-box-shadow: 0 -7px 10px -10px rgba(0, 0, 0, 0.8);';
+				$sectionArea_markup .= 'box-shadow: 0 -7px 10px -10px rgba(0, 0, 0, 0.8);';
 				break;
 			case 'bottom':
+				$sectionArea_markup .= '-webkit-box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.8);';
+				$sectionArea_markup .= '-moz-box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.8);';
+				$sectionArea_markup .= 'box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.8);';
 				break;
 			case 'all sides':
+				$sectionArea_markup .= '-webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.8);';
+				$sectionArea_markup .= 'box-shadow: 0 1px 10px rgba(0, 0, 0, 0.8);';
 				break;
-
+			default:
+				$sectionArea_markup .= 'box-shadow: none;';
+				break;
 		}
 
 	}
 
-
+/* -----------------------------------------------------
+			'floats' the section
+------------------------------------------------------- */
 	if( $kjd_section_misc_settings['float'] =='true'){
 
 		$margin_top = $kjd_section_misc_settings['margin_top'] ? $kjd_section_misc_settings['margin_top'] : '0' ;
@@ -542,14 +553,28 @@ if($section == 'cycler') {
 		$sectionArea_markup .=  "margin-bottom:".$margin_bottom."px;";
 
 	}
-
+/* ----------------------------------------------------
+				forces height
+------------------------------------------------------- */
 	if($section=='header' && $forceHeight =="true" && !empty($kjd_section_misc_settings['header_height'])){
 		$sectionArea_markup .= "height:".$kjd_section_misc_settings['header_height']."px;";
 	}
-
+	
+	// look into these seemingly similar functions
 	if($section=='cycler' && $forceHeight =="true" && !empty($kjd_section_misc_settings['height'])){
 		$sectionArea_markup .= "height:".$kjd_section_misc_settings['height']."px;";
 	}
+
+	if($section =="cycler"){
+		$forceHeight = $kjd_section_misc_settings['force_height'];
+		if($forceHeight =='true'){
+			$section_height = !empty($kjd_section_misc_settings['height']) ? $kjd_section_misc_settings['height'] : '' ;
+		}
+		$sectionArea_markup .= $section_name.' #imageSlider, .rslides{';
+			$sectionArea_markup .= "height:".$section_height."px;";
+		$sectionArea_markup .= '}';		
+	}
+
 
 	if($section =='footer'){
 
@@ -557,6 +582,8 @@ if($section == 'cycler') {
 		$sectionArea_markup .= "height:".$height."px;";	
 
 	}
+
+
 	/* ----------------------------------------------------------------------------- *
 							background stuff
 	----------------------------------------------------------------------------- */
@@ -608,7 +635,14 @@ if($section == 'cycler') {
 		}
 	}
 
-	$sectionArea_markup .= '}';
+$sectionArea_markup .= '}'; // Ends the section div markup
+
+
+/* ------------------------------------------------------------
+---------------------------------------------------------------
+				starts things like links and shit
+---------------------------------------------------------------
+--------------------------------------------------------------- */
 
 	if($section == 'header'){
 		$sectionArea_markup .= '.logo-wrapper{ ';
@@ -640,52 +674,7 @@ if($section == 'cycler') {
 		$sectionArea_markup .= '}';
 	}
 
-	if($section == 'body'){
 
-		$kjd_section_misc_settings = get_option('kjd_body_misc_settings');
-		$kjd_section_misc_settings = $kjd_section_misc_settings['kjd_body_misc'];
-
-		//color of the line underneath the post info
-		$postInfoBorder = $kjd_section_misc_settings['post_info_border'] ? $kjd_section_misc_settings['post_info_border'] : 'rgba(0,0,0,.5)';
-		$blockquote = $kjd_section_misc_settings['blockquote'] ? $kjd_section_misc_settings['blockquote'] : 'inherit';
-
-		$sectionArea_markup .= '#body .post-info';
-		$sectionArea_markup .= '{';
-			$sectionArea_markup .= 'border-bottom:1px solid '. $postInfoBorder.';';
-		$sectionArea_markup .= '}';
-
-		$sectionArea_markup .= '#body blockquote';
-		$sectionArea_markup .= '{';
-			$sectionArea_markup .= 'border-color:'. $blockquote.';';
-		$sectionArea_markup .= '}';
-
-
-		foreach(array('pre','code') as $type){
-			$background = $kjd_section_misc_settings[$type.'_background'] ? $kjd_section_misc_settings[$type.'_background'] : 'inherit';
-			$text = $kjd_section_misc_settings[$type.'_text'] ? $kjd_section_misc_settings[$type.'_text'] : 'inherit';
-			$link = $kjd_section_misc_settings[$type.'_link'] ? $kjd_section_misc_settings[$type.'_link'] : 'inherit';
-			$hovered_link = $kjd_section_misc_settings[$type.'_hovered_link'] ? $kjd_section_misc_settings[$type.'_hovered_link'] : 'inherit';
-
-			$sectionArea_markup .= '#body '.$type.'';
-			$sectionArea_markup .= '{';
-				$sectionArea_markup .= 'border:'.$background.';';
-				$sectionArea_markup .= 'background:'.$background.';';
-				$sectionArea_markup .= 'color:'.$text.';';
-			$sectionArea_markup .= '}';
-
-			$sectionArea_markup .= '#body '.$type.' a';
-			$sectionArea_markup .= '{';
-				$sectionArea_markup .= 'color:'.$link.';';
-			$sectionArea_markup .= '}';
-
-			$sectionArea_markup .= '#body '.$type.' a:hover';
-			$sectionArea_markup .= '{';
-				$sectionArea_markup .= 'color:'.$hovered_link .';';
-			$sectionArea_markup .= '}';
-		}
-
-
-	}
 
 
 /* ----------------------------------------------------------------------------- *
@@ -718,6 +707,16 @@ if($section == 'cycler') {
 		$sectionArea_markup .= kjd_image_cycler_settings_callback($kjd_section_misc_settings);
 	}
 
+
+/* ----------------------------------------------------------------------------- 
+						special text formatting
+----------------------------------------------------------------------------- */
+	if( $section =='header' || $section == 'body' || $section == 'posts' || $section == 'widgets' || $section == 'footer'){
+
+
+		$sectionArea_markup .= post_settings_callback($section, $kjd_section_misc_settings);
+
+	}
 
 /* ----------------------------------------------------------------------------- *
 						Components

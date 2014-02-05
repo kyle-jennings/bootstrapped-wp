@@ -20,6 +20,11 @@ if(is_admin()){
  kjd add js and css 
  -------------------------------------------------- */
 function kjd_add_assets(){
+	
+	//set tempplate root
+	$root = get_bloginfo('template_directory'); 
+	$wpcontent = dirname( ( dirname($root) ) );
+	$root = $root.'/lib';
 
 	// set variables
 	$mobileNavSettings = get_option('kjd_mobileNav_misc_settings');
@@ -34,9 +39,7 @@ function kjd_add_assets(){
 	$generalSettings = get_option('kjd_theme_settings');
 	$responsive = $generalSettings['kjd_responsive_design'];
 
-	//set tempplate root
-	$root=get_bloginfo('template_directory'); 
-	$root = $root.'/lib';
+	
 
 	wp_enqueue_script("jquery", $root."/scripts/jquery.js", false, "1.0", false);  
 	wp_enqueue_script("bootstrap", $root."/scripts/bootstrap.min.js", false, "1.0", true);  
@@ -55,8 +58,10 @@ function kjd_add_assets(){
 		wp_enqueue_style("bootstrap-responsive", $root."/styles/bootstrap/bootstrap-responsive.min.css");
 	}
 
+	// wp_enqueue_style("custom", $wpcontent."/styles/custom.css");
+	wp_enqueue_style("base", $root."/styles/common.css");	
 	wp_enqueue_style("custom", $root."/styles/custom.css");
-	wp_enqueue_style("scaffolding", $root."/styles/common.css");	
+	wp_enqueue_style("mobile", $root."/styles/mobile.css");	
 
 	// Add slider scripts if on front page
 	if( is_front_page() ){
@@ -607,7 +612,7 @@ function kjd_build_navbar( $menu_id, $navbar_width, $link_type, $mobilenav_style
 		}
 
 		if( $navbar_width == 'contained' ){
-			$navbar_style = str_replace( 'navbar', '', $navbar_style );
+			// $navbar_style = str_replace( 'navbar-static-top', '', $navbar_style );
 			$navbar_style .= ' container' ;
 		}
 

@@ -157,25 +157,47 @@ function navbarStylesCallback( $preview ){
 
 //layouts
 	//confines layout to like, 960 and has border radius
-	if($kjd_section_misc_settings['navbar_style'] =="contained"){
-		$navbar_markup .='.navbar-inner{padding:0;}';
-		// $navbar_markup .='.navbar-inner .nav li:first-child a{ border-radius:4px 0 0 4px;}';
-	}
+	// if($kjd_section_misc_settings['navbar_style'] =="contained"){
+	// 	$navbar_markup .='.navbar-inner{padding:0;}';
+	// 	// $navbar_markup .='.navbar-inner .nav li:first-child a{ border-radius:4px 0 0 4px;}';
+	// }
 	//stickys to top of page
-	if($kjd_section_misc_settings['navbar_style'] =="sticky-top"){
-		// $navbar_markup .='#header{ padding-top:50px; }';
-	}	
 
+	if( in_array($kjd_section_misc_settings['navbar_link_style'], array('tabs', 'tabs-below') ) ){
+
+		// adjusts teh tabs to look nice
+		$navbar_markup .= '.navbar .nav > li{';
+
+			if( $kjd_section_misc_settings['navbar_link_style'] == 'tabs' ) {
+				$navbar_markup .= 'border-bottom-size:0;';
+			}elseif( $kjd_section_misc_settings['navbar_link_style'] == 'tabs-below' ){
+				$navbar_markup .= 'border-top-size:0;';
+			}
+		$navbar_markup .= '}';
+	
+
+		$navbar_markup .= '.navbar .nav > li > a{';
+
+			if( $kjd_section_misc_settings['navbar_link_style'] == 'tabs' ) {
+				$navbar_markup .= 'border-bottom:0 none transparent !important;';
+
+			}elseif( $kjd_section_misc_settings['navbar_link_style'] == 'tabs-below' ){
+				$navbar_markup .= 'border-top:0 none transparent !important;';
+
+
+			}
+		$navbar_markup .= '}';
+
+	}
 
 // /* *************** link colors ******************** */
 
 
-/* ----------------------------
+/* -----------------------------------------------------------------
  link colors 
- ------------------------------*/
+------------------------------------------------------------------- */
 
 $navbar_markup .= '.navbar .nav > li > a {';
-		$navbar_markup .= 'color:'.$kjd_section_link['color'].';';
 		
 		if( $kjd_section_link['bg_color'] != ''){
 			$navbar_markup .= 'background-color:'.$kjd_section_link['bg_color'].';';
@@ -183,7 +205,14 @@ $navbar_markup .= '.navbar .nav > li > a {';
 		}else{
 			$navbar_markup .= 'background-color: transparent;';
 		}
+		$navbar_markup .= 'color:'.$kjd_section_link['color'].';';
 
+		if( in_array($kjd_section_misc_settings['navbar_link_style'], array('pills', 'tabs', 'tabs-below') ) ){
+			$navbar_markup .= 'border-color:'.$kjd_section_Link['border_color'].';';
+		}
+		$navbar_markup .= 'text-decoration:'.$kjd_section_Link['decoration'].' !important;';
+
+		
 $navbar_markup .= '}';
 
 	//  inactive carret
@@ -193,9 +222,9 @@ $navbar_markup .= '}';
 	$navbar_markup .= '}';
 
 
-/* ----------------------------
+/* --------------------------------------------------------------------
  active link colors 
- ------------------------------*/
+---------------------------------------------------------------------- */
 
  // da link
 $navbar_markup .= '.navbar .nav > li.active > a,';
@@ -215,6 +244,10 @@ $navbar_markup .= '{';
 
 	}
 	
+	if( in_array($kjd_section_misc_settings['navbar_link_style'], array('pills', 'tabs', 'tabs-below') ) ){
+		$navbar_markup .= 'border-color:'.$kjd_section_LinkActive['border_color'].';';
+	}
+
 	$navbar_markup .= 'color:'.$kjd_section_LinkActive['color'].';';
 	$navbar_markup .= 'text-decoration:'.$kjd_section_LinkActive['decoration'].' !important;';
 
@@ -228,9 +261,9 @@ $navbar_markup .= '.navbar .nav li.dropdown.open.active > .dropdown-toggle .care
 	$navbar_markup .= 'border-top-color:'.$kjd_section_LinkActive['color'].';';
 $navbar_markup .= '}';
 
-/* ----------------------------
+/* ---------------------------------------------------------------
  hovered link colors 
- ------------------------------*/
+------------------------------------------------------------------ */
 
 // the link
  $navbar_markup .= '.navbar .nav > .active > a:hover,';
@@ -249,13 +282,17 @@ $navbar_markup .= '.navbar .nav > li > a:focus {';
 
 	}
 	
-	$navbar_markup .= 'border-color: '.$kjd_section_linkHovered['bg_color'].';';
+	if( in_array($kjd_section_misc_settings['navbar_link_style'], array('pills', 'tabs', 'tabs-below') ) ){
+		$navbar_markup .= 'border-color:'.$kjd_section_linkHovered['border_color'].';';
+	}
+
 	$navbar_markup .= 'color:'.$kjd_section_linkHovered['color'].';';
 	$navbar_markup .= 'text-decoration:'.$kjd_section_linkHovered['decoration'].';';
 $navbar_markup .= '}';
 
-$navbar_markup .= '#navbar .nav-tabs { border-bottom: none; }';
-$navbar_markup .= '#navbar .nav-tabs > li {margin-bottom: 0;}';
+
+// $navbar_markup .= '#navbar .nav-tabs { border-bottom: none; }';
+// $navbar_markup .= '#navbar .nav-tabs > li {margin-bottom: 0;}';
 
 //hovered carret -->
 $navbar_markup .='.navbar .nav > li > a:hover.dropdown-toggle > .caret{';

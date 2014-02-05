@@ -8,24 +8,6 @@ include 'functions/styles.php';
 include 'functions/admin_functions.php';
 
 
-
-//////////////////////////////////////
-// Google font selection
-//////////////////////////////////////
-#add_action('admin_init', 'load_google_fonts_callback');
-
-// function load_google_fonts_callback(){
-// $fontList = array();
-// $fonts = get_option('kjd_appearance_settings'); 
-
-// array_push($fontList,$fonts['kjd_heading_font']['font'],$fonts['kjd_general_font']['font']);
-
-
-// $fontList = implode('|',$fontList);
-// wp_enqueue_style('kjd_google-fonts', 'http://fonts.googleapis.com/css?family='.$fontList, false, '1.0');
-
-// }
-
 // gets js and css file for the styling and fancy pantsing
 
 

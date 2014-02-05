@@ -15,7 +15,7 @@ if ( !defined('WP_LOAD_PATH') ) {
 		else
 			exit("Could not find wp-load.php");
 }
-$adminRoot = dirname(_file_);
+$adminRoot = dirname( _file_ );
 // let's load WordPress
 require_once( WP_LOAD_PATH . 'wp-load.php');
 

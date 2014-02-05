@@ -759,26 +759,28 @@ $tabbed_markup .= '-moz-border-radius-topleft: 0;';
 $tabbed_markup .= 'border-radius: 4px;';
 $tabbed_markup .= 'border-top-left-radius: 0;';
 $tabbed_markup .= '}';
-// tabs on teh bottom
+
+// tabs on the bottom
 $tabbed_markup .= $section.' .tabs-below > ul.nav > li > a{';
-$tabbed_markup .= 'border-top-color:'. $tabbed_content['tabbed_content_border'].'; ';
+	$tabbed_markup .= 'border-top-color:'. $tabbed_content['tabbed_content_border'].'; ';
 $tabbed_markup .= '}';
 
 $tabbed_markup .= $section.' .tabs-below > ul.nav > li.active > a{';
-$tabbed_markup .= 'border-top-color:'. $tabbed_content['tabbed_content_background'].'; ';
-$tabbed_markup .= '}';
+	$tabbed_markup .= 'border-top-color:'. $tabbed_content['tabbed_content_background'].'; ';
 
+$tabbed_markup .= '}';
 $tabbed_markup .= $section.' .tabs-below > ul.nav > li > a:hover{';
-$tabbed_markup .= 'border-top-color:'. $tabbed_content['tabbed_content_background'].'; ';
+	$tabbed_markup .= 'border-top-color:'. $tabbed_content['tabbed_content_background'].'; ';
+
 $tabbed_markup .= '}';
 
 $tabbed_markup .= $section.' .tabs-below .tab-content{';
-$tabbed_markup .= '-webkit-border-radius: 4px;';
-$tabbed_markup .= '-webkit-border-bottom-left-radius: 0;';
-$tabbed_markup .= '-moz-border-radius: 4px;';
-$tabbed_markup .= '-moz-border-radius-bottomleft: 0;';
-$tabbed_markup .= 'border-radius: 4px;';
-$tabbed_markup .= 'border-bottom-left-radius: 0;';
+	$tabbed_markup .= '-webkit-border-radius: 4px;';
+	$tabbed_markup .= '-webkit-border-bottom-left-radius: 0;';
+	$tabbed_markup .= '-moz-border-radius: 4px;';
+	$tabbed_markup .= '-moz-border-radius-bottomleft: 0;';
+	$tabbed_markup .= 'border-radius: 4px;';
+	$tabbed_markup .= 'border-bottom-left-radius: 0;';
 $tabbed_markup .= '}';
 
 return $tabbed_markup;
@@ -899,27 +901,61 @@ function miscStylesCallback(){
 	return $misc_markup;
 }
 
-function postSettingsCallback(){
+function post_settings_callback( $section = null, $kjd_section_misc_settings = null){
 
 
-		$kjd_section_misc_settings = get_option('kjd_posts_misc_settings');
-		$kjd_section_misc_settings = $kjd_section_misc_settings['kjd_posts_misc'];
-
+		
 		//color of the line underneath the post info
 		$postInfoBorder = $kjd_section_misc_settings['post_info_border'] ? $kjd_section_misc_settings['post_info_border'] : 'rgba(0,0,0,.5)';
-		$blockquote = $kjd_section_misc_settings['blockquote'] ? $kjd_section_misc_settings['blockquote'] : 'rgba(0,0,0,.5)';
+		// $blockquote = $kjd_section_misc_settings['blockquote'] ? $kjd_section_misc_settings['blockquote'] : 'rgba(0,0,0,.5)';
+
+		$special_format_colors = $kjd_section_misc_settings['formatted_text'];
+
 
 		$post_misc_markup ='';
 
-		$post_misc_markup .= '#body .post-info';
-		$post_misc_markup .= '{';
+		$post_misc_markup .= $section . ' .post-info {';
 			$post_misc_markup .= 'border-bottom:1px solid '. $postInfoBorder.';';
 		$post_misc_markup .= '}';
 
-		$post_misc_markup .= '#body blockquote';
-		$post_misc_markup .= '{';
-			$post_misc_markup .= 'border-color:'. $blockquote.';';
-		$post_misc_markup .= '}';
+		// $post_misc_markup .= $section . ' blockquote {';
+		// 	$post_misc_markup .= 'border-color:'. $blockquote.';';
+		// $post_misc_markup .= '}';
+
+		foreach( array('pre','code','address','blockquote') as $format){
+			
+				$post_misc_markup .= $section . ' '.$format.'{';
+					$post_misc_markup .= 'background-color:'.$kjd_section_misc_settings['formatted_text'][$format . '_background'].';';
+					
+					if( $format != 'blockquote' ){
+						if( $kjd_section_misc_settings['formatted_text'][$format . '_border'] ){
+							$post_misc_markup .= 'border:1px solid '.$kjd_section_misc_settings['formatted_text'][$format . '_border'].';';
+						}else {
+							$post_misc_markup .= 'border:0px none transparent';
+						}
+					}else{
+						$post_misc_markup .= 'border-color:'.$kjd_section_misc_settings['formatted_text'][$format . '_border'].';';
+					}
+					
+					if($format == 'blockquote' || $format =='address'){
+						
+						if( $kjd_section_misc_settings['formatted_text'][$format . '_padding'] != '0px' && $kjd_section_misc_settings['formatted_text'][$format . '_padding']  ){
+							$post_misc_markup .= 'padding: '.$kjd_section_misc_settings['formatted_text'][$format . '_padding'].';';
+						}
+					}
+
+					$post_misc_markup .= 'color:'.$kjd_section_misc_settings['formatted_text'][$format . '_text'].';';
+				$post_misc_markup .= '}';
+				
+				$post_misc_markup .= $section . ' '.$format.' a {';
+					$post_misc_markup .= 'color:'.$kjd_section_misc_settings['formatted_text'][$format . '_link'].';';
+				$post_misc_markup .= '}';
+
+				$post_misc_markup .= $section . ' '.$format.' a:hover {';
+					$post_misc_markup .= 'color:'.$kjd_section_misc_settings['formatted_text'][$format . '_hovered_link'].';';
+				$post_misc_markup .= '}';
+
+		}
 
 	return $post_misc_markup;
 }

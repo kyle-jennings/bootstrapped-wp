@@ -3,16 +3,31 @@
 
 /* ------------------------- Update Style sheet after settigns are saved ------------------------------------ */
 
-function kjd_build_theme_css(){
-  $root=dirname( dirname(dirname(__FILE__)) ); 
-  $root = $root.'/styles';
-  $file = $root.'/custom.css';
+function kjd_build_theme_css( $stylesheet = 'custom.css' ){
+  $root = dirname( dirname(dirname(__FILE__)) );  // theme -> lib
+  // $wp-contenr = dirname( dirname( dirname( dirname( dirname( dirname(__FILE__) ) ) ) ) );  // wp-content folder
+
+
+  if( file_exists( $root . '/styles' ) ){
+
+    chmod($root, 0777);
+    $root = $root . '/styles';
+    $file = $root . '/'. $stylesheet;
+
+  }else{
+    mkdir( $root . '/styles', 0777);
+    $root = $root . '/styles';
+    $file = $root . '/'. $stylesheet;    
+  }
+
 
   if(file_exists($file)){
     chmod($file, 0777);
     $file = fopen($file, "w+"); 
-  }else{
+  }elseif( !file_exists( $file ) && file_exists( $root ) ){
     $file = fopen($file, "x+");
+  }else{
+    return;
   }
 
   ob_start();
@@ -208,6 +223,7 @@ function add_widget_style_dropdown( $widget, $return, $instance ){
 
   $widget_styles = array('not styled' => 'unstyled', 'use background' =>'well styled','no background' => 'no-well styled');
   $output = '';
+  $output .= '<h4>Widget Settings</h4>';
   $output .= '<div>';
   
     $output .= "\t<label for='widget-{$widget->id_base}-{$widget->number}-widget_style'>"."Widget Style:</label>\n";
@@ -229,6 +245,7 @@ add_action( 'in_widget_form', 'add_widget_style_dropdown', 10, 3 );
 function add_widget_device_visibility_dropdown( $widget, $return, $instance ){
 
   $widget_styles = array(
+    'All' => 'all',
     'Visible Desktop' => 'visible-desktop',
     'Visible Tablet' => 'visible-tablet',
     'Visible Phone' => 'visible-phone',

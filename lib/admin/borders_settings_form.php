@@ -73,8 +73,7 @@
 
 						<!-- border radius -->
 			<h2>Border Radius</h2>
-			<?php 
-			if($confinePage == 'true'){ 			
+			<?php 		
 			foreach($corners as $corner){ 
 			?>
 			
@@ -88,10 +87,10 @@
 				</select>
 			</div>
 
-<?php
+		<?php
 
 			 }
-	  	}
+
 
 	?>
 			

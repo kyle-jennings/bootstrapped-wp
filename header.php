@@ -39,6 +39,10 @@
 	$navbarLinkStyle = $navbarSettings['navbar_link_style'];
 	$navbarStyle = $navbarSettings['navbar_style'];
 	$navbarPosition = $navbarSettings['navbar_position'];
+	
+
+
+
 
 	// $confineNavbarBackground = $navbarSettings['kjd_navbar_confine_background'];
 
@@ -58,10 +62,7 @@
 		$mobilenav_style = $mobileNavSettings['mobilenav_style'];
 
 		$mobilenav_position = $mobileNavSettings['mobilenav_position'];
-		if ( $mobilenav_position == 'fixed' || $mobilenav_position == 'sticky') {
-			// $navbar_style .= 'visible-desktop '
-			
-		}
+
 	}
 
 	// mast settings
@@ -73,10 +74,28 @@
 	$contentAreaSettings = get_option('kjd_contentArea_background_settings');
 	$confinecontentArea = $contentAreaSettings['kjd_contentArea_background']['confine_contentArea'];
 
+	// inline styles 
+	$html_class = '';
+
+	//navbar 
+	if( $navbarPosition == 'fixed-top'){
+		$html_class .= ' navbar-fixed-top';
+	}elseif( $navbarPosition == 'fixed-bottom'){
+		$html_class .= ' navbar-fixed-bottom';
+	}
+
+	//mobilenav
+	if( $mobilenav_position == 'fixed-top'){
+		$html_class .= ' mobilenav-fixed-top';
+	}elseif( $mobilenav_position == 'fixed-bottom'){
+		$html_class .= ' mobilenav-fixed-bottom';
+	}
+
+
 ?>
 
 <!DOCTYPE html>
-<html <?php language_attributes(); ?> style="margin-top:0 !important;">
+<html <?php language_attributes(); ?> <?php echo $html_class ? 'class='.$html_class : '' ;?> >
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width" />

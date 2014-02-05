@@ -586,8 +586,10 @@ function kjd_attachment_layout($post_options){
 			$the_content_markup .= kjd_get_the_post_info();
 		}
 
-		if($attachment_layout == 'text-above' || $attachment_layout == 'text-left' ){
-			$the_content_markup .= '<p class="attachment-description">'.get_the_content().'</p>';
+		if( $attachment_layout == 'text-above' || $attachment_layout == 'text-left' ){
+			if( get_the_content()  ){
+				$the_content_markup .= '<p class="attachment-description">'.get_the_content().'</p>';	
+			}
 		}
 
 		// the content
@@ -595,7 +597,9 @@ function kjd_attachment_layout($post_options){
 		//the content	
 
 		if($attachment_layout == 'text-below' || $attachment_layout == 'text-right'){
-			$the_content_markup .= '<p class="attachment-description">'.get_the_content().'</p>';
+			if( get_the_content()  ){
+				$the_content_markup .= '<p class="attachment-description">'.get_the_content().'</p>';	
+			}
 		}
 	
 
