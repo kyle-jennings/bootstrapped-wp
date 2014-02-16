@@ -23,11 +23,6 @@
 		padding-bottom: 50px
 	}
 
-	h1.logo-wrapper, 
-	h2.logo-wrapper {
-		margin-left: 20px;
-	}
-
 	.navbar .dropdown-menu{background:transparent !important;}
 	
 	.open > .dropdown-menu {
@@ -35,6 +30,43 @@
 	}
 
 
+/* header logo */
+	h1.logo-wrapper, 
+	h2.logo-wrapper {
+		/*margin-left: 20px;*/
+	}
+
+
+/* navbar logo and control */
+
+	#navbar .navbar .brand {
+	    margin: 0 0 0 -10px;
+	    padding-left: 0px;
+	    padding-right: 10px;
+	}
+
+	#navbar .navbar .btn-navbar,
+	#navbar #sidr-toggle{
+		margin-top: 6px;
+	}
+
+
+	#navbar .navbar .container .btn-navbar,
+	#navbar .container #sidr-toggle{
+		margin-right: -10px;
+		
+	}
+
+	#navbar.navbar-fixed-top #sidr-toggle,
+	#navbar.navbar-fixed-bottom #sidr-toggle,
+	#navbar.navbar.navbar-fixed-top .btn-navbar,
+	#navbar.navbar.navbar-fixed-bottom .btn-navbar {
+		margin-right: -10px;
+		
+	}
+
+
+	/* navbar */
 	#navbar .collapse .nav{
 		width: auto;
 		padding: 10px 20px;
@@ -49,36 +81,14 @@
 	.nav-collapse .dropdown-menu{
 		border-width: 0px !important;
 	}
-	.navbar-fixed-top,
-	.navbar-fixed-bottom,
-	.navbar-inner{
-          padding-left: 10px;
-          padding-right: 10px;
-	}	
-	
 
-	#navbar .navbar .btn-navbar,
-	#navbar #sidr-toggle{
-		margin-top: 6px;
+	#navbar.navbar-fixed-top .navbar-inner .navbar,
+	#navbar.navbar-fixed-bottom .navbar-inner .navbar,
+	#navbar.navbar-static-top  .navbar-inner .navbar{
+		padding-left: 40px;
+		padding-right: 40px;
 	}
 
-
-	#navbar .navbar .container .btn-navbar,
-	#navbar .container #sidr-toggle{
-		margin-right: 20px;
-		
-	}
-	
-	#navbar.navbar-fixed-top #sidr-toggle,
-	#navbar.navbar-fixed-bottom #sidr-toggle,
-	#navbar.navbar.navbar-fixed-top .btn-navbar,
-	#navbar.navbar.navbar-fixed-bottom .btn-navbar {
-		margin-right: 25px;
-		
-	}
-
-
-	
 	#navbar ul.nav > li{ 
 		display:block; 
 		float:none;
@@ -168,14 +178,17 @@
 
 /* Tablet  verticle */
 @media(min-width: 768px) and (max-width: 979px) {
+
 	#sideContent .table td,
 	#sideContent .table th {
 		padding: 3px;
 	}
 
 	.container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
-    	width: 724px;
+    	/*width: 724px;*/
 	}
+
+
 
 
 	#navbar .navbar .btn-navbar,
@@ -212,10 +225,11 @@
 
 @media (max-width: 767px) {
 	
-		#imageSliderWrapper.container > .container,
+	#imageSliderWrapper.container > .container,
 	#header.container > .container,
 	#navbar.container > .container,
 	#cycler.container > .container,
+	#pageTitle.container > .container,
 	#body.container > .container,
 	#footer.container > .container{
 		padding:0;
@@ -249,6 +263,7 @@
 
 /* ----------------- navbar shit ---------------------- */
 
+
 	#navbar ul.nav > li{ 
 		display:block; 
 		float:none;
@@ -280,17 +295,19 @@
 		padding: 10px 0;
 	}
 
-	.navbar .dropdown-menu{background:transparent !important;}
+	.navbar .dropdown-menu{
+		background:transparent !important;
+	}
 	
 	#navbar .navbar .btn-navbar,
 	#navbar #sidr-toggle{
-		margin-right: 20px;
+		margin-right: -10px;
 		margin-left: 0;
 	}
 
 	#navbar .navbar .container .btn-navbar,
 	#navbar .container #sidr-toggle{
-		margin-right: 20px;
+		margin-right: -10px;
 		
 	}
 	

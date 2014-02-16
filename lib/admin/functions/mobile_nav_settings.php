@@ -568,7 +568,8 @@ $media_979_markup .= '}';
 
 	// caret
 		$media_979_markup .= "#navbar .dropdown-menu li > a:after, .dropdown-toggle:after {";
-			$media_979_markup .= "border-left-color:". $kjd_section_link['color'] ." ;";
+			$media_979_markup .= 'border-left-color:'. $kjd_section_link['color'] .' ;';
+			
 		$media_979_markup .= "}";
 
 

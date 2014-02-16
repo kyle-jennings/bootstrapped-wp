@@ -253,46 +253,6 @@ add_shortcode('collapsible', 'collapsible');
   }
 
 
-/////////////////////////
-/// images
-
-// add_shortcode('thumbnails', 'thumbnails');
-// function thumbnails($atts, $content = null){
-
-//     $defaults = array( 'style' => 'style');
-//     extract( shortcode_atts( $defaults, $atts ) );
-
-//     $output .= '<ul class="thumbnails">';
-//     $output .= do_shortcode( $content );
-//     $output .= '</ul>';
-
-//     return $output;
-
-// }
-
-// add_shortcode('thumbnail', 'thumbnail');
-// function thumbnail($atts, $content = null){
-
-//     extract( shortcode_atts( array( 
-//       'style' => 'rounded', 
-//       'width'=>'1',
-//       'html' => 'no'
-//       ),
-//        $atts ) 
-//     );
-
-//     $thumbnail = '<li class="span'.$width.'">';
-
-//     if($html =='yes'){
-//       $thumbnail .= '<div class="thumbnail">'.do_shortcode( $content ).'</div>';
-//     }else{
-//       $thumbnail .='<div class="thumbnail '.$style.'">'.do_shortcode( $content ).'</div>';
-//     }
-//     $thumbnail .= '</li">';
-
-//     return $thumbnail;
-// }
-
 add_shortcode('image', 'image');
 function image($atts, $content = null){
 

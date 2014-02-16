@@ -15,7 +15,7 @@ if ( !defined('WP_LOAD_PATH') ) {
 		else
 			exit("Could not find wp-load.php");
 }
-$adminRoot = dirname( _file_ );
+$adminRoot = dirname(__FILE__);
 // let's load WordPress
 require_once( WP_LOAD_PATH . 'wp-load.php');
 
@@ -59,7 +59,6 @@ require_once( WP_LOAD_PATH . 'wp-load.php');
     <li><a href="#tab3" data-toggle="tab">Callouts</a></li>
     <li><a href="#tab4" data-toggle="tab">Tabbed</a></li>
     <li><a href="#tab5" data-toggle="tab">Collapsibles</a></li>
-<!--     <li><a href="#tab6" data-toggle="tab">Gallery</a></li> -->
     <li><a href="#tab7" data-toggle="tab">Formatting</a></li>
     <li><a href="#tab8" data-toggle="tab">Tables</a></li>
     <li><a href="#tab9" data-toggle="tab">Magic</a></li>

@@ -202,14 +202,20 @@ function kjd_set_featured_image_size(){
 	if( function_exists ('add_theme_support') ){
 		add_theme_support('post_tumbnails');
 		add_image_size(
-			'featured-image', $w, $h, true
+			'featured-image', $w, $h, $c
 		);
 	}
 }
 add_action( 'init', 'kjd_set_featured_image_size' );
 
- 
 
+function kjd_custom_sizes( $sizes ) {
+    return array_merge( $sizes, array(
+        'featured-image' => __('Featured Image'),
+    ) );
+}
+
+add_filter( 'image_size_names_choose', 'kjd_custom_sizes' );
 
 /* -----------------------------------------------
 gets featured image meta info
@@ -548,7 +554,7 @@ function kjd_header_content($header_contents, $logo_toggle, $logo, $custom_heade
 		
 		}elseif($logo_toggle == 'logo' ){
 			
-			$header_output .= '<'.$heading.' class="logo-wrapper">';
+			$header_output .= '<'.$heading.' class="container logo-wrapper">';
 				$header_output .= '<a href="'.get_bloginfo('url').' ">';
 					$header_output .= '<img src="'.$logo.'" alt=""/>';
 				$header_output .= '</a>';

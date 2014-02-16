@@ -787,7 +787,7 @@ return $tabbed_markup;
 }	
 
 //images
-function imagesMarkupCallback($section,$images){
+function imagesMarkupCallback($section, $images, $section){
 
 	$image_markup = '';
 	$imageBackgroundColor = $images['background_color'];
@@ -801,8 +801,8 @@ function imagesMarkupCallback($section,$images){
 	$imagecaptionsStyle = $images['bordercaptions'];
 	$imageBorderRadius = $images['border_radius'];
 
-$image_markup .= $images['border_captions'];
-	$image_markup .= $section.' img, #'.$section.' iframe{';
+	// $image_markup .= $images['border_captions'];
+	$image_markup .= '#'.$section.' img, #'.$section.' iframe{';
 		$image_markup .= 'background:'.$imageBackgroundColor.';';
 		$image_markup .= 'border:'.$imageBorderColor.' '.$imageBorderSize.' '.$imageBorderStyle .';';
 		$image_markup .= 'padding:'.$imagePadding.';';

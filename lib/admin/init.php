@@ -32,7 +32,7 @@ function kjd_load_style_sheets_and_scripts() {
 	$wp_paths = array( 'template_url' => $adminDir.'functions/live_preview.php',
 					   'export_file_url' => $adminDir.'functions/kjd_export_settings.php',
 					   'root_url' => get_bloginfo('template_directory'),
-					   ' site_url' => get_bloginfo('url')
+					   'site_url' => get_bloginfo('url')
 				    );
 	wp_localize_script( 'admin', 'object_name', $wp_paths );
 	wp_enqueue_script("admin"); //enqueue
@@ -50,9 +50,7 @@ add_action('admin_init', 'kjd_initialize_kjd_settings');
 function kjd_setup_theme_menus() {  
 
 	$options = get_option('kjd_component_settings');
-	// print('<pre>');
- //   print_r($GLOBALS['menu']);
-	// print('</pre>');
+
 
     add_menu_page(
 		'Theme settings', //title bar

@@ -694,7 +694,10 @@ $sectionArea_markup .= '}'; // Ends the section div markup
 		//htag settings
 		foreach($hTags as $htag => $v){
 
-			$sectionArea_markup .= $section_name.' '.$htag.'{';
+			$sectionArea_markup .= $section_name.' '.$htag.', ';
+			$sectionArea_markup .= $section_name.' '.$htag.' a,';
+			$sectionArea_markup .= $section_name.' '.$htag.' a:not(.btn),';
+			$sectionArea_markup .= $section_name.' '.$htag.' a:hover:not(.btn){ ';
 				$sectionArea_markup .= hTagSettingsCallback($v);
 			$sectionArea_markup .= '}';
 		}
@@ -721,33 +724,33 @@ $sectionArea_markup .= '}'; // Ends the section div markup
 /* ----------------------------------------------------------------------------- *
 						Components
 ----------------------------------------------------------------------------- */
-	if( $section =='body' || $section =='footer' || $section =='header' || $section == 'widgets' ){
+	if( $section =='header' || $section == 'widgets' || $section =='body' || $section =='footer' ){
 
 		//tabbed
-		$sectionArea_markup .= tabbedMarkupCallback($section_name, $tabbed_content);
+		$sectionArea_markup .= tabbedMarkupCallback($section_name, $tabbed_content, $section);
 		//collapsibles
-		$sectionArea_markup .= collapsibleMarkupCallback($section_name, $collapsible_content);
+		$sectionArea_markup .= collapsibleMarkupCallback($section_name, $collapsible_content, $section);
 		//tables
-		$sectionArea_markup .= tableMarkupCallback($section_name, $table_content);
+		$sectionArea_markup .= tableMarkupCallback($section_name, $table_content, $section);
 		//forms
-		$sectionArea_markup .= formsMarkupCallback($section_name, $forms);
+		$sectionArea_markup .= formsMarkupCallback($section_name, $forms, $section);
 		//images
-		$sectionArea_markup .= imagesMarkupCallback($section_name, $images);
+		$sectionArea_markup .= imagesMarkupCallback($section_name, $images, $section);
 		//thumbnails
-		$sectionArea_markup .= thumbnailsMarkupCallback($section_name, $thumbnails);
+		$sectionArea_markup .= thumbnailsMarkupCallback($section_name, $thumbnails, $section);
 		//image captions
-		$sectionArea_markup .= captionImagesMarkupCallback($section_name, $captions);
+		$sectionArea_markup .= captionImagesMarkupCallback($section_name, $captions, $section);
 		//lists
-		$sectionArea_markup .= listsMarkupCallback($section_name, $list);
+		$sectionArea_markup .= listsMarkupCallback($section_name, $list, $section);
 	}
 
 	if($section =='body') {
 		//pagination
-		$sectionArea_markup .= paginationMarkupCallback($section_name, $pagination_content);
+		$sectionArea_markup .= paginationMarkupCallback($section_name, $pagination_content, $section);
 	}
 
 	if($section =='navbar' || $section !='mobileNav') {
-		$sectionArea_markup .= formsMarkupCallback($section_name, $forms);
+		$sectionArea_markup .= formsMarkupCallback($section_name, $forms, $section);
 	}
 	return $sectionArea_markup;
 
