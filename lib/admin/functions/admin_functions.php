@@ -100,12 +100,16 @@ if (function_exists('add_theme_support')) {
 } 
 
 
-add_action('print_media_templates', function(){
+/* ----------------------------------------------------------------
+      Gallery options
+------------------------------------------------------------------- */
+add_action('print_media_templates', 'kjd_add_gallery_option_fields');
 
   // define your backbone template;
   // the "tmpl-" prefix is required,
   // and your input field should have a data-setting attribute
   // matching the shortcode name
+function kjd_add_gallery_option_fields(){
   ?>
 
   <script type="text/html" id="tmpl-kjd-gallery-settings">
@@ -125,21 +129,6 @@ add_action('print_media_templates', function(){
 
   </script>
 
-  <script type="text/html" id="tmpl-kjd-gallery-responsive-layout">
-    <label id="layout" class="setting">
-      <span><?php _e('Responsive Slides Layout:'); ?></span>
-      <select data-setting="layout">
-
-        <option>Choose</option>
-        <option value="three-nine"> Three - Nine </option>
-        <option value="nine-three"> Nine - Three </option>
-        <option value="three-six"> Three - Six </option>
-        <option value="six-three"> Six- Three </option>
-      
-      </select>
-    </label>
-
-  </script>
 
   <script type="text/html" id="tmpl-kjd-gallery-link-settings">
     <label class="setting">
@@ -172,45 +161,49 @@ add_action('print_media_templates', function(){
 
   </script>
 
-  <script>
+  <script type="text/html" id="tmpl-kjd-gallery-bg-color-settings">
+    <label class="setting">
+      <span><?php _e('Background Color:'); ?></span>
+      <input type="text" class="minicolors" data-setting="bg_color" />
 
-    jQuery(document).ready(function($){
-
-      // add your shortcode attribute and its default value to the
-      // gallery settings list; $.extend should work as well...
-      $.extend(wp.media.gallery.defaults, {
-        style: 'default',
-        link: 'post',
-        image_size: 'thumbnail'
-      });
-
-      // merge default gallery settings template with yours
-      wp.media.view.Settings.Gallery = wp.media.view.Settings.Gallery.extend({
-        template: function(view){
-          // return wp.media.template('gallery-settings')(view)
-          return wp.media.template('kjd-gallery-settings')(view)
-               + wp.media.template('kjd-gallery-link-settings')(view)
-               + wp.media.template('kjd-gallery-image-size-settings')(view)    
-               + wp.media.template('kjd-gallery-responsive-layout')(view)               
-          }
-      });
-
-      $('#type select').change(function(){
-        console.log('boom');
-        if($(this).val =='responsiveSlides'){
-          $('#layout').fadeIn();
-        }else{
-          $('#layout').fadeOut();
-        }
-      });
-
-    
-    });
+    </label>
 
   </script>
-  <?php
 
+
+
+<script>
+
+jQuery(document).ready(function($){
+
+  $.extend(wp.media.gallery.defaults, {
+    style: 'default',
+    link: 'post',
+    image_size: 'thumbnail',
+    bg_color: 'rgba(0,0,0,.8)'
+  });
+
+
+  // merge default gallery settings template with yours
+  wp.media.view.Settings.Gallery = wp.media.view.Settings.Gallery.extend({
+
+    template: function(view){
+      // return wp.media.template('gallery-settings')(view)
+      return wp.media.template('kjd-gallery-settings')(view)
+           + wp.media.template('kjd-gallery-link-settings')(view)
+           + wp.media.template('kjd-gallery-image-size-settings')(view)            
+           + wp.media.template('kjd-gallery-bg-color-settings')(view)  
+      }
+
+  });
+
+    
 });
+
+</script>
+<?php
+
+}
 
 
 /* ------------------------------------------------

@@ -435,16 +435,16 @@ function section_markup_callback($section,$section_options){
 			$section_name = '#'.$section.'.primary-menu .navbar-inner';
 			break;
 		case 'htmlTag':
-			$section_name =  'html';
+			$section_name = 'html';
 			break;		
 		case 'bodyTag':
 			$section_name = 'body';
 			break;
 		case 'posts':
-				$section_name = '#body .the-content-wrapper.well';
+			$section_name = '#body .the-content-wrapper.well';
 			break;
 		case 'widgets':
-				$section_name = '#sideContent .widget .styled';
+			$section_name = '#sideContent .widget .styled';
 			break;
 		default:
 			$section_name = '#'.$section;

@@ -1,9 +1,13 @@
+.rg-thumbs,
+.rg-image-wrapper {
+	background-color: rgba(0,0,0,.3);
+	border-radius: 4px;
+}
 .rg-image-wrapper{
 	position:relative;
 	padding:20px 30px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
-	border-radius: 10px;
 	min-height:20px;
 }
 .rg-image{

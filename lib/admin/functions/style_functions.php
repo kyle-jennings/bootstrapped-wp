@@ -522,12 +522,16 @@ function listsMarkupCallback($section, $list){
 }
 
 // /* ------------------------- forms -----------------------------*/
-function formsMarkupCallback($section, $forms){
+function formsMarkupCallback($section_name, $forms, $section){
+
 $form_markup = '';
-$form_markup .= $section.' form{';
+$form_markup .= $section_name.' form{';
 	$form_markup .= 'background:'. $forms['form_background'].' ; ';
-	$form_markup .= 'border-color:'. $forms['form_border'].';';
-	$form_markup .= 'color:'. $forms['container_text'].';';
+	if( $forms['form_border'] && isset($forms['form_border']) ){
+		$form_markup .= 'border:1px solid '. $forms['form_border'].';';
+		
+	}
+	$form_markup .= 'color:'. $forms['form_text'].';';
 
 if( (isset($forms['form_background']) && $forms['form_background']!= '' && $forms['form_background']!= ' ' ) || (isset($forms['container_border']) && $forms['container_border']!= '' && $forms['container_border']!= ' ') ){
 	$form_markup .= ' "padding:10px; border-radius:4px;";';
@@ -536,56 +540,56 @@ $form_markup .= '}';
 
 
 //input areas
-$form_markup .= $section.' input[type="radio"],'; 
-$form_markup .= $section.' input[type="checkbox"],';
-$form_markup .= $section.' textarea,';
-$form_markup .= $section.' input[type="text"],';
-$form_markup .= $section.' input[type="password"],';
-$form_markup .= $section.' input[type="datetime"],';
-$form_markup .= $section.' input[type="datetime-local"],';
-$form_markup .= $section.' input[type="date"],';
-$form_markup .= $section.' input[type="month"],';
-$form_markup .= $section.' input[type="time"],';
-$form_markup .= $section.' input[type="week"],';
-$form_markup .= $section.' input[type="number"],';
-$form_markup .= $section.' input[type="email"],';
-$form_markup .= $section.' input[type="url"],';
-$form_markup .= $section.' input[type="search"],';
-$form_markup .= $section.' input[type="tel"],';
-$form_markup .= $section.' input[type="color"],';
-$form_markup .= $section.' select,';
-$form_markup .= $section.' input[type="file"] {';
+$form_markup .= $section_name.' input[type="radio"],'; 
+$form_markup .= $section_name.' input[type="checkbox"],';
+$form_markup .= $section_name.' textarea,';
+$form_markup .= $section_name.' input[type="text"],';
+$form_markup .= $section_name.' input[type="password"],';
+$form_markup .= $section_name.' input[type="datetime"],';
+$form_markup .= $section_name.' input[type="datetime-local"],';
+$form_markup .= $section_name.' input[type="date"],';
+$form_markup .= $section_name.' input[type="month"],';
+$form_markup .= $section_name.' input[type="time"],';
+$form_markup .= $section_name.' input[type="week"],';
+$form_markup .= $section_name.' input[type="number"],';
+$form_markup .= $section_name.' input[type="email"],';
+$form_markup .= $section_name.' input[type="url"],';
+$form_markup .= $section_name.' input[type="search"],';
+$form_markup .= $section_name.' input[type="tel"],';
+$form_markup .= $section_name.' input[type="color"],';
+$form_markup .= $section_name.' select,';
+$form_markup .= $section_name.' input[type="file"] {';
 	$form_markup .= 'color:'. $forms['field_text'].';';
 	$form_markup .= 'background:'. $forms['field_background'].';';
 	$form_markup .= 'border-color:'. $forms['field_border'].';';
 $form_markup .= '}';
 
 //input areas on focus
-$form_markup .= $section.' input[type="radio"]:focus, '
-. $section .' input[type="checkbox"]:focus, '
-. $section .' textarea:focus,'
-. $section .'  input[type="text"]:focus,'
-. $section .'  input[type="password"]:focus,'
-. $section .'  input[type="datetime"]:focus,'
-. $section .'  input[type="datetime-local"]:focus,'
-. $section .'  input[type="date"]:focus,'
-. $section .'  input[type="month"]:focus,'
-. $section .'  input[type="time"]:focus,'
-. $section .'  input[type="week"]:focus,'
-. $section .'  input[type="number"]:focus,'
-. $section .'  input[type="email"]:focus,'
-. $section .'  input[type="url"]:focus,'
-. $section .'  input[type="search"]:focus,'
-. $section .'  input[type="tel"]:focus,'
-. $section .'  input[type="color"]:focus,'
-. $section .'  .uneditable-input:focus {';
+$form_markup .= $section_name.' input[type="radio"]:focus, '
+. $section_name .' input[type="checkbox"]:focus, '
+. $section_name .' textarea:focus,'
+. $section_name .'  input[type="text"]:focus,'
+. $section_name .'  input[type="password"]:focus,'
+. $section_name .'  input[type="datetime"]:focus,'
+. $section_name .'  input[type="datetime-local"]:focus,'
+. $section_name .'  input[type="date"]:focus,'
+. $section_name .'  input[type="month"]:focus,'
+. $section_name .'  input[type="time"]:focus,'
+. $section_name .'  input[type="week"]:focus,'
+. $section_name .'  input[type="number"]:focus,'
+. $section_name .'  input[type="email"]:focus,'
+. $section_name .'  input[type="url"]:focus,'
+. $section_name .'  input[type="search"]:focus,'
+. $section_name .'  input[type="tel"]:focus,'
+. $section_name .'  input[type="color"]:focus,'
+. $section_name .'  .uneditable-input:focus {';
 	$form_markup .= 'border-color: :'. $forms['field_border'].';';
 	$form_markup .= 'box-shadow: 0 0 8px '. $forms['field_glow'].';';
 $form_markup .= '}';
 
-$form_markup .= $section.' form button,';
-$form_markup .= $section.' form input[type=submit],';
-$form_markup .= $section.' form .btn {';
+$form_markup .= $section_name.' form button,';
+$form_markup .= $section_name.' form input[type=submit],';
+$form_markup .= $section_name.' form .btn {';
 	$form_markup .= 'background-image:none;';
 	$form_markup .= verticalGradientCallback($forms['button_background'], $forms['button_background_end']);
 	$form_markup .= 'border-color:'. $forms['button_border'].' !important;';
@@ -593,9 +597,9 @@ $form_markup .= $section.' form .btn {';
 $form_markup .= '}';
 
 //form buttons - mostly the submit button on hover
-$form_markup .= $section.' form button:hover,';
-$form_markup .= $section.' form input[type=submit]:hover,';
-$form_markup .= $section.' form .btn:hover{';
+$form_markup .= $section_name.' form button:hover,';
+$form_markup .= $section_name.' form input[type=submit]:hover,';
+$form_markup .= $section_name.' form .btn:hover{';
 	$form_markup .= 'background-color:'. $forms['button_background_end'].' !important;';
 	$form_markup .= '}';
 
@@ -787,7 +791,7 @@ return $tabbed_markup;
 }	
 
 //images
-function imagesMarkupCallback($section, $images, $section){
+function imagesMarkupCallback($section_name, $images, $section){
 
 	$image_markup = '';
 	$imageBackgroundColor = $images['background_color'];
@@ -802,7 +806,7 @@ function imagesMarkupCallback($section, $images, $section){
 	$imageBorderRadius = $images['border_radius'];
 
 	// $image_markup .= $images['border_captions'];
-	$image_markup .= '#'.$section.' img, #'.$section.' iframe{';
+	$image_markup .= $section_name.' img, '.$section_name.' iframe{';
 		$image_markup .= 'background:'.$imageBackgroundColor.';';
 		$image_markup .= 'border:'.$imageBorderColor.' '.$imageBorderSize.' '.$imageBorderStyle .';';
 		$image_markup .= 'padding:'.$imagePadding.';';

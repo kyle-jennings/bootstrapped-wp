@@ -102,7 +102,7 @@
 	<link rel="icon" type="image/png" href="<?php echo $favicon; ?>">
 
 	<title>
-	<?php
+<?php
 		global $page, $paged;
 
 		wp_title( '|', true, 'right' );
@@ -121,12 +121,15 @@
 			echo ' | ' . sprintf( __( 'Page %s', 'page' ), max( $paged, $page ) );
 		}
 
-	?>
+
+?>
 	</title>
 <?php
 
+$body_class = ''; 
 	if(is_front_page() ) { 
 
+		$body_class .= 'home ';
 
 		$frontpage_styles = '<style>';
 
@@ -165,10 +168,11 @@
 	
 	echo $analytics; 
 
+	$body_class .= is_user_logged_in() ? 'logged-in ' : '' ;
 ?>
 </head>
 
-<body <?php echo is_user_logged_in() ? 'class="logged-in "' : '' ;?> >
+<body class="<?php echo $body_class;?>" >
 
 <?php 
 /* -----------------------------
