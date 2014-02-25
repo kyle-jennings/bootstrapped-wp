@@ -254,6 +254,9 @@ function kjd_get_theme_options($preview = null){
 
 		$kjd_section_components = $options_components['kjd_'.$section.'_components'];
 
+
+
+
 		$tabbed_content = kjd_get_temp_settings(	
 											$section,
 											$kjd_section_components['tabbed_content'],
@@ -315,8 +318,28 @@ function kjd_get_theme_options($preview = null){
 											$preview,
 											'captions'
 										);
+		/* ----------------------------------------------------- 
+		text formatting stuff
+		 ----------------------------------------------------- */
+		 $pre = kjd_get_temp_settings(
+		 	$section,
+		 	$kjd_section_components['pre'],
+		 	$preview,
+		 	'pre'
+		 	);
 
-
+		 $address = kjd_get_temp_settings(
+		 	$section,
+		 	$kjd_section_components['address'],
+		 	$preview,
+		 	'address'
+		 	);
+		 $blockquote = kjd_get_temp_settings(
+		 	$section,
+		 	$kjd_section_components['blockquote'],
+		 	$preview,
+		 	'blockquote'
+		 	);
 		
 		/* ----------------------------------------------------- 
 		Misc Options
@@ -349,6 +372,9 @@ function kjd_get_theme_options($preview = null){
 			'images'=>$images,
 			'thumbnails'=>$thumbnails,
 			'captions'=>$captions,
+			'pre'=>$pre,
+			'address'=>$address,
+			'blockquote'=>$blockquote,
 			'kjd_section_misc_settings'=>$kjd_section_misc_settings
 		);
 
@@ -421,6 +447,7 @@ function section_markup_callback($section,$section_options){
 
 	extract($section_options);
 	extract($backgroundSettings);
+
 
 	
 	switch($section)
@@ -742,6 +769,12 @@ $sectionArea_markup .= '}'; // Ends the section div markup
 		$sectionArea_markup .= captionImagesMarkupCallback($section_name, $captions, $section);
 		//lists
 		$sectionArea_markup .= listsMarkupCallback($section_name, $list, $section);
+
+
+		$sectionArea_markup .= textFormattingCallback($section_name, $section,'pre', $pre);
+		$sectionArea_markup .= textFormattingCallback($section_name, $section,'address', $address);
+		$sectionArea_markup .= textFormattingCallback($section_name, $section,'blockquote', $blockquote);
+	
 	}
 
 	if($section =='body') {

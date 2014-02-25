@@ -88,7 +88,7 @@ value="<?php echo $section_settings['tabID'] ? $section_settings['tabID'] : 'non
 
 <?php 	
 		
-		foreach( array('pre','code','address','blockquote') as $format ):
+		foreach( array('pre','address','blockquote') as $format ):
 			echo '<li><a href="#'.$format.'" data-toggle="tab">'.$format.'</a></li>';
 		endforeach; 
 
@@ -157,7 +157,8 @@ value="<?php echo $section_settings['tabID'] ? $section_settings['tabID'] : 'non
 			<div class="option" style="position: relative;">
 
 				<label><?php echo ucwords(str_replace('_', ' ', $part));?></label>
-				<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][table_content][<?php echo $part;?>]" value="<?php echo $section_settings['table_content'][$part] ? $section_settings['table_content'][$part] : 'none'; ?>"  />		
+				<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][table_content][<?php echo $part;?>]" 
+				value="<?php echo $section_settings['table_content'][$part] ? $section_settings['table_content'][$part] : 'none'; ?>"  />		
 			<a class="clearColor">Clear</a>
 			</div> 
 		<?php
@@ -224,7 +225,7 @@ value="<?php echo $section_settings['tabID'] ? $section_settings['tabID'] : 'non
 <!-- Text Formatting   -->
 <!-- ***************** -->
 <?php
-	foreach( array('pre','code','address','blockquote') as $format ):
+	foreach( array('pre','address','blockquote') as $format ):
 ?>
     <div class="tab-pane cf" id="<?php echo $format; ?>">
 		<?php 
@@ -251,56 +252,62 @@ function kjd_special_format_colors($section, $options, $type){
 	<div class="color_option option" style="position: relative;">
 		<label><?php echo ucwords($type);?> Background</label>
 
-		<input class="minicolors" name="kjd_<?php echo $section; ?>_misc_settings[kjd_<?php echo $section; ?>_misc][formatted_text][<?php echo $type;?>_background]" 
-			value="<?php echo $options['formatted_text'][$type.'_background'] ? $options['formatted_text'][$type.'_background'] : ''; ?>"/>
+		<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][<?php echo $type;?>][<?php echo $type;?>_background]" 
+			value="<?php echo $options[$type][$type.'_background'] ? $options[$type][$type.'_background'] : ''; ?>"/>
 		<a class="clearColor">Clear</a>
 	</div>
 
 	<div class="color_option option" style="position: relative;">
 		<label><?php echo ucwords($type);?> Border</label>
 
-		<input class="minicolors" name="kjd_<?php echo $section; ?>_misc_settings[kjd_<?php echo $section; ?>_misc][formatted_text][<?php echo $type;?>_border]" 
-			value="<?php echo $options['formatted_text'][$type.'_border'] ? $options['formatted_text'][$type.'_border'] : ''; ?>"/>
+		<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][<?php echo $type;?>][<?php echo $type;?>_border_color]" 
+			value="<?php echo $options[$type][$type.'_border_color'] ? $options[$type][$type.'_border_color'] : ''; ?>"/>
 		<a class="clearColor">Clear</a>
 	</div>
 
 	<div class="color_option option" style="position: relative;">
 		<label><?php echo ucwords($type);?> Text</label>
 
-		<input class="minicolors" name="kjd_<?php echo $section; ?>_misc_settings[kjd_<?php echo $section; ?>_misc][formatted_text][<?php echo $type;?>_text]" 
-			value="<?php echo $options['formatted_text'][$type.'_text'] ? $options['formatted_text'][$type.'_text'] : ''; ?>"/>
+		<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][<?php echo $type;?>][<?php echo $type;?>_text]" 
+			value="<?php echo $options[$type][$type.'_text'] ? $options[$type][$type.'_text'] : ''; ?>"/>
 		<a class="clearColor">Clear</a>
 	</div>
 
 	<div class="color_option option" style="position: relative;">
 		<label><?php echo ucwords($type);?> Link</label>
 
-		<input class="minicolors" name="kjd_<?php echo $section; ?>_misc_settings[kjd_<?php echo $section; ?>_misc][formatted_text][<?php echo $type;?>_link]" 
-			value="<?php echo $options['formatted_text'][$type.'_link'] ? $options['formatted_text'][$type.'_link'] : ''; ?>"/>
+		<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][<?php echo $type;?>][<?php echo $type;?>_link]" 
+			value="<?php echo $options[$type][$type.'_link'] ? $options[$type][$type.'_link'] : ''; ?>"/>
 		<a class="clearColor">Clear</a>
 	</div>
 
 	<div class="color_option option" style="position: relative;">
 		<label><?php echo ucwords($type);?> Hovered Link</label>
 
-		<input class="minicolors" name="kjd_<?php echo $section; ?>_misc_settings[kjd_<?php echo $section; ?>_misc][formatted_text][<?php echo $type;?>_hovered_link]" 
-			value="<?php echo $options['formatted_text'][$type.'_hovered_link'] ? $options['formatted_text'][$type.'_hovered_link'] : ''; ?>"/>
+		<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][<?php echo $type;?>][<?php echo $type;?>_hovered_link]" 
+			value="<?php echo $options[$type][$type.'_hovered_link'] ? $options[$type][$type.'_hovered_link'] : ''; ?>"/>
 		<a class="clearColor">Clear</a>
 	</div>
-<?php
 
-	if($type == 'blockquote' || $type =='address'){
-	?>
 		
-		<div class="option">
-			<label>Border size</label>
-			<select name="kjd_<?php echo $section; ?>_misc_settings[kjd_<?php echo $section; ?>_misc][formatted_text][<?php echo $type;?>_padding]" >
-				<?php foreach(array(0,5,10,15,20) as $size){?>
-					<option value="<?php echo $size.'px';?>" <?php selected( $options['formatted_text'][$type.'_padding'], $size.'px', true) ?>><?php echo $size.'px';?></option>
-				<?php }?>
-			</select>
-		</div>
+	<div class="option">
+		<label>Border size</label>
+		<select name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][<?php echo $type;?>][<?php echo $type;?>_border]" >
+			<?php foreach(range(0,20) as $size){?>
+				<option value="<?php echo $size.'px';?>" <?php selected( $options[$type][$type.'_border'], $size.'px', true) ?>><?php echo $size.'px';?></option>
+			<?php }?>
+		</select>
+	</div>
+
+	<div class="option">
+		<label>Padding size</label>
+		<select name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][<?php echo $type;?>][<?php echo $type;?>_padding]" >
+			<?php foreach(range(0,20) as $size){?>
+				<option value="<?php echo $size.'px';?>" <?php selected( $options[$type][$type.'_padding'], $size.'px', true) ?>><?php echo $size.'px';?></option>
+			<?php }?>
+		</select>
+	</div>
 
 	<?php
-	}
+
 }

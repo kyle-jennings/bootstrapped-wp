@@ -885,7 +885,48 @@ $thumbnail_markup ='';
 	return $thumbnail_markup;
 }
 
+/* -----------------------------------------------------------
+	text formatting components
+ -------------------------------------------------------------- */
 
+function textFormattingCallback($section_name, $section, $type ,$format){
+
+
+
+		
+	$formatting_markup = '';
+	$formatting_markup .= $section_name . ' '.$type.'{';
+		$formatting_markup .= 'background-color:'.$format[$type . '_background'].';';
+		
+		if( $type != 'blockquote' ){
+			if( $format[$type . '_border_color'] ){
+				$formatting_markup .= 'border:1px solid '.$format[$type . '_border_color'].';';
+			}else {
+				$formatting_markup .= 'border:0px none transparent';
+			}
+		}else{
+			$formatting_markup .= 'border-color:'.$format[$type . '_border_color'].';';
+		}
+		
+			
+		if( $format[$type . '_padding'] != '0px' && $format[$type . '_padding']  ){
+			$formatting_markup .= 'padding: '.$format[$type . '_padding'].';';
+		}
+
+		$formatting_markup .= 'color:'.$format[$type . '_text'].';';
+	$formatting_markup .= '}';
+	
+	$formatting_markup .= $section_name . ' '.$type.' a {';
+		$formatting_markup .= 'color:'.$format[$type . '_link'].';';
+	$formatting_markup .= '}';
+
+	$formatting_markup .= $section_name . ' '.$type.' a:hover {';
+		$formatting_markup .= 'color:'.$format[$type . '_hovered_link'].';';
+	$formatting_markup .= '}';
+
+
+	return $formatting_markup;
+}
 
 /* ---------------------------------------------------------
 Misc
@@ -917,8 +958,6 @@ function post_settings_callback( $section = null, $kjd_section_misc_settings = n
 		$postInfoBorder = $kjd_section_misc_settings['post_info_border'] ? $kjd_section_misc_settings['post_info_border'] : 'rgba(0,0,0,.5)';
 		// $blockquote = $kjd_section_misc_settings['blockquote'] ? $kjd_section_misc_settings['blockquote'] : 'rgba(0,0,0,.5)';
 
-		$special_format_colors = $kjd_section_misc_settings['formatted_text'];
-
 
 		$post_misc_markup ='';
 
@@ -927,40 +966,7 @@ function post_settings_callback( $section = null, $kjd_section_misc_settings = n
 		$post_misc_markup .= '}';
 
 
-		foreach( array('pre','code','address','blockquote') as $format){
-			
-				$post_misc_markup .= $section . ' '.$format.'{';
-					$post_misc_markup .= 'background-color:'.$kjd_section_misc_settings['formatted_text'][$format . '_background'].';';
-					
-					if( $format != 'blockquote' ){
-						if( $kjd_section_misc_settings['formatted_text'][$format . '_border'] ){
-							$post_misc_markup .= 'border:1px solid '.$kjd_section_misc_settings['formatted_text'][$format . '_border'].';';
-						}else {
-							$post_misc_markup .= 'border:0px none transparent';
-						}
-					}else{
-						$post_misc_markup .= 'border-color:'.$kjd_section_misc_settings['formatted_text'][$format . '_border'].';';
-					}
-					
-					if($format == 'blockquote' || $format =='address'){
-						
-						if( $kjd_section_misc_settings['formatted_text'][$format . '_padding'] != '0px' && $kjd_section_misc_settings['formatted_text'][$format . '_padding']  ){
-							$post_misc_markup .= 'padding: '.$kjd_section_misc_settings['formatted_text'][$format . '_padding'].';';
-						}
-					}
-
-					$post_misc_markup .= 'color:'.$kjd_section_misc_settings['formatted_text'][$format . '_text'].';';
-				$post_misc_markup .= '}';
-				
-				$post_misc_markup .= $section . ' '.$format.' a {';
-					$post_misc_markup .= 'color:'.$kjd_section_misc_settings['formatted_text'][$format . '_link'].';';
-				$post_misc_markup .= '}';
-
-				$post_misc_markup .= $section . ' '.$format.' a:hover {';
-					$post_misc_markup .= 'color:'.$kjd_section_misc_settings['formatted_text'][$format . '_hovered_link'].';';
-				$post_misc_markup .= '}';
-
-		}
+		
 
 	return $post_misc_markup;
 }
