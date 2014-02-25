@@ -790,7 +790,9 @@ $tabbed_markup .= '}';
 return $tabbed_markup;
 }	
 
-//images
+/* ---------------------------------------------------------
+images
+-------------------------------------------------------------*/
 function imagesMarkupCallback($section_name, $images, $section){
 
 	$image_markup = '';
@@ -849,7 +851,7 @@ function captionImagesMarkupCallback($section,$captions){
 	return $caption_markup;
 }
 
-// /* ------------------------- thumbnails -----------------------------*/
+// thumbnails
 function thumbnailsMarkupCallback($section, $thumbnails){
 $thumbnail_markup ='';
 
@@ -885,7 +887,9 @@ $thumbnail_markup ='';
 
 
 
-
+/* ---------------------------------------------------------
+Misc
+------------------------------------------------------------- */
 
 function miscStylesCallback(){
 
@@ -922,9 +926,6 @@ function post_settings_callback( $section = null, $kjd_section_misc_settings = n
 			$post_misc_markup .= 'border-bottom:1px solid '. $postInfoBorder.';';
 		$post_misc_markup .= '}';
 
-		// $post_misc_markup .= $section . ' blockquote {';
-		// 	$post_misc_markup .= 'border-color:'. $blockquote.';';
-		// $post_misc_markup .= '}';
 
 		foreach( array('pre','code','address','blockquote') as $format){
 			

@@ -23,109 +23,129 @@
 		$end_rgba =  str_replace(')','',$end_rgba);
 	}
 
-	 ?>
-		<div class="optionsWrapper">
+?>
 
-			<!-- ********** -->
-			<!-- bg color   -->
-			<!-- ********** -->
-			<h2>Background colors</h2>
+<!-- Tab Navigation-->
+<div class="btn-group ">
+	<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+		<span class="btn-face">Background Colors</span>
+		<span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu">
+		<li class="active"><a href="#background-colors" data-toggle="tab">Background Colors</a></li>
+		<li><a href="#background-wallpaper" data-toggle="tab">Background Wallpaper</a></li>
+	</ul>
+</div>
+<!-- end nav -->
 
-			<!-- starting color -->
-		 	<div class="color_option option" style="position: relative;">
+<!-- tabbed content -->
+<div class="tab-content">
 
-				<label>Start color</label>
-				<input class="minicolors opacity" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][color]" 
-				value="<?php echo $colorSettings['color'] ? $colorSettings['color'] : 'none'; ?>" data-opacity ="<?php echo $start_rgba; ?>" />
-				<input type="hidden" class="rgba-color" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][start_rgba]"
-				 value="<?php echo $colorSettings['start_rgba'] ? $colorSettings['start_rgba'] : 'none'; ?>" />
-<a class="clearColor">Clear</a>
-			</div> <!-- End color select-->
+	<!-- ********** -->
+	<!-- bg color   -->
+	<!-- ********** -->
+	<div class="tab-pane cf active" id="background-colors">
 
-			<!-- ending color -->
-		 	<div class="color_option option" style="position: relative;">
 
-				<label>End color</label>
-				<input class="minicolors opacity" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][endcolor]" 
-				value="<?php echo $colorSettings['endcolor'] ? $colorSettings['endcolor'] : 'none'; ?>"  data-opacity ="<?php echo $end_rgba; ?>" />
-				<input type="hidden" class="rgba-color" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][end_rgba]"
-				 value="<?php echo $colorSettings['end_rgba'] ? $colorSettings['end_rgba'] : 'none'; ?>" />
-				<a class="clearColor">Clear</a>
-			</div> <!-- End color select-->
+		<h2>Background colors</h2>
 
-			<div class="option">
-				<label>Color fill</label>		
+		<!-- starting color -->
+	 	<div class="color_option option" style="position: relative;">
 
-				<select name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][gradient]">
-						<option value="none" <?php selected( $colorSettings['gradient'], "none", true) ?>>None</option>
-						<option value="solid" <?php selected( $colorSettings['gradient'], "solid", true) ?>>Solid</option>
-						<option value="vertical" <?php selected( $colorSettings['gradient'], "vertical", true) ?>>Vertical</option>
-						<option value="horizontal" <?php selected( $colorSettings['gradient'], "horizontal", true) ?>>Horizontal</option>
-						<option value="radial" <?php selected( $colorSettings['gradient'], "radial", true) ?>>Radial</option>
-						<?php if($section =='navbar'){ ?>
-						
-						<option value="bootstrap_default" <?php selected( $colorSettings['gradient'], "bootstrap_default", true) ?>>Bootstrap Default</option>
+			<label>Start color</label>
+			<input class="minicolors opacity" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][color]" 
+			value="<?php echo $colorSettings['color'] ? $colorSettings['color'] : 'none'; ?>" data-opacity ="<?php echo $start_rgba; ?>" />
+			<input type="hidden" class="rgba-color" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][start_rgba]"
+			 value="<?php echo $colorSettings['start_rgba'] ? $colorSettings['start_rgba'] : 'none'; ?>" />
+			<a class="clearColor">Clear</a>
+		</div> <!-- End color select-->
 
-						<?php } ?>
-				</select>
-			</div>
+		<!-- ending color -->
+	 	<div class="color_option option" style="position: relative;">
 
+			<label>End color</label>
+			<input class="minicolors opacity" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][endcolor]" 
+			value="<?php echo $colorSettings['endcolor'] ? $colorSettings['endcolor'] : 'none'; ?>"  data-opacity ="<?php echo $end_rgba; ?>" />
+			<input type="hidden" class="rgba-color" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][end_rgba]"
+			 value="<?php echo $colorSettings['end_rgba'] ? $colorSettings['end_rgba'] : 'none'; ?>" />
+			<a class="clearColor">Clear</a>
+		</div> <!-- End color select-->
+
+		<div class="option">
+			<label>Color fill</label>		
+
+			<select name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][gradient]">
+					<option value="none" <?php selected( $colorSettings['gradient'], "none", true) ?>>None</option>
+					<option value="solid" <?php selected( $colorSettings['gradient'], "solid", true) ?>>Solid</option>
+					<option value="vertical" <?php selected( $colorSettings['gradient'], "vertical", true) ?>>Vertical</option>
+					<option value="horizontal" <?php selected( $colorSettings['gradient'], "horizontal", true) ?>>Horizontal</option>
+					<option value="radial" <?php selected( $colorSettings['gradient'], "radial", true) ?>>Radial</option>
+					<?php if($section =='navbar'){ ?>
+					
+					<option value="bootstrap_default" <?php selected( $colorSettings['gradient'], "bootstrap_default", true) ?>>Bootstrap Default</option>
+
+					<?php } ?>
+			</select>
 		</div>
+
+	</div> <!-- end .tab-pane -->
+
+	<!-- ************** -->
+	<!-- bg wallpaper   -->
+	<!-- ************** -->
 <?php 
 
-if($section !=='posts')
-{
+if($section !=='posts'):
 
 ?>
+<div class="tab-pane cf" id="background-wallpaper">
 			<!-- ********** -->
 			<!-- Wallpaper  -->
 			<!-- ********** -->
-		<div class="optionsWrapper">
-			<h2>Background wallpaper</h2>
-			<div class="option">
-				<label>Use wallpaper?</label>
-				<select name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_wallpaper][use_wallpaper]">
-					<option value="false" <?php selected( $wallpaperSettings['use_wallpaper'], 'false', true ) ?>>No</option>
-					<option value="true" <?php selected( $wallpaperSettings['use_wallpaper'], 'true', true ) ?>>Yes</option>
-				</select>
-			</div>
+		<h2>Background wallpaper</h2>
+		<div class="option">
+			<label>Use wallpaper?</label>
+			<select name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_wallpaper][use_wallpaper]">
+				<option value="false" <?php selected( $wallpaperSettings['use_wallpaper'], 'false', true ) ?>>No</option>
+				<option value="true" <?php selected( $wallpaperSettings['use_wallpaper'], 'true', true ) ?>>Yes</option>
+			</select>
+		</div>
 
-			<div class="option">
-				<label>Upload wallpaper</label>
-					<input type="text" class="media_input" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_wallpaper][image]" value="<?php echo $wallpaperSettings['image'] ? $wallpaperSettings['image'] : ''; ?>" />  
-					<input type="button" class="button upload_image" value="Upload image" /> 
-			</div>
+		<div class="option">
+			<label>Upload wallpaper</label>
+				<input type="text" class="media_input" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_wallpaper][image]" value="<?php echo $wallpaperSettings['image'] ? $wallpaperSettings['image'] : ''; ?>" />  
+				<input type="button" class="button upload_image" value="Upload image" /> 
+		</div>
 
-			<!-- background repeat -->
-			<div class="option">
-				<label>Wallpaper repeat?</label>		
-			<?php $repeatOptions = array('repeat','no-repeat','repeat-x','repeat-y',);?>
-				<select name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_wallpaper][repeat]">
-					<?php foreach($repeatOptions as $repeat){ ?>
-						<option value="<?php echo $repeat;?>" <?php selected( $wallpaperSettings['repeat'], $repeat, true) ?>><?php echo $repeat;?></option>
-					<?php } ?>
-				</select>
-			</div>
-			
-			<!-- background position -->
+		<!-- background repeat -->
+		<div class="option">
+			<label>Wallpaper repeat?</label>		
+		<?php $repeatOptions = array('repeat','no-repeat','repeat-x','repeat-y',);?>
+			<select name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_wallpaper][repeat]">
+				<?php foreach($repeatOptions as $repeat){ ?>
+					<option value="<?php echo $repeat;?>" <?php selected( $wallpaperSettings['repeat'], $repeat, true) ?>><?php echo $repeat;?></option>
+				<?php } ?>
+			</select>
+		</div>
+		
+		<!-- background position -->
 
-			<div class="option">
-				<label>Wallpaper position</label>		
-				<select name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_wallpaper][position]">
-					<?php foreach($positions as $position){ ?>
-						<option value="<?php echo $position;?>" <?php selected( $wallpaperSettings['position'], $position, true) ?>><?php echo $position;?></option>
-					<?php } ?>
-				</select>
-			</div>
+		<div class="option">
+			<label>Wallpaper position</label>		
+			<select name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_wallpaper][position]">
+				<?php foreach($positions as $position){ ?>
+					<option value="<?php echo $position;?>" <?php selected( $wallpaperSettings['position'], $position, true) ?>><?php echo $position;?></option>
+				<?php } ?>
+			</select>
+		</div>
 
 
-			<div class="option">
-				<label>Wallpaper custom position</label>		
-				<input type="text" name="kjd_<?php echo $section;?>_background_settings[kjd_<?php echo $section;?>_background_wallpaper][positionX]"
-				value="<?php echo $wallpaperSettings['positionX'] ? $wallpaperSettings['positionX'] : '' ;?>" style="width:40px;"><span class="explanation">from left </span>
-				<input type="text" name="kjd_<?php echo $section;?>_background_settings[kjd_<?php echo $section;?>_background_wallpaper][positionY]"
-				value="<?php echo $wallpaperSettings['positionY'] ? $wallpaperSettings['positionY'] : '' ;?>" style="width:40px;"><span class="explanation">from top </span>
-			</div>
+		<div class="option">
+			<label>Wallpaper custom position</label>		
+			<input type="text" name="kjd_<?php echo $section;?>_background_settings[kjd_<?php echo $section;?>_background_wallpaper][positionX]"
+			value="<?php echo $wallpaperSettings['positionX'] ? $wallpaperSettings['positionX'] : '' ;?>" style="width:40px;"><span class="explanation">from left </span>
+			<input type="text" name="kjd_<?php echo $section;?>_background_settings[kjd_<?php echo $section;?>_background_wallpaper][positionY]"
+			value="<?php echo $wallpaperSettings['positionY'] ? $wallpaperSettings['positionY'] : '' ;?>" style="width:40px;"><span class="explanation">from top </span>
 		</div>
 
 		<div class="option">
@@ -154,5 +174,10 @@ if($section !=='posts')
 			</select>
 		</div>
 
+	</div> <!-- end .tab-pane -->
 <?php 
-}
+endif;
+?>
+
+
+</div> <!-- end .tabbed-content -->

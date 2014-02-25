@@ -343,7 +343,7 @@ foreach($sections as $section)
 			'kjd_'.$section.'_htag_settings' // page name
 		);
 
-			$htags = array('H1','H2','H3','H4');
+			$htags = array('H2','H3','H4','H5');
 			foreach($htags as $size){
 				add_settings_field(
 					'kjd_'.$section.'_'.$size, // ID hook name

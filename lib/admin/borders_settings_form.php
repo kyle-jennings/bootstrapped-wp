@@ -17,20 +17,38 @@
 	$borderSizes = range(0,20);
 	$borderStyles = array('none','solid','dotted','dashed','double','groove','ridge','inset','outset');
 ?>
-		<!--**************-->
-		<!-- Border stuff -->
-		<!--***************-->
-		<h2>Border style and colors</h2>
 
-			<?php foreach($borders as $border){ 
+<h2>Border style and colors</h2>
 
-				$borderValue = $options['kjd_'.$section.'_'.$border.'_border'];
-				$color = $options['kjd_'.$section.'_'.$border.'_border']['color'];
-				$size = $options['kjd_'.$section.'_'.$border.'_border']['size'];
-				$style = $options['kjd_'.$section.'_'.$border.'_border']['style'];
+<!-- Tab Navigation-->
+  <div class="btn-group ">
+	<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+		<span class="btn-face">Top</span>
+		<span class="caret"></span>
+	</a>
+    <ul class="dropdown-menu">
+<?php
+	$tabs = array("top","right","bottom","left", "border-radius");
+	foreach($tabs as $border){  
+		$active = ($border == 'top') ? 'class="active"' : '' ;
+		echo '<li '.$active.'><a href="#'.$border.'" data-toggle="tab">'.ucwords($border).'</a></li>';
+	}
+?>
+    </ul>
+  </div>
 
-			?>
-			
+<div class="tab-content">
+<?php foreach($borders as $border):
+
+	$borderValue = $options['kjd_'.$section.'_'.$border.'_border'];
+	$color = $options['kjd_'.$section.'_'.$border.'_border']['color'];
+	$size = $options['kjd_'.$section.'_'.$border.'_border']['size'];
+	$style = $options['kjd_'.$section.'_'.$border.'_border']['style'];
+
+	$active = ($border == 'top') ? 'active' : '' ;
+?>
+
+<div class="tab-pane cf <?php echo $active;?>" id="<?php echo $border;?>">			
 		<div class="optionsWrapper float-options">
 			<h3><?echo ucfirst($border);?> Border</h3>
 			<!-- border color -->
@@ -64,18 +82,18 @@
 			</div>
 			
 		</div><!-- end options wrapper -->
-
-			<?php }
+	</div><!-- end border tabb -->
+<?php 
+	endforeach;
 ?>
+		
+<div class="tab-pane cf" id="border-radius">	
 		<div class="optionsWrapper float-options">
-
-
-
-						<!-- border radius -->
-			<h2>Border Radius</h2>
-			<?php 		
-			foreach($corners as $corner){ 
-			?>
+		<!-- border radius -->
+		<h2>Border Radius</h2>
+		<?php 		
+			foreach($corners as $corner):
+		?>
 			
 			<div class="option">
 				<label><?php echo ucwords(str_replace('-',' ',$corner)); ?></label>
@@ -88,10 +106,11 @@
 			</div>
 
 		<?php
-
-			 }
-
-
-	?>
+			endforeach;
+		?>
 			
-		</div><!-- end options wrapper -->
+	</div><!-- end options wrapper -->
+</div><!-- end final tab -->
+
+
+</div><!-- end tabbed container -->

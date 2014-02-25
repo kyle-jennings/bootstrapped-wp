@@ -76,8 +76,8 @@ function kjd_mobileNav_misc_settings_callback(){
 		</select>
 	</div>
 
-<div class="option toggle-options" 
-<?php echo ( $options['display_logo'] != 'none' && $options['display_logo'] != '') ? 
+<div class="option toggle-options mobile-nav-logo"  
+<?php echo ( $options['display_logo'] != 'none' && $options['display_logo'] != '' && $options['display_logo'] == 'logo') ? 
 	'style="display:block;"' : 'style="display:none;"' ;?> >
 
 	<div id="mobile-site-logo" class="option">
@@ -350,11 +350,7 @@ function kjd_header_misc_settings_callback($section){
 			echo kjd_set_section_margin($section, $options);
 		?>
 			
-		<?php
-			foreach( array('pre','code','address','blockquote') as $format ){
-				echo kjd_special_format_colors($section, $options, $format);
-			}
-		?>
+
 		
 		<div class="option">
 			<label>Hide Header?</label>
@@ -562,12 +558,7 @@ function kjd_body_misc_settings_callback($section){
 
 
 		
-		<?php
-				foreach( array('pre','code','address','blockquote') as $format ){
-					echo kjd_special_format_colors($section, $options, $format);
-				}
 
-		?>
 
 	</div>			
 <?php
@@ -620,12 +611,7 @@ function kjd_posts_misc_settings_callback($section)
 		</div>
 	
 		
-		<?php
-				foreach( array('pre','code','address','blockquote') as $format ){
-					echo kjd_special_format_colors($section, $options, $format);
-				}
 
-		?>
 
 	
 	</div>
@@ -730,11 +716,7 @@ function kjd_footer_misc_settings_callback($section){
 			</select>
 		</div>	
 
-		<?php
-			foreach( array('pre','code','address','blockquote') as $format ){
-				echo kjd_special_format_colors($section, $options, $format);
-			}
-		?>
+
 
 
 	</div>	
@@ -819,66 +801,6 @@ function kjd_set_section_margin($section, $options) {
 }
 
 
-function kjd_special_format_colors($section, $options, $type){
-
-?>
-		<h3><?php echo ucwords($type);?></h3>
-		<div class="color_option option" style="position: relative;">
-			<label><?php echo ucwords($type);?> Background</label>
-
-			<input class="minicolors" name="kjd_<?php echo $section; ?>_misc_settings[kjd_<?php echo $section; ?>_misc][formatted_text][<?php echo $type;?>_background]" 
-				value="<?php echo $options['formatted_text'][$type.'_background'] ? $options['formatted_text'][$type.'_background'] : ''; ?>"/>
-			<a class="clearColor">Clear</a>
-		</div>
-
-		<div class="color_option option" style="position: relative;">
-			<label><?php echo ucwords($type);?> Border</label>
-
-			<input class="minicolors" name="kjd_<?php echo $section; ?>_misc_settings[kjd_<?php echo $section; ?>_misc][formatted_text][<?php echo $type;?>_border]" 
-				value="<?php echo $options['formatted_text'][$type.'_border'] ? $options['formatted_text'][$type.'_border'] : ''; ?>"/>
-			<a class="clearColor">Clear</a>
-		</div>
-
-		<div class="color_option option" style="position: relative;">
-			<label><?php echo ucwords($type);?> Text</label>
-
-			<input class="minicolors" name="kjd_<?php echo $section; ?>_misc_settings[kjd_<?php echo $section; ?>_misc][formatted_text][<?php echo $type;?>_text]" 
-				value="<?php echo $options['formatted_text'][$type.'_text'] ? $options['formatted_text'][$type.'_text'] : ''; ?>"/>
-			<a class="clearColor">Clear</a>
-		</div>
-
-		<div class="color_option option" style="position: relative;">
-			<label><?php echo ucwords($type);?> Link</label>
-
-			<input class="minicolors" name="kjd_<?php echo $section; ?>_misc_settings[kjd_<?php echo $section; ?>_misc][formatted_text][<?php echo $type;?>_link]" 
-				value="<?php echo $options['formatted_text'][$type.'_link'] ? $options['formatted_text'][$type.'_link'] : ''; ?>"/>
-			<a class="clearColor">Clear</a>
-		</div>
-
-		<div class="color_option option" style="position: relative;">
-			<label><?php echo ucwords($type);?> Hovered Link</label>
-
-			<input class="minicolors" name="kjd_<?php echo $section; ?>_misc_settings[kjd_<?php echo $section; ?>_misc][formatted_text][<?php echo $type;?>_hovered_link]" 
-				value="<?php echo $options['formatted_text'][$type.'_hovered_link'] ? $options['formatted_text'][$type.'_hovered_link'] : ''; ?>"/>
-			<a class="clearColor">Clear</a>
-		</div>
-<?php
-
-		if($type == 'blockquote' || $type =='address'){
-		?>
-			
-			<div class="option">
-				<label>Border size</label>
-				<select name="kjd_<?php echo $section; ?>_misc_settings[kjd_<?php echo $section; ?>_misc][formatted_text][<?php echo $type;?>_padding]" >
-					<?php foreach(array(0,5,10,15,20) as $size){?>
-						<option value="<?php echo $size.'px';?>" <?php selected( $options['formatted_text'][$type.'_padding'], $size.'px', true) ?>><?php echo $size.'px';?></option>
-					<?php }?>
-				</select>
-			</div>
-
-		<?php
-		}
-}
 
 function kjd_section_glow_toggle($section, $options) {
 	
