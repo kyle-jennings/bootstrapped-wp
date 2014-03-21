@@ -2,7 +2,7 @@
 	settings_fields('kjd_'.$section.'_text_settings' );
 	$options = get_option('kjd_'.$section.'_text_settings'); 
 
-	$textElements = array('text','H2','H3','H4', 'H5');
+	$textElements = array('H1','H2','H3','H4', 'H5');
 	if($section == 'pageTitle'){
 		unset($textElements[2]);
 		// unset($textElements[3]);
@@ -15,12 +15,12 @@
 <!-- Tab Navigation-->
   <div class="btn-group ">
 	<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-		<span class="btn-face">Text</span>
+		<span class="btn-face">H1</span>
 		<span class="caret"></span>
 	</a>
     <ul class="dropdown-menu">
 		<?php foreach($textElements as $element){  
-			$active = ($element == 'text') ? 'class="active"' : '' ;
+			$active = ($element == 'H1') ? 'class="active"' : '' ;
 			echo '<li '.$active.'><a href="#'.$element.'" data-toggle="tab">'.ucwords(str_replace('_','none',$element)).'</a></li>';
 		}
 		?>
@@ -32,7 +32,7 @@
 
 
 	<?php foreach($textElements as $element): 
-		$active = ($element == 'text') ? 'active' : '' ;
+		$active = ($element == 'H1') ? 'active' : '' ;
 		
 		$value = $options['kjd_'.$section.'_'.$element];		
 		if($section =="navbar" && ($element == 'H1' || $element == 'H2' || $element == 'H3' || $element == 'H4')){
@@ -54,10 +54,6 @@
 				<a class="clearColor">Clear</a>
 			</div>
 
-
-<?php 
-if($element != 'text'): 
-?>
 
 	<div class="option">
 		<label>Background Style</label>
@@ -115,9 +111,6 @@ if($element != 'text'):
 		<a class="clearColor">Clear</a>
 	</div>
 
-<?php
-			endif; // settings for H tags
-?>
 	</div> <!-- end tab -->
 <?php
 		endforeach; //end foreach loop through font and link colors 

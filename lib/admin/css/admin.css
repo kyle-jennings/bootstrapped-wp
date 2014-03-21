@@ -78,6 +78,10 @@ form .fields-wrapper{
   width:400px;
 }
 
+form .banner-fields-wrapper{
+  width:99%;
+}
+
 /* -----------------------------------------------------------------
           Fields
 ------------------------------------------------------------------- */
@@ -101,6 +105,15 @@ form .fields-wrapper{
     margin-bottom:20px; 
     width:390px;
   }
+
+  .option-wrapper.banner_image_options{
+      width: auto;
+  }
+
+    .option-wrapper.banner_image_options .option{ 
+      height: auto;
+    }
+
 /*.option label{display:inline-block; float:left;  width:200px;}*/
 
 .option label{display:block; font-weight: bold;}
@@ -128,7 +141,8 @@ form .fields-wrapper{
 }
 
 .float-options .color-option,
-.float-options .full-option  {
+.float-options .full-option,
+.full-option  {
   clear: both;
   width: 100%;
 }

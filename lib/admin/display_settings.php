@@ -7,7 +7,7 @@ function kjd_settings_display($section) {
 	$options = get_option('kjd_posts_misc_settings');
 	$options = $options['kjd_posts_misc'];
 	
-	$tabs = array(0 =>'background',1=>'borders',2=>'text',3=>'links',4=>'components',5=>'misc');
+	$tabs = array(0 =>'background',1=>'borders',2=>'headings',3=>'Text',4=>'presentation', 5=>'images',6=>'misc');
 	if($section == "cycler"){
 		array_pop($tabs);
 		array_push($tabs, 'image_banner_settings', 'image_banner_images');
@@ -21,6 +21,7 @@ function kjd_settings_display($section) {
 		unset($tabs[2]);
 		
 		unset($tabs[4]);
+		unset($tabs[5]);
 	}
 	if($section =="navbar"){
 		unset($tabs[2]);
@@ -79,7 +80,7 @@ function kjd_settings_display($section) {
 	<?php }
 
 	kjd_build_theme_css();
-	$fields_wrapper_class = ( $active_tab != 'image_banner_images' && $active_tab != 'image_banner_settings') ? 'fields-wrapper ' : '' ;
+	$fields_wrapper_class = ( $active_tab != 'image_banner_images' && $active_tab != 'image_banner_settings') ? 'fields-wrapper ' : 'banner-fields-wrapper' ;
  ?>
 
 </h2>
@@ -99,17 +100,21 @@ function kjd_settings_display($section) {
 		
 			kjd_section_borders_callback($section);
 		
-		}elseif($active_tab == 'text' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler' && $section!='dropdown-menu')){
+		}elseif($active_tab == 'headings' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler' && $section!='dropdown-menu')){
+		
+			kjd_section_headings_callback($section);
+		
+		}elseif($active_tab == 'Text' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler')){
 		
 			kjd_section_text_callback($section);
 		
-		}elseif($active_tab == 'links' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler')){
+		}elseif($active_tab == 'presentation' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler') ){
 		
-			kjd_section_link_callback($section);
+			kjd_section_presentation_callback($section);
 		
-		}elseif($active_tab == 'components' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler') ){
+		}elseif($active_tab == 'images' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler') ){
 		
-			kjd_section_components_callback($section);
+			kjd_section_images_callback($section);
 		
 		}elseif($active_tab == 'misc' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler') ){
 		
@@ -154,7 +159,7 @@ function kjd_settings_display($section) {
 // background color and wallpaper
 ////////////////////////////////////
 function kjd_section_background_callback($section){
-	include	'background_settings_form.php';
+	include('forms/background_settings_form.php');
 }
 
 ////////////////////////////////////
@@ -162,38 +167,45 @@ function kjd_section_background_callback($section){
 ////////////////////////////////////
 
 function kjd_section_borders_callback($section){
-	include('borders_settings_form.php');	
+	include('forms/borders.php');	
 }
 
 ////////////////////////////////////
-// text styles
+// headings styles
+////////////////////////////////////
+function kjd_section_headings_callback($section){
+
+	include('forms/headings.php');
+}
+
+////////////////////////////////////
+// Text  styles
 ////////////////////////////////////
 function kjd_section_text_callback($section){
-
-	include('text_settings_form.php');
+	include('forms/text.php');
 }
 
 ////////////////////////////////////
-// links  styles
+// presentation, buttons, and wells
 ////////////////////////////////////
-function kjd_section_link_callback($section){
-	include('link_settings_form.php');
+function kjd_section_presentation_callback($section){
+	include('forms/presentation_settings_form.php');
 }
 
 ////////////////////////////////////
-// components, buttons, and wells
+// Images
 ////////////////////////////////////
-function kjd_section_components_callback($section){
-	include('components_settings_form.php');
+function kjd_section_images_callback($section){
+
+	include('forms/images_settings_form.php');
 }
 
 //// image cycler
 function kjd_image_cycler_display_callback(){
-	include('image_cycler_form.php');
+	include('forms/image_banner.php');
 }
 
 // misc sections
 function kjd_section_misc_callback($section){ 
-	include('misc_settings_form.php');
+	include('forms/misc_settings_form.php');
 }
-?>

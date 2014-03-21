@@ -400,6 +400,26 @@ foreach($sections as $section)
 		
 		register_setting('kjd_'.$section.'_components_settings','kjd_'.$section.'_components_settings');
 
+		///////////////////
+		// Images
+		///////////////////
+		add_settings_section(
+			'kjd_'.$section.'_images_settings_section', // ID hook name
+			'Forms settings', // label
+			'kjd_'.$section.'_images_settings_callback', // function name
+			'kjd_'.$section.'_images_settings' // page name
+		);
+			add_settings_field(
+				'kjd_'.$section.'_images',
+				null,
+				null,
+				'kjd_'.$section.'_images_settings',
+				'kjd_'.$section.'_images_settings_section'
+			);
+
+		
+		register_setting('kjd_'.$section.'_images_settings','kjd_'.$section.'_images_settings');
+
 	} //end if not body, html, cycler, or sidr drawer
 
 

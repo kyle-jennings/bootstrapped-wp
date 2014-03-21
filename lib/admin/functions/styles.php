@@ -41,10 +41,6 @@ function kjd_get_temp_settings($section, $array, $preview, $part) {
 				
 
 			} // end looping through preview settings
-
-			// if($part == 'kjd_section_link'){
-			// 	print_r($array); die();
-			// }
 		} // end setting section checking
 	} // end preview
 	return $array;
@@ -171,12 +167,6 @@ function kjd_get_theme_options($preview = null){
 		 ----------------------------------------------------- */
 		$options_htag = get_option('kjd_'.$section.'_text_settings');
 
-		$kjd_section_text = kjd_get_temp_settings(	$section,
-													$options_htag['kjd_'.$section.'_text'],
-													$preview,
-													'kjd_section_text'
-													);
-
 
 		$kjd_section_H1 =  kjd_get_temp_settings(	$section,
 													$options_htag['kjd_'.$section.'_H1'],
@@ -202,19 +192,30 @@ function kjd_get_theme_options($preview = null){
 													'kjd_section_H4'
 												);
 
-
+		$kjd_section_H5 = kjd_get_temp_settings(	$section,
+													$options_htag['kjd_'.$section.'_H5'],
+													$preview,
+													'kjd_section_H5'
+												);
 
 		$hTags = array(
 						'h1' => $kjd_section_H1,
 						'h2' => $kjd_section_H2,
 						'h3' => $kjd_section_H3,
-						'h4' => $kjd_section_H4
+						'h4' => $kjd_section_H4,
+						'h5' => $kjd_section_H5
 					);
 
 		/* ----------------------------------------------------- 
 		Link Options
 		 ----------------------------------------------------- */
 		$options_links = get_option('kjd_'.$section.'_links_settings');
+
+		$kjd_section_text = kjd_get_temp_settings(	$section,
+													$options_links['kjd_'.$section.'_text'],
+													$preview,
+													'kjd_section_text'
+												);
 
 		$kjd_section_link = kjd_get_temp_settings(	$section,
 													$options_links['kjd_'.$section.'_link'],
@@ -294,30 +295,6 @@ function kjd_get_theme_options($preview = null){
 											'forms'
 										);
 
-
-
-
-		/* ----------------------------------------------------- 
-		Images Options
-		 ----------------------------------------------------- */
-		$images = kjd_get_temp_settings(	
-											$section,
-											$kjd_section_components['images'],
-											$preview,
-											'images'
-										);
-		$thumbnails = kjd_get_temp_settings(	
-											$section,
-											$kjd_section_components['thumbnails'],
-											$preview,
-											'thumbnails'
-										);
-		$captions = kjd_get_temp_settings(	
-											$section,
-											$kjd_section_components['captions'],
-											$preview,
-											'captions'
-										);
 		/* ----------------------------------------------------- 
 		text formatting stuff
 		 ----------------------------------------------------- */
@@ -340,9 +317,44 @@ function kjd_get_theme_options($preview = null){
 		 	$preview,
 		 	'blockquote'
 		 	);
-		
+
 		/* ----------------------------------------------------- 
-		Misc Options
+			Images Options
+		 ----------------------------------------------------- */
+ 		$options_images = get_option('kjd_'.$section.'_images_settings');
+
+		$kjd_section_images = $options_images['kjd_'.$section.'_images'];
+		
+		$images = kjd_get_temp_settings(	
+											$section,
+											$kjd_section_images['images'],
+											$preview,
+											'images'
+										);
+		$thumbnails = kjd_get_temp_settings(	
+											$section,
+											$kjd_section_images['thumbnails'],
+											$preview,
+											'thumbnails'
+										);
+		$captions = kjd_get_temp_settings(	
+											$section,
+											$kjd_section_images['captions'],
+											$preview,
+											'captions'
+										);
+		/* ----------------------------------------------------- 
+			iFrames - In the images section for no good reason
+		----------------------------------------------------- */
+		$iframes = kjd_get_temp_settings(	
+											$section,
+											$kjd_section_images['iframe'],
+											$preview,
+											'iframe'
+										);
+
+		/* ----------------------------------------------------- 
+			Misc Options
 		----------------------------------------------------- */
 		$options_misc = get_option('kjd_'.$section.'_misc_settings');
 		$kjd_section_misc_settings = kjd_get_temp_settings(	
@@ -372,6 +384,7 @@ function kjd_get_theme_options($preview = null){
 			'images'=>$images,
 			'thumbnails'=>$thumbnails,
 			'captions'=>$captions,
+			'iframes' => $iframes,
 			'pre'=>$pre,
 			'address'=>$address,
 			'blockquote'=>$blockquote,
@@ -724,7 +737,9 @@ $sectionArea_markup .= '}'; // Ends the section div markup
 			$sectionArea_markup .= $section_name.' '.$htag.', ';
 			$sectionArea_markup .= $section_name.' '.$htag.' a,';
 			$sectionArea_markup .= $section_name.' '.$htag.' a:not(.btn),';
-			$sectionArea_markup .= $section_name.' '.$htag.' a:hover:not(.btn){ ';
+			$sectionArea_markup .= $section_name.' '.$htag.' a:hover:not(.btn), ';
+			$sectionArea_markup .= $section_name.' '.$htag.' a:visited:not(.btn){ ';
+
 				$sectionArea_markup .= hTagSettingsCallback($v);
 			$sectionArea_markup .= '}';
 		}
@@ -761,20 +776,28 @@ $sectionArea_markup .= '}'; // Ends the section div markup
 		$sectionArea_markup .= tableMarkupCallback($section_name, $table_content, $section);
 		//forms
 		$sectionArea_markup .= formsMarkupCallback($section_name, $forms, $section);
+		
+		$sectionArea_markup .= textFormattingCallback($section_name, $section,'pre', $pre);
+		$sectionArea_markup .= textFormattingCallback($section_name, $section,'address', $address);
+		$sectionArea_markup .= textFormattingCallback($section_name, $section,'blockquote', $blockquote);
+	
+		//lists i dont think these are used yet
+		$sectionArea_markup .= listsMarkupCallback($section_name, $list, $section);
+
+/* ----------------------------------------------------------------------------- *
+						images
+----------------------------------------------------------------------------- */
 		//images
 		$sectionArea_markup .= imagesMarkupCallback($section_name, $images, $section);
 		//thumbnails
 		$sectionArea_markup .= thumbnailsMarkupCallback($section_name, $thumbnails, $section);
 		//image captions
 		$sectionArea_markup .= captionImagesMarkupCallback($section_name, $captions, $section);
-		//lists
-		$sectionArea_markup .= listsMarkupCallback($section_name, $list, $section);
+		
 
+		//iframes
+		$sectionArea_markup .= iFrameMarkupCallback($section_name, $iframes, $section);
 
-		$sectionArea_markup .= textFormattingCallback($section_name, $section,'pre', $pre);
-		$sectionArea_markup .= textFormattingCallback($section_name, $section,'address', $address);
-		$sectionArea_markup .= textFormattingCallback($section_name, $section,'blockquote', $blockquote);
-	
 	}
 
 	if($section =='body') {

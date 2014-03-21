@@ -97,7 +97,7 @@ h2.logo-wrapper{
 	font-size: 60px;
 	letter-spacing: -1px;
 	line-height: 60px;
-	/*margin: 0 0 0 30px;*/
+	margin: 0 0 0 30px;
 	position: relative;
 	z-index: 99;
 }

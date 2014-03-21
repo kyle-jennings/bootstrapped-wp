@@ -1,20 +1,22 @@
 <?php
 // include the file which builds the CSS
-include 'general_settings_form.php';
-include 'page_layouts_form.php';
-include 'misc_backgrounds_form.php';
-include 'settings.php';
 include 'functions/styles.php';
 include 'functions/admin_functions.php';
 
 
+include 'forms/general_settings_form.php';
+include 'forms/page_layouts_form.php';
+include 'forms/misc_backgrounds_form.php';
+
+// displays the options
+include 'display_settings.php';
+
+
+
 // gets js and css file for the styling and fancy pantsing
-
-
-
 function kjd_load_style_sheets_and_scripts() {  
 
-	$adminDir=get_bloginfo('template_directory');  
+	$adminDir = get_bloginfo('template_directory');  
 	$adminDir = $adminDir."/lib/admin/";
 	wp_enqueue_style("admin", $adminDir."css/admin.css");  
   	wp_enqueue_style("bs",$adminDir."css/bootstrap-tabs.css");  

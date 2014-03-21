@@ -361,64 +361,68 @@ function linkSettingsCallback($link, $section){
 }
 
 
-// /* ------------------------- tables -----------------------------*/
-function tableMarkupCallback($section, $table_content){
+/* -------------------------------------------------- 
+tables 
+------------------------------------------------------*/
+function tableMarkupCallback($section_name, $table_content, $section){
 $table_markup = '';
 
 
-	$table_markup .= $section.' .table,';
-	$table_markup .= $section.' .table td,';
-	$table_markup .= $section.' .table th{';
-	$table_markup .= 'border-color:'.$table_content['table_border'].';';
+	$table_markup .= '#'. $section.' .table,';
+	$table_markup .= '#'. $section.' .table td,';
+	$table_markup .= '#'. $section.' .table th{';
+		$table_markup .= 'border-color:'.$table_content['table_border'].';';
 	$table_markup .= '}';
 
 	$table_markup .= '#'.$section.' .table thead,';
 	$table_markup .= '#'.$section.' .table tfoot{';
-	$table_markup .= 'color:'.$table_content['table_header_text_color'].';';
-	$table_markup .= 'background:'.$table_content['table_header_background'].';';
-	$table_markup .= 'border-color:'.$table_content['table_border'].';';
+		$table_markup .= 'color:'.$table_content['table_header_text_color'].';';
+		$table_markup .= 'background:'.$table_content['table_header_background'].';';
+		$table_markup .= 'border-color:'.$table_content['table_border'].';';
 	$table_markup .= '}';
 
 	$table_markup .= '#'.$section.' .table thead a,';
 	$table_markup .= '#'.$section.' .table tfoot a{';
-	$table_markup .= 'color:'.$table_content['table_header_link_color'].';';
+		$table_markup .= 'color:'.$table_content['table_header_link_color'].';';
 	$table_markup .= '}';
 
 	$table_markup .= '#'.$section.' .table-striped tbody tr:nth-child(even) td a{';
-	$table_markup .= 'color:'.$table_content['even_row_link_color'].';';
+		$table_markup .= 'color:'.$table_content['even_row_link_color'].';';
 	$table_markup .= '}';
 
 
 	$table_markup .= '#'.$section.' .table-striped tbody tr:nth-child(even) td,';
 	$table_markup .= '#'.$section.' .table-striped tbody tr:nth-child(even) th,';
 	$table_markup .= '#'.$section.' .table tbody tr:nth-child(even) td{';
-	$table_markup .= 'background:'.$table_content['even_row_background'].';';
-	$table_markup .= 'color:'.$table_content['even_row_text_color'].';';
+		$table_markup .= 'background:'.$table_content['even_row_background'].';';
+		$table_markup .= 'color:'.$table_content['even_row_text_color'].';';
 	$table_markup .= '}';
 
 	
 	$table_markup .= '#'.$section.' .table-striped tbody tr:nth-child(odd) td,';
 	$table_markup .= '#'.$section.' .table-striped tbody tr:nth-child(odd) th{';
-	$table_markup .= 'background:'.$table_content['odd_row_background'].';';
-	$table_markup .= 'color:'.$table_content['odd_row_text_color'].';';
+		$table_markup .= 'background:'.$table_content['odd_row_background'].';';
+		$table_markup .= 'color:'.$table_content['odd_row_text_color'].';';
 	$table_markup .= '}';
 
 	$table_markup .= '#'.$section.' .table-striped tbody tr:nth-child(odd) td a{';
-	$table_markup .= 'color:'.$table_content['odd_row_link_color'].';';
+		$table_markup .= 'color:'.$table_content['odd_row_link_color'].';';
 	$table_markup .= '}';
 
 
 	$table_markup .= '#'.$section.' .table-hover tbody tr:hover > td,';
 	$table_markup .= '#'.$section.' .table-hover tbody tr:hover > td{';
-	$table_markup .= 'background:'.$table_content['hovered_row_background'].';';
-	$table_markup .= 'color:'.$table_content['hovered_row_text_color'].';';
+		$table_markup .= 'background:'.$table_content['hovered_row_background'].';';
+		$table_markup .= 'color:'.$table_content['hovered_row_text_color'].';';
 	$table_markup .= '}';
 
 	return $table_markup;
 }
 
 
-// /* ------------------------- pagination -------------------------*/
+/* -------------------------------------------------- 
+pagination 
+---------------------------------------------------------------------------*/
 function paginationMarkupCallback($section, $pagination_content){
 
 $border = $pagination_content['pagination_border'];
@@ -480,7 +484,9 @@ $pagination_markup .= '}';
 return $pagination_markup;
 }
 
-// /* ------------------------- Lists -------------------------*/
+/* -------------------------------------------------- 
+Lists 
+--------------------------------------------------*/
 function listsMarkupCallback($section, $list){
 
 	$background = !empty($list['background_color']) ? $list['background_color'] : 'transparent' ;
@@ -521,7 +527,9 @@ function listsMarkupCallback($section, $list){
 
 }
 
-// /* ------------------------- forms -----------------------------*/
+/* -------------------------------------------------- 
+forms 
+------------------------------------------------------*/
 function formsMarkupCallback($section_name, $forms, $section){
 
 $form_markup = '';
@@ -606,7 +614,9 @@ $form_markup .= $section_name.' form .btn:hover{';
 	return $form_markup;
 }
 
-// /* ----------------------------- Collapsibles ------------------------------ */
+/* ------------------------------------------------------ 
+Collapsibles -
+------------------------------------------------------ */
 function collapsibleMarkupCallback($section, $collapsible_content)
 {
 	$collapsible_markup =''; 
@@ -651,7 +661,13 @@ $collapsible_markup .= $section.' .accordion-heading >a:hover{ text-decoration:n
 return $collapsible_markup;
 }
 
-// /* -------------------------  Tabbed content ----------------------------------*/
+
+
+
+
+/* --------------------------------------------------  
+Tabbed content 
+-----------------------------------------------------------*/
 function tabbedMarkupCallback($section, $tabbed_content){
 $tabbed_markup = '';
 
@@ -808,7 +824,7 @@ function imagesMarkupCallback($section_name, $images, $section){
 	$imageBorderRadius = $images['border_radius'];
 
 	// $image_markup .= $images['border_captions'];
-	$image_markup .= $section_name.' img, '.$section_name.' iframe{';
+	$image_markup .= $section_name.' img {';
 		$image_markup .= 'background:'.$imageBackgroundColor.';';
 		$image_markup .= 'border:'.$imageBorderColor.' '.$imageBorderSize.' '.$imageBorderStyle .';';
 		$image_markup .= 'padding:'.$imagePadding.';';
@@ -883,6 +899,36 @@ $thumbnail_markup ='';
 	$thumbnail_markup .='}';
 
 	return $thumbnail_markup;
+}
+
+
+/* ---------------------------------------------------------
+images
+-------------------------------------------------------------*/
+function iFrameMarkupCallback($section_name, $iframes, $section){
+
+
+	$iframe_markup = '';
+	$iframeBackgroundColor = $iframes['background_color'];
+	$iframeBorderColor = $iframes['border_color'];
+
+	$iframeBorderSize = $iframes['border_size'];
+
+	$iframeBorderStyle = $iframes['border_style'];
+
+	$iframePadding = $iframes['padding'];
+
+	$iframeBorderRadius = $iframes['border_radius'];
+
+	// $iframe_markup .= $iframes['border_captions'];
+	$iframe_markup .= $section_name.' iframe{';
+		$iframe_markup .= 'background:'.$iframeBackgroundColor.';';
+		$iframe_markup .= 'border:'.$iframeBorderColor.' '.$iframeBorderSize.' '.$iframeBorderStyle .';';
+		$iframe_markup .= 'padding:'.$iframePadding.';';
+		$iframe_markup .= 'border-radius:'.$iframeBorderRadius.';';
+	$iframe_markup .= '}';
+
+	return $iframe_markup;
 }
 
 /* -----------------------------------------------------------

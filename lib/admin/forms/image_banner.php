@@ -1,6 +1,8 @@
 <?php
-////////////////////////////////
-// cycler settings
+
+/* --------------------------------------------------------------------------------------------------
+The Images
+ -------------------------------------------------------------------------------------------------- */
 function kjd_cycler_settings_callback(){ 
 settings_fields('kjd_cycler_misc_settings');
 $options = get_option('kjd_cycler_misc_settings');
@@ -27,12 +29,11 @@ $effects = '';
 
 }
 
+
 ?>
 	<h3>Image Banner settings</h3>
 
-<!-- ******** -->
-<!-- buttons  -->
-<!-- ******** -->
+
 	<div class="option">
 		<label>Enable Image Banner?</label>
 		<select  class="toggle-switch" name="kjd_cycler_misc_settings[kjd_cycler_misc][enable]">
@@ -304,9 +305,10 @@ value="<?php echo $options['kjd_cycler_misc']['timeout']?$options['kjd_cycler_mi
 }
 
 
-//////////////////////////////////
-// cycler images
 
+/* --------------------------------------------------------------------------------------------------
+The Images
+ -------------------------------------------------------------------------------------------------- */
 function kjd_cycler_images_callback(){
 	settings_fields('kjd_cycler_images_settings');
 	$options = get_option('kjd_cycler_images_settings');
@@ -332,7 +334,7 @@ function kjd_cycler_images_callback(){
 		<li>When you remove or reorder an image, <b>dont forget to click "save changes"</b>. We are working on this.</li>
 	</ol>
 
-	<div class="option banner_image_options">
+	<div class="option-wrapper banner_image_options">
 		<div class="option">
 			<input type="hidden" id="element_counter" name="kjd_cycler_images_settings[kjd_cycler_counter]" value="<?php echo $cycler ? $cycler: ''; ?>" />
 			<input type="hidden" id="totalCount" value="<?php echo $totalCount ? $totalCount : ''; ?>" />
@@ -343,57 +345,59 @@ function kjd_cycler_images_callback(){
 
 		<ul class="cycler_mgmt">
 <!-- begining image list -->
-<?php foreach ($cycler as $key => $value) { ?>
+<?php 
+	foreach ($cycler as $key => $value) { ?>
 
 		<li class="cycler_image postbox" id="<?php echo 'image_id_'.$key; ?>">
 			<div class="handlediv" title="Click to toggle"><br></div>
 			<h3 class="handle"><span><?php $imageNum = $key+1; echo 'Image number: '.$imageNum; ?></span></h3>
 			<div class="inside">
-			<div class="halfWidth">
-				<div class="option">
-					<label>Upload Image</label>
+				<div class="halfWidth">
+					<div class="option">
+						<label>Upload Image</label>
 
-					<input class="url media_input" name="kjd_cycler_images_settings[kjd_cycler_images][<?php echo $key;?>][url]" type="text" value="<?php echo $cycler[$key]['url'] ? $cycler[$key]['url'] : ''; ?>"/>  
-	    			<a href="#" class="button upload_image"> Upload image</a>
+						<input class="url media_input" name="kjd_cycler_images_settings[kjd_cycler_images][<?php echo $key;?>][url]" type="text" value="<?php echo $cycler[$key]['url'] ? $cycler[$key]['url'] : ''; ?>"/>  
+		    			<a href="#" class="button upload_image"> Upload image</a>
 
-    				<div class="image_preview" style="height: 100px; clear:both;">  
-					<?php if( !empty($cycler[$key]['url']) ){
-				      echo '<img src="'.esc_url( $cycler[$key]['url'] ).'" style="max-width:auto; height:100px;" /> ';
-					} ?>
-		  			</div> 
+	    				<div class="image_preview" style="height: 100px; clear:both;">  
+						<?php if( !empty($cycler[$key]['url']) ){
+					      echo '<img src="'.esc_url( $cycler[$key]['url'] ).'" style="max-width:auto; height:100px;" /> ';
+						} ?>
+			  			</div> 
+					</div>
+
+					<div class="option">
+						<label>Alt Text </label>
+						<input type="text" class="alt" name="kjd_cycler_images_settings[kjd_cycler_images][<?php echo $key;?>][alt]" value="<?php echo $cycler[$key]['alt'] ? $cycler[$key]['alt'] : ''; ?>" />
+					</div>
+					
+					<div class="option">
+						<a href="#" class="remove_image" >Remove Image</a>
+					</div>
+				</div> <!-- end left column -->
+
+				<div class="halfWidth">
+					<div class="option">
+						<label class="banner">Banner Text <?php echo $key; ?></label>
+	<?php 
+
+		$mce_instance = $cycler[$key]['text'];
+		$mce_ID = 'kjd_cycler_images_settings[kjd_cycler_images]['.$key.'][text]';
+		// $style = '.mceIframeContainer{background-image:url('. $cycler[$key]['url'] .'); background-size:cover; }';
+		$settings = array(
+					'textarea_rows' =>4,
+					'editor_class'=>'whiteBackground',
+					'editor_css'=>'<style scoped>' . $style . '</style>',
+				);
+		wp_editor( $mce_instance, $mce_ID, $settings );
+
+	?>
+					</div>  <!-- end left option -->
+				</div>  <!-- end right column -->
+			
+				<div style="clear:both;">
 				</div>
-
-				<div class="option">
-					<label>Alt Text </label>
-					<input type="text" class="alt" name="kjd_cycler_images_settings[kjd_cycler_images][<?php echo $key;?>][alt]" value="<?php echo $cycler[$key]['alt'] ? $cycler[$key]['alt'] : ''; ?>" />
-				</div>
-				
-				<div class="option">
-					<a href="#" class="remove_image" >Remove Image</a>
-				</div>
-			</div>
-
-			<div class="halfWidth">
-				<div class="option">
-					<label class="banner">Banner Text <?php echo $key; ?></label>
-<?php 
-
-	$mce_instance = $cycler[$key]['text'];
-	$mce_ID = 'kjd_cycler_images_settings[kjd_cycler_images]['.$key.'][text]';
-	// $style = '.mceIframeContainer{background-image:url('. $cycler[$key]['url'] .'); background-size:cover; }';
-	$settings = array(
-				'textarea_rows' =>4,
-				'editor_class'=>'whiteBackground',
-				'editor_css'=>'<style scoped>' . $style . '</style>',
-			);
-	wp_editor( $mce_instance, $mce_ID, $settings );
-
-?>
-				</div>
-			</div>
-		
-			<div style="clear:both;"></div>
-		</div>
+			</div>  <!-- end inside -->
 		</li>
 
 

@@ -84,12 +84,10 @@ value="<?php echo $section_settings['tabID'] ? $section_settings['tabID'] : 'non
 	    <li><a href="#collapsibles" data-toggle="tab">Collapsibles</a></li>
 	    <li><a href="#tables" data-toggle="tab">Tables</a></li>
 	    <li><a href="#pagination" data-toggle="tab">Pagination</a></li>
-	    <li><a href="#image-settings" data-toggle="tab">Images</a></li>
-
 <?php 	
 		
 		foreach( array('pre','address','blockquote') as $format ):
-			echo '<li><a href="#'.$format.'" data-toggle="tab">'.$format.'</a></li>';
+			echo '<li><a href="#'.$format.'" data-toggle="tab">'.ucwords($format).'</a></li>';
 		endforeach; 
 
 	endif; 
@@ -211,15 +209,6 @@ value="<?php echo $section_settings['tabID'] ? $section_settings['tabID'] : 'non
     </div>
 
 
-<!-- ***************** -->
-<!-- Image Colors -->
-<!-- ***************** -->
-
-    <div class="tab-pane cf" id="image-settings">
- 		<?php 
- 			include('images_settings_form.php');
- 		?>
-    </div>
 
 <!-- ***************** -->
 <!-- Text Formatting   -->

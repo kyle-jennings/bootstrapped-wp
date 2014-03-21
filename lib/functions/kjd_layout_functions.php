@@ -12,6 +12,7 @@ function kjd_the_content_wrapper(){
 	$post_options = get_option('kjd_posts_misc_settings');
 	$post_options = $post_options['kjd_posts_misc'];
 	$post_display = $post_options['post_listing_type'];
+
 	$show_thumbnail = $post_options['show_featured_image'];
 	$featured_image = $post_options['featured_position'];
 
@@ -518,23 +519,19 @@ function kjd_posts_layout($post_options) {
 		// puts featured image before content wrapper
 		if( in_array($featured_image, array('atop_post','left_of_post') ) && $show_thumbnail == 'true'){
 			
-			$the_content_markup .= kjd_get_featured_image($featured_image);
+			$the_content_markup .=	 kjd_get_featured_image($featured_image);
 
 		}
 		//
 
 		$the_content_markup .= '<div class="the-content-inner media-body '.$media_body_right.' ">';
 
-
-
 			$the_content_markup .= '<h3 class="post-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h3>';
-
 
 			// featured image before info
 			if($featured_image == 'before_post_info' && $show_thumbnail == 'true' && !is_attachment()){
 				$the_content_markup .= kjd_get_featured_image();
 			}
-			//
 
 			$the_content_markup .= kjd_get_the_post_info();
 
