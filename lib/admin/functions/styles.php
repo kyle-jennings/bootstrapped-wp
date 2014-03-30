@@ -60,6 +60,7 @@ function kjd_get_theme_options($preview = null){
 	//adds widget and post style sections
     if($options['style_widgets']=='true'){
 		$sections[] = 'widgets';
+		$sections[] = 'horizontalWidgets';
     }
 
 	$options = get_option('kjd_posts_misc_settings');
@@ -133,7 +134,7 @@ function kjd_get_theme_options($preview = null){
 
 
 		if($kjd_section_confine_background =='true' || $section =='dropdown-menu' || 
-			$section =='posts' || $section == "mobileNav" || $section == 'widgets'){
+			$section =='posts' || $section == "mobileNav" || $section == 'widgets' || $section == 'horizontalWidgets'){
 			$sectionBorders = array('top'=>$kjd_section_top_border,
 									'right'=>$kjd_section_right_border,
 									'bottom'=>$kjd_section_bottom_border,
@@ -484,7 +485,11 @@ function section_markup_callback($section,$section_options){
 			$section_name = '#body .the-content-wrapper.well';
 			break;
 		case 'widgets':
-			$section_name = '#sideContent .widget .styled';
+			$section_name = '#sideContent .widget .styled, #side-content .widget .styled';
+			break;
+
+		case 'horizontalWidgets':
+			$section_name = '#main-content .widget .styled';
 			break;
 		default:
 			$section_name = '#'.$section;

@@ -85,26 +85,34 @@ form .banner-fields-wrapper{
 /* -----------------------------------------------------------------
           Fields
 ------------------------------------------------------------------- */
-.optionsWrapper, .options-wrapper{clear:both; float:left; margin-bottom:20px; width:99%;}
+.optionsWrapper, 
+.options-wrapper{
+  clear:both; 
+  float:left; 
+  margin-bottom:20px; 
+  width:auto;
+}
 
 /* The options fields in the components tabs */
+
+
+
+.option{  
+    clear:both; 
+    float:left; 
+    margin-right:10px;
+    margin-bottom:20px; 
+    min-width:390px;
+  }
 
 
 .tab-pane .option {
   clear: none;
   float: left;
 
+  height: 60px;
   width: 180px;
 }
-
-.option{  
-    clear:both; 
-    float:left; 
-    height: 60px;
-    margin-right:10px;
-    margin-bottom:20px; 
-    width:390px;
-  }
 
   .option-wrapper.banner_image_options{
       width: auto;
@@ -174,7 +182,7 @@ form .banner-fields-wrapper{
   
 .submit{clear:both;}
 
-.long_textarea{ height:150px; width:70%;}
+.long_textarea{ height:150px; width:99%;}
 
 .tall-textarea {
   height: 400px;

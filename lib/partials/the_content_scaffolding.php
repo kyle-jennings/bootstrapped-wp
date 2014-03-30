@@ -43,7 +43,7 @@ $scaffolding_markup .= '<div id="body" class="'.$confineClass.'">';
 			} 
 
 			//content div
-			$scaffolding_markup .= '<div id="mainContent" class="'.$widthClass.'">';
+			$scaffolding_markup .= '<div id="main-content" class="'.$widthClass.'">';
 
 			/* ---------------------- The Loop ----------------------- */
 			if (have_posts()){

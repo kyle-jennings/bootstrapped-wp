@@ -8,10 +8,10 @@ if(is_admin()){
 }
 
  require_once('kjd_bootstrap_menus.php');
- require_once('kjdGallery.php');
- require_once('kjdShortcodes.php');
- require_once('kjdWidgets.php');
- require_once('kjd_adminbar_menu.php');
+ require_once('kjd-gallery.php');
+ require_once('kjd-shortcodes.php');
+ require_once('kjd-widgets.php');
+ require_once('kjd-adminbar-menu.php');
 
  require_once('kjd_layout_functions.php');
 

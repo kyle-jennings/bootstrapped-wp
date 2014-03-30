@@ -48,13 +48,13 @@ get_header();
 			echo kjd_get_sidebar($template,'horizontal',$position, $device_view);
 		}
 		
-		echo '<div class="span12">';
+		echo '<div id="main-content" class="span12">';
 	}else{
 		if($layoutSettings['position'] == 'left'){
 			echo kjd_get_sidebar($template, null, $position, $device_view);
 		}
 
-		echo '<div class="span9">';
+		echo '<div id="main-content" class="span9">';
 	}
 
 

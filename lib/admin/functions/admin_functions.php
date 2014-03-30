@@ -213,8 +213,10 @@ jQuery(document).ready(function($){
 // Add style dropdown
 
 function add_widget_style_dropdown( $widget, $return, $instance ){
+  
 
   $widget_styles = array('not styled' => 'unstyled', 'use background' =>'well styled','no background' => 'no-well styled');
+
   $output = '';
   $output .= '<h4>Widget Settings</h4>';
   $output .= '<div>';
@@ -230,10 +232,10 @@ function add_widget_style_dropdown( $widget, $return, $instance ){
   $output .= '</div>';
 
   echo $output;
+
   return $instance;
 
 }
-add_action( 'in_widget_form', 'add_widget_style_dropdown', 10, 3 );
 
 function add_widget_device_visibility_dropdown( $widget, $return, $instance ){
 
@@ -264,7 +266,26 @@ function add_widget_device_visibility_dropdown( $widget, $return, $instance ){
   return $instance;
 
 }
-add_action( 'in_widget_form', 'add_widget_device_visibility_dropdown', 10, 3 );
+
+
+function kjd_display_theme_widget_options($widget, $return, $instance ){
+  
+  $options = get_option('kjd_component_settings');
+  $style = $options['style_widgets'];
+
+  $output = '<hr />';
+  $output .= '<h4>Theme Settings</h4>';
+
+  echo $output;
+
+  if( $style == 'true' ):
+    add_action( 'in_widget_form', 'add_widget_style_dropdown', 10, 3 );
+  endif;
+  add_action( 'in_widget_form', 'add_widget_device_visibility_dropdown', 10, 3 );
+
+}
+
+add_action( 'in_widget_form', 'kjd_display_theme_widget_options', 10, 3 );
 
 // update widget
 

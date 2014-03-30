@@ -159,7 +159,7 @@ function kjd_settings_display($section) {
 // background color and wallpaper
 ////////////////////////////////////
 function kjd_section_background_callback($section){
-	include('forms/background_settings_form.php');
+	include('forms/background.php');
 }
 
 ////////////////////////////////////
@@ -189,7 +189,7 @@ function kjd_section_text_callback($section){
 // presentation, buttons, and wells
 ////////////////////////////////////
 function kjd_section_presentation_callback($section){
-	include('forms/presentation_settings_form.php');
+	include('forms/presentation.php');
 }
 
 ////////////////////////////////////
@@ -197,7 +197,7 @@ function kjd_section_presentation_callback($section){
 ////////////////////////////////////
 function kjd_section_images_callback($section){
 
-	include('forms/images_settings_form.php');
+	include('forms/images.php');
 }
 
 //// image cycler
@@ -207,5 +207,5 @@ function kjd_image_cycler_display_callback(){
 
 // misc sections
 function kjd_section_misc_callback($section){ 
-	include('forms/misc_settings_form.php');
+	include('forms/misc.php');
 }

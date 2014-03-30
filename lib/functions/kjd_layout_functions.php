@@ -464,7 +464,7 @@ function kjd_get_sidebar($sidebar = 'default', $location = null, $width = null, 
 		dynamic_sidebar($sidebar);
 		$the_buffered_sidebar = ob_get_contents();
 	ob_end_clean();
-	$the_sidebar_markup = '<div id="sideContent" class="'.$location_class.' '.$location.'-widgets '.$device_view.'">';
+	$the_sidebar_markup = '<div id="side-content" class="'.$location_class.' '.$location.'-widgets '.$device_view.'">';
 		// $the_sidebar_markup .= ($location == 'horizontal') ? '<div class="row">' : '' ;
 
 			$the_sidebar_markup .= '<div class="row">' . $the_buffered_sidebar .'</div>';

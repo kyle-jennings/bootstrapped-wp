@@ -261,8 +261,10 @@ h2.logo-wrapper{
 			Page Settings
 ----------------------------------------------------------------------------------  */
 
-#mainContent{min-height:1px;}
-#sideContent{min-height:1px;}
+#mainContent,
+#main-content{min-height:1px;}
+#sideContent,
+#side-content{min-height:1px;}
 
 
 /* ---------------------------------------------------------------------------------- 
@@ -325,7 +327,8 @@ h2.logo-wrapper{
 /* ---------------------------------------------------------------------------------- 
 			Widget
 ----------------------------------------------------------------------------------  */
-#sideContent .widget .no-well.styled {
+#sideContent .widget .no-well.styled,
+#side-content .widget .no-well.styled {
 	background: none;
 	border: none;
 }

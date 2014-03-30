@@ -43,7 +43,7 @@ function kjd_load_style_sheets_and_scripts() {
 add_action('admin_init', 'kjd_load_style_sheets_and_scripts');  
 
 function kjd_initialize_kjd_settings(){
-	 include 'kjd_field_settings.php';
+	 include 'kjd_fields.php';
 }
 add_action('admin_init', 'kjd_initialize_kjd_settings');  
 
@@ -156,11 +156,20 @@ function kjd_setup_theme_menus() {
 		// customize post
 	    add_submenu_page(
 			'kjd_theme_settings',   // belongs to id
-	  		'Customize Widgets', // title bar
-			'Style Widgets', // menu title
+	  		'Sidebar Widgets', // title bar
+			'Sidebar Widgets', // menu title
 			'manage_options',   //member access
 		    'kjd_widgets_settings', // id for submenu
 			create_function('', 'kjd_settings_display("widgets");')
+		); 
+
+	    add_submenu_page(
+			'kjd_theme_settings',   // belongs to id
+	  		'Horizontal Widgets', // title bar
+			'Horizontal Widgets', // menu title
+			'manage_options',   //member access
+		    'kjd_horizontalWidgets_settings', // id for submenu
+			create_function('', 'kjd_settings_display("horizontalWidgets");')
 		); 
     }
 		// customize footer
