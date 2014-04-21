@@ -1,7 +1,5 @@
 <?php
-/*
-Template Name: Style Sheet
-*/
+
 /*
 	$section = section
 	$array =
@@ -48,6 +46,7 @@ function kjd_get_temp_settings($section, $array, $preview, $part) {
 
 
 function kjd_get_theme_options($preview = null){
+
 
 
 	settings_fields( 'kjd_component_settings' ); 
@@ -295,6 +294,12 @@ function kjd_get_theme_options($preview = null){
 											$preview,
 											'forms'
 										);
+		$nav_list = kjd_get_temp_settings(	
+											$section,
+											$kjd_section_components['nav_list'],
+											$preview,
+											'nav_list'
+										);
 
 		/* ----------------------------------------------------- 
 		text formatting stuff
@@ -382,6 +387,7 @@ function kjd_get_theme_options($preview = null){
 			'pagination_content'=>$pagination_content,
 			'list' =>$list,
 			'forms'=>$forms,
+			'nav_list' => $nav_list,
 			'images'=>$images,
 			'thumbnails'=>$thumbnails,
 			'captions'=>$captions,
@@ -781,7 +787,9 @@ $sectionArea_markup .= '}'; // Ends the section div markup
 		$sectionArea_markup .= tableMarkupCallback($section_name, $table_content, $section);
 		//forms
 		$sectionArea_markup .= formsMarkupCallback($section_name, $forms, $section);
-		
+		//nav list
+		$sectionArea_markup .= nav_list_markup_callback($section_name, $forms, $section);
+
 		$sectionArea_markup .= textFormattingCallback($section_name, $section,'pre', $pre);
 		$sectionArea_markup .= textFormattingCallback($section_name, $section,'address', $address);
 		$sectionArea_markup .= textFormattingCallback($section_name, $section,'blockquote', $blockquote);

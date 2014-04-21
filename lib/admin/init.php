@@ -16,12 +16,13 @@ include 'display_settings.php';
 // gets js and css file for the styling and fancy pantsing
 function kjd_load_style_sheets_and_scripts() {  
 
-	$adminDir = get_bloginfo('template_directory');  
+	$adminDir = get_bloginfo('stylesheet_directory');  
 	$adminDir = $adminDir."/lib/admin/";
+
 	wp_enqueue_style("admin", $adminDir."css/admin.css");  
   	wp_enqueue_style("bs",$adminDir."css/bootstrap-tabs.css");  
 
-	wp_enqueue_script("bsjs", get_bloginfo('template_directory').'/lib/scripts/bootstrap.min.js'); 
+	wp_enqueue_script("bsjs", get_bloginfo('stylesheet_directory').'/lib/scripts/bootstrap.min.js'); 
 
 
 	// mini colors

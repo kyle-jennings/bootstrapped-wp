@@ -155,6 +155,7 @@ function kjd_get_the_content($post_display = null)
 		
 		ob_start();
 			the_content();
+			wp_link_pages();
 			$buffered_content = ob_get_contents();
 		ob_end_clean();
 

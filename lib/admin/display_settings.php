@@ -1,8 +1,11 @@
 <?php
     
 
-function kjd_settings_display($section) {  
+function kjd_settings_display($section = null) {  
 	
+
+
+	kjd_build_theme_css();
 
 	$options = get_option('kjd_posts_misc_settings');
 	$options = $options['kjd_posts_misc'];
@@ -79,7 +82,8 @@ function kjd_settings_display($section) {
 		<a href="?page=kjd_<?php echo $section;?>_settings&tab=<?php echo $tab; ?>" class="nav-tab"<?php echo $active_tab == $tab ? 'id="active"' : 'none'; ?>><?php echo ucwords( str_replace('_',' ',$tab) )?></a>  
 	<?php }
 
-	kjd_build_theme_css();
+
+
 	$fields_wrapper_class = ( $active_tab != 'image_banner_images' && $active_tab != 'image_banner_settings') ? 'fields-wrapper ' : 'banner-fields-wrapper' ;
  ?>
 

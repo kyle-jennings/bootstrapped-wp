@@ -41,6 +41,7 @@ function kjd_add_assets(){
 
 	
 
+	wp_enqueue_script("script", $root."/scripts/application.js", false, "1.0", true);  
 	wp_enqueue_script("jquery", $root."/scripts/jquery.js", false, "1.0", false);  
 	wp_enqueue_script("bootstrap", $root."/scripts/bootstrap.min.js", false, "1.0", true);  
 
@@ -50,7 +51,6 @@ function kjd_add_assets(){
 	}
 
 	
-	wp_enqueue_script("script", $root."/scripts/application.js", false, "1.0", true);  
 
 	wp_enqueue_style("bootstrap", $root."/styles/bootstrap/bootstrap.min.css");
 

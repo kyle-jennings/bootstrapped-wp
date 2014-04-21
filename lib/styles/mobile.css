@@ -16,7 +16,7 @@
 @media (max-width: 979px) {
 
 	html.mobilenav-fixed-top {
-		padding-top: 50px
+		/*padding-top: 50px*/
 	}
 
 	html.mobilenav-fixed-bottom {
@@ -40,7 +40,7 @@
 /* navbar logo and control */
 
 	#navbar .navbar .brand {
-	    margin: 0 0 0 -10px;
+		margin-left:0px;
 	    padding-left: 0px;
 	    padding-right: 10px;
 	}
@@ -53,7 +53,7 @@
 
 	#navbar .navbar .container .btn-navbar,
 	#navbar .container #sidr-toggle{
-		margin-right: -10px;
+
 		
 	}
 
@@ -61,7 +61,7 @@
 	#navbar.navbar-fixed-bottom #sidr-toggle,
 	#navbar.navbar.navbar-fixed-top .btn-navbar,
 	#navbar.navbar.navbar-fixed-bottom .btn-navbar {
-		margin-right: -10px;
+		margin-right: 0px;
 		
 	}
 
@@ -85,8 +85,8 @@
 	#navbar.navbar-fixed-top .navbar-inner .navbar,
 	#navbar.navbar-fixed-bottom .navbar-inner .navbar,
 	#navbar.navbar-static-top  .navbar-inner .navbar{
-		padding-left: 40px;
-		padding-right: 40px;
+		padding-left: 35px;
+		padding-right: 35px;
 	}
 
 	#navbar ul.nav > li{ 
@@ -210,12 +210,12 @@
 		margin-left: -10px;
 	}
 
-	#navbar.navbar-fixed-top #sidr-toggle,
+/*	#navbar.navbar-fixed-top #sidr-toggle,
 	#navbar.navbar-fixed-bottom #sidr-toggle,
 	#navbar.navbar.navbar-fixed-top .btn-navbar,
 	#navbar.navbar.navbar-fixed-bottom .btn-navbar {
 		margin-right: -10px;
-	}
+	}*/
 
 	.pagination { 
 		margin-left:20px;
@@ -301,13 +301,13 @@
 	
 	#navbar .navbar .btn-navbar,
 	#navbar #sidr-toggle{
-		margin-right: -10px;
+		/*margin-right: -10px;*/
 		margin-left: 0;
 	}
 
 	#navbar .navbar .container .btn-navbar,
 	#navbar .container #sidr-toggle{
-		margin-right: -10px;
+		/*margin-right: -10px;*/
 		
 	}
 	

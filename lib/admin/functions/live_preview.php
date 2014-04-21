@@ -1,7 +1,7 @@
 <?php 
-// echo 'boom';
+
 $wp_dir = dirname(dirname( dirname( dirname( dirname (dirname( dirname(__FILE__) ) ) ) ) ) )  ;
-//        root >  wp-content > themes > kjd    > lib    > admin > functions  > this
+
 
 include( $wp_dir. '/wp-blog-header.php');
 include( $wp_dir. '/wp-admin/includes/plugin.php');

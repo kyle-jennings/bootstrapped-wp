@@ -112,6 +112,7 @@ form .banner-fields-wrapper{
 
   height: 60px;
   width: 180px;
+  min-width: 180px;
 }
 
   .option-wrapper.banner_image_options{

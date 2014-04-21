@@ -3,10 +3,10 @@
 
 /* ------------------------- Update Style sheet after settigns are saved ------------------------------------ */
 
-function kjd_build_theme_css( $stylesheet = 'custom.css' ){
-  $root = dirname( dirname(dirname(__FILE__)) );  // theme -> lib
-  // $wp-contenr = dirname( dirname( dirname( dirname( dirname( dirname(__FILE__) ) ) ) ) );  // wp-content folder
+function kjd_build_theme_css( $section = null, $stylesheet = 'custom.css' ){
 
+
+  $root = dirname( dirname(dirname(__FILE__)) );  // theme -> lib
 
   if( file_exists( $root . '/styles' ) ){
 
@@ -31,7 +31,7 @@ function kjd_build_theme_css( $stylesheet = 'custom.css' ){
   }
 
   ob_start();
-    echo kjd_get_theme_options();
+    echo kjd_get_theme_options(null);
     $buffered_content = ob_get_contents();
   ob_end_clean();
 
@@ -211,8 +211,7 @@ jQuery(document).ready(function($){
  -------------------------------------------------*/
 
 // Add style dropdown
-
-function add_widget_style_dropdown( $widget, $return, $instance ){
+function kjd_widget_style( $widget, $return, $instance ){
   
 
   $widget_styles = array('not styled' => 'unstyled', 'use background' =>'well styled','no background' => 'no-well styled');
@@ -237,7 +236,8 @@ function add_widget_style_dropdown( $widget, $return, $instance ){
 
 }
 
-function add_widget_device_visibility_dropdown( $widget, $return, $instance ){
+// widget visibility
+function kjd_widget_visibility( $widget, $return, $instance ){
 
   $widget_styles = array(
     'All' => 'all',
@@ -267,8 +267,8 @@ function add_widget_device_visibility_dropdown( $widget, $return, $instance ){
 
 }
 
-
-function kjd_display_theme_widget_options($widget, $return, $instance ){
+// //add options to widget
+function kjd_extend_widget_form($instance, $widget ){
   
   $options = get_option('kjd_component_settings');
   $style = $options['style_widgets'];
@@ -279,21 +279,21 @@ function kjd_display_theme_widget_options($widget, $return, $instance ){
   echo $output;
 
   if( $style == 'true' ):
-    add_action( 'in_widget_form', 'add_widget_style_dropdown', 10, 3 );
+    add_action( 'in_widget_form', 'kjd_widget_style', 10, 3 );
   endif;
-  add_action( 'in_widget_form', 'add_widget_device_visibility_dropdown', 10, 3 );
+  
+  add_action( 'in_widget_form', 'kjd_widget_visibility', 10, 3 );
 
+  return $instance;
 }
 
-add_action( 'in_widget_form', 'kjd_display_theme_widget_options', 10, 3 );
+add_action( 'widget_form_callback', 'kjd_extend_widget_form', 10, 2 );
 
-// update widget
-
-function update_widget( $instance, $new_instance ) {
+// // update widget
+function kjd_update_widget( $instance, $new_instance ) {
   $instance['widget_style'] = $new_instance['widget_style'];
   $instance['device_visibility'] = $new_instance['device_visibility'];
-  // do_action( 'widget_css_classes_update', $instance, $new_instance );
-  return $instance;
 
+  return $instance;
 }
-add_filter( 'widget_update_callback', 'update_widget', 10, 2 );
+add_filter( 'widget_update_callback', 'kjd_update_widget', 10, 2 );

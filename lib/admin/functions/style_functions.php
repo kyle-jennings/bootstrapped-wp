@@ -615,6 +615,27 @@ $form_markup .= $section_name.' form .btn:hover{';
 }
 
 /* ------------------------------------------------------ 
+Navlists
+------------------------------------------------------ */
+function nav_list_markup_callback($section_name, $forms, $section){
+	$markup ='';
+
+	$markup .= $section_name . ' .nav-list nav-stacked{';
+		$markup .= 'color:;';
+	$markup .= '}';
+
+	$markup .= $section_name . ' .nav-list nav-stacked a{';
+		$markup .= 'color:;';
+	$markup .= '}';
+
+	$markup .= $section_name . ' .nav-list nav-stacked a:hover{';
+		$markup .= 'color:;';
+	$markup .= '}';
+
+	return;
+}
+
+/* ------------------------------------------------------ 
 Collapsibles -
 ------------------------------------------------------ */
 function collapsibleMarkupCallback($section, $collapsible_content)

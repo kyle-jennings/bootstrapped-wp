@@ -295,10 +295,10 @@ if( $using_sidr == 'true'){
 
 
 
-	$media_979_markup .= '.nav-collapse .dropdown-menu';
-	$media_979_markup .= '{';
-		$media_979_markup .= 'display: block;';
-	$media_979_markup .= '}';
+	// $media_979_markup .= '.nav-collapse .dropdown-menu';
+	// $media_979_markup .= '{';
+	// 	$media_979_markup .= 'display: block;';
+	// $media_979_markup .= '}';
 
 /* ---------------------------------------------------------
 				Sidr

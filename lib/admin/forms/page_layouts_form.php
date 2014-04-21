@@ -292,7 +292,19 @@ function kjd_front_page_settings(){
 		</div>
 
 	</div>
-
+	
+	<div class='option'>
+		<label>Content Title</label>
+		<input type="text" name='kjd_frontPage_layout_settings[kjd_frontPage_content_title]' 
+		value="<?php echo $options['kjd_frontPage_content_title'] ? $options['kjd_frontPage_content_title'] : '' ;?>"/>
+	</div>
+	
+	<div class='option'>
+		<label>Secondary Content Title</label>
+		<input type="text" name='kjd_frontPage_layout_settings[kjd_frontPage_secondary_content_title]' 
+		value="<?php echo $options['kjd_frontPage_secondary_content_title'] ? $options['kjd_frontPage_secondary_content_title'] : '' ;?>"/>
+	</div>
+	
 	<div class="option">
 		<label>Secondary Content</label>
 			<?php wp_editor( $options['kjd_frontPage_secondaryContent'], 

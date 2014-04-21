@@ -9,7 +9,11 @@ get_header();
 	$template = $layoutSettings['name'];
 
 	$frontPageOptions = get_option('kjd_frontPage_layout_settings');
+	
 	$frontPageSidebar = $frontPageOptions['kjd_frontPage_sidebar'];
+	$content_title = $frontPageOptions['kjd_frontPage_content_title'];
+	$secondary_title = $frontPageOptions['kjd_frontPage_secondary_content_title'];
+
 	$device_view = $layoutSettings['deviceView'];
 
 	$components = $frontPageOptions['kjd_frontPage_layout'];
@@ -63,7 +67,9 @@ get_header();
 							$frontPageOptions, 
 							$confineBodyBackground, 
 							$arrayLength, 
-							$showImageSlider 
+							$showImageSlider,
+							$content_title,
+							$secondary_title 
 						);
 
 
@@ -147,7 +153,7 @@ function kjd_widget_area_3_callback($layoutSettings, $deviceView){
 /* -------------------------------------------------------------------- 
 			Default Content
  -------------------------------------------------------------------- */
-function kjd_content_callback($layoutSettings, $deviceView){
+function kjd_content_callback($layoutSettings, $deviceView, $content_title = ''){
 	echo '<div class="'.$deviceView.' frontpage-component">';
 	
 	if (have_posts()){
@@ -156,6 +162,7 @@ function kjd_content_callback($layoutSettings, $deviceView){
 			echo kjd_get_posts_pagination();
 		}
 		
+		echo '<h2>'.$content_title.'</h2>';
 		echo '<div class="content-list">';
 		
 		while(have_posts()){ 
@@ -174,13 +181,15 @@ function kjd_content_callback($layoutSettings, $deviceView){
 /* -------------------------------------------------------------------- 
 			Secondary Content
  -------------------------------------------------------------------- */
-function kjd_secondary_content_callback($frontPageOptions,$layoutSettings, $deviceView){ 
+function kjd_secondary_content_callback($frontPageOptions,$layoutSettings, $deviceView, $secondary_title){ 
 	if($layoutSettings['position'] != 'right' && $layoutSettings['position'] !='left'){ 
 		echo '<div class="row '.$deviceView.' frontpage-component"><div class="span12">'; 
+			echo '<h2>'. $secondary_title .'</h2>';
 			echo do_shortcode($frontPageOptions['kjd_frontPage_secondaryContent']);
 		echo '</div></div>'; 
 	}else{
 		echo '<div class="row '.$deviceView.' frontpage-component"><div class="span9">'; 
+			echo '<h2>'. $secondary_title .'</h2>';
 			echo do_shortcode($frontPageOptions['kjd_frontPage_secondaryContent']);
 		echo '</div></div>'; 
 	}
@@ -195,7 +204,9 @@ function kjd_front_page_layout( $components,
 								$frontPageOptions, 
 								$confineBodyBackground, 
 								$arrayLength, 
-								$showImageSlider
+								$showImageSlider,
+								$content_title,
+								$secondary_title 
 								){
 	foreach($components as $position => $component)
 	{
@@ -215,11 +226,11 @@ function kjd_front_page_layout( $components,
 
 		}elseif($component['component'] =='content'){
 			
-			kjd_content_callback($layoutSettings, $deviceView);
+			kjd_content_callback($layoutSettings, $deviceView, $content_title);
 
 		}elseif($component['component'] =='secondary_content'){
 			
-			kjd_secondary_content_callback($frontPageOptions, $layoutSettings, $deviceView);
+			kjd_secondary_content_callback($frontPageOptions, $layoutSettings, $deviceView, $secondary_title);
 
 		}elseif($component['component'] == 'image_banner' && ( $showImageSlider['enable'] =='true' && $showImageSlider['location'] == 'sortable' ) ){
 			kjd_image_slider_callback( $confineBodyBackground, $position, $arrayLength, $layoutSettings, 'sortable', $deviceView );
