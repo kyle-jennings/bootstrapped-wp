@@ -3,7 +3,7 @@
 
 /* ------------------------- Update Style sheet after settigns are saved ------------------------------------ */
 
-function kjd_build_theme_css( $section = null, $stylesheet = 'custom.css' ){
+function kjd_build_theme_css( $stylesheet = 'custom.css' ){
 
 
   $root = dirname( dirname(dirname(__FILE__)) );  // theme -> lib

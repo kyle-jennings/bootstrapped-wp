@@ -16,13 +16,13 @@ include 'display_settings.php';
 // gets js and css file for the styling and fancy pantsing
 function kjd_load_style_sheets_and_scripts() {  
 
-	$adminDir = get_bloginfo('stylesheet_directory');  
+	$adminDir = get_bloginfo('template_directory');  
 	$adminDir = $adminDir."/lib/admin/";
 
 	wp_enqueue_style("admin", $adminDir."css/admin.css");  
   	wp_enqueue_style("bs",$adminDir."css/bootstrap-tabs.css");  
 
-	wp_enqueue_script("bsjs", get_bloginfo('stylesheet_directory').'/lib/scripts/bootstrap.min.js'); 
+	wp_enqueue_script("bsjs", get_bloginfo('template_directory').'/lib/scripts/bootstrap.min.js'); 
 
 
 	// mini colors
@@ -32,10 +32,10 @@ function kjd_load_style_sheets_and_scripts() {
 
 	wp_register_script( 'admin', $adminDir."js/admin.js", false, '1.0' ); //register script
 
-	$wp_paths = array( 'template_url' => $adminDir.'functions/live_preview.php',
+	$wp_paths = array( 'template_url'    => $adminDir.'functions/live_preview.php',
 					   'export_file_url' => $adminDir.'functions/kjd_export_settings.php',
-					   'root_url' => get_bloginfo('template_directory'),
-					   'site_url' => get_bloginfo('url')
+					   'root_url' 		 => get_bloginfo('template_directory'),
+					   'site_url' 		 => get_bloginfo('url')
 				    );
 	wp_localize_script( 'admin', 'object_name', $wp_paths );
 	wp_enqueue_script("admin"); //enqueue
