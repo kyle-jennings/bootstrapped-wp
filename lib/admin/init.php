@@ -32,8 +32,7 @@ function kjd_load_style_sheets_and_scripts() {
 
 	wp_register_script( 'admin', $adminDir."js/admin.js", false, '1.0' ); //register script
 
-	$wp_paths = array( 'template_url'    => $adminDir.'functions/live_preview.php',
-					   'export_file_url' => $adminDir.'functions/kjd_export_settings.php',
+	$wp_paths = array( 'export_file_url' => $adminDir.'functions/kjd_export_settings.php',
 					   'root_url' 		 => get_bloginfo('template_directory'),
 					   'site_url' 		 => get_bloginfo('url')
 				    );

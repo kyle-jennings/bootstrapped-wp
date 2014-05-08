@@ -59,10 +59,10 @@ function kjd_mobileNav_misc_settings_callback(){
 	
 	<h3>Mobile Nav Styles</h3>
 	<div class="option">
-		<label>Use mobile menu?</label>
+		<label>Menu</label>
 		<select name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][use_mobile_menu]">
-			<option value="false" <?php selected( $options['use_mobile_menu'], 'false', true ) ?>>No</option>
-			<option value="true" <?php selected( $options['use_mobile_menu'], 'true', true) ?>>Yes</option>
+			<option value="false" <?php selected( $options['use_mobile_menu'], 'false', true ) ?>>Primary</option>
+			<option value="true" <?php selected( $options['use_mobile_menu'], 'true', true) ?>>Mobile</option>
 		</select>
 	</div>
 

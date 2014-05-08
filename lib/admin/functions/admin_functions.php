@@ -1,6 +1,32 @@
 <?php
 
+function kjd_live_preview(){
+  
+  if( isset($_POST['data']) ){
+    $data = $_POST['data'];
+    $lib = dirname( dirname( dirname(__FILE__) ) ) ; 
 
+    include( $lib.'admin/functions/styles.php');
+    $file = $lib.'/styles/preview.css';
+
+    if(file_exists($file)){
+      unlink($file);
+    }
+
+    $file = fopen($file, "x+");
+
+    ob_start();
+      echo kjd_get_theme_options($data);
+      $buffered_content = ob_get_contents();
+    ob_end_clean();
+
+    fwrite($file, $buffered_content);
+    fclose($file);
+  }
+
+  die;
+}
+add_action('wp_ajax_kjd_live_preview', 'kjd_live_preview');
 /* ------------------------- Update Style sheet after settigns are saved ------------------------------------ */
 
 function kjd_build_theme_css( $stylesheet = 'custom.css' ){
