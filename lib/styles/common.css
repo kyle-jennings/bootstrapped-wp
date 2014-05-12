@@ -153,6 +153,13 @@ h2.logo-wrapper{
 	position: relative;
 	z-index: 999;
 }
+
+.navbar-menu-btn {
+	display:none;
+	float: right;
+	margin-right: 0;
+}
+
 .navbar-inner {
 	border:none;
 }

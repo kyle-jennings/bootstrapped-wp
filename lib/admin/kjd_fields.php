@@ -1,4 +1,32 @@
 <?php
+
+	//////////////////////
+	// logo settings
+		add_settings_section(
+			'kjd_theme_logo_section', // ID hook name
+			null,
+			null,
+			'kjd_theme_logo' // page (settings group) name
+		);
+
+		$general_settings = array('site_logo',
+						'logo_toggle',
+						'kjd_favicon'
+		);
+		foreach($general_settings as $setting){
+
+			add_settings_field(
+				'kjd_'.$setting, // ID hook name
+				 null, //label
+				 null, //callback
+				'kjd_theme_logo', // page name
+				'kjd_theme_logo_section' // parent section
+			);
+			
+		}
+
+		register_setting('kjd_theme_logo','kjd_theme_logo');
+
 	//////////////////////
 	// General Settings	
 		add_settings_section(
@@ -8,8 +36,7 @@
 			'kjd_theme_settings' // page (settings group) name
 		);
 
-		$general_settings = array('site_logo',
-						'logo_toggle',
+		$general_settings = array(
 						'misc_settings',
 						'google_analytics',
 						'confine_page',

@@ -7,12 +7,15 @@
 	
 	// general settings
 	$themeSettings = get_option('kjd_theme_settings');
-	$logo = $themeSettings['kjd_site_logo'];	
-	$custom_header = $themeSettings['kjd_custom_header'];
-
-	$logo_toggle = $themeSettings['kjd_logo_toggle'];
-	$favicon = $themeSettings['kjd_favicon'];
 	$analytics = $themeSettings['kjd_google_analytics'];
+
+	// logo and favicon
+	$logo_settings = get_option('kjd_theme_logo');
+	
+	$logo = $logo_settings['kjd_site_logo'];	
+	$logo_toggle = $logo_settings['kjd_logo_toggle'];
+	$favicon = $logo_settings['kjd_favicon'];
+	$custom_header = $logo_settings['kjd_custom_header'];
 
 	$confinePage = $themeSettings['kjd_confine_page'];
 	$responsiveDesign = $themeSettings['kjd_responsive_design'];
@@ -64,6 +67,7 @@
 		$mobilenav_position = $mobileNavSettings['mobilenav_position'];
 
 	}
+	$button_type = $mobileNavSettings['menu_button_type'];
 
 	// mast settings
 	$options = get_option('kjd_mastArea_background_settings');
@@ -197,7 +201,7 @@ if($mobilenav_style =='sidr'){
 
 				if($navbarSettings['hideNav'] != "true"){
 
-					echo kjd_build_navbar('primary-menu', $navbarStyle, $navbarLinkStyle, $mobilenav_style, 'visible-desktop', $navbarPosition );
+					echo kjd_build_navbar('primary-menu', $navbarStyle, $navbarLinkStyle, $mobilenav_style, 'visible-desktop', $navbarPosition, null, null, $button_type );
 					
 				}
  	
@@ -222,12 +226,12 @@ if($mobilenav_style =='sidr'){
 			if($navbarSettings['hideNav'] != "true"){
 
 				if( $override_nav  == 'true'){
-					echo kjd_build_navbar('mobile-menu', $mobileNavWidth, $mobileNavLinkStyle, $mobilenav_style, 'hidden-desktop', $mobileNavPosition, $mobileNavLogo, $use_mobile_menu );
-					echo kjd_build_navbar('primary-menu', $navbarStyle, $navbarLinkStyle, $mobilenav_style, 'visible-desktop', $navbarPosition );
+					echo kjd_build_navbar('mobile-menu', $mobileNavWidth, $mobileNavLinkStyle, $mobilenav_style, 'hidden-desktop', $mobileNavPosition, $mobileNavLogo, $use_mobile_menu, $button_type );
+					echo kjd_build_navbar('primary-menu', $navbarStyle, $navbarLinkStyle, $mobilenav_style, 'visible-desktop', $navbarPosition, null, null, $button_type );
 				
 				}else{
 
-					echo kjd_build_navbar('primary-menu', $navbarStyle, $navbarLinkStyle, $mobilenav_style, null, $navbarPosition, $mobileNavLogo);
+					echo kjd_build_navbar('primary-menu', $navbarStyle, $navbarLinkStyle, $mobilenav_style, null, $navbarPosition, $mobileNavLogo, null, $button_type);
 					
 				}
 			}

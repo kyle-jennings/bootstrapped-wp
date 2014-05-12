@@ -29,7 +29,9 @@
 		display:block;
 	}
 
-
+.navbar-menu-btn {
+	display: block;
+}
 /* header logo */
 	h1.logo-wrapper, 
 	h2.logo-wrapper {

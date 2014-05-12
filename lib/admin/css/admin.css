@@ -86,7 +86,8 @@ form .banner-fields-wrapper{
           Fields
 ------------------------------------------------------------------- */
 .optionsWrapper, 
-.options-wrapper{
+.options-wrapper,
+.option-group{
   clear:both; 
   float:left; 
   margin-bottom:20px; 

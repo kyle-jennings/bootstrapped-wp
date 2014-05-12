@@ -590,7 +590,7 @@ function kjd_empty_nav_fallback_callback( $args ) {
 }
 
 //							menu id,  nav style,   link style, sidr/dropdown/ect,     devise visibility,  position
-function kjd_build_navbar( $menu_id, $navbar_width, $link_type, $mobilenav_style, $visibility = null, $position, $logo = '', $use_mobile_menu = 'false' ){
+function kjd_build_navbar( $menu_id, $navbar_width, $link_type, $mobilenav_style, $visibility = null, $position, $logo = '', $use_mobile_menu = 'false', $button_type ='default' ){
 
 		$navbar_style = 'navbar ';
 
@@ -654,20 +654,58 @@ function kjd_build_navbar( $menu_id, $navbar_width, $link_type, $mobilenav_style
 
 					}
 
+					switch($button_type):
+						case 'default':
+							$button_class = "btn btn-navbar";
+
+							$button_inner = '';
+							$button_inner .= '<span class="icon-bar"></span>';
+							$button_inner .= '<span class="icon-bar"></span>';
+							$button_inner .= '<span class="icon-bar"></span>';
+							break;
+						case 'hamburger':
+							$button_class = "btn btn-navbar btn-hamburger";
+
+							$button_inner = '';
+							$button_inner .= '<span class="icon-bar"></span>';
+							$button_inner .= '<span class="icon-bar"></span>';
+							$button_inner .= '<span class="icon-bar"></span>';
+
+							break;		
+						case 'button':
+							$button_class = "btn";
+
+							$button_misc = get_option('kjd_mobileNav_misc_settings');
+							$button_misc = $button_misc['kjd_mobileNav_misc'];
+
+							$button_inner = $button_misc['menu_btn_text'];;
+							break;
+						case 'text':
+							$button_class = "menu-text";
+
+							$button_misc = get_option('kjd_mobileNav_misc_settings');
+							$button_misc = $button_misc['kjd_mobileNav_misc'];
+							
+							$button_inner = $button_misc['menu_btn_text'];
+							break;
+						case 'image':
+							$button_class = "menu-image";
+
+							$button_inner = 'image';
+							break;
+						default:
+							$button_class = "btn btn-navbar";
+							break;		
+					endswitch;
+
 					if($mobilenav_style =='sidr'){
-						$navbar_inner .= '<a id="sidr-toggle" class="btn btn-navbar">
-						    <span class="icon-bar"></span>
-						    <span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							</a>';
+						$navbar_inner .= '<a id="sidr-toggle" class="navbar-menu-btn '.$button_class.'">';
 					}else{
-						$navbar_inner .= '<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar">
-						    <span class="icon-bar"></span>
-						    <span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</a>';
+						$navbar_inner .= '<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="navbar-menu-btn '.$button_class.'">';
 					}
-					
+						$navbar_inner .= $button_inner;
+					$navbar_inner .= '</a>';
+
 					// The nav-collapse - it holds the menu
 
 						
