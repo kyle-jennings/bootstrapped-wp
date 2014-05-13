@@ -175,9 +175,25 @@ function kjd_mobileNav_misc_settings_callback(){
 			<?php echo  $options['menu_button_type'] == 'button' ? 'style="display:block;"' : 'style="display:none;"' ;?> 
 
 		>
+		<?php 
+			$button_colors = array(
+				'blue'=>'btn-primary',
+				'light blue' => 'btn-info',
+				'green' => 'btn-success',
+				'yellow' => 'btn-warning',
+				'red' => 'btn-danger',
+				'black' => 'btn-inverse'
+				);
+		?>
 			<div class="option">
 				<label>Button Colors</label>
-
+				<select>
+					<?php
+						foreach($button_colors as $label=>$color ){
+							echo '<option vlaue="'.$color.'">'.$label.'</option>';
+						}
+					?>
+				</select>
 			</div>
 		</div>
 

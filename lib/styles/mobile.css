@@ -29,14 +29,9 @@
 		display:block;
 	}
 
-.navbar-menu-btn {
-	display: block;
-}
-/* header logo */
-	h1.logo-wrapper, 
-	h2.logo-wrapper {
-		/*margin-left: 20px;*/
-	}
+	.navbar-menu-btn {
+		display: block;
+
 
 
 /* navbar logo and control */
@@ -253,11 +248,11 @@
 	}
 
 
-	.logo-wrapper{
+/*	.logo-wrapper{
 		margin-left:0px;
 		float: none !important;
 	}
-
+*/
 	img{
 		height:auto;
 		/*max-width: 97%;*/
@@ -383,11 +378,11 @@
 }
 
 @media (max-width: 480px) {
-
+/*
 	h1.logo-wrapper, 
 	h2.logo-wrapper {
 		margin-left: 0px;
-	}
+	}*/
 
 	select,
 	textarea,

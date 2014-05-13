@@ -554,7 +554,7 @@ function kjd_header_content($header_contents, $logo_toggle, $logo, $custom_heade
 		
 		}elseif($logo_toggle == 'logo' ){
 			
-			$header_output .= '<'.$heading.' class="container logo-wrapper">';
+			$header_output .= '<'.$heading.' class="span logo-wrapper">';
 				$header_output .= '<a href="'.get_bloginfo('url').' ">';
 					$header_output .= '<img src="'.$logo.'" alt=""/>';
 				$header_output .= '</a>';
