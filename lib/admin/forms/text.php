@@ -8,7 +8,10 @@
 	$decorationStyles = array('none','overline','underline','line-through','text-shadow','outline');
 ?>
 
-
+<input  id="dropdown-id" type="hidden"
+		name="kjd_<?php echo $section; ?>_links_settings[kjd_<?php echo $section; ?>_tab]"
+		value="<?php echo $options['kjd_'.$section.'_tab'] ? $options['kjd_'.$section.'_tab'] : 'none'; ?>"
+  />
 <!-- Tab Navigation-->
   <div class="btn-group ">
 	<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">

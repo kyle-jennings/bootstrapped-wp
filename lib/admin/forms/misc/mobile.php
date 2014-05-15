@@ -154,7 +154,7 @@ function kjd_mobileNav_misc_settings_callback(){
 			<label>Button type</label>
 			<select name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][menu_button_type]">
 				<?php foreach($button_types as $k=>$v){?>
-					<option value="<?php echo $v;?>"<?php selected( $options['menu_button_type'], $v, true) ?>><?php echo $k;?></option>
+					<option value="<?php echo $v;?>"<?php selected( $options['menu_button_type'], $v, true); ?>><?php echo $k;?></option>
 				<?php }?>
 			</select>
 		</div>
@@ -177,7 +177,7 @@ function kjd_mobileNav_misc_settings_callback(){
 		>
 		<?php 
 			$button_colors = array(
-				'blue'=>'btn-primary',
+				'blue' =>'btn-primary',
 				'light blue' => 'btn-info',
 				'green' => 'btn-success',
 				'yellow' => 'btn-warning',
@@ -187,10 +187,13 @@ function kjd_mobileNav_misc_settings_callback(){
 		?>
 			<div class="option">
 				<label>Button Colors</label>
-				<select>
+				<select name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][menu_button_color]">
 					<?php
+						
 						foreach($button_colors as $label=>$color ){
-							echo '<option vlaue="'.$color.'">'.$label.'</option>';
+						?>
+							<option value="<?php echo $color; ?>" <?php selected( $options['menu_button_color'], $color, true); ?> > <?php echo $label; ?></option>
+						<?php
 						}
 					?>
 				</select>

@@ -48,7 +48,12 @@ function kjd_misc_backgrounds_display() {
 	}elseif($active_tab == 'mobileNavArea'){
 		kjd_mobileNavArea_background_callback('mobileNavArea');
 	}
-
+?>
+<input  id="dropdown-id" type="hidden"
+		name="kjd_<?php echo $section; ?>_misc_settings[kjd_<?php echo $section; ?>_tab]"
+		value="<?php echo $options['kjd_'.$section.'_tab'] ? $options['kjd_'.$section.'_tab'] : 'none'; ?>"
+  />
+<?php
 	submit_button(); 
 
 	wp_enqueue_media();

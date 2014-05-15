@@ -17,6 +17,10 @@
 	$borderSizes = range(0,20);
 	$borderStyles = array('none','solid','dotted','dashed','double','groove','ridge','inset','outset');
 ?>
+<input  id="dropdown-id" type="hidden"
+		name="kjd_<?php echo $section; ?>_border_settings[kjd_<?php echo $section; ?>_tab]"
+		value="<?php echo $options['kjd_'.$section.'_tab'] ? $options['kjd_'.$section.'_tab'] : 'none'; ?>"
+  />
 
 <h2>Border style and colors</h2>
 

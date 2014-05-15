@@ -8,6 +8,8 @@
 */
 function kjd_get_temp_settings($section, $array, $preview, $part) {
 	if($preview != null){
+
+
 		// print_r($preview['settings'][4]['value']); die;
 		if( $section == $preview['section'] ){
 
@@ -353,6 +355,7 @@ function kjd_get_theme_options($preview = null){
 											$preview,
 											'kjd_section_misc'
 									);
+
 
 
 		/* ----------------------------------------------------- 

@@ -1,13 +1,14 @@
 <?php
 
 function kjd_live_preview(){
-  
-  if( isset($_POST['data']) ){
+    if( isset($_POST['data']) ){
+
     $data = $_POST['data'];
     $lib = dirname( dirname( dirname(__FILE__) ) ) ; 
 
-    include( $lib.'admin/functions/styles.php');
+    include( $lib.'admin/functions/styles_init.php');
     $file = $lib.'/styles/preview.css';
+
 
     if(file_exists($file)){
       unlink($file);
@@ -55,7 +56,6 @@ function kjd_build_theme_css( $stylesheet = 'custom.css' ){
   }else{
     return;
   }
-
   ob_start();
     echo kjd_get_theme_options(null);
     $buffered_content = ob_get_contents();

@@ -55,10 +55,7 @@ function kjd_settings_display($section = null) {
 
 	}
 
-	
-
 	screen_icon('themes'); 
-
 
 ?> 
 
@@ -91,7 +88,6 @@ function kjd_settings_display($section = null) {
 
     <?php settings_errors(); ?>  
 	<form method="post" action="options.php"> 
-
 		<div class="<?php echo $fields_wrapper_class; ?>" >
 		<?php 
 

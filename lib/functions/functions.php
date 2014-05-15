@@ -654,57 +654,7 @@ function kjd_build_navbar( $menu_id, $navbar_width, $link_type, $mobilenav_style
 
 					}
 
-					switch($button_type):
-						case 'default':
-							$button_class = "btn btn-navbar";
-
-							$button_inner = '';
-							$button_inner .= '<span class="icon-bar"></span>';
-							$button_inner .= '<span class="icon-bar"></span>';
-							$button_inner .= '<span class="icon-bar"></span>';
-							break;
-						case 'hamburger':
-							$button_class = "btn btn-navbar btn-hamburger";
-
-							$button_inner = '';
-							$button_inner .= '<span class="icon-bar"></span>';
-							$button_inner .= '<span class="icon-bar"></span>';
-							$button_inner .= '<span class="icon-bar"></span>';
-
-							break;		
-						case 'button':
-							$button_class = "btn";
-
-							$button_misc = get_option('kjd_mobileNav_misc_settings');
-							$button_misc = $button_misc['kjd_mobileNav_misc'];
-
-							$button_inner = $button_misc['menu_btn_text'];;
-							break;
-						case 'text':
-							$button_class = "menu-text";
-
-							$button_misc = get_option('kjd_mobileNav_misc_settings');
-							$button_misc = $button_misc['kjd_mobileNav_misc'];
-							
-							$button_inner = $button_misc['menu_btn_text'];
-							break;
-						case 'image':
-							$button_class = "menu-image";
-
-							$button_inner = 'image';
-							break;
-						default:
-							$button_class = "btn btn-navbar";
-							break;		
-					endswitch;
-
-					if($mobilenav_style =='sidr'){
-						$navbar_inner .= '<a id="sidr-toggle" class="navbar-menu-btn '.$button_class.'">';
-					}else{
-						$navbar_inner .= '<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="navbar-menu-btn '.$button_class.'">';
-					}
-						$navbar_inner .= $button_inner;
-					$navbar_inner .= '</a>';
+						$navbar_inner .= kjd_mobile_nav_button_type( $button_type, $mobilenav_style );
 
 					// The nav-collapse - it holds the menu
 
@@ -860,3 +810,57 @@ function kjd_build_menu( $menu_id = 'primary-menu', $navbar_link_style = 'none',
 	return;
 }
 
+function kjd_mobile_nav_button_type( $button_type, $mobilenav_style  ) {
+
+	$output = '';
+	$button_class = '';
+	$button_misc = get_option('kjd_mobileNav_misc_settings');
+	$button_misc = $button_misc['kjd_mobileNav_misc'];
+
+	switch($button_type):
+		case 'default':
+			$button_class = "btn btn-navbar";
+
+			$button_inner = '';
+			$button_inner .= '<span class="icon-bar"></span>';
+			$button_inner .= '<span class="icon-bar"></span>';
+			$button_inner .= '<span class="icon-bar"></span>';
+			break;
+		case 'hamburger':
+			$button_class = "btn btn-navbar btn-hamburger";
+
+			$button_inner = '';
+			$button_inner .= '<span class="icon-bar"></span>';
+			$button_inner .= '<span class="icon-bar"></span>';
+			$button_inner .= '<span class="icon-bar"></span>';
+
+			break;		
+		case 'button':
+			$button_class = "btn ".$button_misc['menu_button_color'];
+			$button_inner = $button_misc['menu_btn_text'];;
+			break;
+		case 'text':
+			$button_class = "menu-text";
+			
+			$button_inner = $button_misc['menu_btn_text'];
+			break;
+		case 'image':
+			$button_class = "menu-image";
+
+			$button_inner = 'image';
+			break;
+		default:
+			$button_class = "btn btn-navbar";
+			break;		
+	endswitch;
+
+	if($mobilenav_style =='sidr'){
+		$output .= '<a id="sidr-toggle" class="navbar-menu-btn '.$button_class.'">';
+	}else{
+		$output .= '<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="navbar-menu-btn '.$button_class.'">';
+	}
+		$output .= $button_inner;
+	$output .= '</a>';
+
+	return $output;
+}

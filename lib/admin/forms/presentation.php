@@ -78,6 +78,11 @@
 			);		
 ?>
 
+<input  id="dropdown-id" type="hidden"
+		name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_tab]"
+		value="<?php echo $options['kjd_'.$section.'_tab'] ? $options['kjd_'.$section.'_tab'] : 'none'; ?>"
+  />
+
 <input type="hidden" id="active_tab" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][tabID]" 
 value="<?php echo $section_settings['tabID'] ? $section_settings['tabID'] : 'none'; ?>"  />		
  
