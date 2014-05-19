@@ -49,7 +49,12 @@ if($section =="header"){
 
 
 
-
+?>
+<input  id="dropdown-id" type="hidden"
+		name="kjd_<?php echo $section; ?>_misc_settings[kjd_<?php echo $section; ?>_tab]"
+		value="<?php echo $options['kjd_'.$section.'_tab'] ? $options['kjd_'.$section.'_tab'] : 'none'; ?>"
+  />
+<?php
 
 /**
 * misc settings

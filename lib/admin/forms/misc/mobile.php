@@ -100,9 +100,9 @@ function kjd_mobileNav_misc_settings_callback(){
 			<div class="option">
 				<label>Navbar Style</label>
 				<select name="kjd_mobileNav_misc_settings[kjd_mobileNav_misc][mobilenav_style]" class="toggle-switch">
-					<option value="default" <?php selected( $options['mobilenav_style'], 'default', true) ?>>Same as Desktop</option>
-					<option value="sidr" <?php selected( $options['mobilenav_style'], 'sidr', true ) ?>>Sidr</option>
-					<option value="dropdown" <?php selected( $options['mobilenav_style'], 'dropdown', true ) ?>>In Dropdown</option>
+					<option value="default" <?php selected( $options['mobilenav_style'], 'default', true) ?>>Default</option>
+					<option value="sidr" <?php selected( $options['mobilenav_style'], 'sidr', true ) ?>>Side Drawer</option>
+					<option value="dropdown" <?php selected( $options['mobilenav_style'], 'dropdown', true ) ?>>Dropdown</option>
 
 				</select>
 			</div>

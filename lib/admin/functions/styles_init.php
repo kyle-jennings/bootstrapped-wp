@@ -417,7 +417,7 @@ function kjd_get_theme_options($preview = null){
 	$override_nav = $mobileNavSettings['override_nav'];
 	
 	if( $override_nav == 'true') {
-		$media_979_markup = kjd_build_mobile_styles_callback( 'mobileNav' );
+		$media_979_markup = kjd_build_mobile_styles_callback( 'mobileNav', 'true' );
 	}else {
 		$media_979_markup = kjd_build_mobile_styles_callback( 'navbar' );
 	}

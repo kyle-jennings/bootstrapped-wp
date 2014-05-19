@@ -1,19 +1,19 @@
 <?php
-	// $options = get_option('kjd_navbar_misc_settings');
-	// $navbarSettings = $options['kjd_navbar_misc'];
-	// $sideNav = $navbarSettings['side_nav'];
+// $options = get_option('kjd_navbar_misc_settings');
+// $navbarSettings = $options['kjd_navbar_misc'];
+// $sideNav = $navbarSettings['side_nav'];
 
 
-	$mobileNavSettings = get_option('kjd_mobileNav_misc_settings');
-	$mobileNavSettings = $mobileNavSettings['kjd_mobileNav_misc'];
-	$override_nav = $mobileNavSettings['override_nav'];
-	if( $override_nav == 'true') {
-		$mobilenav_style = $mobileNavSettings['mobilenav_style'];
+$mobileNavSettings = get_option('kjd_mobileNav_misc_settings');
+$mobileNavSettings = $mobileNavSettings['kjd_mobileNav_misc'];
+$override_nav = $mobileNavSettings['override_nav'];
+if( $override_nav == 'true') {
+	$mobilenav_style = $mobileNavSettings['mobilenav_style'];
 
-		if( $mobilenav_style =='sidr'){
-			$sideNav = 'true';
-		}
+	if( $mobilenav_style =='sidr'){
+		$sideNav = 'true';
 	}
+}
 ////////////////////////
 // register navbar menu
 ////////////////////////
@@ -32,8 +32,10 @@ if( $override_nav == 'true') {
 	);
 }
 
-// overrides nav walker with bootstrap settings
-class dropDown extends Walker_Nav_Menu {
+/**
+ * desktop navbar walker
+ */
+class dropdown_menu extends Walker_Nav_Menu {
 
 	function start_lvl( &$output, $depth ) {
  
@@ -138,4 +140,19 @@ class dropDown extends Walker_Nav_Menu {
  
 	}
  
+}
+
+
+class sidr_menu extends dropdown_menu {
+
+	function start_lvl( &$output, $depth ) {
+ 
+		$indent = str_repeat( "\t", $depth );
+		$submenu = ($depth > 0) ? ' sub-menu' : '';
+		$output	   .= "\n$indent<ul class=\"dropdown-menu$submenu depth_$depth\">\n";
+ 
+	}
+
+
+
 }

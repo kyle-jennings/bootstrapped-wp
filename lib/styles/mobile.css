@@ -31,9 +31,14 @@
 
 	.navbar-menu-btn {
 		display: block;
+	}
 
-
-
+	#navbar .navbar .container .btn-navbar,
+	#navbar .container #sidr-toggle{
+		position: relative;
+		margin-top: 6px;
+		z-index: 99
+	}
 /* navbar logo and control */
 
 	#navbar .navbar .brand {
@@ -44,7 +49,9 @@
 
 	#navbar .navbar .btn-navbar,
 	#navbar #sidr-toggle{
+		position: relative;
 		margin-top: 6px;
+		z-index: 99;
 	}
 
 
@@ -207,12 +214,6 @@
 		margin-left: -10px;
 	}
 
-/*	#navbar.navbar-fixed-top #sidr-toggle,
-	#navbar.navbar-fixed-bottom #sidr-toggle,
-	#navbar.navbar.navbar-fixed-top .btn-navbar,
-	#navbar.navbar.navbar-fixed-bottom .btn-navbar {
-		margin-right: -10px;
-	}*/
 
 	.pagination { 
 		margin-left:20px;
@@ -220,8 +221,11 @@
 
 }
 
+
 @media (max-width: 767px) {
 	
+
+
 	#imageSliderWrapper.container > .container,
 	#header.container > .container,
 	#navbar.container > .container,
@@ -248,14 +252,8 @@
 	}
 
 
-/*	.logo-wrapper{
-		margin-left:0px;
-		float: none !important;
-	}
-*/
 	img{
 		height:auto;
-		/*max-width: 97%;*/
 	}
 
 /* ----------------- navbar shit ---------------------- */
@@ -298,15 +296,11 @@
 	
 	#navbar .navbar .btn-navbar,
 	#navbar #sidr-toggle{
-		/*margin-right: -10px;*/
+
 		margin-left: 0;
 	}
 
-	#navbar .navbar .container .btn-navbar,
-	#navbar .container #sidr-toggle{
-		/*margin-right: -10px;*/
-		
-	}
+
 	
 	#navbar .collapse .nav{
 		float: none;

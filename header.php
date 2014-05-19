@@ -6,8 +6,8 @@
 	// $navbar .= dirname(__FILE__).'/lib/partials/navbar_scaffolding.php';
 	
 	// general settings
-	$themeSettings = get_option('kjd_theme_settings');
-	$analytics = $themeSettings['kjd_google_analytics'];
+	$theme_settings = get_option('kjd_theme_settings');
+	$analytics = $theme_settings['kjd_google_analytics'];
 
 	// logo and favicon
 	$logo_settings = get_option('kjd_theme_logo');
@@ -17,74 +17,72 @@
 	$favicon = $logo_settings['kjd_favicon'];
 	$custom_header = $logo_settings['kjd_custom_header'];
 
-	$confinePage = $themeSettings['kjd_confine_page'];
-	$responsiveDesign = $themeSettings['kjd_responsive_design'];
+	$confinePage = $theme_settings['kjd_confine_page'];
+	$responsiveDesign = $theme_settings['kjd_responsive_design'];
 
 	// Header settings
-	$headerSettings = get_option('kjd_header_misc_settings');
-	$headerSettings = $headerSettings['kjd_header_misc'];
-	$header_contents = $headerSettings['header_contents'];
-	$confineHeaderBackground = $headerSettings['kjd_header_confine_background'];
+	$header_settings = get_option('kjd_header_misc_settings');
+	$header_settings = $header_settings['kjd_header_misc'];
+	$header_contents = $header_settings['header_contents'];
+	$confine_header_background = $header_settings['kjd_header_confine_background'];
 
-	$useMast = $headerSettings['use_mast'];
-	$useLogo = $headerSettings['use_logo'];
-	$hideHeader = $headerSettings['hide_header'];
+	$useMast = $header_settings['use_mast'];
+	$useLogo = $header_settings['use_logo'];
+	$hide_header = $header_settings['hide_header'];
 	
-	$footerSettings = get_option('kjd_footer_misc_settings');
-	$footerSettings = $footerSettings['kjd_footer_misc'];
-	$hideFooter = $themeOptions['hide_footer'];
+	$footer_settings = get_option('kjd_footer_misc_settings');
+	$footer_settings = $footer_settings['kjd_footer_misc'];
+	$hide_footer = $theme_options['hide_footer'];
 
 	// nav settings
 
-	$navbarSettings = get_option('kjd_navbar_misc_settings');
-	$navbarSettings = $navbarSettings['kjd_navbar_misc'];
+	$navbar_settings = get_option('kjd_navbar_misc_settings');
+	$navbar_settings = $navbar_settings['kjd_navbar_misc'];
 
-	$navbarLinkStyle = $navbarSettings['navbar_link_style'];
-	$navbarStyle = $navbarSettings['navbar_style'];
-	$navbarPosition = $navbarSettings['navbar_position'];
+	$navbar_link_style = $navbar_settings['navbar_link_style'];
+	$navbar_style = $navbar_settings['navbar_style'];
+	$navbar_position = $navbar_settings['navbar_position'];
 	
 
-
-
-
-	// $confineNavbarBackground = $navbarSettings['kjd_navbar_confine_background'];
+	// $confineNavbarBackground = $navbar_settings['kjd_navbar_confine_background'];
 
 	//	mobile nav settings
-	$mobileNavSettings = get_option('kjd_mobileNav_misc_settings');
-	$mobileNavSettings = $mobileNavSettings['kjd_mobileNav_misc'];
+	$mobile_nav_settings = get_option('kjd_mobileNav_misc_settings');
+	$mobile_nav_settings = $mobile_nav_settings['kjd_mobileNav_misc'];
 
-	$mobileNavLinkStyle = $mobileNavSettings['mobilenav_link_style'];
-	$mobileNavWidth = $mobileNavSettings['mobilenav_width'];
-	$mobileNavPosition = $mobileNavSettings['mobilenav_position'];	
-	$mobileNavLogo = $mobileNavSettings['display_logo'];	
+	$mobile_nav_link_style = $mobile_nav_settings['mobilenav_link_style'];
+	$mobile_nav_width = $mobile_nav_settings['mobilenav_width'];
+	$mobile_nav_position = $mobile_nav_settings['mobilenav_position'];	
+	$mobile_nav_logo = $mobile_nav_settings['display_logo'];	
 
-	$use_mobile_menu = $mobileNavSettings['use_mobile_menu'];
-	$override_nav = $mobileNavSettings['override_nav'];
+	$use_mobile_menu = $mobile_nav_settings['use_mobile_menu'];
+	$override_nav = $mobile_nav_settings['override_nav'];
+
 	if( $override_nav == 'true') {
 
-		$mobilenav_style = $mobileNavSettings['mobilenav_style'];
+		$mobilenav_style = $mobile_nav_settings['mobilenav_style'];
 
-		$mobilenav_position = $mobileNavSettings['mobilenav_position'];
+		$mobilenav_position = $mobile_nav_settings['mobilenav_position'];
 
 	}
-	$button_type = $mobileNavSettings['menu_button_type'];
+	$button_type = $mobile_nav_settings['menu_button_type'];
 
 	// mast settings
 	$options = get_option('kjd_mastArea_background_settings');
 	$options = $options['kjd_mastArea_background_misc'];
-	$confineMast = $options['confine_mast'];
+	$confine_mast = $options['confine_mast'];
 
 	// content area settings
-	$contentAreaSettings = get_option('kjd_contentArea_background_settings');
-	$confinecontentArea = $contentAreaSettings['kjd_contentArea_background']['confine_contentArea'];
+	$content_area_settings = get_option('kjd_contentArea_background_settings');
+	$confine_content_area = $content_area_settings['kjd_contentArea_background']['confine_contentArea'];
 
 	// inline styles 
 	$html_class = '';
 
 	//navbar 
-	if( $navbarPosition == 'fixed-top'){
+	if( $navbar_position == 'fixed-top'){
 		$html_class .= ' navbar-fixed-top';
-	}elseif( $navbarPosition == 'fixed-bottom'){
+	}elseif( $navbar_position == 'fixed-bottom'){
 		$html_class .= ' navbar-fixed-bottom';
 	}
 
@@ -95,6 +93,22 @@
 		$html_class .= ' mobilenav-fixed-bottom';
 	}
 
+
+	$walker = 'drop_down';
+	$menu_name = 'primary-menu';
+	$visibility = 'visible-desktop';
+	$nav_args = array(
+		'menu_name' => $menu_name,
+		'mobile_nav_width' => $mobile_nav_width,
+		'mobile_nav_link_style' => $mobile_nav_link_style,
+		'mobilenav_style' => $mobilenav_style,
+		'visibility' => $visibility,
+		'mobile_nav_position' => $mobile_nav_position,
+		'mobile_nav_logo' => $mobile_nav_logo,
+		'use_mobile_menu' => $use_mobile_menu,
+		'button_type' => $button_type,
+		'walker' => $walker
+ 	);
 
 ?>
 
@@ -137,11 +151,11 @@ $body_class = '';
 
 		$frontpage_styles = '<style>';
 
-		if($hideHeader == 'frontpage' || $hideHeader =='all' ){
+		if($hide_header == 'frontpage' || $hide_header =='all' ){
 			$frontpage_styles .= '#header{display:none;}';
 		}
 
-		if($hideFooter == 'frontpage' || $hideFooter == 'all'){
+		if($hide_footer == 'frontpage' || $hide_footer == 'all'){
 			$frontpage_styles .= "#pageWrapper{margin:0 auto !important;}";
 			$frontpage_styles .= "#footer,#push{display:none;}";
 		}
@@ -152,11 +166,11 @@ $body_class = '';
 
 		$frontpage_styles = '<style>';
 
-		if($hideHeader == 'inside' || $hideHeader =='all' ){
+		if($hide_header == 'inside' || $hide_header =='all' ){
 			$frontpage_styles .= '#header{display:none;}';
 		}
 
-		if($hideFooter == 'inside' || $hideFooter == 'all'){
+		if($hide_footer == 'inside' || $hide_footer == 'all'){
 			$frontpage_styles .= "#pageWrapper{margin:0 auto !important;}";
 			$frontpage_styles .= "#footer,#push{display:none;}";
 		}
@@ -186,7 +200,7 @@ if($mobilenav_style =='sidr'){
 
 	echo '<div id="sidr">';
 
-	echo kjd_build_menu( 'mobile-menu', 'sidr-style', $use_mobile_menu, 'false' );
+	echo kjd_build_menu( 'mobile-menu', 'sidr-style', $use_mobile_menu, 'sidr_menu' );
 
 	echo '</div>';
 
@@ -195,20 +209,31 @@ if($mobilenav_style =='sidr'){
 ?>
 
 <div id="pageWrapper">
-	<div id="mastArea" class="<?php echo $confineMast == 'true' ? 'container' : '' ;?>">
+	<div id="mastArea" class="<?php echo $confine_mast == 'true' ? 'container' : '' ;?>">
 		<?php
-			if( $navbarPosition =='static-top'){
+			if( $navbar_position =='static-top'){
 
-				if($navbarSettings['hideNav'] != "true"){
+				if($navbar_settings['hideNav'] != "true"){
 
-					echo kjd_build_navbar('primary-menu', $navbarStyle, $navbarLinkStyle, $mobilenav_style, 'visible-desktop', $navbarPosition, null, null, $button_type );
+					echo kjd_build_navbar(
+						'primary-menu',
+						 $navbar_style,
+						 $navbar_link_style,
+						 $mobilenav_style,
+						 'visible-desktop',
+						 $navbar_position,
+						 null,
+						 null,
+						 $button_type,
+						 $walker 
+				 	);
 					
 				}
  	
 			}
 		?>
 
-			<div id="header" class="<?php echo $confineHeaderBackground =='true' ? 'container confined' : '' ;?>">
+			<div id="header" class="<?php echo $confine_header_background =='true' ? 'container confined' : '' ;?>">
 				<div class="container">
 					<div class="row">
 					<?php  
@@ -222,16 +247,50 @@ if($mobilenav_style =='sidr'){
 			</div> <!-- end header area -->
 
 	<?php
-		if( $navbarPosition !='static-top'){
-			if($navbarSettings['hideNav'] != "true"){
+		if( $navbar_position !='static-top'){
+			if($navbar_settings['hideNav'] != "true"){
 
 				if( $override_nav  == 'true'){
-					echo kjd_build_navbar('mobile-menu', $mobileNavWidth, $mobileNavLinkStyle, $mobilenav_style, 'hidden-desktop', $mobileNavPosition, $mobileNavLogo, $use_mobile_menu, $button_type );
-					echo kjd_build_navbar('primary-menu', $navbarStyle, $navbarLinkStyle, $mobilenav_style, 'visible-desktop', $navbarPosition, null, null, $button_type );
+					echo kjd_build_navbar(
+						'mobile-menu',
+						 $mobile_nav_width,
+						 $mobile_nav_link_style,
+						 $mobilenav_style,
+						 'hidden-desktop',
+						 $mobile_nav_position,
+						 $mobile_nav_logo,
+						 $use_mobile_menu,
+						 $button_type,
+						 $walker 
+				 	);
+
+					echo kjd_build_navbar(
+						'primary-menu',
+						 $navbar_style,
+						 $navbar_link_style,
+						 $mobilenav_style,
+						 'visible-desktop',
+						 $navbar_position,
+						 null,
+						 null,
+						 $button_type,
+						 $walker 
+				 	);
 				
 				}else{
 
-					echo kjd_build_navbar('primary-menu', $navbarStyle, $navbarLinkStyle, $mobilenav_style, null, $navbarPosition, $mobileNavLogo, null, $button_type);
+					echo kjd_build_navbar(
+						'primary-menu',
+						 $navbar_style,
+						 $navbar_link_style,
+						 $mobilenav_style,
+						 null,
+						 $navbar_position,
+						 $mobile_nav_logo,
+						 null,
+						 $button_type,
+						 $walker
+				 	);
 					
 				}
 			}

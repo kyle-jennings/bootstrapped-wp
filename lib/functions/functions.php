@@ -589,8 +589,8 @@ function kjd_empty_nav_fallback_callback( $args ) {
 	return $args;
 }
 
-//							menu id,  nav style,   link style, sidr/dropdown/ect,     devise visibility,  position
-function kjd_build_navbar( $menu_id, $navbar_width, $link_type, $mobilenav_style, $visibility = null, $position, $logo = '', $use_mobile_menu = 'false', $button_type ='default' ){
+//							menu id,  nav style,   link style, sidr/dropdown/ect,     devise visibility,  position, logo, menu id again for some reason, button type
+function kjd_build_navbar( $menu_id, $navbar_width, $link_type, $mobilenav_style, $visibility = null, $position, $logo = '', $use_mobile_menu = 'false', $button_type ='default', $walker = 'drop_down' ){
 
 		$navbar_style = 'navbar ';
 
@@ -661,7 +661,7 @@ function kjd_build_navbar( $menu_id, $navbar_width, $link_type, $mobilenav_style
 						
 						$navbar_inner .='<div class="nav-collapse collapse navbar-responsive-collapse">';
 
-						$navbar_inner .= kjd_build_menu( $menu_id, $link_type, $use_mobile_menu, 'true' );
+						$navbar_inner .= kjd_build_menu( $menu_id, $link_type, $use_mobile_menu, $walker );
 
 						$navbar_inner .= $navbar_contents;
 						$navbar_inner .= '</div>'; // en nav collapse
@@ -682,11 +682,13 @@ function kjd_build_navbar( $menu_id, $navbar_width, $link_type, $mobilenav_style
 		return $navbar_open . $navbar_inner . $navbar_close;
 }
 
-function kjd_build_menu( $menu_id = 'primary-menu', $navbar_link_style = 'none', $use_mobile_menu, $walker = 'true'){
+function kjd_build_menu( $menu_id = 'primary-menu', $navbar_link_style = 'none', $use_mobile_menu, $walker = 'drop_down'){
 	
-	if($walker == 'true'){
+	if($walker == 'drop_down'){
 
-		$walker_type = new dropDown();
+		$walker_type = new dropdown_menu();
+	}elseif( $walker = 'sidr_menu'){
+		$walker_type = new sidr_menu();
 	}else {
 		$walker_type = '';
 	}
