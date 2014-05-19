@@ -143,15 +143,7 @@ class dropdown_menu extends Walker_Nav_Menu {
 }
 
 
-class sidr_menu extends dropdown_menu {
-
-	function start_lvl( &$output, $depth ) {
- 
-		$indent = str_repeat( "\t", $depth );
-		$submenu = ($depth > 0) ? ' sub-menu' : '';
-		$output	   .= "\n$indent<ul class=\"dropdown-menu$submenu depth_$depth\">\n";
- 
-	}
+class sidr_menu extends Walker_Nav_Menu {
 
 
 

@@ -33,12 +33,7 @@
 		display: block;
 	}
 
-	#navbar .navbar .container .btn-navbar,
-	#navbar .container #sidr-toggle{
-		position: relative;
-		margin-top: 6px;
-		z-index: 99
-	}
+
 /* navbar logo and control */
 
 	#navbar .navbar .brand {
@@ -47,18 +42,13 @@
 	    padding-right: 10px;
 	}
 
+	#navbar .navbar .container .btn-navbar,
+	#navbar .container #sidr-toggle,
 	#navbar .navbar .btn-navbar,
 	#navbar #sidr-toggle{
 		position: relative;
 		margin-top: 6px;
 		z-index: 99;
-	}
-
-
-	#navbar .navbar .container .btn-navbar,
-	#navbar .container #sidr-toggle{
-
-		
 	}
 
 	#navbar.navbar-fixed-top #sidr-toggle,
