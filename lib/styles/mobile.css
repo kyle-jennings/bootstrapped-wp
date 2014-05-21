@@ -91,12 +91,17 @@
 
 	/* Sidr */
 	#sidr ul.sub-menu {
+		display: none;
 		list-style-type: none;
 		margin: 0;
 	}
 
 		#sidr ul.sub-menu > li{
 		
+		}
+
+		#sidr .open > .sub-menu{
+			display:block;
 		}
 
 		#sidr ul.sub-menu > li > a{
@@ -135,8 +140,8 @@
 		}
 
 
-		#sidr .nav-tabs.nav-stacked > li:first-child > a,
-		.nav-tabs.nav-stacked > li:last-child > a
+		#sidr .nav-tabs.nav-stacked ul > li:first-child > a,
+		.nav-tabs.nav-stacked ul > li:last-child > a
 		{
 			-webkit-border-radius: 0px;
 			-moz-border-radius: 0px;

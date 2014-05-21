@@ -39,7 +39,7 @@ function kjd_get_theme_options($preview = null){
 	$options = get_option('kjd_component_settings');
 
 	$sections = array('htmlTag','bodyTag','mastArea','header','navbar','dropdown-menu',
-		'cycler','contentArea','pageTitle','body','footer');
+		'cycler','contentArea','pageTitle','body','footer', 'sidr');
 
 
 	//adds widget and post style sections

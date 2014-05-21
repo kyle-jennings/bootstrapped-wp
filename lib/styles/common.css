@@ -40,6 +40,9 @@ body {
 	height: auto;
 	min-height: 100%;
 }
+#wpadminbar {
+	position: fixed;
+}
 
 #pageWrapper{	
     min-height: 100%;
