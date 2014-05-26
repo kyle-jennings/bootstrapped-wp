@@ -32,7 +32,6 @@ function navbarStylesCallback( $preview ){
 
 
 	$flush_links = $kjd_section_misc_settings['flush_first_link'];
-	// $sidr_nav = $kjd_section_misc_settings['side_nav'];
 	$dropdown_bg = $kjd_section_misc_settings['dropdown_bg'];
 
 

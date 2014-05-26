@@ -265,8 +265,6 @@ class kjdLayout {
 
 		$content_well = $post_options['style_posts'] == "true" ? 'well' : '' ;
 
-
-
 		$the_content_markup = '';
 
 		// this will wrap the content in a well if need be

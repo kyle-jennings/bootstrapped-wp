@@ -3,9 +3,6 @@
 
 	$cyclerOptions = get_option('kjd_cycler_misc_settings');
 
-	// print('<pre>');
-	// print_r($cyclerOptions);
-	// die();
 
 	$plugin = $cyclerOptions['kjd_cycler_misc']['plugin'];
 

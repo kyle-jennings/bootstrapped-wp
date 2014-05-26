@@ -60,8 +60,7 @@ function section_markup_callback($section,$section_options){
 		$hideHeader = $kjd_section_misc_settings['hide_header']; 
 		$forceHeight = $kjd_section_misc_settings['force_height'];
 		$logo_alignment = $kjd_section_misc_settings['logo_align'];
-		$logo_pull = $kjd_section_misc_settings['logo_margin'];
-		//$useMast = $kjd_section_misc_settings['use_mastArea'];				
+		$logo_pull = $kjd_section_misc_settings['logo_margin'];			
 	}
 
 

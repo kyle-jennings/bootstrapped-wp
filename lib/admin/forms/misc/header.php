@@ -39,7 +39,7 @@ function kjd_header_misc_settings_callback($section){
 			</div>	
 
 			<div class="option">
-				<label>Force Header height</label>
+				<label>Force Header Height (desktop)</label>
 				<select name="kjd_header_misc_settings[kjd_header_misc][force_height]">
 					<option value="false" <?php selected( $options['force_height'], 'false', true ) ?>>No</option>
 					<option value="true" <?php selected( $options['force_height'], 'true', true ) ?>>Yes</option>
@@ -85,17 +85,6 @@ function kjd_header_misc_settings_callback($section){
 					<option value="true" <?php selected( $options['mobile_hide_header'], 'true', true ) ?>>Yes</option>
 				</select>
 			</div>	
-	
-<!-- 			<div class="option">
-				<label>Mobile Header height</label>
-				<select name="kjd_header_misc_settings[kjd_header_misc][force_mobile_height]">
-					<option value="false" <?php selected( $options['force_mobile_height'], 'false', true ) ?>>No</option>
-					<option value="true" <?php selected( $options['force_mobile_height'], 'true', true ) ?>>Yes</option>
-				</select>
-				<input type="text" name="kjd_header_misc_settings[kjd_header_misc][mobile_header_height]"
-				value="<?php echo $options['mobile_header_height'] ? $options['mobile_header_height'] : '' ;?>" style="width:40px;">px
-			</div> -->
-	
 		</div>
 
 <?php

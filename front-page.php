@@ -5,9 +5,6 @@ get_header();
 	
 	$front_page = new kjdLayout();
 	$layoutSettings = $front_page->kjd_get_layout_settings();
-	// $layoutOptions = get_option('kjd_post_layout_settings');
-	// $layoutSettings = $layoutOptions['kjd_post_layouts'];
-	// $layoutSettings = $layoutSettings['front_page'];
 
 	$template = $layoutSettings['name'];
 
@@ -72,7 +69,8 @@ get_header();
 							$arrayLength, 
 							$showImageSlider,
 							$content_title,
-							$secondary_title 
+							$secondary_title,
+							$front_page 
 						);
 
 
@@ -157,13 +155,13 @@ function kjd_widget_area_3_callback($layoutSettings, $deviceView){
 /* -------------------------------------------------------------------- 
 			Default Content
  -------------------------------------------------------------------- */
-function kjd_content_callback($layoutSettings, $deviceView, $content_title = ''){
+function kjd_content_callback( $layoutSettings, $deviceView, $content_title = '', $front_page){
 	echo '<div class="'.$deviceView.' frontpage-component">';
 	
 	if (have_posts()){
 
 		if($pagination_top == 'true'){
-			echo $front_page->kjd_get_posts_pagination;
+			echo $front_page->kjd_get_posts_pagination();
 		}
 		
 		echo '<h2>'.$content_title.'</h2>';
@@ -172,12 +170,12 @@ function kjd_content_callback($layoutSettings, $deviceView, $content_title = '')
 		while(have_posts()){ 
 			
 			the_post(); 
-			echo $front_page->kjd_the_content_wrapper;
+			echo $front_page->kjd_the_content_wrapper();
 		}
 
 		echo '</div>';
 	}
-	echo $front_page->kjd_get_posts_pagination;
+	echo $front_page->kjd_get_posts_pagination();
 
 	echo '</div>';
 }
@@ -210,34 +208,36 @@ function kjd_front_page_layout( $components,
 								$arrayLength, 
 								$showImageSlider,
 								$content_title,
-								$secondary_title 
+								$secondary_title,
+								$front_page 
 								){
 	foreach($components as $position => $component)
 	{
 		$deviceView = $component['componentDeviceView'];
 
-		if($component['component'] =='widget_area_1'){
-			 
-			 kjd_widget_area_1_callback($layoutSettings, $deviceView);
+		switch( $component['component'] ):
+			case 'widget_area_1':
+				kjd_widget_area_1_callback($layoutSettings, $deviceView);
+				break;
+			case 'widget_area_2':
+				kjd_widget_area_2_callback($layoutSettings, $deviceView);
+				break;
+			case 'widget_area_3':
+				kjd_widget_area_3_callback($layoutSettings, $deviceView);
+				break;
+			case 'content':
+				kjd_content_callback($layoutSettings, $deviceView, $content_title, $front_page);
+				break;
+			case 'secondary_content':
+				kjd_secondary_content_callback($frontPageOptions, $layoutSettings, $deviceView, $secondary_title);
+				break;
+			case 'image_banner':
+				if( $showImageSlider['enable'] =='true' && $showImageSlider['location'] == 'sortable' ){
+					kjd_image_slider_callback( $confineBodyBackground, $position, $arrayLength, $layoutSettings, 'sortable', $deviceView );
+				}
+				break;
+		endswitch;
 
-		}elseif($component['component'] =='widget_area_2'){
-			 
-			 kjd_widget_area_2_callback($layoutSettings, $deviceView);
-
-		}elseif($component['component'] =='widget_area_3'){
-			 
-			 kjd_widget_area_3_callback($layoutSettings, $deviceView);
-
-		}elseif($component['component'] =='content'){
-			
-			kjd_content_callback($layoutSettings, $deviceView, $content_title);
-
-		}elseif($component['component'] =='secondary_content'){
-			
-			kjd_secondary_content_callback($frontPageOptions, $layoutSettings, $deviceView, $secondary_title);
-
-		}elseif($component['component'] == 'image_banner' && ( $showImageSlider['enable'] =='true' && $showImageSlider['location'] == 'sortable' ) ){
-			kjd_image_slider_callback( $confineBodyBackground, $position, $arrayLength, $layoutSettings, 'sortable', $deviceView );
-		}
 	}
+
 }

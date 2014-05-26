@@ -1,7 +1,4 @@
 <?php
-// $options = get_option('kjd_navbar_misc_settings');
-// $navbarSettings = $options['kjd_navbar_misc'];
-// $sideNav = $navbarSettings['side_nav'];
 
 
 $mobileNavSettings = get_option('kjd_mobileNav_misc_settings');
@@ -14,9 +11,11 @@ if( $override_nav == 'true') {
 		$sideNav = 'true';
 	}
 }
-////////////////////////
-// register navbar menu
-////////////////////////
+
+/**
+ * Register the two menus, the primary menu and the mobile menu
+ * 
+ */
 if( $override_nav == 'true') {
 	register_nav_menus(
 	    array(
@@ -143,6 +142,9 @@ class dropdown_menu extends Walker_Nav_Menu {
 }
 
 
+/**
+ * Side drawer menu
+ */
 class sidr_menu extends Walker_Nav_Menu {
 
 function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
