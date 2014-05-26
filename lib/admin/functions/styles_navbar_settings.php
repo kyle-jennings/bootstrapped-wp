@@ -337,4 +337,4 @@ $navbar_markup .=".navbar .nav li.open > a:after{
 /* ---------------------------------------------------------------------------------------
 						dropdown colors
 --------------------------------------------------------------------------------------- */
-include('navbar_dropdown_styles.php');
+include('styles_dropdown_settings.php');

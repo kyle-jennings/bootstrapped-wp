@@ -76,27 +76,10 @@
 	$content_area_settings = get_option('kjd_contentArea_background_settings');
 	$confine_content_area = $content_area_settings['kjd_contentArea_background']['confine_contentArea'];
 
-	// inline styles 
-	$html_class = '';
-
-	//navbar 
-	if( $navbar_position == 'fixed-top'){
-		$html_class .= ' navbar-fixed-top';
-	}elseif( $navbar_position == 'fixed-bottom'){
-		$html_class .= ' navbar-fixed-bottom';
-	}
-
-	//mobilenav
-	if( $mobilenav_position == 'fixed-top'){
-		$html_class .= ' mobilenav-fixed-top';
-	}elseif( $mobilenav_position == 'fixed-bottom'){
-		$html_class .= ' mobilenav-fixed-bottom';
-	}
-
-
 	$walker = 'drop_down';
 	$menu_name = 'primary-menu';
 	$visibility = 'visible-desktop';
+
 	$nav_args = array(
 		'menu_name' => $menu_name,
 		'mobile_nav_width' => $mobile_nav_width,
@@ -110,10 +93,59 @@
 		'walker' => $walker
  	);
 
+
+	
+	$desktop_nav_object = new kjdNavBar;
+	$desktop_nav_object->kjd_build_navbar(
+		'primary-menu',
+		 $navbar_style,
+		 $navbar_link_style,
+		 $mobilenav_style,
+		 'visible-desktop',
+		 $navbar_position,
+		 $mobile_nav_logo,
+		 null,
+		 $button_type,
+		 $walker
+ 	);
+	// $desktop_nav_object = $desktop_nav_object->output;
+
+	$mobile_nav_object = new kjdNavBar;
+
+	if( $override_nav  == 'true'){
+
+		$mobile_nav_object->kjd_build_navbar(
+			'mobile-menu',
+			 $mobile_nav_width,
+			 $mobile_nav_link_style,
+			 $mobilenav_style,
+			 'hidden-desktop',
+			 $mobile_nav_position,
+			 $mobile_nav_logo,
+			 $use_mobile_menu,
+			 $button_type,
+			 $walker 
+	 	);
+
+	}else{
+		$mobile_nav_object->kjd_build_navbar(
+			'mobile-menu',
+			 $navbar_style,
+			 $navbar_link_style,
+			 $mobilenav_style,
+			 'hidden-desktop',
+			 $navbar_position,
+			 $mobile_nav_logo,
+			 null,
+			 $button_type,
+			 $walker
+	 	);
+	}
+
 ?>
 
 <!DOCTYPE html>
-<html <?php language_attributes(); ?> <?php echo $html_class ? 'class='.$html_class : '' ;?> >
+<html <?php language_attributes(); ?> >
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width" />
@@ -144,10 +176,7 @@
 	</title>
 <?php
 
-$body_class = ''; 
 	if(is_front_page() ) { 
-
-		$body_class .= 'home ';
 
 		$frontpage_styles = '<style>';
 
@@ -186,22 +215,21 @@ $body_class = '';
 	
 	echo $analytics; 
 
-	$body_class .= is_user_logged_in() ? 'logged-in ' : '' ;
 ?>
 </head>
 
-<body class="<?php echo $body_class;?>" >
+<body <?php body_class(); ?> >
 
 <?php 
 /* -----------------------------
 	Sidr Markup 
 -------------------------------- */
 if($mobilenav_style =='sidr'){
+	$sidr_object = new kjdNavBar;
+	$sidr_object = $sidr_object->kjd_build_menu( 'mobile-menu', 'sidr-style', $use_mobile_menu, 'sidr_menu' );
 
 	echo '<div id="sidr">';
-
-	echo kjd_build_menu( 'mobile-menu', 'sidr-style', $use_mobile_menu, 'sidr_menu' );
-
+		echo $sidr_object;
 	echo '</div>';
 
 } // end using sidr
@@ -210,28 +238,17 @@ if($mobilenav_style =='sidr'){
 
 <div id="pageWrapper">
 	<div id="mastArea" class="<?php echo $confine_mast == 'true' ? 'container' : '' ;?>">
-		<?php
-			if( $navbar_position =='static-top'){
+<?php
 
-				if($navbar_settings['hideNav'] != "true"){
+	if( $navbar_position =='static-top' && $navbar_settings['hideNav'] != "true" ){
+	 	echo $desktop_nav_object;
+	}
 
-					echo kjd_build_navbar(
-						'primary-menu',
-						 $navbar_style,
-						 $navbar_link_style,
-						 $mobilenav_style,
-						 'visible-desktop',
-						 $navbar_position,
-						 null,
-						 null,
-						 $button_type,
-						 $walker 
-				 	);
-					
-				}
- 	
-			}
-		?>
+	if( $mobilenav_position =='static-top' && $mobilenav_settings['hideNav'] != "true" ){
+	 	echo $mobile_nav_object;
+	}
+
+?>
 
 			<div id="header" class="<?php echo $confine_header_background =='true' ? 'container confined' : '' ;?>">
 				<div class="container">
@@ -247,54 +264,14 @@ if($mobilenav_style =='sidr'){
 			</div> <!-- end header area -->
 
 	<?php
-		if( $navbar_position !='static-top'){
-			if($navbar_settings['hideNav'] != "true"){
+	
+	if( $navbar_position !='static-top' && $navbar_settings['hideNav'] != "true" ){
+	 	echo $desktop_nav_object;
+	}
 
-				if( $override_nav  == 'true'){
-					echo kjd_build_navbar(
-						'mobile-menu',
-						 $mobile_nav_width,
-						 $mobile_nav_link_style,
-						 $mobilenav_style,
-						 'hidden-desktop',
-						 $mobile_nav_position,
-						 $mobile_nav_logo,
-						 $use_mobile_menu,
-						 $button_type,
-						 $walker 
-				 	);
-
-					echo kjd_build_navbar(
-						'primary-menu',
-						 $navbar_style,
-						 $navbar_link_style,
-						 $mobilenav_style,
-						 'visible-desktop',
-						 $navbar_position,
-						 null,
-						 null,
-						 $button_type,
-						 $walker 
-				 	);
-				
-				}else{
-
-					echo kjd_build_navbar(
-						'primary-menu',
-						 $navbar_style,
-						 $navbar_link_style,
-						 $mobilenav_style,
-						 null,
-						 $navbar_position,
-						 $mobile_nav_logo,
-						 null,
-						 $button_type,
-						 $walker
-				 	);
-					
-				}
-			}
-		}
+	if( $mobilenav_position !='static-top' && $mobilenav_settings['hideNav'] != "true" ){
+	 	echo $mobile_nav_object;
+	}
 	?>
 	</div> <!-- end mast -->
 	<div id="contentArea">

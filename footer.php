@@ -1,5 +1,4 @@
 <?php
-
 	$footerSettings = get_option('kjd_footer_misc_settings');
 	$footerSettings = $footerSettings['kjd_footer_misc'];
 	$confineFooterBackground = $footerSettings['kjd_footer_confine_background'];

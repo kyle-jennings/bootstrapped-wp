@@ -36,45 +36,54 @@ html,body{
 		padding-bottom: 50px
 	}
 
-body {
-	height: auto;
-	min-height: 100%;
-}
-#wpadminbar {
-	position: fixed;
-}
-
-#pageWrapper{	
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
+	body {
+		height: auto;
+		min-height: 100%;
 	}
 
-#imageSliderWrapper,
-#header,
-#navbar,
-#cycler,
-#body,
-#footer{
-	clear: both;
-}
+	body.desktopnav-fixed-top {
+		padding-top: 40px;
+	}
 
-#imageSliderWrapper > .container,
-#header > .container,
-#navbar > .container,
-#cycler > .container,
-#body > .container,
-#footer > .container{
-	padding:20px 0;
-}
+	body.desktopnav-fixed-bottom {
+		padding-bottom: 40px;
+	}
 
-#imageSliderWrapper.container.confined,
-#header.container.confined,
-#cycler.container.confined,
-#body.container.confined,
-#footer.container.confined{
-	padding:0 20px;
-}
+	#wpadminbar {
+		position: fixed;
+	}
+
+	#pageWrapper{	
+	    min-height: 100%;
+	    height: auto !important;
+	    height: 100%;
+	}
+
+	#imageSliderWrapper,
+	#header,
+	#navbar,
+	#cycler,
+	#body,
+	#footer{
+		clear: both;
+	}
+
+	#imageSliderWrapper > .container,
+	#header > .container,
+	#navbar > .container,
+	#cycler > .container,
+	#body > .container,
+	#footer > .container{
+		padding:20px 0;
+	}
+
+	#imageSliderWrapper.container.confined,
+	#header.container.confined,
+	#cycler.container.confined,
+	#body.container.confined,
+	#footer.container.confined{
+		padding:0 20px;
+	}
 
 /* ---------------------------------------------------------------------------------- 
 			Front page
@@ -133,7 +142,7 @@ h2.logo-wrapper{
 /*#navbar.navbar,*/
 #navbar .navbar {
 	margin-bottom: 0px;
-	padding: 0 10px;
+	/*padding: 0 10px;*/
 }
 
 #navbar.navbar-fixed-top,

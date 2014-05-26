@@ -1,11 +1,108 @@
 <?php
 
 
-/* ------------------------------- the content ------------------------------ */
+function kjd_the_content_scaffolding(){
 
-/*
-	this is the content wrapper, it provides the markup layout for the post/page/attachment content
-*/
+	$layoutSettings = kjd_get_layout_settings();
+	$template = $layoutSettings['name'];
+	
+	$bodySettings = get_option('kjd_body_misc_settings');
+	$bodySettings = $bodySettings['kjd_body_misc'];	
+	$confineBodyBackground = $bodySettings['kjd_body_confine_background'];
+	$confineClass = ($confineBodyBackground =='true' )? 'container confined' : '' ;
+	$device_view = $layoutSettings['deviceView'];
+	$position = $layoutSettings['position'];
+
+	$pagination_top = get_option('kjd_posts_misc_settings');
+	$pagination_top = $pagination_top['pagination_top'];
+
+
+	$scaffolding_markup = '';
+
+
+
+	if($position =='left' || $position =='right' ){
+		$widthClass = 'span9';
+	}else{
+		$widthClass = 'span12';
+	}
+
+	// get the title	
+	$scaffolding_markup .= kjd_get_the_title();
+
+	//start scaffolding
+	$scaffolding_markup .= '<div id="body" class="'.$confineClass.'">';
+		$scaffolding_markup .= '<div class="container">';
+			$scaffolding_markup .= '<div class="row">';
+
+
+				// print_r($layoutSettings); die();
+				/* ----------------- top or left sidebar ------------------- */
+				 if($position =='top' || $position =='left'){ 
+		
+					$scaffolding_markup .= ($position =='top') ? 
+					 kjd_get_sidebar($template,'horizontal',$position, $device_view) :
+					 kjd_get_sidebar($template,null,$position, $device_view);
+				} 
+
+				//content div
+				$scaffolding_markup .= '<div id="main-content" class="'.$widthClass.'">';
+
+				/* ---------------------- The Loop ----------------------- */
+				if (have_posts()){
+
+					if($pagination_top == 'true'){
+						$scaffolding_markup .= kjd_get_posts_pagination();
+					}
+
+					//open content-list/single wrapper
+					if( !is_single() && !is_page() && !is_attachment() ){
+						$scaffolding_markup .= '<div class="content-list">';
+					}else{
+						$scaffolding_markup .= '<div class="content-single">';
+					}
+					 while (have_posts()){ 
+
+						the_post(); 
+						$scaffolding_markup .= kjd_the_content_wrapper();
+
+					}
+
+				 	//close content-list/single wrapper
+					$scaffolding_markup .= '</div>';
+
+					// pagination
+					$scaffolding_markup .= kjd_get_posts_pagination();
+
+				}else{
+						$scaffolding_markup .= '<div class="content-wrapper">';
+								$scaffolding_markup .= kjd_the_404();
+						$scaffolding_markup .= '</div>';	
+				}
+				/* ---------------------- End Loop ----------------------- */
+
+				//end main content
+				$scaffolding_markup .= '</div>'; // end maincontent span
+
+	/* ----------------- right or bottom sidebar ------------------- */
+		if($position =='bottom' || $position =='right'){ 
+			$scaffolding_markup .= ($position =='bottom') ? kjd_get_sidebar($template,'horizontal',$position, $device_view) : kjd_get_sidebar($template,null,$position, $device_view);
+		} 
+
+
+	// close scaffolding
+
+			$scaffolding_markup .= '</div>';//	<!-- end row -->
+		$scaffolding_markup .= '</div>';// <!-- end container -->
+	$scaffolding_markup .= '</div>'; //<!-- end body -->
+
+	return $scaffolding_markup;
+
+}
+
+/**
+ * The content wrapper
+ */
 
 function kjd_the_content_wrapper(){
 
@@ -47,8 +144,10 @@ function kjd_the_content_wrapper(){
 	return $the_content_markup;
 }
 
-/* ---------------------------- content and content list scaffolding functions ------------------------=---- */
-
+/**
+ * The comment form
+ * @return [type] [description]
+ */
 function kjd_comment_form() {
 
  	global $current_user;
@@ -118,10 +217,12 @@ function kjd_comment_form() {
 	return $buffered_comments;
 }
 
-/*
-	This just grabs the post/page/attachment content.
-*/
-
+/**
+ * This just grabs the post/page/attachment content.
+ *
+ * As in, the shit from the wp editor or the attached image
+ */
+	
 function kjd_get_the_content($post_display = null)
 {
 	$allow_comments = get_option('kjd_pageTitle_misc_settings');
@@ -185,7 +286,11 @@ function kjd_get_the_content($post_display = null)
 }
 
 
-/* ------------------------------ post info ----------------------------- */
+/**
+ * Get the post info for the post
+ * The post info consists of things like
+ * the date and the author
+ */
 function kjd_get_the_post_info()
 {
 	ob_start();
@@ -204,7 +309,11 @@ function kjd_get_the_post_info()
 	return $the_post_info_markup;
 }
 
-/* --------------------------- post meta -------------------------- */
+/**
+ * Gets the post meta
+ * The post metat constists of things like the category, number of comments, and tags
+ * Right now it only shows the cat
+ */
 function kjd_get_the_post_meta(){
 	ob_start();
 		the_category();
@@ -225,7 +334,11 @@ function kjd_get_the_post_meta(){
 
 
 
-/* ---------------------------------- the post or page title ------------------------------------ */
+/**
+ * Displays teh post of page title
+ * @param  [type] $content_type [description]
+ * @return [type]               [description]
+ */
 function kjd_get_the_title($content_type = null)
 {
 	
@@ -453,8 +566,14 @@ function kjd_build_breadcrumbs() {
 	}
 } // end dimox_breadcrumbs()
 
-
-/* ----------------------------- the sidebar ----------------------------- */
+/**
+ * builds and gets the sidebar, must call kjd_set_sidebar_area to get the correct widgts 
+ * @param  string $sidebar     [description]
+ * @param  [type] $location    [description]
+ * @param  [type] $width       [description]
+ * @param  [type] $device_view [description]
+ * @return [type]              [description]
+ */
 function kjd_get_sidebar($sidebar = 'default', $location = null, $width = null, $device_view = null)
 {
 
@@ -466,17 +585,13 @@ function kjd_get_sidebar($sidebar = 'default', $location = null, $width = null, 
 		$the_buffered_sidebar = ob_get_contents();
 	ob_end_clean();
 	$the_sidebar_markup = '<div id="side-content" class="'.$location_class.' '.$location.'-widgets '.$device_view.'">';
-		// $the_sidebar_markup .= ($location == 'horizontal') ? '<div class="row">' : '' ;
-
 			$the_sidebar_markup .= '<div class="row">' . $the_buffered_sidebar .'</div>';
-		// $the_sidebar_markup .= ($location == 'horizontal') ? '</div>' : '' ;
 	$the_sidebar_markup .= '</div>';
 
 
 	// return $the_buffered_sidebar;
 	return $the_sidebar_markup;
 }
-
 
 
 function kjd_set_sidebar_area($sidebar = null){
@@ -505,9 +620,12 @@ function kjd_set_sidebar_area($sidebar = null){
 }
 
 
-
-/* ---------------------------------- the post listing post layout ----------------------------------- */
-
+/**
+ * This builds the post wrapper/layout for the FEED views
+ * It does things like positions the featured image, and also styles the post in a bootstrap "well" if need be
+ * @param  [type] $post_options [description]
+ * @return [type]               [description]
+ */
 function kjd_posts_layout($post_options) {
 
 	$post_display = $post_options['post_listing_type'];
@@ -566,8 +684,12 @@ function kjd_posts_layout($post_options) {
 		return $the_content_markup;
 }
 
-/* ---------------------------------- the attchment ------------------------------------ */
-
+/**
+ * Sets the layout for the attachment page
+ * layouts simply position the attachment desription around the attachment
+ * @param  [type] $post_options [description]
+ * @return [type]               [description]
+ */
 function kjd_attachment_layout($post_options){
 
 	$attachment_options = get_option('kjd_attachment_page_layout_settings');
@@ -610,6 +732,10 @@ function kjd_attachment_layout($post_options){
 	return 	$the_content_markup;
 }
 
+/**
+ * Builds the layout for the single posts or a single page
+ * @return [type] [description]
+ */
 function kjd_single_page_layout() {
 
 	$the_content_markup = '';

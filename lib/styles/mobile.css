@@ -12,16 +12,28 @@
 
 }
 
-/* Tablet */
+/**
+ * Tablet Width Landscape
+ * 
+ */
 @media (max-width: 979px) {
 
-	html.mobilenav-fixed-top {
-		/*padding-top: 50px*/
+	body.desktopnav-fixed-top {
+		padding-top: 0px;
 	}
 
-	html.mobilenav-fixed-bottom {
-		padding-bottom: 50px
+	body.desktopnav-fixed-bottom {
+		padding-bottom: 0px;
 	}
+
+	body.mobilenav-fixed-top {
+		padding-top: 50px;
+	}
+
+	body.mobilenav-fixed-bottom {
+		padding-bottom: 50px;
+	}
+
 
 	.navbar .dropdown-menu{background:transparent !important;}
 	
@@ -36,10 +48,22 @@
 
 /* navbar logo and control */
 
-	#navbar .navbar .brand {
+	#navbar .brand {
+	    color: #777777;
+	    display: block;
+	    float: left;
+	    font-size: 20px;
+	    font-weight: 200;
+	    margin-left: -20px;
+	    padding: 10px 20px;
+	    text-shadow: 0 1px 0 #FFFFFF;
+	}
+
+	#navbar .brand {
 		margin-left:0px;
 	    padding-left: 0px;
 	    padding-right: 10px;
+
 	}
 
 	#navbar .navbar .container .btn-navbar,
@@ -79,8 +103,8 @@
 	#navbar.navbar-fixed-top .navbar-inner .navbar,
 	#navbar.navbar-fixed-bottom .navbar-inner .navbar,
 	#navbar.navbar-static-top  .navbar-inner .navbar{
-		padding-left: 35px;
-		padding-right: 35px;
+/*		padding-left: 35px;
+		padding-right: 35px;*/
 	}
 
 	#navbar ul.nav > li{ 
@@ -175,20 +199,16 @@
 }
 
 
-/* Tablet  verticle */
+/**
+ * Tablet Width Landscape Vertical
+ * 
+ */
 @media(min-width: 768px) and (max-width: 979px) {
 
 	#sideContent .table td,
 	#sideContent .table th {
 		padding: 3px;
 	}
-
-	.container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
-    	/*width: 724px;*/
-	}
-
-
-
 
 	#navbar .navbar .btn-navbar,
 	#navbar #sidr-toggle{
@@ -216,10 +236,11 @@
 
 }
 
-
+/**
+ * Phone Landscape
+ * 
+ */
 @media (max-width: 767px) {
-	
-
 
 	#imageSliderWrapper.container > .container,
 	#header.container > .container,
@@ -251,8 +272,9 @@
 		height:auto;
 	}
 
-/* ----------------- navbar shit ---------------------- */
-
+/* --------------------------------------------------- 
+	navbar shit 
+   ---------------------------------------------------- */
 
 	#navbar ul.nav > li{ 
 		display:block; 
@@ -265,35 +287,29 @@
 		margin-top: 0;
 	}
 
-	.nav-collapse .dropdown-menu{
-		border-width: 0;
+	#navbar .container{
+		width: auto;
 	}
-
 
 
 	#navbar .collapse{
 		overflow: hidden !important;
-	}
-
-	#navbar .collapse{
 		padding:0 20px;
 	}
-
 
 	#navbar .collapse .nav{
 		width: 100%;
 		padding: 10px 0;
 	}
 
+	.nav-collapse .dropdown-menu{
+		border-width: 0;
+	}
+
 	.navbar .dropdown-menu{
 		background:transparent !important;
 	}
 	
-	#navbar .navbar .btn-navbar,
-	#navbar #sidr-toggle{
-
-		margin-left: 0;
-	}
 
 
 	
@@ -307,9 +323,21 @@
 	    margin-left: 0px;
 	    margin-right: 0px;
 	}
+	
+	.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > a.dropdown-toggle{
+		margin-top:0px !important;
+	}
 
+	#navbar .navbar .container .btn-navbar,
+	#navbar .container #sidr-toggle,
+	#navbar .navbar .btn-navbar,
+	#navbar #sidr-toggle {
+		margin-right: 0;
+	}
 
-	/* ----------------- image carousel shit --------------- */
+	/* ---------------------------------- 
+		image carousel shit 
+		--------------------------------- */
 	#imageSliderWrapper img{
 		max-width: 100%;
 		width: 100%;
@@ -337,10 +365,10 @@
 		margin: 0 auto;
 	}
 
-	.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > a.dropdown-toggle{
-		margin-top:0px !important;
-	}
 
+	/* ---------------------------------- 
+		Thumbnails
+		--------------------------------- */
 	.thumbnails .span2{
 		float:left;
 		margin:0 2% 15px 0;
@@ -366,12 +394,12 @@
 	}
 }
 
+
+/**
+ * Phone vertical
+ * 
+ */
 @media (max-width: 480px) {
-/*
-	h1.logo-wrapper, 
-	h2.logo-wrapper {
-		margin-left: 0px;
-	}*/
 
 	select,
 	textarea,

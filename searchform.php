@@ -1,6 +1,5 @@
 <?php
 // searchform.php
-
 ?>
 <form method="get" id="searchform" class="form-search" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 	<div class="input-append">

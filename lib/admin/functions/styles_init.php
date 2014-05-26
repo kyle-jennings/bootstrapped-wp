@@ -407,8 +407,8 @@ function kjd_get_theme_options($preview = null){
 /* ----------------------------------------------------------------
 			get navbr styles
 -------------------------------------------------------------------*/
-	include('navbar_styles.php');
-	include('mobile_nav_settings.php');
+	include('styles_navbar_settings.php');
+	include('styles_mobilenav_settings.php');
 	
 	$navArea_markup = navbarStylesCallback( $preview );
 

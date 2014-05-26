@@ -124,13 +124,12 @@ function kjd_get_layout_settings($template = NULL) {
 
 			}elseif( is_page() ){
 
-
 				// if current page is page template
 				if( is_page_template() ){
 					
 					$options = get_option('kjd_page_layout_settings');
 					$layoutSettings = $options['kjd_page_layouts'];
-				$is_page_template = true;
+					$is_page_template = true;
 					
 						if ( is_page_template('pageTemplate1.php') ){
 
@@ -217,6 +216,7 @@ function kjd_custom_sizes( $sizes ) {
 
 add_filter( 'image_size_names_choose', 'kjd_custom_sizes' );
 
+
 /* -----------------------------------------------
 gets featured image meta info
 ------------------------------------------------- */
@@ -238,50 +238,6 @@ function kjd_add_excerpts_to_pages() {
 add_action( 'init', 'kjd_add_excerpts_to_pages' );
 
 
-//////////////////
-// get images
-//////////////////
-
-// old image grabber
-function kjd_get_post_images($postID, $size = NULL) {
-
-$attachments = get_children( array( 
-	'post_parent' => $postID, 
-	'post_type' => 'attachment', 
-	'post_mime_type' => 'image', 
-	'orderby' => 'menu_order', 
-	'order' => 'ASC', 
-	'numberposts' => 999 ) 
-); 
-	$images = array();
-/* $images is now a object that contains all images (related to post id 1) and their information ordered like the gallery interface. */
-    $attributes = array();
-	if ( $attachments){
-	    //looping through the images
-	    foreach ( $attachments as $attachment => $att ) {
-
-	    	$url = wp_get_attachment_image_src($attachment, 'thumbnail');
-			$attributes['thumbnail']= $url[0];
-			$url = wp_get_attachment_image_src($attachment, 'medium');
-			$attributes['medium'] = $url[0];
-			$url = wp_get_attachment_image_src($attachment, 'large');
-			$attributes['large'] = $url[0];
-			$url = wp_get_attachment_image_src($attachment, 'full');
-			$attributes['full'] = $url[0];
-			
-			$attributes['image_id'] = $att->ID;
-			$attributes['title'] = $att->post_title;
-			$attributes['description'] = $att->post_content;
-			$attributes['caption'] = $att->post_excerpt;
-			$attributes['alt'] = $att->_wp_attachment_image_alt;
-			array_push($images, $attributes);
-	    }
-	}	
-	return $images;
-
-}
-
-
 /* ------------------------------------------------------
 device views 
 --------------------------------------------------------- */
@@ -292,10 +248,11 @@ function kjd_deviceViewSettings($deviceView){
 		}
 }
 
-////////////////////////
-// login screen styling
 
 
+/* ------------------------------------------------------
+ Add login css
+--------------------------------------------------------- */
 function kjd_login_css() {
 	require_once(dirname(dirname(__FILE__)).'/styles/login.php');
 }
@@ -352,7 +309,7 @@ function kjd_get_posts_pagination(){
 
 
 /* ----------------------------------------------------
- single image nav links for gallery images 
+		gallery images pagination
  ----------------------------------------------------- */
 function kjd_gallery_image_links(){
 
@@ -474,6 +431,10 @@ function kjd_add_widget_style( $params ){
 
 add_filter( 'dynamic_sidebar_params', 'kjd_add_widget_style' );
 
+
+/* ------------------------------------------------------
+device visibility 
+--------------------------------------------------------- */
 function kjd_add_device_visibility( $params ){
 
 	global $wp_registered_widgets, $widget_number;
@@ -579,7 +540,7 @@ function kjd_header_content($header_contents, $logo_toggle, $logo, $custom_heade
 }
 
 /* --------------------------------------------------
- Navbar functions 
+  create a default navbar if no menu is selected
  --------------------------------------------------------*/
 function kjd_empty_nav_fallback_callback( $args ) {
 	if ( ! isset( $args['show_home'] ) )
@@ -589,280 +550,51 @@ function kjd_empty_nav_fallback_callback( $args ) {
 	return $args;
 }
 
-//							menu id,  nav style,   link style, sidr/dropdown/ect,     devise visibility,  position, logo, menu id again for some reason, button type
-function kjd_build_navbar( $menu_id, $navbar_width, $link_type, $mobilenav_style, $visibility = null, $position, $logo = '', $use_mobile_menu = 'false', $button_type ='default', $walker = 'drop_down' ){
 
-		$navbar_style = 'navbar ';
+/**
+ * Adds body classes to page
+ * @param  array $classes the body class
+ * @return array          the appended array of classes
+ */
+function kjd_add_body_class( $classes ){
 
-		// sets the navbar type
-		switch( $position ){
-			// navbar in default position
-			case 'default':
-				$navbar_style .= 'navbar-static-top';
-				break ;
-			// we want to STICK the navbar to the top of the page - it will scroll WITH the page
-			case 'fixed-top':
-				$navbar_style .= 'navbar-fixed-top';
-				break ;
-			// we want to STICK the navbar to the bottom of the page - it will scroll WITH the page
-			case 'fixed-bottom':
-				$navbar_style .= 'navbar-fixed-bottom';
-				break ;
-			// navbar is just placed at the top of the page
-			case 'static-top':
-				$navbar_style .= 'navbar-static-top';
-				break ;
-		
-			default:
-				$navbar_style .= 'navbar-static-top';
-		}
+	$classes = array();
 
-		if( $navbar_width == 'contained' ){
-			// $navbar_style = str_replace( 'navbar-static-top', '', $navbar_style );
-			$navbar_style .= ' container' ;
-		}
-
-		$navbar_open = '<div id="navbar" class=" '. $visibility .' '. $menu_id .' '. $navbar_style . '">';
-
-
-			$navbar_open .= $nav_wrapper;
-
-				$navbar_inner = '';
-
-				
-				$navbar_inner .= '<div class="navbar-inner">';
-					
-					// if the navbar type is not set to contained then we need to put the container inside the inn=er
-					if( $navbar_width != 'contained' ){
-						$navbar_inner .= '<div class="container">';
-							$navbar_inner .= '<div class="navbar">';
-					}
-
-					if( ($logo != 'none' && $logo != '') ){
-						
-						if( $logo == 'logo' ){
-							
-							$options = get_option('kjd_mobileNav_misc_settings');
-							$options = $options['kjd_mobileNav_misc'];
-							$url = $options['mobile_site_logo'];
-							
-							$navbar_inner .= '<a class="hidden-desktop brand '.$logo.'" href="'.home_url().'"><img src="'.$url.'" /></a>';
-				
-						}else{
-							$navbar_inner .= '<a class="hidden-desktop brand '.$logo.'" href="'.home_url().'">'.get_bloginfo( 'name' ).'</a>';
-						}
-
-					}
-
-						$navbar_inner .= kjd_mobile_nav_button_type( $button_type, $mobilenav_style );
-
-					// The nav-collapse - it holds the menu
-
-						
-						$navbar_inner .='<div class="nav-collapse collapse navbar-responsive-collapse">';
-
-						$navbar_inner .= kjd_build_menu( $menu_id, $link_type, $use_mobile_menu, $walker );
-
-						$navbar_inner .= $navbar_contents;
-						$navbar_inner .= '</div>'; // en nav collapse
-						
-
-					// if the navbar type is not set to contained then we need to put the container inside the inner
-					if( $navbar_width != 'contained' ){
-							$navbar_inner .='</div>'; // end navbar -->
-
-						$navbar_inner .='</div>'; // end container -->
-					}
-
-
-				$navbar_inner .='</div>'; // end navbar-inner-->
+	$navbar_settings = get_option('kjd_navbar_misc_settings');
+	$navbar_settings = $navbar_settings['kjd_navbar_misc'];
+	$navbar_position = $navbar_settings['navbar_position'];
 	
+	$mobile_nav_settings = get_option('kjd_mobileNav_misc_settings');
+	$mobile_nav_settings = $mobile_nav_settings['kjd_mobileNav_misc'];
+	$mobile_nav_position = $mobile_nav_settings['mobilenav_position'];	
 
-			$navbar_close = '</div>'; // end #navbar
-		return $navbar_open . $navbar_inner . $navbar_close;
+	if(is_front_page() ) { 
+		$classes[] = 'home';
+	}elseif( is_page() ){
+		$classes[] = get_page_template_slug();
+	}
+
+	if( is_user_logged_in() ){
+		$classes[] = 'logged-in';
+	}
+
+	//navbar 
+	if( $navbar_position == 'fixed-top'){
+		$classes[] = 'desktopnav-fixed-top';
+	}elseif( $navbar_position == 'fixed-bottom'){
+		$classes[] = 'desktopnav-fixed-bottom';
+	}
+
+	//mobilenav
+	if( $mobile_nav_position == 'fixed-top'){
+		$classes[] = 'mobilenav-fixed-top';
+	}elseif( $mobile_nav_position == 'fixed-bottom'){
+		$classes[] = 'mobilenav-fixed-bottom';
+	}
+
+	return $classes;
 }
-
-function kjd_build_menu( $menu_id = 'primary-menu', $navbar_link_style = 'none', $use_mobile_menu, $walker = 'drop_down'){
-	
-	if($walker == 'drop_down'){
-
-		$walker_type = new dropdown_menu();
-	}elseif( $walker = 'sidr_menu'){
-		$walker_type = new sidr_menu();
-	}else {
-		$walker_type = '';
-	}
+add_filter('body_class', 'kjd_add_body_class');
 
 
-	$menu_class = 'nav';
-	
-	switch($navbar_link_style){
-		case 'none':
-
-			$menu_class .= ' nav-noBG';
-			break;
-		case 'dividers':
-
-			$menu_class .= ' nav-dividers';
-			break;
-		case 'pills':
-
-			$menu_class .= ' nav-pills';
-			break;
-		case 'tabs':
-
-			$menu_class .= ' nav-tabs';
-			break;
-		case 'tabs-below':
-
-			$menu_class .= ' nav-tabs tabs-below';	
-			break;
-		case 'sidr-style':
-		
-			$menu_class .= ' nav-tabs nav-stacked';
-			break;
-		default:
-			$menu_class .= ' nav-noBG';
-	}
-
-
-	/*
-		if the mobile nav is activated and set we use that. if its not set but its activated, then we use the primary nav,
-		otherwise, we display the default menu
-	*/
-	if ( $menu_id == 'mobile-menu' ){
-
-		if ( $use_mobile_menu == 'true' && has_nav_menu( 'mobile-menu' ) ){
-			ob_start();
-			wp_nav_menu(array('theme_location' => 'mobile-menu', 
-				'menu_class' =>$menu_class,
-				'container'=> '',
-				'walker'=> $walker_type
-			 ) );
-			$menu = ob_get_contents();
-			ob_end_clean();
-			return $menu;
-		}elseif( has_nav_menu( 'primary-menu' ) ){
-
-
-			ob_start();
-			wp_nav_menu(array('theme_location' => 'primary-menu', 
-				'menu_class' =>$menu_class,
-				'container'=> '',
-				'walker'=> $walker_type
-			 ) );
-			$menu = ob_get_contents();
-			ob_end_clean();
-			return $menu;
-
-		}else {
-		    $menu = '';
-
-		    $menu .= '<ul class="nav nav-pills hidden-desktop">';
-			$menu .= '<li><a href="'. home_url() .'/" title="home">Home</a></li>';
-			if( is_user_logged_in() ){
-				$menu .= '<li><a href="'. home_url() .'/wp-admin/nav-menus.php" title="set menus" >Set Menu</a></li>';
-
-			}else{
-
-				$menu .= '<li><a href="'. wp_login_url() .'/" title="login" >Login</a></li>';
-			}
-		    $menu .= '</ul>';
-
-		    return $menu;
-		} 
-
-	}else{
-		/*
-			If the primary nav is set, then we use that.
-			otherwise, we display the default menu
-		*/
-		if ( has_nav_menu( 'primary-menu' ) ){
-			
-			ob_start();
-			wp_nav_menu(array('theme_location' => 'primary-menu', 
-				'menu_class' =>$menu_class,
-				'container'=> '',
-				'walker'=> $walker_type
-			 ) );
-			$menu = ob_get_contents();
-			ob_end_clean();
-			return $menu;
-
-		} else {
-		    
-		    $menu = '';
-
-		    $menu .= '<ul class="nav nav-pills visible-desktop">';
-			$menu .= '<li><a href="'. home_url() .'/" title="home">Home</a></li>';
-			if( is_user_logged_in() ){
-				$menu .= '<li><a href="'. home_url() .'/wp-admin/nav-menus.php" title="set menus" >Set Menu</a></li>';
-
-			}else{
-
-				$menu .= '<li><a href="'. wp_login_url() .'/" title="login" >Login</a></li>';
-			}
-		    $menu .= '</ul>';
-
-		    return $menu;
-		} 
-
-	}
-
-	return;
-}
-
-function kjd_mobile_nav_button_type( $button_type, $mobilenav_style  ) {
-
-	$output = '';
-	$button_class = '';
-	$button_misc = get_option('kjd_mobileNav_misc_settings');
-	$button_misc = $button_misc['kjd_mobileNav_misc'];
-
-	switch($button_type):
-		case 'default':
-			$button_class = "btn btn-navbar";
-
-			$button_inner = '';
-			$button_inner .= '<span class="icon-bar"></span>';
-			$button_inner .= '<span class="icon-bar"></span>';
-			$button_inner .= '<span class="icon-bar"></span>';
-			break;
-		case 'hamburger':
-			$button_class = "btn btn-navbar btn-hamburger";
-
-			$button_inner = '';
-			$button_inner .= '<span class="icon-bar"></span>';
-			$button_inner .= '<span class="icon-bar"></span>';
-			$button_inner .= '<span class="icon-bar"></span>';
-
-			break;		
-		case 'button':
-			$button_class = "btn ".$button_misc['menu_button_color'];
-			$button_inner = $button_misc['menu_btn_text'];;
-			break;
-		case 'text':
-			$button_class = "menu-text";
-			
-			$button_inner = $button_misc['menu_btn_text'];
-			break;
-		case 'image':
-			$button_class = "menu-image";
-
-			$button_inner = 'image';
-			break;
-		default:
-			$button_class = "btn btn-navbar";
-			break;		
-	endswitch;
-
-	if($mobilenav_style =='sidr'){
-		$output .= '<a id="sidr-toggle" class="navbar-menu-btn '.$button_class.'">';
-	}else{
-		$output .= '<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="navbar-menu-btn '.$button_class.'">';
-	}
-		$output .= $button_inner;
-	$output .= '</a>';
-
-	return $output;
-}
+include('kjd-navbar-class.php');
