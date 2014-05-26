@@ -10,8 +10,4 @@
  * These files will be further abstracted and cleaned up in the near future
  */
 
-get_header();
-
-echo kjd_the_content_scaffolding();
-
-get_footer();
+new kjdScaffolding;

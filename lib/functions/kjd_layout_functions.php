@@ -761,3 +761,129 @@ function kjd_single_page_layout() {
 
 	return $the_content_markup;
 }
+
+
+
+/* --------------------------------------------
+ read more link 
+ ---------------------------------------------*/
+function kjd_excerpt_more_link($more) {
+       global $post;
+	return '<a class="moretag" href="'. get_permalink($post->ID) . '"> Read More</a>';
+}
+add_filter('excerpt_more', 'kjd_excerpt_more_link');
+
+
+/* --------------------------------------------
+ pagination  
+ ------------------------------------------- */
+function kjd_get_posts_pagination(){
+	
+	$pagination_markup ='';
+
+	global $wp_query;  
+	  
+	$total_pages = $wp_query->max_num_pages;  
+	  
+	if ($total_pages > 1){  
+	  
+	  $current_page = max(1, get_query_var('paged'));  
+	  $pagination_markup .= '<div class="row">';
+
+		  $pagination_markup .= '<div class="pagination">';
+		  $pagination_markup .=  paginate_links(array(  
+		      'base' => get_pagenum_link(1) . '%_%',  
+		      'format' => 'page/%#%',  
+		      'current' => $current_page,  
+		      'total' => $total_pages,  
+		      'type' => 'list',
+		      'prev_text' => 'Prev',  
+		      'next_text' => 'Next',
+		      'mid_size' => 1,
+		      'end_size' => 1
+		    ));  
+		  $pagination_markup .= '</div>';
+	  $pagination_markup .= '</div>';  
+	    
+	}  
+	return $pagination_markup;
+}
+
+
+
+/* ----------------------------------------------------
+		gallery images pagination
+ ----------------------------------------------------- */
+function kjd_gallery_image_links(){
+
+	global $post;
+
+	$navigation_markup = '<div class="image-pagination cf">';
+	$parent_id = $post->post_parent;
+
+	if ( strpos(get_post($parent_id)->post_content,'[gallery ') === false ){
+		// $navigation_markup .= 'no gallery';
+	}else{
+
+		$images = kjd_get_post_images($parent_id);
+		foreach($images as $k=>$image)
+		{
+			
+
+			if($image['image_id'] == $post->ID){
+				// $next_url = '<a href="'.get_attachment_link( $id ).'"><img src="'.$url[0].'" /></a>';
+				$prev =  $images[$k-1]['image_id'];
+				if(isset($prev)){
+					$navigation_markup .= '<a class="image-nav prev" href="'.get_attachment_link($prev).'">Previous Image</a>';
+				}
+
+				$next =  $images[$k+1]['image_id'];
+				if(isset($next)){
+					$navigation_markup .= '<a class="image-nav next" href="'.get_attachment_link($next).'">Next Image</a>';
+				}
+			}
+		}
+	}
+
+	$navigation_markup .= '</div>';
+	return $navigation_markup;
+}
+ 
+/* -----------------------------------------------
+ set featured image size 
+ ------------------------------------------------- */
+function kjd_get_featured_image($position = null, $wrapper = 'div'){
+	
+	if($position == 'left_of_post'){
+	
+		$wrapper = 'span';
+	
+		$wrapper_class = 'pull-left';
+	
+	}elseif($position == 'right_of_post'){
+	
+		$wrapper = 'span';
+	
+		$wrapper_class = 'pull-right';
+	
+	}else{
+
+		$wrapper = 'div';
+	
+	}
+
+	$featured_image_markup = '';
+
+	if ( has_post_thumbnail() ) {
+		$featured_image_markup .= '<'.$wrapper.' class="media-object '.$wrapper_class.'">';
+		$featured_image_markup .= get_the_post_thumbnail(null, 'featured-image', array(
+			'alt'	=> trim(strip_tags( $attachment->post_excerpt )),
+			'title'	=> trim(strip_tags( $attachment->post_title )),
+			)
+		);
+		$featured_image_markup .= '</'.$wrapper.'>';
+	} 
+
+
+	return $featured_image_markup;
+}

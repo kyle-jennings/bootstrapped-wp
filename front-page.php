@@ -3,8 +3,11 @@
 get_header();
 
 	
-	$layoutSettings = kjd_get_layout_settings();
-	
+	$front_page = new kjdLayout();
+	$layoutSettings = $front_page->kjd_get_layout_settings();
+	// $layoutOptions = get_option('kjd_post_layout_settings');
+	// $layoutSettings = $layoutOptions['kjd_post_layouts'];
+	// $layoutSettings = $layoutSettings['front_page'];
 
 	$template = $layoutSettings['name'];
 
@@ -31,7 +34,7 @@ get_header();
 	$pagination_top = $pagination_top['pagination_top'];
 
 
-
+	$output = '';
 
 	if( $showImageSlider['enable'] =='true' && $showImageSlider['location'] != 'sortable')
 	{
@@ -49,13 +52,13 @@ get_header();
 	if($layoutSettings['position'] != 'right' && $layoutSettings['position'] !='left'){ 
 
 		if($layoutSettings['position'] == 'top'){
-			echo kjd_get_sidebar($template,'horizontal',$position, $device_view);
+			echo $front_page->kjd_get_sidebar($template,'horizontal',$position, $device_view);
 		}
 		
 		echo '<div id="main-content" class="span12">';
 	}else{
 		if($layoutSettings['position'] == 'left'){
-			echo kjd_get_sidebar($template, null, $position, $device_view);
+			echo $front_page->kjd_get_sidebar($template, null, $position, $device_view);
 		}
 
 		echo '<div id="main-content" class="span9">';
@@ -78,13 +81,13 @@ get_header();
 		echo '</div>'; // end left content
 		
 		if($layoutSettings['position'] == 'right'){
-			echo kjd_get_sidebar($template, null, $position, $device_view);
+			echo $front_page->kjd_get_sidebar($template, null, $position, $device_view);
 		}
 	}else{
 		echo '</div>';
 
 		if($layoutSettings['position'] == 'bottom'){
-			echo kjd_get_sidebar($template,'horizontal',$position, $device_view);
+			echo $front_page->kjd_get_sidebar($template,'horizontal',$position, $device_view);
 		}
 		
 	}
@@ -92,6 +95,7 @@ get_header();
 	//end row, container, and body divs	
 	echo '</div></div></div>';
 
+	// echo $output;
 }else{ 
 /* ---------------------------- if the front page settings arent configured ---------------------------- */
 ?>
@@ -159,7 +163,7 @@ function kjd_content_callback($layoutSettings, $deviceView, $content_title = '')
 	if (have_posts()){
 
 		if($pagination_top == 'true'){
-			echo kjd_get_posts_pagination();
+			echo $front_page->kjd_get_posts_pagination;
 		}
 		
 		echo '<h2>'.$content_title.'</h2>';
@@ -168,12 +172,12 @@ function kjd_content_callback($layoutSettings, $deviceView, $content_title = '')
 		while(have_posts()){ 
 			
 			the_post(); 
-			echo kjd_the_content_wrapper();
+			echo $front_page->kjd_the_content_wrapper;
 		}
 
 		echo '</div>';
 	}
-	echo kjd_get_posts_pagination();
+	echo $front_page->kjd_get_posts_pagination;
 
 	echo '</div>';
 }

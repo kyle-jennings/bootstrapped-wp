@@ -7,15 +7,16 @@ if(is_admin()){
 	include(dirname(dirname(__FILE__)).'/update/update.php');
 }
 
- require_once('kjd_bootstrap_menus.php');
- require_once('kjd-gallery.php');
- require_once('kjd-shortcodes.php');
- require_once('kjd-widgets.php');
- require_once('kjd-adminbar-menu.php');
-
- require_once('kjd_layout_functions.php');
+	require_once('kjd_bootstrap_menus.php');
+	require_once('kjd-gallery.php');
+	require_once('kjd-shortcodes.php');
+	require_once('kjd-widgets.php');
+	require_once('kjd-adminbar-menu.php');
 
 
+	require_once('kjd-class-navbar.php');
+	require_once('kjd-class-layout.php');
+ 
 /* ------------------------------------------------
  kjd add js and css 
  -------------------------------------------------- */
@@ -70,122 +71,6 @@ function kjd_add_assets(){
 
 }
 add_action( 'wp_enqueue_scripts', 'kjd_add_assets' );
-
-
-/* -------------------------------------------------
- get page template layout settings 
------------------------------------------------------- */
-function kjd_get_layout_settings($template = NULL) {
-
-			//	if the page is a post type
-
-			$layoutOptions = get_option('kjd_post_layout_settings');
-			$layoutSettings = $layoutOptions['kjd_post_layouts'];
-			
-			if( is_single() ){
-			
-				$template = 'single';
-
-			}elseif( is_attachment() ){
-
-				$template = 'attachment';
-
-			}elseif( is_404() ){
-			
-				$template = '404';
-			
-			}elseif( is_category() ){
-			
-				$template = 'category';
-
-			}elseif( is_archive() ){
-			
-				$template = 'archive';
-			
-			}elseif( is_tag() ){
-
-				$template = 'tag';
-
-			}elseif( is_author() ){
-
-				$template = 'author';
-
-			}elseif( is_date() ){
-
-				$template = 'date';
-
-			}elseif( is_search() ){
-
-				$template = 'search';
-
-			}elseif( is_front_page() ){
-
-				$template = 'front_page';
-
-			}elseif( is_page() ){
-
-				// if current page is page template
-				if( is_page_template() ){
-					
-					$options = get_option('kjd_page_layout_settings');
-					$layoutSettings = $options['kjd_page_layouts'];
-					$is_page_template = true;
-					
-						if ( is_page_template('pageTemplate1.php') ){
-
-							$template = 'template_1';
-						
-						}elseif( is_page_template('pageTemplate2.php') ){
-
-							$template = 'template_2';
-						
-						}elseif( is_page_template('pageTemplate3.php') ){
-
-							$template = 'template_3';
-						
-						}elseif( is_page_template('pageTemplate4.php') ){
-
-							$template = 'template_4';
-						
-						}elseif( is_page_template('pageTemplate5.php') ){
-
-							$template = 'template_5';
-						
-						}elseif( is_page_template('pageTemplate6.php') ){
-
-							$template = 'template_6';
-						
-						}else{
-							
-							$template = 'page';							
-						}
-		
-
-				// if current page is a page but not a template
-				}else{
-					$template = 'page';
-				
-				}
-
-			//fallback - if not a post template OR a page
-			}else{
-
-				$template = 'default';
-			}
-			
-	if( !empty($layoutSettings[$template]) && ($layoutSettings[$template]['toggled'] == 'true' || $is_page_template == true) ){
-		
-		$layoutSettings = $layoutSettings[$template];
-
-	}else{
-
-		$layoutSettings = $layoutSettings['default'];
-	}
-
-
-	// echo $template; die();
-	return $layoutSettings;
-}
 
 
 /* ----------------------------------------------------
@@ -260,92 +145,6 @@ add_action('login_head', 'kjd_login_css');
 
 
 
-
-/* --------------------------------------------
- read more link 
- ---------------------------------------------*/
-function kjd_excerpt_more_link($more) {
-       global $post;
-	return '<a class="moretag" href="'. get_permalink($post->ID) . '"> Read More</a>';
-}
-add_filter('excerpt_more', 'kjd_excerpt_more_link');
-
-
-/* --------------------------------------------
- pagination  
- ------------------------------------------- */
-function kjd_get_posts_pagination(){
-	
-	$pagination_markup ='';
-
-	global $wp_query;  
-	  
-	$total_pages = $wp_query->max_num_pages;  
-	  
-	if ($total_pages > 1){  
-	  
-	  $current_page = max(1, get_query_var('paged'));  
-	  $pagination_markup .= '<div class="row">';
-
-		  $pagination_markup .= '<div class="pagination">';
-		  $pagination_markup .=  paginate_links(array(  
-		      'base' => get_pagenum_link(1) . '%_%',  
-		      'format' => 'page/%#%',  
-		      'current' => $current_page,  
-		      'total' => $total_pages,  
-		      'type' => 'list',
-		      'prev_text' => 'Prev',  
-		      'next_text' => 'Next',
-		      'mid_size' => 1,
-		      'end_size' => 1
-		    ));  
-		  $pagination_markup .= '</div>';
-	  $pagination_markup .= '</div>';  
-	    
-	}  
-	return $pagination_markup;
-}
-
-
-
-/* ----------------------------------------------------
-		gallery images pagination
- ----------------------------------------------------- */
-function kjd_gallery_image_links(){
-
-	global $post;
-
-	$navigation_markup = '<div class="image-pagination cf">';
-	$parent_id = $post->post_parent;
-
-	if ( strpos(get_post($parent_id)->post_content,'[gallery ') === false ){
-		// $navigation_markup .= 'no gallery';
-	}else{
-
-		$images = kjd_get_post_images($parent_id);
-		foreach($images as $k=>$image)
-		{
-			
-
-			if($image['image_id'] == $post->ID){
-				// $next_url = '<a href="'.get_attachment_link( $id ).'"><img src="'.$url[0].'" /></a>';
-				$prev =  $images[$k-1]['image_id'];
-				if(isset($prev)){
-					$navigation_markup .= '<a class="image-nav prev" href="'.get_attachment_link($prev).'">Previous Image</a>';
-				}
-
-				$next =  $images[$k+1]['image_id'];
-				if(isset($next)){
-					$navigation_markup .= '<a class="image-nav next" href="'.get_attachment_link($next).'">Next Image</a>';
-				}
-			}
-		}
-	}
-
-	$navigation_markup .= '</div>';
-	return $navigation_markup;
-}
-
 /* --------------------------------------------
  the 404 
 ------------------------------------------------ */
@@ -355,45 +154,6 @@ function kjd_the_404(){
 	$page404 = get_option('kjd_theme_settings');
 	$page404 = do_shortcode($page404['kjd_404_page']);
 	return $page404;
-}
- 
-/* -----------------------------------------------
- set featured image size 
- ------------------------------------------------- */
-function kjd_get_featured_image($position = null, $wrapper = 'div'){
-	
-	if($position == 'left_of_post'){
-	
-		$wrapper = 'span';
-	
-		$wrapper_class = 'pull-left';
-	
-	}elseif($position == 'right_of_post'){
-	
-		$wrapper = 'span';
-	
-		$wrapper_class = 'pull-right';
-	
-	}else{
-
-		$wrapper = 'div';
-	
-	}
-
-	$featured_image_markup = '';
-
-	if ( has_post_thumbnail() ) {
-		$featured_image_markup .= '<'.$wrapper.' class="media-object '.$wrapper_class.'">';
-		$featured_image_markup .= get_the_post_thumbnail(null, 'featured-image', array(
-			'alt'	=> trim(strip_tags( $attachment->post_excerpt )),
-			'title'	=> trim(strip_tags( $attachment->post_title )),
-			)
-		);
-		$featured_image_markup .= '</'.$wrapper.'>';
-	} 
-
-
-	return $featured_image_markup;
 }
 
 /* -----------------------------------------------------
@@ -596,5 +356,3 @@ function kjd_add_body_class( $classes ){
 }
 add_filter('body_class', 'kjd_add_body_class');
 
-
-include('kjd-navbar-class.php');

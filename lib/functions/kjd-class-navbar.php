@@ -291,9 +291,7 @@ class kjdNavBar{
 	}
 
 	public function __toString(){
-		
 		return $this->output;
-		// return  $this->kjd_build_navbar();
 	}
 
 
