@@ -280,7 +280,7 @@ class kjdNavBar{
 		endswitch;
 
 		if($mobilenav_style =='sidr'){
-			$output .= '<a id="sidr-toggle" class="navbar-menu-btn '.$button_class.'">';
+			$output .= '<a class="navbar-menu-btn sidr-toggle '.$button_class.'">';
 		}else{
 			$output .= '<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="navbar-menu-btn '.$button_class.'">';
 		}
