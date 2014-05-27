@@ -235,8 +235,6 @@ function kjd_theme_components_callback(){
 
 	settings_fields( 'kjd_component_settings' ); 
 	$options = get_option('kjd_component_settings');
-	// echo $options['featured_image']['width'] ? $options['featured_image']['width'] : 300 ;
-	// echo $options['featured_image']['height'] ? $options['featured_image']['height'] : 300 ;
 
 ?>
 <div class="options_wrapper">

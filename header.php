@@ -240,12 +240,12 @@ if($mobilenav_style =='sidr'){
 	<div id="mastArea" class="<?php echo $confine_mast == 'true' ? 'container' : '' ;?>">
 <?php
 
-	if( $navbar_position =='static-top' && $navbar_settings['hideNav'] != "true" ){
-	 	echo $desktop_nav_object;
-	}
-
 	if( $mobilenav_position =='static-top' && $mobilenav_settings['hideNav'] != "true" ){
 	 	echo $mobile_nav_object;
+	}
+
+	if( $navbar_position =='static-top' && $navbar_settings['hideNav'] != "true" ){
+	 	echo $desktop_nav_object;
 	}
 
 ?>
@@ -265,13 +265,13 @@ if($mobilenav_style =='sidr'){
 
 	<?php
 	
+	if( $mobilenav_position !='static-top' && $mobilenav_settings['hideNav'] != "true" ){
+	 	echo $mobile_nav_object;
+	}
 	if( $navbar_position !='static-top' && $navbar_settings['hideNav'] != "true" ){
 	 	echo $desktop_nav_object;
 	}
 
-	if( $mobilenav_position !='static-top' && $mobilenav_settings['hideNav'] != "true" ){
-	 	echo $mobile_nav_object;
-	}
 	?>
 	</div> <!-- end mast -->
 	<div id="contentArea">
