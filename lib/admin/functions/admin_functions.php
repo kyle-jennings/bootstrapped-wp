@@ -28,6 +28,8 @@ function kjd_live_preview(){
   die;
 }
 add_action('wp_ajax_kjd_live_preview', 'kjd_live_preview');
+
+
 /* ------------------------- Update Style sheet after settigns are saved ------------------------------------ */
 
 function kjd_build_theme_css( $stylesheet = 'custom.css' ){

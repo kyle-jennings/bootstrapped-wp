@@ -37,9 +37,13 @@ function kjd_get_theme_options($preview = null){
 
 	settings_fields( 'kjd_component_settings' ); 
 	$options = get_option('kjd_component_settings');
+	// check for side drawer option
+	$mobileNav_options = get_option('kjd_mobileNav_misc_settings');
+	$mobileNav_options = $mobileNav_options['mobilenav_style'];
+
 
 	$sections = array('htmlTag','bodyTag','mastArea','header','navbar','dropdown-menu',
-		'cycler','contentArea','pageTitle','body','footer', 'sidr');
+		'cycler','contentArea','pageTitle','body','footer');
 
 
 	//adds widget and post style sections
@@ -55,10 +59,14 @@ function kjd_get_theme_options($preview = null){
 		$sections[] = 'posts';
     }
 
+    if($mobileNav_options == 'sidr'){
+		$sections[] = 'sidr';
+    }
+
+
 
 	$section_output = '';
 	$miscMarkup = miscStylesCallback();
-
 
 	foreach($sections as $section){
 

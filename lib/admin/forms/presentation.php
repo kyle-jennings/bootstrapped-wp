@@ -76,6 +76,9 @@
 				'bullet_color',
 				'nav_header_decoration'
 			);		
+
+
+		
 ?>
 
 <input  id="dropdown-id" type="hidden"

@@ -52,6 +52,9 @@ add_action('admin_init', 'kjd_initialize_kjd_settings');
 function kjd_setup_theme_menus() {  
 
 	$options = get_option('kjd_component_settings');
+	$mobileNavSettings = get_option('kjd_mobileNav_misc_settings');
+	$mobileNavSettings = $mobileNavSettings['kjd_mobileNav_misc'];
+	$override_nav = $mobileNavSettings['override_nav'];
 
 
     add_menu_page(
@@ -109,6 +112,20 @@ function kjd_setup_theme_menus() {
 	    'kjd_mobileNav_settings', // id for submenu
 		create_function('', 'kjd_settings_display("mobileNav");')
 	); 
+
+	if( $override_nav == 'true') {
+
+		$mobilenav_style = $mobileNavSettings['mobilenav_style'];
+		add_submenu_page(
+			'kjd_theme_settings',   // belongs to id
+	  		'Side Drawer', // title bar
+			'Side Drawer', // menu title
+			'manage_options',   //member access
+		    'kjd_sidr_settings', // id for submenu
+			create_function('', 'kjd_settings_display("sidr");')
+			); 
+	}
+
 
 		// customize cycler
     add_submenu_page(

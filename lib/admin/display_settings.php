@@ -2,15 +2,21 @@
     
 
 function kjd_settings_display($section = null) {  
-	
-
 
 	kjd_build_theme_css();
 
 	$options = get_option('kjd_posts_misc_settings');
 	$options = $options['kjd_posts_misc'];
 	
-	$tabs = array(0 =>'background',1=>'borders',2=>'headings',3=>'Text',4=>'presentation', 5=>'images',6=>'misc');
+	$tabs = array(	0 =>'background',
+					1=>'borders',
+					2=>'headings',
+					3=>'Text',
+					4=>'presentation',
+					5=>'images',
+					6=>'misc'
+				);
+
 	if($section == "cycler"){
 		array_pop($tabs);
 		array_push($tabs, 'image_banner_settings', 'image_banner_images');
@@ -53,6 +59,11 @@ function kjd_settings_display($section = null) {
 			}
 		}
 
+	}
+	if( $section == 'sidr'){
+		unset($tabs[2]);
+		unset($tabs[5]);
+		unset($tabs[6]);
 	}
 
 	screen_icon('themes'); 

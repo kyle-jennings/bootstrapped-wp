@@ -13,6 +13,20 @@
 	$borderRadius = $options['kjd_'.$section.'_border_radius'];
 
 	$borders = array("top","right","bottom","left");
+	$tabs = array("top","right","bottom","left", "border-radius");
+
+
+	if($section == 'sidr') {
+		unset( $borders[0] );
+		unset( $borders[2] );
+		unset( $borders[3] );
+
+		unset( $tabs[0] );
+		unset( $tabs[2] );
+		unset( $tabs[3] );
+		unset( $tabs[4] );
+	}
+
 	$corners = array('top-left', 'top-right','bottom-left','bottom-right');
 	$borderSizes = range(0,20);
 	$borderStyles = array('none','solid','dotted','dashed','double','groove','ridge','inset','outset');
@@ -32,7 +46,7 @@
 	</a>
     <ul class="dropdown-menu">
 <?php
-	$tabs = array("top","right","bottom","left", "border-radius");
+
 	foreach($tabs as $border){  
 		$active = ($border == 'top') ? 'class="active"' : '' ;
 		echo '<li '.$active.'><a href="#'.$border.'" data-toggle="tab">'.ucwords($border).'</a></li>';
