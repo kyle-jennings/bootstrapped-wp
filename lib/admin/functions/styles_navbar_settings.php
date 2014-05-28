@@ -98,16 +98,16 @@ function navbarStylesCallback( $preview ){
 	// Positions navbar
 	if($kjd_section_misc_settings['navbar_alignment'] =='left'){
 		
-		$navbar_markup .='#navbar .nav{ float:left;}';
+		$navbar_markup .='.navbar-wrapper .nav{ float:left;}';
 	
 	}elseif($kjd_section_misc_settings['navbar_alignment'] =='center'){
 	
-		$navbar_markup .='#navbar ul.nav { margin:0 auto; text-align: center; width:100%;}';
-		$navbar_markup .='#navbar ul.nav > li{ display:inline-block; float:none;}';
+		$navbar_markup .='.navbar-wrapper ul.nav { margin:0 auto; text-align: center; width:100%;}';
+		$navbar_markup .='.navbar-wrapper ul.nav > li{ display:inline-block; float:none;}';
 	
 	}elseif($kjd_section_misc_settings['navbar_alignment'] =='right'){
 	
-		$navbar_markup .='#navbar .nav{ float:right;}';
+		$navbar_markup .='.navbar-wrapper .nav{ float:right;}';
 	
 	}
 
@@ -279,8 +279,8 @@ $navbar_markup .= '.navbar .nav > li > a:focus {';
 $navbar_markup .= '}';
 
 
-// $navbar_markup .= '#navbar .nav-tabs { border-bottom: none; }';
-// $navbar_markup .= '#navbar .nav-tabs > li {margin-bottom: 0;}';
+// $navbar_markup .= '.navbar-wrapper .nav-tabs { border-bottom: none; }';
+// $navbar_markup .= '.navbar-wrapper .nav-tabs > li {margin-bottom: 0;}';
 
 //hovered carret -->
 $navbar_markup .='.navbar .nav > li > a:hover.dropdown-toggle > .caret{';

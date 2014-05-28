@@ -47,7 +47,7 @@
 
 /* navbar logo and control */
 
-	#navbar .brand {
+	.navbar-wrapper .brand {
 	    color: #777777;
 	    display: block;
 	    float: left;
@@ -58,33 +58,33 @@
 	    text-shadow: 0 1px 0 #FFFFFF;
 	}
 
-	#navbar .brand {
+	.navbar-wrapper .brand {
 		margin-left:0px;
 	    padding-left: 0px;
 	    padding-right: 10px;
 
 	}
 
-	#navbar .navbar .container .btn-navbar,
-	#navbar .container #sidr-toggle,
-	#navbar .navbar .btn-navbar,
-	#navbar #sidr-toggle{
+	.navbar-wrapper .navbar .container .btn-navbar,
+	.navbar-wrapper .container #sidr-toggle,
+	.navbar-wrapper .navbar .btn-navbar,
+	.navbar-wrapper #sidr-toggle{
 		position: relative;
 		margin-top: 6px;
 		z-index: 99;
 	}
 
-	#navbar.navbar-fixed-top #sidr-toggle,
-	#navbar.navbar-fixed-bottom #sidr-toggle,
-	#navbar.navbar.navbar-fixed-top .btn-navbar,
-	#navbar.navbar.navbar-fixed-bottom .btn-navbar {
+	.navbar-wrapper.navbar-fixed-top #sidr-toggle,
+	.navbar-wrapper.navbar-fixed-bottom #sidr-toggle,
+	.navbar-wrapper.navbar.navbar-fixed-top .btn-navbar,
+	.navbar-wrapper.navbar.navbar-fixed-bottom .btn-navbar {
 		margin-right: 0px;
 		
 	}
 
 
 	/* navbar */
-	#navbar .collapse .nav{
+	.navbar-wrapper .collapse .nav{
 		width: auto;
 		padding: 10px 20px;
 	}
@@ -99,14 +99,14 @@
 		border-width: 0px !important;
 	}
 
-	#navbar.navbar-fixed-top .navbar-inner .navbar,
-	#navbar.navbar-fixed-bottom .navbar-inner .navbar,
-	#navbar.navbar-static-top  .navbar-inner .navbar{
+	.navbar-wrapper.navbar-fixed-top .navbar-inner .navbar,
+	.navbar-wrapper.navbar-fixed-bottom .navbar-inner .navbar,
+	.navbar-wrapper.navbar-static-top  .navbar-inner .navbar{
 /*		padding-left: 35px;
 		padding-right: 35px;*/
 	}
 
-	#navbar ul.nav > li{ 
+	.navbar-wrapper ul.nav > li{ 
 		display:block; 
 		float:none;
 	}
@@ -211,22 +211,22 @@
 		padding: 3px;
 	}
 
-	#navbar .navbar .btn-navbar,
-	#navbar #sidr-toggle{
+	.navbar-wrapper .navbar .btn-navbar,
+	.navbar-wrapper #sidr-toggle{
 		margin-right: 0;
 		margin-left: 0;
 	}
 
-	#navbar.navbar-fixed-top .brand.logo,
-	#navbar.navbar-fixed-bottom .brand.logo,
-	#navbar.navbar-fixed-top .brand.logo img,
-	#navbar.navbar-fixed-bottom .brand.logo img {
+	.navbar-wrapper.navbar-fixed-top .brand.logo,
+	.navbar-wrapper.navbar-fixed-bottom .brand.logo,
+	.navbar-wrapper.navbar-fixed-top .brand.logo img,
+	.navbar-wrapper.navbar-fixed-bottom .brand.logo img {
 		margin-left: 0px;
 		padding-left: 0px;
 	}
 	
-	#navbar.navbar-fixed-top .brand.logo,
-	#navbar.navbar-fixed-bottom .brand.logo {
+	.navbar-wrapper.navbar-fixed-top .brand.logo,
+	.navbar-wrapper.navbar-fixed-bottom .brand.logo {
 		margin-left: -10px;
 	}
 
@@ -245,7 +245,7 @@
 
 	#imageSliderWrapper.container > .container,
 	#header.container > .container,
-	#navbar.container > .container,
+	.navbar-wrapper.container > .container,
 	#cycler.container > .container,
 	#pageTitle.container > .container,
 	#body.container > .container,
@@ -277,28 +277,28 @@
 	navbar shit 
    ---------------------------------------------------- */
 
-	#navbar ul.nav > li{ 
+	.navbar-wrapper ul.nav > li{ 
 		display:block; 
 		float:none;
 	}
 
-	#navbar{
+	.navbar-wrapper{
 		clear: both;
 		float: none;
 		margin-top: 0;
 	}
 
-	#navbar .container{
+	.navbar-wrapper .container{
 		width: auto;
 	}
 
 
-	#navbar .collapse{
+	.navbar-wrapper .collapse{
 		overflow: hidden !important;
 		padding:0 20px;
 	}
 
-	#navbar .collapse .nav{
+	.navbar-wrapper .collapse .nav{
 		width: 100%;
 		padding: 10px 0;
 	}
@@ -314,7 +314,7 @@
 
 
 	
-	#navbar .collapse .nav{
+	.navbar-wrapper .collapse .nav{
 		float: none;
 	}
 
@@ -329,10 +329,10 @@
 		margin-top:0px !important;
 	}
 
-	#navbar .navbar .container .btn-navbar,
-	#navbar .container #sidr-toggle,
-	#navbar .navbar .btn-navbar,
-	#navbar #sidr-toggle {
+	.navbar-wrapper .navbar .container .btn-navbar,
+	.navbar-wrapper .container #sidr-toggle,
+	.navbar-wrapper .navbar .btn-navbar,
+	.navbar-wrapper #sidr-toggle {
 		margin-right: 0;
 	}
 
@@ -385,8 +385,8 @@
 		width:60px;
 	}
 
-	#navbar .btn-navbar,
-	#navbar #sidr-toggle{
+	.navbar-wrapper .btn-navbar,
+	.navbar-wrapper #sidr-toggle{
 		margin:6px 20px 0;
 	}
 

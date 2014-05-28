@@ -164,8 +164,8 @@ function kjd_build_mobile_styles_callback( $section = 'navbar', $override_nav ) 
 
 	$media_979_markup .= '@media(max-width:979px) {';
 		
-		$media_979_markup .= '#navbar .navbar-inner .nav-tabs.tabs > li > a, ';
-		$media_979_markup .= '#navbar .navbar-inner .nav-tabs.tabs-below > li > a {';
+		$media_979_markup .= '.navbar-wrapper .navbar-inner .nav-tabs.tabs > li > a, ';
+		$media_979_markup .= '.navbar-wrapper .navbar-inner .nav-tabs.tabs-below > li > a {';
 			$media_979_markup .= 'border-radius: 4px 4px 4px 4px;';
 			$media_979_markup .= '-moz-border-radius: 4px 4px 4px 4px;';
 			$media_979_markup .= '-webkit-border-radius: 4px 4px 4px 4px;';
@@ -173,23 +173,23 @@ function kjd_build_mobile_styles_callback( $section = 'navbar', $override_nav ) 
 		$media_979_markup .= '}';
 
 
-		$media_979_markup .= '#navbar .nav .dropdown-menu{ border-width:0px !important; }';
+		$media_979_markup .= '.navbar-wrapper .nav .dropdown-menu{ border-width:0px !important; }';
 
-	$media_979_markup .='#navbar ul.nav > li{ display:block; float:none; }';
+	$media_979_markup .='.navbar-wrapper ul.nav > li{ display:block; float:none; }';
 
 	// Positions navbar
 	if($kjd_section_misc_settings['menu_alignment'] =='left'){
 		
-		$media_979_markup .='#navbar.mobile-menu ul.nav{ float:left;}';
+		$media_979_markup .='.navbar-wrapper.mobile-menu ul.nav{ float:left;}';
 	
 	}elseif($kjd_section_misc_settings['menu_alignment'] =='center'){
 
-		$media_979_markup .='#navbar.mobile-menu ul.nav { margin:0 auto; text-align: center; width:100%;}';
-		$media_979_markup .='#navbar.mobile-menu ul.nav > li{ display:block; float:none;}';
+		$media_979_markup .='.navbar-wrapper.mobile-menu ul.nav { margin:0 auto; text-align: center; width:100%;}';
+		$media_979_markup .='.navbar-wrapper.mobile-menu ul.nav > li{ display:block; float:none;}';
 	
 	}elseif($kjd_section_misc_settings['menu_alignment'] =='right'){
 	
-		$media_979_markup .='#navbar.mobile-menu ul.nav{ float:right; text-align:right;}';
+		$media_979_markup .='.navbar-wrapper.mobile-menu ul.nav{ float:right; text-align:right;}';
 	
 	}
 
@@ -198,7 +198,7 @@ function kjd_build_mobile_styles_callback( $section = 'navbar', $override_nav ) 
 				Backgrounds and borders
 ------------------------------------------------------------ */
 
-	$media_979_markup .= '#navbar .navbar-inner {';
+	$media_979_markup .= '.navbar-wrapper .navbar-inner {';
 		// bg color and wallpaper
 		$media_979_markup .= background_type_callback($type, $kjd_section_background_colors, 'mobileNav');
 		$media_979_markup .= wallpaper_callback($kjd_section_background_wallpaper);
@@ -264,7 +264,7 @@ if($dropdown_bg != 'true'){
 			}";
 }else{
 
-  $media_979_markup .= '#navbar .navbar-inner {height: 40px}';
+  $media_979_markup .= '.navbar-wrapper .navbar-inner {height: 40px}';
   $media_979_markup .= ".nav-collapse.collapse > .nav:before
   	  {
   	     border-bottom: 7px solid ".$kjd_section_link['color']." !important;
@@ -318,13 +318,13 @@ if($dropdown_bg != 'true'){
 		$media_979_markup .= 'text-decoration:'.$kjd_section_link['decoration'].';';
 	$media_979_markup .= '}';
 
-	$media_979_markup .= '#navbar .nav > li > a.dropdown-toggle > .caret,';
-	$media_979_markup .= '#navbar .nav li.dropdown > .dropdown-toggle .caret {';
+	$media_979_markup .= '.navbar-wrapper .nav > li > a.dropdown-toggle > .caret,';
+	$media_979_markup .= '.navbar-wrapper .nav li.dropdown > .dropdown-toggle .caret {';
 		$media_979_markup .= 'border-top-color:'. $kjd_section_link['color'] .';';
 	$media_979_markup .= '}';
 
 	// caret
-	$media_979_markup .= "#navbar .dropdown-menu li > a:after, .dropdown-toggle:after {";
+	$media_979_markup .= ".navbar-wrapper .dropdown-menu li > a:after, .dropdown-toggle:after {";
 		$media_979_markup .= 'border-left-color:'. $kjd_section_link['color'] .' ;';
 	$media_979_markup .= "}";
 
@@ -356,19 +356,19 @@ if($dropdown_bg != 'true'){
 	$media_979_markup .= "}";
 
 
-	$media_979_markup .= '#navbar .nav > li.open > a.dropdown-toggle > .caret,';
+	$media_979_markup .= '.navbar-wrapper .nav > li.open > a.dropdown-toggle > .caret,';
 	$media_979_markup .= '#sidr .nav > li.active > a.dropdown-toggle > .caret,';
 	$media_979_markup .= '#sidr .nav > li.open > a.dropdown-toggle > .caret{';
 		$media_979_markup .= 'border-top-color:'. $kjd_section_linkActive['color'] .';';
 	$media_979_markup .= '}';	
 
 
-	$media_979_markup .= "#navbar .dropdown-menu li.active > a:after,";
+	$media_979_markup .= ".navbar-wrapper .dropdown-menu li.active > a:after,";
 	$media_979_markup .= ".dropdown.active .dropdown-toggle:after {";
 		$media_979_markup .= "border-left-color:". $kjd_section_linkActive['color'] ." ;";
 	$media_979_markup .= "}";
 
-	$media_979_markup .= '#navbar .dropdown-menu li.active > a:after {';
+	$media_979_markup .= '.navbar-wrapper .dropdown-menu li.active > a:after {';
 		$media_979_markup .= 'border-top-color:'. $kjd_section_linkActive['color'] .';';
 	$media_979_markup .= '}';
 
@@ -404,13 +404,13 @@ if($dropdown_bg != 'true'){
 	   $media_979_markup .= '}';
 
 
-	$media_979_markup .= '#navbar .nav > li.open > a.dropdown-toggle > .caret,';
-	$media_979_markup .= '#navbar .nav > li > a.dropdown-toggle:hover > .caret,';
-	$media_979_markup .= '#navbar .nav li.dropdown > .dropdown-toggle:hover .caret {';
+	$media_979_markup .= '.navbar-wrapper .nav > li.open > a.dropdown-toggle > .caret,';
+	$media_979_markup .= '.navbar-wrapper .nav > li > a.dropdown-toggle:hover > .caret,';
+	$media_979_markup .= '.navbar-wrapper .nav li.dropdown > .dropdown-toggle:hover .caret {';
 		$media_979_markup .= 'border-top-color:'. $kjd_section_linkHovered['color'] .';';
 	$media_979_markup .= '}';	
 
-	$media_979_markup .= '#navbar .dropdown-menu li > a:hover:after,'; 
+	$media_979_markup .= '.navbar-wrapper .dropdown-menu li > a:hover:after,'; 
 	$media_979_markup .= '.dropdown-toggle:hover:after';
 	$media_979_markup .= '{';
 		$media_979_markup .= 'border-left-color:'. $kjd_section_linkHovered['color'] .' ;';
@@ -448,7 +448,7 @@ function build_dropdown_styles( $dropdown_settings ){
 	
 	$output = '';
 
-	$output .= '#navbar .navbar-inner {';
+	$output .= '.navbar-wrapper .navbar-inner {';
 			$output .= 'background: none;';
 			$output .= 'background-color: none;';
 			$output .= 'background-image: none;';
@@ -458,7 +458,7 @@ function build_dropdown_styles( $dropdown_settings ){
 	$output .= '}';
 		
 
-	$output .= '#navbar .nav-collapse.collapse > .nav{';
+	$output .= '.navbar-wrapper .nav-collapse.collapse > .nav{';
 
 
 		// bg color and wallpaper
@@ -477,7 +477,7 @@ function build_dropdown_styles( $dropdown_settings ){
 
 	$output .= '}';
 
-	$output .= "#navbar .nav-collapse.collapse > .nav:before {";
+	$output .= ".navbar-wrapper .nav-collapse.collapse > .nav:before {";
 		$output .= "border-bottom: 8px solid ".$kjd_section_top_border['color'].";";
 		$output .= "border-left: 8px solid rgba(0, 0, 0, 0);";
 		$output .= "border-right: 8px solid rgba(0, 0, 0, 0);";
@@ -488,7 +488,7 @@ function build_dropdown_styles( $dropdown_settings ){
 		$output .= "top: -8px;";
 	$output .= "}";
 
-	$output .= "#navbar .nav-collapse.collapse > .nav:after {";
+	$output .= ".navbar-wrapper .nav-collapse.collapse > .nav:after {";
 		$output .= "border-bottom: 7px solid ".$kjd_section_background_colors['color'].";";
 		$output .= "border-left: 7px solid rgba(0, 0, 0, 0);";
 		$output .= "border-right: 7px solid rgba(0, 0, 0, 0);";
@@ -501,7 +501,7 @@ function build_dropdown_styles( $dropdown_settings ){
 
 
 
-	$output .= '#navbar .nav-collapse.collapse > .nav { ';
+	$output .= '.navbar-wrapper .nav-collapse.collapse > .nav { ';
 		      $output .= 'background-clip: padding-box;';
 		      $output .= 'margin-top:10px;';
 		      $output .= 'padding: 10px;';

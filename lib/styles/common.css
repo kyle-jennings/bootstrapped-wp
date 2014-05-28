@@ -61,7 +61,7 @@ html,body{
 
 	#imageSliderWrapper,
 	#header,
-	#navbar,
+	.navbar-wrapper,
 	#cycler,
 	#body,
 	#footer{
@@ -70,7 +70,7 @@ html,body{
 
 	#imageSliderWrapper > .container,
 	#header > .container,
-	#navbar > .container,
+	.navbar-wrapper > .container,
 	#cycler > .container,
 	#body > .container,
 	#footer > .container{
@@ -128,25 +128,25 @@ h2.logo-wrapper{
 	display:none;
 }
 
-#header #navbar {
+#header .navbar-wrapper {
 	line-height: 40px;
 	margin-left: 20px;
 }
 
-#navbar {
+.navbar-wrapper {
 	position: relative;
 	/*margin-bottom: 20px;*/
 }
 
 
-/*#navbar.navbar,*/
-#navbar .navbar {
+/*.navbar-wrapper.navbar,*/
+.navbar-wrapper .navbar {
 	margin-bottom: 0px;
 	/*padding: 0 10px;*/
 }
 
-#navbar.navbar-fixed-top,
-#navbar.navbar-fixed-bottom{
+.navbar-wrapper.navbar-fixed-top,
+.navbar-wrapper.navbar-fixed-bottom{
 	position: fixed;
 	margin-bottom: 0;
 }
@@ -203,16 +203,16 @@ h2.logo-wrapper{
 }
 
 
-#navbar .nav-tabs {
+.navbar-wrapper .nav-tabs {
 	border-bottom: 0px none transparent;
 }
 
-#navbar .nav-tabs > li {
+.navbar-wrapper .nav-tabs > li {
 	margin-top: 3px;
 	margin-bottom: 0px;
 }
 
-#navbar .nav-tabs.tabs-below > li {
+.navbar-wrapper .nav-tabs.tabs-below > li {
 	margin-top: 0px;
 	margin-bottom: 3px;
 }

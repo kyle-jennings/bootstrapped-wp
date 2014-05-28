@@ -26,7 +26,8 @@ function section_markup_callback($section,$section_options){
 			$section_name = '#imageSliderWrapper';
 			break;
 		case 'navbar':
-			$section_name = '#'.$section.'.primary-menu .navbar-inner';
+			// $section_name = '#'.$section.'.primary-menu .navbar-inner';
+			$section_name = '.'.$section.'-wrapper.primary-menu .navbar-inner';
 			break;
 		case 'htmlTag':
 			$section_name = 'html';

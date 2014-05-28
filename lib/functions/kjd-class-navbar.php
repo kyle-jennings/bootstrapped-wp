@@ -41,7 +41,7 @@ class kjdNavBar{
 				$navbar_style .= ' container navbar' ;
 			}
 
-			$navbar_open = '<div id="navbar" class=" '. $visibility .' '. $menu_id .' '. $navbar_style . '">';
+			$navbar_open = '<div class="navbar-wrapper '. $visibility .' '. $menu_id .' '. $navbar_style . '">';
 
 
 				$navbar_open .= $nav_wrapper;
@@ -146,10 +146,12 @@ class kjdNavBar{
 		}
 
 
-		/*
-			if the mobile nav is activated and set we use that. if its not set but its activated, then we use the primary nav,
-			otherwise, we display the default menu
-		*/
+		/**
+		 * if the mobile nav is activated and set we use that. 
+		 * if its not set but its activated, then we use the primary nav,
+		 * otherwise, we display the default menu
+		 */
+			
 		if ( $menu_id == 'mobile-menu' ){
 
 			if ( $use_mobile_menu == 'true' && has_nav_menu( 'mobile-menu' ) ){
