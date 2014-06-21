@@ -59,12 +59,20 @@ function kjd_get_theme_options($preview = null){
 		$sections[] = 'posts';
     }
 
-    if($mobileNav_options == 'sidr'){
-		$sections[] = 'sidr';
-    }
+	//	mobile nav settings
+	$mobileNavSettings = get_option('kjd_mobileNav_misc_settings');
+	$mobileNavSettings = $mobileNavSettings['kjd_mobileNav_misc'];
+	$override_nav = $mobileNavSettings['override_nav'];
+	if( $override_nav == 'true') {
 
+		$mobilenav_style = $mobileNavSettings['mobilenav_style'];
+		if( $mobilenav_style == 'sidr'){
 
+			$sections[] = 'sidr';
+		}
+	}
 
+// print_r($sections);die;
 	$section_output = '';
 	$miscMarkup = miscStylesCallback();
 

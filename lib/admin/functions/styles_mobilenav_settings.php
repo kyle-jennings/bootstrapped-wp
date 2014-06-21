@@ -149,7 +149,7 @@ function kjd_build_mobile_styles_callback( $section = 'navbar', $override_nav ) 
 		);
 
 
-		$media_979_markup .= build_sidr_styles( $sidr_settings );
+		// $media_979_markup .= build_sidr_styles( $sidr_settings );
 	
 	}else{
 		$use_default = 'true';
