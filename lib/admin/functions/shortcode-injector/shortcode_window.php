@@ -1,49 +1,30 @@
 <?php
 
-$path  = ''; 
-
-if ( !defined('WP_LOAD_PATH') ) {
-
-	/** classic root path if wp-content and plugins is below wp-config.php */
-	$classic_root = dirname(dirname(dirname(dirname(dirname(dirname(__FILE__)))))) . '/' ;
-	
-	if (file_exists( $classic_root . 'wp-load.php') )
-		define( 'WP_LOAD_PATH', $classic_root);
-	else
-		if (file_exists( $path . 'wp-load.php') )
-			define( 'WP_LOAD_PATH', $path);
-		else
-			exit("Could not find wp-load.php");
-}
-$adminRoot = dirname(__FILE__);
-// let's load WordPress
-require_once( WP_LOAD_PATH . 'wp-load.php');
-
+include_once('window-header.php');
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width" />
-<script src="<?php echo get_bloginfo('template_directory');?>/lib/admin/js/jquery.js" type="text/javascript"></script>
-<script language="javascript" type="text/javascript" src="<?php echo get_option('siteurl') ?>/wp-includes/js/tinymce/tiny_mce_popup.js"></script>
-<script language="javascript" type="text/javascript" src="<?php echo get_option('siteurl') ?>/wp-includes/js/tinymce/utils/mctabs.js"></script>
-<script language="javascript" type="text/javascript" src="<?php echo get_option('siteurl') ?>/wp-includes/js/tinymce/utils/form_utils.js"></script>
-<script language="javascript" type="text/javascript" src="<?php echo get_bloginfo('template_directory');?>/lib/scripts/bootstrap.min.js"></script>
-<link rel='stylesheet' id='bootstrap'  href="<?php echo get_bloginfo('template_directory');?>/lib/styles/bootstrap/bootstrap.css" type='text/css' media='all' />
-<link rel='stylesheet' id='bootstrap-responsive-css'  href="<?php echo get_bloginfo('template_directory');?>/lib/styles/bootstrap/bootstrap-responsive.css" type='text/css' media='all' />
 
-<script language="javascript" type="text/javascript" src="<?php echo get_bloginfo('template_directory');?>/lib/admin/js/colorpicker/minicolors.js"></script>
-<link rel='stylesheet'  href="colorpicker/minicolors.css" type='text/css' media='all' />
-<script language="javascript" type="text/javascript" src="<?php echo get_bloginfo('template_directory');?>/lib/admin/js/shortCodePlugin.js"></script>
+<script src="<?php echo $site_root;?>/lib/admin/js/jquery.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript" src="<?php echo $site_url; ?>/wp-includes/js/tinymce/tiny_mce_popup.js"></script>
+<script language="javascript" type="text/javascript" src="<?php echo $site_url; ?>/wp-includes/js/tinymce/utils/mctabs.js"></script>
+<script language="javascript" type="text/javascript" src="<?php echo $site_url; ?>/wp-includes/js/tinymce/utils/form_utils.js"></script>
+<script language="javascript" type="text/javascript" src="<?php echo $site_root;?>/lib/scripts/bootstrap.min.js"></script>
+
+<link rel='stylesheet' id='bootstrap'  href="<?php echo $site_root;?>/lib/styles/bootstrap/bootstrap.css" type='text/css' media='all' />
+
+<script language="javascript" type="text/javascript" src="<?php echo $site_root;?>/lib/admin/functions/shortcode-injector/shortCodePlugin.js"></script>
 
 <style>
-*{outline:none !important;}
-#thumbsStyle, #background-color,.buttonGroupSelect{display:none;}
-.buttonLabel{display:inline-block; width:80px;}
-.halfWidth{float:left; width:45%;}
-#shortCodeForm{ padding:0 10px;}
-.tab-content{height:450px;}
-#selectedShortCodeName{margin-left:10px;}
+	*{outline:none !important;}
+	#thumbsStyle, #background-color,.buttonGroupSelect{display:none;}
+	.buttonLabel{display:inline-block; width:80px;}
+	.halfWidth{float:left; width:45%;}
+	#shortCodeForm{ padding:0 10px;}
+	.tab-content{height:450px;}
+	#selectedShortCodeName{margin-left:10px;}
 
 </style>
 

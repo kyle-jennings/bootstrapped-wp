@@ -1,4 +1,5 @@
 <?php
+
 // include the file which builds the CSS
 include 'functions/styles_init.php';
 include 'functions/admin_functions.php';

@@ -325,3 +325,10 @@ function kjd_update_widget( $instance, $new_instance ) {
   return $instance;
 }
 add_filter( 'widget_update_callback', 'kjd_update_widget', 10, 2 );
+
+
+
+/**
+ * Adds the tinymce plugin
+ */
+include('shortcode-injector/init.php');
