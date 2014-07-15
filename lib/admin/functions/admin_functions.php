@@ -1,12 +1,15 @@
 <?php
 
+
+include_once('styles_init.php');
+
 function kjd_live_preview(){
     if( isset($_POST['data']) ){
 
     $data = $_POST['data'];
     $lib = dirname( dirname( dirname(__FILE__) ) ) ; 
 
-    include( $lib.'admin/functions/styles_init.php');
+
     $file = $lib.'/styles/preview.css';
 
 

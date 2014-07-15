@@ -25,3 +25,15 @@ function add_plugin($plugin_array) {
 
 // add the button
 add_action('admin_init', 'add_button');
+
+// add_action('admin_head','my_js_var_admin');
+function my_js_var_admin() {
+
+    ?>
+    <script type="text/javascript">
+    var ABSURL = '<?php echo __DIR__; ?>';
+    
+    </script>
+    
+    <?php
+}

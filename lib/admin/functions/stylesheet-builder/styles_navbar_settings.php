@@ -1,10 +1,4 @@
 <?php
-	// $navSettings = kjd_get_temp_settings(	$section,
-	// 										$navSettings['kjd_navbar_misc'],
-	// 										$preview, 
-	// 										'kjd_navbar_misc_settings' 
-	// 									);
-
 
 function navbarStylesCallback( $preview ){
 	
@@ -331,9 +325,3 @@ $navbar_markup .=".navbar .nav li.open > a:after{
 	
 	return ($navbar_markup);
 }
-
-
-/* ---------------------------------------------------------------------------------------
-						dropdown colors
---------------------------------------------------------------------------------------- */
-include('styles_dropdown_settings.php');

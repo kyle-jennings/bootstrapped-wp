@@ -1,4 +1,9 @@
 <?php
+	include_once('stylesheet-builder/styles_functions.php');
+	include_once('stylesheet-builder/styles_navbar_settings.php');
+	include_once('stylesheet-builder/styles_dropdown_settings.php');
+	include_once('stylesheet-builder/styles_mobilenav_settings.php');
+	include_once('stylesheet-builder/styles_markup.php');
 
 /*
 	$section = markup section (header, body ect)
@@ -423,8 +428,6 @@ function kjd_get_theme_options($preview = null){
 /* ----------------------------------------------------------------
 			get navbr styles
 -------------------------------------------------------------------*/
-	include('styles_navbar_settings.php');
-	include('styles_mobilenav_settings.php');
 	
 	$navArea_markup = navbarStylesCallback( $preview );
 
@@ -457,6 +460,3 @@ function kjd_get_theme_options($preview = null){
 	
 } // end build css function
 
-
-include('styles_markup.php');
-include('styles_functions.php');

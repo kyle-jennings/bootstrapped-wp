@@ -9,8 +9,7 @@ function kjd_build_mobile_styles_callback( $section = 'navbar', $override_nav ) 
 					Set options			
 	------------------------------------------------- */
 	$options_links = get_option('kjd_'.$section.'_links_settings');
-	// echo '<pre>'
-	// print_r($options_links['kjd_'.$section.'_link']); die();
+
 	$kjd_section_link = kjd_get_temp_settings(	$section,
 												$options_links['kjd_'.$section.'_link'],
 												$preview,
@@ -38,9 +37,9 @@ function kjd_build_mobile_styles_callback( $section = 'navbar', $override_nav ) 
 
 	// border settings
 	$sectionBorders = array('top'=>$kjd_section_top_border,
-					'right'=>$kjd_section_right_border,
-					'bottom'=>$kjd_section_bottom_border,
-					'left'=>$kjd_section_bottom_border
+							'right'=>$kjd_section_right_border,
+							'bottom'=>$kjd_section_bottom_border,
+							'left'=>$kjd_section_bottom_border
 					);
 	$options_borders = get_option('kjd_'.$section.'_borders_settings'); 
 
