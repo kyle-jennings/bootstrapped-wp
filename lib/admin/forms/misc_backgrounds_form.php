@@ -80,7 +80,7 @@ function kjd_misc_backgrounds_display() {
 // html background
 ////////////////////////////////////
 function kjd_htmlTag_background_callback($section){
-	include	'background_settings_form.php';
+	include	'background.php';
 	
 }
 
@@ -89,7 +89,7 @@ function kjd_htmlTag_background_callback($section){
 ////////////////////////////////////
 
 function kjd_bodyTag_background_callback($section){
-	include	'background_settings_form.php';
+	include	'background.php';
 }
 
 ////////////////////////////////////

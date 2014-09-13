@@ -41,21 +41,37 @@ form.kjd-options{
   height:100%;
 }
 
+
+div.updated, div.error {
+  margin: 5px 15px 10px 0;
+}
+
+
+/* -----------------------------------------------------------------
+         fields column
+------------------------------------------------------------------- */
+form .fields-wrapper{
+  float:left;
+  width:200px;
+}
+
+form .banner-fields-wrapper{
+  width:99%;
+}
+
+
+/* -----------------------------------------------------------------
+          Live Preview  
+------------------------------------------------------------------- */
 div.preview-options{
   border:none;
   height: 100%;
   height:auto;
   min-height: 100%;
   overflow: hidden;
-  margin-left: 400px;
+  margin-left: 200px;
 }
 
-div.updated, div.error {
-  margin: 5px 15px 10px 0;
-}
-/* -----------------------------------------------------------------
-          Live Preview  
-------------------------------------------------------------------- */
 div.preview-options > .preview-window,
 div.preview-options > .preview-size{
   clear: both;
@@ -71,15 +87,6 @@ div.preview-options > .preview-size{
   clear:both;
   content: '';
   display: block;
-}
-
-form .fields-wrapper{
-  float:left;
-  width:400px;
-}
-
-form .banner-fields-wrapper{
-  width:99%;
 }
 
 /* -----------------------------------------------------------------

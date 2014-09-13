@@ -355,3 +355,43 @@ function kjd_add_body_class( $classes ){
 }
 add_filter('body_class', 'kjd_add_body_class');
 
+
+
+// old image grabber
+function kjd_get_post_images($postID, $size = NULL) {
+
+$attachments = get_children( array( 
+	'post_parent' => $postID, 
+	'post_type' => 'attachment', 
+	'post_mime_type' => 'image', 
+	'orderby' => 'menu_order', 
+	'order' => 'ASC', 
+	'numberposts' => 999 ) 
+); 
+	$images = array();
+/* $images is now a object that contains all images (related to post id 1) and their information ordered like the gallery interface. */
+    $attributes = array();
+	if ( $attachments){
+	    //looping through the images
+	    foreach ( $attachments as $attachment => $att ) {
+
+	    	$url = wp_get_attachment_image_src($attachment, 'thumbnail');
+			$attributes['thumbnail']= $url[0];
+			$url = wp_get_attachment_image_src($attachment, 'medium');
+			$attributes['medium'] = $url[0];
+			$url = wp_get_attachment_image_src($attachment, 'large');
+			$attributes['large'] = $url[0];
+			$url = wp_get_attachment_image_src($attachment, 'full');
+			$attributes['full'] = $url[0];
+			
+			$attributes['image_id'] = $att->ID;
+			$attributes['title'] = $att->post_title;
+			$attributes['description'] = $att->post_content;
+			$attributes['caption'] = $att->post_excerpt;
+			$attributes['alt'] = $att->_wp_attachment_image_alt;
+			array_push($images, $attributes);
+	    }
+	}	
+	return $images;
+
+}
