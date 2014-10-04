@@ -53,10 +53,8 @@ function kjd_add_assets(){
 	
 
 	wp_enqueue_style("bootstrap", $root."/styles/bootstrap/bootstrap.min.css");
+	wp_enqueue_style("bootstrap-responsive", $root."/styles/bootstrap/bootstrap-responsive.min.css");
 
-	if($responsive == 'true'){
-		wp_enqueue_style("bootstrap-responsive", $root."/styles/bootstrap/bootstrap-responsive.min.css");
-	}
 
 	// wp_enqueue_style("custom", $wpcontent."/styles/custom.css");
 	wp_enqueue_style("base", $root."/styles/common.css");	

@@ -1,0 +1,29 @@
+*{ outline:none !important; }
+
+.forceColors {
+	padding: 10px;
+}
+
+#thumbsStyle, 
+#background-color,
+.buttonGroupSelect{
+	display:none;
+}
+
+.buttonLabel{
+	display:inline-block; 
+	width:80px;
+}
+
+.halfWidth{
+	float:left; 
+	width:45%;
+}
+
+.tab-content{
+	height:450px;
+}
+
+#selectedShortCodeName{
+	margin-left:10px;
+}

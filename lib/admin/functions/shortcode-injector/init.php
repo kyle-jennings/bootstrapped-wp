@@ -17,7 +17,7 @@ function register_button($buttons) {
 
 function add_plugin($plugin_array) {  
     $admin_dir = get_stylesheet_directory_uri().'/lib/admin';
-    $mce_plugin_js = $admin_dir.'/functions/shortcode-injector/mcePlugin.js';
+    $mce_plugin_js = $admin_dir.'/functions/shortcode-injector/js/mcePlugin.js';
 
     $plugin_array['kjdShortCodeInjection'] = $mce_plugin_js;  
     return $plugin_array;  
@@ -25,15 +25,3 @@ function add_plugin($plugin_array) {
 
 // add the button
 add_action('admin_init', 'add_button');
-
-// add_action('admin_head','my_js_var_admin');
-function my_js_var_admin() {
-
-    ?>
-    <script type="text/javascript">
-    var ABSURL = '<?php echo __DIR__; ?>';
-    
-    </script>
-    
-    <?php
-}

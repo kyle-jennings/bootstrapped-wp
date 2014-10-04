@@ -41,7 +41,7 @@ function kjd_mobileNav_misc_settings_callback(){
 <!-- end nav -->
 
 <!-- tabbed content -->
-<div class="tab-content">
+<div class="tab-content cf">
 
 <!-- new tab -->
 	<div class="tab-pane cf active" id="general-mobile">

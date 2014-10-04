@@ -105,23 +105,33 @@ div.preview-options > .preview-size{
 
 
 
-.option{  
-    clear:both; 
-    float:left; 
-    margin-right:10px;
-    margin-bottom:20px; 
-    min-width:390px;
-  }
+.option,
+.bswp-option {
+  clear:both; 
+  float:left; 
+  margin-right:10px;
+  margin-bottom:20px; 
+  min-width:390px;
+}
 
 
 .tab-pane .option {
   clear: none;
-  float: left;
-
-  height: 60px;
+  
   width: 180px;
   min-width: 180px;
 }
+
+.tab-pane .option:after
+.tab-pane .option:before, {
+  content: '';
+  display: table;
+}
+
+.tab-pane .option:after {
+  clear: both;
+}
+
 
   .option-wrapper.banner_image_options{
       width: auto;
@@ -204,7 +214,8 @@ div.preview-options > .preview-size{
       mini colorstuff  
 ------------------------------------------------------------------- */
 .color-option, 
-.color_option { 
+.color_option,
+.bswp-option--color-select { 
     clear:both;
     float:left;
     margin-bottom:10px;

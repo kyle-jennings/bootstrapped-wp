@@ -147,7 +147,7 @@ class dropdown_menu extends Walker_Nav_Menu {
  */
 class sidr_menu extends Walker_Nav_Menu {
 
-function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
  
  
 		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';

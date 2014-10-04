@@ -183,7 +183,7 @@ class kjdNavBar{
 			
 			    $menu = '';
 
-			    $menu .= '<ul class="nav nav-pills hidden-desktop">';
+			    $menu .= '<ul class="nav nav-pills nav-stacked hidden-desktop">';
 				$menu .= '<li><a href="'. home_url() .'/" title="home">Home</a></li>';
 				if( is_user_logged_in() ){
 					$menu .= '<li><a href="'. home_url() .'/wp-admin/nav-menus.php" title="set menus" >Set Menu</a></li>';
@@ -269,7 +269,7 @@ class kjdNavBar{
 			case 'text':
 				$button_class = "menu-text";
 				
-				$button_inner = $button_misc['menu_btn_text'];
+				$button_inner ='<span class="brand brand--menu-button">'.$button_misc['menu_btn_text'].'</span>';
 				break;
 			case 'image':
 				$button_class = "menu-image";
@@ -278,6 +278,11 @@ class kjdNavBar{
 				break;
 			default:
 				$button_class = "btn btn-navbar";
+
+				$button_inner = '';
+				$button_inner .= '<span class="icon-bar"></span>';
+				$button_inner .= '<span class="icon-bar"></span>';
+				$button_inner .= '<span class="icon-bar"></span>';
 				break;		
 		endswitch;
 

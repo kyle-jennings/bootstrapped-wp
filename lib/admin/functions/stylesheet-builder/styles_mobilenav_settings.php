@@ -120,8 +120,6 @@ function kjd_build_mobile_styles_callback( $section = 'navbar', $override_nav ) 
 	}elseif( $mobile_nav_style == 'sidr' ) {
 		$using_sidr = 'true';
 
-
-
 		// Background Settings
 		$options_backgrounds = get_option('kjd_sidrDrawer_background_settings');
 		$kjd_sidrDrawer_background_colors = kjd_get_temp_settings(	$section,  
@@ -135,6 +133,7 @@ function kjd_build_mobile_styles_callback( $section = 'navbar', $override_nav ) 
 																	$preview, 
 																	'kjd_section_background_wallpaper'
 																);
+
 		$sidr_settings = array(
 			'kjd_section_link' => $kjd_section_link,
 			'kjd_section_linkHovered' => $kjd_section_linkHovered,
@@ -148,7 +147,7 @@ function kjd_build_mobile_styles_callback( $section = 'navbar', $override_nav ) 
 		);
 
 
-		// $media_979_markup .= build_sidr_styles( $sidr_settings );
+		$media_979_markup .= build_sidr_styles( $sidr_settings );
 	
 	}else{
 		$use_default = 'true';

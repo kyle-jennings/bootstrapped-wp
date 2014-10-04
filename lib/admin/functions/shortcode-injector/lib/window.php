@@ -1,32 +1,22 @@
-<?php
+<?php include_once('window-header.php'); 
 
-include_once('window-header.php');
+	$dir = $site_root.'/lib/admin/functions/shortcode-injector';
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width" />
 
-<script src="<?php echo $site_root;?>/lib/admin/js/jquery.js" type="text/javascript"></script>
-<script language="javascript" type="text/javascript" src="<?php echo $site_url; ?>/wp-includes/js/tinymce/tiny_mce_popup.js"></script>
-<script language="javascript" type="text/javascript" src="<?php echo $site_url; ?>/wp-includes/js/tinymce/utils/mctabs.js"></script>
-<script language="javascript" type="text/javascript" src="<?php echo $site_url; ?>/wp-includes/js/tinymce/utils/form_utils.js"></script>
-<script language="javascript" type="text/javascript" src="<?php echo $site_root;?>/lib/scripts/bootstrap.min.js"></script>
+	<script src="<?php echo $site_root;?>/lib/admin/js/jquery.js" type="text/javascript"></script>
+	<script language="javascript" type="text/javascript" src="<?php echo $site_url; ?>/wp-includes/js/tinymce/tiny_mce_popup.js"></script>
+	<script language="javascript" type="text/javascript" src="<?php echo $site_url; ?>/wp-includes/js/tinymce/utils/mctabs.js"></script>
+	<script language="javascript" type="text/javascript" src="<?php echo $site_url; ?>/wp-includes/js/tinymce/utils/form_utils.js"></script>
 
-<link rel='stylesheet' id='bootstrap'  href="<?php echo $site_root;?>/lib/styles/bootstrap/bootstrap.css" type='text/css' media='all' />
+	<link rel='stylesheet' id='bootstrap'  href="<?php echo $dir;?>/css/bootstrap.css" type='text/css' media='all' />
+	<link rel='stylesheet' id='bootstrap'  href="<?php echo $dir;?>/css/shortcodes.css" type='text/css' media='all' />
 
-<script language="javascript" type="text/javascript" src="<?php echo $site_root;?>/lib/admin/functions/shortcode-injector/shortCodePlugin.js"></script>
-
-<style>
-	*{outline:none !important;}
-	#thumbsStyle, #background-color,.buttonGroupSelect{display:none;}
-	.buttonLabel{display:inline-block; width:80px;}
-	.halfWidth{float:left; width:45%;}
-	#shortCodeForm{ padding:0 10px;}
-	.tab-content{height:450px;}
-	#selectedShortCodeName{margin-left:10px;}
-
-</style>
+	<script language="javascript" type="text/javascript" src="<?php echo $dir;?>/js/bootstrap.min.js"></script>
+	<script language="javascript" type="text/javascript" src="<?php echo $dir;?>/js/shortcodes.js"></script>
 
 </head>
 <body>

@@ -226,7 +226,12 @@
 -------------------------------- */
 if($mobilenav_style =='sidr'){
 	$sidr_object = new kjdNavBar;
-	$sidr_object = $sidr_object->kjd_build_menu( 'mobile-menu', 'sidr-style', $use_mobile_menu, 'sidr_menu' );
+	$sidr_object = $sidr_object->kjd_build_menu( 
+		'mobile-menu', 
+		'sidr-style', 
+		$use_mobile_menu, 
+		'sidr_menu' 
+	);
 
 	echo '<div id="sidr">';
 		echo $sidr_object;
