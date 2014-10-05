@@ -38,8 +38,7 @@ get_header();
 		kjd_image_slider_callback( $confineBodyBackground, $position, $arrayLength, $layoutSettings, 'default' );
 	}
 
-	if(!empty($components))
-	{ 
+if(!empty($components)) { 
 ?>
 
 <div id="body" class="frontPageBody <?php echo $confineBodyBackground =='true' ? 'container confined' : '' ;?>">

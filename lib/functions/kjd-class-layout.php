@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * This builds the entire page, including the header and footer
+ */
 class kjdScaffolding extends kjdLayout {
 
 	public function __construct(){
@@ -16,6 +20,10 @@ class kjdScaffolding extends kjdLayout {
 
 }
 
+
+/**
+ * This is the layout class. It builds the main content shit
+ */
 class kjdLayout {
 	
 	public $output = '';
@@ -61,7 +69,7 @@ class kjdLayout {
 				$scaffolding_markup .= '<div class="row">';
 
 
-					// print_r($layoutSettings); die();
+
 					/* ----------------- top or left sidebar ------------------- */
 					 if($position =='top' || $position =='left'){ 
 			

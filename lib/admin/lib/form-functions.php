@@ -11,13 +11,13 @@ $section = ''
  * @param  [type] $conditional [description]
  * @return [type]              [description]
  */
-function bswp_select_field($section, $label, $name, $setting, $option ){
+function bswp_select_field($section, $label, $name, $value, $options ){
 	?>
 	<div class="option">
 		<label><?php echo $label; ?></label>	
 		<select name="<?php echo $name; ?>">
 			<?php 
-			foreach:
+			foreach($options as $k=>$v):
 			?>
 				<option value="<?php echo $option; ?>" 
 				<?php selected( $setting, $option, true); ?> >
@@ -32,15 +32,8 @@ function bswp_select_field($section, $label, $name, $setting, $option ){
 	<?php
 }
 
-/**
- * Color Field
- * @param  string $section [description]
- * @param  string $label   [description]
- * @param  string $name    [description]
- * @param  array $setting [description]
- * @return echo          [description]
- */
-function bswp_color_field($section, $label, $name, $setting, $value, $option){
+
+function bswp_color_field($section, $label, $name, $value, $options){
 	$rgb_value = $setting ? $setting : 'none';
 	$rgba_value = 
 	?>

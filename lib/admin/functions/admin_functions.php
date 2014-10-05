@@ -112,7 +112,7 @@ function kjd_site_preview(){
   }
 
   $site_preview .= '</select>';
-  $site_preview .='<iframe class="preview-window" src="'.get_site_url().'" width="100%" height="600"></iframe>';
+  $site_preview .='<iframe class="preview-window" src="'.get_bloginfo('url').'" width="100%" height="600"></iframe>';
 
   return $site_preview;
 }

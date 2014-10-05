@@ -120,29 +120,43 @@ function kjd_build_mobile_styles_callback( $section = 'navbar', $override_nav ) 
 	}elseif( $mobile_nav_style == 'sidr' ) {
 		$using_sidr = 'true';
 
+		// kjd_sidr_background_settings[kjd_sidr_background_colors][color]
+
 		// Background Settings
-		$options_backgrounds = get_option('kjd_sidrDrawer_background_settings');
-		$kjd_sidrDrawer_background_colors = kjd_get_temp_settings(	$section,  
-																$options_backgrounds['kjd_sidrDrawer_background_colors'], 
+		$options_backgrounds = get_option('kjd_sidr_background_settings');
+		$kjd_sidr_background_colors = kjd_get_temp_settings(	$section,  
+																$options_backgrounds['kjd_sidr_background_colors'], 
 																$preview, 
 																'kjd_section_background_colors' 
 															);
 
-		$kjd_sidrDrawer_background_wallpaper = kjd_get_temp_settings(	$section, 
-																	$options_backgrounds['kjd_sidrDrawer_background_wallpaper'], 	
+		$kjd_sidr_background_wallpaper = kjd_get_temp_settings(	$section, 
+																	$options_backgrounds['kjd_sidr_background_wallpaper'], 	
 																	$preview, 
 																	'kjd_section_background_wallpaper'
 																);
 
+		// border shit
+		$options_borders = get_option('kjd_sidr_borders_settings');
+		$kjd_sidr_borders = kjd_get_temp_settings(	$section,  
+													$options_borders, 
+													$preview, 
+													'kjd_section_borders_colors' 
+												);
+
+		$kjd_sidr_right_border = $kjd_sidr_borders['kjd_sidr_right_border'];
+		
+
+		// send this shit to the mobilenav function
 		$sidr_settings = array(
 			'kjd_section_link' => $kjd_section_link,
 			'kjd_section_linkHovered' => $kjd_section_linkHovered,
 			'kjd_section_linkActive' => $kjd_section_linkActive,
 			'kjd_section_linkVisited' => $kjd_section_linkVisited,
-			'kjd_sidrDrawer_background_colors' => $kjd_sidrDrawer_background_colors,
-			'kjd_sidrDrawer_background_wallpaper' => $kjd_sidrDrawer_background_wallpaper,
-			'kjd_sidr_border_settings' => $kjd_section_misc_settings,
-			'type' => $kjd_sidrDrawer_background_colors['gradient']
+			'kjd_sidr_background_colors' => $kjd_sidr_background_colors,
+			'kjd_sidr_background_wallpaper' => $kjd_sidr_background_wallpaper,
+			'kjd_sidr_border_settings' => $kjd_sidr_right_border,
+			'type' => $kjd_sidr_background_colors['gradient']
 
 		);
 
@@ -521,18 +535,18 @@ function build_sidr_styles( $sidr_settings ){
 
 	extract( $sidr_settings );
 
+
 	$output ='';
 
 	$output .= '#sidr{';
 
 		// bg color and wallpaper
-		$output .= background_type_callback( $type, $kjd_sidrDrawer_background_colors );
-		$output .= wallpaper_callback( $kjd_sidrDrawer_background_wallpaper );
-		
+		$output .= background_type_callback( $type, $kjd_sidr_background_colors );
+		$output .= wallpaper_callback( $kjd_sidr_background_wallpaper );
 		// borders
-		$output .= 'border-right-color:' . $kjd_sidr_border_settings['drawer_border_color'] . ';';
-		$output .= 'border-right-style:' . $kjd_sidr_border_settings['drawer_border_style'] . ';';
-		$output .= 'border-right-width:' . $kjd_sidr_border_settings['drawer_border_size'] . ';';
+		$output .= 'border-right-color:' . $kjd_sidr_border_settings['color'] . ';';
+		$output .= 'border-right-style:' . $kjd_sidr_border_settings['style'] . ';';
+		$output .= 'border-right-width:' . $kjd_sidr_border_settings['size'] . ';';
 
 
 

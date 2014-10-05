@@ -106,12 +106,12 @@ html,body{
 .logo-wrapper > img:hover { 
 	box-shadow: none !important; }
 
-h1.logo-wrapper,
-h2.logo-wrapper{ 
+.jumbotron h1.logo-wrapper,
+.jumbotron h2.logo-wrapper{ 
 	display: block;
-	font-size: 60px;
+	font-size: 72px;
 	letter-spacing: -1px;
-	line-height: 60px;
+	line-height: 72px;
 	/*margin: 0 0 0 30px;*/
 	position: relative;
 	z-index: 99;
