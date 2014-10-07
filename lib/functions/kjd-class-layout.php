@@ -160,7 +160,7 @@ class kjdLayout {
 			$template = 'attachment';
 
 		}elseif( is_404() ){
-
+			
 			$template = '404';
 
 		}elseif( is_category() ){
@@ -402,9 +402,9 @@ class kjdLayout {
 		        $the_content_markup .= '</div>';
 			}
 
-		}elseif(is_404()){
+		}elseif( is_404() ){
 
-			$the_content_markup = kjd_the_404();
+			$the_content_markup = $this->kjd_the_404();
 
 		}elseif(is_single() || is_page()){
 			

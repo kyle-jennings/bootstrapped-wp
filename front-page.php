@@ -2,6 +2,7 @@
 
 get_header();
 
+
 	
 	$front_page = new kjdLayout();
 	$layoutSettings = $front_page->kjd_get_layout_settings();
