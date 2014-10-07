@@ -109,7 +109,7 @@ class kjdLayout {
 
 					}else{
 							$scaffolding_markup .= '<div class="content-wrapper">';
-									$scaffolding_markup .= $this->kjd_the_404();
+									$scaffolding_markup .= kjd_the_404();
 							$scaffolding_markup .= '</div>';	
 					}
 					/* ---------------------- End Loop ----------------------- */
