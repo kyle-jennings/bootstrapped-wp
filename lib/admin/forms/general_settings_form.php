@@ -62,21 +62,20 @@ screen_icon('themes'); ?>
 <?php
 }
 function kjd_theme_home_callback(){
+	?>
+
+		<h3>What do you want to style?</h3>
+
+		<?php include( dirname( dirname(__FILE__)).'/functions/layout-diagram.php');?>
+<?php
+}
+
+/**
+ * Import/export
+ */
+function kjd_settings_mgmt(){
 	include('functions/kjd_export_settings.php'); 
 ?>
-	<div class="optionsWrapper">
-		<h3>What do you want to style?</h3>
-		<div class="option">
-			<ul class="unstyled">
-				Map coming soon
-
-			</ul>
-		</div>
-	</div>
-
-
-
-
 	<div class="optionsWrapper">
 		<h3>Export your settings</h3>
 		<div class="option">
@@ -98,8 +97,7 @@ function kjd_theme_home_callback(){
 			</form>
 		</div> -->
 	</div>
-
-<?php
+	<?php
 }
 ////////////////////
 // theme settings

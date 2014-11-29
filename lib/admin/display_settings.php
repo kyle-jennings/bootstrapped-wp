@@ -8,13 +8,13 @@ function kjd_settings_display($section = null) {
 	$options = get_option('kjd_posts_misc_settings');
 	$options = $options['kjd_posts_misc'];
 	
-	$tabs = array(	0 =>'background',
-					1=>'borders',
-					2=>'headings',
-					3=>'Text',
-					4=>'presentation',
-					5=>'images',
-					6=>'misc'
+	$tabs = array(	0 => 'background',
+					1 => 'borders',
+					2 => 'headings',
+					3 => 'text',
+					4 => 'presentation',
+					5 => 'images',
+					6 => 'misc'
 				);
 
 	if($section == "cycler"){
@@ -115,7 +115,7 @@ function kjd_settings_display($section = null) {
 		
 			kjd_section_headings_callback($section);
 		
-		}elseif($active_tab == 'Text' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler')){
+		}elseif($active_tab == 'text' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler')){
 		
 			kjd_section_text_callback($section);
 		
@@ -190,7 +190,7 @@ function kjd_section_headings_callback($section){
 }
 
 ////////////////////////////////////
-// Text  styles
+// text  styles
 ////////////////////////////////////
 function kjd_section_text_callback($section){
 	include('forms/text.php');

@@ -359,3 +359,91 @@ li.cycler_image > div.option,li.cycler_image > h3{padding:5px;}
 
 .remove_image:hover{	border: 1px solid #8f2828; color:white;}
 
+/**
+ * Layout Diagram
+ */
+[class^="layout-diagram__"] {
+  background: #cce5d6;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 5px;
+  padding: 10px;
+}
+[class^="layout-diagram__"]:last-child {
+  margin-bottom: 0px;
+}
+
+[class^="layout-diagram__"].active {
+
+  transition:all 0.5s ease;
+  transform:scale(1.03);
+}
+
+.layout-diagram{
+  width: 500px;
+}
+
+/* Page Structure */
+.layout-diagram__html{
+
+}
+.layout-diagram__body{
+
+}
+.layout-diagram__page-wrap{
+    background: #f7afb1;
+}
+
+/* Mast Area */
+.layout-diagram__mast{
+  background:#b8dcef;
+}
+.layout-diagram__header{
+  height: 50px;
+}
+.layout-diagram__navbar{
+  height: 10px;
+}
+/* Content Area */
+.layout-diagram__content-area{
+  background: #caf3b5;
+
+}
+
+.layout-diagram__main,
+.layout-diagram__aside {
+  float: left;
+  height: 100px;
+  padding:5px 0;
+  
+}
+.layout-diagram__main{
+  margin-right: 10px;
+  width:70%;
+}
+.layout-diagram__aside{
+  width: 25%;
+}
+
+/* Footer Area */
+.layout-diagram__footer{
+    background:#c8aef6;
+}
+
+
+
+.options-list {
+
+}
+.options-list > li {
+  display: inline-block;
+  float: left;
+  width: 200px;
+}
+
+.options-list > li > a {
+  font-weight: bold;
+}
+
+.options-list__settings {
+  padding-left:10px;
+}

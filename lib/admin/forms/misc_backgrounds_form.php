@@ -25,8 +25,6 @@ function kjd_misc_backgrounds_display() {
 	  <a href="?page=kjd_misc_background_settings&tab=bodyTag" class="nav-tab"<?php echo $active_tab == 'bodyTag' ? 'id="active"' : 'none'; ?>>BODY Tag</a>  	
 	  <a href="?page=kjd_misc_background_settings&tab=mastArea" class="nav-tab"<?php echo $active_tab == 'mastArea' ? 'id="active"' : 'none'; ?>>Mast</a>  	
 	  <a href="?page=kjd_misc_background_settings&tab=contentArea" class="nav-tab"<?php echo $active_tab == 'contentArea' ? 'id="active"' : 'none'; ?>>Main Content</a>  	
-	  <a href="?page=kjd_misc_background_settings&tab=mobileNavArea" class="nav-tab"<?php echo $active_tab == 'mobileNavArea' ? 'id="active"' : 'none'; ?>>Mobile Nav Area</a>  	
-
  	 	
 </h2>
 
@@ -45,8 +43,6 @@ function kjd_misc_backgrounds_display() {
 		kjd_mastArea_background_callback('mastArea');
 	}elseif($active_tab == 'contentArea'){
 		kjd_contentArea_background_callback('contentArea');
-	}elseif($active_tab == 'mobileNavArea'){
-		kjd_mobileNavArea_background_callback('mobileNavArea');
 	}
 ?>
 <input  id="dropdown-id" type="hidden"
@@ -155,12 +151,4 @@ function kjd_contentArea_background_callback($section){
 	</div>
 
 	<?php
-}
-
-////////////////////////////////////
-// Sidr Drawer background
-////////////////////////////////////
-
-function kjd_mobileNavArea_background_callback($section){
-	include	'background_settings_form.php'; 
 }

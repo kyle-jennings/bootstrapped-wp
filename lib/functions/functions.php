@@ -148,11 +148,11 @@ add_action('login_head', 'kjd_login_css');
 
 function kjd_the_404(){
 
-	// $page_404 = get_option('kjd_theme_settings');
-	// $page_404 = !empty($page_404['kjd_404_page']) ? $page_404['kjd_404_page'] : '' ;
-	// $output = do_shortcode($page_404);
+	$page_404 = get_option('kjd_theme_settings');
+	$page_404 = !empty($page_404['kjd_404_page']) ? $page_404['kjd_404_page'] : '' ;
+	$output = do_shortcode($page_404);
 
-	return '$outout';
+	return $outout;
 }
 
 /* -----------------------------------------------------

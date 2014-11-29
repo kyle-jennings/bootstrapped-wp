@@ -404,7 +404,7 @@ class kjdLayout {
 
 		}elseif( is_404() ){
 
-			$the_content_markup = $this->kjd_the_404();
+			$the_content_markup = kjd_the_404();
 
 		}elseif(is_single() || is_page()){
 			
