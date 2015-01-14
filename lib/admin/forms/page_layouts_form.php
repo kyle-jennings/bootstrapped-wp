@@ -1,32 +1,32 @@
 <?php
 // -------------------------------
-// Page Layout Settings 
+// Page Layout Settings
 // -------------------------------
 
 function kjd_page_layout_settings_display() {  ?>
-<div class="optionsWrapper wrap">  
-	  <?php screen_icon('themes'); ?> 
-	  <h2>Page Layouts</h2>  
+<div class="optionsWrapper wrap">
+	  <?php screen_icon('themes'); ?>
+	  <h2>Page Layouts</h2>
 
 <?php
 
-	if( isset( $_GET[ 'tab' ] ) ) {  
-	 $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'posts'; 
+	if( isset( $_GET[ 'tab' ] ) ) {
+	 $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'posts';
 	}else{
-	 $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'posts'; 
+	 $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'posts';
 	}
-?> 
-	<h2 class="nav-tab-wrapper">  
-	  <a href="?page=kjd_page_layout_settings&tab=posts" class="nav-tab"<?php echo $active_tab == 'posts' ? 'id="active"' : 'none'; ?>>Page Layouts</a> 
-	  <a href="?page=kjd_page_layout_settings&tab=pages" class="nav-tab"<?php echo $active_tab == 'pages' ? 'id="active"' : 'none'; ?>>Template Layouts</a> 
-	  <a href="?page=kjd_page_layout_settings&tab=frontPage" class="nav-tab"<?php echo $active_tab == 'frontPage' ? 'id="active"' : 'none'; ?>>Front Page Layout</a> 
-	  <a href="?page=kjd_page_layout_settings&tab=attachments" class="nav-tab"<?php echo $active_tab == 'attachments' ? 'id="active"' : 'none'; ?>>Attachment Page</a> 
+?>
+	<h2 class="nav-tab-wrapper">
+	  <a href="?page=kjd_page_layout_settings&tab=posts" class="nav-tab"<?php echo $active_tab == 'posts' ? 'id="active"' : 'none'; ?>>Page Layouts</a>
+	  <a href="?page=kjd_page_layout_settings&tab=pages" class="nav-tab"<?php echo $active_tab == 'pages' ? 'id="active"' : 'none'; ?>>Template Layouts</a>
+	  <a href="?page=kjd_page_layout_settings&tab=frontPage" class="nav-tab"<?php echo $active_tab == 'frontPage' ? 'id="active"' : 'none'; ?>>Front Page Layout</a>
+	  <a href="?page=kjd_page_layout_settings&tab=attachments" class="nav-tab"<?php echo $active_tab == 'attachments' ? 'id="active"' : 'none'; ?>>Attachment Page</a>
 	 </h2>
-    <?php settings_errors(); ?>  
-	  <form method="post" action="options.php">  
-		<?php 
-			
-			if( $active_tab == 'posts' ) { 
+    <?php settings_errors(); ?>
+	  <form method="post" action="options.php">
+		<?php
+
+			if( $active_tab == 'posts' ) {
 				kjd_post_templates_callback();
 			}elseif( $active_tab == 'pages' ){
 				kjd_page_templates_callback();
@@ -35,7 +35,7 @@ function kjd_page_layout_settings_display() {  ?>
 			}elseif($active_tab == 'attachments'){
 				kjd_attachment_page_callback();
 			}
-		 submit_button(); ?>  
+		 submit_button(); ?>
 	</form>
 </div>
 <?php
@@ -57,7 +57,7 @@ function kjd_attachment_page_callback(){
 ?>
 	<h3>Attachment Page Layout</h3>
 	<div class='options-wrapper'>
-		
+
 		<div class="option">
 			<label>Attachment Info</label>
 			<select name="kjd_attachment_page_layout_settings[kjd_attachment_info]" >
@@ -67,7 +67,7 @@ function kjd_attachment_page_callback(){
 					<option value="yes" <?php selected( $post_info, 'yes', true) ?>>
 						Yes
 					</option>
-			</select>			
+			</select>
 		</div>
 
 		<div class="option">
@@ -79,10 +79,10 @@ function kjd_attachment_page_callback(){
 					<option value="<?php echo $k;?>" <?php selected( $page_layout, $k, true) ?> >
 						<?php echo $v;?>
 					</option>
-					<?php	
+					<?php
 					}
 				?>
-			</select>			
+			</select>
 		</div>
 
 	</div>
@@ -96,12 +96,12 @@ function kjd_page_templates_callback(){
 
 	$pageLayoutSettings = $options['kjd_page_layouts'];
 	$pageLayouts = array('template_1','template_2','template_3','template_4','template_5','template_6');
-			
+
 	echo "<h3>Template layouts</h3>";
 	foreach($pageLayouts as $k => $v){
 		kjd_layout_form_callback($pageLayoutSettings,'page',$v);
 	}
-  
+
 }
 
 
@@ -120,9 +120,9 @@ function kjd_post_templates_callback(){
 
 
 	foreach($widget_areas as $v){
-	
+
 		kjd_layout_form_callback($postLayoutSettings,'post',$v);
-	
+
 	}
 
 }
@@ -131,10 +131,10 @@ function kjd_post_templates_callback(){
 /////////////////////////
 // form
 /////////////////////////
-function kjd_layout_form_callback($settings,$type, $layout){ 
-	
+function kjd_layout_form_callback($settings,$type, $layout){
+
 	$deviceViews = array('all','visible-phone','visible-tablet','visible-desktop','hidden-phone','hidden-tablet','hidden-desktop');
-	
+
 
 	if( $settings[$layout]['toggled'] != 'true' && $type=='post' && $layout !='default' ){
 		$disabled = 'disabled="disabled"';
@@ -143,7 +143,7 @@ function kjd_layout_form_callback($settings,$type, $layout){
 ?>
 
 <input type="hidden" name="kjd_<?php echo $type;?>_layout_settings[kjd_<?php echo $type; ?>_layouts][<?php echo $layout;?>][name]" value = "<?php echo $layout;?>">
-	<div class="option"> 
+	<div class="option">
 		<a id="<?php echo $layout;?>"></a>
 		<label><?php echo ucwords(str_replace("_"," ",$layout));?></label>
 			<?php if($type=='post' && $layout !='default'){
@@ -161,7 +161,7 @@ function kjd_layout_form_callback($settings,$type, $layout){
 			<?php
 			} ?>
 
-  
+
 		<div class="option-component" <?php echo $layout =='default' ? 'style="padding-left: 50px;"' : '' ; ?> >
 
 			<span class="sub-label">Position</span>
@@ -185,10 +185,10 @@ function kjd_layout_form_callback($settings,$type, $layout){
 				<img src="<?php bloginfo('template_directory'); ?>/images/widgetsnone.png" class="none">
 				<?php if(isset($settings[$layout]['position'])){ ?>
 					<img src="<?php bloginfo('template_directory'); ?>/images/widgets<?php echo $settings[$layout]['position'];?>.png" class="<?php echo $settings[$layout]['position'];?>" style="display:block;">
-				<?php 
+				<?php
 				}?>
 			</div>
-		
+
 		</div>
 
 		<div class="option-component">
@@ -210,7 +210,7 @@ function kjd_front_page_settings(){
 	settings_fields('kjd_frontPage_layout_settings');
 	$options = get_option('kjd_frontPage_layout_settings');
 	$layoutOrder = $options['kjd_frontPage_layout'];
-	
+
 	$image_banner = get_option('kjd_cycler_misc_settings');
 	$image_banner = $image_banner['kjd_cycler_misc'];
 
@@ -218,8 +218,8 @@ function kjd_front_page_settings(){
 	if($image_banner['enable'] == 'true' && $image_banner['location'] == 'sortable'){
 		$components[] = 'image_banner';
 	}
-	
-	
+
+
 	$deviceViews = array('all','visible-phone','visible-tablet','visible-desktop','hidden-phone','hidden-tablet','hidden-desktop');
 
 	$activeComponents = array();
@@ -227,10 +227,10 @@ function kjd_front_page_settings(){
 		foreach($layoutOrder as $orderNum){
 			array_push($activeComponents, $orderNum['component']);
 		}
-		
+
 	}
 
-	
+
 	$inactiveComponents = array_diff($components,$activeComponents);
 ?>
 
@@ -238,7 +238,7 @@ function kjd_front_page_settings(){
 <div id='frontpage-sortables' class="option">
 	<div class="postbox frontPageLayoutList">
 		<h3><span>Active Page Components</span></h3>
-		
+
 			<ul id="activeComponents" class="connectedSortable">
 			<?php foreach($activeComponents as $key => $value){
 				?>
@@ -246,7 +246,7 @@ function kjd_front_page_settings(){
 					<?php echo $layoutOrder[$key]['component'] ? ucwords(str_replace('_',' ',$layoutOrder[$key]['component'])) : ucwords(str_replace('_',' ',$value));?>
 					<div>
 						<input class="component" type="hidden" name="kjd_frontPage_layout_settings[kjd_frontPage_layout][<?php echo $key;?>][component]" value="<?php echo $layoutOrder[$key]['component'] ? $layoutOrder[$key]['component'] : $value;?>"/>
-						
+
 						<select class="componentDeviceView" name="kjd_frontPage_layout_settings[kjd_frontPage_layout][<?php echo $key;?>][componentDeviceView]">
 						<?php foreach($deviceViews as $view){ ?>
 							<option value="<?php echo $view; ?>" <?php selected( $layoutOrder[$key]['componentDeviceView'], $view, true); ?>>
@@ -254,20 +254,20 @@ function kjd_front_page_settings(){
 							</option>
 						<?php } ?>
 						</select>
-						
+
 						<input class="componentDisplay" type="hidden" name="kjd_frontPage_layout_settings[kjd_frontPage_layout][<?php echo $key;?>][display]" value="<?php echo $layoutOrder[$key]['componentDisplay'] ? $layoutOrder[$key]['componentDisplay'] : '';?>" />
 					</div>
 				</li>
 			<?php
 			}?>
 			</ul>
-			
+
 		</div>
 		<div class="postbox frontPageLayoutList">
 			<h3><span>Inactive Components</span></h3>
-			
+
 				<ul id="inactiveComponents" class="connectedSortable">
-				<?php foreach($inactiveComponents as $key => $value){ 
+				<?php foreach($inactiveComponents as $key => $value){
 
 					?>
 				<li class="menu-item-handle">
@@ -286,30 +286,33 @@ function kjd_front_page_settings(){
 					</div>
 				</li>
 				<?php
-				}?>				
+				}?>
 				</ul>
-			
+
 		</div>
 
 	</div>
-	
+
 	<div class='option'>
 		<label>Content Title</label>
-		<input type="text" name='kjd_frontPage_layout_settings[kjd_frontPage_content_title]' 
+		<input type="text" name='kjd_frontPage_layout_settings[kjd_frontPage_content_title]'
 		value="<?php echo $options['kjd_frontPage_content_title'] ? $options['kjd_frontPage_content_title'] : '' ;?>"/>
 	</div>
-	
+
 	<div class='option'>
 		<label>Secondary Content Title</label>
-		<input type="text" name='kjd_frontPage_layout_settings[kjd_frontPage_secondary_content_title]' 
+		<input type="text" name='kjd_frontPage_layout_settings[kjd_frontPage_secondary_content_title]'
 		value="<?php echo $options['kjd_frontPage_secondary_content_title'] ? $options['kjd_frontPage_secondary_content_title'] : '' ;?>"/>
 	</div>
-	
+
 	<div class="option">
-		<label>Secondary Content</label>
-			<?php wp_editor( $options['kjd_frontPage_secondaryContent'], 
-			'kjd_frontPage_layout_settings[kjd_frontPage_secondaryContent]', 
-			$settings = array('content_css' => get_stylesheet_directory_uri() . '/lib/styles/bootstrap/bootstrap.css')  );?>
+                <label>Secondary Content</label>
+                <?php
+                    $content = $options['kjd_frontPage_secondaryContent'];
+                    $editor_id = 'kjd_frontPage_secondaryContent';
+                    $settings = array('content_css' => get_stylesheet_directory_uri() . '/lib/styles/bootstrap/bootstrap.css');
+                    wp_editor( $content, $editor_id, $settings  );
+                ?>
 	</div>
 <?php
 }
