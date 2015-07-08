@@ -49,7 +49,11 @@ screen_icon('themes'); ?>
 						echo '</div>';
 
 					}
-				if( $active_tab != 'settings'){
+				if(
+                    $active_tab != 'settings' &&
+                    $active_tab != 'logo' &&
+                    $active_tab != 'components'
+                    ){
 
 					echo '<div class="preview-options">';
 						echo kjd_site_preview();

@@ -1,13 +1,13 @@
 <?php
-    
 
-function kjd_settings_display($section = null) {  
+
+function kjd_settings_display($section = null) {
 
 	kjd_build_theme_css();
 
 	$options = get_option('kjd_posts_misc_settings');
 	$options = $options['kjd_posts_misc'];
-	
+
 	$tabs = array(	0 => 'background',
 					1 => 'borders',
 					2 => 'headings',
@@ -28,7 +28,7 @@ function kjd_settings_display($section = null) {
 	}
 	if($section =='dropdown-menu'){
 		unset($tabs[2]);
-		
+
 		unset($tabs[4]);
 		unset($tabs[5]);
 	}
@@ -45,18 +45,13 @@ function kjd_settings_display($section = null) {
 	if($section == "mobileNav"){
 
 		unset($tabs[2]);
-	
+
 		//	mobile nav settings
 		$mobileNavSettings = get_option('kjd_mobileNav_misc_settings');
 		$mobileNavSettings = $mobileNavSettings['kjd_mobileNav_misc'];
 		$override_nav = $mobileNavSettings['override_nav'];
 		if( $override_nav == 'true') {
-
 			$mobilenav_style = $mobileNavSettings['mobilenav_style'];
-			if( $mobilenav_style == 'sidr'){
-
-				array_push($tabs, 'sidr');
-			}
 		}
 
 	}
@@ -66,28 +61,36 @@ function kjd_settings_display($section = null) {
 		unset($tabs[6]);
 	}
 
-	screen_icon('themes'); 
+	screen_icon('themes');
 
-?> 
+?>
 
-	<h2><?php echo $section != 'cycler' ? ucfirst($section) : "Image Banner" ; ?> Area Settings 
-	
+	<h2><?php echo $section != 'cycler' ? ucfirst($section) : "Image Banner" ; ?> Area Settings
+
 	<?php #echo kjd_nav_select(); ?>
 
 	</h2>
 <?php
 
-	if( isset( $_GET[ 'tab' ] ) ) {  
-	 $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'background'; 
+	if( isset( $_GET[ 'tab' ] ) ) {
+	 $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'background';
 	}else{
-	 $active_tab = 'background'; 
+	 $active_tab = 'background';
 	}
-?> 
+?>
 
-<h2 class="nav-tab-wrapper">  
+<h2 class="nav-tab-wrapper">
 
-	<?php foreach($tabs as $tab){ ?>
-		<a href="?page=kjd_<?php echo $section;?>_settings&tab=<?php echo $tab; ?>" class="nav-tab"<?php echo $active_tab == $tab ? 'id="active"' : 'none'; ?>><?php echo ucwords( str_replace('_',' ',$tab) )?></a>  
+	<?php
+        foreach($tabs as $tab){
+            if($tab == 'misc')
+                $title = 'Settings';
+            else
+                $title = ucwords( str_replace('_',' ', $tab ) );
+    ?>
+		<a href="?page=kjd_<?php echo $section;?>_settings&tab=<?php echo $tab; ?>" class="nav-tab"<?php echo $active_tab == $tab ? 'id="active"' : 'none'; ?>>
+            <?php echo $title; ?>
+        </a>
 	<?php }
 
 
@@ -97,48 +100,48 @@ function kjd_settings_display($section = null) {
 
 </h2>
 
-    <?php settings_errors(); ?>  
-	<form method="post" action="options.php"> 
+    <?php settings_errors(); ?>
+	<form method="post" action="options.php">
 		<div class="<?php echo $fields_wrapper_class; ?>" >
-		<?php 
+		<?php
 
-		if( $active_tab == 'background' ) { 
-		
+		if( $active_tab == 'background' ) {
+
 			wp_enqueue_media();
 			kjd_section_background_callback($section);
-		
+
 		}elseif($active_tab == 'borders' && ($section !='login' && $section !='bodyTag' && $section !='htmlTag')){
-		
+
 			kjd_section_borders_callback($section);
-		
+
 		}elseif($active_tab == 'headings' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler' && $section!='dropdown-menu')){
-		
+
 			kjd_section_headings_callback($section);
-		
+
 		}elseif($active_tab == 'text' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler')){
-		
+
 			kjd_section_text_callback($section);
-		
+
 		}elseif($active_tab == 'presentation' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler') ){
-		
+
 			kjd_section_presentation_callback($section);
-		
+
 		}elseif($active_tab == 'images' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler') ){
-		
+
 			kjd_section_images_callback($section);
-		
+
 		}elseif($active_tab == 'misc' &&($section !='bodyTag' && $section !='htmlTag' && $section !='cycler') ){
-		
+
 			wp_enqueue_media();
 			kjd_section_misc_callback($section);
-		
+
 		}elseif($active_tab == 'image_banner_settings'){ // image cycler settings
-		
+
 			kjd_image_cycler_display_callback();
 			kjd_cycler_settings_callback();
-		
+
 		}elseif($active_tab == 'image_banner_images'){ // image cycler iamges
-			wp_enqueue_media();		
+			wp_enqueue_media();
 			kjd_image_cycler_display_callback();
 			kjd_cycler_images_callback();
 
@@ -146,20 +149,22 @@ function kjd_settings_display($section = null) {
 			wp_enqueue_media();
 			kjd_section_background_callback('sidrDrawer');
 		}
-		
-		submit_button(); 
-		?>  
+
+		submit_button();
+		?>
 
 		</div>
 
-		<?php if( $active_tab != 'image_banner_images' && $active_tab != 'image_banner_settings'){ ?>
+		<?php if(
+            $active_tab != 'image_banner_images' &&
+            $active_tab != 'image_banner_settings' ): ?>
 
 		<div class="preview-options">
-			<?php echo kjd_site_preview();?>
+            <?php echo kjd_site_preview();?>
 		</div>
-		
-		
-		<?php } ?>
+
+
+		<?php endif; ?>
 
 	</form>
 
@@ -178,7 +183,7 @@ function kjd_section_background_callback($section){
 ////////////////////////////////////
 
 function kjd_section_borders_callback($section){
-	include('forms/borders.php');	
+	include('forms/borders.php');
 }
 
 ////////////////////////////////////
@@ -217,6 +222,6 @@ function kjd_image_cycler_display_callback(){
 }
 
 // misc sections
-function kjd_section_misc_callback($section){ 
+function kjd_section_misc_callback($section){
 	include('forms/misc.php');
 }

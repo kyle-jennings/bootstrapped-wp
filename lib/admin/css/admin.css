@@ -28,7 +28,7 @@
 
 .kjd-admin-page-title{
   border: 0;
-  height: 1em;  
+  height: 1em;
   margin: 0;
   padding: 0;
 }
@@ -61,26 +61,33 @@ form .banner-fields-wrapper{
 
 
 /* -----------------------------------------------------------------
-          Live Preview  
+          Live Preview
 ------------------------------------------------------------------- */
-div.preview-options{
-  border:none;
-  height: 100%;
-  height:auto;
-  min-height: 100%;
-  overflow: hidden;
-  margin-left: 200px;
+.preview-options{
+    border:none;
+    height: 100%;
+    height:auto;
+    min-height: 100%;
+    overflow: hidden;
+    margin-left: 200px;
+
+}
+.preview-options .preview-wrapper {
+    background-color:#222;
+
 }
 
-div.preview-options > .preview-window,
-div.preview-options > .preview-size{
+.preview-options .preview-window,
+.preview-options .preview-size{
   clear: both;
   display: block;
 }
+
 .preview-window {
   height: 100%;
   height:auto;
-  min-height: 700px
+  min-height: 700px;
+  margin: 0 auto;
 }
 
 .preview-window:after{
@@ -92,12 +99,12 @@ div.preview-options > .preview-size{
 /* -----------------------------------------------------------------
           Fields
 ------------------------------------------------------------------- */
-.optionsWrapper, 
+.optionsWrapper,
 .options-wrapper,
 .option-group{
-  clear:both; 
-  float:left; 
-  margin-bottom:20px; 
+  clear:both;
+  float:left;
+  margin-bottom:20px;
   width:auto;
 }
 
@@ -107,17 +114,17 @@ div.preview-options > .preview-size{
 
 .option,
 .bswp-option {
-  clear:both; 
-  float:left; 
+  clear:both;
+  float:left;
   margin-right:10px;
-  margin-bottom:20px; 
+  margin-bottom:20px;
   min-width:390px;
 }
 
 
 .tab-pane .option {
   clear: none;
-  
+
   width: 180px;
   min-width: 180px;
 }
@@ -137,7 +144,7 @@ div.preview-options > .preview-size{
       width: auto;
   }
 
-    .option-wrapper.banner_image_options .option{ 
+    .option-wrapper.banner_image_options .option{
       height: auto;
     }
 
@@ -198,7 +205,7 @@ div.preview-options > .preview-size{
   .margin-label span{
     float:left;
   }
-  
+
 .submit{clear:both;}
 
 .long_textarea{ height:150px; width:99%;}
@@ -211,11 +218,11 @@ div.preview-options > .preview-size{
 .explanation{float:left; padding:0 10px;}
 
 /* -----------------------------------------------------------------
-      mini colorstuff  
+      mini colorstuff
 ------------------------------------------------------------------- */
-.color-option, 
+.color-option,
 .color_option,
-.bswp-option--color-select { 
+.bswp-option--color-select {
     clear:both;
     float:left;
     margin-bottom:10px;
@@ -258,11 +265,11 @@ a.button.upload_image{margin-bottom:-10px;}
   .frontPageLayoutList li > div input{margin-top:6px;}
   .frontPageLayoutList li {background:; margin: 5px; line-height:24px; padding: 5px; width: 90%; }
   .frontPageLayoutList li > div{float:right;}
-  
+
   .version-3-8 .frontPageLayoutList li {
     padding: 5px 5px 10px;
   }
-  
+
 /* -----------------------------------------------------------------
           Font preview - not working
 ------------------------------------------------------------------- */
@@ -281,11 +288,11 @@ a.button.upload_image{margin-bottom:-10px;}
 
 
 .ui-state-highlight {
-  background:#F3F3F3; 
-  border:dashed 2px #D0D0D0; 
+  background:#F3F3F3;
+  border:dashed 2px #D0D0D0;
   clear:both;
   display: block;
-  line-height: 24px; 
+  line-height: 24px;
 }
 
 .cycler_mgmt .ui-state-highlight {
@@ -325,7 +332,7 @@ li.cycler_image > div.option,li.cycler_image > h3{padding:5px;}
 		#93d96a 0%,
 		#529128);
 	background: -webkit-gradient(
-		linear, left top, left bottom, 
+		linear, left top, left bottom,
 		from(#93d96a),
 		to(#529128));
 
@@ -346,7 +353,7 @@ li.cycler_image > div.option,li.cycler_image > h3{padding:5px;}
 		#e61010 0%,
 		#b30d0d);
 	background: -webkit-gradient(
-		linear, left top, left bottom, 
+		linear, left top, left bottom,
 		from(#e61010),
 		to(#b30d0d));
 
@@ -414,7 +421,7 @@ li.cycler_image > div.option,li.cycler_image > h3{padding:5px;}
   float: left;
   height: 100px;
   padding:5px 0;
-  
+
 }
 .layout-diagram__main{
   margin-right: 10px;

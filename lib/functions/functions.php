@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 // gets options function
 if(is_admin()){
@@ -11,25 +11,23 @@ if(is_admin()){
 	require_once('kjd-shortcodes.php');
 	require_once('kjd-widgets.php');
 	require_once('kjd-adminbar-menu.php');
-
-
 	require_once('kjd-class-navbar.php');
 	require_once('kjd-class-layout.php');
- 
+
 /* ------------------------------------------------
- kjd add js and css 
+ kjd add js and css
  -------------------------------------------------- */
 function kjd_add_assets(){
-	
+
 	//set tempplate root
-	$root = get_bloginfo('template_directory'); 
+	$root = get_bloginfo('template_directory');
 	$wpcontent = dirname( ( dirname($root) ) );
 	$root = $root.'/lib';
 
 	// set variables
 	$mobileNavSettings = get_option('kjd_mobileNav_misc_settings');
 	$mobileNavSettings = $mobileNavSettings['kjd_mobileNav_misc'];
-	
+
 	$override_nav = $mobileNavSettings['override_nav'];
 	if( $override_nav == 'true') {
 		$mobilenav_style = $mobileNavSettings['mobilenav_style'];
@@ -39,27 +37,27 @@ function kjd_add_assets(){
 	$generalSettings = get_option('kjd_theme_settings');
 	$responsive = $generalSettings['kjd_responsive_design'];
 
-	
 
-	wp_enqueue_script("script", $root."/scripts/application.js", false, "1.0", true);  
-	wp_enqueue_script("jquery", $root."/scripts/jquery.js", false, "1.0", false);  
-	wp_enqueue_script("bootstrap", $root."/scripts/bootstrap.min.js", false, "1.0", true);  
+
+	wp_enqueue_script("script", $root."/scripts/application.js", false, "1.0", true);
+	wp_enqueue_script("jquery", $root."/scripts/jquery.js", false, "1.0", false);
+	wp_enqueue_script("bootstrap", $root."/scripts/bootstrap.min.js", false, "1.0", true);
 
 	if( $mobilenav_style == 'sidr' ){
-		wp_enqueue_script("sidr", $root."/scripts/sidr.min.js", false, "1.0", true);  
+		wp_enqueue_script("sidr", $root."/scripts/sidr.min.js", false, "1.0", true);
 		wp_enqueue_style("sidr", $root."/styles/sidr.css");
 	}
 
-	
+
 
 	wp_enqueue_style("bootstrap", $root."/styles/bootstrap/bootstrap.min.css");
 	wp_enqueue_style("bootstrap-responsive", $root."/styles/bootstrap/bootstrap-responsive.min.css");
 
 
 	// wp_enqueue_style("custom", $wpcontent."/styles/custom.css");
-	wp_enqueue_style("base", $root."/styles/common.css");	
+	wp_enqueue_style("base", $root."/styles/common.css");
 	wp_enqueue_style("custom", $root."/styles/custom.css");
-	wp_enqueue_style("mobile", $root."/styles/mobile.css");	
+	wp_enqueue_style("mobile", $root."/styles/mobile.css");
 
 	// Add slider scripts if on front page
 	if( is_front_page() ){
@@ -71,7 +69,7 @@ add_action( 'wp_enqueue_scripts', 'kjd_add_assets' );
 
 
 /* ----------------------------------------------------
- Set featured image and User Image Sizes 
+ Set featured image and User Image Sizes
  ----------------------------------------------------- */
 function kjd_set_featured_image_size(){
 // kjd_component_settings[featured_image][height]
@@ -121,7 +119,7 @@ add_action( 'init', 'kjd_add_excerpts_to_pages' );
 
 
 /* ------------------------------------------------------
-device views 
+device views
 --------------------------------------------------------- */
 
 function kjd_deviceViewSettings($deviceView){
@@ -129,8 +127,6 @@ function kjd_deviceViewSettings($deviceView){
 			echo $deviceView;
 		}
 }
-
-
 
 /* ------------------------------------------------------
  Add login css
@@ -143,7 +139,7 @@ add_action('login_head', 'kjd_login_css');
 
 
 /* --------------------------------------------
- the 404 
+ the 404
 ------------------------------------------------ */
 
 function kjd_the_404(){
@@ -179,7 +175,7 @@ function kjd_add_widget_style( $params ){
 		// $params[0]['before_widget'] = preg_replace( '/class="/', "class=\"{$widget_opt[$widget_num]['widget_style']} ", $params[0]['before_widget'], 1 );
 		$params[0]['before_widget'] = $params[0]['before_widget'].' <div class="' . $widget_opt[$widget_num]['widget_style'] . '"> ';
 		$params[0]['after_widget'] = ' </div> '.$params[0]['after_widget'];
-		
+
 		// $params[0]['after_widget'] = str_replace('</div>', '</div></div>', $params[0]['after_widget']);
 
 	}
@@ -192,7 +188,7 @@ add_filter( 'dynamic_sidebar_params', 'kjd_add_widget_style' );
 
 
 /* ------------------------------------------------------
-device visibility 
+device visibility
 --------------------------------------------------------- */
 function kjd_add_device_visibility( $params ){
 
@@ -227,7 +223,7 @@ function kjd_add_device_visibility( $params ){
 			$widget_opt = get_option( $callback[0]->option_name );
 		}
 	}
-	
+
 	// Default callback
 	else {
 		// Check if WP Page Widget is in use
@@ -256,32 +252,34 @@ add_filter( 'dynamic_sidebar_params', 'kjd_add_device_visibility' );
  Site logo
  ----------------------------------------------------*/
 function kjd_header_content($header_contents, $logo_toggle, $logo, $custom_header){
-	
+
 	$heading = is_front_page() ? 'h1' : 'h2' ;
 	$header_output = '';
-	
-	if($header_contents == 'widgets'){ 
+
+	if($header_contents == 'widgets'){
 
 		dynamic_sidebar('header_widgets');
-	
-	}else{ 
 
-		if($logo_toggle == 'text'){
-		
+	}else{
+        $header_output .= '<div class="span-12">';
+
+
+        if($logo_toggle == 'text'){
+
 			$header_output .= '<div class="header-wrapper">';
 				$header_output .= $custom_header;
 			$header_output .= '</div>';
-		
+
 		}elseif($logo_toggle == 'logo' ){
-			
+
 			$header_output .= '<'.$heading.' class="span logo-wrapper">';
 				$header_output .= '<a href="'.get_bloginfo('url').' ">';
 					$header_output .= '<img src="'.$logo.'" alt=""/>';
 				$header_output .= '</a>';
 			$header_output .= '</'.$heading.'>';
-		
+
 		}else{
-			
+
 			$header_output .= '<div class="jumbotron no-background">';
 			$header_output .= '<'.$heading.' class="logo-wrapper" >';
 				$header_output .= '<a href="'.get_bloginfo('url').' ">';
@@ -292,7 +290,7 @@ function kjd_header_content($header_contents, $logo_toggle, $logo, $custom_heade
 			$header_output .= '</div>';
 
 		}
-
+        $header_output .= '</div>';
 		echo $header_output;
 	 }
 
@@ -303,7 +301,7 @@ function kjd_header_content($header_contents, $logo_toggle, $logo, $custom_heade
  --------------------------------------------------------*/
 function kjd_empty_nav_fallback_callback( $args ) {
 	if ( ! isset( $args['show_home'] ) )
-					 
+
 		$args['show_home'] = true;
 
 	return $args;
@@ -322,12 +320,12 @@ function kjd_add_body_class( $classes ){
 	$navbar_settings = get_option('kjd_navbar_misc_settings');
 	$navbar_settings = $navbar_settings['kjd_navbar_misc'];
 	$navbar_position = $navbar_settings['navbar_position'];
-	
+
 	$mobile_nav_settings = get_option('kjd_mobileNav_misc_settings');
 	$mobile_nav_settings = $mobile_nav_settings['kjd_mobileNav_misc'];
-	$mobile_nav_position = $mobile_nav_settings['mobilenav_position'];	
+	$mobile_nav_position = $mobile_nav_settings['mobilenav_position'];
 
-	if(is_front_page() ) { 
+	if(is_front_page() ) {
 		$classes[] = 'home';
 	}elseif( is_page() ){
 		$classes[] = get_page_template_slug();
@@ -337,7 +335,7 @@ function kjd_add_body_class( $classes ){
 		$classes[] = 'logged-in';
 	}
 
-	//navbar 
+	//navbar
 	if( $navbar_position == 'fixed-top'){
 		$classes[] = 'desktopnav-fixed-top';
 	}elseif( $navbar_position == 'fixed-bottom'){
@@ -360,14 +358,14 @@ add_filter('body_class', 'kjd_add_body_class');
 // old image grabber
 function kjd_get_post_images($postID, $size = NULL) {
 
-$attachments = get_children( array( 
-	'post_parent' => $postID, 
-	'post_type' => 'attachment', 
-	'post_mime_type' => 'image', 
-	'orderby' => 'menu_order', 
-	'order' => 'ASC', 
-	'numberposts' => 999 ) 
-); 
+$attachments = get_children( array(
+	'post_parent' => $postID,
+	'post_type' => 'attachment',
+	'post_mime_type' => 'image',
+	'orderby' => 'menu_order',
+	'order' => 'ASC',
+	'numberposts' => 999 )
+);
 	$images = array();
 /* $images is now a object that contains all images (related to post id 1) and their information ordered like the gallery interface. */
     $attributes = array();
@@ -383,7 +381,7 @@ $attachments = get_children( array(
 			$attributes['large'] = $url[0];
 			$url = wp_get_attachment_image_src($attachment, 'full');
 			$attributes['full'] = $url[0];
-			
+
 			$attributes['image_id'] = $att->ID;
 			$attributes['title'] = $att->post_title;
 			$attributes['description'] = $att->post_content;
@@ -391,7 +389,7 @@ $attachments = get_children( array(
 			$attributes['alt'] = $att->_wp_attachment_image_alt;
 			array_push($images, $attributes);
 	    }
-	}	
+	}
 	return $images;
 
 }

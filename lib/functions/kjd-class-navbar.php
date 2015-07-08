@@ -6,7 +6,7 @@
  * The first function builds the navbar, it accepts a number of arguments to build everything out
  */
 class kjdNavBar{
-	
+
 	public $output = '';
 
 	//							menu id,  nav style,   link style, sidr/dropdown/ect,     devise visibility,  position, logo, menu id again for some reason, button type
@@ -32,7 +32,7 @@ class kjdNavBar{
 				case 'static-top':
 					$navbar_style .= 'navbar-static-top';
 					break ;
-			
+
 				default:
 					$navbar_style .= 'navbar-static-top';
 			}
@@ -48,9 +48,9 @@ class kjdNavBar{
 
 					$navbar_inner = '';
 
-					
+
 					$navbar_inner .= '<div class="navbar-inner">';
-						
+
 						// if the navbar type is not set to contained then we need to put the container inside the inn=er
 						if( $navbar_width != 'contained' ){
 							$navbar_inner .= '<div class="container">';
@@ -58,17 +58,17 @@ class kjdNavBar{
 						}
 
 						if( ($logo != 'none' && $logo != '') ){
-							
+
 							if( $logo == 'logo' ){
-								
+
 								$options = get_option('kjd_mobileNav_misc_settings');
 								$options = $options['kjd_mobileNav_misc'];
 								$url = $options['mobile_site_logo'];
-								
-								$navbar_inner .= '<a class="hidden-desktop brand '.$logo.'" href="'.home_url().'"><img src="'.$url.'" /></a>';
-					
+
+								$navbar_inner .= '<a class="brand '.$logo.'" href="'.home_url().'"><img src="'.$url.'" /></a>';
+
 							}else{
-								$navbar_inner .= '<a class="hidden-desktop brand '.$logo.'" href="'.home_url().'">'.get_bloginfo( 'name' ).'</a>';
+								$navbar_inner .= '<a class="brand '.$logo.'" href="'.home_url().'">'.get_bloginfo( 'name' ).'</a>';
 							}
 
 						}
@@ -77,14 +77,14 @@ class kjdNavBar{
 
 						// The nav-collapse - it holds the menu
 
-							
+
 							$navbar_inner .='<div class="nav-collapse collapse navbar-responsive-collapse">';
 
 							$navbar_inner .= $this->kjd_build_menu( $menu_id, $link_type, $use_mobile_menu, $walker );
 
 							$navbar_inner .= $navbar_contents;
 							$navbar_inner .= '</div>'; // en nav collapse
-							
+
 
 						// if the navbar type is not set to contained then we need to put the container inside the inner
 						if( $navbar_width != 'contained' ){
@@ -95,7 +95,7 @@ class kjdNavBar{
 
 
 					$navbar_inner .='</div>'; // end navbar-inner-->
-		
+
 
 				$navbar_close = '</div>'; // end #navbar
 
@@ -104,7 +104,7 @@ class kjdNavBar{
 	}
 
 	public function kjd_build_menu( $menu_id = 'primary-menu', $navbar_link_style = 'none', $use_mobile_menu, $walker = 'drop_down'){
-		
+
 		if($walker == 'drop_down'){
 			$walker_type = new dropdown_menu();
 		}elseif( $walker = 'sidr_menu'){
@@ -115,7 +115,7 @@ class kjdNavBar{
 
 
 		$menu_class = 'nav';
-		
+
 		switch($navbar_link_style){
 			case 'none':
 
@@ -135,10 +135,10 @@ class kjdNavBar{
 				break;
 			case 'tabs-below':
 
-				$menu_class .= ' nav-tabs tabs-below';	
+				$menu_class .= ' nav-tabs tabs-below';
 				break;
 			case 'sidr-style':
-			
+
 				$menu_class .= ' nav-tabs nav-stacked';
 				break;
 			default:
@@ -147,16 +147,16 @@ class kjdNavBar{
 
 
 		/**
-		 * if the mobile nav is activated and set we use that. 
+		 * if the mobile nav is activated and set we use that.
 		 * if its not set but its activated, then we use the primary nav,
 		 * otherwise, we display the default menu
 		 */
-			
+
 		if ( $menu_id == 'mobile-menu' ){
 
 			if ( $use_mobile_menu == 'true' && has_nav_menu( 'mobile-menu' ) ){
 				ob_start();
-				wp_nav_menu(array('theme_location' => 'mobile-menu', 
+				wp_nav_menu(array('theme_location' => 'mobile-menu',
 					'menu_class' =>$menu_class,
 					'container'=> '',
 					'walker'=> $walker_type
@@ -165,12 +165,12 @@ class kjdNavBar{
 				ob_end_clean();
 
 				return $menu;
-			
+
 			}elseif( has_nav_menu( 'primary-menu' ) ){
 
 
 				ob_start();
-				wp_nav_menu(array('theme_location' => 'primary-menu', 
+				wp_nav_menu(array('theme_location' => 'primary-menu',
 					'menu_class' =>$menu_class,
 					'container'=> '',
 					'walker'=> $walker_type
@@ -180,7 +180,7 @@ class kjdNavBar{
 				return $menu;
 
 			}else {
-			
+
 			    $menu = '';
 
 			    $menu .= '<ul class="nav nav-pills nav-stacked hidden-desktop">';
@@ -195,7 +195,7 @@ class kjdNavBar{
 			    $menu .= '</ul>';
 
 			    return $menu;
-			} 
+			}
 
 		}else{
 			/*
@@ -203,19 +203,19 @@ class kjdNavBar{
 				otherwise, we display the default menu
 			*/
 			if ( has_nav_menu( 'primary-menu' ) ){
-				
+
 				ob_start();
-				wp_nav_menu(array('theme_location' => 'primary-menu', 
+				wp_nav_menu(array('theme_location' => 'primary-menu',
 					'menu_class' =>$menu_class,
 					'container'=> '',
 					'walker'=> $walker_type
 				 ) );
 				$menu = ob_get_contents();
 				ob_end_clean();
-			
+
 				return $menu;
 			} else {
-			    
+
 			    $menu = '';
 
 			    $menu .= '<ul class="nav nav-pills visible-desktop">';
@@ -230,7 +230,7 @@ class kjdNavBar{
 			    $menu .= '</ul>';
 
 			    return $menu;
-			} 
+			}
 
 		}
 
@@ -261,14 +261,14 @@ class kjdNavBar{
 				$button_inner .= '<span class="icon-bar"></span>';
 				$button_inner .= '<span class="icon-bar"></span>';
 
-				break;		
+				break;
 			case 'button':
 				$button_class = "btn ".$button_misc['menu_button_color'];
 				$button_inner = $button_misc['menu_btn_text'];;
 				break;
 			case 'text':
 				$button_class = "menu-text";
-				
+
 				$button_inner ='<span class="brand brand--menu-button">'.$button_misc['menu_btn_text'].'</span>';
 				break;
 			case 'image':
@@ -283,7 +283,7 @@ class kjdNavBar{
 				$button_inner .= '<span class="icon-bar"></span>';
 				$button_inner .= '<span class="icon-bar"></span>';
 				$button_inner .= '<span class="icon-bar"></span>';
-				break;		
+				break;
 		endswitch;
 
 		if($mobilenav_style =='sidr'){
