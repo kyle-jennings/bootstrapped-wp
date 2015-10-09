@@ -3,7 +3,7 @@
 /* --------------------------------------------------------------------------------------------------
 The Images
  -------------------------------------------------------------------------------------------------- */
-function kjd_cycler_settings_callback(){ 
+function kjd_cycler_settings_callback(){
 settings_fields('kjd_cycler_misc_settings');
 $options = get_option('kjd_cycler_misc_settings');
 
@@ -103,7 +103,7 @@ $effects = '';
 				Left Side
 			</option>
 		</select>
-	</div>	
+	</div>
 
 	<div class="option singleOptions" style="display:<?php echo $options['kjd_cycler_misc']['plugin'] == 'single image' ? 'block': 'none' ;?>;">
 		<label>Caption position</label>
@@ -131,7 +131,7 @@ $effects = '';
 			</option>
 		</select>
 	</div>
-<?php 
+<?php
 
 	$borderSizes = range(0,20);
 
@@ -142,22 +142,22 @@ $effects = '';
 		<div class="color_option option" style="position: relative;">
 
 			<label>Background color</label>
-			<input class="minicolors" 
+			<input class="minicolors"
 			name="kjd_cycler_misc_settings[kjd_cycler_misc][backgroundColor]"
 			value="<?php echo $options['kjd_cycler_misc']['backgroundColor'] ?  $options['kjd_cycler_misc']['backgroundColor'] : '' ;?>"
-			 />		
+			 />
 			<a class="clearColor">Clear</a>
-		</div> 
-			
+		</div>
+
 		<div class="color_option option" style="position: relative;">
 
 			<label>Border color</label>
-			<input class="minicolors" 
+			<input class="minicolors"
 			name="kjd_cycler_misc_settings[kjd_cycler_misc][borderColor]"
 			value="<?php echo $options['kjd_cycler_misc']['borderColor'] ?  $options['kjd_cycler_misc']['borderColor'] : '' ;?>"
-			 />		
+			 />
 			<a class="clearColor">Clear</a>
-		</div> 
+		</div>
 
 		<!-- border size -->
 		<div class="option">
@@ -185,12 +185,12 @@ $effects = '';
 					<option value="true" <?php selected(  $options['kjd_cycler_misc']['borderTransparency'], 'true', true) ?>>True
 					</option>
 					<option value="false" <?php selected(  $options['kjd_cycler_misc']['borderTransparency'], 'false', true) ?>>False
-					</option>					
+					</option>
 				</select>
 		</div>
 
 	</div>
-				
+
 <!-- ************************************ -->
 <!-- General settings/not plugin specifc  -->
 <!-- ************************************ -->
@@ -234,7 +234,7 @@ $effects = '';
 <!-- ******* -->
 	<div class="option">
 		<label>Timeout period<small> in ms</small></label>
-		<input name="kjd_cycler_misc_settings[kjd_cycler_misc][timeout]" 
+		<input name="kjd_cycler_misc_settings[kjd_cycler_misc][timeout]"
 value="<?php echo $options['kjd_cycler_misc']['timeout']?$options['kjd_cycler_misc']['timeout'] : '30000' ;?>" type="text" />
 	</div>
 
@@ -246,7 +246,7 @@ value="<?php echo $options['kjd_cycler_misc']['timeout']?$options['kjd_cycler_mi
 			<option value="true" <?php selected( $options['kjd_cycler_misc']['kjd_cycler_confine_background'], 'true', true) ?>>Yes</option>
 			<option value="false" <?php selected( $options['kjd_cycler_misc']['kjd_cycler_confine_background'], 'false', true ) ?>>No</option>
 		</select>
-	</div>	
+	</div>
 
 	<div class="option">
 		<label>Full Width?</label>
@@ -266,7 +266,7 @@ value="<?php echo $options['kjd_cycler_misc']['timeout']?$options['kjd_cycler_mi
 
 <?php
 	$option_markup ='';
-	
+
 	$toggle_class = $options['kjd_cycler_misc']['float'] =='true' ? 'style="display:block;"' : 'style="display:none;"' ;
 	$margin_top_toggle = $options['kjd_cycler_misc']['margin_top'] ? $options['kjd_cycler_misc']['margin_top'] : '0';
 	$margin_bottom_toggle = $options['kjd_cycler_misc']['margin_bottom'] ? $options['kjd_cycler_misc']['margin_bottom'] : '0';
@@ -324,7 +324,7 @@ function kjd_cycler_images_callback(){
 		$totalCount = count($cycler);
 	}
 
-?> 
+?>
 
 	<p>Upload as many front page banner images as you want, but there are few things to remember: </p>
 	<ol>
@@ -345,7 +345,7 @@ function kjd_cycler_images_callback(){
 
 		<ul class="cycler_mgmt">
 <!-- begining image list -->
-<?php 
+<?php
 	foreach ($cycler as $key => $value) { ?>
 
 		<li class="cycler_image postbox" id="<?php echo 'image_id_'.$key; ?>">
@@ -356,21 +356,21 @@ function kjd_cycler_images_callback(){
 					<div class="option">
 						<label>Upload Image</label>
 
-						<input class="url media_input" name="kjd_cycler_images_settings[kjd_cycler_images][<?php echo $key;?>][url]" type="text" value="<?php echo $cycler[$key]['url'] ? $cycler[$key]['url'] : ''; ?>"/>  
+						<input class="url media_input" name="kjd_cycler_images_settings[kjd_cycler_images][<?php echo $key;?>][url]" type="text" value="<?php echo $cycler[$key]['url'] ? $cycler[$key]['url'] : ''; ?>"/>
 		    			<a href="#" class="button upload_image"> Upload image</a>
 
-	    				<div class="image_preview" style="height: 100px; clear:both;">  
+	    				<div class="image_preview" style="height: 100px; clear:both;">
 						<?php if( !empty($cycler[$key]['url']) ){
 					      echo '<img src="'.esc_url( $cycler[$key]['url'] ).'" style="max-width:auto; height:100px;" /> ';
 						} ?>
-			  			</div> 
+			  			</div>
 					</div>
 
 					<div class="option">
 						<label>Alt Text </label>
 						<input type="text" class="alt" name="kjd_cycler_images_settings[kjd_cycler_images][<?php echo $key;?>][alt]" value="<?php echo $cycler[$key]['alt'] ? $cycler[$key]['alt'] : ''; ?>" />
 					</div>
-					
+
 					<div class="option">
 						<a href="#" class="remove_image" >Remove Image</a>
 					</div>
@@ -379,22 +379,21 @@ function kjd_cycler_images_callback(){
 				<div class="halfWidth">
 					<div class="option">
 						<label class="banner">Banner Text <?php echo $key; ?></label>
-	<?php 
+                                                        	<?php
 
-		$mce_instance = $cycler[$key]['text'];
-		$mce_ID = 'kjd_cycler_images_settings[kjd_cycler_images]['.$key.'][text]';
-		// $style = '.mceIframeContainer{background-image:url('. $cycler[$key]['url'] .'); background-size:cover; }';
-		$settings = array(
-					'textarea_rows' =>4,
-					'editor_class'=>'whiteBackground',
-					'editor_css'=>'<style scoped>' . $style . '</style>',
-				);
-		wp_editor( $mce_instance, $mce_ID, $settings );
+                                                        		$content = $cycler[$key]['text'];
+                                                        		$editor_id = 'kjd_cycler_images_settings[kjd_cycler_images]['.$key.'][text]';
 
-	?>
+                                                        		$settings = array(
+                                                                    			'textarea_rows' =>4,
+                                                                    			'editor_class'=>'whiteBackground',
+                                                                    			'editor_css'=>'<style scoped>' . $style . '</style>',
+                                                        				);
+                                                        		wp_editor( $content, $editor_id, $settings );
+                                                        	?>
 					</div>  <!-- end left option -->
 				</div>  <!-- end right column -->
-			
+
 				<div style="clear:both;">
 				</div>
 			</div>  <!-- end inside -->
@@ -408,5 +407,5 @@ function kjd_cycler_images_callback(){
 		<input type="submit" value="Add Image" class="button-primary" id="add_image">
 
 	</div>
-<?php 
+<?php
 }

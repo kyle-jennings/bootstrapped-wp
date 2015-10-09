@@ -1,14 +1,14 @@
 <?php
 
 function kjd_build_mobile_styles_callback( $section = 'navbar', $override_nav ) {
-	
-		
+
 	$media_979_markup = '';
 
 	/* -------------------------------------------------
-					Set options			
+					Set options
 	------------------------------------------------- */
 	$options_links = get_option('kjd_'.$section.'_links_settings');
+
 
 	$kjd_section_link = kjd_get_temp_settings(	$section,
 												$options_links['kjd_'.$section.'_link'],
@@ -17,23 +17,21 @@ function kjd_build_mobile_styles_callback( $section = 'navbar', $override_nav ) 
 											);
 	// link colors
 	$kjd_section_linkHovered = kjd_get_temp_settings(	$section,
-														$options_links['kjd_'.$section.'_linkHovered'], 
+														$options_links['kjd_'.$section.'_linkHovered'],
 														$preview,
 														'kjd_section_linkHovered'
 							);
 
-	
 	$kjd_section_linkVisited = kjd_get_temp_settings(	$section,
-														$options_links['kjd_'.$section.'_linkVisited'], 
+														$options_links['kjd_'.$section.'_linkVisited'],
 														$preview,
 														'kjd_section_linkVisited'
 							);
 	$kjd_section_linkActive =  kjd_get_temp_settings(	$section,
-														$options_links['kjd_'.$section.'_linkActive'], 
+														$options_links['kjd_'.$section.'_linkActive'],
 														$preview,
 														'kjd_section_linkActive'
 							);
-
 
 	// border settings
 	$sectionBorders = array('top'=>$kjd_section_top_border,
@@ -41,20 +39,20 @@ function kjd_build_mobile_styles_callback( $section = 'navbar', $override_nav ) 
 							'bottom'=>$kjd_section_bottom_border,
 							'left'=>$kjd_section_bottom_border
 					);
-	$options_borders = get_option('kjd_'.$section.'_borders_settings'); 
+	$options_borders = get_option('kjd_'.$section.'_borders_settings');
 
 
-	$kjd_section_borders = kjd_get_temp_settings(	$section,  
-														$options_borders, 
-														$preview, 
-														'kjd_section_borders_colors' 
-													);
+	$kjd_section_borders = kjd_get_temp_settings(	$section,
+													$options_borders,
+													$preview,
+													'kjd_section_borders_colors'
+												);
 
 	$kjd_section_right_border = $kjd_section_borders['kjd_mobileNav_right_border'];
 	$kjd_section_top_border = $kjd_section_borders['kjd_mobileNav_top_border'];
 	$kjd_section_bottom_border = $kjd_section_borders['kjd_mobileNav_bottom_border'];
 	$kjd_section_left_border = $kjd_section_borders['kjd_mobileNav_left_border'];
-	
+
 	$kjd_borders = array(
 		'top'=>$kjd_section_top_border,
 		'right'=>$kjd_section_right_border,
@@ -77,34 +75,34 @@ function kjd_build_mobile_styles_callback( $section = 'navbar', $override_nav ) 
 
 	// Background Settings
 	$options_backgrounds = get_option('kjd_'.$section.'_background_settings');
-	$kjd_section_background_colors = kjd_get_temp_settings(	$section,  
-															$options_backgrounds['kjd_'.$section.'_background_colors'], 
-															$preview, 
-															'kjd_section_background_colors' 
+	$kjd_section_background_colors = kjd_get_temp_settings(	$section,
+															$options_backgrounds['kjd_'.$section.'_background_colors'],
+															$preview,
+															'kjd_section_background_colors'
 														);
 
 
 
-	$kjd_section_background_wallpaper = kjd_get_temp_settings(	$section, 
-																$options_backgrounds['kjd_'.$section.'_background_wallpaper'], 	
-																$preview, 
+	$kjd_section_background_wallpaper = kjd_get_temp_settings(	$section,
+																$options_backgrounds['kjd_'.$section.'_background_wallpaper'],
+																$preview,
 																'kjd_section_background_wallpaper'
 															);
 	$type = $kjd_section_background_colors['gradient'];
 
 	// Misc Settings
 	$mobileNav_misc = get_option('kjd_mobileNav_misc_settings');
-	
+
 	$kjd_section_misc_settings = kjd_get_temp_settings(	$section,
 														$mobileNav_misc['kjd_mobileNav_misc'],
-														$preview, 
-														'kjd_section_misc' 
+														$preview,
+														'kjd_section_misc'
 														);
 
 	$mobile_nav_style = $kjd_section_misc_settings['mobilenav_style'];
 
 	if( $mobile_nav_style == 'dropdown') {
-		
+
 		$use_dropdown = 'true';
 		$dropdown_settings = array(
 			$type =>'type',
@@ -124,28 +122,34 @@ function kjd_build_mobile_styles_callback( $section = 'navbar', $override_nav ) 
 
 		// Background Settings
 		$options_backgrounds = get_option('kjd_sidr_background_settings');
-		$kjd_sidr_background_colors = kjd_get_temp_settings(	$section,  
-																$options_backgrounds['kjd_sidr_background_colors'], 
-																$preview, 
-																'kjd_section_background_colors' 
+		$kjd_sidr_background_colors = kjd_get_temp_settings(	$section,
+																$options_backgrounds['kjd_sidr_background_colors'],
+																$preview,
+																'kjd_section_background_colors'
 															);
 
-		$kjd_sidr_background_wallpaper = kjd_get_temp_settings(	$section, 
-																	$options_backgrounds['kjd_sidr_background_wallpaper'], 	
-																	$preview, 
+		$kjd_sidr_background_wallpaper = kjd_get_temp_settings(	$section,
+																	$options_backgrounds['kjd_sidr_background_wallpaper'],
+																	$preview,
 																	'kjd_section_background_wallpaper'
 																);
 
 		// border shit
 		$options_borders = get_option('kjd_sidr_borders_settings');
-		$kjd_sidr_borders = kjd_get_temp_settings(	$section,  
-													$options_borders, 
-													$preview, 
-													'kjd_section_borders_colors' 
+		$kjd_sidr_borders = kjd_get_temp_settings(	$section,
+													$options_borders,
+													$preview,
+													'kjd_section_borders_colors'
 												);
 
 		$kjd_sidr_right_border = $kjd_sidr_borders['kjd_sidr_right_border'];
-		
+
+        // if($preview){
+        //     echo '<pre>';
+        //     print_r( $kjd_sidr_right_border );
+        //     die;
+        // }
+
 
 		// send this shit to the mobilenav function
 		$sidr_settings = array(
@@ -161,8 +165,8 @@ function kjd_build_mobile_styles_callback( $section = 'navbar', $override_nav ) 
 		);
 
 
-		$media_979_markup .= build_sidr_styles( $sidr_settings );
-	
+		$media_979_markup .= kjd_build_sidr_styles( $sidr_settings );
+
 	}else{
 		$use_default = 'true';
 
@@ -175,7 +179,7 @@ function kjd_build_mobile_styles_callback( $section = 'navbar', $override_nav ) 
 ------------------------------------------------------------ */
 
 	$media_979_markup .= '@media(max-width:979px) {';
-		
+
 		$media_979_markup .= '.navbar-wrapper .navbar-inner .nav-tabs.tabs > li > a, ';
 		$media_979_markup .= '.navbar-wrapper .navbar-inner .nav-tabs.tabs-below > li > a {';
 			$media_979_markup .= 'border-radius: 4px 4px 4px 4px;';
@@ -191,18 +195,18 @@ function kjd_build_mobile_styles_callback( $section = 'navbar', $override_nav ) 
 
 	// Positions navbar
 	if($kjd_section_misc_settings['menu_alignment'] =='left'){
-		
+
 		$media_979_markup .='.navbar-wrapper.mobile-menu ul.nav{ float:left;}';
-	
+
 	}elseif($kjd_section_misc_settings['menu_alignment'] =='center'){
 
 		$media_979_markup .='.navbar-wrapper.mobile-menu ul.nav { margin:0 auto; text-align: center; width:100%;}';
 		$media_979_markup .='.navbar-wrapper.mobile-menu ul.nav > li{ display:block; float:none;}';
-	
+
 	}elseif($kjd_section_misc_settings['menu_alignment'] =='right'){
-	
+
 		$media_979_markup .='.navbar-wrapper.mobile-menu ul.nav{ float:right; text-align:right;}';
-	
+
 	}
 
 
@@ -217,12 +221,12 @@ function kjd_build_mobile_styles_callback( $section = 'navbar', $override_nav ) 
 
 				// borders
 		foreach($kjd_borders as $k =>$v){
-			$media_979_markup .= borderSettingsCallback($k, $v);	
+			$media_979_markup .= borderSettingsCallback($k, $v);
 		}
 
 		//border radius function
 		foreach($kjd_section_border_radii as $k =>$v){
-			$media_979_markup .= borderRadiusCallback($k, $v);	
+			$media_979_markup .= borderRadiusCallback($k, $v);
 		}
 
 	$media_979_markup .= '}';
@@ -231,12 +235,12 @@ function kjd_build_mobile_styles_callback( $section = 'navbar', $override_nav ) 
 /* ---------------------------------------------------------
 	brand and shit inside the navbar
 ------------------------------------------------------------ */
-	$media_979_markup .='.navbar-inner .brand{ 
+	$media_979_markup .='.navbar-inner .brand{
 		color:'.$kjd_section_misc_settings['menu_btn_bg'].';
 		text-shadow: 0 1px 0 '.$kjd_section_misc_settings['menu_btn_border'].';
 	}';
 
-	$media_979_markup .='.navbar-inner .brand:hover{ 
+	$media_979_markup .='.navbar-inner .brand:hover{
 		color:'.$kjd_section_misc_settings['menu_btn_bg_hovered'].';
 		text-shadow: 0 1px 0 '.$kjd_section_misc_settings['menu_btn_border_hovered'].';
 	}';
@@ -247,16 +251,16 @@ function kjd_build_mobile_styles_callback( $section = 'navbar', $override_nav ) 
 /* ---------------------------------------------------------
 		drawer toggle
 ------------------------------------------------------------ */
-	$media_979_markup .='.navbar .btn-navbar{ 
+	$media_979_markup .='.navbar .btn-navbar{
 		background:'.$kjd_section_misc_settings['menu_btn_bg'].';
 		border-color:'.$kjd_section_misc_settings['menu_btn_border'].';
 	}';
 
-	$media_979_markup .='.navbar .btn-navbar:hover, .navbar .btn-navbar:active{ 
+	$media_979_markup .='.navbar .btn-navbar:hover, .navbar .btn-navbar:active{
 		background:'.$kjd_section_misc_settings['menu_btn_bg_hovered'].';
 		border-color:'.$kjd_section_misc_settings['menu_btn_border_hovered'].';
 	}';
-	
+
 	$media_979_markup .= '.navbar .btn-navbar .icon-bar{ background: rgba(0,0,0,.1);}';
 
 
@@ -265,14 +269,14 @@ function kjd_build_mobile_styles_callback( $section = 'navbar', $override_nav ) 
 ------------------------------------------------------------ */
 if($dropdown_bg != 'true'){
 	$media_979_markup .= ".nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > a:hover,
-			.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul, 
+			.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul,
 			.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > a:hover,
 			.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > a:hover:after,
 			.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > ul,
 			.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > ul > li > ul >li >a:hover{
-	
+
 				background-color: transparent;
-				color:".$kjd_section_linkHovered['color']." !important;	
+				color:".$kjd_section_linkHovered['color']." !important;
 			}";
 }else{
 
@@ -303,7 +307,7 @@ if($dropdown_bg != 'true'){
 
 
 
-} 
+}
 
 
 	$media_979_markup .= ".navbar .nav > li:first-child > a { padding:9px 15px;}";
@@ -313,7 +317,7 @@ if($dropdown_bg != 'true'){
  * Navbar links
  * these get style regardless of drawer type
  */
-	
+
 /* ------------------------ Normal Links ------------------------ */
 
 	$media_979_markup .= '.nav-collapse .nav > li > a,';
@@ -346,25 +350,25 @@ if($dropdown_bg != 'true'){
 
   	$media_979_markup .= ".navbar .nav > li.active > a,
   	.dropdown-menu > .active > a,
-  	.navbar .nav > li.active > a, 
-	.navbar .nav li.dropdown.active > , 
-	.navbar .nav li.dropdown.open.active > .active .dropdown-toggle, 
+  	.navbar .nav > li.active > a,
+	.navbar .nav li.dropdown.active > ,
+	.navbar .nav li.dropdown.open.active > .active .dropdown-toggle,
   	.navbar .nav li.dropdown.open > .dropdown-toggle,
   	.navbar .nav li.dropdown.active > .dropdown-toggle,
   	.navbar .nav li.dropdown.open.active > .dropdown-toggle,
-	.navbar .dropdown-menu > .active > a, 
+	.navbar .dropdown-menu > .active > a,
 	.navbar .dropdown-menu li.active > a {";
 
 	  	$media_979_markup .= "color:". $kjd_section_linkActive['color'] .";";
- 	  	
+
  	  	 if($kjd_section_linkActive['bg_style'] != 'none' && $kjd_section_linkActive['bg_style'] != ''){
 	  	 	$media_979_markup .= 'background-color:'.$kjd_section_linkActive['bg_color'].';';
 	  	 }else{
 	  	 	$media_979_markup .= 'background-color: transparent;';
 	  	 }
-	  	
+
 	  	$media_979_markup .= "text-decoration:".$kjd_section_linkActive['decoration'].";";
-	
+
 	$media_979_markup .= "}";
 
 
@@ -372,7 +376,7 @@ if($dropdown_bg != 'true'){
 	$media_979_markup .= '#sidr .nav > li.active > a.dropdown-toggle > .caret,';
 	$media_979_markup .= '#sidr .nav > li.open > a.dropdown-toggle > .caret{';
 		$media_979_markup .= 'border-top-color:'. $kjd_section_linkActive['color'] .';';
-	$media_979_markup .= '}';	
+	$media_979_markup .= '}';
 
 
 	$media_979_markup .= ".navbar-wrapper .dropdown-menu li.active > a:after,";
@@ -405,7 +409,7 @@ if($dropdown_bg != 'true'){
 	  $media_979_markup .= '{';
 
 	  	 $media_979_markup .= 'color:'. $kjd_section_linkHovered['color'] .';';
- 	  	 
+
  	  	 if( $kjd_section_linkHovered['bg_style'] != 'none' && $kjd_section_linkHovered['bg_color'] != ''){
 	  	 	$media_979_markup .= 'background-color:'.$kjd_section_linkHovered['bg_color'].';';
 	  	 }else{
@@ -420,15 +424,15 @@ if($dropdown_bg != 'true'){
 	$media_979_markup .= '.navbar-wrapper .nav > li > a.dropdown-toggle:hover > .caret,';
 	$media_979_markup .= '.navbar-wrapper .nav li.dropdown > .dropdown-toggle:hover .caret {';
 		$media_979_markup .= 'border-top-color:'. $kjd_section_linkHovered['color'] .';';
-	$media_979_markup .= '}';	
+	$media_979_markup .= '}';
 
-	$media_979_markup .= '.navbar-wrapper .dropdown-menu li > a:hover:after,'; 
+	$media_979_markup .= '.navbar-wrapper .dropdown-menu li > a:hover:after,';
 	$media_979_markup .= '.dropdown-toggle:hover:after';
 	$media_979_markup .= '{';
 		$media_979_markup .= 'border-left-color:'. $kjd_section_linkHovered['color'] .' ;';
 	$media_979_markup .= '}';
 
-	
+
 
 	$media_979_markup .= '.navbar .nav > li > .dropdown-menu:before { display: none;}';
 
@@ -441,7 +445,7 @@ if($dropdown_bg != 'true'){
 
 /**
  * Build styles for eth default menu type
- * 
+ *
  * @return [type]
  */
 function build_default_styles(){
@@ -457,7 +461,7 @@ function build_default_styles(){
  * @return [type]
  */
 function build_dropdown_styles( $dropdown_settings ){
-	
+
 	$output = '';
 
 	$output .= '.navbar-wrapper .navbar-inner {';
@@ -468,7 +472,7 @@ function build_dropdown_styles( $dropdown_settings ){
 			$output .= 'border-bottom: 0 none transparent;';
 			$output .= 'box-shadow: 0 0 0 transparent;';
 	$output .= '}';
-		
+
 
 	$output .= '.navbar-wrapper .nav-collapse.collapse > .nav{';
 
@@ -479,12 +483,12 @@ function build_dropdown_styles( $dropdown_settings ){
 
 		// borders
 		foreach($kjd_borders as $k =>$v){
-			$output .= borderSettingsCallback($k, $v);	
+			$output .= borderSettingsCallback($k, $v);
 		}
 
 		//border radius function
 		foreach($kjd_section_border_radii as $k =>$v){
-			$output .= borderRadiusCallback($k, $v);	
+			$output .= borderRadiusCallback($k, $v);
 		}
 
 	$output .= '}';
@@ -526,15 +530,15 @@ function build_dropdown_styles( $dropdown_settings ){
 
 /**
  * Build the sidr drawer styles
- * 
+ *
  * @param  array  - all the sidr settings
  * @return string - the css styles
- * 
+ *
  */
-function build_sidr_styles( $sidr_settings ){
+function kjd_build_sidr_styles( $sidr_settings ){
+    global $preview;
 
-	extract( $sidr_settings );
-
+    extract( $sidr_settings );
 
 	$output ='';
 
@@ -610,7 +614,7 @@ function build_sidr_styles( $sidr_settings ){
 	 		$output .= 'border-bottom-color:'.$kjd_section_link['color'].';';
 	 	$output .= ' }';
 
-	 	$output .= '#sidr ul.sub-menu > li > a:before{ 
+	 	$output .= '#sidr ul.sub-menu > li > a:before{
 	 		  border-left-color:'.$kjd_section_link['color'].';
 		}';
 
@@ -621,12 +625,12 @@ function build_sidr_styles( $sidr_settings ){
 			$output .= 'color:'.$kjd_section_linkHovered['color'].';';
 			$output .= 'text-decoration:'.$kjd_section_linkHovered['decoration'].';';
 		$output .= '}';
-	 
-		$output .= '#sidr .nav-tabs.nav-stacked > li > ul > li > a:hover, 
+
+		$output .= '#sidr .nav-tabs.nav-stacked > li > ul > li > a:hover,
 		#sidr .sub-menu a:hover{
 			color:'.$kjd_section_linkHovered['color'].';
 			background-color:'.$kjd_section_linkHovered['bg_color'].';
-			
+
 			background-image: none;
 		}';
 
@@ -671,7 +675,7 @@ function build_sidr_styles( $sidr_settings ){
 			border-top-color:'.$kjd_section_linkHovered['color'].';
 		}';
 
-		$output .= '#sidr .nav li.dropdown.open:hover a .caret, 
+		$output .= '#sidr .nav li.dropdown.open:hover a .caret,
 		#sidr .nav li.dropdown.open:focus a .caret{
 			border-top-color:'.$kjd_section_linkHovered['color'].';
 		}';

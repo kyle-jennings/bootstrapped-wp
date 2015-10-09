@@ -1,11 +1,11 @@
-@media(max-width:1199px){ 
+@media(max-width:1199px){
 
-	.pagination { 
+	.pagination {
 		margin-left:20px;
 	}
 }
 
-@media(min-width:980px){ 
+@media(min-width:980px){
 	#sidr {
 		display: none !important;
 	}
@@ -35,7 +35,7 @@
 
 
 	.navbar .dropdown-menu{background:transparent !important;}
-	
+
 	.open > .dropdown-menu {
 		display:block;
 	}
@@ -46,17 +46,6 @@
 
 
 /* navbar logo and control */
-
-	.navbar-wrapper .brand {
-	    color: #777777;
-	    display: block;
-	    float: left;
-	    font-size: 20px;
-	    font-weight: 200;
-	    margin-left: -20px;
-	    padding: 10px 20px;
-	    text-shadow: 0 1px 0 #FFFFFF;
-	}
 
 	.navbar-wrapper .brand {
 		margin-left:0px;
@@ -79,7 +68,7 @@
 	.navbar-wrapper.navbar.navbar-fixed-top .btn-navbar,
 	.navbar-wrapper.navbar.navbar-fixed-bottom .btn-navbar {
 		margin-right: 0px;
-		
+
 	}
 
 
@@ -106,11 +95,11 @@
 		padding-right: 35px;*/
 	}
 
-	.navbar-wrapper ul.nav > li{ 
-		display:block; 
+	.navbar-wrapper ul.nav > li{
+		display:block;
 		float:none;
 	}
-	
+
 
 	/* Sidr */
 	#sidr ul.sub-menu {
@@ -120,7 +109,7 @@
 	}
 
 		#sidr ul.sub-menu > li{
-		
+
 		}
 
 		#sidr .open > .sub-menu{
@@ -151,11 +140,11 @@
 			width: 0;
 		}
 
-		
+
 		#sidr ul.sub-menu > li > ul.sub-menu > li > a{
 			display: block;
 			padding: 8px 12px 8px 40px;
-			position: relative;	
+			position: relative;
 		}
 
 		#sidr ul.sub-menu > li > ul.sub-menu > li > a:before{
@@ -202,7 +191,7 @@
 
 /**
  * Tablet Width Landscape Vertical
- * 
+ *
  */
 @media(min-width: 768px) and (max-width: 979px) {
 
@@ -224,14 +213,14 @@
 		margin-left: 0px;
 		padding-left: 0px;
 	}
-	
+
 	.navbar-wrapper.navbar-fixed-top .brand.logo,
 	.navbar-wrapper.navbar-fixed-bottom .brand.logo {
 		margin-left: -10px;
 	}
 
 
-	.pagination { 
+	.pagination {
 		margin-left:20px;
 	}
 
@@ -239,7 +228,7 @@
 
 /**
  * Phone Landscape
- * 
+ *
  */
 @media (max-width: 767px) {
 
@@ -273,12 +262,12 @@
 		height:auto;
 	}
 
-/* --------------------------------------------------- 
-	navbar shit 
+/* ---------------------------------------------------
+	navbar shit
    ---------------------------------------------------- */
 
-	.navbar-wrapper ul.nav > li{ 
-		display:block; 
+	.navbar-wrapper ul.nav > li{
+		display:block;
 		float:none;
 	}
 
@@ -310,21 +299,21 @@
 	.navbar .dropdown-menu{
 		background:transparent !important;
 	}
-	
 
 
-	
+
+
 	.navbar-wrapper .collapse .nav{
 		float: none;
 	}
 
-	.container.navbar-fixed-top, 
-	.container.navbar-fixed-bottom, 
+	.container.navbar-fixed-top,
+	.container.navbar-fixed-bottom,
 	.container.navbar-static-top {
 	    margin-left: 0px;
 	    margin-right: 0px;
 	}
-	
+
 	.nav-collapse.navbar-responsive-collapse.in.collapse > ul > li > a.dropdown-toggle{
 		margin-top:0px !important;
 	}
@@ -336,8 +325,8 @@
 		margin-right: 0;
 	}
 
-	/* ---------------------------------- 
-		image carousel shit 
+	/* ----------------------------------
+		image carousel shit
 		--------------------------------- */
 	#imageSliderWrapper img{
 		max-width: 100%;
@@ -367,7 +356,7 @@
 	}
 
 
-	/* ---------------------------------- 
+	/* ----------------------------------
 		Thumbnails
 		--------------------------------- */
 	.thumbnails .span2{
@@ -398,7 +387,7 @@
 
 /**
  * Phone vertical
- * 
+ *
  */
 @media (max-width: 480px) {
 

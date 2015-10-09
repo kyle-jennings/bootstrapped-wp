@@ -4,13 +4,13 @@
 					nav bar
 ----------------------------------------------------------------------------------- */
 
-function kjd_navbar_misc_settings_callback($section){ 
+function kjd_navbar_misc_settings_callback($section){
 	settings_fields( 'kjd_navbar_misc_settings' );
 	$options = get_option('kjd_navbar_misc_settings');
 	$options = $options['kjd_navbar_misc'];
 
-	$navBarStyles = array('default','page-top','sticky-top','sticky-bottom');	
-	$navBarLinkStyles = array('none','highlighted','pills','tabs', 'tabs-below');	
+	$navBarStyles = array('default','page-top','sticky-top','sticky-bottom');
+	$navBarLinkStyles = array('none','highlighted','pills','tabs', 'tabs-below');
 
 	$glowSettings = array('none','left-right','top-bottom', 'all-sides','top','bottom');
 ?>
@@ -63,7 +63,7 @@ function kjd_navbar_misc_settings_callback($section){
 			</select>
 		</div>
 
-		<?php 
+		<?php
 			// echo kjd_confine_section_toggle($section, $options);
 		?>
 
@@ -78,7 +78,7 @@ function kjd_navbar_misc_settings_callback($section){
 		<?php
 			echo kjd_section_glow_toggle($section, $options);
 		?>
-		
+
 
 			<div class="option">
 				<label>Flush links to side?</label>
@@ -96,8 +96,16 @@ function kjd_navbar_misc_settings_callback($section){
 				</select>
 			</div>
 
+            <div class="option">
+                <label>Style navbar for mobile?</label>
+                <select name="kjd_navbar_misc_settings[kjd_navbar_misc][styleMobileNav]">
+                        <option value="false" <?php selected( $options['styleMobileNav'], 'false', true) ?>>No</option>
+                        <option value="true" <?php selected( $options['styleMobileNav'], 'true', true) ?>>Yes</option>
+                </select>
+            </div>
+
 		</div>
 
-	
+
 <?php
 }
