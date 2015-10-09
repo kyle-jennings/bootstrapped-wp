@@ -14,7 +14,7 @@ $options = get_option('kjd_page_layout_settings');
 $pageLayouts = $options['kjd_page_layouts'];
 
 
-if(!empty($pageLayouts) && empty($postLayouts)){ 
+if(!empty($pageLayouts) && empty($postLayouts)){
 	$layouts = $pageLayouts;
 }elseif(!empty($postLayouts) && empty($pageLayouts)){
 	$layouts = $postLayouts;
@@ -27,19 +27,17 @@ if(!empty($pageLayouts) && empty($postLayouts)){
 
 function set_width($template,$frontpage_area = null)
 {
-// echo "<pre>";	
-// print_r($template); 
-// echo "</pre>";
+
 
 
 // if the widget area is one of hte two front page widget areas, set the widget widths
-	if($template['name']== 'front_page_widgets'){
+	if($template['name'] == 'front_page_widgets'){
 		$i = 1;
 		$template = $layouts[$frontpage_area];
 		$sidebars = wp_get_sidebars_widgets($frontpage_area);
 		$widgetsCount = count($sidebars[$frontpage_area]);
 
-		// if($template['position'] !='none'){
+		if($template['position'] !='none' & $template['position']):
 			switch($widgetsCount){
 				case 1:
 					return 'span9';
@@ -60,13 +58,34 @@ function set_width($template,$frontpage_area = null)
 					return 'span1';
 					break;
 			}
-		// } // 
+        else:
+            switch($widgetsCount){
+                case 1:
+                    return 'span12';
+                    break;
+                case 2:
+                    return 'span6';
+                    break;
+                case 3:
+                    return 'span4';
+                    break;
+                case 4:
+                    return 'span3';
+                    break;
+                case 5:
+                    return 'span2';
+                    break;
+                case 6:
+                    return 'span2';
+                    break;
+            } // end switch
+		endif;
 
 
 // or else these are going to be pages and posts widgets
 	}else{
 		// checks to see if the position of the widget area is on the right or left
-		// if it is NOT then we set the widget widths dynamically 
+		// if it is NOT then we set the widget widths dynamically
 		// if it IS then we set them to span3
 		// print '<pre>';
 
@@ -77,7 +96,7 @@ function set_width($template,$frontpage_area = null)
 		$sidebars = wp_get_sidebars_widgets($template['name']);
 		$widgetsCount = count($sidebars[$template['name']]);
 		 if( $template['position'] != 'left' && $template['position'] != 'right') {
-			
+
 			switch($widgetsCount){
 				case 1:
 					return 'span12';
@@ -98,18 +117,18 @@ function set_width($template,$frontpage_area = null)
 					return 'span2';
 					break;
 			} // end switch
-		
+
 		}else{
 			return 'span3';
 		} //end else
-	
+
 	} // end if else
 
 } // end fntion
 
 
 
-				
+
 //////////////////////////////////////////
 // header, footer, front page areas, index
 //////////////////////////////////////////
@@ -136,7 +155,7 @@ foreach($templates as $template){
 
 
 	if($template == 'front_page_widget_area_1' || $template == 'front_page_widget_area_2' || $template == 'front_page_widget_area_3' ){
-				
+
 		$temp = array('name' => 'front_page_widgets', 'position' =>"top");
 		$width = set_width($temp,$template);
 
@@ -150,13 +169,13 @@ foreach($templates as $template){
 		// $options = get_option('kjd_component_settings');
 
 	 //    if($options['style_widgets'] =='true') {
-		
+
 		// 	$start_outer_well = '';
 		// 	$end_outer_well = '';
 
 		// 	$start_outer_well .= '<div class="well">';
 		// 	$end_outer_well .= '</div>';
-	    	
+
 	 //    }
 	}
 
@@ -189,7 +208,7 @@ foreach($templates as $template){
 
 	if( !empty( $post_templates ) ){
 		foreach($post_templates as $k => $v){
-			
+
 			if( $v['toggled'] == 'true' ){
 
 				$width = set_width($layouts[$k]);
@@ -209,7 +228,7 @@ foreach($templates as $template){
 
 
 		}
-		
+
 	}
 
 //////////////////////////////
@@ -218,7 +237,7 @@ foreach($templates as $template){
 
 	$templates = array('template_1', 'template_2', 'template_3', 'template_4', 'template_5', 'template_6' );
 	foreach($templates as $template){
-		
+
 		$width = set_width($layouts[$template]);
 		register_sidebar(
 			 array(

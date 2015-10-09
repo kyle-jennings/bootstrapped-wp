@@ -1,55 +1,59 @@
 <?php
 
-function kjd_theme_settings_display(){  
-screen_icon('themes'); ?> 
+function kjd_theme_settings_display(){
+screen_icon('themes'); ?>
 
 <h2>Theme Settings</h2>
 
 <?php
 
-	if( isset( $_GET[ 'tab' ] ) ) {  
-	 $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'home'; 
+	if( isset( $_GET[ 'tab' ] ) ) {
+	 $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'home';
 	}else{
-	 $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'home'; 
+	 $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'home';
 	}
-?> 
+?>
 
-<h2 class="nav-tab-wrapper">  
-	<a href="?page=kjd_theme_settings&tab=home" class="nav-tab"<?php echo $active_tab == 'home' ? 'id="active"' : 'none'; ?>>Home</a>  	
-	<a href="?page=kjd_theme_settings&tab=logo" class="nav-tab"<?php echo $active_tab == 'logo' ? 'id="active"' : 'none'; ?>>Logo</a>  	
-	<a href="?page=kjd_theme_settings&tab=settings" class="nav-tab"<?php echo $active_tab == 'settings' ? 'id="active"' : 'none'; ?>>General Settings </a>  	
+<h2 class="nav-tab-wrapper">
+	<a href="?page=kjd_theme_settings&tab=home" class="nav-tab"<?php echo $active_tab == 'home' ? 'id="active"' : 'none'; ?>>Home</a>
+	<a href="?page=kjd_theme_settings&tab=logo" class="nav-tab"<?php echo $active_tab == 'logo' ? 'id="active"' : 'none'; ?>>Logo</a>
+	<a href="?page=kjd_theme_settings&tab=settings" class="nav-tab"<?php echo $active_tab == 'settings' ? 'id="active"' : 'none'; ?>>General Settings </a>
 	<a href="?page=kjd_theme_settings&tab=components" class="nav-tab"<?php echo $active_tab == 'components' ? 'id="active"' : 'none'; ?>>Components</a>
 	<a href="?page=kjd_theme_settings&tab=styles" class="nav-tab"<?php echo $active_tab == 'sty;es' ? 'id="active"' : 'none'; ?>>Custom Styles</a>
 </h2>
 
-    <?php settings_errors(); ?>  
-	  
-		<?php 
-			if( $active_tab == 'home' ) { 
+    <?php settings_errors(); ?>
+
+		<?php
+			if( $active_tab == 'home' ) {
 				kjd_theme_home_callback();
 			}else{
 				echo '<form method="post" action="options.php"> ';
 				if( $active_tab != 'settings'){
-					echo '<div class="fields-wrapper">';			
-					
+					echo '<div class="fields-wrapper">';
+
 				}
-					if( $active_tab == 'logo' ) { 
+					if( $active_tab == 'logo' ) {
 						kjd_theme_logo_callback();
-					}elseif( $active_tab == 'settings' ) { 
+					}elseif( $active_tab == 'settings' ) {
 						kjd_theme_settings_callback();
-					}elseif( $active_tab == 'components' ) { 
+					}elseif( $active_tab == 'components' ) {
 						kjd_theme_components_callback();
 					}elseif( $active_tab == 'styles' ){
 						kjd_custom_styles_callback();
 					}
 
-					submit_button(); 
+					submit_button();
 					wp_enqueue_media();
 					if( $active_tab != 'settings'){
 						echo '</div>';
-						
+
 					}
-				if( $active_tab != 'settings'){
+				if(
+                    $active_tab != 'settings' &&
+                    $active_tab != 'logo' &&
+                    $active_tab != 'components'
+                    ){
 
 					echo '<div class="preview-options">';
 						echo kjd_site_preview();
@@ -58,25 +62,24 @@ screen_icon('themes'); ?>
 
 				echo '</form>';
 			}
-		?>  
+		?>
 <?php
 }
 function kjd_theme_home_callback(){
-	include('functions/kjd_export_settings.php'); 
-?>
-	<div class="optionsWrapper">
+	?>
+
 		<h3>What do you want to style?</h3>
-		<div class="option">
-			<ul class="unstyled">
-				Map coming soon
 
-			</ul>
-		</div>
-	</div>
+		<?php include( dirname( dirname(__FILE__)).'/functions/layout-diagram.php');?>
+<?php
+}
 
-
-
-
+/**
+ * Import/export
+ */
+function kjd_settings_mgmt(){
+	include('functions/kjd_export_settings.php');
+?>
 	<div class="optionsWrapper">
 		<h3>Export your settings</h3>
 		<div class="option">
@@ -98,8 +101,7 @@ function kjd_theme_home_callback(){
 			</form>
 		</div> -->
 	</div>
-
-<?php
+	<?php
 }
 ////////////////////
 // theme settings
@@ -107,7 +109,7 @@ function kjd_theme_home_callback(){
 
 
 function kjd_theme_logo_callback(){
-	settings_fields( 'kjd_theme_logo' ); 
+	settings_fields( 'kjd_theme_logo' );
 	$options = get_option('kjd_theme_logo');
 
 	?>
@@ -119,25 +121,25 @@ function kjd_theme_logo_callback(){
 
 			<label>Upload your site logo</label>
 
-			<input type="text" class="media_input" name="kjd_theme_logo[kjd_site_logo]" value="<?php echo $options['kjd_site_logo'] ? $options['kjd_site_logo'] : ' '; ?>" />  
-		  	<input type="button"  class="button upload_image" value="Upload image" />  
+			<input type="text" class="media_input" name="kjd_theme_logo[kjd_site_logo]" value="<?php echo $options['kjd_site_logo'] ? $options['kjd_site_logo'] : ' '; ?>" />
+		  	<input type="button"  class="button upload_image" value="Upload image" />
 
-			<div id="logo-preview" class="image_preview"> 
-				<img style="max-width:100%;" src="<?php echo esc_url( $options['kjd_site_logo'] ); ?>" />  
-			</div> 
+			<div id="logo-preview" class="image_preview">
+				<img style="max-width:100%;" src="<?php echo esc_url( $options['kjd_site_logo'] ); ?>" />
+			</div>
 		</div>
 
 		<!-- Favicon -->
 		<div id="site-favicon" class="option">
 
 			<label>Upload favicon</label>
-			
-			<input type="text" class="media_input" name="kjd_theme_logo[kjd_favicon]" value="<?php echo $options['kjd_favicon'] ? $options['kjd_favicon'] : ' '; ?>" />  
-		  	<input type="button" class="button upload_image" value="Upload image" />  
 
-			<div id="favicon-preview" class="image_preview">  
-				<img style="max-width:100%;" src="<?php echo esc_url( $options['kjd_favicon'] ); ?>" />  
-			</div> 
+			<input type="text" class="media_input" name="kjd_theme_logo[kjd_favicon]" value="<?php echo $options['kjd_favicon'] ? $options['kjd_favicon'] : ' '; ?>" />
+		  	<input type="button" class="button upload_image" value="Upload image" />
+
+			<div id="favicon-preview" class="image_preview">
+				<img style="max-width:100%;" src="<?php echo esc_url( $options['kjd_favicon'] ); ?>" />
+			</div>
 
 		</div>
 
@@ -150,14 +152,18 @@ function kjd_theme_logo_callback(){
 				<option value="text" <?php selected( $options['kjd_logo_toggle'], "text", true) ?>>Custom</option>
 				<option value="title" <?php selected( $options['kjd_logo_toggle'], "title", true) ?>>Site Title</option>
 			</select>
-		</div>		
+		</div>
 
 		<div class="option">
 			<label>Custom Header</label>
-			<?php 
+			<?php
 
-			wp_editor( $options['kjd_custom_header'], 'kjd_theme_logo[kjd_custom_header]', array( 'textarea_rows' =>1 ) 
-			);?>
+                                    $content = $options['kjd_custom_header'];
+                                    $editor_id = 'kjd_custom_header';
+                                    $settings = array( 'textarea_rows' =>1 );
+
+                                    wp_editor( $content, $editor_id, $settings);
+                                ?>
 		</div>
 </div>
 
@@ -166,7 +172,7 @@ function kjd_theme_logo_callback(){
 
 function kjd_theme_settings_callback(){
 
-	settings_fields( 'kjd_theme_settings' ); 
+	settings_fields( 'kjd_theme_settings' );
 	$options = get_option('kjd_theme_settings');
 ?>
 
@@ -211,14 +217,18 @@ function kjd_theme_settings_callback(){
 				<option value="false" <?php selected( $options['kjd_box_shadow'], "false", true) ?>>No</option>
 			</select>
 
-		</div>	
-	</div>	
+		</div>
+	</div>
 
-	
+
 
 	<div class="option">
-		<label>404 Page Content</label>
-			<?php wp_editor( $options['kjd_404_page'], 'kjd_theme_settings[kjd_404_page]' );?>
+		  <label>404 Page Content</label>
+                        <?php
+                            $content = $options['kjd_404_page'];
+                            $editor_id = 'kjd_404_page';
+                            wp_editor( $content, $editor_id);
+                        ?>
 	</div>
 
 
@@ -233,7 +243,7 @@ function kjd_theme_settings_callback(){
 
 function kjd_theme_components_callback(){
 
-	settings_fields( 'kjd_component_settings' ); 
+	settings_fields( 'kjd_component_settings' );
 	$options = get_option('kjd_component_settings');
 
 ?>
@@ -245,20 +255,20 @@ function kjd_theme_components_callback(){
 			<option value="false" <?php selected( $options['style_widgets'], 'false', true ) ?>>No</option>
 			<option value="true" <?php selected( $options['style_widgets'], 'true', true) ?>>Yes</option>
 		</select>
-	</div>	
+	</div>
 
 
 	<div class="option">
 		<label>Featured Image Size</label>
-		
+
 		<div class="margin-label"><span>Height</span>
-		<input name="kjd_component_settings[featured_image][height]" 
+		<input name="kjd_component_settings[featured_image][height]"
 			value="<?php echo $options['featured_image']['height'] ? $options['featured_image']['height'] : ''; ?>"
 			style="width:40px;"/>px.
 		</div>
 
 		<div class="margin-label"><span>Width</span>
-		<input name="kjd_component_settings[featured_image][width]" 
+		<input name="kjd_component_settings[featured_image][width]"
 			value="<?php echo $options['featured_image']['width'] ? $options['featured_image']['width'] : ''; ?>"
 			style="width:40px;"/>px.
 		</div>
@@ -277,7 +287,7 @@ function kjd_theme_components_callback(){
 			<option value="false" <?php selected( $options['allow_comments'], 'false', true ) ?>>No</option>
 			<option value="true" <?php selected( $options['allow_comments'], 'true', true) ?>>Yes</option>
 		</select>
-	</div>	
+	</div>
 
 </div>
 
@@ -285,7 +295,7 @@ function kjd_theme_components_callback(){
 }
 
 function kjd_theme_widget_areas_callback(){
-	settings_fields( 'kjd_widget_areas_settings' ); 
+	settings_fields( 'kjd_widget_areas_settings' );
 	$options = get_option('kjd_widget_areas_settings');
 
 
@@ -302,11 +312,11 @@ function kjd_theme_widget_areas_callback(){
 			<li>
 				<label>
 					<span><?php echo ucwords($area); ?></span>
-					<input type="checkbox" name="kjd_widget_areas_settings[widget_areas][<?php echo $area;?>]" value="true" 
-					<?php 
+					<input type="checkbox" name="kjd_widget_areas_settings[widget_areas][<?php echo $area;?>]" value="true"
+					<?php
 					if( isset($options['widget_areas'][$area]) ){
-						checked( $options['widget_areas'][$area], 'true', true ); 
-					} 
+						checked( $options['widget_areas'][$area], 'true', true );
+					}
 					?>
 					 />
 				</label>
@@ -322,19 +332,19 @@ function kjd_theme_widget_areas_callback(){
 
 function kjd_custom_styles_callback(){
 	kjd_build_theme_css();
-	
+
 	settings_fields('kjd_custom_styles_settings');
 	$options = get_option('kjd_custom_styles_settings');
 	$options = $options['kjd_custom_styles'];
 ?>
 
 	<div class="optionsWrapper">
-		
+
 		<div class="option">
 			<label>Custom Styles</label>
 			<textarea class="long_textarea tall-textarea custom-styles" name='kjd_custom_styles_settings[kjd_custom_styles]'><?php echo $options ? $options : '' ;?></textarea>
 		</div>
-	
+
 	</div>
 	<?php
 }
