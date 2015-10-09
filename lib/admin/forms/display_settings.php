@@ -65,10 +65,8 @@ function kjd_settings_display($section = null) {
 
 ?>
 
-	<h2><?php echo $section != 'cycler' ? ucfirst($section) : "Image Banner" ; ?> Area Settings
-
-	<?php #echo kjd_nav_select(); ?>
-
+	<h2>
+        <?php echo $section != 'cycler' ? ucfirst($section) : "Image Banner" ; ?> Area Settings
 	</h2>
 <?php
 
@@ -175,7 +173,7 @@ function kjd_settings_display($section = null) {
 // background color and wallpaper
 ////////////////////////////////////
 function kjd_section_background_callback($section){
-	include('forms/background.php');
+	include('background.php');
 }
 
 ////////////////////////////////////
@@ -183,7 +181,7 @@ function kjd_section_background_callback($section){
 ////////////////////////////////////
 
 function kjd_section_borders_callback($section){
-	include('forms/borders.php');
+	include('borders.php');
 }
 
 ////////////////////////////////////
@@ -191,21 +189,21 @@ function kjd_section_borders_callback($section){
 ////////////////////////////////////
 function kjd_section_headings_callback($section){
 
-	include('forms/headings.php');
+	include('headings.php');
 }
 
 ////////////////////////////////////
 // text  styles
 ////////////////////////////////////
 function kjd_section_text_callback($section){
-	include('forms/text.php');
+	include('text.php');
 }
 
 ////////////////////////////////////
 // presentation, buttons, and wells
 ////////////////////////////////////
 function kjd_section_presentation_callback($section){
-	include('forms/presentation.php');
+	include('presentation.php');
 }
 
 ////////////////////////////////////
@@ -213,15 +211,15 @@ function kjd_section_presentation_callback($section){
 ////////////////////////////////////
 function kjd_section_images_callback($section){
 
-	include('forms/images.php');
+	include('images.php');
 }
 
 //// image cycler
 function kjd_image_cycler_display_callback(){
-	include('forms/image_banner.php');
+	include('image_banner.php');
 }
 
 // misc sections
 function kjd_section_misc_callback($section){
-	include('forms/misc.php');
+	include('misc.php');
 }

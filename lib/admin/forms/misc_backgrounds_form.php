@@ -1,41 +1,38 @@
 <?php
-		 
 
-function kjd_misc_backgrounds_display() {  
-	screen_icon('themes'); 
-?> 
+
+function kjd_misc_backgrounds_display() {
+	screen_icon('themes');
+?>
 <div class="kjd-admin-page-title">
 	<h2>Misc Background Settings</h2>
-<!-- 	<span>
-		<?php echo kjd_nav_select(); ?>
-	</span> -->
 </div>
 
 <?php
-	if( isset( $_GET[ 'tab' ] ) ) {  
-	 $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'htmlTag'; 
+	if( isset( $_GET[ 'tab' ] ) ) {
+	 $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'htmlTag';
 	}else{
-	 $active_tab = 'htmlTag'; 
+	 $active_tab = 'htmlTag';
 	}
-?> 
+?>
 
-<h2 class="nav-tab-wrapper">  
+<h2 class="nav-tab-wrapper">
 
-	  <a href="?page=kjd_misc_background_settings&tab=htmlTag" class="nav-tab"<?php echo $active_tab == 'htmlTag' ? 'id="active"' : 'none'; ?>>HTML tag</a>  	
-	  <a href="?page=kjd_misc_background_settings&tab=bodyTag" class="nav-tab"<?php echo $active_tab == 'bodyTag' ? 'id="active"' : 'none'; ?>>BODY Tag</a>  	
-	  <a href="?page=kjd_misc_background_settings&tab=mastArea" class="nav-tab"<?php echo $active_tab == 'mastArea' ? 'id="active"' : 'none'; ?>>Mast</a>  	
-	  <a href="?page=kjd_misc_background_settings&tab=contentArea" class="nav-tab"<?php echo $active_tab == 'contentArea' ? 'id="active"' : 'none'; ?>>Main Content</a>  	
- 	 	
+	  <a href="?page=kjd_misc_background_settings&tab=htmlTag" class="nav-tab"<?php echo $active_tab == 'htmlTag' ? 'id="active"' : 'none'; ?>>HTML tag</a>
+	  <a href="?page=kjd_misc_background_settings&tab=bodyTag" class="nav-tab"<?php echo $active_tab == 'bodyTag' ? 'id="active"' : 'none'; ?>>BODY Tag</a>
+	  <a href="?page=kjd_misc_background_settings&tab=mastArea" class="nav-tab"<?php echo $active_tab == 'mastArea' ? 'id="active"' : 'none'; ?>>Mast</a>
+	  <a href="?page=kjd_misc_background_settings&tab=contentArea" class="nav-tab"<?php echo $active_tab == 'contentArea' ? 'id="active"' : 'none'; ?>>Main Content</a>
+
 </h2>
 
-    <?php 
+    <?php
     	settings_errors();
 		kjd_build_theme_css();
-     ?>  
-	<form method="post" action="options.php">  
+     ?>
+	<form method="post" action="options.php">
 		<div class="fields-wrapper">
-	<?php 
-	if( $active_tab == 'htmlTag' ) { 
+	<?php
+	if( $active_tab == 'htmlTag' ) {
 		kjd_htmlTag_background_callback('htmlTag');
 	}elseif($active_tab == 'bodyTag'){
 		kjd_bodyTag_background_callback('bodyTag');
@@ -50,10 +47,10 @@ function kjd_misc_backgrounds_display() {
 		value="<?php echo $options['kjd_'.$section.'_tab'] ? $options['kjd_'.$section.'_tab'] : 'none'; ?>"
   />
 <?php
-	submit_button(); 
+	submit_button();
 
 	wp_enqueue_media();
-	?>  
+	?>
 			</div>
 
 		<?php if( $active_tab != 'cycler Images' && $active_tab != 'cycler Settings'){ ?>
@@ -61,8 +58,8 @@ function kjd_misc_backgrounds_display() {
 		<div class="preview-options">
 			<?php echo kjd_site_preview();?>
 		</div>
-		
-		
+
+
 		<?php } ?>
 
 
@@ -77,7 +74,7 @@ function kjd_misc_backgrounds_display() {
 ////////////////////////////////////
 function kjd_htmlTag_background_callback($section){
 	include	'background.php';
-	
+
 }
 
 ////////////////////////////////////
@@ -92,16 +89,16 @@ function kjd_bodyTag_background_callback($section){
 // mast Area background
 ////////////////////////////////////
 function kjd_mastArea_background_callback($section){
-	
+
 	include	'background_settings_form.php';
 	$miscSettings = $options['kjd_'.$section.'_background_misc'];
 	?>
 	<h2>Settings</h2>
-		
+
 
 	<div class="option">
 		<label>Confine mast wallpaper?</label>
-		
+
 		<select  name="kjd_<?php echo $section;?>_background_settings[kjd_<?php echo $section; ?>_background_misc][confine_mast]">
 			<option value="false" <?php selected( $miscSettings['confine_mast'], 'false', true ) ?>>No</option>
 			<option value="true" <?php selected( $miscSettings['confine_mast'], 'true', true ) ?>>Yes</option>
