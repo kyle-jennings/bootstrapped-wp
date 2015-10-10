@@ -11,7 +11,7 @@ include 'functions/stylesheet-builder/styles_init.php';
 include 'functions/admin_functions.php';
 
 // The forms and menu items to said forms
-include 'forms/init.php';
+include 'functions/forms/init.php';
 
 
 /**
