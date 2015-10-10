@@ -1,9 +1,9 @@
 <?php
-	include_once('stylesheet-builder/styles_functions.php');
-	include_once('stylesheet-builder/styles_navbar_settings.php');
-	include_once('stylesheet-builder/styles_dropdown_settings.php');
-	include_once('stylesheet-builder/styles_mobilenav_settings.php');
-	include_once('stylesheet-builder/styles_markup.php');
+	include_once('styles_functions.php');
+	include_once('styles_navbar_settings.php');
+	include_once('styles_dropdown_settings.php');
+	include_once('styles_mobilenav_settings.php');
+	include_once('styles_markup.php');
 
 /*
 	$section = markup section (header, body ect)
@@ -38,9 +38,36 @@ function kjd_get_temp_settings($section, $array, $preview, $part) {
 }
 
 
+
+/**
+ * Currenty: on page load build the CSS
+ *
+ * Future: after settings are saved, build the CSS
+ */
+function kjd_build_theme_css( $stylesheet = 'custom.css' ){
+
+    $root = dirname( dirname( dirname(dirname(__FILE__))));  // theme -> lib
+
+    $file = $root . '/styles/'. $stylesheet;
+
+    if(file_exists($file))
+        unlink($file);
+
+    $file = fopen($file, "x+");
+
+    ob_start();
+        echo kjd_get_theme_options(null);
+        $buffered_content = ob_get_contents();
+    ob_end_clean();
+
+    fwrite($file, $buffered_content);
+    fclose($file);
+
+    return $input;
+}
+
+
 function kjd_get_theme_options($preview = null){
-
-
 
 	$sections = array('htmlTag','bodyTag','mastArea','header','navbar','dropdown-menu',
 		'cycler','contentArea','pageTitle','body','footer');
