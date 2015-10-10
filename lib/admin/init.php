@@ -45,12 +45,3 @@ function kjd_load_style_sheets_and_scripts() {
 
 }
 add_action('admin_init', 'kjd_load_style_sheets_and_scripts');
-
-
-/**
- * The wp_options for the theme styles
- */
-function kjd_initialize_kjd_settings(){
-	 include 'kjd_fields.php';
-}
-add_action('admin_init', 'kjd_initialize_kjd_settings');

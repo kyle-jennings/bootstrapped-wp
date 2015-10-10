@@ -4,7 +4,7 @@
 if(is_admin())
     include 'admin/init.php' ;
 
-    require_once('functions/kjd_bootstrap_menus.php');
+    require_once('functions/kjd-bootstrap-menus.php');
     require_once('functions/kjd-gallery.php');
     require_once('functions/kjd-shortcodes.php');
     require_once('functions/kjd-widgets.php');
@@ -58,9 +58,8 @@ function kjd_add_assets(){
     wp_enqueue_style("mobile", $root."/styles/mobile.css");
 
     // Add slider scripts if on front page
-    if( is_front_page() ){
-         include( 'functions/add_slider_scripts.php');
-    }
+    if( is_front_page() )
+        include( 'functions/add-slider-scripts.php');
 
 }
 add_action( 'wp_enqueue_scripts', 'kjd_add_assets' );
@@ -100,18 +99,18 @@ add_filter( 'image_size_names_choose', 'kjd_custom_sizes' );
 gets featured image meta info
 ------------------------------------------------- */
 function kjd_the_post_thumbnail_description($args) {
-  $thumbnail_id    = get_post_thumbnail_id($args->ID);
-  $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
+    $thumbnail_id    = get_post_thumbnail_id($args->ID);
+    $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
 
-  if ($thumbnail_image && isset($thumbnail_image[0])) {
-    echo '<span>'.$thumbnail_image[0]->post_content.'</span>';
-  }
+    if ($thumbnail_image && isset($thumbnail_image[0])) {
+        echo '<span>'.$thumbnail_image[0]->post_content.'</span>';
+    }
 }
 
 
 // add excerpts to pages
 function kjd_add_excerpts_to_pages() {
-     add_post_type_support( 'page', 'excerpt' );
+    add_post_type_support( 'page', 'excerpt' );
 }
 
 add_action( 'init', 'kjd_add_excerpts_to_pages' );
@@ -122,16 +121,16 @@ device views
 --------------------------------------------------------- */
 
 function kjd_deviceViewSettings($deviceView){
-        if(isset($deviceView) && $deviceView !="all"){
-            echo $deviceView;
-        }
+    if(isset($deviceView) && $deviceView !="all"){
+        echo $deviceView;
+    }
 }
 
 /* ------------------------------------------------------
  Add login css
 --------------------------------------------------------- */
 function kjd_login_css() {
-    require_once(dirname(dirname(__FILE__)).'/styles/login.php');
+    require_once('styles/login.php');
 }
 add_action('login_head', 'kjd_login_css');
 

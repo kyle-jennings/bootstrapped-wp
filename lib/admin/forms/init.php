@@ -1,11 +1,18 @@
 <?php
 
+/**
+ * The wp_options for the theme styles
+ */
+function kjd_initialize_kjd_settings(){
+     include 'kjd_fields.php';
+}
+add_action('admin_init', 'kjd_initialize_kjd_settings');
+
 // forms
 include 'display_settings.php';
 include 'general_settings_form.php';
 include 'page_layouts_form.php';
 include 'misc_backgrounds_form.php';
-
 
 
 // makes new menu
