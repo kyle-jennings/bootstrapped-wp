@@ -65,9 +65,7 @@ function kjd_settings_display($section = null) {
 
 ?>
 
-<!-- 	<h2>
-        <?php echo $section != 'cycler' ? ucfirst($section) : "Image Banner" ; ?> Area Settings
-	</h2> -->
+
 <?php
 
 	if( isset( $_GET[ 'tab' ] ) ) {

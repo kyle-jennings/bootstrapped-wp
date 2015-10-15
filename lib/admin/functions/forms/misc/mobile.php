@@ -26,8 +26,8 @@ function kjd_mobileNav_misc_settings_callback(){
 <h3>Mobile Nav Styles</h3>
 
 <!-- Tab Navigation-->
-<div class="btn-group ">
-	<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+<div class="btn-group tab-switcher ">
+	<a class="btn btn-primary dropdown-toggle tab-switcher__dropdown" data-toggle="dropdown" href="#">
 		<span class="btn-face">General</span>
 		<span class="caret"></span>
 	</a>

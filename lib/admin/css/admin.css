@@ -32,6 +32,7 @@
 */
 .nav-wrapper {
     margin:0 0 0 -20px;
+    overflow: hidden;
 }
 @media screen and (max-width: 782px){
     .nav-wrapper {
@@ -110,7 +111,6 @@ div.updated, div.error {
 ------------------------------------------------------------------- */
 form .fields-wrapper{
   float:left;
-  padding-top: 20px;
   width:200px;
 }
 
@@ -118,7 +118,23 @@ form .banner-fields-wrapper{
   width:99%;
 }
 
+/**
+ Tab switcher
+ */
+.btn-group.tab-switcher {
+    margin-left: -20px;
+    display: block;
+}
+.btn-group .tab-switcher__dropdown {
+    border-radius: 0 !important;
+    display: block;
+    text-align: left;
+    padding: 10px;
+}
 
+.btn-group .tab-switcher__dropdown .caret {
+    float:right;
+}
 /* -----------------------------------------------------------------
           Live Preview
 ------------------------------------------------------------------- */
@@ -132,7 +148,7 @@ form .banner-fields-wrapper{
 
 .preview-options{
     border:none;
-    height:calc(100vh - 30px);
+    height:calc(100vh - 70px);
 /*    height: 100%;
     height:auto;
     min-height: 100%;*/
@@ -152,9 +168,11 @@ form .banner-fields-wrapper{
 }
 
 .preview-window {
-  height: 100%;
+    height:calc(100vh - 70px);
+
+/*  height: 100%;
   height:auto;
-  min-height: 700px;
+  min-height: 700px;*/
   margin: 0 auto;
 }
 
@@ -163,6 +181,7 @@ form .banner-fields-wrapper{
   content: '';
   display: block;
 }
+
 
 /* -----------------------------------------------------------------
           Fields
