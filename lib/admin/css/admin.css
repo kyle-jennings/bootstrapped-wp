@@ -40,6 +40,8 @@
         overflow-x:auto;
     }
 }
+
+
 /*#23282d*/
 .components-nav {
     background-color:#007823;
@@ -59,6 +61,7 @@
     font-size: 14px;
     font-weight: bold;
     padding: 10px 20px;
+    position: relative;
     text-decoration: none;
 }
 .components-nav__link:hover {
@@ -81,10 +84,26 @@
 }
 
 
+.components-nav__link--section {
+    background-color: #015F1D;
+}
+.components-nav__link--section:after {
+    border-left:4px solid white;
+    border-top:4px solid transparent;
+    border-bottom:4px solid transparent;
+    content:'';
+    display:block;
+    height:0;
+    margin-top:-4px;
+    position:absolute;
+    right:8px;
+    top:50%;
+    width:0;
+}
 
-
-
-
+/*
+everything else
+ */
 .kjd-admin-page-title{
   border: 0;
   height: 1em;

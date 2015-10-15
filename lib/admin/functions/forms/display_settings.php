@@ -75,24 +75,33 @@ function kjd_settings_display($section = null) {
 	}
 ?>
 
-<div class="nav-wrapper">
-    <div class="components-nav cf">
-    	<?php
-            foreach($tabs as $tab){
-                if($tab == 'misc')
-                    $title = 'Settings';
-                else
-                    $title = ucwords( str_replace('_',' ', $tab ) );
-        ?>
-    		<a class="components-nav__link <?php echo $active_tab == $tab ? 'active' : ''; ?>" href="?page=kjd_<?php echo $section;?>_settings&tab=<?php echo $tab; ?>">
+    <div class="nav-wrapper">
+        <div class="components-nav cf">
+            <a class="components-nav__link components-nav__link--section" href="#" >
+                <?php echo ucfirst($section);?>
+            </a>
+        	<?php
+                foreach($tabs as $tab){
+                    if($tab == 'misc')
+                        $title = 'Settings';
+                    else
+                        $title = ucwords( str_replace('_',' ', $tab ) );
+            ?>
+    		<a class="components-nav__link <?php echo $active_tab == $tab ? 'active' : ''; ?>"
+                href="?page=kjd_<?php echo $section;?>_settings&tab=<?php echo $tab; ?>">
                 <?php echo $title; ?>
             </a>
-    	<?php }
+        	<?php }
 
-    	$fields_wrapper_class = ( $active_tab != 'image_banner_images' && $active_tab != 'image_banner_settings') ? 'fields-wrapper ' : 'banner-fields-wrapper' ;
-     ?>
+        	$fields_wrapper_class = ( $active_tab != 'image_banner_images' && $active_tab != 'image_banner_settings') ?
+                                'fields-wrapper ' :
+                                'banner-fields-wrapper';
+         ?>
+        </div>
     </div>
-</div>
+
+
+
     <?php settings_errors(); ?>
 	<form method="post" action="options.php">
 		<div class="<?php echo $fields_wrapper_class; ?>" >
