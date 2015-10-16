@@ -87,10 +87,11 @@
 .components-nav__link--section {
     background-color: #015F1D;
 }
+
 .components-nav__link--section:after {
-    border-left:4px solid white;
-    border-top:4px solid transparent;
-    border-bottom:4px solid transparent;
+    border-top:4px solid white;
+    border-left:4px solid transparent;
+    border-right:4px solid transparent;
     content:'';
     display:block;
     height:0;
@@ -99,6 +100,10 @@
     right:8px;
     top:50%;
     width:0;
+}
+
+.components-nav__link .dashicons {
+    height: 13px;
 }
 
 /*
