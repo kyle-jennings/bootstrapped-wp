@@ -1,5 +1,7 @@
 <div class="nivoSlider">
-<?php 
+<?php
+
+
 	$i = 0;
 	foreach($images as $image){  $i++; ?>
 	<?php if(!empty($image['url'])){ ?>
@@ -9,11 +11,11 @@
 ?>
 </div>
 
-<?php $i =0;	
-foreach($images as $image){  $i++; 
+<?php $i =0;
+foreach($images as $image){  $i++;
 	if(!empty($image['text'])){ ?>
 	<div id="<?php echo $i;?>" class="nivo-html-caption">
 			<?echo $image['text']; ?>
 	</div>
-	<?php } 
+	<?php }
 } ?>

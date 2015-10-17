@@ -1,10 +1,24 @@
 <?php
 
+
+
+/**
+ * Helper Function  - examine object or array
+ * Just prints out an object or array in a human readable way
+ */
+function kjd_examine($obj){
+    if (empty($obj))
+        return;
+    echo '<pre>';
+    print_r($obj);
+    die;
+}
+
 // update function
 include 'update/update.php';
 
 // global variables
-include 'settings.php';
+include 'fields/settings.php';
 
 // include the file which builds the CSS
 include 'functions/stylesheet-builder/styles_init.php';
