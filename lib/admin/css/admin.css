@@ -138,6 +138,8 @@
 @media screen and (max-width: 782px){
     .section-dropdown-nav {
         left:-10px;
+        top:84px;
+        width: 100%;
     }
 }
 
