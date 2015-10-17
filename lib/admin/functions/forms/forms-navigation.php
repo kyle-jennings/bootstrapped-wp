@@ -106,7 +106,7 @@ function sections_dropdown_nav(){
         <?php foreach($sections as $link): ?>
         <li>
             <a href="?page=kjd_<?php echo $link; ?>_settings">
-                <?php echo $link; ?>
+                <?php echo ucwords(str_replace('_',' ',$link)); ?>
             </a>
         </li>
         <?php endforeach; ?>
