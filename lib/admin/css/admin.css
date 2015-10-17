@@ -45,6 +45,8 @@
 /*#23282d*/
 .components-nav {
     background-color:#007823;
+    position: relative;
+
     width: 200%;
 }
 @media screen and (max-width: 782px){
@@ -84,9 +86,29 @@
 }
 
 
-.components-nav__link--section {
-    background-color: #015F1D;
+
+.components-nav__link .dashicons {
+    height: 13px;
 }
+
+/* ------------------
+    sections dropdown
+-------------------- */
+
+.components-nav__link--section {
+    background-color: #338FAB;
+    color: white;
+}
+.components-nav__link--section:active,
+.components-nav__link--section:focus,
+.components-nav__link--section:hover {
+    background-color: #317E96;
+    color: white;
+}
+.components-nav__link--section:hover:after {
+    color: white;
+}
+
 
 .components-nav__link--section:after {
     border-top:4px solid white;
@@ -102,9 +124,52 @@
     width:0;
 }
 
-.components-nav__link .dashicons {
-    height: 13px;
+.section-dropdown-nav {
+    background-color: #338FAB;
+    color: white;
+    display: none;
+    margin: 0;
+    position: absolute;
+    top: 38px;
+    left:-20px;
+    width: 220px;
+    z-index:999;
 }
+@media screen and (max-width: 782px){
+    .section-dropdown-nav {
+        left:-10px;
+    }
+}
+
+.section-dropdown-nav.active {
+    display:block;
+}
+
+.section-dropdown-nav li {
+    margin:0;
+}
+
+.section-dropdown-nav a {
+    background-color:#338FAB;
+    color: white;
+    display:block;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px 20px;
+    position: relative;
+    text-decoration: none;
+}
+
+.section-dropdown-nav a:hover {
+    background-color: #317E96;
+    color: white;
+}
+
+.section-dropdown-nav a:focus{
+    color: white;
+    box-shadow: none;
+}
+
 
 /*
 everything else

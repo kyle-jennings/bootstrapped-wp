@@ -68,26 +68,15 @@
 
 
 function nav_tabs($tabs, $active_tab, $section = 'theme'){
-    $sections = array('theme','header','navbar','dropdown-menu','mobileNav',
-        'cycler','pageTitle','body', 'posts','footer','login',
-        'misc_backgrounds','page_layouts');
+
 ?>
 
     <div class="nav-wrapper">
         <div class="components-nav cf">
 
-            <a class="components-nav__link components-nav__link--section" href="#" >
+            <a class="components-nav__link components-nav__link--section js--sections-dropdown-toggle" href="#" >
                 <span class="dashicons dashicons-welcome-widgets-menus"></span>
-                <?php echo ucfirst($section);?>
-<!--                 <ul class="components-nav__sections-list">
-                    <?php foreach($sections as $link): ?>
-                    <li>
-                        <a href="?page=kjd_<?php echo $link; ?>_settings">
-                            <?php echo $link; ?>
-                        </a>
-                    </li>
-                    <?php endforeach; ?>
-                </ul> -->
+                <?php echo ucfirst( str_replace('_',' ', $section ) );?>
             </a>
 
             <?php
@@ -98,12 +87,29 @@ function nav_tabs($tabs, $active_tab, $section = 'theme'){
                         $title = ucwords( str_replace('_',' ', $tab ) );
             ?>
             <a class="components-nav__link <?php echo $active_tab == $tab ? 'active' : ''; ?>"
-                href="?page=kjd_<?php echo $section;?>_settings&tab=<?php echo $tab; ?>">
+                href="?page=kjd_<?php echo strtolower($section);?>_settings&tab=<?php echo $tab; ?>">
                 <?php echo $title; ?>
             </a>
             <?php endforeach; ?>
         </div>
     </div>
 
+    <?php
+}
+
+function sections_dropdown_nav(){
+    $sections = array('theme','header','navbar','dropdown-menu','mobileNav',
+    'cycler','pageTitle','body', 'posts','footer','login',
+    'misc_background','page_layout');
+    ?>
+    <ul class="section-dropdown-nav js--sections-dropdown">
+        <?php foreach($sections as $link): ?>
+        <li>
+            <a href="?page=kjd_<?php echo $link; ?>_settings">
+                <?php echo $link; ?>
+            </a>
+        </li>
+        <?php endforeach; ?>
+    </ul>
     <?php
 }

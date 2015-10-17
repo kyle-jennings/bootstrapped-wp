@@ -2,6 +2,7 @@
 
 function kjd_theme_settings_display(){
 
+    kjd_build_theme_css();
     include('forms-navigation.php');
 
     $tabs = array('home','logo','settings','components','styles');
@@ -13,7 +14,7 @@ function kjd_theme_settings_display(){
 
     settings_errors();
     nav_tabs($tabs, $active_tab, 'theme');
-
+    sections_dropdown_nav();
 ?>
 
 

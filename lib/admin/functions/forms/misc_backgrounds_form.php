@@ -1,34 +1,25 @@
 <?php
 
 
+
 function kjd_misc_backgrounds_display() {
-	screen_icon('themes');
-?>
-<div class="kjd-admin-page-title">
-	<h2>Misc Background Settings</h2>
-</div>
 
-<?php
-	if( isset( $_GET[ 'tab' ] ) ) {
-	 $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'htmlTag';
-	}else{
-	 $active_tab = 'htmlTag';
-	}
-?>
+	kjd_build_theme_css();
+    include('forms-navigation.php');
 
-<h2 class="nav-tab-wrapper">
+    $tabs = array('htmlTag','bodyTag','mastArea','contentArea');
 
-	  <a href="?page=kjd_misc_background_settings&tab=htmlTag" class="nav-tab"<?php echo $active_tab == 'htmlTag' ? 'id="active"' : 'none'; ?>>HTML tag</a>
-	  <a href="?page=kjd_misc_background_settings&tab=bodyTag" class="nav-tab"<?php echo $active_tab == 'bodyTag' ? 'id="active"' : 'none'; ?>>BODY Tag</a>
-	  <a href="?page=kjd_misc_background_settings&tab=mastArea" class="nav-tab"<?php echo $active_tab == 'mastArea' ? 'id="active"' : 'none'; ?>>Mast</a>
-	  <a href="?page=kjd_misc_background_settings&tab=contentArea" class="nav-tab"<?php echo $active_tab == 'contentArea' ? 'id="active"' : 'none'; ?>>Main Content</a>
+    if( isset( $_GET[ 'tab' ] ) ) {
+     $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'htmlTag';
+    }else{
+     $active_tab = 'htmlTag';
+    }
 
-</h2>
+    settings_errors();
+    nav_tabs($tabs, $active_tab, 'misc_background');
+    sections_dropdown_nav();
 
-    <?php
-    	settings_errors();
-		kjd_build_theme_css();
-     ?>
+ ?>
 	<form method="post" action="options.php">
 		<div class="fields-wrapper">
 	<?php
