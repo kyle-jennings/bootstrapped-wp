@@ -16,8 +16,8 @@
 
 
 */
-.cf:after
-.cf:before, {
+.cf:after,
+.cf:before {
   content: '';
   display: table;
 }
@@ -26,6 +26,156 @@
   clear: both;
 }
 
+
+/*
+    New navbar
+*/
+.nav-wrapper {
+    margin:0 0 0 -20px;
+    overflow: hidden;
+}
+@media screen and (max-width: 782px){
+    .nav-wrapper {
+        margin:0 0 0 -10px;
+        overflow-x:auto;
+    }
+}
+
+
+/*#23282d*/
+.components-nav {
+    background-color:#007823;
+    position: relative;
+
+    width: 200%;
+}
+@media screen and (max-width: 782px){
+    .nav-wrapper {
+        margin:0 0 0 -10px;
+    }
+}
+
+.components-nav__link {
+    background-color:#007823;
+    color: #ccc;
+    display:block;
+    float:left;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px 20px;
+    position: relative;
+    text-decoration: none;
+}
+.components-nav__link:hover {
+    background-color: #015F1D;
+}
+
+.components-nav__link:focus{
+    color: #00a0d2;
+    box-shadow: none;
+}
+
+@media screen and (max-width: 782px){
+    .components-nav__link:first-child {
+        padding-left:10px;
+    }
+}
+
+.components-nav__link.active {
+    background-color: #015F1D;
+}
+
+
+
+.components-nav__link .dashicons {
+    height: 13px;
+}
+
+/* ------------------
+    sections dropdown
+-------------------- */
+
+.components-nav__link--section {
+    background-color: #338FAB;
+    color: white;
+}
+.components-nav__link--section:active,
+.components-nav__link--section:focus,
+.components-nav__link--section:hover {
+    background-color: #317E96;
+    color: white;
+}
+.components-nav__link--section:hover:after {
+    color: white;
+}
+
+
+.components-nav__link--section:after {
+    border-top:4px solid white;
+    border-left:4px solid transparent;
+    border-right:4px solid transparent;
+    content:'';
+    display:block;
+    height:0;
+    margin-top:-4px;
+    position:absolute;
+    right:8px;
+    top:50%;
+    width:0;
+}
+
+.section-dropdown-nav {
+    background-color: #338FAB;
+    color: white;
+    display: none;
+    margin: 0;
+    position: absolute;
+    top: 38px;
+    left:-20px;
+    width: 220px;
+    z-index:999;
+}
+@media screen and (max-width: 782px){
+    .section-dropdown-nav {
+        left:-10px;
+        top:84px;
+        width: 100%;
+    }
+}
+
+.section-dropdown-nav.active {
+    display:block;
+}
+
+.section-dropdown-nav li {
+    margin:0;
+}
+
+.section-dropdown-nav a {
+    background-color:#338FAB;
+    color: white;
+    display:block;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px 20px;
+    position: relative;
+    text-decoration: none;
+}
+
+.section-dropdown-nav a:hover {
+    background-color: #317E96;
+    color: white;
+}
+
+.section-dropdown-nav a:focus{
+    color: white;
+    box-shadow: none;
+}
+
+
+/*
+everything else
+ */
 .kjd-admin-page-title{
   border: 0;
   height: 1em;
@@ -59,15 +209,40 @@ form .banner-fields-wrapper{
   width:99%;
 }
 
+/**
+ Tab switcher
+ */
+.btn-group.tab-switcher {
+    margin-left: -20px;
+    display: block;
+}
+.btn-group .tab-switcher__dropdown {
+    border-radius: 0 !important;
+    display: block;
+    text-align: left;
+    padding: 10px;
+}
 
+.btn-group .tab-switcher__dropdown .caret {
+    float:right;
+}
 /* -----------------------------------------------------------------
           Live Preview
 ------------------------------------------------------------------- */
+.preview-size {
+    float: left;
+    height: 30px;
+    margin-bottom: -44px;
+    position: relative;
+    z-index: 99;
+}
+
 .preview-options{
     border:none;
-    height: 100%;
+    height:calc(100vh - 70px);
+/*    height: 100%;
     height:auto;
-    min-height: 100%;
+    min-height: 100%;*/
     overflow: hidden;
     margin-left: 200px;
 
@@ -77,16 +252,18 @@ form .banner-fields-wrapper{
 
 }
 
-.preview-options .preview-window,
-.preview-options .preview-size{
-  clear: both;
-  display: block;
+.preview-options .preview-window{
+
+    clear: both;
+    display: block;
 }
 
 .preview-window {
-  height: 100%;
+    height:calc(100vh - 70px);
+
+/*  height: 100%;
   height:auto;
-  min-height: 700px;
+  min-height: 700px;*/
   margin: 0 auto;
 }
 
@@ -95,6 +272,7 @@ form .banner-fields-wrapper{
   content: '';
   display: block;
 }
+
 
 /* -----------------------------------------------------------------
           Fields

@@ -1,22 +1,22 @@
 <?php
 	settings_fields('kjd_'.$section.'_background_settings');
-	$options = get_option('kjd_'.$section.'_background_settings'); 
+	$options = get_option('kjd_'.$section.'_background_settings');
 	$colorSettings = $options['kjd_'.$section.'_background_colors'];
 	$wallpaperSettings = $options['kjd_'.$section.'_background_wallpaper'];
 	$positions = array('left top','left center','left bottom','right top','right center','right bottom','center top','center center','center bottom','custom');
 
 
 
-	if( !empty($colorSettings['start_rgba']) ){	
+	if( !empty($colorSettings['start_rgba']) ){
 		$start_rgba =  $colorSettings['start_rgba'];
 		$start_rgba = split(',',$start_rgba);
 		$start_rgba = $start_rgba[3];
 		$start_rgba =  str_replace(')','',$start_rgba) ;
 
 	}
-		
 
-	if( !empty($colorSettings['end_rgba']) ){		
+
+	if( !empty($colorSettings['end_rgba']) ){
 		$end_rgba =  $colorSettings['end_rgba'];
 		$end_rgba = split(',',$end_rgba);
 		$end_rgba =	$end_rgba[3];
@@ -30,8 +30,8 @@
   />
 
 <!-- Tab Navigation-->
-<div class="btn-group ">
-	<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+<div class="btn-group tab-switcher ">
+	<a class="btn btn-primary dropdown-toggle tab-switcher__dropdown" data-toggle="dropdown" href="#">
 		<span class="btn-face">Background Colors</span>
 		<span class="caret"></span>
 	</a>
@@ -57,7 +57,7 @@
 	 	<div class="color_option option" style="position: relative;">
 
 			<label>Start color</label>
-			<input class="minicolors opacity" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][color]" 
+			<input class="minicolors opacity" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][color]"
 			value="<?php echo $colorSettings['color'] ? $colorSettings['color'] : 'none'; ?>" data-opacity ="<?php echo $start_rgba; ?>" />
 			<input type="hidden" class="rgba-color" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][start_rgba]"
 			 value="<?php echo $colorSettings['start_rgba'] ? $colorSettings['start_rgba'] : 'none'; ?>" />
@@ -68,7 +68,7 @@
 	 	<div class="color_option option" style="position: relative;">
 
 			<label>End color</label>
-			<input class="minicolors opacity" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][endcolor]" 
+			<input class="minicolors opacity" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][endcolor]"
 			value="<?php echo $colorSettings['endcolor'] ? $colorSettings['endcolor'] : 'none'; ?>"  data-opacity ="<?php echo $end_rgba; ?>" />
 			<input type="hidden" class="rgba-color" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][end_rgba]"
 			 value="<?php echo $colorSettings['end_rgba'] ? $colorSettings['end_rgba'] : 'none'; ?>" />
@@ -76,7 +76,7 @@
 		</div> <!-- End color select-->
 
 		<div class="option">
-			<label>Color fill</label>		
+			<label>Color fill</label>
 
 			<select name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_colors][gradient]">
 					<option value="none" <?php selected( $colorSettings['gradient'], "none", true) ?>>None</option>
@@ -85,7 +85,7 @@
 					<option value="horizontal" <?php selected( $colorSettings['gradient'], "horizontal", true) ?>>Horizontal</option>
 					<option value="radial" <?php selected( $colorSettings['gradient'], "radial", true) ?>>Radial</option>
 					<?php if($section =='navbar'){ ?>
-					
+
 					<option value="bootstrap_default" <?php selected( $colorSettings['gradient'], "bootstrap_default", true) ?>>Bootstrap Default</option>
 
 					<?php } ?>
@@ -97,7 +97,7 @@
 	<!-- ************** -->
 	<!-- bg wallpaper   -->
 	<!-- ************** -->
-<?php 
+<?php
 
 if($section !=='posts'):
 
@@ -117,13 +117,13 @@ if($section !=='posts'):
 
 		<div class="option">
 			<label>Upload wallpaper</label>
-				<input type="text" class="media_input" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_wallpaper][image]" value="<?php echo $wallpaperSettings['image'] ? $wallpaperSettings['image'] : ''; ?>" />  
-				<input type="button" class="button upload_image" value="Upload image" /> 
+				<input type="text" class="media_input" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_wallpaper][image]" value="<?php echo $wallpaperSettings['image'] ? $wallpaperSettings['image'] : ''; ?>" />
+				<input type="button" class="button upload_image" value="Upload image" />
 		</div>
 
 		<!-- background repeat -->
 		<div class="option">
-			<label>Wallpaper repeat?</label>		
+			<label>Wallpaper repeat?</label>
 		<?php $repeatOptions = array('repeat','no-repeat','repeat-x','repeat-y',);?>
 			<select name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_wallpaper][repeat]">
 				<?php foreach($repeatOptions as $repeat){ ?>
@@ -131,9 +131,9 @@ if($section !=='posts'):
 				<?php } ?>
 			</select>
 		</div>
-	
+
 		<div class="option">
-			<label>Background Attachment</label>		
+			<label>Background Attachment</label>
 			<select name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_wallpaper][attachment]">
 				<option value="scroll" <?php selected( $wallpaperSettings['attachment'], 'scroll', true) ?>>Scroll</option>
 				<option value="fixed" <?php selected( $wallpaperSettings['attachment'], 'fixed', true) ?>>Fixed</option>
@@ -143,7 +143,7 @@ if($section !=='posts'):
 		<!-- background position -->
 		<div class="full-option cf">
 			<div class="option">
-				<label>Wallpaper position</label>		
+				<label>Wallpaper position</label>
 				<select class="background-pos" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_wallpaper][position]">
 					<?php foreach($positions as $position){ ?>
 						<option value="<?php echo $position;?>" <?php selected( $wallpaperSettings['position'], $position, true) ?>><?php echo $position;?></option>
@@ -153,7 +153,7 @@ if($section !=='posts'):
 
 
 			<div class="option" style="<?php echo $wallpaperSettings['size'] == 'percentage' ? 'display:block;' : 'display:none;' ; ?>">
-				<label>Wallpaper custom position</label>		
+				<label>Wallpaper custom position</label>
 				<input type="text" name="kjd_<?php echo $section;?>_background_settings[kjd_<?php echo $section;?>_background_wallpaper][positionX]"
 				value="<?php echo $wallpaperSettings['positionX'] ? $wallpaperSettings['positionX'] : '' ;?>" style="width:40px;"><span class="explanation">from left </span>
 				<input type="text" name="kjd_<?php echo $section;?>_background_settings[kjd_<?php echo $section;?>_background_wallpaper][positionY]"
@@ -164,7 +164,7 @@ if($section !=='posts'):
 		<!-- background size -->
 		<div class="full-option cf">
 			<div class="option">
-				<label>Background Size</label>		
+				<label>Background Size</label>
 				<select  class="background-size" class="toggle-switch" name="kjd_<?php echo $section; ?>_background_settings[kjd_<?php echo $section; ?>_background_wallpaper][size]">
 					<option value="default" <?php selected( $wallpaperSettings['size'], 'percentage', true) ?>>Default</option>
 					<option value="cover" <?php selected( $wallpaperSettings['size'], 'cover', true) ?>>Cover</option>
@@ -175,7 +175,7 @@ if($section !=='posts'):
 
 
 			<div class="option" style="<?php echo $wallpaperSettings['size'] == 'percentage' ? 'display:block;' : 'display:none;' ; ?>">
-				<label>Background width</label>		
+				<label>Background width</label>
 				<input type="text" name="kjd_<?php echo $section;?>_background_settings[kjd_<?php echo $section;?>_background_wallpaper][percentage]"
 				value="<?php echo $wallpaperSettings['percentage'] ? $wallpaperSettings['percentage'] : '' ;?>" style="width:40px;"><span class="explanation">%</span>
 			</div>
@@ -183,7 +183,7 @@ if($section !=='posts'):
 
 
 	</div> <!-- end .tab-pane -->
-<?php 
+<?php
 endif;
 ?>
 

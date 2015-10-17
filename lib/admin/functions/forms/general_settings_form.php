@@ -1,26 +1,22 @@
 <?php
 
 function kjd_theme_settings_display(){
-screen_icon('themes'); ?>
 
-<h2>Theme Settings</h2>
+    kjd_build_theme_css();
+    include('forms-navigation.php');
 
-<?php
+    $tabs = array('home','logo','settings','components','styles');
+    if( isset( $_GET[ 'tab' ] ) ) {
+     $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'home';
+    }else{
+     $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'home';
+    }
 
-	if( isset( $_GET[ 'tab' ] ) ) {
-	 $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'home';
-	}else{
-	 $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'home';
-	}
+    settings_errors();
+    nav_tabs($tabs, $active_tab, 'theme');
+    sections_dropdown_nav();
 ?>
 
-<h2 class="nav-tab-wrapper">
-	<a href="?page=kjd_theme_settings&tab=home" class="nav-tab"<?php echo $active_tab == 'home' ? 'id="active"' : 'none'; ?>>Home</a>
-	<a href="?page=kjd_theme_settings&tab=logo" class="nav-tab"<?php echo $active_tab == 'logo' ? 'id="active"' : 'none'; ?>>Logo</a>
-	<a href="?page=kjd_theme_settings&tab=settings" class="nav-tab"<?php echo $active_tab == 'settings' ? 'id="active"' : 'none'; ?>>General Settings </a>
-	<a href="?page=kjd_theme_settings&tab=components" class="nav-tab"<?php echo $active_tab == 'components' ? 'id="active"' : 'none'; ?>>Components</a>
-	<a href="?page=kjd_theme_settings&tab=styles" class="nav-tab"<?php echo $active_tab == 'sty;es' ? 'id="active"' : 'none'; ?>>Custom Styles</a>
-</h2>
 
     <?php settings_errors(); ?>
 
@@ -70,7 +66,7 @@ function kjd_theme_home_callback(){
 
 		<h3>What do you want to style?</h3>
 
-		<?php include( dirname( dirname(__FILE__)).'/functions/layout-diagram.php');?>
+		<?php include( dirname( dirname(__FILE__)).'/layout-diagram.php');?>
 <?php
 }
 

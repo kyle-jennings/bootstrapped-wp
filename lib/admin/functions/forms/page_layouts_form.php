@@ -3,26 +3,24 @@
 // Page Layout Settings
 // -------------------------------
 
-function kjd_page_layout_settings_display() {  ?>
-<div class="optionsWrapper wrap">
-	  <?php screen_icon('themes'); ?>
-	  <h2>Page Layouts</h2>
+function kjd_page_layout_settings_display() {
 
-<?php
+    kjd_build_theme_css();
+    include('forms-navigation.php');
+
+    $tabs = array('posts','pages','frontPage','attachments');
 
 	if( isset( $_GET[ 'tab' ] ) ) {
 	 $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'posts';
 	}else{
 	 $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'posts';
 	}
+
+    settings_errors();
+    nav_tabs($tabs, $active_tab, 'page_layout');
+    sections_dropdown_nav();
 ?>
-	<h2 class="nav-tab-wrapper">
-	  <a href="?page=kjd_page_layout_settings&tab=posts" class="nav-tab"<?php echo $active_tab == 'posts' ? 'id="active"' : 'none'; ?>>Page Layouts</a>
-	  <a href="?page=kjd_page_layout_settings&tab=pages" class="nav-tab"<?php echo $active_tab == 'pages' ? 'id="active"' : 'none'; ?>>Template Layouts</a>
-	  <a href="?page=kjd_page_layout_settings&tab=frontPage" class="nav-tab"<?php echo $active_tab == 'frontPage' ? 'id="active"' : 'none'; ?>>Front Page Layout</a>
-	  <a href="?page=kjd_page_layout_settings&tab=attachments" class="nav-tab"<?php echo $active_tab == 'attachments' ? 'id="active"' : 'none'; ?>>Attachment Page</a>
-	 </h2>
-    <?php settings_errors(); ?>
+
 	  <form method="post" action="options.php">
 		<?php
 
@@ -37,7 +35,6 @@ function kjd_page_layout_settings_display() {  ?>
 			}
 		 submit_button(); ?>
 	</form>
-</div>
 <?php
 }
 

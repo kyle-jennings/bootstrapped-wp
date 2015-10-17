@@ -1,7 +1,7 @@
 <?php
 	settings_fields('kjd_'.$section.'_borders_settings');
-	$options = get_option('kjd_'.$section.'_borders_settings'); 
-	
+	$options = get_option('kjd_'.$section.'_borders_settings');
+
 	$mobileNavSettings = get_option('kjd_mobileNav_misc_settings');
 	$mobileNavSettings = $mobileNavSettings['kjd_mobileNav_misc'];
 	$override_nav = $mobileNavSettings['override_nav'];
@@ -36,18 +36,17 @@
 		value="<?php echo $options['kjd_'.$section.'_tab'] ? $options['kjd_'.$section.'_tab'] : 'none'; ?>"
   />
 
-<h2>Border style and colors</h2>
 
 <!-- Tab Navigation-->
-  <div class="btn-group ">
-	<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+  <div class="btn-group tab-switcher ">
+	<a class="btn btn-primary dropdown-toggle tab-switcher__dropdown" data-toggle="dropdown" href="#">
 		<span class="btn-face">Top</span>
 		<span class="caret"></span>
 	</a>
     <ul class="dropdown-menu">
 <?php
 
-	foreach($tabs as $border){  
+	foreach($tabs as $border){
 		$active = ($border == 'top') ? 'class="active"' : '' ;
 		echo '<li '.$active.'><a href="#'.$border.'" data-toggle="tab">'.ucwords($border).'</a></li>';
 	}
@@ -66,7 +65,7 @@
 	$active = ($border == 'top') ? 'active' : '' ;
 ?>
 
-<div class="tab-pane cf <?php echo $active;?>" id="<?php echo $border;?>">			
+<div class="tab-pane cf <?php echo $active;?>" id="<?php echo $border;?>">
 		<div class="optionsWrapper float-options">
 			<h3><?echo ucfirst($border);?> Border</h3>
 			<!-- border color -->
@@ -75,9 +74,9 @@
 				<label>Border color</label>
 				<input class="minicolors" name="kjd_<?php echo $section;?>_borders_settings[kjd_<?php echo $section;?>_<?php echo $border;?>_border][color]"
 				value="<?php echo $color ? $color : '' ;?>"
-				 />		
+				 />
 				<a class="clearColor">Clear</a>
-			</div> 
+			</div>
 
 			<!-- border size -->
 			<div class="option">
@@ -98,21 +97,21 @@
 					<?php }?>
 				</select>
 			</div>
-			
+
 		</div><!-- end options wrapper -->
 	</div><!-- end border tabb -->
-<?php 
+<?php
 	endforeach;
 ?>
-		
-<div class="tab-pane cf" id="border-radius">	
+
+<div class="tab-pane cf" id="border-radius">
 		<div class="optionsWrapper float-options">
 		<!-- border radius -->
 		<h2>Border Radius</h2>
-		<?php 		
+		<?php
 			foreach($corners as $corner):
 		?>
-			
+
 			<div class="option">
 				<label><?php echo ucwords(str_replace('-',' ',$corner)); ?></label>
 				<select name="kjd_<?php echo $section;?>_borders_settings[kjd_<?php echo $section; ?>_border_radius][<?php echo $corner; ?>]">
@@ -126,7 +125,7 @@
 		<?php
 			endforeach;
 		?>
-			
+
 	</div><!-- end options wrapper -->
 </div><!-- end final tab -->
 

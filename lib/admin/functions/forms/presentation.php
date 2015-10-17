@@ -1,10 +1,10 @@
-<?php	
+<?php
 		settings_fields( 'kjd_'.$section.'_components_settings' );
-		$options = get_option('kjd_'.$section.'_components_settings'); 
+		$options = get_option('kjd_'.$section.'_components_settings');
 		$section_settings = $options['kjd_'.$section.'_components'];
 
 		$decorationStyles = array('none','overline','underline','line-through','text-shadow','outline');
-		
+
 		$tab_parts = array('tabbed_content_background',
 							'tabbed_content_border',
 							'tabbed_content_text_color',
@@ -58,8 +58,8 @@
 							'button_background_end',
 							'button_border',
 							'button_text'
-						);		
-		
+						);
+
 		$pagination_parts = array('pagination_border',
 									'pagination_background',
 									'pagination_text',
@@ -75,10 +75,10 @@
 				'nav_hover_link',
 				'bullet_color',
 				'nav_header_decoration'
-			);		
+			);
 
 
-		
+
 ?>
 
 <input  id="dropdown-id" type="hidden"
@@ -86,29 +86,29 @@
 		value="<?php echo $options['kjd_'.$section.'_tab'] ? $options['kjd_'.$section.'_tab'] : 'none'; ?>"
   />
 
-<input type="hidden" id="active_tab" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][tabID]" 
-value="<?php echo $section_settings['tabID'] ? $section_settings['tabID'] : 'none'; ?>"  />		
- 
-  <div class="btn-group ">
-	<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+<input type="hidden" id="active_tab" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][tabID]"
+value="<?php echo $section_settings['tabID'] ? $section_settings['tabID'] : 'none'; ?>"  />
+
+  <div class="btn-group tab-switcher ">
+	<a class="btn btn-primary dropdown-toggle tab-switcher__dropdown" data-toggle="dropdown" href="#">
 		<span class="btn-face">Tabbed Content</span>
 		<span class="caret"></span>
 	</a>
     <ul class="dropdown-menu">
        <?php if($section != 'navbar') : ?>
-  
+
 	    <li class="active"><a href="#tabs" data-toggle="tab">Tabbed Content</a></li>
 	    <li><a href="#collapsibles" data-toggle="tab">Collapsibles</a></li>
 	    <li><a href="#tables" data-toggle="tab">Tables</a></li>
 	    <li><a href="#pagination" data-toggle="tab">Pagination</a></li>
 	    <li><a href="#nav_list" data-toggle="tab">Nav Lists</a></li>
-<?php 	
-		
+<?php
+
 		foreach( array('pre','address','blockquote') as $format ):
 			echo '<li><a href="#'.$format.'" data-toggle="tab">'.ucwords($format).'</a></li>';
-		endforeach; 
+		endforeach;
 
-	endif; 
+	endif;
 ?>
 	  	<li <?php echo $section == 'navbar' ? 'class="active"' : '' ; ?> ><a href="#forms" data-toggle="tab">Forms</a></li>
 
@@ -116,7 +116,7 @@ value="<?php echo $section_settings['tabID'] ? $section_settings['tabID'] : 'non
   </div>
 
   <div class="tab-content">
-  
+
 
   <?php if($section != 'navbar') : ?>
 <!-- ***************** -->
@@ -130,10 +130,10 @@ value="<?php echo $section_settings['tabID'] ? $section_settings['tabID'] : 'non
 		<div class="option" style="position: relative;">
 
 			<label><?php echo ucwords(str_replace('_', ' ', $part ) ) ;?></label>
-			<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][tabbed_content][<?php echo $part;?>]" 
-			value="<?php echo $section_settings['tabbed_content'][$part] ? $section_settings['tabbed_content'][$part] : 'none'; ?>"  />		
+			<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][tabbed_content][<?php echo $part;?>]"
+			value="<?php echo $section_settings['tabbed_content'][$part] ? $section_settings['tabbed_content'][$part] : 'none'; ?>"  />
 		<a class="clearColor">Clear</a>
-		</div> 
+		</div>
 		<?php
 		}
 
@@ -148,16 +148,16 @@ value="<?php echo $section_settings['tabID'] ? $section_settings['tabID'] : 'non
      <h3>Nav Lists</h3>
 		<?php foreach($nav_list as $part){ ?>
 			<?php if($part == 'nav_header_decoration'): ?>
-	
+
 
 					<div class='full-option'>
 
 	<div class="option">
 		<label>Decoration</label>
-		<select class="decorationList" 
+		<select class="decorationList"
 		name="kjd_<?php echo $section;?>_components_settings[kjd_<?php echo $section; ?>_components][nav_list][nav_header_decoration]">
 			<?php foreach($decorationStyles as $decoration){ ?>
-				<option value="<?php echo $decoration;?>" 
+				<option value="<?php echo $decoration;?>"
 					<?php selected( $section_settings['nav_list']['nav_header_decoration'], $decoration, true) ?>>
 					<?php echo $decoration ?></option>
 			<?php } ?>
@@ -166,12 +166,12 @@ value="<?php echo $section_settings['tabID'] ? $section_settings['tabID'] : 'non
 
 	<div class="shadowColor color_option option" style="<?php echo $section_settings['nav_list']['nav_header_decoration'] == 'text-shadow'? 'display:block;' : 'display:none;' ;?>">
 		<label>Text-shadow Color</label>
-		<input class="minicolors" 
-		name="kjd_<?php echo $section;?>_components_settings[kjd_<?php echo $section; ?>_components][nav_list][nav_header_text_shadow]" 
+		<input class="minicolors"
+		name="kjd_<?php echo $section;?>_components_settings[kjd_<?php echo $section; ?>_components][nav_list][nav_header_text_shadow]"
 			value="<?php echo $section_settings['nav_list']['nav_header_text_shadow'] ? $section_settings['nav_list']['nav_header_text_shadow'] : ''; ?>"/>
 		<a class="clearColor">Clear</a>
 	</div>
-						
+
 					</div> <!-- end decoration -->
 
 				<?php else: ?>
@@ -179,14 +179,14 @@ value="<?php echo $section_settings['tabID'] ? $section_settings['tabID'] : 'non
 				<div class="option" style="position: relative;">
 
 					<label><?php echo ucwords(str_replace('_', ' ', $part));?></label>
-					<input class="minicolors" 
-					name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][nav_list][<?php echo $part;?>]" 
-					value="<?php echo $section_settings['nav_list'][$part] ? $section_settings['nav_list'][$part] : 'none'; ?>"  />		
+					<input class="minicolors"
+					name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][nav_list][<?php echo $part;?>]"
+					value="<?php echo $section_settings['nav_list'][$part] ? $section_settings['nav_list'][$part] : 'none'; ?>"  />
 				<a class="clearColor">Clear</a>
-				</div> 
-	
+				</div>
+
 			<?php endif; ?>
-	
+
 		<?php }	?>
     </div>
 
@@ -201,11 +201,11 @@ value="<?php echo $section_settings['tabID'] ? $section_settings['tabID'] : 'non
 			<div class="option" style="position: relative;">
 
 				<label><?php echo ucwords(str_replace('_', ' ', $part));?></label>
-				<input class="minicolors" 
-				name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][collapsible_content][<?php echo $part;?>]" 
-				value="<?php echo $section_settings['collapsible_content'][$part] ? $section_settings['collapsible_content'][$part] : 'none'; ?>"  />		
+				<input class="minicolors"
+				name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][collapsible_content][<?php echo $part;?>]"
+				value="<?php echo $section_settings['collapsible_content'][$part] ? $section_settings['collapsible_content'][$part] : 'none'; ?>"  />
 			<a class="clearColor">Clear</a>
-			</div> 
+			</div>
 		<?php
 		}
 
@@ -224,10 +224,10 @@ value="<?php echo $section_settings['tabID'] ? $section_settings['tabID'] : 'non
 			<div class="option" style="position: relative;">
 
 				<label><?php echo ucwords(str_replace('_', ' ', $part));?></label>
-				<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][table_content][<?php echo $part;?>]" 
-				value="<?php echo $section_settings['table_content'][$part] ? $section_settings['table_content'][$part] : 'none'; ?>"  />		
+				<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][table_content][<?php echo $part;?>]"
+				value="<?php echo $section_settings['table_content'][$part] ? $section_settings['table_content'][$part] : 'none'; ?>"  />
 			<a class="clearColor">Clear</a>
-			</div> 
+			</div>
 		<?php
 		}
 		?>
@@ -245,9 +245,9 @@ value="<?php echo $section_settings['tabID'] ? $section_settings['tabID'] : 'non
 			<div class="option" style="position: relative;">
 
 				<label><?php echo ucwords(str_replace('_', ' ', $part));?></label>
-				<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][pagination][<?php echo $part;?>]" value="<?php echo $section_settings['pagination'][$part] ? $section_settings['pagination'][$part] : 'none'; ?>"  />		
+				<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][pagination][<?php echo $part;?>]" value="<?php echo $section_settings['pagination'][$part] ? $section_settings['pagination'][$part] : 'none'; ?>"  />
 			<a class="clearColor">Clear</a>
-			</div> 
+			</div>
 		<?php
 		}
 		?>
@@ -267,11 +267,11 @@ value="<?php echo $section_settings['tabID'] ? $section_settings['tabID'] : 'non
 			<div class="option" style="position: relative;">
 
 				<label><?php echo ucwords(str_replace('_', ' ', $part));?></label>
-				<input class="minicolors" 
-				name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][forms][<?php echo $part;?>]" 
-				value="<?php echo $section_settings['forms'][$part] ? $section_settings['forms'][$part] : 'none'; ?>"  />		
+				<input class="minicolors"
+				name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][forms][<?php echo $part;?>]"
+				value="<?php echo $section_settings['forms'][$part] ? $section_settings['forms'][$part] : 'none'; ?>"  />
 			<a class="clearColor">Clear</a>
-			</div> 
+			</div>
 		<?php
 		}
 		?>
@@ -286,7 +286,7 @@ value="<?php echo $section_settings['tabID'] ? $section_settings['tabID'] : 'non
 	foreach( array('pre','address','blockquote') as $format ):
 ?>
     <div class="tab-pane cf" id="<?php echo $format; ?>">
-		<?php 
+		<?php
 			kjd_special_format_colors($section, $section_settings, $format);
 		?>
     </div>
@@ -310,7 +310,7 @@ function kjd_special_format_colors($section, $options, $type){
 	<div class="color_option option" style="position: relative;">
 		<label><?php echo ucwords($type);?> Background</label>
 
-		<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][<?php echo $type;?>][<?php echo $type;?>_background]" 
+		<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][<?php echo $type;?>][<?php echo $type;?>_background]"
 			value="<?php echo $options[$type][$type.'_background'] ? $options[$type][$type.'_background'] : ''; ?>"/>
 		<a class="clearColor">Clear</a>
 	</div>
@@ -318,7 +318,7 @@ function kjd_special_format_colors($section, $options, $type){
 	<div class="color_option option" style="position: relative;">
 		<label><?php echo ucwords($type);?> Border</label>
 
-		<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][<?php echo $type;?>][<?php echo $type;?>_border_color]" 
+		<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][<?php echo $type;?>][<?php echo $type;?>_border_color]"
 			value="<?php echo $options[$type][$type.'_border_color'] ? $options[$type][$type.'_border_color'] : ''; ?>"/>
 		<a class="clearColor">Clear</a>
 	</div>
@@ -326,7 +326,7 @@ function kjd_special_format_colors($section, $options, $type){
 	<div class="color_option option" style="position: relative;">
 		<label><?php echo ucwords($type);?> Text</label>
 
-		<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][<?php echo $type;?>][<?php echo $type;?>_text]" 
+		<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][<?php echo $type;?>][<?php echo $type;?>_text]"
 			value="<?php echo $options[$type][$type.'_text'] ? $options[$type][$type.'_text'] : ''; ?>"/>
 		<a class="clearColor">Clear</a>
 	</div>
@@ -334,7 +334,7 @@ function kjd_special_format_colors($section, $options, $type){
 	<div class="color_option option" style="position: relative;">
 		<label><?php echo ucwords($type);?> Link</label>
 
-		<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][<?php echo $type;?>][<?php echo $type;?>_link]" 
+		<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][<?php echo $type;?>][<?php echo $type;?>_link]"
 			value="<?php echo $options[$type][$type.'_link'] ? $options[$type][$type.'_link'] : ''; ?>"/>
 		<a class="clearColor">Clear</a>
 	</div>
@@ -342,12 +342,12 @@ function kjd_special_format_colors($section, $options, $type){
 	<div class="color_option option" style="position: relative;">
 		<label><?php echo ucwords($type);?> Hovered Link</label>
 
-		<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][<?php echo $type;?>][<?php echo $type;?>_hovered_link]" 
+		<input class="minicolors" name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][<?php echo $type;?>][<?php echo $type;?>_hovered_link]"
 			value="<?php echo $options[$type][$type.'_hovered_link'] ? $options[$type][$type.'_hovered_link'] : ''; ?>"/>
 		<a class="clearColor">Clear</a>
 	</div>
 
-		
+
 	<div class="option">
 		<label>Border size</label>
 		<select name="kjd_<?php echo $section; ?>_components_settings[kjd_<?php echo $section; ?>_components][<?php echo $type;?>][<?php echo $type;?>_border]" >
