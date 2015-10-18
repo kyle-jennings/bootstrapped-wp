@@ -146,20 +146,23 @@ $border_styles = array(
  * like the general theme settings, or the "special backgrounds", page temaplates ect
  */
 
-include('theme-settings-fields.php');
-
+include('section-settings-theme.php');
+include('section-settings-header.php');
+include('section-settings-navbar.php');
+include('section-settings-nav-dropdown.php');
+include('section-settings-mobile-nav.php');
 
 /**
  * Global fields
  *
  * These fields appear in most, if not all sections
  */
-include('background-fields.php');
-include('border-fields.php');
-include('headings-fields.php');
-include('text-fields.php');
-include('presentation-fields.php');
-include('image-fields.php');
+include('fields-background.php');
+include('fields-border.php');
+include('fields-headings.php');
+include('fields-text.php');
+include('fields-presentation.php');
+include('fields-image.php');
 
 /**
  * Field Generators
@@ -167,5 +170,5 @@ include('image-fields.php');
  * These functions are used to auto-magically created the markup for the fields
  */
 
-// include('field-settings-class.php');
-// include('field-generators.php');
+// include('settings-field-class.php');
+// include('settings-field-generators.php');
