@@ -11,7 +11,7 @@ function kjd_settings_display($section = null) {
 
     include('forms-navigation.php');
     settings_errors();
-    nav_tabs($tabs, $active_tab,$section);
+    nav_tabs($tabs, $active_tab, $section);
     sections_dropdown_nav();
 
  ?>

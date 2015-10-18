@@ -47,8 +47,35 @@ $navbar_settings = array(
 
         'menu_button_style'=>array(
             'label'=>'',
-            'fields'=>array(
-                'button_style'=>select_field()
+            'fields'=>array
+(                'button_type'=>select_field(array(
+                        'name'=>'button_type',
+                        'label'=>'Button Type',
+                        'args'=>array('default','hamburger','kabob','grid','image', 'button', 'text')
+                        'toggle_field'=>array(
+                                'default',
+                                'hamburger',
+                                'kabob',
+                                'grid',
+                                'image',
+                                'button',
+                                'text'
+                            )
+                    )
+                )
+                'background_color'=>color_field(),
+                'border_color'=>color_field(),
+                'background_color_alt'=>color_field(),
+                'border_color_alt'=>color_field(),
+                'file'=>file_field(),
+                'button_text'=>text_field(),
+                'button_color'=>select_field(array(
+                        'name'=>'',
+                        'label'=>'',
+                        'select'=>array('btn-primary','btn-info','btn-success','btn-warning','btn-danger','btn-inverse')
+                        )
+(                    )
+                )
             )
         ),
         'mobile_style'=>array(),
