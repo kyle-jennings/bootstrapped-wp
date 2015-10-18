@@ -11,7 +11,8 @@
  *                    'type'=>'field-type',
  *                    'args'=>'{string or array}',
  *                    'toggle_field'=>null,
- *                    'preview'=>null
+ *                    'toggled_field'=>'no',
+ *                    'preview'=>null,
  *                 ),
  *             ),
  *         ),
@@ -49,7 +50,10 @@ $header_settings = array(
                 'header_height_toggle'=>select_field(array(
                         'name'=>'header_height_toggle',
                         'label'=>'',
-                        'args'=>array('yes','no')
+                        'args'=>array('yes','no'),
+                        'toggle_field'=>array(
+                            'yes'=>array('header_height'),
+                        )
                     )
                 ),
                 'header_height'=>text_field(array(
@@ -65,9 +69,24 @@ $header_settings = array(
                     )
                 ),
                 'float_section'=>select_field(array(
-                     'name'=>'float_section',
-                     'label'=>'Float Section',
-                     'args'=>array('yes','no')
+                        'name'=>'float_section',
+                        'label'=>'Float Section',
+                        'args'=>array('yes','no'),
+                        'toggle_field'=>array(
+                            'yes'=>array('top_margin','bottom_margin')
+                        )
+                    )
+                ),
+                'top_margin'=>text_field(array(
+                     'name'=>'top_margin',
+                     'label'=>'Top Margin',
+                     'args'=>array('suffix','px')
+                    )
+                ),
+                'bottom_margin'=>text_field(array(
+                     'name'=>'bottom_margin',
+                     'label'=>'Bottom Margin',
+                     'args'=>array('suffix','px')
                     )
                 ),
                 'hide_on_mobile'=>select_field(array(

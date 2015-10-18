@@ -16,6 +16,7 @@
  *                    'type'=>'field-type',
  *                    'args'=>'{string or array}',
  *                    'toggle_field'=>null,
+ *                    'toggled_field'=>'no',
  *                    'preview'=>null
  *                 ),
  *             ),

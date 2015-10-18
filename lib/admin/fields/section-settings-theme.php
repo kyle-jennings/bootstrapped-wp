@@ -1,8 +1,25 @@
 <?php
+/**
+ * $fields = array(
+ *    'tabs'=>array(
+ *        'tab-name'=>array(
+ *            'label'=>'Tab Name',
+ *            'fields'=>array(
+ *                'color'=>array(
+ *                    'name'=>'field-name',
+ *                    'label'=>'Field Name',
+ *                    'type'=>'field-type',
+ *                    'args'=>'{string or array}',
+ *                    'toggle_field'=>null,
+ *                    'toggled_field'=>'no',
+ *                    'preview'=>null,
+ *                 ),
+ *             ),
+ *         ),
+ *     ),
+ * );
+ */
 
-
-// General Theme Settings Section
-//
 // Branding
 $branding_fields = array(
     'section' => 'logo',
