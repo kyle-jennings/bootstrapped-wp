@@ -12,7 +12,7 @@
  *                    'args'=>'{string or array}',
  *                    'toggle_field'=>null,
  *                    'toggled_field'=>array('field_name'=>'option'),
- *                    'preview'=>null
+ *                    'preview'=>null,
  *                 ),
  *             ),
  *         ),
@@ -20,18 +20,11 @@
  * );
  */
 
-$navbar_settings = array(
+$footer_settings = array(
     'tabs' => array(
         'settings'=>array(
             'label'=>'Settings',
-            'fields'=>array(
-                'remove_padding'=>select_field(array(
-                        'name'=>'remove_padding',
-                        'label'=>'Remove padding',
-                        'args'=>array('no','yes')
-                    )
-                ),
-            ),
+            'fields'=>array()
         ),
-    ),
+    )
 );

@@ -11,7 +11,7 @@
  *                    'type'=>'field-type',
  *                    'args'=>'{string or array}',
  *                    'toggle_field'=>null,
- *                    'toggled_field'=>'no',
+ *                    'toggled_field'=>array('field_name'=>'option'),
  *                    'preview'=>null
  *                 ),
  *             ),
@@ -28,9 +28,16 @@ $navbar_settings = array(
                 'display_logo'=>select_field(array(
                         'name'=>'display_logo',
                         'label'=>'Display branding',
-                        'args'=>array('none','logo','title')
+                        'args'=>array('none','logo','title'),
+                        'toggle_field'=>array('logo'=>'file')
                     )
                 ),
+                'file'=>file_field(array(
+                        'name'=>'file',
+                        'lable'=>'Upload File',
+                        'toggled_field'=>array('display_logo','logo')
+                    )
+                )
             ),
         ),
 
@@ -66,43 +73,54 @@ $navbar_settings = array(
                 ),
                 'color'=>color_field(array(
                         'name'=>'color',
-                        'label'=>'Text Color'
+                        'label'=>'Text Color',
+                        'toggled_field'=>array('button_type'=>'hamburger','button_type'=>'kabob','button_type'=>'grid','button_type'=>'button','button_type'=>'text')
                     )
                 ),
                 'background_color'=>color_field(array(
                         'name'=>'background_color',
-                        'label'=>'Background Color'
+                        'label'=>'Background Color',
+                        'toggle_field'=>array('button_type'=>'default')
                     )
                 ),
                 'border_color'=>color_field(array(
                         'name'=>'border_color',
-                        'label'=>'Border Color'
+                        'label'=>'Border Color',
+                        'toggle_field'=>array('button_type'=>'default')
                     )
                 ),
                 'background_color_alt'=>color_field(array(
                         'name'=>'background_color_alt',
-                        'label'=>'Background Color Alt'
+                        'label'=>'Background Color Alt',
+                        'toggle_field'=>array('button_type'=>'default')
                     )
                 ),
                 'border_color_alt'=>color_field(array(
                         'name'=>'border_color_alt',
-                        'label'=>'Border Color Alt'
+                        'label'=>'Border Color Alt',
+                        'toggle_field'=>array('button_type'=>'default')
                     )
                 ),
                 'file'=>file_field(array(
                         'name'=>'file',
-                        'label'=>'Upload File'
+                        'label'=>'Upload File',
+                        'toggle_field'=>array('button_type'=>'image')
+
                     )
                 ),
                 'button_text'=>text_field(array(
                         'name'=>'button_text',
                         'label'=>'Button Text',
+                        'toggle_field'=>array('button_type'=>'button', 'button_type'=>'text')
+
                     )
                 ),
                 'button_color'=>select_field(array(
                         'name'=>'button_color',
                         'label'=>'Button Color',
-                        'select'=>array('btn-primary','btn-info','btn-success','btn-warning','btn-danger','btn-inverse')
+                        'select'=>array('btn-primary','btn-info','btn-success','btn-warning','btn-danger','btn-inverse'),
+                        'toggle_field'=>array('button_type'=>'button')
+
                     )
                 )
             )

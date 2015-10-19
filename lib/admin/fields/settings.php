@@ -16,7 +16,7 @@
  *                    'type'=>'field-type',
  *                    'args'=>'{string or array}',
  *                    'toggle_field'=>null,
- *                    'toggled_field'=>'no',
+ *                    'toggled_field'=>array('field_name'=>'option'),
  *                    'preview'=>null
  *                 ),
  *             ),
@@ -152,6 +152,11 @@ include('section-settings-header.php');
 include('section-settings-navbar.php');
 include('section-settings-nav-dropdown.php');
 include('section-settings-mobile-nav.php');
+include('section-settings-page-title.php');
+include('section-settings-body.php');
+include('section-settings-feed.php');
+include('section-settings-footer.php');
+
 
 /**
  * Global fields

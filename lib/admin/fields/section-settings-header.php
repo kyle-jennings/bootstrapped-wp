@@ -11,7 +11,7 @@
  *                    'type'=>'field-type',
  *                    'args'=>'{string or array}',
  *                    'toggle_field'=>null,
- *                    'toggled_field'=>'no',
+ *                    'toggled_field'=>array('field_name'=>'option'),
  *                    'preview'=>null,
  *                 ),
  *             ),
@@ -59,7 +59,8 @@ $header_settings = array(
                 'header_height'=>text_field(array(
                         'name'=>'header_height',
                         'label'=>'',
-                        'args'=>array('suffix','px')
+                        'args'=>array('suffix','px'),
+                         'toggled_field'=>array('header_height_toggle','yes')
                     )
                 ),
                 'confine_section'=>select_field(array(
@@ -78,21 +79,23 @@ $header_settings = array(
                     )
                 ),
                 'top_margin'=>text_field(array(
-                     'name'=>'top_margin',
-                     'label'=>'Top Margin',
-                     'args'=>array('suffix','px')
+                        'name'=>'top_margin',
+                        'label'=>'Top Margin',
+                        'args'=>array('suffix','px'),
+                        'toggled_field'=>array('float_section','yes')
                     )
                 ),
                 'bottom_margin'=>text_field(array(
-                     'name'=>'bottom_margin',
-                     'label'=>'Bottom Margin',
-                     'args'=>array('suffix','px')
+                        'name'=>'bottom_margin',
+                        'label'=>'Bottom Margin',
+                        'args'=>array('suffix','px'),
+                        'toggled_field'=>array('float_section','yes')
                     )
                 ),
                 'hide_on_mobile'=>select_field(array(
-                     'name'=>'hide_on_mobile',
-                     'label'=>'Hide on mobile?',
-                     'args'=>array('yes','no')
+                        'name'=>'hide_on_mobile',
+                        'label'=>'Hide on mobile?',
+                        'args'=>array('yes','no')
                     )
                 ),
             ),
