@@ -18,7 +18,7 @@ function kjd_examine($obj){
 include 'update/update.php';
 
 // global variables
-include 'fields/settings.php';
+include 'functions/new-forms/init.php';
 
 // include the file which builds the CSS
 include 'functions/stylesheet-builder/styles_init.php';

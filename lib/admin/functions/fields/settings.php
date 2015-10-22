@@ -177,4 +177,3 @@ include('fields-image.php');
  */
 
 // include('settings-field-class.php');
-// include('settings-field-generators.php');

@@ -200,12 +200,12 @@ div.updated, div.error {
 /* -----------------------------------------------------------------
          fields column
 ------------------------------------------------------------------- */
-form .fields-wrapper{
+.fields-wrapper{
   float:left;
   width:200px;
 }
 
-form .banner-fields-wrapper{
+.banner-fields-wrapper{
   width:99%;
 }
 
@@ -219,8 +219,9 @@ form .banner-fields-wrapper{
 .btn-group .tab-switcher__dropdown {
     border-radius: 0 !important;
     display: block;
-    text-align: left;
+    margin-bottom: 20px;
     padding: 10px;
+    text-align: left;
 }
 
 .btn-group .tab-switcher__dropdown .caret {
@@ -408,9 +409,17 @@ form .banner-fields-wrapper{
     position:relative;
     width:100%;
 }
-  .color-option .link_color, .color_option .link_color{border:1px solid black; padding:5px; width:75px;}
-  .pickcolor{margin-left:20px;}
-  .colorpicker{background:white; top:-60px; left:500px; z-index:9999;}
+    .color-field .link_color,
+    .color-option .link_color,
+    .color_option .link_color {
+        border:1px solid black; padding:5px; width:75px;
+    }
+    .pickcolor{
+        margin-left:20px;
+    }
+    .colorpicker{
+        background:white; top:-60px; left:500px; z-index:9999;
+    }
 
 .option-component{ float: left; margin:0 10px 0 0;}
 .sub-label{display:block; clear:both; }

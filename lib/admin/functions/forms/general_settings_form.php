@@ -18,7 +18,6 @@ function kjd_theme_settings_display(){
 ?>
 
 
-    <?php settings_errors(); ?>
 
 		<?php
 			if( $active_tab == 'home' ) {
