@@ -9,5 +9,6 @@
 
     $form = new bswpFieldGenerators;
     settings_errors();
+
     $prop = 'background_fields';
     echo $form->init($fields->$prop);
