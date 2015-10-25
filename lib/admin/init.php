@@ -11,6 +11,7 @@ function kjd_examine($obj){
         return;
     echo '<pre>';
     print_r($obj);
+    echo '</pre>';
     die;
 }
 

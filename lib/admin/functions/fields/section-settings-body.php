@@ -20,7 +20,7 @@
  * );
  */
 
-$header_settings = array(
+$body_settings = array(
     'tabs' => array(
         'settings'=>array(
             'label'=>'settings',

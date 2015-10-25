@@ -9,6 +9,38 @@ class bswpFieldGenerators{
         $this->fields = new fieldsClass;
     }
 
+    // if there is something like a submit button or a wp_Editor, we grab the output and return it
+    public function grab_function_output($func){
+        ob_start();
+            call_user_func('submit_button');
+            $ob_content = ob_get_contents();
+
+        ob_end_clean();
+
+        return $ob_content;
+    }
+
+    // Build the Form
+    public function init($settings){
+
+        if(!$settings)
+            return;
+
+        wp_enqueue_media();
+
+        $output = '';
+        $output .= '<form method="post" action="options.php">';
+            $output .= '<div class="fields-wrapper">';
+                $output .= $this->field_tab_generator($settings);
+                $output .= $this->grab_function_output('submit_button');
+            $output .= '</div>';
+        $output .= '</form>';
+
+        return $output;
+    }
+
+
+    // Generate the section tabs
     public function field_tab_generator($settings = array()){
 
         $tabs = $settings['tabs'];
@@ -23,14 +55,14 @@ class bswpFieldGenerators{
 
         // if there is more than one tab
         if( $multi_tabs )
-            $output .= create_tab_dropdown($tabs);
+            $output .= $this->create_tab_dropdown($tabs);
 
-        $output .= create_tab_pane($multi_tabs, $tabs);
+        $output .= $this->create_tab_pane($multi_tabs, $tabs);
 
         return $output;
     }
 
-
+    // Here is the tab content
     public function create_tab_pane($multi_tabs, $tabs){
 
         $output = '';
@@ -75,7 +107,7 @@ class bswpFieldGenerators{
         return $output;
     }
 
-
+    // The tab links in the dropdown
     public function create_tab_link($tab){
 
 
@@ -89,6 +121,9 @@ class bswpFieldGenerators{
 
         return $output;
     }
+
+
+
 
     /**
      * Generates the markup for the tab contents

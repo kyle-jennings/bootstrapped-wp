@@ -20,7 +20,7 @@
  * );
  */
 
-$navbar_settings = array(
+$mobil_nav_settings = array(
     'tabs' => array(
         'general'=>array(
             'label'=>'Settings',

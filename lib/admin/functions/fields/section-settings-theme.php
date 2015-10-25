@@ -21,7 +21,7 @@
  */
 
 // Branding
-$branding_fields = array(
+$theme_settings = array(
     'section' => 'logo',
     'tabs' =>array(
         'branding' => array(

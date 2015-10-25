@@ -20,7 +20,7 @@
  * );
  */
 
-$navbar_settings = array(
+$nav_dropdown_settings = array(
     'tabs' => array(
         'settings'=>array(
             'label'=>'Settings',
