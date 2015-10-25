@@ -1,11 +1,9 @@
 <?php
 
-$admin_func_root = dirname(dirname(__FILE__));
+$theme_root = get_template_directory();
+include($theme_root.'/lib/admin/functions/fields/class--fields-settings.php');
 
-include($admin_func_root.'/fields/settings.php');
-include($admin_func_root.'/fields/settings-field-generators.php');
-
-
-include('bswp-admin--build-form.php');
-include('bswp-admin--section-nav.php');
-include('bswp-admin--menu.php');
+include('class--field-generators.php');
+include('class--build-form.php');
+include('class--section-nav.php');
+include('class--menu.php');

@@ -1,8 +1,32 @@
 <?php
 
+/**
+ * Each set of fields can be automatically generated using ths following array
+ * structure for settings:
+ *
+ *
+ * $fields = array(
+ *    'tabs'=>array(
+ *        'tab-name'=>array(
+ *            'label'=>'Tab Name',
+ *            'fields'=>array(
+ *                'color'=>array(
+ *                    'name'=>'field-name',
+ *                    'label'=>'Field Name',
+ *                    'type'=>'field-type',
+ *                    'args'=>'{string or array}',
+ *                    'toggle_field'=>null,
+ *                    'field_toggle'=>array('field_name'=>'option'),
+ *                    'preview'=>null
+ *                 ),
+ *             ),
+ *         ),
+ *     ),
+ * );
+ */
 
 /**
- * Backgrounds are pretyt straitforward
+ * Backgrounds are pretty straitforward
  * @var array
  */
 
@@ -57,7 +81,7 @@ $background_fields = array(
                 'repeat'=>select_field(array(
                         'name'=>'repeat',
                         'label'=>'Repeat wallpaper?',
-                        'args'=>array('no-repeat','repeat','repeat-x', 'repeat-y')
+                        'args'=>array('no-repeat','repeat','repeat-x','repeat-y')
                     )
                 ),
                 'attachment'=>select_field(array(
@@ -89,11 +113,13 @@ $background_fields = array(
                 'positionX'=>text_field(array(
                         'name'=>'positionX',
                         'label'=>'Horizontal Position',
+                        'field_toggle'=>array('position'=>'custom')
                     )
                 ),
                 'positionY'=>text_field(array(
                         'name'=>'positionY',
                         'label'=>'Vertical Position',
+                        'field_toggle'=>array('position'=>'custom')
                     )
                 ),
                 'size'=>select_field(array(
@@ -109,9 +135,10 @@ $background_fields = array(
                     )
                 ),
                 'percentage'=>text_field(array(
-                   'name'=>'percentage',
-                    'label'=>'Percentage Size',
-                    'type'=>'text',
+                        'name'=>'percentage',
+                        'label'=>'Percentage Size',
+                        'type'=>'text',
+                        'field_toggle'=>array('size'=>'percentage')
                     )
                 ),
             ),

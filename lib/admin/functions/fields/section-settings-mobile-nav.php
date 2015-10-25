@@ -11,7 +11,7 @@
  *                    'type'=>'field-type',
  *                    'args'=>'{string or array}',
  *                    'toggle_field'=>null,
- *                    'toggled_field'=>array('field_name'=>'option'),
+ *                    'field_toggle'=>array('field_name'=>'option'),
  *                    'preview'=>null
  *                 ),
  *             ),
@@ -35,7 +35,7 @@ $navbar_settings = array(
                 'file'=>file_field(array(
                         'name'=>'file',
                         'lable'=>'Upload File',
-                        'toggled_field'=>array('display_logo','logo')
+                        'field_toggle'=>array('display_logo','logo')
                     )
                 )
             ),
@@ -74,7 +74,7 @@ $navbar_settings = array(
                 'color'=>color_field(array(
                         'name'=>'color',
                         'label'=>'Text Color',
-                        'toggled_field'=>array('button_type'=>'hamburger','button_type'=>'kabob','button_type'=>'grid','button_type'=>'button','button_type'=>'text')
+                        'field_toggle'=>array('button_type'=>'hamburger','button_type'=>'kabob','button_type'=>'grid','button_type'=>'button','button_type'=>'text')
                     )
                 ),
                 'background_color'=>color_field(array(
@@ -118,7 +118,7 @@ $navbar_settings = array(
                 'button_color'=>select_field(array(
                         'name'=>'button_color',
                         'label'=>'Button Color',
-                        'select'=>array('btn-primary','btn-info','btn-success','btn-warning','btn-danger','btn-inverse'),
+                        'args'=>array('btn-primary','btn-info','btn-success','btn-warning','btn-danger','btn-inverse'),
                         'toggle_field'=>array('button_type'=>'button')
 
                     )

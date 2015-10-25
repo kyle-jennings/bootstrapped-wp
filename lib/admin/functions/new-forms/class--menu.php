@@ -4,7 +4,9 @@ class bswpAdminMenu{
 
     public $forms_root = '';
     public function __construct(){
-        $this->forms_root = dirname(__FILE__);
+        $theme_root = get_template_directory();
+        $this->forms_root = $theme_root.'/lib/admin/functions/new-forms';
+
     }
 
     public function add_top_menu(){
@@ -20,6 +22,7 @@ class bswpAdminMenu{
     }
 
     public function home(){
+
         include($this->forms_root.'/home.php');
     }
 }

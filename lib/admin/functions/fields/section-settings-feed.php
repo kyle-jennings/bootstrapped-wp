@@ -11,7 +11,7 @@
  *                    'type'=>'field-type',
  *                    'args'=>'{string or array}',
  *                    'toggle_field'=>null,
- *                    'toggled_field'=>array('field_name'=>'option'),
+ *                    'field_toggle'=>array('field_name'=>'option'),
  *                    'preview'=>null,
  *                 ),
  *             ),

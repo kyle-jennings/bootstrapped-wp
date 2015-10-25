@@ -1,10 +1,10 @@
 <?php
 
-class bswpBuildForm{
+class bswpBuildForm extends fieldsClass{
 
     public $field_generators;
     public function __construct(){
-        $this->field_generators = new bswpFieldGenerators;
+        // $this->field_generators = new bswpFieldGenerators;
     }
 
     public function grab_function_output($func){
@@ -18,6 +18,9 @@ class bswpBuildForm{
     }
 
     public function init($settings){
+
+        if(!$settings)
+            return;
 
         wp_enqueue_media();
 

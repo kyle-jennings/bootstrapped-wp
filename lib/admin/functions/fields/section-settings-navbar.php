@@ -11,7 +11,7 @@
  *                    'type'=>'field-type',
  *                    'args'=>'{string or array}',
  *                    'toggle_field'=>null,
- *                    'toggled_field'=>array('field_name'=>'option'),
+ *                    'field_toggle'=>array('field_name'=>'option'),
  *                    'preview'=>null
  *                 ),
  *             ),
@@ -75,21 +75,21 @@ $navbar_settings = array(
                             'name'=>'top_margin',
                             'label'=>'Top Margin',
                             'args'=>array('suffix','px'),
-                            'toggled_field'=>array('float_section','yes')
+                            'field_toggle'=>array('float_section','yes')
                         )
                     ),
                     'bottom_margin'=>text_field(array(
                             'name'=>'bottom_margin',
                             'label'=>'Bottom Margin',
                             'args'=>array('suffix','px'),
-                            'toggled_field'=>array('float_section','yes')
+                            'field_toggle'=>array('float_section','yes')
                         )
                     ),
                     'outer_glow'=>select_field(array(
                             'name'=>'outer_glow',
                             'label'=>'Outer Glow',
                             'args'=>array('none','left_and_right','top_and_bottom','top','bottom','all_sides'),
-                            'toggled_field'=>array('float_section'=>'yes')
+                            'field_toggle'=>array('float_section'=>'yes')
                         )
                     ),
 

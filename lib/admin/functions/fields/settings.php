@@ -16,7 +16,7 @@
  *                    'type'=>'field-type',
  *                    'args'=>'{string or array}',
  *                    'toggle_field'=>null,
- *                    'toggled_field'=>array('field_name'=>'option'),
+ *                    'field_toggle'=>array('field_name'=>'option'),
  *                    'preview'=>null
  *                 ),
  *             ),
@@ -34,6 +34,7 @@ function text_field($settings = array()){
        'type'=>$type ? $type : 'text',
        'args'=>$args ? $args : null,
        'toggle_field'=>$toggle_field ? $toggle_field : null,
+       'field_toggle'=>$field_toggle ? $field_toggle : null,
        'preview'=>null
     );
 };

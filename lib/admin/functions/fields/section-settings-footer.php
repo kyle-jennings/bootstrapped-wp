@@ -11,7 +11,7 @@
  *                    'type'=>'field-type',
  *                    'args'=>'{string or array}',
  *                    'toggle_field'=>null,
- *                    'toggled_field'=>array('field_name'=>'option'),
+ *                    'field_toggle'=>array('field_name'=>'option'),
  *                    'preview'=>null,
  *                 ),
  *             ),
@@ -38,7 +38,7 @@ $footer_settings = array(
                             'name'=>'footer_height',
                             'label'=>'',
                             'args'=>array('suffix','px'),
-                             'toggled_field'=>array('footer_height_toggle','yes')
+                             'field_toggle'=>array('footer_height_toggle','yes')
                         )
                     ),
                 'confine_section'=>select_field(array(

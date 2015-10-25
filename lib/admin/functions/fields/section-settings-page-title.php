@@ -11,7 +11,7 @@
  *                    'type'=>'field-type',
  *                    'args'=>'{string or array}',
  *                    'toggle_field'=>null,
- *                    'toggled_field'=>array('field_name'=>'option'),
+ *                    'field_toggle'=>array('field_name'=>'option'),
  *                    'preview'=>null
  *                 ),
  *             ),
@@ -44,14 +44,14 @@ $page_title_settings = array(
                             'name'=>'top_margin',
                             'label'=>'Top Margin',
                             'args'=>array('suffix','px'),
-                            'toggled_field'=>array('float_section','yes')
+                            'field_toggle'=>array('float_section','yes')
                         )
                     ),
                     'bottom_margin'=>text_field(array(
                             'name'=>'bottom_margin',
                             'label'=>'Bottom Margin',
                             'args'=>array('suffix','px'),
-                            'toggled_field'=>array('float_section','yes')
+                            'field_toggle'=>array('float_section','yes')
                         )
                     ),
                 'use_breadcrumbs'=>select_field(array(
