@@ -2,9 +2,17 @@
 
 class bswpNav {
 
-    public $sections = array('theme','header','navbar','dropdown-menu','mobileNav',
-        'cycler','pageTitle','body', 'posts','footer','login',
-        'misc_background','page_layout');
+    public $sections = array(
+        'theme_settings',
+        'header_settings',
+        'navbar_settings',
+        'nav_dropdown_settings',
+        'mobile_nav_settings',
+        'page_title_settings',
+        'body_settings',
+        'feed_settings',
+        'footer_settings',
+    );
 
     public $tabs = array(
         'background',
@@ -36,7 +44,7 @@ class bswpNav {
                             $title = ucwords( str_replace('_',' ', $tab ) );
                 ?>
                 <a class="components-nav__link <?php echo $active_tab == $tab ? 'active' : ''; ?>"
-                    href="?page=kjd_<?php echo $section;?>_settings&tab=<?php echo $tab; ?>">
+                    href="#<?php echo $tab; ?>">
                     <?php echo $title; ?>
                 </a>
                 <?php endforeach; ?>
@@ -48,12 +56,20 @@ class bswpNav {
 
     public function sections_dropdown_nav(){
         $sections = $this->sections;
-        ?>
+
+        $find = array('_settings','_');
+        $replace = array('',' ');
+    ?>
+        <div class="overlay js--overlay js--sections-dropdown-toggle js--sections-dropdown"></div>
         <ul class="section-dropdown-nav js--sections-dropdown">
-            <?php foreach($sections as $link): ?>
+            <?php
+                foreach($sections as $section):
+                    $name = str_replace($find,$replace,$section);
+                    $label = ucwords($name);
+            ?>
             <li>
-                <a href="?page=kjd_<?php echo $link; ?>_settings">
-                    <?php echo ucwords(str_replace('_',' ',$link)); ?>
+                <a href="?page=bswp_settings&section=<?php echo $name; ?>">
+                    <?php echo $label;  ?>
                 </a>
             </li>
             <?php endforeach; ?>

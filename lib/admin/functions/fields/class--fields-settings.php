@@ -10,6 +10,7 @@ class fieldsClass{
     public $images_fields = array();
 
     public $all_sections_settings = array();
+    public $section_name;
     public $section_settings = array();
 
     public function __construct(){
@@ -39,12 +40,13 @@ class fieldsClass{
     }
 
 
-    public function set_section_settings($section = null){
+    // the init function needs a section in order ot build the fields
+    public function init($section = null){
 
         if($section == null)
             return;
-
-        $this->section_settings = $this->all_sections_settings[$section];
+        $this->section_name = $section;
+        $this->section_settings = $this->all_sections_settings[$section.'_settings'];
         unset($this->all_sections_settings);
     }
 
