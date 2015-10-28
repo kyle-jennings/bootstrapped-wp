@@ -23,7 +23,6 @@ function kjd_mobileNav_misc_settings_callback(){
 	 'Text' => 'text')
 ?>
 
-<h3>Mobile Nav Styles</h3>
 
 <!-- Tab Navigation-->
 <div class="btn-group tab-switcher ">

@@ -18,6 +18,7 @@ if($section =="header"){
 
 }elseif($section =="dropdown-menu"){
 
+    include('misc/dropdown.php');
 	kjd_dropdown_misc_settings_callback($section);
 
 }elseif($section =="mobileNav"){
@@ -38,7 +39,7 @@ if($section =="header"){
 }elseif($section =="posts"){
 
 	include('misc/posts.php');
-	kjd_posts_misc_settings_callback($section);	
+	kjd_posts_misc_settings_callback($section);
 
 }elseif($section =="footer"){
 
@@ -83,13 +84,13 @@ function kjd_float_section_toggle($section, $options) {
 				$option_markup .= '<option value="false" '.selected( $options["float"], "false", false) .'>No</option>';
 		$option_markup .= '</select>';
 	$option_markup .= '</div>';
-	
+
 	return $option_markup;
 }
 
 function kjd_set_section_margin($section, $options) {
 	$option_markup ='';
-	
+
 	$toggle_class = $options['float'] =='true' ? 'style="display:block;"' : 'style="display:none;"' ;
 	$margin_top_toggle = $options['margin_top'] ? $options['margin_top'] : '0';
 	$margin_bottom_toggle = $options['margin_bottom'] ? $options['margin_bottom'] : '0';
@@ -114,7 +115,7 @@ function kjd_set_section_margin($section, $options) {
 
 
 function kjd_section_glow_toggle($section, $options) {
-	
+
 	$sides = array('none','left and right','top and bottom', 'top','bottom', 'all sides');
 
 	$option_markup = '';
@@ -122,7 +123,7 @@ function kjd_section_glow_toggle($section, $options) {
 	$option_markup .= '<label>Outer glow</label>';
 	$option_markup .= '<select name="kjd_'.$section.'_misc_settings[kjd_'.$section.'_misc]['.$section.'_section_shadow]">';
 
-	foreach($sides as $shadow){ 
+	foreach($sides as $shadow){
 			$option_markup .= '<option value="'.$shadow.'" '.selected( $options[$section.'_section_shadow'], $shadow, false) . '>';
 				$option_markup .= $shadow;
 			$option_markup .= '</option>';

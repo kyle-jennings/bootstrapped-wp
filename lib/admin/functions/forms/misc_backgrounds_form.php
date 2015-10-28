@@ -81,7 +81,7 @@ function kjd_bodyTag_background_callback($section){
 ////////////////////////////////////
 function kjd_mastArea_background_callback($section){
 
-	include	'background_settings_form.php';
+	include	'background.php';
 	$miscSettings = $options['kjd_'.$section.'_background_misc'];
 	?>
 	<h2>Settings</h2>
@@ -126,7 +126,7 @@ function kjd_mastArea_background_callback($section){
 // content area background
 ////////////////////////////////////
 function kjd_contentArea_background_callback($section){
-	include	'background_settings_form.php';
+	include	'background.php';
 	?>
 	<h2>Settings</h2>
 	<div class="option">

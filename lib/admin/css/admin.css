@@ -32,7 +32,7 @@
 */
 .nav-wrapper {
     margin:0 0 0 -20px;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 @media screen and (max-width: 782px){
     .nav-wrapper {
@@ -42,12 +42,9 @@
 }
 
 
-/*#23282d*/
 .components-nav {
     background-color:#007823;
     position: relative;
-
-    width: 200%;
 }
 @media screen and (max-width: 782px){
     .nav-wrapper {
@@ -131,7 +128,7 @@
     margin: 0;
     position: absolute;
     top: 38px;
-    left:-20px;
+    left:0;
     width: 220px;
     z-index:999;
 }
@@ -172,7 +169,18 @@
     box-shadow: none;
 }
 
+.overlay{
+    display: none;
+    position: absolute;
+    top:0;
+    right:0;
+    bottom: 0;
+    left:-20px;
+}
 
+.overlay.active{
+    display: block;
+}
 /*
 everything else
  */
@@ -196,16 +204,29 @@ div.updated, div.error {
   margin: 5px 15px 10px 0;
 }
 
+/* -----------------------------------------------------------------
+         hide
+------------------------------------------------------------------- */
+.hide {
+  /*background: #FF9C97;*/
+  display: none;
+}
 
+/* -----------------------------------------------------------------
+         form
+------------------------------------------------------------------- */
+.bswp-form {
+
+}
 /* -----------------------------------------------------------------
          fields column
 ------------------------------------------------------------------- */
-form .fields-wrapper{
+.fields-wrapper{
   float:left;
   width:200px;
 }
 
-form .banner-fields-wrapper{
+.banner-fields-wrapper{
   width:99%;
 }
 
@@ -219,8 +240,9 @@ form .banner-fields-wrapper{
 .btn-group .tab-switcher__dropdown {
     border-radius: 0 !important;
     display: block;
-    text-align: left;
+    margin-bottom: 20px;
     padding: 10px;
+    text-align: left;
 }
 
 .btn-group .tab-switcher__dropdown .caret {
@@ -408,9 +430,17 @@ form .banner-fields-wrapper{
     position:relative;
     width:100%;
 }
-  .color-option .link_color, .color_option .link_color{border:1px solid black; padding:5px; width:75px;}
-  .pickcolor{margin-left:20px;}
-  .colorpicker{background:white; top:-60px; left:500px; z-index:9999;}
+    .color-field .link_color,
+    .color-option .link_color,
+    .color_option .link_color {
+        border:1px solid black; padding:5px; width:75px;
+    }
+    .pickcolor{
+        margin-left:20px;
+    }
+    .colorpicker{
+        background:white; top:-60px; left:500px; z-index:9999;
+    }
 
 .option-component{ float: left; margin:0 10px 0 0;}
 .sub-label{display:block; clear:both; }

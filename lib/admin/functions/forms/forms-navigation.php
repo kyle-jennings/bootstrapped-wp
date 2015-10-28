@@ -87,7 +87,7 @@ function nav_tabs($tabs, $active_tab, $section = 'theme'){
                         $title = ucwords( str_replace('_',' ', $tab ) );
             ?>
             <a class="components-nav__link <?php echo $active_tab == $tab ? 'active' : ''; ?>"
-                href="?page=kjd_<?php echo strtolower($section);?>_settings&tab=<?php echo $tab; ?>">
+                href="?page=kjd_<?php echo $section;?>_settings&tab=<?php echo $tab; ?>">
                 <?php echo $title; ?>
             </a>
             <?php endforeach; ?>

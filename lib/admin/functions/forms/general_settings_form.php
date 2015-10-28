@@ -18,7 +18,6 @@ function kjd_theme_settings_display(){
 ?>
 
 
-    <?php settings_errors(); ?>
 
 		<?php
 			if( $active_tab == 'home' ) {
@@ -67,6 +66,7 @@ function kjd_theme_home_callback(){
 		<h3>What do you want to style?</h3>
 
 		<?php include( dirname( dirname(__FILE__)).'/layout-diagram.php');?>
+
 <?php
 }
 
