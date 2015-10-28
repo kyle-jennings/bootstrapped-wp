@@ -1,23 +1,18 @@
 <?php
 
-    $page = $_GET['page'] ? $_GET['page'] : null;
-    $section =  $_GET['section'] ? $_GET['section'] : null;
-    $tab =  $_GET['tab'] ? $_GET['tab'] : null;
-
-    $current_view = $section;
-
+    // get the current section, settings tab, and sub settings
     $bswp_nav = new bswpNav;
-    $bswp_nav->tabs_nav($active_tab, 'theme');
-    $bswp_nav->sections_dropdown_nav();
+
+    $section = $bswp_nav->section;
+    // set up the fields
+
+    $field_settings = new bswpFields($section);
+    $form = new bswpform;
 
 
-    $fields = new fieldsClass;
-    $fields->init('theme');
+    // get the fields
+    $fields = $field_settings->get_field_settings();
 
-    // kjd_examine($fields);
-
-    $form = new bswpFieldGenerators;
     settings_errors();
-
-    $prop = 'background_fields';
-    echo $form->init($fields->$prop);
+    echo $bswp_nav->tabs_nav($fields);
+    echo $form->init($fields);

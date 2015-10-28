@@ -41,6 +41,8 @@ function text_field($settings = array()){
 
 function text_decoration_field($args = array()){
     $args['name'] = $args['name'] ? $args['name'] : 'text_decoration';
+    $args['label'] = $args['label'] ? $args['label'] : 'Text Decoration';
+
     $args['args'] = array(
                     'none',
                     'overline',
@@ -80,7 +82,7 @@ function textarea_field($args = array()){
 
 function label_field($args = array()){
     extract($args);
-    return '<label>'.$label.'</label>';
+    return text_field($args);
 }
 
 /**
@@ -141,6 +143,21 @@ $border_styles = array(
 );
 
 
+
+
+/**
+ * Global fields
+ *
+ * These fields appear in most, if not all sections
+ */
+include('fields-background.php');
+include('fields-border.php');
+include('fields-headings.php');
+include('fields-text.php');
+include('fields-presentation.php');
+include('fields-image.php');
+
+
 /**
  * Section specific fields
  *
@@ -157,24 +174,3 @@ include('section-settings-page-title.php');
 include('section-settings-body.php');
 include('section-settings-feed.php');
 include('section-settings-footer.php');
-
-
-/**
- * Global fields
- *
- * These fields appear in most, if not all sections
- */
-include('fields-background.php');
-include('fields-border.php');
-include('fields-headings.php');
-include('fields-text.php');
-include('fields-presentation.php');
-include('fields-image.php');
-
-/**
- * Field Generators
- *
- * These functions are used to auto-magically created the markup for the fields
- */
-
-// include('settings-field-class.php');

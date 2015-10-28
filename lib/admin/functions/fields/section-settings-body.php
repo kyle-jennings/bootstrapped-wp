@@ -20,7 +20,9 @@
  * );
  */
 
-$body_settings = array(
+$body_settings_fields = array(
+    'section'=>'settings',
+
     'tabs' => array(
         'settings'=>array(
             'label'=>'settings',
@@ -64,4 +66,14 @@ $body_settings = array(
             ),
         ),
     )
+);
+
+$body_settings_tabs = array(
+    $background_fields,
+    $borders_fields,
+    $headings_fields,
+    $text_fields,
+    $components_fields,
+    $images_fields,
+    $body_settings_fields
 );

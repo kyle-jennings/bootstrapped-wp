@@ -20,10 +20,12 @@
  * );
  */
 
-$mobil_nav_settings = array(
+$mobile_nav_settings_fields = array(
+    'section'=>'settings',
     'tabs' => array(
-        'general'=>array(
-            'label'=>'Settings',
+
+        'general_settings'=>array(
+            'label'=>'General Settings',
             'fields'=>array(
                 'display_logo'=>select_field(array(
                         'name'=>'display_logo',
@@ -37,24 +39,13 @@ $mobil_nav_settings = array(
                         'lable'=>'Upload File',
                         'field_toggle'=>array('display_logo','logo')
                     )
-                )
-            ),
-        ),
-
-        'general'=>array(
-            'label'=>'Settings',
-            'fields'=>array(
-                'display_logo'=>select_field(array(
-                        'name'=>'display_logo',
-                        'label'=>'Display branding',
-                        'args'=>array('none','logo','title')
-                    )
                 ),
+
             ),
         ),
 
         'menu_button_style'=>array(
-            'label'=>'',
+            'label'=>'Menu Button Style',
             'fields'=>array(
                 'button_type'=>select_field(array(
                     'name'=>'button_type',
@@ -122,10 +113,20 @@ $mobil_nav_settings = array(
                         'toggle_field'=>array('button_type'=>'button')
 
                     )
-                )
-            )
+                ),
+            ), //end of tab
         ),
-        'mobile_style'=>array(),
 
     ),
+);
+
+
+$mobile_nav_settings_tabs = array(
+    $background_fields,
+    $borders_fields,
+    $headings_fields,
+    $text_fields,
+    $components_fields,
+    $images_fields,
+    $mobile_nav_settings_fields
 );

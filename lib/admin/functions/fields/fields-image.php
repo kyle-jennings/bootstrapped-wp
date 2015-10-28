@@ -4,13 +4,13 @@
  * All images are basically the same, some need a couple settings removed
  * @var array
  */
-$image_types = array('thumbnails', 'images','caption','iframe');
+$image_types = array('thumbnails', 'inline_images','caption','iframe');
 $images = array();
 
 // The image types are all basically the same, so lets set the all at once
 foreach($image_types as $image){
     $images[$image] = array(
-        'label'=>ucfirst($image),
+        'label'=>ucfirst(str_replace('_',' ',$image)),
         'fields'=>array(
             'background_color'=>color_field(
                     array(
@@ -68,6 +68,6 @@ foreach($image_types as $image){
 }
 
 $images_fields = array(
-    'section'=>'Images',
+    'section'=>'images',
     'tabs'=>$images
 );

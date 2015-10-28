@@ -19,13 +19,12 @@
  *     ),
  * );
  */
-
 // Branding
-$theme_settings = array(
-    'section' => 'logo',
+$site_branding = array(
+    'section'=>'branding',
     'tabs' =>array(
         'branding' => array(
-            'label' =>'Branding',
+            'label' =>'branding',
             'fields'=>array(
                 'logo'=>file_field(array(
                         'name'=>'logo',
@@ -53,13 +52,13 @@ $theme_settings = array(
                         'args'=>'wp_editor'
                     )
                 ),
-            )
-        ),
+            ),
+        ),//end branding
     ),
 );
 
 
-$settings_fields = array(
+$site_settings = array(
     'section'=>'settings',
     'tabs'=>array(
         'settings'=>array(
@@ -90,7 +89,7 @@ $settings_fields = array(
     ),
 );
 
-$theme_components = array(
+$site_components = array(
     'section' => 'components',
     'tabs'=>array(
         'components'=>array(
@@ -145,7 +144,7 @@ $theme_components = array(
     ),
 );
 
-$styles = array(
+$site_styles = array(
     'section'=>'styles',
     'tabs'=>array(
         'styles'=>array(
@@ -155,4 +154,11 @@ $styles = array(
             )
         )
     ),
+);
+
+$theme_settings_tabs = array(
+    $site_branding,
+    $site_settings,
+    $site_components,
+    $site_styles,
 );

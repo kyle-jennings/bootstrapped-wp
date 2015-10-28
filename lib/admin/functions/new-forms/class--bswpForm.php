@@ -1,12 +1,9 @@
 <?php
 
-class bswpFieldGenerators{
+class bswpForm{
 
     public $forms_root = '';
-    public $fields;
     public function __construct(){
-
-        $this->fields = new fieldsClass;
     }
 
     // if there is something like a submit button or a wp_Editor, we grab the output and return it
@@ -20,7 +17,12 @@ class bswpFieldGenerators{
         return $ob_content;
     }
 
-    // Build the Form
+
+    /**
+     * [init description]
+     * @param  [array] $settings [nested array with all the section fields]
+     * @return [string]           [the markup, dawg]
+     */
     public function init($settings){
 
         if(!$settings)
@@ -29,41 +31,89 @@ class bswpFieldGenerators{
         wp_enqueue_media();
 
         $output = '';
-        $output .= '<form method="post" action="options.php">';
+        $output .= '<form class="bswp-form" method="post" action="options.php">';
             $output .= '<div class="fields-wrapper">';
-                $output .= $this->field_tab_generator($settings);
+
+                $output .= '<div class="tab-content">';
+                    $output .= $this->settings_tabs($settings);
+                $output .= '</div>';
+
                 $output .= $this->grab_function_output('submit_button');
+
             $output .= '</div>';
         $output .= '</form>';
 
         return $output;
     }
 
+    /**
+     * Each set of settings (backgrounds, borders, text ect) get their own tab-pane
+     * becase we are keeping each section's settings on the same page
+     * @return [type] [description]
+     */
+    public function settings_tabs($settings_group){
 
-    // Generate the section tabs
-    public function field_tab_generator($settings = array()){
+
+        $output = '';
+        $i = 0;
+        foreach($settings_group as $k=>$settings){
+            $first = ($i == 0) ? 'active' : '';
+            $id = $settings['section'];
+
+            $output .= '<div id="'.$id.'" class="tab-pane '.$first.'">';
+                $output .= $this->field_tabs($settings);
+            $output .= '</div>';
+            $i++;
+        }
+
+        return $output;
+    }
+
+
+
+
+
+
+
+    /**
+     * This will create the settings fields and the settings dropdown.
+     * IE - in the background settings, there are background colors and also
+     * background wallpaper. Each of those are in their own tab pans, which are
+     * activated with a dropdown menu button
+     *
+     * @param  array  $settings [description]
+     * @return [type]           [description]
+     */
+    public function field_tabs($settings = array()){
 
         $tabs = $settings['tabs'];
 
         if( empty($tabs) )
             return;
 
+
         // if there are more than one tab, set this flag
         $multi_tabs = (count($tabs) > 1) ? true : false;
 
         $output ='';
 
-        // if there is more than one tab
+        // if there is more than one tab we create a dropdown to navigate them
         if( $multi_tabs )
-            $output .= $this->create_tab_dropdown($tabs);
+            $output .= $this->field_tab_dropdown($tabs);
 
-        $output .= $this->create_tab_pane($multi_tabs, $tabs);
+        // get the tab pain
+        $output .= $this->field_tab_pane($multi_tabs, $tabs);
 
         return $output;
     }
 
-    // Here is the tab content
-    public function create_tab_pane($multi_tabs, $tabs){
+    /**
+     * Here is the tab pane which displays the fields as mentioned above
+     * @param  [type] $multi_tabs [description]
+     * @param  [type] $tabs       [description]
+     * @return [type]             [description]
+     */
+    public function field_tab_pane($multi_tabs, $tabs){
 
         $output = '';
 
@@ -84,7 +134,7 @@ class bswpFieldGenerators{
 
 
     // the tab dropdown
-    public function create_tab_dropdown($tabs){
+    public function field_tab_dropdown($tabs){
 
         $output = '';
 
@@ -99,7 +149,7 @@ class bswpFieldGenerators{
             $output .= '<ul class="dropdown-menu">';
 
                 foreach($tabs as $tab)
-                    $output .= $this->create_tab_link($tab);
+                    $output .= $this->field_tab_dropdown_link($tab);
 
             $output .= '</ul>';
         $output .= '</div>';
@@ -108,21 +158,19 @@ class bswpFieldGenerators{
     }
 
     // The tab links in the dropdown
-    public function create_tab_link($tab){
+    public function field_tab_dropdown_link($tab){
 
 
         $label = $tab['label'];
         $name = str_replace(' ','_',strtolower($tab['label']));
 
         $output = '';
-            $output .= '<li>';
-                $output .= '<a href="#'.$name.'" data-toggle="tab">'.$label.'</a>';
-            $output .= '</li>';
+        $output .= '<li>';
+            $output .= '<a href="#'.$name.'" data-toggle="tab">'.$label.'</a>';
+        $output .= '</li>';
 
         return $output;
     }
-
-
 
 
     /**
@@ -130,10 +178,13 @@ class bswpFieldGenerators{
      */
     public function create_tab_content($tab){
 
+
         $name = str_replace(' ','_',strtolower($tab['label']));
+        $label = $tab['label'];
         $fields = $tab['fields'];
 
         $output .= '<div class="tab-pane cf" id="'.$name.'">';
+            $output .= '<h2>'.$label.'</h2>';
             $output .= $this->identify_fields($fields);
         $output .= '</div>';
 
@@ -163,8 +214,9 @@ class bswpFieldGenerators{
     }
 
 
-    // Here are the actual fields
-
+// ------------------------------------------
+//  The field generators
+// ------------------------------------------
 
     public function text_field_generator( $args=array() ){
         extract($args);
@@ -265,5 +317,13 @@ class bswpFieldGenerators{
         <?php
     }
 
+
+    public function textarea_field_generator(){
+
+    }
+
+    public function label_field_generator(){
+
+    }
 
 }

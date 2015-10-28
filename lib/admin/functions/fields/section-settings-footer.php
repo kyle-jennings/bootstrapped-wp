@@ -20,7 +20,8 @@
  * );
  */
 
-$footer_settings = array(
+$footer_settings_fields = array(
+    'section'=>'settings',
     'tabs' => array(
         'settings'=>array(
             'label'=>'Settings',
@@ -56,4 +57,15 @@ $footer_settings = array(
             )
         ),
     )
+);
+
+
+$footer_settings_tabs = array(
+    $background_fields,
+    $borders_fields,
+    $headings_fields,
+    $text_fields,
+    $components_fields,
+    $images_fields,
+    $footer_settings_fields
 );

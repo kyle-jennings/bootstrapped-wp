@@ -32,7 +32,7 @@
 */
 .nav-wrapper {
     margin:0 0 0 -20px;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 @media screen and (max-width: 782px){
     .nav-wrapper {
@@ -42,12 +42,9 @@
 }
 
 
-/*#23282d*/
 .components-nav {
     background-color:#007823;
     position: relative;
-
-    width: 200%;
 }
 @media screen and (max-width: 782px){
     .nav-wrapper {
@@ -131,7 +128,7 @@
     margin: 0;
     position: absolute;
     top: 38px;
-    left:-20px;
+    left:0;
     width: 220px;
     z-index:999;
 }
@@ -215,8 +212,12 @@ div.updated, div.error {
   display: none;
 }
 
+/* -----------------------------------------------------------------
+         form
+------------------------------------------------------------------- */
+.bswp-form {
 
-
+}
 /* -----------------------------------------------------------------
          fields column
 ------------------------------------------------------------------- */

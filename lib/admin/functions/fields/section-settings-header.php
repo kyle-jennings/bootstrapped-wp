@@ -20,7 +20,8 @@
  * );
  */
 
-$header_settings = array(
+$header_settings_fields = array(
+    'section'=>'settings',
     'tabs' => array(
         'settings'=>array(
             'label'=>'Settings',
@@ -101,4 +102,14 @@ $header_settings = array(
             ),
         ),
     ),
+);
+
+$header_settings_tabs = array(
+    $background_fields,
+    $borders_fields,
+    $headings_fields,
+    $text_fields,
+    $components_fields,
+    $images_fields,
+    $header_settings_fields
 );

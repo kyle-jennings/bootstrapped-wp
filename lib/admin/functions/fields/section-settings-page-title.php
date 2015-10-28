@@ -20,7 +20,8 @@
  * );
  */
 
-$page_title_settings = array(
+$page_title_settings_fields = array(
+    'section'=>'settings',
     'tabs' => array(
         'settings'=>array(
             'label'=>'Settings',
@@ -63,4 +64,15 @@ $page_title_settings = array(
             )
         )
     )
+);
+
+
+$page_title_settings_tabs = array(
+    $background_fields,
+    $borders_fields,
+    $headings_fields,
+    $text_fields,
+    $components_fields,
+    $images_fields,
+    $page_title_settings_fields
 );

@@ -6,7 +6,7 @@
  * Helper Function  - examine object or array
  * Just prints out an object or array in a human readable way
  */
-function kjd_examine($obj){
+function kjd($obj){
     if (empty($obj))
         return;
     echo '<pre>';
