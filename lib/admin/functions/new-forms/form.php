@@ -1,14 +1,13 @@
 <?php
 
+    // set up the fields
+    $field_settings = new bswpFields;
+
     // get the current section, settings tab, and sub settings
     $bswp_nav = new bswpNav;
 
-    $section = $bswp_nav->section;
-    // set up the fields
 
-    $field_settings = new bswpFields($section);
     $form = new bswpform;
-
 
     // get the fields
     $fields = $field_settings->get_field_settings();
