@@ -31,7 +31,7 @@ class bswpNav {
     public function __construct(){
 
         $this->page = $_GET['page'] ? $_GET['page'] : null;
-        $this->section = $_GET['section'] ? $_GET['section'] : null;
+        $this->section = $_GET['section'] ? $_GET['section'] : 'theme_settings';
         $this->settings = $_GET['settings'] ? $_GET['settings'] : null;
         $this->tab =  $_GET['tab'] ? $_GET['tab'] : null;
 

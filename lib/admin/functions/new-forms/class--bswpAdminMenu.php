@@ -38,15 +38,15 @@ class bswpAdminMenu{
         foreach ($sections as $section){
             $find = array('_settings','_');
             $replace = array('',' ');
-            $name = str_replace($find,$replace,$section);
-            $label = ucwords($name);
+            $label = str_replace($find,$replace,$section);
+            $label = ucwords($label);
 
             add_submenu_page(
                 'bswp_settings',
                 $label,
                 $label,
                 'manage_options',
-                'bswp_settings&section='.$name,
+                'bswp_settings&section='.$section,
                 array($this, 'display_section')
             );
         }
@@ -54,7 +54,6 @@ class bswpAdminMenu{
     }
 
     public function display_section(){
-
         $current_view = 'form';
         include($this->forms_root.'/'.$current_view.'.php');
     }
