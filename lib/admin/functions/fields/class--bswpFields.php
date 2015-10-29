@@ -3,10 +3,11 @@
 class bswpFields{
 
     public $section;
-    public $settings = array();
+    public $settings;
 
     public function __construct(){
-        $this->section = $_GET['section'] ? $_GET['section'] : 'theme_settings';
+
+        $this->section = isset($_GET['section']) ? $_GET['section'] : 'theme_settings';
         $settings_array = $this->section.'_tabs';
 
         // get the fields file
@@ -21,16 +22,19 @@ class bswpFields{
 
     public function get_field_settings(){
 
+
         return $this->settings;
     }
 
     public function register_section_settings(){
 
-        $section = $this->section;
+        if( empty($this->settings))
+            return;
+
         $settings = $this->settings;
         // kjd($settings);
 
-        foreach ($sections as $section){
+        foreach ($settings as $section){
 
                 // add_settings_section(
                 //     'kjd_'.$section.'_background_settings_section', // ID hook name

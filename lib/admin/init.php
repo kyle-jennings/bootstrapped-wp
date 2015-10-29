@@ -21,13 +21,16 @@ include 'update/update.php';
 // global variables
 include 'functions/new-forms/init.php';
 
-// include the file which builds the CSS
-include 'functions/stylesheet-builder/styles_init.php';
-include 'functions/admin_functions.php';
+if(  $_GET['page'] != 'bswp_settings' ){
 
-// The forms and menu items to said forms
-include 'functions/forms/init.php';
+    // include the file which builds the CSS
+    include 'functions/stylesheet-builder/styles_init.php';
+    include 'functions/admin_functions.php';
 
+    // The forms and menu items to said forms
+    include 'functions/forms/init.php';
+
+}
 
 /**
  * Adds the admin area CSS and JS
