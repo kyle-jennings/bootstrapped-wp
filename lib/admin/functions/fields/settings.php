@@ -28,20 +28,21 @@
 // Reusable fields
 function text_field($settings = array()){
     extract($settings);
+    $name = isset($name) ? $name : 'field';
     return array(
-       'name'=>$name ? $name : 'field',
-       'label'=>$label ? $label : ucfirst(str_replace(array('-','_'), ' ', $settings['name'])),
-       'type'=>$type ? $type : 'text',
-       'args'=>$args ? $args : null,
-       'toggle_field'=>$toggle_field ? $toggle_field : null,
-       'field_toggle'=>$field_toggle ? $field_toggle : null,
+       'name'=> $name,
+       'label'=> isset($label) ? $label : ucfirst(str_replace(array('-','_'), ' ', $name ) ),
+       'type'=> isset($type) ? $type : 'text',
+       'args'=> isset($args) ? $args : null,
+       'toggle_field'=> isset($toggle_field) ? $toggle_field : null,
+       'field_toggle'=> isset($field_toggle) ? $field_toggle : null,
        'preview'=>null
     );
 };
 
 function text_decoration_field($args = array()){
-    $args['name'] = $args['name'] ? $args['name'] : 'text_decoration';
-    $args['label'] = $args['label'] ? $args['label'] : 'Text Decoration';
+    $args['name'] = isset($args['name']) ? $args['name'] : 'text_decoration';
+    $args['label'] = isset($args['label']) ? $args['label'] : 'Text Decoration';
 
     $args['args'] = array(
                     'none',
@@ -55,12 +56,12 @@ function text_decoration_field($args = array()){
 }
 
 function text_shadow_color_field($args=array()){
-    $args['name'] = $args['name'] ? $args['name'] : 'text_shadow_color';
+    $args['name'] = isset($args['name']) ? $args['name'] : 'text_shadow_color';
     return color_field($args);
 }
 
 function color_field($args = array()){
-    $args['name'] = $args['name'] ? $args['name'] : 'color';
+    $args['name'] = isset($args['name']) ? $args['name'] : 'color';
     $args['type'] = 'color';
     return text_field($args);
 }

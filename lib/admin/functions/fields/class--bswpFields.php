@@ -3,13 +3,13 @@
 class bswpFields{
 
     public $section;
-    public $settings = array();
+    public $settings;
 
     public function __construct(){
 
-
-
         $this->section = $_GET['section'] ? $_GET['section'] : 'theme_settings';
+        $this->section = isset($_GET['section']) ? $_GET['section'] : 'theme_settings';
+
         $settings_array = $this->section.'_tabs';
 
         // get the fields file
@@ -28,6 +28,7 @@ class bswpFields{
 
     public function get_field_settings(){
 
+
         return $this->settings;
     }
 
@@ -35,7 +36,8 @@ class bswpFields{
 
         $section = $this->section;
         $settings_groups = $this->settings;
-
+        if(empty($settings_groups))
+            return;
 
         foreach ($settings_groups as $settings){
 

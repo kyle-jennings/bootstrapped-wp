@@ -30,10 +30,10 @@ class bswpNav {
 
     public function __construct(){
 
-        $this->page = $_GET['page'] ? $_GET['page'] : null;
-        $this->section = $_GET['section'] ? $_GET['section'] : 'theme_settings';
-        $this->settings = $_GET['settings'] ? $_GET['settings'] : null;
-        $this->tab =  $_GET['tab'] ? $_GET['tab'] : null;
+        $this->page = isset($_GET['page']) ? $_GET['page'] : null;
+        $this->section = isset($_GET['section']) ? $_GET['section'] : 'theme_settings';
+        $this->settings = isset($_GET['settings']) ? $_GET['settings'] : null;
+        $this->tab = isset($_GET['tab']) ? $_GET['tab'] : null;
 
     }
 
@@ -45,6 +45,9 @@ class bswpNav {
      * @return [type]             [description]
      */
     public function tabs_nav($settings = array(), $active = null ){
+
+        if(empty($settings))
+            return;
 
         $output = '';
 

@@ -4,6 +4,7 @@
 if(is_admin())
     include 'admin/init.php' ;
 
+if(!is_admin()){
     require_once('functions/kjd-bootstrap-menus.php');
     require_once('functions/kjd-gallery.php');
     require_once('functions/kjd-shortcodes.php');
@@ -11,7 +12,7 @@ if(is_admin())
     require_once('functions/kjd-adminbar-menu.php');
     require_once('functions/kjd-class-navbar.php');
     require_once('functions/kjd-class-layout.php');
-
+}
 /* ------------------------------------------------
  kjd add js and css
  -------------------------------------------------- */
