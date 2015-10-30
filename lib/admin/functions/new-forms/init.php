@@ -3,6 +3,7 @@
 $theme_root = get_template_directory();
 include($theme_root.'/lib/admin/functions/fields/class--bswpFields.php');
 
+
 $field_settings = new bswpFields;
 add_action('admin_init', array($field_settings, 'register_section_settings'));
 
