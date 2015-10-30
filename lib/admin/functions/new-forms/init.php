@@ -10,4 +10,3 @@ add_action('admin_init', array($field_settings, 'register_section_settings'));
 // include($theme_root.'/lib/admin/functions/live-preview.php');
 include('class--bswpForm.php');
 include('class--bswpNav.php');
-include('class--bswpAdminMenu.php');

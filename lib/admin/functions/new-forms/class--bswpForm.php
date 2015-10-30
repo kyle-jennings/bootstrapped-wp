@@ -213,26 +213,9 @@ class bswpForm{
         return $output;
     }
 
-
-// ------------------------------------------
-//  The field generators
-// ------------------------------------------
-
-    public function text_field_generator( $args=array() ){
-        extract($args);
-
-        $data_field_toggle = $field_toggle ? $this->get_field_toggle($field_toggle) : '' ;
-        $data_toggle_name = $field_toggle ? 'data-toggle-name="'.$name.'"' : '';
-        $output = '';
-
-        ?>
-        <div class="option <?php echo $data_field_toggle; ?>" <?php echo $data_toggle_name; ?> >
-            <label><?php echo $label; ?></label>
-            <input type="text" name="kjd_background_settings[<?php echo $name;?>]"
-            value="<?php echo $wallpaperSettings[$name] ? $wallpaperSettings[$name] : '' ;?>" >
-        </div>
-        <?php
-    }
+/**
+ * field toggling
+ */
 
     private function get_field_toggle($field_toggles){
 
@@ -244,6 +227,35 @@ class bswpForm{
 
         return $output;
     }
+
+    private function toggle_fields_markup($field_toggle){
+        $data_field_toggle = $field_toggle ? $this->get_field_toggle($field_toggle) : '' ;
+        $data_toggle_name = $field_toggle ? 'data-toggle-name="'.$name.'"' : '';
+
+        return [$data_field_toggle, $data_toggle_name];
+    }
+
+// ------------------------------------------
+//  The field generators
+// ------------------------------------------
+
+    public function text_field_generator( $args=array() ){
+        extract($args);
+
+        $toggles = $this->toggle_fields_markup($field_toggle);
+        extract($toggles);
+
+        $output = '';
+
+        ?>
+        <div class="option <?php echo $data_field_toggle; ?>" <?php echo $data_toggle_name; ?> >
+            <label><?php echo $label; ?></label>
+            <input type="text" name="kjd_background_settings[<?php echo $name;?>]"
+            value="<?php echo $wallpaperSettings[$name] ? $wallpaperSettings[$name] : '' ;?>" >
+        </div>
+        <?php
+    }
+
 
     /**
      * Select field
