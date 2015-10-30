@@ -191,48 +191,12 @@ class bswpForm{
         return $output;
     }
 
+
+
+
     /**
-     * Identifies which field to use based on the 'type' key
+     * field toggling
      */
-    public function identify_fields($fields = array()){
-
-        $output = '';
-
-        foreach($fields as $field){
-
-            $type = $field['type'];
-
-            ob_start();
-                call_user_func( array($this, $type.'_field_generator'), $field);
-                $ob_content = ob_get_contents();
-            ob_end_clean();
-
-            $output .= $ob_content;
-        }
-
-        return $output;
-    }
-
-
-// ------------------------------------------
-//  The field generators
-// ------------------------------------------
-
-    public function text_field_generator( $args=array() ){
-        extract($args);
-
-        $data_field_toggle = $field_toggle ? $this->get_field_toggle($field_toggle) : '' ;
-        $data_toggle_name = $field_toggle ? 'data-toggle-name="'.$name.'"' : '';
-        $output = '';
-
-        ?>
-        <div class="option <?php echo $data_field_toggle; ?>" <?php echo $data_toggle_name; ?> >
-            <label><?php echo $label; ?></label>
-            <input type="text" name="kjd_background_settings[<?php echo $name;?>]"
-            value="<?php echo $wallpaperSettings[$name] ? $wallpaperSettings[$name] : '' ;?>" >
-        </div>
-        <?php
-    }
 
     private function get_field_toggle($field_toggles){
 
@@ -245,6 +209,56 @@ class bswpForm{
         return $output;
     }
 
+    private function toggle_fields_markup($field_toggle){
+        $data_field_toggle = $field_toggle ? $this->get_field_toggle($field_toggle) : '' ;
+        $data_toggle_name = $field_toggle ? 'data-toggle-name="'.$name.'"' : '';
+
+        return ['data_field_toggle'=>$data_field_toggle, 'data_toggle_name'=>$data_toggle_name];
+    }
+
+
+    /**
+     * Identifies which field to use based on the 'type' key
+     */
+    public function identify_fields($fields = array()){
+
+        $output = '';
+
+        foreach($fields as $field){
+
+            $type = $field['type'];
+
+            $toggles = $this->toggle_fields_markup($field['field_toggle']);
+            extract($toggles);
+
+            $output .= '<div class="option '.$data_field_toggle.'" '.$data_toggle_name.' >';
+
+                $output .= call_user_func( array($this, $type.'_field_generator'), $field);
+
+            $output .= '</div>';
+        }
+
+        return $output;
+    }
+
+
+// ------------------------------------------
+//  The field generators
+// ------------------------------------------
+
+    public function text_field_generator( $args=array() ){
+        extract($args);
+        $value = isset($value) ? $value : '';
+        $output = '';
+
+        $output .= '<label>'.$label.'</label>';
+        $output .='<input type="text" name="kjd_background_settings['.$name.']"
+        value="'.$value.'" >';
+
+        return $output;
+    }
+
+
     /**
      * Select field
      * 'args' field is in array - used to populate the options
@@ -255,74 +269,87 @@ class bswpForm{
     public function select_field_generator($args=array()){
         extract($args);
 
+        $output = '';
         $classes = '';
         $classes .= $toggle_field ? ' js--toggle-field' : '';
         $data = $toggle_field ? 'data-field-toggle="'.$name.'"' : '';
-        ?>
-        <div class="option">
-            <label><?php echo $label; ?></label>
+        $value = isset($value) ? $value : '';
 
-            <select class="<?php echo $classes ;?>" <?php echo $data;?> name="kjd_background_settings[<?php echo $name; ?>]">
-                <?php
-                    foreach ($args as $option):
-                        $name = strtolower(str_replace(' ','_',$option));
-                        $data_targets = $toggle_field[$option] ? 'data-targets="'.$toggle_field[$option].'"' : '';
-                ?>
-                    <option <?php echo $data_targets; ;?> value="<?php echo $name;?>"
-                        <?php selected( $option, "none", true) ?>
-                    >
-                        <?php echo $option; ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
-        </div>
+        $output .= '<label>'.$label.'</label>';
+        $output .= '<select class="'.$classes.'" '.$data.' name="kjd_background_settings['.$name.']">';
 
-        <?php
+        foreach ($args as $option):
+
+            $name = strtolower(str_replace(' ','_',$option));
+            $data_targets = $toggle_field[$option] ? 'data-targets="'.$toggle_field[$option].'"' : '';
+            $output .= '<option '.$data_targets.' value="'.$name.'" '.selected( $option, "none", false).'>';
+                $output .= $option;
+            $output .= '</option>';
+
+        endforeach;
+        $output .= '</select>';
+
+        return $output;
 
     }
 
     public function color_field_generator($args=array()){
         extract($args);
-        ?>
-        <div class="color-field option">
+        $value = isset($value) ? $value : '';
 
-            <label><?php echo $label; ?></label>
-            <input class="minicolors opacity" name="kjd_background_settings[<?php echo $name; ?>]"
-                value="<?php echo $colorSettings['endcolor'] ? $colorSettings['endcolor'] : 'none'; ?>"
+        $output = '';
 
-                <?php if( is_string($args) && $args == 'transparency'): ?>
-                data-opacity ="<?php echo $end_rgba; ?>"
-                <?php endif ?>
-            />
+        $output .= '<label>'.$label.'</label>';
+        $output .= '<input class="minicolors opacity" name="kjd_background_settings['.$name.']"
+            value="'.$value.'"';
 
-            <?php if( is_string($args) && $args == 'transparency'): ?>
-            <input  class="rgba-color" name="kjd_background_settings[end_rgba]" type="hidden"
-             value="<?php echo $colorSettings['end_rgba'] ? $colorSettings['end_rgba'] : 'none'; ?>" />
-            <?php endif; ?>
+        if( is_string($args) && $args == 'transparency'):
+            $output .= 'data-opacity ="'.$end_rgba.'"';
+        endif;
+        $output .= '/>';
 
-            <a class="clearColor js--clear-color">Clear</a>
-        </div> <!-- End color select-->
-        <?php
+        if( is_string($args) && $args == 'transparency'):
+            $output .= '<input class="rgba-color" name="kjd_background_settings[end_rgba]" type="hidden"
+                     value="'.$value.'" />';
+        endif;
+
+        $output .= '<a class="clearColor js--clear-color">Clear</a>';
+
+        return $output;
     }
 
     public function file_field_generator($args=array()){
         extract($args);
-        ?>
-        <div class="option">
-            <label><?php echo $label; ?></label>
-            <input class="media_input"  type="text"  name="kjd_background_settings[<?php echo $name; ?>]"
-            value="<?php echo $wallpaperSettings[$name] ? $wallpaperSettings[$name] : ''; ?>" />
-            <input class="button upload_image" type="button" value="Upload file" />
-        </div>
-        <?php
+        $value = isset($value) ? $value : '';
+
+        $output .= '<label>'.$label.'</label>';
+        $output .= '<input class="media_input"  type="text"  name="kjd_background_settings['.$name.']"
+                    value="'.$value.'" />';
+        $output .= '<input class="button upload_image" type="button" value="Upload file" />';
+
+        return $output;
     }
 
 
     public function textarea_field_generator(){
+        extract($args);
+        $value = isset($value) ? $value : '';
+        $output = '';
 
+        $output .= '<label>'.$label.'</label>';
+        $output .= '<textarea name="kjd_background_settings['.$name.']">'.$value.'</textarea>';
+
+        return $output;
     }
 
     public function label_field_generator(){
+        extract($args);
+        $value = isset($value) ? $value : '';
+        $output = '';
+
+        $output .= '<h3>'.$label.'</h3>';
+
+        return $output;
 
     }
 

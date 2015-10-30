@@ -83,6 +83,7 @@ function textarea_field($args = array()){
 
 function label_field($args = array()){
     extract($args);
+    $args['type'] = 'label';
     return text_field($args);
 }
 

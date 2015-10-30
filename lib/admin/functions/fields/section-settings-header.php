@@ -45,6 +45,7 @@ $header_settings_fields = array(
                     )
                 ),
                 'header_height_label'=>label_field(array(
+                        'name'=>'force_header_height',
                         'label'=>'Force Header Height'
                     )
                 ),
