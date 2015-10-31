@@ -10,8 +10,8 @@
  *                    'label'=>'Field Name',
  *                    'type'=>'field-type',
  *                    'args'=>'{string or array}',
- *                    'toggle_field'=>null,
- *                    'field_toggle'=>array('field_name'=>'option'),
+ *                    'toggle_fields'=>null,
+ *                    'toggled_by'=>array('field_name'=>'option'),
  *                    'preview'=>null,
  *                 ),
  *             ),
@@ -46,20 +46,23 @@ $feed_settings_fields = array(
                 'show_image'=>select_field(array(
                         'name'=>'show_image',
                         'label'=>'Show featued image?',
-                        'args'=>array('yes','no'),
-                        'toggle_field'=>array('image_position','image_source')
+                        'args'=>array('no','yes'),
+                        'toggle_fields'=>array('yes'=>'image_position,image_source')
                     )
                 ),
                     'image_position'=>select_field(array(
                             'name'=>'image_position',
                             'label'=>'Image Position',
-                            'args'=>array('atop_post','left_of_post','right_of_post','after_post','before_post_info','before_content','before_post_meta')
+                            'args'=>array('atop_post','left_of_post','right_of_post','after_post','before_post_info','before_content','before_post_meta'),
+                            'toggled_by'=>array('show_image'=>'yes')
                         )
                     ),
                     'image_source'=>select_field(array(
                             'name'=>'image_source',
                             'label'=>'Image source',
-                            'args'=>array('featured_image','author_image')
+                            'args'=>array('featured_image','author_image'),
+                            'toggled_by'=>array('show_image'=>'yes')
+
                         )
                     )
             ),

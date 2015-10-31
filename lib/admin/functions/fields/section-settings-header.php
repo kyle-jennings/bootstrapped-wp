@@ -10,8 +10,8 @@
  *                    'label'=>'Field Name',
  *                    'type'=>'field-type',
  *                    'args'=>'{string or array}',
- *                    'toggle_field'=>null,
- *                    'field_toggle'=>array('field_name'=>'option'),
+ *                    'toggle_fields'=>null,
+ *                    'toggled_by'=>array('field_name'=>'option'),
  *                    'preview'=>null,
  *                 ),
  *             ),
@@ -44,15 +44,18 @@ $header_settings_fields = array(
                         'args'=>array('suffix'=>'px')
                     )
                 ),
-                'header_height_label'=>label_field(array(
-                        'label'=>'Force Header Height'
-                    )
-                ),
+                // 'header_height_label'=>label_field(array(
+                //         'name'=>'force_header_height',
+                //         'label'=>'Force Header Height'
+                //     )
+                // ),
+
+                // Toggle-y things
                 'header_height_toggle'=>select_field(array(
                         'name'=>'header_height_toggle',
-                        'label'=>'',
-                        'args'=>array('yes','no'),
-                        'toggle_field'=>array(
+                        'label'=>'Force Header Height',
+                        'args'=>array('no','yes'),
+                        'toggle_fields'=>array(
                             'yes'=>array('header_height'),
                         )
                     )
@@ -61,20 +64,20 @@ $header_settings_fields = array(
                         'name'=>'header_height',
                         'label'=>'',
                         'args'=>array('suffix','px'),
-                        'field_toggle'=>array('header_height_toggle','yes')
+                        'toggled_by'=>array('header_height_toggle'=>'yes')
                     )
                 ),
                 'confine_section'=>select_field(array(
                         'name'=>'confine_section',
                         'label'=>'Confine Section',
-                        'args'=>array('yes','no')
+                        'args'=>array('no','yes')
                     )
                 ),
                 'float_section'=>select_field(array(
                         'name'=>'float_section',
                         'label'=>'Float Section',
-                        'args'=>array('yes','no'),
-                        'toggle_field'=>array(
+                        'args'=>array('no','yes'),
+                        'toggle_fields'=>array(
                             'yes'=>array('top_margin','bottom_margin')
                         )
                     )
@@ -83,20 +86,20 @@ $header_settings_fields = array(
                         'name'=>'top_margin',
                         'label'=>'Top Margin',
                         'args'=>array('suffix','px'),
-                        'field_toggle'=>array('float_section','yes')
+                        'toggled_by'=>array('float_section'=>'yes')
                     )
                 ),
                 'bottom_margin'=>text_field(array(
                         'name'=>'bottom_margin',
                         'label'=>'Bottom Margin',
                         'args'=>array('suffix','px'),
-                        'field_toggle'=>array('float_section','yes')
+                        'toggled_by'=>array('float_section'=>'yes')
                     )
                 ),
                 'hide_on_mobile'=>select_field(array(
                         'name'=>'hide_on_mobile',
                         'label'=>'Hide on mobile?',
-                        'args'=>array('yes','no')
+                        'args'=>array('no','yes')
                     )
                 ),
             ),

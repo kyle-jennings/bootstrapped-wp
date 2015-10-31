@@ -10,8 +10,8 @@
  *                    'label'=>'Field Name',
  *                    'type'=>'field-type',
  *                    'args'=>'{string or array}',
- *                    'toggle_field'=>null,
- *                    'field_toggle'=>array('field_name'=>'option'),
+ *                    'toggle_fields'=>null,
+ *                    'toggled_by'=>array('field_name'=>'option'),
  *                    'preview'=>null,
  *                 ),
  *             ),
@@ -28,24 +28,24 @@ $footer_settings_fields = array(
             'fields'=>array(
                 'footer_height_toggle'=>select_field(array(
                         'name'=>'footer_height_toggle',
-                        'label'=>'',
-                        'args'=>array('yes','no'),
-                        'toggle_field'=>array(
-                            'yes'=>array('footer_height'),
+                        'label'=>'Set Height',
+                        'args'=>array('no','yes'),
+                        'toggle_fields'=>array(
+                            'yes'=>'footer_height',
                         )
                     )
                 ),
                     'footer_height'=>text_field(array(
                             'name'=>'footer_height',
-                            'label'=>'',
+                            'label'=>'Footer Height',
                             'args'=>array('suffix','px'),
-                             'field_toggle'=>array('footer_height_toggle','yes')
+                            'toggled_by'=>array('footer_height_toggle'=>'yes')
                         )
                     ),
                 'confine_section'=>select_field(array(
                         'name'=>'confine_section',
                         'label'=>'Confine Section',
-                        'args'=>array('yes','no')
+                        'args'=>array('no','yes')
                     )
                 ),
                 'hide'=>select_field(array(

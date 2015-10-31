@@ -10,8 +10,8 @@
  *                    'label'=>'Field Name',
  *                    'type'=>'field-type',
  *                    'args'=>'{string or array}',
- *                    'toggle_field'=>null,
- *                    'field_toggle'=>array('field_name'=>'option'),
+ *                    'toggle_fields'=>null,
+ *                    'toggled_by'=>array('field_name'=>'option'),
  *                    'preview'=>null
  *                 ),
  *             ),

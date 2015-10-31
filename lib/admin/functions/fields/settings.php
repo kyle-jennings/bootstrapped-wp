@@ -15,8 +15,8 @@
  *                    'label'=>'Field Name',
  *                    'type'=>'field-type',
  *                    'args'=>'{string or array}',
- *                    'toggle_field'=>null,
- *                    'field_toggle'=>array('field_name'=>'option'),
+ *                    'toggle_fields'=>array('option'=>'field_1,field_2,field_3'),
+ *                    'toggled_by'=>array('field_name'=>'option1,option2,option3'),
  *                    'preview'=>null
  *                 ),
  *             ),
@@ -28,20 +28,21 @@
 // Reusable fields
 function text_field($settings = array()){
     extract($settings);
+    $name = isset($name) ? $name : 'field';
     return array(
-       'name'=>$name ? $name : 'field',
-       'label'=>$label ? $label : ucfirst(str_replace(array('-','_'), ' ', $settings['name'])),
-       'type'=>$type ? $type : 'text',
-       'args'=>$args ? $args : null,
-       'toggle_field'=>$toggle_field ? $toggle_field : null,
-       'field_toggle'=>$field_toggle ? $field_toggle : null,
+       'name'=> $name,
+       'label'=> isset($label) ? $label : ucfirst(str_replace(array('-','_'), ' ', $name ) ),
+       'type'=> isset($type) ? $type : 'text',
+       'args'=> isset($args) ? $args : null,
+       'toggle_fields'=> isset($toggle_fields) ? $toggle_fields : null,
+       'toggled_by'=> isset($toggled_by) ? $toggled_by : null,
        'preview'=>null
     );
 };
 
 function text_decoration_field($args = array()){
-    $args['name'] = $args['name'] ? $args['name'] : 'text_decoration';
-    $args['label'] = $args['label'] ? $args['label'] : 'Text Decoration';
+    $args['name'] = 'text_decoration';
+    $args['label'] = isset($args['label']) ? $args['label'] : 'Text Decoration';
 
     $args['args'] = array(
                     'none',
@@ -50,17 +51,18 @@ function text_decoration_field($args = array()){
                     'line-through',
                     'text-shadow',
                 );
-    $args['toggle_field']= array('text_shadow_color');
+    $args['toggle_fields']= array('text-shadow'=>'text_shadow_color');
     return select_field($args);
 }
 
 function text_shadow_color_field($args=array()){
-    $args['name'] = $args['name'] ? $args['name'] : 'text_shadow_color';
+    $args['name'] = 'text_shadow_color';
+    $args['toggled_by'] = array('text_decoration'=>'text-shadow');
     return color_field($args);
 }
 
 function color_field($args = array()){
-    $args['name'] = $args['name'] ? $args['name'] : 'color';
+    $args['name'] = isset($args['name']) ? $args['name'] : 'color';
     $args['type'] = 'color';
     return text_field($args);
 }
@@ -82,6 +84,7 @@ function textarea_field($args = array()){
 
 function label_field($args = array()){
     extract($args);
+    $args['type'] = 'label';
     return text_field($args);
 }
 
@@ -143,6 +146,17 @@ $border_styles = array(
 );
 
 
+$border_styles_toggle = array(
+    'solid'=>'border_color,border_size',
+    'dotted'=>'border_color,border_size',
+    'dashed'=>'border_color,border_size',
+    'double'=>'border_color,border_size',
+    'groove'=>'border_color,border_size',
+    'ridge'=>'border_color,border_size',
+    'inset'=>'border_color,border_size',
+    'outset'=>'border_color,border_size',
+);
+$border_styles_true = 'solid,dotted,dashed,double,groove,ridge,inset,outset';
 
 
 /**

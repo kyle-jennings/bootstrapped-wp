@@ -12,48 +12,49 @@ $heading_tags = array('h1','h2','h3','h4','h5');
 // each H tag is the same, so lets just loop through them to create them
 foreach($heading_tags as $heading){
     $headings[$heading] =  array(
-       'label'=>$heading,
+       'label'=>ucfirst($heading),
        'fields'=>array(
            'color'=>color_field(array(
-                    'name'=>$heading,
-                    'label'=>ucfirst($heading),
-                    'type'=>'color',
+                    'name'=>'color',
+                    'label'=>'color',
                 )
             ),
            'background_style'=>select_field(array(
                    'name'=>'background_style',
                    'label'=>'Background Style',
                    'args'=>array('none','square','tab', 'pill'),
-                   'toggle_field'=>array('background_color','border_style','border_color')
+                   'toggle_fields'=>array(
+                            'square'=>'background_color,border_style,border_color',
+                            'tab'=>'background_color,border_style,border_color',
+                            'pill'=>'background_color,border_style,border_color',
+                        )
                 )
             ),
            'background_color'=>color_field(
                 array(
                     'name'=>'background_color',
                     'label'=>'Background Color',
-                    'args'=>'transparency'
+                    'args'=>'transparency',
+                    'toggled_by'=>array('background_style'=>'square','background_style'=>'tab','background_style'=>'pill')
                 )
             ),
            'border_style'=>select_field(array(
-                   'name'=>'border_style',
-                   'label'=>'Border Style',
-                   'args'=>$border_styles,
+                    'name'=>'border_style',
+                    'label'=>'Border Style',
+                    'args'=>$border_styles,
+                    'toggled_by'=>array('background_style'=>'square','background_style'=>'tab','background_style'=>'pill'),
+                    'toggle_fields'=>$border_styles_toggle
                 )
             ),
            'border_color'=>color_field(array(
-                   'name'=>'border_color',
-                   'label'=>'Border Color',
+                    'name'=>'border_color',
+                    'label'=>'Border Color',
+                    'toggled_by'=>array('border_style'=>$border_styles_true)
+
                )
            ),
            'decoration'=>text_decoration_field(),
-           'text_shadow_color'=>color_field(array('args'=>array(
-                    'none',
-                    'overline',
-                    'underline',
-                    'line-through',
-                    'text-shadow',
-                ))
-           )
+           'text_shadow_color'=>text_shadow_color_field()
 
         ),
     );

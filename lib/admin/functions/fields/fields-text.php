@@ -34,13 +34,14 @@ foreach($link_targets as $link){
             'background_style'=>select_field(array(
                     'name'=>'background_style',
                     'label'=>'Background Style',
-                    'args'=>array('highlighted','pills'),
-                    'toggle_fiel'=>array('background_color')
+                    'args'=>array('none','highlighted','pills'),
+                    'toggle_fields'=>array('highlighted'=>'background_color', 'pills'=>'background_color')
                 )
             ),
             'background_color'=>color_field(array(
                     'name'=>'background_color',
                     'label'=>'Background Color',
+                    'toggled_by'=>array('background_style'=>'highlighted', 'background_style'=>'pills')
                 )
             ),
             'decoration'=>text_decoration_field( array(

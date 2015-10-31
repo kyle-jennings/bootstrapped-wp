@@ -128,7 +128,7 @@ $components = array(
         'fields'=>components_field_settings($collapsibles)
     ),
     'tables'=>array(
-        'label'=>'tables',
+        'label'=>'Tables',
         'fields'=>components_field_settings($tables)
     ),
     'pagination'=>array(

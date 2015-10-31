@@ -57,10 +57,16 @@ class bswpForm{
         $output = '';
         $i = 0;
         foreach($settings_group as $k=>$settings){
-            $first = ($i == 0) ? 'active' : '';
-            $id = $settings['section'];
+            $active = '';
 
-            $output .= '<div id="'.$id.'" class="tab-pane '.$first.'">';
+            $id = $settings['section'];
+            if(isset($_GET['tab']) )
+                $active = $_GET['tab'] == $id ? 'active': '';
+            else
+                $active = ($i == 0) ? 'active' : '';
+
+
+            $output .= '<div id="'.$id.'" class="tab-pane '.$active.'">';
                 $output .= $this->field_tabs($settings);
             $output .= '</div>';
             $i++;
@@ -99,10 +105,10 @@ class bswpForm{
 
         // if there is more than one tab we create a dropdown to navigate them
         if( $multi_tabs )
-            $output .= $this->field_tab_dropdown($tabs);
+            $output .= $this->fields_tab_dropdown($tabs);
 
         // get the tab pain
-        $output .= $this->field_tab_pane($multi_tabs, $tabs);
+        $output .= $this->fields_tab_pane($multi_tabs, $tabs);
 
         return $output;
     }
@@ -113,17 +119,20 @@ class bswpForm{
      * @param  [type] $tabs       [description]
      * @return [type]             [description]
      */
-    public function field_tab_pane($multi_tabs, $tabs){
+    public function fields_tab_pane($multi_tabs, $tabs){
 
         $output = '';
 
         // the tab content
         if( $multi_tabs )
-            $output .= '<div class="tab-content">';
+            $output .= '<div class="tab-content js--fields-tabs-wrapper">';
 
         // generate the fields
-        foreach($tabs as $tab)
-            $output .= $this->create_tab_content($tab);
+        $i=0;
+        foreach($tabs as $tab){
+            $output .= $this->create_tab_content($tab,$i);
+            $i++;
+        }
 
         // close tab content
         if( $multi_tabs )
@@ -134,7 +143,7 @@ class bswpForm{
 
 
     // the tab dropdown
-    public function field_tab_dropdown($tabs){
+    public function fields_tab_dropdown($tabs){
 
         $output = '';
 
@@ -149,7 +158,7 @@ class bswpForm{
             $output .= '<ul class="dropdown-menu">';
 
                 foreach($tabs as $tab)
-                    $output .= $this->field_tab_dropdown_link($tab);
+                    $output .= $this->fields_tab_dropdown_link($tab);
 
             $output .= '</ul>';
         $output .= '</div>';
@@ -158,7 +167,7 @@ class bswpForm{
     }
 
     // The tab links in the dropdown
-    public function field_tab_dropdown_link($tab){
+    public function fields_tab_dropdown_link($tab){
 
 
         $label = $tab['label'];
@@ -176,20 +185,46 @@ class bswpForm{
     /**
      * Generates the markup for the tab contents
      */
-    public function create_tab_content($tab){
+    public function create_tab_content($tab, $i=0){
 
 
         $name = str_replace(' ','_',strtolower($tab['label']));
         $label = $tab['label'];
         $fields = $tab['fields'];
-
-        $output .= '<div class="tab-pane cf" id="'.$name.'">';
-            $output .= '<h2>'.$label.'</h2>';
+        $class = $i == 0 ? 'active' : '';
+        $output .= '<div class="js--fields-group tab-pane cf '.$class.'" id="'.$name.'">';
+            // $output .= '<h2>'.$label.'</h2>';
             $output .= $this->identify_fields($fields);
         $output .= '</div>';
 
         return $output;
     }
+
+
+
+
+    /**
+     * field toggling
+     */
+
+    private function get_toggled_by($toggled_bys){
+
+        $output = 'hide js--toggled-field ';
+
+        foreach ($toggled_bys as $field=>$value)
+            $output .= $field.' ';
+
+
+        return $output;
+    }
+
+    private function toggle_fields_markup($toggled_by, $name){
+        $data_toggled_by = $toggled_by ? $this->get_toggled_by($toggled_by) : '' ;
+        $data_toggle_name = $toggled_by ? 'data-toggle-name="'.$name.'"' : '';
+
+        return ['data_toggled_by'=>$data_toggled_by, 'data_toggle_name'=>$data_toggle_name];
+    }
+
 
     /**
      * Identifies which field to use based on the 'type' key
@@ -202,48 +237,34 @@ class bswpForm{
 
             $type = $field['type'];
 
-            ob_start();
-                call_user_func( array($this, $type.'_field_generator'), $field);
-                $ob_content = ob_get_contents();
-            ob_end_clean();
+            $toggles = $this->toggle_fields_markup($field['toggled_by'], $field['name']);
+            extract($toggles);
 
-            $output .= $ob_content;
+            $output .= '<div class="option '.$data_toggled_by.'" '.$data_toggle_name.' >';
+                $output .= call_user_func( array($this, $type.'_field_generator'), $field);
+            $output .= '</div>';
         }
 
         return $output;
     }
 
 
-// ------------------------------------------
-//  The field generators
-// ------------------------------------------
+    // ------------------------------------------
+    //  The field generators
+    // ------------------------------------------
 
     public function text_field_generator( $args=array() ){
         extract($args);
-
-        $data_field_toggle = $field_toggle ? $this->get_field_toggle($field_toggle) : '' ;
-        $data_toggle_name = $field_toggle ? 'data-toggle-name="'.$name.'"' : '';
+        $value = isset($value) ? $value : '';
         $output = '';
 
-        ?>
-        <div class="option <?php echo $data_field_toggle; ?>" <?php echo $data_toggle_name; ?> >
-            <label><?php echo $label; ?></label>
-            <input type="text" name="kjd_background_settings[<?php echo $name;?>]"
-            value="<?php echo $wallpaperSettings[$name] ? $wallpaperSettings[$name] : '' ;?>" >
-        </div>
-        <?php
-    }
-
-    private function get_field_toggle($field_toggles){
-
-        $output = 'hide js-toggled-field ';
-
-        foreach ($field_toggles as $field=>$value)
-            $output .= $field.' ';
-
+        $output .= '<label>'.$label.'</label>';
+        $output .='<input type="text" name="kjd_background_settings['.$name.']"
+        value="'.$value.'" >';
 
         return $output;
     }
+
 
     /**
      * Select field
@@ -253,76 +274,93 @@ class bswpForm{
      * @return [type]       [description]
      */
     public function select_field_generator($args=array()){
+
+
         extract($args);
 
+        $output = '';
+
         $classes = '';
-        $classes .= $toggle_field ? ' js--toggle-field' : '';
-        $data = $toggle_field ? 'data-field-toggle="'.$name.'"' : '';
-        ?>
-        <div class="option">
-            <label><?php echo $label; ?></label>
+        $classes .= $toggle_fields ? ' js--toggle-field' : '';
 
-            <select class="<?php echo $classes ;?>" <?php echo $data;?> name="kjd_background_settings[<?php echo $name; ?>]">
-                <?php
-                    foreach ($args as $option):
-                        $name = strtolower(str_replace(' ','_',$option));
-                        $data_targets = $toggle_field[$option] ? 'data-targets="'.$toggle_field[$option].'"' : '';
-                ?>
-                    <option <?php echo $data_targets; ;?> value="<?php echo $name;?>"
-                        <?php selected( $option, "none", true) ?>
-                    >
-                        <?php echo $option; ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
-        </div>
+        $data = $toggle_fields ? 'data-field-toggle="'.$name.'"' : '';
+        $value = isset($value) ? $value : '';
 
-        <?php
+        $output .= '<label>'.$label.'</label>';
+        $output .= '<select class="'.$classes.'" '.$data.' name="kjd_background_settings['.$name.']">';
+
+        foreach ($args as $option):
+
+            $name = strtolower(str_replace(' ','_',$option));
+            $data_targets = $toggle_fields[$option] ? 'data-targets="'.$toggle_fields[$option].'"' : '';
+            $output .= '<option '.$data_targets.' value="'.$name.'" '.selected( $option, "none", false).'>';
+                $output .= str_replace('_',' ',$option);
+            $output .= '</option>';
+
+        endforeach;
+        $output .= '</select>';
+
+        return $output;
 
     }
 
     public function color_field_generator($args=array()){
         extract($args);
-        ?>
-        <div class="color-field option">
+        $value = isset($value) ? $value : '';
 
-            <label><?php echo $label; ?></label>
-            <input class="minicolors opacity" name="kjd_background_settings[<?php echo $name; ?>]"
-                value="<?php echo $colorSettings['endcolor'] ? $colorSettings['endcolor'] : 'none'; ?>"
+        $output = '';
 
-                <?php if( is_string($args) && $args == 'transparency'): ?>
-                data-opacity ="<?php echo $end_rgba; ?>"
-                <?php endif ?>
-            />
+        $output .= '<label>'.$label.'</label>';
+        $output .= '<input class="minicolors opacity" name="kjd_background_settings['.$name.']"
+            value="'.$value.'"';
 
-            <?php if( is_string($args) && $args == 'transparency'): ?>
-            <input  class="rgba-color" name="kjd_background_settings[end_rgba]" type="hidden"
-             value="<?php echo $colorSettings['end_rgba'] ? $colorSettings['end_rgba'] : 'none'; ?>" />
-            <?php endif; ?>
+        if( is_string($args) && $args == 'transparency'):
+            $output .= 'data-opacity ="'.$end_rgba.'"';
+        endif;
+        $output .= '/>';
 
-            <a class="clearColor js--clear-color">Clear</a>
-        </div> <!-- End color select-->
-        <?php
+        if( is_string($args) && $args == 'transparency'):
+            $output .= '<input class="rgba-color" name="kjd_background_settings[end_rgba]" type="hidden"
+                     value="'.$value.'" />';
+        endif;
+
+        $output .= '<a class="clearColor js--clear-color">Clear</a>';
+
+        return $output;
     }
 
     public function file_field_generator($args=array()){
         extract($args);
-        ?>
-        <div class="option">
-            <label><?php echo $label; ?></label>
-            <input class="media_input"  type="text"  name="kjd_background_settings[<?php echo $name; ?>]"
-            value="<?php echo $wallpaperSettings[$name] ? $wallpaperSettings[$name] : ''; ?>" />
-            <input class="button upload_image" type="button" value="Upload file" />
-        </div>
-        <?php
+        $value = isset($value) ? $value : '';
+
+        $output .= '<label>'.$label.'</label>';
+        $output .= '<input class="media_input"  type="text"  name="kjd_background_settings['.$name.']"
+                    value="'.$value.'" />';
+        $output .= '<input class="button upload_image" type="button" value="Upload file" />';
+
+        return $output;
     }
 
 
-    public function textarea_field_generator(){
+    public function textarea_field_generator($args=array()){
+        extract($args);
+        $value = isset($value) ? $value : '';
+        $output = '';
 
+        $output .= '<label>'.$label.'</label>';
+        $output .= '<textarea name="kjd_background_settings['.$name.']">'.$value.'</textarea>';
+
+        return $output;
     }
 
-    public function label_field_generator(){
+    public function label_field_generator($args=array()){
+        extract($args);
+        $value = isset($value) ? $value : '';
+        $output = '';
+
+        $output .= '<h3>'.$label.'</h3>';
+
+        return $output;
 
     }
 

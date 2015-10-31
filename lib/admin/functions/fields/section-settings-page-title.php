@@ -10,8 +10,8 @@
  *                    'label'=>'Field Name',
  *                    'type'=>'field-type',
  *                    'args'=>'{string or array}',
- *                    'toggle_field'=>null,
- *                    'field_toggle'=>array('field_name'=>'option'),
+ *                    'toggle_fields'=>null,
+ *                    'toggled_by'=>array('field_name'=>'option'),
  *                    'preview'=>null
  *                 ),
  *             ),
@@ -29,15 +29,15 @@ $page_title_settings_fields = array(
                 'confine_section'=>select_field(array(
                         'name'=>'confine_section',
                         'label'=>'Confine Section',
-                        'args'=>array('yes','no')
+                        'args'=>array('no','yes')
                     )
                 ),
                 'float_section'=>select_field(array(
                         'name'=>'float_section',
                         'label'=>'Float Section',
-                        'args'=>array('yes','no'),
-                        'toggle_field'=>array(
-                            'yes'=>array('top_margin','bottom_margin')
+                        'args'=>array('no','yes'),
+                        'toggle_fields'=>array(
+                            'yes'=>'top_margin,bottom_margin,outer_glow'
                         )
                     )
                 ),
@@ -45,20 +45,27 @@ $page_title_settings_fields = array(
                             'name'=>'top_margin',
                             'label'=>'Top Margin',
                             'args'=>array('suffix','px'),
-                            'field_toggle'=>array('float_section','yes')
+                            'toggled_by'=>array('float_section'=>'yes')
                         )
                     ),
                     'bottom_margin'=>text_field(array(
                             'name'=>'bottom_margin',
                             'label'=>'Bottom Margin',
                             'args'=>array('suffix','px'),
-                            'field_toggle'=>array('float_section','yes')
+                            'toggled_by'=>array('float_section'=>'yes')
+                        )
+                    ),
+                    'outer_glow'=>select_field(array(
+                            'name'=>'outer_glow',
+                            'label'=>'Outer Glow',
+                            'args'=>array('none','left_and_right','top_and_bottom','top','bottom','all_sides'),
+                            'toggled_by'=>array('float_section'=>'yes')
                         )
                     ),
                 'use_breadcrumbs'=>select_field(array(
                         'name'=>'use_breadcrumbs',
                         'label'=>'Use breadcrumbs',
-                        'args'=>array('yes','no')
+                        'args'=>array('no','yes')
                     )
                 ),
             )
