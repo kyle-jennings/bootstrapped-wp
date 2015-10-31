@@ -10,8 +10,8 @@
  *                    'label'=>'Field Name',
  *                    'type'=>'field-type',
  *                    'args'=>'{string or array}',
- *                    'toggle_field'=>null,
- *                    'field_toggle'=>array('field_name'=>'option'),
+ *                    'toggle_fields'=>null,
+ *                    'toggled_by'=>array('field_name'=>'option'),
  *                    'preview'=>null,
  *                 ),
  *             ),
@@ -47,7 +47,7 @@ $feed_settings_fields = array(
                         'name'=>'show_image',
                         'label'=>'Show featued image?',
                         'args'=>array('yes','no'),
-                        'toggle_field'=>array('image_position','image_source')
+                        'toggle_fields'=>array('image_position','image_source')
                     )
                 ),
                     'image_position'=>select_field(array(

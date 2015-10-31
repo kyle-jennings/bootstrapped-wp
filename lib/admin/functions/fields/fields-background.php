@@ -15,8 +15,8 @@
  *                    'label'=>'Field Name',
  *                    'type'=>'field-type',
  *                    'args'=>'{string or array}',
- *                    'toggle_field'=>null,
- *                    'field_toggle'=>array('field_name'=>'option'),
+ *                    'toggle_fields'=>null,
+ *                    'toggled_by'=>array('field_name'=>'option'),
  *                    'preview'=>null
  *                 ),
  *             ),
@@ -70,24 +70,30 @@ $background_fields = array(
                 'use_wallpaper'=>select_field(array(
                         'name'=>'use_wallpaper',
                         'label'=>'Use Wallpaper?',
-                        'args'=>array('yes','no'),
+                        'args'=>array('no', 'yes'),
+                        // 'toggle_fields'=>array(
+                        //     'yes'=>'image,repeat,attachment,position,positionX,positionY,size,percentage'
+                        // ),
                     )
                 ),
                 'image'=>file_field(array(
-                    'name'=>'image',
-                    'label'=>'Upload Image',
+                        'name'=>'image',
+                        'label'=>'Upload Image',
                     )
                 ),
                 'repeat'=>select_field(array(
                         'name'=>'repeat',
                         'label'=>'Repeat wallpaper?',
-                        'args'=>array('no-repeat','repeat','repeat-x','repeat-y')
+                        'args'=>array('no-repeat','repeat','repeat-x','repeat-y'),
+
+
                     )
                 ),
                 'attachment'=>select_field(array(
                         'name'=>'attachment',
                         'label'=>'Scroll wallpaper?',
-                        'args'=>array('scroll','fixed')
+                        'args'=>array('scroll','fixed'),
+
                     )
                 ),
                 'position'=>select_field(array(
@@ -105,21 +111,22 @@ $background_fields = array(
                             'center bottom',
                             'custom',
                         ),
-                        'toggle_field'=>array(
-                            'custom'=>'positionX,positionY'
+                        'toggle_fields'=>array(
+                            'custom'=>'positionX,positionY',
                         ),
+
                     )
                 ),
                 'positionX'=>text_field(array(
                         'name'=>'positionX',
                         'label'=>'Horizontal Position',
-                        'field_toggle'=>array('position'=>'custom')
+                        'toggled_by'=>array('position'=>'custom')
                     )
                 ),
                 'positionY'=>text_field(array(
                         'name'=>'positionY',
                         'label'=>'Vertical Position',
-                        'field_toggle'=>array('position'=>'custom')
+                        'toggled_by'=>array('position'=>'custom')
                     )
                 ),
                 'size'=>select_field(array(
@@ -131,17 +138,19 @@ $background_fields = array(
                             'contained',
                             'percentage',
                         ),
-                        'toggle_field'=>array('percentage'=>'percentage'),
+                        'toggle_fields'=>array('percentage'=>'percentage'),
+
                     )
                 ),
                 'percentage'=>text_field(array(
                         'name'=>'percentage',
                         'label'=>'Percentage Size',
                         'type'=>'text',
-                        'field_toggle'=>array('size'=>'percentage')
+                        'toggled_by'=>array('size'=>'percentage')
                     )
                 ),
             ),
         ),
     ),
 );
+

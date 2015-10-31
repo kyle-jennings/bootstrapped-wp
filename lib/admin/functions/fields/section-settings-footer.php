@@ -10,8 +10,8 @@
  *                    'label'=>'Field Name',
  *                    'type'=>'field-type',
  *                    'args'=>'{string or array}',
- *                    'toggle_field'=>null,
- *                    'field_toggle'=>array('field_name'=>'option'),
+ *                    'toggle_fields'=>null,
+ *                    'toggled_by'=>array('field_name'=>'option'),
  *                    'preview'=>null,
  *                 ),
  *             ),
@@ -30,7 +30,7 @@ $footer_settings_fields = array(
                         'name'=>'footer_height_toggle',
                         'label'=>'',
                         'args'=>array('yes','no'),
-                        'toggle_field'=>array(
+                        'toggle_fields'=>array(
                             'yes'=>array('footer_height'),
                         )
                     )
@@ -39,7 +39,7 @@ $footer_settings_fields = array(
                             'name'=>'footer_height',
                             'label'=>'',
                             'args'=>array('suffix','px'),
-                             'field_toggle'=>array('footer_height_toggle','yes')
+                             'toggled_by'=>array('footer_height_toggle','yes')
                         )
                     ),
                 'confine_section'=>select_field(array(

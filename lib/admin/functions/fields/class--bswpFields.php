@@ -40,26 +40,26 @@ class bswpFields{
 
         foreach ($settings_groups as $settings){
 
-                add_settings_section(
-                    'kjd_'.$section.'_'.$setting['section'].'_settings_section', // ID hook name
-                    'body settings', // label
-                    'kjd_'.$section.'_'.$setting['section'].'_settings_callback', // function name
-                    'kjd_'.$section.'_'.$setting['section'].'_settings' // page name
-                );
+                // add_settings_section(
+                //     'kjd_'.$section.'_'.$setting['section'].'_settings_section', // ID hook name
+                //     'body settings', // label
+                //     'kjd_'.$section.'_'.$setting['section'].'_settings_callback', // function name
+                //     'kjd_'.$section.'_'.$setting['section'].'_settings' // page name
+                // );
 
 
-                add_settings_field(
-                    'kjd_'.$section.'_'.$setting['section'].'_'.$setting, // ID hook name
-                    null,
-                    null,
-                    'kjd_'.$section.'_'.$setting['section'].'_settings', // page name
-                    'kjd_'.$section.'_'.$setting['section'].'_settings_section' // parent section
-                );
+                // add_settings_field(
+                //     'kjd_'.$section.'_'.$setting['section'].'_'.$setting, // ID hook name
+                //     null,
+                //     null,
+                //     'kjd_'.$section.'_'.$setting['section'].'_settings', // page name
+                //     'kjd_'.$section.'_'.$setting['section'].'_settings_section' // parent section
+                // );
 
-                register_setting(
-                    'kjd_'.$section.'_'.$setting['section'].'_settings',
-                    'kjd_'.$section.'_'.$setting['section'].'_settings'
-                );
+                // register_setting(
+                //     'kjd_'.$section.'_'.$setting['section'].'_settings',
+                //     'kjd_'.$section.'_'.$setting['section'].'_settings'
+                // );
         }
     }
 

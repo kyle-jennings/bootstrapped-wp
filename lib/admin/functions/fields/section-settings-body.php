@@ -10,8 +10,8 @@
  *                    'label'=>'Field Name',
  *                    'type'=>'field-type',
  *                    'args'=>'{string or array}',
- *                    'toggle_field'=>null,
- *                    'field_toggle'=>array('field_name'=>'option'),
+ *                    'toggle_fields'=>null,
+ *                    'toggled_by'=>array('field_name'=>'option'),
  *                    'preview'=>null,
  *                 ),
  *             ),
@@ -37,7 +37,7 @@ $body_settings_fields = array(
                         'name'=>'float_section',
                         'label'=>'Float Section',
                         'args'=>array('yes','no'),
-                        'toggle_field'=>array(
+                        'toggle_fields'=>array(
                             'yes'=>array('top_margin','bottom_margin','outer_glow')
                         )
                     )
@@ -46,21 +46,21 @@ $body_settings_fields = array(
                             'name'=>'top_margin',
                             'label'=>'Top Margin',
                             'args'=>array('suffix','px'),
-                            'field_toggle'=>array('float_section','yes')
+                            'toggled_by'=>array('float_section','yes')
                         )
                     ),
                     'bottom_margin'=>text_field(array(
                             'name'=>'bottom_margin',
                             'label'=>'Bottom Margin',
                             'args'=>array('suffix','px'),
-                            'field_toggle'=>array('float_section','yes')
+                            'toggled_by'=>array('float_section','yes')
                         )
                     ),
                     'outer_glow'=>select_field(array(
                             'name'=>'outer_glow',
                             'label'=>'Outer Glow',
                             'args'=>array('none','left_and_right','top_and_bottom','top','bottom','all_sides'),
-                            'field_toggle'=>array('float_section'=>'yes')
+                            'toggled_by'=>array('float_section'=>'yes')
                         )
                     ),
             ),

@@ -99,10 +99,10 @@ class bswpForm{
 
         // if there is more than one tab we create a dropdown to navigate them
         if( $multi_tabs )
-            $output .= $this->field_tab_dropdown($tabs);
+            $output .= $this->fields_tab_dropdown($tabs);
 
         // get the tab pain
-        $output .= $this->field_tab_pane($multi_tabs, $tabs);
+        $output .= $this->fields_tab_pane($multi_tabs, $tabs);
 
         return $output;
     }
@@ -113,17 +113,20 @@ class bswpForm{
      * @param  [type] $tabs       [description]
      * @return [type]             [description]
      */
-    public function field_tab_pane($multi_tabs, $tabs){
+    public function fields_tab_pane($multi_tabs, $tabs){
 
         $output = '';
 
         // the tab content
         if( $multi_tabs )
-            $output .= '<div class="tab-content">';
+            $output .= '<div class="tab-content js--fields-tabs-wrapper">';
 
         // generate the fields
-        foreach($tabs as $tab)
-            $output .= $this->create_tab_content($tab);
+        $i=0;
+        foreach($tabs as $tab){
+            $output .= $this->create_tab_content($tab,$i);
+            $i++;
+        }
 
         // close tab content
         if( $multi_tabs )
@@ -134,7 +137,7 @@ class bswpForm{
 
 
     // the tab dropdown
-    public function field_tab_dropdown($tabs){
+    public function fields_tab_dropdown($tabs){
 
         $output = '';
 
@@ -149,7 +152,7 @@ class bswpForm{
             $output .= '<ul class="dropdown-menu">';
 
                 foreach($tabs as $tab)
-                    $output .= $this->field_tab_dropdown_link($tab);
+                    $output .= $this->fields_tab_dropdown_link($tab);
 
             $output .= '</ul>';
         $output .= '</div>';
@@ -158,7 +161,7 @@ class bswpForm{
     }
 
     // The tab links in the dropdown
-    public function field_tab_dropdown_link($tab){
+    public function fields_tab_dropdown_link($tab){
 
 
         $label = $tab['label'];
@@ -176,15 +179,15 @@ class bswpForm{
     /**
      * Generates the markup for the tab contents
      */
-    public function create_tab_content($tab){
+    public function create_tab_content($tab, $i=0){
 
 
         $name = str_replace(' ','_',strtolower($tab['label']));
         $label = $tab['label'];
         $fields = $tab['fields'];
-
-        $output .= '<div class="tab-pane cf" id="'.$name.'">';
-            $output .= '<h2>'.$label.'</h2>';
+        $class = $i == 0 ? 'active' : '';
+        $output .= '<div class="js--fields-group tab-pane cf '.$class.'" id="'.$name.'">';
+            // $output .= '<h2>'.$label.'</h2>';
             $output .= $this->identify_fields($fields);
         $output .= '</div>';
 
@@ -198,22 +201,22 @@ class bswpForm{
      * field toggling
      */
 
-    private function get_field_toggle($field_toggles){
+    private function get_toggled_by($toggled_bys){
 
-        $output = 'hide js-toggled-field ';
+        $output = 'hide js--toggled-field ';
 
-        foreach ($field_toggles as $field=>$value)
+        foreach ($toggled_bys as $field=>$value)
             $output .= $field.' ';
 
 
         return $output;
     }
 
-    private function toggle_fields_markup($field_toggle){
-        $data_field_toggle = $field_toggle ? $this->get_field_toggle($field_toggle) : '' ;
-        $data_toggle_name = $field_toggle ? 'data-toggle-name="'.$name.'"' : '';
+    private function toggle_fields_markup($toggled_by, $name){
+        $data_toggled_by = $toggled_by ? $this->get_toggled_by($toggled_by) : '' ;
+        $data_toggle_name = $toggled_by ? 'data-toggle-name="'.$name.'"' : '';
 
-        return ['data_field_toggle'=>$data_field_toggle, 'data_toggle_name'=>$data_toggle_name];
+        return ['data_toggled_by'=>$data_toggled_by, 'data_toggle_name'=>$data_toggle_name];
     }
 
 
@@ -228,13 +231,11 @@ class bswpForm{
 
             $type = $field['type'];
 
-            $toggles = $this->toggle_fields_markup($field['field_toggle']);
+            $toggles = $this->toggle_fields_markup($field['toggled_by'], $field['name']);
             extract($toggles);
 
-            $output .= '<div class="option '.$data_field_toggle.'" '.$data_toggle_name.' >';
-
+            $output .= '<div class="option '.$data_toggled_by.'" '.$data_toggle_name.' >';
                 $output .= call_user_func( array($this, $type.'_field_generator'), $field);
-
             $output .= '</div>';
         }
 
@@ -242,9 +243,9 @@ class bswpForm{
     }
 
 
-// ------------------------------------------
-//  The field generators
-// ------------------------------------------
+    // ------------------------------------------
+    //  The field generators
+    // ------------------------------------------
 
     public function text_field_generator( $args=array() ){
         extract($args);
@@ -267,12 +268,16 @@ class bswpForm{
      * @return [type]       [description]
      */
     public function select_field_generator($args=array()){
+
+
         extract($args);
 
         $output = '';
+
         $classes = '';
-        $classes .= $toggle_field ? ' js--toggle-field' : '';
-        $data = $toggle_field ? 'data-field-toggle="'.$name.'"' : '';
+        $classes .= $toggle_fields ? ' js--toggle-field' : '';
+
+        $data = $toggle_fields ? 'data-field-toggle="'.$name.'"' : '';
         $value = isset($value) ? $value : '';
 
         $output .= '<label>'.$label.'</label>';
@@ -281,7 +286,7 @@ class bswpForm{
         foreach ($args as $option):
 
             $name = strtolower(str_replace(' ','_',$option));
-            $data_targets = $toggle_field[$option] ? 'data-targets="'.$toggle_field[$option].'"' : '';
+            $data_targets = $toggle_fields[$option] ? 'data-targets="'.$toggle_fields[$option].'"' : '';
             $output .= '<option '.$data_targets.' value="'.$name.'" '.selected( $option, "none", false).'>';
                 $output .= $option;
             $output .= '</option>';

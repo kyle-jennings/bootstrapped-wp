@@ -15,8 +15,8 @@
  *                    'label'=>'Field Name',
  *                    'type'=>'field-type',
  *                    'args'=>'{string or array}',
- *                    'toggle_field'=>null,
- *                    'field_toggle'=>array('field_name'=>'option'),
+ *                    'toggle_fields'=>null,
+ *                    'toggled_by'=>array('field_name'=>'option'),
  *                    'preview'=>null
  *                 ),
  *             ),
@@ -34,14 +34,14 @@ function text_field($settings = array()){
        'label'=> isset($label) ? $label : ucfirst(str_replace(array('-','_'), ' ', $name ) ),
        'type'=> isset($type) ? $type : 'text',
        'args'=> isset($args) ? $args : null,
-       'toggle_field'=> isset($toggle_field) ? $toggle_field : null,
-       'field_toggle'=> isset($field_toggle) ? $field_toggle : null,
+       'toggle_fields'=> isset($toggle_fields) ? $toggle_fields : null,
+       'toggled_by'=> isset($toggled_by) ? $toggled_by : null,
        'preview'=>null
     );
 };
 
 function text_decoration_field($args = array()){
-    $args['name'] = isset($args['name']) ? $args['name'] : 'text_decoration';
+    $args['name'] = 'text_decoration';
     $args['label'] = isset($args['label']) ? $args['label'] : 'Text Decoration';
 
     $args['args'] = array(
@@ -51,12 +51,13 @@ function text_decoration_field($args = array()){
                     'line-through',
                     'text-shadow',
                 );
-    $args['toggle_field']= array('text_shadow_color');
+    $args['toggle_fields']= array('text-shadow'=>'text_shadow_color');
     return select_field($args);
 }
 
 function text_shadow_color_field($args=array()){
-    $args['name'] = isset($args['name']) ? $args['name'] : 'text_shadow_color';
+    $args['name'] = 'text_shadow_color';
+    $args['toggled_by'] = array('text_decoration'=>'text-shadow');
     return color_field($args);
 }
 
@@ -145,6 +146,17 @@ $border_styles = array(
 );
 
 
+$border_styles_toggle = array(
+    'solid'=>'border_color,border_size',
+    'dotted'=>'border_color,border_size',
+    'dashed'=>'border_color,border_size',
+    'double'=>'border_color,border_size',
+    'groove'=>'border_color,border_size',
+    'ridge'=>'border_color,border_size',
+    'inset'=>'border_color,border_size',
+    'outset'=>'border_color,border_size',
+);
+$border_styles_true = 'solid,dotted,dashed,double,groove,ridge,inset,outset';
 
 
 /**
