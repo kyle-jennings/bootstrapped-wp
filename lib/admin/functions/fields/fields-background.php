@@ -15,8 +15,8 @@
  *                    'label'=>'Field Name',
  *                    'type'=>'field-type',
  *                    'args'=>'{string or array}',
- *                    'toggle_fields'=>null,
- *                    'toggled_by'=>array('field_name'=>'option'),
+ *                    'toggle_fields'=>array('option'=>'field_1,field_2,field_3'),
+ *                    'toggled_by'=>array('field_name'=>'option1,option2,option3'),
  *                    'preview'=>null
  *                 ),
  *             ),

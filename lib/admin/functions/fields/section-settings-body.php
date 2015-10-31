@@ -30,15 +30,15 @@ $body_settings_fields = array(
                'confine_section'=>select_field(array(
                         'name'=>'confine_section',
                         'label'=>'Confine Section',
-                        'args'=>array('yes','no')
+                        'args'=>array('no','yes')
                     )
                 ),
                 'float_section'=>select_field(array(
                         'name'=>'float_section',
                         'label'=>'Float Section',
-                        'args'=>array('yes','no'),
+                        'args'=>array('no','yes'),
                         'toggle_fields'=>array(
-                            'yes'=>array('top_margin','bottom_margin','outer_glow')
+                            'yes'=>'top_margin,bottom_margin,outer_glow'
                         )
                     )
                 ),
@@ -46,14 +46,14 @@ $body_settings_fields = array(
                             'name'=>'top_margin',
                             'label'=>'Top Margin',
                             'args'=>array('suffix','px'),
-                            'toggled_by'=>array('float_section','yes')
+                            'toggled_by'=>array('float_section'=>'yes')
                         )
                     ),
                     'bottom_margin'=>text_field(array(
                             'name'=>'bottom_margin',
                             'label'=>'Bottom Margin',
                             'args'=>array('suffix','px'),
-                            'toggled_by'=>array('float_section','yes')
+                            'toggled_by'=>array('float_section'=>'yes')
                         )
                     ),
                     'outer_glow'=>select_field(array(

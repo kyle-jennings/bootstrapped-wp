@@ -57,10 +57,16 @@ class bswpForm{
         $output = '';
         $i = 0;
         foreach($settings_group as $k=>$settings){
-            $first = ($i == 0) ? 'active' : '';
-            $id = $settings['section'];
+            $active = '';
 
-            $output .= '<div id="'.$id.'" class="tab-pane '.$first.'">';
+            $id = $settings['section'];
+            if(isset($_GET['tab']) )
+                $active = $_GET['tab'] == $id ? 'active': '';
+            else
+                $active = ($i == 0) ? 'active' : '';
+
+
+            $output .= '<div id="'.$id.'" class="tab-pane '.$active.'">';
                 $output .= $this->field_tabs($settings);
             $output .= '</div>';
             $i++;
@@ -288,7 +294,7 @@ class bswpForm{
             $name = strtolower(str_replace(' ','_',$option));
             $data_targets = $toggle_fields[$option] ? 'data-targets="'.$toggle_fields[$option].'"' : '';
             $output .= '<option '.$data_targets.' value="'.$name.'" '.selected( $option, "none", false).'>';
-                $output .= $option;
+                $output .= str_replace('_',' ',$option);
             $output .= '</option>';
 
         endforeach;
@@ -336,7 +342,7 @@ class bswpForm{
     }
 
 
-    public function textarea_field_generator(){
+    public function textarea_field_generator($args=array()){
         extract($args);
         $value = isset($value) ? $value : '';
         $output = '';
@@ -347,7 +353,7 @@ class bswpForm{
         return $output;
     }
 
-    public function label_field_generator(){
+    public function label_field_generator($args=array()){
         extract($args);
         $value = isset($value) ? $value : '';
         $output = '';
