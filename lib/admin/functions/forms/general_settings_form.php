@@ -154,12 +154,12 @@ function kjd_theme_logo_callback(){
 			<label>Custom Header</label>
 			<?php
 
-                                    $content = $options['kjd_custom_header'];
-                                    $editor_id = 'kjd_custom_header';
-                                    $settings = array( 'textarea_rows' =>1 );
+                $content = $options['kjd_custom_header'];
+                $editor_id = 'kjd_custom_header';
+                $settings = array( 'textarea_rows' =>1 );
 
-                                    wp_editor( $content, $editor_id, $settings);
-                                ?>
+                wp_editor( $content, $editor_id, $settings);
+            ?>
 		</div>
 </div>
 

@@ -226,6 +226,11 @@ div.updated, div.error {
   width:200px;
 }
 
+.fields-wrapper--no-preview {
+    float: none;
+    width: auto;
+}
+
 .banner-fields-wrapper{
   width:99%;
 }
@@ -248,13 +253,16 @@ div.updated, div.error {
 .btn-group .tab-switcher__dropdown {
     border-radius: 0 !important;
     display: block;
-    margin-bottom: 20px;
     padding: 10px;
     text-align: left;
 }
 
 .btn-group .tab-switcher__dropdown .caret {
     float:right;
+}
+
+.tab-content--fields{
+    padding-top: 20px;
 }
 /* -----------------------------------------------------------------
           Live Preview
@@ -317,25 +325,20 @@ div.updated, div.error {
 }
 
 /* The options fields in the components tabs */
-
-
+.option:before,
+.option:after {
+    content: ' ';
+    display: table;
+}
+.option:after {
+    clear:both;
+}
 
 .option,
 .bswp-option {
-  clear:both;
-  float:left;
-  margin-right:10px;
   margin-bottom:20px;
-  min-width:390px;
 }
 
-
-.tab-pane .option {
-  clear: none;
-
-  width: 180px;
-  min-width: 180px;
-}
 
 .tab-pane .option:after
 .tab-pane .option:before, {
@@ -343,9 +346,6 @@ div.updated, div.error {
   display: table;
 }
 
-.tab-pane .option:after {
-  clear: both;
-}
 
 
   .option-wrapper.banner_image_options{
@@ -358,10 +358,11 @@ div.updated, div.error {
 
 /*.option label{display:inline-block; float:left;  width:200px;}*/
 
-.option label{display:block; font-weight: bold;}
+.option label{
+    display:block;
+    font-weight: bold;
+}
 
-.option select{float:left;}
-.option input{float:left;}
 .option input.smallInput{width:50px;}
 .option .input_group{float:left; margin-right:20px;}
 
@@ -453,9 +454,24 @@ div.updated, div.error {
 .option-component{ float: left; margin:0 10px 0 0;}
 .sub-label{display:block; clear:both; }
 
-.layout_select{clear:both;}
-.layout_preview{ float:left; height:75px; padding:5px 0 0 5px; position:relative; width:75px;}
-.layout_preview img{height:75px; position:absolute; width:75px;}
+/*
+    Sidebar Position preview
+ */
+.layout_select {
+    clear:both;
+}
+.layout_preview {
+
+    height:75px;
+    padding:5px 0 0 5px;
+    position:relative;
+    width:75px;
+}
+.layout_preview img {
+    height:75px;
+    position:absolute;
+    width:75px;
+}
 
 
 /* -----------------------------------------------------------------
@@ -474,17 +490,18 @@ a.button.upload_image{margin-bottom:-10px;}
 ------------------------------------------------------------------- */
 .connectedSortable{min-height:40px;}
 .whiteBackground{background:white;}
-  .frontPageLayoutList{float:left; margin-right:20px; width:400px;}
-  .frontPageLayoutList h3{padding:5px; cursor:auto !important;}
-  .frontPageLayoutList > div{padding:5px;}
-  .frontPageLayoutList label{padding:0 5px;width:auto;}
-  .frontPageLayoutList li > div input{margin-top:6px;}
-  .frontPageLayoutList li {background:; margin: 5px; line-height:24px; padding: 5px; width: 90%; }
-  .frontPageLayoutList li > div{float:right;}
 
-  .version-3-8 .frontPageLayoutList li {
-    padding: 5px 5px 10px;
-  }
+.frontPageLayoutList{float:left; margin-right:20px; width:400px;}
+.frontPageLayoutList h3{padding:5px; cursor:auto !important;}
+.frontPageLayoutList > div{padding:5px;}
+.frontPageLayoutList label{padding:0 5px;width:auto;}
+.frontPageLayoutList li > div input{margin-top:6px;}
+.frontPageLayoutList li { height:50px; margin: 5px; line-height:50px; padding: 5px; width: 90%; }
+.frontPageLayoutList li > div{float:right;}
+
+.version-3-8 .frontPageLayoutList li {
+padding: 5px 5px 10px;
+}
 
 /* -----------------------------------------------------------------
           Font preview - not working

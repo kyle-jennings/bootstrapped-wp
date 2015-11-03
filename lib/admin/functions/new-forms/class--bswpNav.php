@@ -16,6 +16,9 @@ class bswpNav {
         'body_settings',
         'feed_settings',
         'footer_settings',
+        'login_settings',
+        'sidebar_settings',
+        'frontpage_settings'
     );
 
     public $tabs = array(

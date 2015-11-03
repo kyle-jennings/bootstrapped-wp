@@ -13,7 +13,3 @@
     settings_errors();
     echo $bswp_nav->tabs_nav($fields);
     echo $form->init($fields);
-
-    echo '<div class="preview-options">';
-        echo kjd_site_preview();
-    echo '</div>';

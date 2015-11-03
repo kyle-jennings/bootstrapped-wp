@@ -19,6 +19,8 @@
  *     ),
  * );
  */
+
+
 // Branding
 $site_branding = array(
     'section'=>'branding',

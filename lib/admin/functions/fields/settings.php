@@ -36,7 +36,8 @@ function text_field($settings = array()){
        'args'=> isset($args) ? $args : null,
        'toggle_fields'=> isset($toggle_fields) ? $toggle_fields : null,
        'toggled_by'=> isset($toggled_by) ? $toggled_by : null,
-       'preview'=>null
+       'preview'=>null,
+       'class'=>isset($class) ? $class : '',
     );
 };
 
@@ -61,11 +62,22 @@ function text_shadow_color_field($args=array()){
     return color_field($args);
 }
 
+function sortable_field($args = array()){
+    $args['type'] = 'sortable';
+    return text_field($args);
+}
+
+
 function color_field($args = array()){
     $args['name'] = isset($args['name']) ? $args['name'] : 'color';
     $args['type'] = 'color';
     return text_field($args);
 }
+
+function sidebar_field($args = array()){
+    $args['type'] = 'sidebar';
+    return text_field($args);
+};
 
 function select_field($args = array()){
     $args['type'] = 'select';
@@ -171,7 +183,9 @@ include('fields-text.php');
 include('fields-presentation.php');
 include('fields-image.php');
 
-
+// misc
+include('fields-sidebar-location.php');
+include('fields-front-page.php');
 /**
  * Section specific fields
  *
@@ -188,3 +202,4 @@ include('section-settings-page-title.php');
 include('section-settings-body.php');
 include('section-settings-feed.php');
 include('section-settings-footer.php');
+include('section-settings-login.php');

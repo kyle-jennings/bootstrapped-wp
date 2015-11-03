@@ -3,7 +3,10 @@
 class bswpForm{
 
     public $forms_root = '';
+    public $section;
     public function __construct(){
+        $this->section = isset($_GET['section']) ? $_GET['section'] : 'theme_settings';
+        $this->preview = in_array($this->section, ['sidebar_settings','frontpage_settings'] ) ? false : true ;
     }
 
     // if there is something like a submit button or a wp_Editor, we grab the output and return it
@@ -29,10 +32,11 @@ class bswpForm{
             return;
 
         wp_enqueue_media();
-
+        $classes = !$this->preview ? 'fields-wrapper--no-preview' : '';
         $output = '';
+
         $output .= '<form class="bswp-form" method="post" action="options.php">';
-            $output .= '<div class="fields-wrapper">';
+            $output .= '<div class="fields-wrapper '.$classes.'">';
 
                 $output .= '<div class="tab-content">';
                     $output .= $this->settings_tabs($settings);
@@ -42,6 +46,12 @@ class bswpForm{
 
             $output .= '</div>';
         $output .= '</form>';
+
+        if($this->preview){
+            $output .= '<div class="preview-options">';
+                $output .= kjd_site_preview();
+            $output .= '</div>';
+        }
 
         return $output;
     }
@@ -125,7 +135,7 @@ class bswpForm{
 
         // the tab content
         if( $multi_tabs )
-            $output .= '<div class="tab-content js--fields-tabs-wrapper">';
+            $output .= '<div class="tab-content tab-content--fields js--fields-tabs-wrapper">';
 
         // generate the fields
         $i=0;
@@ -280,7 +290,7 @@ class bswpForm{
 
         $output = '';
 
-        $classes = '';
+        $classes = $class;
         $classes .= $toggle_fields ? ' js--toggle-field' : '';
 
         $data = $toggle_fields ? 'data-field-toggle="'.$name.'"' : '';
@@ -348,10 +358,22 @@ class bswpForm{
         $output = '';
 
         $output .= '<label>'.$label.'</label>';
-        $output .= '<textarea name="kjd_background_settings['.$name.']">'.$value.'</textarea>';
+
+        if($args == 'wp_editor'){
+            ob_start();
+                wp_editor( $value, $name, array( 'textarea_rows' =>1 ));
+                $ob_content = ob_get_contents();
+            ob_end_clean();
+            $output .= $ob_content;
+        }
+        else{
+            $output .= '<textarea name="kjd_background_settings['.$name.']">'.$value.'</textarea>';
+        }
+
 
         return $output;
     }
+
 
     public function label_field_generator($args=array()){
         extract($args);
@@ -362,6 +384,110 @@ class bswpForm{
 
         return $output;
 
+    }
+
+    public function sidebar_field_generator($args = array()){
+
+        $output = '';
+        $device_views = array('all','visible-phone','visible-tablet','visible-desktop','hidden-phone','hidden-tablet','hidden-desktop');
+        $output .= $this->select_field_generator($args);
+
+        extract($args);
+
+        $visibility = select_field(array(
+                    'name'=>$name.'_visibily',
+                    'label'=>'Device visibily',
+                    'args'=>$device_views,
+                ));
+
+        $toggled_by = array($name=>'top,right,bottom,left');
+        $toggles = $this->toggle_fields_markup($toggled_by, $name.'_visibility');
+        extract($toggles);
+
+        $output .= '<div class="option '.$data_toggled_by.'" '.$data_toggle_name.' >';
+
+            $output .= $this->select_field_generator($visibility);
+
+            $output .= '<div class="layout_preview">';
+                $output .= '<img src="'.get_bloginfo("template_directory").'/images/widgetsright.png" class="right">';
+                $output .= '<img src="'.get_bloginfo("template_directory").'/images/widgetstop.png" class="top">';
+                $output .= '<img src="'.get_bloginfo("template_directory").'/images/widgetsbottom.png" class="bottom">';
+                $output .= '<img src="'.get_bloginfo("template_directory").'/images/widgetsleft.png" class="left">';
+                $output .= '<img src="'.get_bloginfo("template_directory").'/images/widgetsnone.png" class="none">';
+                // $output .= '<img src="'.get_bloginfo("template_directory").'/images/widgets'.$settings[$layout]['position'].'.png" class="'.$settings[$layout]['position'].'" style="display:block;">';
+            $output .= '</div>';
+
+
+        $output .= '</div>';
+
+        return $output;
+    }
+
+    public function sortable_field_generator($args = array()){
+
+        extract($args);
+        $output = '';
+        $layout_order = array();
+        $components = array('widget_area_1','widget_area_2','widget_area_3','content','secondary_content');
+        $device_views = array('all','visible-phone','visible-tablet','visible-desktop','hidden-phone','hidden-tablet','hidden-desktop');
+
+        $active_components = array();
+        if(!empty($layout_order)){
+            foreach($layout_order as $order_num)
+                array_push($active_components, $order_num['component']);
+        }
+
+
+        $inactiveComponents = array_diff($components, $active_components);
+
+        $output .= '<div id="frontpage-sortables" class="option">';
+            $output .= '<div class="postbox frontPageLayoutList">';
+                $output .= '<h3><span>Active Page Components</span></h3>';
+                $output .= '<ul id="activeComponents" class="connectedSortable">';
+                foreach($active_components as $key => $value){
+                    $output .= '<li class="menu-item-handle" id="componentOrder_'.$key.'">';
+                    $output .= $layout_order[$key]['component'] ? ucwords(str_replace('_',' ',$layout_order[$key]['component'])) : ucwords(str_replace('_',' ',$value));
+                    $output .= '<div>';
+                    $output .= '<input class="component" type="hidden" name="kjd_frontPage_layout_settings[kjd_frontPage_layout]['.$key.'][component]" value="'.($layout_order[$key]['component'] ? $layout_order[$key]['component'] : $value).'"/>';
+                    $output .= '<select class="componentDeviceView" name="kjd_frontPage_layout_settings[kjd_frontPage_layout]['.$key.'][componentDeviceView]">';
+                    foreach($device_views as $view){
+                        $output .= '<option value="'.$view.'" '.selected( $layout_order[$key]['componentDeviceView'], $view, false).'>';
+                        $output .= $view;
+                        $output .= '</option>';
+                    }
+                    $output .= '</select>';
+                    $output .= '<input class="componentDisplay" type="hidden" name="kjd_frontPage_layout_settings[kjd_frontPage_layout]['.$key.'][display]" value="'.($layout_order[$key]['componentDisplay'] ? $layout_order[$key]['componentDisplay'] : '').'" />';
+                    $output .= '</div>';
+                    $output .= '</li>';
+                }
+                $output .= '</ul>';
+            $output .= '</div>';
+
+            $output .= '<div class="postbox frontPageLayoutList">';
+                $output .= '<h3><span>Inactive Components</span></h3>';
+                $output .= '<ul id="inactiveComponents" class="connectedSortable">';
+                    foreach($inactiveComponents as $key => $value){
+                        $output .= '<li class="menu-item-handle">';
+                            $output .= ucwords(str_replace('_',' ',$value));
+                            $output .= '<div>';
+                                $output .= '<input class="component" type="hidden" value="'.$value.'" name=""/>';
+                                $output .= '<input class="componentDisplay" type="hidden" name="" value=""/>';
+                                $output .= '<select class="componentDeviceView" name="">';
+                                    foreach($device_views as $view){
+                                        $output .= '<option value="" >';
+                                        $output .= $view;
+                                        $output .= '</option>';
+                                    }
+                                $output .= '</select>';
+                            $output .= '</div>';
+                        $output .= '</li>';
+                    }
+                $output .= '</ul>';
+            $output .= '</div>';
+        $output .= '</div>';
+
+
+        return $output;
     }
 
 }

@@ -9,7 +9,6 @@ class bswpFields{
 
         $this->section = $_GET['section'] ? $_GET['section'] : 'theme_settings';
         $this->section = isset($_GET['section']) ? $_GET['section'] : 'theme_settings';
-
         $settings_array = $this->section.'_tabs';
 
         // get the fields file
