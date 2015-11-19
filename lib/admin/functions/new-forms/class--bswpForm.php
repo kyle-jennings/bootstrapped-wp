@@ -308,7 +308,12 @@ class bswpForm{
         foreach ($args as $option):
 
             $name = strtolower(str_replace(' ','_',$option));
-            $data_targets = $toggle_fields[$option] ? 'data-targets="'.$toggle_fields[$option].'"' : '';
+            $data_targets = '';
+            if(isset($toggle_fields[$option])){
+
+                $data_targets = is_string($toggle_fields[$option]) ? 'data-targets="'.$toggle_fields[$option].'"' : '' ;
+            }
+
             $output .= '<option '.$data_targets.' value="'.$name.'" '.selected( $option, "none", false).'>';
                 $output .= str_replace('_',' ',$option);
             $output .= '</option>';
