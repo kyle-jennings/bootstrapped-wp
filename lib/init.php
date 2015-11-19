@@ -8,11 +8,11 @@ if(!is_admin()){
     require_once('functions/kjd-bootstrap-menus.php');
     require_once('functions/kjd-gallery.php');
     require_once('functions/kjd-shortcodes.php');
-    require_once('functions/kjd-widgets.php');
     require_once('functions/kjd-adminbar-menu.php');
     require_once('functions/kjd-class-navbar.php');
     require_once('functions/kjd-class-layout.php');
 }
+require_once('functions/kjd-widgets.php');
 /* ------------------------------------------------
  kjd add js and css
  -------------------------------------------------- */

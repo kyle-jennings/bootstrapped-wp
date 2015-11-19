@@ -42,7 +42,7 @@ function build_template_fields($template){
 
     return sidebar_field(array(
             'name'=>$template.'_sidebar',
-            'label'=>$tempalte,
+            'label'=>$template,
             'args'=>$positions,
             'toggle_fields'=>$position_toggles,
             'class'=>'js--sidebar-preview'

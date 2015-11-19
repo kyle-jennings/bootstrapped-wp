@@ -223,7 +223,7 @@ div.updated, div.error {
 ------------------------------------------------------------------- */
 .fields-wrapper{
   float:left;
-  width:200px;
+  width:230px;
 }
 
 .fields-wrapper--no-preview {
@@ -282,7 +282,7 @@ div.updated, div.error {
     height:auto;
     min-height: 100%;*/
     overflow: hidden;
-    margin-left: 200px;
+    margin-left: 230px;
 
 }
 .preview-options .preview-wrapper {
@@ -491,13 +491,37 @@ a.button.upload_image{margin-bottom:-10px;}
 .connectedSortable{min-height:40px;}
 .whiteBackground{background:white;}
 
-.frontPageLayoutList{float:left; margin-right:20px; width:400px;}
-.frontPageLayoutList h3{padding:5px; cursor:auto !important;}
-.frontPageLayoutList > div{padding:5px;}
-.frontPageLayoutList label{padding:0 5px;width:auto;}
-.frontPageLayoutList li > div input{margin-top:6px;}
-.frontPageLayoutList li { height:50px; margin: 5px; line-height:50px; padding: 5px; width: 90%; }
-.frontPageLayoutList li > div{float:right;}
+.frontPageLayoutList {
+    float:left;
+}
+.frontPageLayoutList.postbox {
+    min-width: inherit;
+}
+
+.frontPageLayoutList h3{
+    padding:5px;
+    cursor:auto !important;
+}
+.frontPageLayoutList > div{
+    padding:5px;
+}
+.frontPageLayoutList label{
+    padding:0 5px;
+    width:auto;
+}
+.frontPageLayoutList li > div input{
+    margin-top:6px;
+}
+.frontPageLayoutList li {
+    height:50px;
+    margin: 5px;
+    line-height:50px;
+    padding: 5px;
+}
+
+.frontPageLayoutList li > div{
+    float:right;
+}
 
 .version-3-8 .frontPageLayoutList li {
 padding: 5px 5px 10px;

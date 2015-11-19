@@ -4,15 +4,16 @@ class bswpForm{
 
     public $forms_root = '';
     public $section;
+    public $tab;
     public function __construct(){
         $this->section = isset($_GET['section']) ? $_GET['section'] : 'theme_settings';
-        $this->preview = in_array($this->section, ['sidebar_settings','frontpage_settings'] ) ? false : true ;
+        $this->preview = in_array($this->section, ['sidebar_settings','frontpage_settings'] ) ? false : true;
     }
 
     // if there is something like a submit button or a wp_Editor, we grab the output and return it
-    public function grab_function_output($func){
+    public function grab_function_output($func, $arg = null ){
         ob_start();
-            call_user_func('submit_button');
+            call_user_func($func, $arg);
             $ob_content = ob_get_contents();
 
         ob_end_clean();
@@ -31,11 +32,15 @@ class bswpForm{
         if(!$settings)
             return;
 
+
+
         wp_enqueue_media();
+
         $classes = !$this->preview ? 'fields-wrapper--no-preview' : '';
         $output = '';
 
         $output .= '<form class="bswp-form" method="post" action="options.php">';
+            $output .= $this->grab_function_output('settings_fields', 'kjd_'.$this->section );
             $output .= '<div class="fields-wrapper '.$classes.'">';
 
                 $output .= '<div class="tab-content">';
@@ -202,9 +207,10 @@ class bswpForm{
         $label = $tab['label'];
         $fields = $tab['fields'];
         $class = $i == 0 ? 'active' : '';
-        $output .= '<div class="js--fields-group tab-pane cf '.$class.'" id="'.$name.'">';
-            // $output .= '<h2>'.$label.'</h2>';
-            $output .= $this->identify_fields($fields);
+
+        $output = '<div class="js--fields-group tab-pane cf '.$class.'" id="'.$name.'">';
+
+            $output .= $this->identify_fields($fields, $name);
         $output .= '</div>';
 
         return $output;
@@ -239,7 +245,7 @@ class bswpForm{
     /**
      * Identifies which field to use based on the 'type' key
      */
-    public function identify_fields($fields = array()){
+    public function identify_fields($fields = array(), $tab){
 
         $output = '';
 
@@ -251,7 +257,7 @@ class bswpForm{
             extract($toggles);
 
             $output .= '<div class="option '.$data_toggled_by.'" '.$data_toggle_name.' >';
-                $output .= call_user_func( array($this, $type.'_field_generator'), $field);
+                $output .= call_user_func( array($this, $type.'_field_generator'), $field, $tab);
             $output .= '</div>';
         }
 
@@ -263,13 +269,13 @@ class bswpForm{
     //  The field generators
     // ------------------------------------------
 
-    public function text_field_generator( $args=array() ){
+    public function text_field_generator($args=array(),$tab){
         extract($args);
         $value = isset($value) ? $value : '';
         $output = '';
 
         $output .= '<label>'.$label.'</label>';
-        $output .='<input type="text" name="kjd_background_settings['.$name.']"
+        $output .='<input type="text" name="bswp_'.$this->section.'['.$tab.']['.$name.']"
         value="'.$value.'" >';
 
         return $output;
@@ -283,7 +289,7 @@ class bswpForm{
      * otherwise the key is the value and the value is the label. huh?
      * @return [type]       [description]
      */
-    public function select_field_generator($args=array()){
+    public function select_field_generator($args=array(),$tab){
 
 
         extract($args);
@@ -297,7 +303,7 @@ class bswpForm{
         $value = isset($value) ? $value : '';
 
         $output .= '<label>'.$label.'</label>';
-        $output .= '<select class="'.$classes.'" '.$data.' name="kjd_background_settings['.$name.']">';
+        $output .= '<select class="'.$classes.'" '.$data.' name="bswp_'.$this->section.'['.$tab.']['.$name.']">';
 
         foreach ($args as $option):
 
@@ -314,23 +320,23 @@ class bswpForm{
 
     }
 
-    public function color_field_generator($args=array()){
+    public function color_field_generator($args=array(),$tab){
         extract($args);
         $value = isset($value) ? $value : '';
 
         $output = '';
 
         $output .= '<label>'.$label.'</label>';
-        $output .= '<input class="minicolors opacity" name="kjd_background_settings['.$name.']"
+        $output .= '<input class="minicolors opacity" name="bswp_'.$this->section.'['.$tab.']['.$name.']"
             value="'.$value.'"';
 
-        if( is_string($args) && $args == 'transparency'):
+        if( isset($end_rgba) && is_string($args) && $args == 'transparency'):
             $output .= 'data-opacity ="'.$end_rgba.'"';
         endif;
         $output .= '/>';
 
         if( is_string($args) && $args == 'transparency'):
-            $output .= '<input class="rgba-color" name="kjd_background_settings[end_rgba]" type="hidden"
+            $output .= '<input class="rgba-color" name="bswp_'.$this->section.'['.$tab.']['.$name.'_rgba]" type="hidden"
                      value="'.$value.'" />';
         endif;
 
@@ -339,12 +345,14 @@ class bswpForm{
         return $output;
     }
 
-    public function file_field_generator($args=array()){
+    public function file_field_generator($args=array(),$tab){
         extract($args);
         $value = isset($value) ? $value : '';
 
+        $output = '';
+
         $output .= '<label>'.$label.'</label>';
-        $output .= '<input class="media_input"  type="text"  name="kjd_background_settings['.$name.']"
+        $output .= '<input class="media_input"  type="text"  name="bswp_'.$this->section.'['.$tab.']['.$name.']"
                     value="'.$value.'" />';
         $output .= '<input class="button upload_image" type="button" value="Upload file" />';
 
@@ -352,7 +360,7 @@ class bswpForm{
     }
 
 
-    public function textarea_field_generator($args=array()){
+    public function textarea_field_generator($args=array(),$tab){
         extract($args);
         $value = isset($value) ? $value : '';
         $output = '';
@@ -367,7 +375,7 @@ class bswpForm{
             $output .= $ob_content;
         }
         else{
-            $output .= '<textarea name="kjd_background_settings['.$name.']">'.$value.'</textarea>';
+            $output .= '<textarea name="bswp_'.$this->section.'['.$tab.']['.$name.']">'.$value.'</textarea>';
         }
 
 
@@ -375,7 +383,7 @@ class bswpForm{
     }
 
 
-    public function label_field_generator($args=array()){
+    public function label_field_generator($args=array(),$tab){
         extract($args);
         $value = isset($value) ? $value : '';
         $output = '';
@@ -386,7 +394,7 @@ class bswpForm{
 
     }
 
-    public function sidebar_field_generator($args = array()){
+    public function sidebar_field_generator($args=array(),$tab){
 
         $output = '';
         $device_views = array('all','visible-phone','visible-tablet','visible-desktop','hidden-phone','hidden-tablet','hidden-desktop');
@@ -423,7 +431,7 @@ class bswpForm{
         return $output;
     }
 
-    public function sortable_field_generator($args = array()){
+    public function sortable_field_generator($args=array(),$tab){
 
         extract($args);
         $output = '';
@@ -445,19 +453,24 @@ class bswpForm{
                 $output .= '<h3><span>Active Page Components</span></h3>';
                 $output .= '<ul id="activeComponents" class="connectedSortable">';
                 foreach($active_components as $key => $value){
-                    $output .= '<li class="menu-item-handle" id="componentOrder_'.$key.'">';
-                    $output .= $layout_order[$key]['component'] ? ucwords(str_replace('_',' ',$layout_order[$key]['component'])) : ucwords(str_replace('_',' ',$value));
-                    $output .= '<div>';
-                    $output .= '<input class="component" type="hidden" name="kjd_frontPage_layout_settings[kjd_frontPage_layout]['.$key.'][component]" value="'.($layout_order[$key]['component'] ? $layout_order[$key]['component'] : $value).'"/>';
-                    $output .= '<select class="componentDeviceView" name="kjd_frontPage_layout_settings[kjd_frontPage_layout]['.$key.'][componentDeviceView]">';
-                    foreach($device_views as $view){
-                        $output .= '<option value="'.$view.'" '.selected( $layout_order[$key]['componentDeviceView'], $view, false).'>';
-                        $output .= $view;
-                        $output .= '</option>';
-                    }
-                    $output .= '</select>';
-                    $output .= '<input class="componentDisplay" type="hidden" name="kjd_frontPage_layout_settings[kjd_frontPage_layout]['.$key.'][display]" value="'.($layout_order[$key]['componentDisplay'] ? $layout_order[$key]['componentDisplay'] : '').'" />';
-                    $output .= '</div>';
+                    $name = $layout_order[$key]['component'];
+                    $label = $layout_order[$key]['component'] ? ucwords(str_replace('_',' ',$layout_order[$key]['component'])) : ucwords(str_replace('_',' ',$value));
+                    $output .= '<li class="menu-item-handle" data-component="'.$name.'" id="componentOrder_'.$key.'">';
+                        $output .= $label;
+                        $output .= '<div>';
+                            $output .= '<input class="component" type="hidden" name="bswp_frontPage_layout_settings[bswp_frontPage_layout]['.$key.'][component]" value="'.($layout_order[$key]['component'] ? $layout_order[$key]['component'] : $value).'"/>';
+
+                            $output .= '<select class="componentDeviceView" name="bswp_frontPage_layout_settings[bswp_frontPage_layout]['.$key.'][componentDeviceView]">';
+                                foreach($device_views as $view){
+                                    $output .= '<option value="'.$view.'" '.selected( $layout_order[$key]['componentDeviceView'], $view, false).'>';
+                                       $output .= $view;
+                                    $output .= '</option>';
+                                }
+                            $output .= '</select>';
+
+                            $output .= '<input class="componentDisplay" type="hidden" name="bswp_frontPage_layout_settings[bswp_frontPage_layout]['.$key.'][display]" value="'.($layout_order[$key]['componentDisplay'] ? $layout_order[$key]['componentDisplay'] : '').'" />';
+
+                        $output .= '</div>';
                     $output .= '</li>';
                 }
                 $output .= '</ul>';
@@ -467,8 +480,10 @@ class bswpForm{
                 $output .= '<h3><span>Inactive Components</span></h3>';
                 $output .= '<ul id="inactiveComponents" class="connectedSortable">';
                     foreach($inactiveComponents as $key => $value){
-                        $output .= '<li class="menu-item-handle">';
-                            $output .= ucwords(str_replace('_',' ',$value));
+                        $name = $value;
+                        $label = ucwords(str_replace('_',' ',$value));
+                        $output .= '<li class="menu-item-handle" data-component="'.$name.'">';
+                            $output .= $label;
                             $output .= '<div>';
                                 $output .= '<input class="component" type="hidden" value="'.$value.'" name=""/>';
                                 $output .= '<input class="componentDisplay" type="hidden" name="" value=""/>';

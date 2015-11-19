@@ -18,13 +18,17 @@ function kjd($obj){
 // update function
 include 'update/update.php';
 
+
+
+
 // add the new theme settings files
+include('functions/new-forms/class--bswpSections.php');
 include('functions/new-forms/class--bswpAdminMenu.php');
-if(  $_GET['page'] == 'bswp_settings' )
+if( isset($_GET['page']) && $_GET['page'] == 'bswp_settings' )
     include 'functions/new-forms/init.php';
 
 // if we are not on the new theme settings page then dont load the old theme admin functions
-if(  $_GET['page'] != 'bswp_settings' ){
+if( isset($_GET['page']) && $_GET['page'] != 'bswp_settings' ){
 
     // include the file which builds the CSS
     include 'functions/stylesheet-builder/styles_init.php';

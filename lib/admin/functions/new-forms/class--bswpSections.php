@@ -2,7 +2,7 @@
 
 class bswpSections{
 
-    static public $sections = array(
+    public $sections = array(
         'theme_settings',
         'header_settings',
         'navbar_settings',
@@ -13,8 +13,8 @@ class bswpSections{
         'feed_settings',
         'footer_settings',
         'login_settings',
-        'sidebar_settings'
-
+        'sidebar_settings',
+        'layout_settings'
     );
 
 }

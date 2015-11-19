@@ -16,5 +16,5 @@ if (function_exists('add_theme_support')) {
 
 include('live-preview.php');
 include('gallery.php');
-include('kjd-widgets.php');
+// include('kjd-widgets.php');
 include('shortcode-injector/init.php');

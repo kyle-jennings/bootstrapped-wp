@@ -185,7 +185,7 @@ include('fields-image.php');
 
 // misc
 include('fields-sidebar-location.php');
-include('fields-front-page.php');
+include('fields-layout.php');
 /**
  * Section specific fields
  *
