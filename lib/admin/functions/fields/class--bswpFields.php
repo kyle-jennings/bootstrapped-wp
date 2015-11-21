@@ -39,27 +39,41 @@ class bswpFields{
             return;
 
         foreach ($settings_groups as $settings){
-            $tab = $settings['section'];
+            $setting = $settings['section'];
             $field_groups = $settings['tabs'];
 
+            // kjd(
+            //     "add_settings_section(
+            //         'bswp_{$section}_{$setting}_section',
+            //         '{$setting}_settings',
+            //         null,
+            //         'bswp_{$section}'
+            //       )"
+            // );
+
             add_settings_section(
-                'bswp_'.$section.'_'.$tab.'_section', // ID hook name
-                'body settings', // label
+                'bswp_'.$section.'_'.$setting.'_section', // ID hook name
+                $setting.' settings', // label
                 null, // function name
                 'bswp_'.$section // page name
             );
 
             // now set the field settings
-            $this->register_field_settings($field_groups, $section, $tab);
+            $this->register_field_settings($field_groups, $section, $setting);
+
+            // kjd("register_setting(
+            //                 'bswp_{$section}_{$setting}',
+            //                 'bswp_{$section}_{$setting}'
+            //             )");
 
             register_setting(
-                'bswp_'.$section.'_'.$tab,
-                'bswp_'.$section.'_'.$tab
+                'bswp_'.$section,
+                'bswp_'.$section
             );
         }
     }
 
-    public function register_field_settings($field_groups, $section, $tab){
+    public function register_field_settings($field_groups, $section, $setting){
 
         // loop through each tab
         foreach($field_groups as $field_group){
@@ -68,12 +82,21 @@ class bswpFields{
             // Ugh nested for loop. its not the worst here
             // get teh fields from each tab
             foreach($fields as $field){
-                add_settings_field(
-                    'bswp_'.$section.'_'.$tab.'_'.$field['name'], // ID hook name
+
+             // kjd( "add_settings_field(
+             //       'bswp_{$section}_{$setting}_{$field['name']}',
+             //       null,
+             //       null,
+             //       'bswp_{$section}',
+             //       'bswp_{$section}_{$setting}_section'
+             //   );");
+
+              add_settings_field(
+                    'bswp_'.$section.'_'.$setting.'_'.$field['name'], // ID hook name
                     null,
                     null,
                     'bswp_'.$section, // page name
-                    'bswp_'.$section.'_'.$tab.'_section' // parent section
+                    'bswp_'.$section.'_'.$setting.'_section' // parent section
                 );
             }
         }

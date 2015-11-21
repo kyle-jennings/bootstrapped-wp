@@ -40,7 +40,7 @@ class bswpForm{
         $output = '';
 
         $output .= '<form class="bswp-form" method="post" action="options.php">';
-            $output .= $this->grab_function_output('settings_fields', 'kjd_'.$this->section );
+            $output .= $this->grab_function_output('settings_fields', 'bswp_'.$this->section );
             $output .= '<div class="fields-wrapper '.$classes.'">';
 
                 $output .= '<div class="tab-content">';

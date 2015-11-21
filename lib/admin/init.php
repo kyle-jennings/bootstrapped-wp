@@ -24,6 +24,7 @@ include 'update/update.php';
 // add the new theme settings files
 include('functions/new-forms/class--bswpSections.php');
 include('functions/new-forms/class--bswpAdminMenu.php');
+
 if( isset($_GET['page']) && $_GET['page'] == 'bswp_settings' )
     include 'functions/new-forms/init.php';
 
