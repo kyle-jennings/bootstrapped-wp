@@ -41,6 +41,7 @@ function text_field($settings = array()){
     );
 };
 
+
 function text_decoration_field($args = array()){
     $args['name'] = 'text_decoration';
     $args['label'] = isset($args['label']) ? $args['label'] : 'Text Decoration';

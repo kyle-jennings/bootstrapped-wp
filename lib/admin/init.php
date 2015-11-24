@@ -1,6 +1,7 @@
 <?php
 
 
+$theme_root = get_template_directory();
 
 /**
  * Helper Function  - examine object or array
@@ -25,7 +26,7 @@ include 'update/update.php';
 include('functions/new-forms/class--bswpSections.php');
 include('functions/new-forms/class--bswpAdminMenu.php');
 
-if( isset($_GET['page']) && $_GET['page'] == 'bswp_settings' )
+if( (isset($_GET['page']) && $_GET['page'] == 'bswp_settings') || (isset($_POST['option_page']) ) )
     include 'functions/new-forms/init.php';
 
 // if we are not on the new theme settings page then dont load the old theme admin functions

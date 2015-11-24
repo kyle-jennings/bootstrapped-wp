@@ -12,19 +12,19 @@ foreach($border_targets as $border){
            'label'=>ucfirst($border),
            'fields'=>array(
                 'border_style'=>select_field(array(
-                        'name'=>'border_style',
+                        'name'=> $border.'__border_style',
                         'label'=>'Style',
                         'args'=>$border_styles,
                         'toggle_fields'=>$border_styles_toggle
                     )
                 ),
                 'border_color'=>color_field(array(
-                        'name'=>'border_color',
+                        'name'=> $border.'__border_color',
                         'toggled_by'=>array('border_style'=>$border_styles_true)
                     )
                 ),
                 'border_size'=>select_field(array(
-                        'name'=>'border_size',
+                        'name'=> $border.'__border_size',
                         'label'=>'Size',
                         'args'=>array_map('add_px_string', range(1,20)),
                         'toggled_by'=>array('border_style'=>$border_styles_true)
@@ -39,7 +39,7 @@ $radii_fields = array();
 // the border radius fields are all the same so lets set them a single time
 foreach($radii as $radius){
     $radii_fields[$radius] = select_field(array(
-            'name'=>'$radius',
+            'name'=>$radius,
             'label'=>ucfirst(str_replace('_', ' ', $radius)),
             'args'=>array_map('add_px_string', range(1,20))
         )

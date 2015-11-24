@@ -15,12 +15,12 @@ foreach($heading_tags as $heading){
        'label'=>ucfirst($heading),
        'fields'=>array(
            'color'=>color_field(array(
-                    'name'=>'color',
+                    'name'=>$heading.'_color',
                     'label'=>'color',
                 )
             ),
            'background_style'=>select_field(array(
-                   'name'=>'background_style',
+                   'name'=>$heading.'_background_style',
                    'label'=>'Background Style',
                    'args'=>array('none','square','tab', 'pill'),
                    'toggle_fields'=>array(
@@ -32,14 +32,14 @@ foreach($heading_tags as $heading){
             ),
            'background_color'=>color_field(
                 array(
-                    'name'=>'background_color',
+                    'name'=>$heading.'_background_color',
                     'label'=>'Background Color',
                     'args'=>'transparency',
                     'toggled_by'=>array('background_style'=>'square','background_style'=>'tab','background_style'=>'pill')
                 )
             ),
            'border_style'=>select_field(array(
-                    'name'=>'border_style',
+                    'name'=>$heading.'_border_style',
                     'label'=>'Border Style',
                     'args'=>$border_styles,
                     'toggled_by'=>array('background_style'=>'square','background_style'=>'tab','background_style'=>'pill'),
@@ -47,14 +47,20 @@ foreach($heading_tags as $heading){
                 )
             ),
            'border_color'=>color_field(array(
-                    'name'=>'border_color',
+                    'name'=>$heading.'_border_color',
                     'label'=>'Border Color',
                     'toggled_by'=>array('border_style'=>$border_styles_true)
 
                )
            ),
-           'decoration'=>text_decoration_field(),
-           'text_shadow_color'=>text_shadow_color_field()
+           'decoration'=>text_decoration_field(array(
+                'name'=>$heading.'_text_decoration'
+                )
+            ),
+           'text_shadow_color'=>text_shadow_color_field(array(
+                'name'=>$heading.'_text_shadow_color'
+                )
+            )
 
         ),
     );

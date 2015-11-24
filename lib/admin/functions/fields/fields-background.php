@@ -39,19 +39,19 @@ $background_fields = array(
             'fields'=>array(
                 'color'=>color_field(
                     array(
-                        'name'=>'color',
+                        'name'=>'background__start_color',
                         'label'=>'Start Color',
                         'args'=>'transparency')
                     ),
                 'endcolor'=>color_field(
                     array(
-                        'name'=>'end_color',
+                        'name'=>'background__end_color',
                         'label'=>'End Color',
                         'args'=>'transparency')
                     ),
                 'gradient'=>select_field(
                     array(
-                        'name'=>'gradient',
+                        'name'=>'background__gradient',
                         'label'=>'Color Fill',
                         'args'=>array(
                             'none',
@@ -68,7 +68,7 @@ $background_fields = array(
             'label'=>'Background Wallpaper',
             'fields'=>array(
                 'use_wallpaper'=>select_field(array(
-                        'name'=>'use_wallpaper',
+                        'name'=>'background__use_wallpaper',
                         'label'=>'Use Wallpaper?',
                         'args'=>array('no', 'yes'),
                         // 'toggle_fields'=>array(
@@ -77,12 +77,12 @@ $background_fields = array(
                     )
                 ),
                 'image'=>file_field(array(
-                        'name'=>'image',
+                        'name'=>'background__image',
                         'label'=>'Upload Image',
                     )
                 ),
                 'repeat'=>select_field(array(
-                        'name'=>'repeat',
+                        'name'=>'background__repeat',
                         'label'=>'Repeat wallpaper?',
                         'args'=>array('no-repeat','repeat','repeat-x','repeat-y'),
 
@@ -90,14 +90,14 @@ $background_fields = array(
                     )
                 ),
                 'attachment'=>select_field(array(
-                        'name'=>'attachment',
+                        'name'=>'background__attachment',
                         'label'=>'Scroll wallpaper?',
                         'args'=>array('scroll','fixed'),
 
                     )
                 ),
                 'position'=>select_field(array(
-                        'name'=>'position',
+                        'name'=>'background__position',
                         'label'=>'Wallpaper position',
                         'args'=>array(
                             'left top',
@@ -118,19 +118,19 @@ $background_fields = array(
                     )
                 ),
                 'positionX'=>text_field(array(
-                        'name'=>'positionX',
+                        'name'=>'background__positionX',
                         'label'=>'Horizontal Position',
                         'toggled_by'=>array('position'=>'custom')
                     )
                 ),
                 'positionY'=>text_field(array(
-                        'name'=>'positionY',
+                        'name'=>'background__positionY',
                         'label'=>'Vertical Position',
                         'toggled_by'=>array('position'=>'custom')
                     )
                 ),
                 'size'=>select_field(array(
-                        'name'=>'size',
+                        'name'=>'background__size',
                         'label'=>'Wallpaper Size',
                         'args'=>array(
                             'default',
@@ -143,7 +143,7 @@ $background_fields = array(
                     )
                 ),
                 'percentage'=>text_field(array(
-                        'name'=>'percentage',
+                        'name'=>'background__percentage',
                         'label'=>'Percentage Size',
                         'type'=>'text',
                         'toggled_by'=>array('size'=>'percentage')

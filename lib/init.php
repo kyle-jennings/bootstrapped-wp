@@ -13,6 +13,8 @@ if(!is_admin()){
     require_once('functions/kjd-class-layout.php');
 }
 require_once('functions/kjd-widgets.php');
+
+
 /* ------------------------------------------------
  kjd add js and css
  -------------------------------------------------- */
