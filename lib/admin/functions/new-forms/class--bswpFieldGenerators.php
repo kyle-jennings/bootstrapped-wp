@@ -28,7 +28,6 @@ class bswpFieldGenerators {
      */
     public function select_field_generator($args=array(),$tab){
 
-
         extract($args);
 
         $output = '';
@@ -51,7 +50,7 @@ class bswpFieldGenerators {
                 $data_targets = is_string($toggle_fields[$option]) ? 'data-targets="'.$toggle_fields[$option].'"' : '' ;
             }
 
-            $output .= '<option '.$data_targets.' value="'.$name.'" '.selected( $option, "none", false).'>';
+            $output .= '<option '.$data_targets.' value="'.$name.'" '.selected( $name, $value, false).'>';
                 $output .= str_replace('_',' ',$option);
             $output .= '</option>';
 
@@ -62,6 +61,10 @@ class bswpFieldGenerators {
 
     }
 
+
+    /**
+     * produces color field
+     */
     public function color_field_generator($args=array(),$tab){
         extract($args);
         $value = isset($value) ? $value : '';
@@ -87,6 +90,10 @@ class bswpFieldGenerators {
         return $output;
     }
 
+
+    /**
+     * Produces the file field input
+     */
     public function file_field_generator($args=array(),$tab){
         extract($args);
         $value = isset($value) ? $value : '';

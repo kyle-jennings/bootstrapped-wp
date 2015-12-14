@@ -8,6 +8,8 @@ class bswpForm extends bswpFieldGenerators {
     public $forms_root = '';
     public $section;
     public $tab;
+    public $fields;
+
     public function __construct(){
         $this->section = isset($_GET['section']) ? $_GET['section'] : 'theme_settings';
         $this->preview = in_array($this->section, ['sidebar_settings','frontpage_settings'] ) ? false : true;
@@ -38,8 +40,7 @@ class bswpForm extends bswpFieldGenerators {
         if(!$settings)
             return;
 
-
-
+        $this->fields = $settings;
         wp_enqueue_media();
 
         $classes = !$this->preview ? 'fields-wrapper--no-preview' : '';
@@ -154,8 +155,10 @@ class bswpForm extends bswpFieldGenerators {
 
         // generate the fields
         $i=0;
+
         foreach($tabs as $tab){
-            $output .= $this->create_tab_content($tab,$i);
+            $current_tab = key($tabs);
+            $output .= $this->create_tab_content($tab,$i,$current_tab);
             $i++;
         }
 
@@ -210,7 +213,7 @@ class bswpForm extends bswpFieldGenerators {
     /**
      * Generates the markup for the tab contents
      */
-    public function create_tab_content($tab, $i=0){
+    public function create_tab_content($tab, $i=0, $current_tab = null){
 
 
         $name = str_replace(' ','_',strtolower($tab['label']));
@@ -220,51 +223,31 @@ class bswpForm extends bswpFieldGenerators {
 
         $output = '<div class="js--fields-group tab-pane cf '.$class.'" id="fields__'.$name.'">';
 
-            $output .= $this->identify_fields($fields, $name);
+            $output .= $this->identify_fields($fields, $name, $current_tab);
         $output .= '</div>';
 
         return $output;
     }
 
 
-
-
-    /**
-     * field toggling
-     */
-
-    private function get_toggled_by($toggled_bys){
-
-        $output = 'hide js--toggled-field ';
-
-        foreach ($toggled_bys as $field=>$value)
-            $output .= $field.' ';
-
-
-        return $output;
-    }
-
-    private function toggle_fields_markup($toggled_by, $name){
-        $data_toggled_by = $toggled_by ? $this->get_toggled_by($toggled_by) : '' ;
-        $data_toggle_name = $toggled_by ? 'data-toggle-name="'.$name.'"' : '';
-
-        return ['data_toggled_by'=>$data_toggled_by, 'data_toggle_name'=>$data_toggle_name];
-    }
-
-
     /**
      * Identifies which field to use based on the 'type' key
      */
-    public function identify_fields($fields = array(), $tab){
+    public function identify_fields($fields = array(), $tab, $current_tab = null){
 
         $output = '';
 
+
         foreach($fields as $field){
-
             $type = $field['type'];
+            $name = $field['name'];
+            $toggled_by = $field['toggled_by'];
 
-            $toggles = $this->toggle_fields_markup($field['toggled_by'], $field['name']);
-            extract($toggles);
+            if(!empty($toggled_by) ){
+                $toggles = $this->toggle_fields_markup($toggled_by, $name, $current_tab);
+                extract($toggles);
+            }
+
 
             $output .= '<div class="option '.$data_toggled_by.'" '.$data_toggle_name.' >';
                 $output .= call_user_func( array($this, $type.'_field_generator'), $field, $tab);
@@ -274,6 +257,33 @@ class bswpForm extends bswpFieldGenerators {
         return $output;
     }
 
+
+
+    /**
+     * field toggling
+     */
+    private function get_toggled_by($toggled_bys, $current_tab = null){
+        $output = 'hide js--toggled-field ';
+        foreach ($toggled_bys as $field=>$value){
+            // kjd([$field]);
+            // kjd($this->fields[0]['tabs'][$current_tab]['fields']);
+            $output .= $field.' ';
+        }
+
+        // kjd($toggled_bys);
+        // kjd($output);
+
+        return $output;
+    }
+
+
+    private function toggle_fields_markup($toggled_by, $name, $current_tab = null){
+
+        $data_toggled_by = !empty($toggled_by) ? $this->get_toggled_by($toggled_by, $current_tab) : '' ;
+        $data_toggle_name = !empty($toggled_by) ? 'data-toggle-name="'.$name.'"' : '';
+
+        return ['data_toggled_by'=>$data_toggled_by, 'data_toggle_name'=>$data_toggle_name];
+    }
 
 
 }

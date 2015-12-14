@@ -30,12 +30,38 @@ class bswpFields{
         if ( empty( $GLOBALS[ $class ] ) )
             $GLOBALS[ $class ] = $this;
 
+        $this->set_saved_values();
     }
 
 
     public function get_field_settings(){
 
         return $this->settings;
+    }
+
+    public function set_saved_values(){
+
+        $settings_groups = $this->settings;
+        if(empty($settings_groups))
+            return;
+
+        // jesus christ nested forloops
+        // loop through each group of settings
+        foreach ( $settings_groups as $key=>$settings){
+            // loop through eat groups tabs
+
+            $tabs = $settings_groups[$key]['tabs'];
+            foreach($tabs as $tab_key=>$tab){
+                $fields = $tab['fields'];
+                // loop through each tab's fields
+                foreach($fields as $field_key=>$field){
+                    $name = $field['name'];
+                    $value = $this->saved_values[$name];
+                    $this->settings[$key]['tabs'][$tab_key]['fields'][$field_key]['value'] = $value;
+                }
+            }
+        }
+
     }
 
     public function register_section_settings(){

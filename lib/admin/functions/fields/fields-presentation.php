@@ -69,8 +69,8 @@ $nav_lists = array(
     'nav_header_color',
     'nav_link',
     'nav_hover_link',
-    'bullet_color',
-    'decoration',
+    'nav_bullet_color',
+    'nav_decoration',
 );
 
 
@@ -80,8 +80,8 @@ $pre = array(
     'pre_text',
     'pre_link',
     'pre_hovered_link',
-    'border_size'=>array('type'=>'select', 'args'=>array_map('add_px_string', range(1,20)) ),
-    'padding_size'=>array('type'=>'select', 'args'=>array_map('add_px_string', range(1,20)) ),
+    'pre_border_size'=>array('type'=>'select', 'args'=>array_map('add_px_string', range(1,20)) ),
+    'pre_padding_size'=>array('type'=>'select', 'args'=>array_map('add_px_string', range(1,20)) ),
 );
 
 $address = array(
@@ -90,8 +90,8 @@ $address = array(
     'address_text',
     'address_link',
     'address_hovered link',
-    'border_size'=>array('type'=>'select', 'args'=>array_map('add_px_string', range(1,20)) ),
-    'padding_size'=>array('type'=>'select', 'args'=>array_map('add_px_string', range(1,20)) ),
+    'adress_border_size'=>array('type'=>'select', 'args'=>array_map('add_px_string', range(1,20)) ),
+    'address_padding_size'=>array('type'=>'select', 'args'=>array_map('add_px_string', range(1,20)) ),
 );
 
 $blockquote = array(

@@ -14,45 +14,45 @@ foreach($image_types as $image){
         'fields'=>array(
             'background_color'=>color_field(
                     array(
-                        'name'=>'color',
+                        'name'=>$image.'_color',
                         'label'=>'Start Color',
                         'args'=>'transparency'
                     )
                 ),
             'border_color'=>color_field(
                     array(
-                        'name'=>'color',
+                        'name'=>$image.'_color',
                         'label'=>'Start Color',
                     )
                 ),
             'hover_glow'=>color_field(
                     array(
-                        'name'=>'color',
+                        'name'=>$image.'_color',
                         'label'=>'Start Color',
                         'args'=>'transparency'
                     )
                 ),
             'text_color'=>color_field(
                     array(
-                        'name'=>'color',
+                        'name'=>$image.'_color',
                         'label'=>'Start Color',
                     )
                 ),
             'border_size'=>select_field(
                     array(
-                            'name'=>'border_size',
+                            'name'=>$image.'_border_size',
                             'args'=>array_map('add_px_string', range(1,20))
                         )
                 ),
             'border_style'=>select_field(
                     array(
-                            'name'=>'border_style',
+                            'name'=>$image.'_border_style',
                             'args'=>array_map('add_px_string', range(1,20))
                         )
                 ),
             'border_radius'=>select_field(
                     array(
-                            'name'=>'border_radius',
+                            'name'=>$image.'_border_radius',
                             'args'=>array_map('add_px_string', range(1,20))
                         )
                 )

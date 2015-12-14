@@ -24,9 +24,9 @@ foreach($heading_tags as $heading){
                    'label'=>'Background Style',
                    'args'=>array('none','square','tab', 'pill'),
                    'toggle_fields'=>array(
-                            'square'=>'background_color,border_style,border_color',
-                            'tab'=>'background_color,border_style,border_color',
-                            'pill'=>'background_color,border_style,border_color',
+                            'square'=>$heading.'_background_color,'.$heading.'_border_style,'.$heading.'_border_color',
+                            'tab'=>$heading.'_background_color,'.$heading.'_border_style,'.$heading.'_border_color',
+                            'pill'=>$heading.'_background_color,'.$heading.'_border_style,'.$heading.'_border_color',
                         )
                 )
             ),
@@ -35,24 +35,34 @@ foreach($heading_tags as $heading){
                     'name'=>$heading.'_background_color',
                     'label'=>'Background Color',
                     'args'=>'transparency',
-                    'toggled_by'=>array('background_style'=>'square','background_style'=>'tab','background_style'=>'pill')
+                    'toggled_by'=>array(
+                        $heading.'_background_style'=>'square',
+                        $heading.'_background_style'=>'tab',
+                        $heading.'_background_style'=>'pill'
+                    )
                 )
             ),
            'border_style'=>select_field(array(
                     'name'=>$heading.'_border_style',
                     'label'=>'Border Style',
                     'args'=>$border_styles,
-                    'toggled_by'=>array('background_style'=>'square','background_style'=>'tab','background_style'=>'pill'),
-                    'toggle_fields'=>$border_styles_toggle
+                    'toggled_by'=>array(
+                        $heading.'_background_style'=>'square',
+                        $heading.'_background_style'=>'tab',
+                        $heading.'_background_style'=>'pill'
+                    ),
+                    'toggle_fields'=>$header_styles_toggle
                 )
             ),
-           'border_color'=>color_field(array(
-                    'name'=>$heading.'_border_color',
-                    'label'=>'Border Color',
-                    'toggled_by'=>array('border_style'=>$border_styles_true)
+             'border_color'=>color_field(array(
+                      'name'=>$heading.'_border_color',
+                      'label'=>'Border Color',
+                      'toggled_by'=>array(
+                        $heading.'_border_style' => $header_styles_true
+                      )
 
-               )
-           ),
+                 )
+             ),
            'decoration'=>text_decoration_field(array(
                 'name'=>$heading.'_text_decoration'
                 )
@@ -65,7 +75,7 @@ foreach($heading_tags as $heading){
         ),
     );
 }
-
+// kjd($headings);
 $headings_fields = array(
     'section'=>'headings',
     'tabs'=>$headings

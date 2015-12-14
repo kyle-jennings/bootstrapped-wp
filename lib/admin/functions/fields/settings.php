@@ -29,6 +29,7 @@
 function text_field($settings = array()){
     extract($settings);
     $name = isset($name) ? $name : 'field';
+
     return array(
        'name'=> $name,
        'label'=> isset($label) ? $label : ucfirst(str_replace(array('-','_'), ' ', $name ) ),
@@ -159,17 +160,35 @@ $border_styles = array(
 );
 
 
-$border_styles_toggle = array(
-    'solid'=>'border_color,border_size',
-    'dotted'=>'border_color,border_size',
-    'dashed'=>'border_color,border_size',
-    'double'=>'border_color,border_size',
-    'groove'=>'border_color,border_size',
-    'ridge'=>'border_color,border_size',
-    'inset'=>'border_color,border_size',
-    'outset'=>'border_color,border_size',
-);
-$border_styles_true = 'solid,dotted,dashed,double,groove,ridge,inset,outset';
+$border_styles_toggle = array('solid'=>'','dotted'=>'','dashed'=>'','double'=>'','groove'=>'','ridge'=>'','inset'=>'','outset'=>'',);
+$border_styles_true = array();
+$border_targets = array('top','right','bottom','left');
+
+foreach($border_styles_toggle as $key=>$v){
+    foreach($border_targets as $target){
+        $border_styles_toggle[$key] .= $target.'_border_color,'.$target.'_border_size,';
+        $border_styles_true[$target.'_border_style'] = 'solid,dotted,dashed,double,groove,ridge,inset,outset';
+    }
+}
+
+function heading_toggle($new, $array){
+    $heading = 'h1';
+    return($heading.'_border_color,'.$heading.'_border_size');
+}
+$heading_border_styles = array('solid','dotted','dashed','double','groove','ridge','inset','outset');
+
+
+// // Setting up the heading borders settings
+// $header_styles_toggle = array('solid'=>'','dotted'=>'','dashed'=>'','double'=>'','groove'=>'','ridge'=>'','inset'=>'','outset'=>'',);
+// $heading_tags = array('h1','h2','h3','h4','h5');
+// $header_styles_true = array();
+
+// foreach($header_styles_toggle as $key=>$v){
+//     foreach($heading_tags as $target){
+//         $header_styles_toggle[$key] .= $target.'_border_color,'.$target.'_border_size,';
+//         $header_styles_true[$target.'_border_style'] = 'solid,dotted,dashed,double,groove,ridge,inset,outset';
+//     }
+// }
 
 
 /**

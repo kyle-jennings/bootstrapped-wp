@@ -5,29 +5,29 @@
  * @var array
  */
 $borders = array();
-$border_targets = array('top','right','bottom','left');
+
 // all the borders are teh same, so lets set them all at once
 foreach($border_targets as $border){
     $borders[$border] = array(
            'label'=>ucfirst($border),
            'fields'=>array(
-                'border_style'=>select_field(array(
-                        'name'=> $border.'__border_style',
+                $border.'_border_style'=>select_field(array(
+                        'name'=> $border.'_border_style',
                         'label'=>'Style',
                         'args'=>$border_styles,
                         'toggle_fields'=>$border_styles_toggle
                     )
                 ),
-                'border_color'=>color_field(array(
-                        'name'=> $border.'__border_color',
-                        'toggled_by'=>array('border_style'=>$border_styles_true)
+                $border.'_border_color'=>color_field(array(
+                        'name'=> $border.'_border_color',
+                        'toggled_by'=>array($border.'_border_style'=>$border_styles_true)
                     )
                 ),
-                'border_size'=>select_field(array(
-                        'name'=> $border.'__border_size',
+                $border.'_border_size'=>select_field(array(
+                        'name'=> $border.'_border_size',
                         'label'=>'Size',
                         'args'=>array_map('add_px_string', range(1,20)),
-                        'toggled_by'=>array('border_style'=>$border_styles_true)
+                        'toggled_by'=>array($border.'_border_style'=>$border_styles_true)
                     )
                 ),
             ),
