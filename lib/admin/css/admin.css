@@ -65,10 +65,11 @@
 }
 .components-nav__link:hover {
     background-color: #015F1D;
+    color: white;
 }
 
 .components-nav__link:focus{
-    color: #00a0d2;
+    color: white;
     box-shadow: none;
 }
 
