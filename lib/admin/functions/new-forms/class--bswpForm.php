@@ -132,6 +132,8 @@ class bswpForm extends bswpFieldGenerators {
         // if there is more than one tab we create a dropdown to navigate them
         if( $multi_tabs )
             $output .= $this->fields_tab_dropdown($tabs);
+        else
+            $output .= '<div class="tab-switcher--spacer"></div>';
 
         // get the tab pain
         $output .= $this->fields_tab_pane($multi_tabs, $tabs);
@@ -243,11 +245,13 @@ class bswpForm extends bswpFieldGenerators {
             $name = $field['name'];
             $toggled_by = $field['toggled_by'];
 
-            if(!empty($toggled_by) ){
+            $data_toggled_by = '';
+            $data_toggle_name = '';
+
+            if(!is_null($toggled_by) ){
                 $toggles = $this->toggle_fields_markup($toggled_by, $name, $current_tab);
                 extract($toggles);
             }
-
 
             $output .= '<div class="option '.$data_toggled_by.'" '.$data_toggle_name.' >';
                 $output .= call_user_func( array($this, $type.'_field_generator'), $field, $tab);
@@ -265,13 +269,8 @@ class bswpForm extends bswpFieldGenerators {
     private function get_toggled_by($toggled_bys, $current_tab = null){
         $output = 'hide js--toggled-field ';
         foreach ($toggled_bys as $field=>$value){
-            // kjd([$field]);
-            // kjd($this->fields[0]['tabs'][$current_tab]['fields']);
             $output .= $field.' ';
         }
-
-        // kjd($toggled_bys);
-        // kjd($output);
 
         return $output;
     }

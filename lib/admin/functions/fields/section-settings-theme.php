@@ -1,5 +1,9 @@
 <?php
 /**
+ * Each set of fields can be automatically generated using ths following array
+ * structure for settings:
+ *
+ *
  * $fields = array(
  *    'tabs'=>array(
  *        'tab-name'=>array(
@@ -10,9 +14,9 @@
  *                    'label'=>'Field Name',
  *                    'type'=>'field-type',
  *                    'args'=>'{string or array}',
- *                    'toggle_fields'=>null,
- *                    'toggled_by'=>array('field_name'=>'option'),
- *                    'preview'=>null,
+ *                    'toggle_fields'=>array('option'=>'field_1,field_2,field_3'),
+ *                    'toggled_by'=>array('field_name'=>'option1,option2,option3'),
+ *                    'preview'=>null
  *                 ),
  *             ),
  *         ),
@@ -45,13 +49,15 @@ $site_branding = array(
                             'logo',
                             'custom',
                             'site_title'
-                        )
+                        ),
+                        'toggle_fields'=>array('custom'=>'custom_header')
                     )
                 ),
                 'custom_header'=>textarea_field(array(
                         'name'=>'custom_header',
                         'label'=>'Custom Header',
-                        'args'=>'wp_editor'
+                        'args'=>'wp_editor',
+                        'toggled_by'=>array('logo_site_toggle'=>'custom'),
                     )
                 ),
             ),

@@ -244,6 +244,11 @@ div.updated, div.error {
     display: block;
 }
 
+.tab-switcher--spacer {
+  margin-bottom:20px;
+}
+
+
 @media screen and (max-width: 782px){
     .btn-group.tab-switcher {
         margin-left: -10px;
