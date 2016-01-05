@@ -61,7 +61,7 @@ class bswpForm extends bswpFieldGenerators {
 
         if($this->preview){
             $output .= '<div class="preview-options">';
-                $output .= kjd_site_preview();
+                $output .= kjd_site_preview($this->section);
             $output .= '</div>';
         }
 
