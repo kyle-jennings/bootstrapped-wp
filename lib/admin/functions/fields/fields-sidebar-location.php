@@ -50,7 +50,8 @@ function build_template_fields($templates){
                 'label'=>$template,
                 'args'=>$positions,
                 'toggle_fields'=>$position_toggles,
-                'class'=>'js--sidebar-preview'
+                'class'=>'js--sidebar-preview',
+                'wrapper_class'=>'inline--clear-left'
             )
         );
 

@@ -244,6 +244,7 @@ class bswpForm extends bswpFieldGenerators {
             $type = $field['type'];
             $name = $field['name'];
             $toggled_by = $field['toggled_by'];
+            $wrapper_class = $field['wrapper_class'] ? $field['wrapper_class'] : '';
 
             $data_toggled_by = '';
             $data_toggle_name = '';
@@ -253,7 +254,7 @@ class bswpForm extends bswpFieldGenerators {
                 extract($toggles);
             }
 
-            $output .= '<div class="option '.$data_toggled_by.' '.$type.'" '.$data_toggle_name.' >';
+            $output .= '<div class="option '.$data_toggled_by.' '.$type.' '.$wrapper_class.'" '.$data_toggle_name.' >';
                 $output .= call_user_func( array($this, $type.'_field_generator'), $field, $tab);
             $output .= '</div>';
         }

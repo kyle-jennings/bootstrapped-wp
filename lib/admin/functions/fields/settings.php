@@ -39,6 +39,7 @@ function text_field($settings = array()){
        'toggled_by'=> isset($toggled_by) ? $toggled_by : null,
        'preview'=>null,
        'class'=>isset($class) ? $class : '',
+       'wrapper_class'=>isset($wrapper_class) ? $wrapper_class : '',
     );
 };
 
