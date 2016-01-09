@@ -10,7 +10,7 @@ class bswpFields{
         if( isset($_GET['section']) ){
             $this->section = $_GET['section'];
         }elseif( isset($_POST) ){
-            $this->section = ltrim($_POST['option_page'],'bswp_');
+            $this->section = str_replace('bswp_', '',$_POST['option_page']);
         }else{
             return false;
         }
@@ -31,6 +31,8 @@ class bswpFields{
             $GLOBALS[ $class ] = $this;
 
         $this->set_saved_values();
+
+
     }
 
 
@@ -89,12 +91,12 @@ class bswpFields{
     }
 
     public function register_field_settings($field_groups, $section){
-
         // loop through each tab
         foreach($field_groups as $field_group){
             $fields = $field_group['fields'];
 
             foreach($fields as $field){
+
               add_settings_field(
                     $field['name'],
                     null,

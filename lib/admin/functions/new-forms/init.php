@@ -5,6 +5,7 @@ include($theme_root.'/lib/admin/functions/fields/class--bswpFields.php');
 $field_settings = new bswpFields;
 
 add_action('admin_init', array($field_settings,'register_section_settings'));
+// kjd($field_settings);
 
 include($theme_root.'/lib/admin/functions/live-preview.php');
 

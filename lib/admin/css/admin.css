@@ -224,7 +224,8 @@ div.updated, div.error {
 ------------------------------------------------------------------- */
 .fields-wrapper{
   float:left;
-  width:230px;
+  padding-right:30px;
+  width:200px;
 }
 
 .fields-wrapper--no-preview {
@@ -343,6 +344,7 @@ div.updated, div.error {
 .option,
 .bswp-option {
   margin-bottom:20px;
+  position: relative;
 }
 
 
@@ -361,8 +363,6 @@ div.updated, div.error {
     .option-wrapper.banner_image_options .option{
       height: auto;
     }
-
-/*.option label{display:inline-block; float:left;  width:200px;}*/
 
 .option label{
     display:block;
@@ -432,6 +432,34 @@ div.updated, div.error {
 .divider{clear:both;}
 .explanation{float:left; padding:0 10px;}
 
+
+.option.textarea textarea {
+  width: 100%;
+}
+
+.option {
+  transition: width 0.2s ease-in-out;
+  width: 100%;
+}
+.option.open {
+  transition: width 0.2s ease-in-out;
+  width:200%;
+  z-index:999;
+}
+
+.option .dashicons{
+  transition: transform 0.2s ease-in-out;
+}
+.option.open .dashicons{
+  transform: rotate(180deg);
+  transition: transform 0.2s ease-in-out;
+}
+
+
+
+
+
+
 /* -----------------------------------------------------------------
       mini colorstuff
 ------------------------------------------------------------------- */
@@ -494,44 +522,63 @@ a.button.upload_image{margin-bottom:-10px;}
 /* -----------------------------------------------------------------
           Frontpage layout sortable
 ------------------------------------------------------------------- */
-.connectedSortable{min-height:40px;}
-.whiteBackground{background:white;}
 
-.frontPageLayoutList {
-    float:left;
+#frontpage-sortables .ui-state-highlight {
+  min-height: 35px;
 }
+
+.frontPageLayoutList,
 .frontPageLayoutList.postbox {
-    min-width: inherit;
+  min-width: auto;
 }
 
 .frontPageLayoutList h3{
-    padding:5px;
-    cursor:auto !important;
+  cursor:auto !important;
+  margin-bottom:5px;
 }
+
 .frontPageLayoutList > div{
-    padding:5px;
+  padding:5px;
 }
+
 .frontPageLayoutList label{
-    padding:0 5px;
-    width:auto;
+  padding:0 5px;
+  width:auto;
 }
+
 .frontPageLayoutList li > div input{
-    margin-top:6px;
-}
-.frontPageLayoutList li {
-    height:50px;
-    margin: 5px;
-    line-height:50px;
-    padding: 5px;
+  margin-top:6px;
 }
 
-.frontPageLayoutList li > div{
-    float:right;
+
+
+.connectedSortable {
+  min-height:40px;
+}
+.whiteBackground {
+  background:white;
 }
 
-.version-3-8 .frontPageLayoutList li {
-padding: 5px 5px 10px;
+/**
+ * Sortable items
+ */
+.sortables-wrapper {
+
 }
+
+.sortable {
+  border-right:none;
+  border-left: none;
+  margin-bottom: 5px;
+  min-height:50px;
+  padding: 10px;
+}
+
+.sortable__title{
+  margin: 0;
+  margin-bottom: 10px;
+}
+
 
 /* -----------------------------------------------------------------
           Font preview - not working
@@ -561,10 +608,6 @@ padding: 5px 5px 10px;
 .cycler_mgmt .ui-state-highlight {
 
   min-height: 320px;
-}
-
-#frontpage-sortables .ui-state-highlight {
-  min-height: 35px;
 }
 
 .cycler_mgmt textarea{resize:none;}
@@ -628,6 +671,10 @@ li.cycler_image > div.option,li.cycler_image > h3{padding:5px;}
 }
 
 .remove_image:hover{	border: 1px solid #8f2828; color:white;}
+
+
+
+
 
 /**
  * Layout Diagram
@@ -701,9 +748,11 @@ li.cycler_image > div.option,li.cycler_image > h3{padding:5px;}
 
 
 
-.options-list {
-
-}
+/**
+ * -------------------------------------
+ * Options list
+ * -------------------------------------
+ */
 .options-list > li {
   display: inline-block;
   float: left;
@@ -717,3 +766,4 @@ li.cycler_image > div.option,li.cycler_image > h3{padding:5px;}
 .options-list__settings {
   padding-left:10px;
 }
+

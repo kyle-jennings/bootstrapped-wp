@@ -6,12 +6,15 @@ class bswpFieldGenerators {
     //  The field generators
     // ------------------------------------------
 
-    public function text_field_generator($args=array(),$tab){
+    public function text_field_generator($args=array(), $tab = null){
         extract($args);
         $value = isset($value) ? $value : '';
         $output = '';
 
-        $output .= '<label>'.$label.'</label>';
+        $output .= '<label>';
+            $output .= $label;
+        $output .= '</label>';
+
         $output .='<input type="text" name="bswp_'.$this->section.'['.$name.']"
         value="'.$value.'" >';
 
@@ -26,7 +29,7 @@ class bswpFieldGenerators {
      * otherwise the key is the value and the value is the label. huh?
      * @return [type]       [description]
      */
-    public function select_field_generator($args=array(),$tab){
+    public function select_field_generator($args=array(), $tab = null){
 
         extract($args);
 
@@ -65,7 +68,7 @@ class bswpFieldGenerators {
     /**
      * produces color field
      */
-    public function color_field_generator($args=array(),$tab){
+    public function color_field_generator($args=array(), $tab = null){
         extract($args);
         $value = isset($value) ? $value : '';
 
@@ -94,7 +97,7 @@ class bswpFieldGenerators {
     /**
      * Produces the file field input
      */
-    public function file_field_generator($args=array(),$tab){
+    public function file_field_generator($args=array(), $tab = null){
         extract($args);
         $value = isset($value) ? $value : '';
 
@@ -109,22 +112,24 @@ class bswpFieldGenerators {
     }
 
 
-    public function textarea_field_generator($args=array(),$tab){
+    public function textarea_field_generator($args=array(), $tab = null){
         extract($args);
         $value = isset($value) ? $value : '';
         $output = '';
 
-        $output .= '<label>'.$label.'</label>';
+        $output .= '<label class="js--extend-field">';
+            $output .= $label.'<span class="dashicons dashicons-external"></span>';
+        $output .= '</label>';
 
         if($args == 'wp_editor'){
             ob_start();
-                wp_editor( $value, $name, array( 'textarea_rows' =>1 ));
+                wp_editor( $value, $name, array( 'textarea_rows' => 5 ));
                 $ob_content = ob_get_contents();
             ob_end_clean();
             $output .= $ob_content;
         }
         else{
-            $output .= '<textarea name="bswp_'.$this->section.'['.$name.']">'.$value.'</textarea>';
+            $output .= '<textarea name="bswp_'.$this->section.'['.$name.']" rows="5">'.$value.'</textarea>';
         }
 
 
@@ -132,7 +137,10 @@ class bswpFieldGenerators {
     }
 
 
-    public function label_field_generator($args=array(),$tab){
+    /**
+     * Creates a BIG section label
+     */
+    public function label_field_generator($args=array(), $tab = null){
         extract($args);
         $value = isset($value) ? $value : '';
         $output = '';
@@ -143,44 +151,44 @@ class bswpFieldGenerators {
 
     }
 
-    public function sidebar_field_generator($args=array(),$tab){
+
+    /**
+     * field generator for layout sidebar location
+     */
+    public function sidebar_field_generator($args=array(), $tab = null){
 
         $output = '';
-        $device_views = array('all','visible-phone','visible-tablet','visible-desktop','hidden-phone','hidden-tablet','hidden-desktop');
+
+        // create the first select
         $output .= $this->select_field_generator($args);
 
+        // the extract the args to reuse
+
         extract($args);
+        // output the diagram and device visibility
+        $positions = array('none','top','right','bottom','left');
 
-        $visibility = select_field(array(
-                    'name'=>$name.'_visibily',
-                    'label'=>'Device visibily',
-                    'args'=>$device_views,
-                ));
-
-        $toggled_by = array($name=>'top,right,bottom,left');
-        $toggles = $this->toggle_fields_markup($toggled_by, $name.'_visibility');
-        extract($toggles);
-
-        $output .= '<div class="option '.$data_toggled_by.'" '.$data_toggle_name.' >';
-
-            $output .= $this->select_field_generator($visibility);
-
-            $output .= '<div class="layout_preview">';
-                $output .= '<img src="'.get_bloginfo("template_directory").'/images/widgetsright.png" class="right">';
-                $output .= '<img src="'.get_bloginfo("template_directory").'/images/widgetstop.png" class="top">';
-                $output .= '<img src="'.get_bloginfo("template_directory").'/images/widgetsbottom.png" class="bottom">';
-                $output .= '<img src="'.get_bloginfo("template_directory").'/images/widgetsleft.png" class="left">';
-                $output .= '<img src="'.get_bloginfo("template_directory").'/images/widgetsnone.png" class="none">';
-                // $output .= '<img src="'.get_bloginfo("template_directory").'/images/widgets'.$settings[$layout]['position'].'.png" class="'.$settings[$layout]['position'].'" style="display:block;">';
-            $output .= '</div>';
+        // get the sidebar value
+        $target = key($toggled_by);
 
 
+        $output .= '<div class="layout_preview">';
+            foreach($positions as $position){
+                $display = ($this->find_value($target) == $position) ? 'display:block' : 'display:none';
+                $output .= '<img class="'.$position.'" style="'.$display.'" src="'.get_bloginfo("template_directory").'/images/widgets'.$position.'.png" >';
+            }
         $output .= '</div>';
+
+        // end diagram/visibility output
 
         return $output;
     }
 
-    public function sortable_field_generator($args=array(),$tab){
+
+    /**
+     * Sortable fields, used for front page
+     */
+    public function sortable_field_generator($args=array(), $tab = null){
 
         extract($args);
         $output = '';
@@ -197,15 +205,25 @@ class bswpFieldGenerators {
 
         $inactiveComponents = array_diff($components, $active_components);
 
-        $output .= '<div id="frontpage-sortables" class="option">';
+        $output .= '<div id="frontpage-sortables">';
+
+            // the active components
             $output .= '<div class="postbox frontPageLayoutList">';
-                $output .= '<h3><span>Active Page Components</span></h3>';
-                $output .= '<ul id="activeComponents" class="connectedSortable">';
+
+                // The label and expand button
+                $output .= '<label class="js--extend-field">';
+                    $output .= '<h3>Active Components';
+                        $output .= '<span class="dashicons dashicons-external"></span>';
+                    $output .= '</h3>';
+                $output .= '</label>';
+
+                // the sortables
+                $output .= '<ul id="activeComponents" class="sortables-wrapper connectedSortable">';
                 foreach($active_components as $key => $value){
                     $name = $layout_order[$key]['component'];
                     $label = $layout_order[$key]['component'] ? ucwords(str_replace('_',' ',$layout_order[$key]['component'])) : ucwords(str_replace('_',' ',$value));
-                    $output .= '<li class="menu-item-handle" data-component="'.$name.'" id="componentOrder_'.$key.'">';
-                        $output .= $label;
+                    $output .= '<li class="sortable menu-item-handle" data-component="'.$name.'" id="componentOrder_'.$key.'">';
+                        $output .= '<h5 class="sortable__title">'.$label.'</h5>';
                         $output .= '<div>';
                             $output .= '<input class="component" type="hidden" name="bswp_frontPage_layout_settings[bswp_frontPage_layout]['.$key.'][component]" value="'.($layout_order[$key]['component'] ? $layout_order[$key]['component'] : $value).'"/>';
 
@@ -223,16 +241,27 @@ class bswpFieldGenerators {
                     $output .= '</li>';
                 }
                 $output .= '</ul>';
+                // end sortables
             $output .= '</div>';
+            // end active components
 
+            // The inactive/availble components
             $output .= '<div class="postbox frontPageLayoutList">';
-                $output .= '<h3><span>Inactive Components</span></h3>';
-                $output .= '<ul id="inactiveComponents" class="connectedSortable">';
+
+                // the label and expand icon
+                $output .= '<label class="js--extend-field">';
+                    $output .= '<h3>Inactive Components';
+                        $output .= '<span class="dashicons dashicons-external"></span>';
+                    $output .= '</h3>';
+                $output .= '</label>';
+
+                // the sortables
+                $output .= '<ul id="inactiveComponents" class="sortables-wrapper connectedSortable">';
                     foreach($inactiveComponents as $key => $value){
                         $name = $value;
                         $label = ucwords(str_replace('_',' ',$value));
-                        $output .= '<li class="menu-item-handle" data-component="'.$name.'">';
-                            $output .= $label;
+                        $output .= '<li class="sortable menu-item-handle" data-component="'.$name.'">';
+                            $output .= '<h5 class="sortable__title">'.$label.'</h5>';
                             $output .= '<div>';
                                 $output .= '<input class="component" type="hidden" value="'.$value.'" name=""/>';
                                 $output .= '<input class="componentDisplay" type="hidden" name="" value=""/>';
@@ -247,10 +276,37 @@ class bswpFieldGenerators {
                         $output .= '</li>';
                     }
                 $output .= '</ul>';
+                // end sortables
             $output .= '</div>';
+            // end inactive comps
+
         $output .= '</div>';
 
 
         return $output;
     }
+
+    // this is gross but im hungover and lay
+    public function find_value($target){
+
+        $fields = $this->fields;
+        foreach($fields as $field){
+
+            $tabs = $field['tabs'];
+
+            foreach($tabs as $tab){
+
+                $tab_fields = $tab['fields'];
+                foreach($tab_fields as $tab_field){
+
+                    if($tab_field['name'] == $target){
+                        return $tab_field['value'];
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+
 }

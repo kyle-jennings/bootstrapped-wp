@@ -253,7 +253,7 @@ class bswpForm extends bswpFieldGenerators {
                 extract($toggles);
             }
 
-            $output .= '<div class="option '.$data_toggled_by.'" '.$data_toggle_name.' >';
+            $output .= '<div class="option '.$data_toggled_by.' '.$type.'" '.$data_toggle_name.' >';
                 $output .= call_user_func( array($this, $type.'_field_generator'), $field, $tab);
             $output .= '</div>';
         }
@@ -266,7 +266,7 @@ class bswpForm extends bswpFieldGenerators {
     /**
      * field toggling
      */
-    private function get_toggled_by($toggled_bys, $current_tab = null){
+    public function get_toggled_by($toggled_bys, $current_tab = null){
         $output = 'hide js--toggled-field ';
         foreach ($toggled_bys as $field=>$value){
             $output .= $field.' ';
@@ -276,7 +276,7 @@ class bswpForm extends bswpFieldGenerators {
     }
 
 
-    private function toggle_fields_markup($toggled_by, $name, $current_tab = null){
+    public function toggle_fields_markup($toggled_by, $name, $current_tab = null){
 
         $data_toggled_by = !empty($toggled_by) ? $this->get_toggled_by($toggled_by, $current_tab) : '' ;
         $data_toggle_name = !empty($toggled_by) ? 'data-toggle-name="'.$name.'"' : '';

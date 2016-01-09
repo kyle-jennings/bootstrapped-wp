@@ -29,44 +29,63 @@ $page_templates = array('default','front_page','page','single','404','attachment
 $custom_templates = array('template_1','template_2','template_3','template_4','template_5','template_6');
 
 // in good practice, this should be in the settings.php file but because
-// its so specific to this file i think we can keep it here.
-function build_template_fields($template){
+// its so specific to this file I think we can keep it here.
+function build_template_fields($templates){
 
-    $positions = array('none','top','right','bottom','left');
-    $position_toggles = array();
-    foreach($positions as $position){
-        if($position == 'none')
-            continue;
-        $position_toggles[$position] = $template.'_sidebar_visibility';
+    $temp = array();
+
+    foreach($templates as $template){
+
+        $positions = array('none','top','right','bottom','left');
+        $position_toggles = array();
+
+        foreach($positions as $position){
+            if($position == 'none')
+                continue;
+            $position_toggles[$position] = $template.'_sidebar_visibility';
+        }
+
+        $temp[$template.'_sidebar'] = select_field(array(
+                'name'=>$template.'_sidebar',
+                'label'=>$template,
+                'args'=>$positions,
+                'toggle_fields'=>$position_toggles,
+                'class'=>'js--sidebar-preview'
+            )
+        );
+
+        $temp[$template.'_sidebar_visibility'] = sidebar_field(array(
+                'name'=>$template.'_sidebar_visibility',
+                'label'=>$template.' Visibility',
+                'args'=>array('all','visible-phone','visible-tablet','visible-desktop','hidden-phone','hidden-tablet','hidden-desktop'),
+                'toggled_by'=>array($template.'_sidebar'=>'top,right,bottom,left'),
+            )
+        );
+
     }
 
-    return sidebar_field(array(
-            'name'=>$template.'_sidebar',
-            'label'=>$template,
-            'args'=>$positions,
-            'toggle_fields'=>$position_toggles,
-            'class'=>'js--sidebar-preview'
-        )
-    );
+    return $temp;
 }
 
 
+// the different feeds
 $feed_templates_fields = array(
-    'section'=>'feed-templates',
+    'section'=>'feed_templates',
     'tabs'=>array(
         'default'=>array(
             'label'=>'default',
-            'fields'=>array_map('build_template_fields',$feed_templates),
+            'fields'=>build_template_fields($feed_templates),
         ),
     ),
 );
+
 
 $page_templates_fields = array(
     'section'=>'page-templates',
     'tabs'=>array(
         'default'=>array(
             'label'=>'default',
-            'fields'=>array_map('build_template_fields',$page_templates),
+            'fields'=>build_template_fields($page_templates),
         ),
     ),
 );
@@ -76,15 +95,13 @@ $custom_templates_fields = array(
     'tabs'=>array(
         'default'=>array(
             'label'=>'default',
-            'fields'=>array_map('build_template_fields',$custom_templates),
+            'fields'=>build_template_fields($custom_templates),
         ),
     ),
 );
 
-
-
 $sidebar_settings_tabs = array(
     $feed_templates_fields,
-    $page_templates_fields,
-    $custom_templates_fields,
+    // $page_templates_fields,
+    // $custom_templates_fields,
 );
