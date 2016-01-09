@@ -16,8 +16,8 @@
 
 
 */
-.cf:after
-.cf:before, {
+.cf:after,
+.cf:before {
   content: '';
   display: table;
 }
@@ -26,6 +26,165 @@
   clear: both;
 }
 
+
+/*
+    New navbar
+*/
+.nav-wrapper {
+    margin:0 0 0 -20px;
+    /*overflow: hidden;*/
+}
+@media screen and (max-width: 782px){
+    .nav-wrapper {
+        margin:0 0 0 -10px;
+        overflow-x:auto;
+    }
+}
+
+
+.components-nav {
+    background-color:#007823;
+    position: relative;
+}
+@media screen and (max-width: 782px){
+    .nav-wrapper {
+        margin:0 0 0 -10px;
+    }
+}
+
+.components-nav__link {
+    background-color:#007823;
+    color: #ccc;
+    display:block;
+    float:left;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px 20px;
+    position: relative;
+    text-decoration: none;
+}
+.components-nav__link:hover {
+    background-color: #015F1D;
+    color: white;
+}
+
+.components-nav__link:focus{
+    color: white;
+    box-shadow: none;
+}
+
+@media screen and (max-width: 782px){
+    .components-nav__link:first-child {
+        padding-left:10px;
+    }
+}
+
+.components-nav__link.active {
+    background-color: #015F1D;
+}
+
+
+
+.components-nav__link .dashicons {
+    height: 13px;
+}
+
+/* ------------------
+    sections dropdown
+-------------------- */
+
+.components-nav__link--section {
+    background-color: #338FAB;
+    color: white;
+}
+.components-nav__link--section:active,
+.components-nav__link--section:focus,
+.components-nav__link--section:hover {
+    background-color: #317E96;
+    color: white;
+}
+.components-nav__link--section:hover:after {
+    color: white;
+}
+
+
+.components-nav__link--section:after {
+    border-top:4px solid white;
+    border-left:4px solid transparent;
+    border-right:4px solid transparent;
+    content:'';
+    display:block;
+    height:0;
+    margin-top:-4px;
+    position:absolute;
+    right:8px;
+    top:50%;
+    width:0;
+}
+
+.section-dropdown-nav {
+    background-color: #338FAB;
+    color: white;
+    display: none;
+    margin: 0;
+    position: absolute;
+    top: 38px;
+    left:0;
+    width: 220px;
+    z-index:999;
+}
+@media screen and (max-width: 782px){
+    .section-dropdown-nav {
+        left:-10px;
+        top:84px;
+        width: 100%;
+    }
+}
+
+.section-dropdown-nav.active {
+    display:block;
+}
+
+.section-dropdown-nav li {
+    margin:0;
+}
+
+.section-dropdown-nav a {
+    background-color:#338FAB;
+    color: white;
+    display:block;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px 20px;
+    position: relative;
+    text-decoration: none;
+}
+
+.section-dropdown-nav a:hover {
+    background-color: #317E96;
+    color: white;
+}
+
+.section-dropdown-nav a:focus{
+    color: white;
+    box-shadow: none;
+}
+
+.overlay{
+    display: none;
+    position: absolute;
+    top:0;
+    right:0;
+    bottom: 0;
+    left:-20px;
+}
+
+.overlay.active{
+    display: block;
+}
+/*
+everything else
+ */
 .kjd-admin-page-title{
   border: 0;
   height: 1em;
@@ -46,30 +205,92 @@ div.updated, div.error {
   margin: 5px 15px 10px 0;
 }
 
+/* -----------------------------------------------------------------
+         hide
+------------------------------------------------------------------- */
+.hide {
+  /*background: #FF9C97;*/
+  display: none;
+}
 
+/* -----------------------------------------------------------------
+         form
+------------------------------------------------------------------- */
+.bswp-form {
+
+}
 /* -----------------------------------------------------------------
          fields column
 ------------------------------------------------------------------- */
-form .fields-wrapper{
+.fields-wrapper{
   float:left;
+  padding-right:30px;
   width:200px;
 }
 
-form .banner-fields-wrapper{
+.fields-wrapper--no-preview {
+    float: none;
+    width: auto;
+}
+
+.banner-fields-wrapper{
   width:99%;
 }
 
+/**
+ Tab switcher
+ */
+.btn-group.tab-switcher {
+    margin-left: -20px;
+    margin-right: -30px;
+    display: block;
+}
 
+.tab-switcher--spacer {
+  margin-bottom:20px;
+}
+
+
+@media screen and (max-width: 782px){
+    .btn-group.tab-switcher {
+        margin-left: -10px;
+        padding-left: -10px;
+    }
+}
+
+.btn-group .tab-switcher__dropdown {
+    border-radius: 0 !important;
+    display: block;
+    padding: 10px;
+    text-align: left;
+}
+
+.btn-group .tab-switcher__dropdown .caret {
+    float:right;
+}
+
+.tab-content--fields{
+    padding-top: 20px;
+}
 /* -----------------------------------------------------------------
           Live Preview
 ------------------------------------------------------------------- */
+.preview-size {
+    float: left;
+    height: 30px;
+    margin-bottom: -44px;
+    position: relative;
+    z-index: 99;
+}
+
 .preview-options{
     border:none;
-    height: 100%;
+    height:calc(100vh - 70px);
+/*    height: 100%;
     height:auto;
-    min-height: 100%;
+    min-height: 100%;*/
     overflow: hidden;
-    margin-left: 200px;
+    margin-left: 230px;
 
 }
 .preview-options .preview-wrapper {
@@ -77,16 +298,18 @@ form .banner-fields-wrapper{
 
 }
 
-.preview-options .preview-window,
-.preview-options .preview-size{
-  clear: both;
-  display: block;
+.preview-options .preview-window{
+
+    clear: both;
+    display: block;
 }
 
 .preview-window {
-  height: 100%;
+    height:calc(100vh - 70px);
+
+/*  height: 100%;
   height:auto;
-  min-height: 700px;
+  min-height: 700px;*/
   margin: 0 auto;
 }
 
@@ -95,6 +318,7 @@ form .banner-fields-wrapper{
   content: '';
   display: block;
 }
+
 
 /* -----------------------------------------------------------------
           Fields
@@ -109,25 +333,21 @@ form .banner-fields-wrapper{
 }
 
 /* The options fields in the components tabs */
-
-
+.option:before,
+.option:after {
+    content: ' ';
+    display: table;
+}
+.option:after {
+    clear:both;
+}
 
 .option,
 .bswp-option {
-  clear:both;
-  float:left;
-  margin-right:10px;
   margin-bottom:20px;
-  min-width:390px;
+  position: relative;
 }
 
-
-.tab-pane .option {
-  clear: none;
-
-  width: 180px;
-  min-width: 180px;
-}
 
 .tab-pane .option:after
 .tab-pane .option:before, {
@@ -135,9 +355,6 @@ form .banner-fields-wrapper{
   display: table;
 }
 
-.tab-pane .option:after {
-  clear: both;
-}
 
 
   .option-wrapper.banner_image_options{
@@ -148,22 +365,40 @@ form .banner-fields-wrapper{
       height: auto;
     }
 
-/*.option label{display:inline-block; float:left;  width:200px;}*/
+.option label{
+    display:block;
+    font-weight: bold;
+}
 
-.option label{display:block; font-weight: bold;}
+.option input.smallInput{
+  width:50px;
+}
+.option .input_group{
+  float:left;
+  margin-right:20px;
+}
 
-.option select{float:left;}
-.option input{float:left;}
-.option input.smallInput{width:50px;}
-.option .input_group{float:left; margin-right:20px;}
 
-.radio_holder{}
-.short{width:60px !important;}
-.clearColor{cursor:pointer;}
+.short{
+    width:60px !important;
+}
 
-.optionComponent{float:left;}
-.optionComponent span{display:block;}
-.secondTitle{float:left; margin:0 10px;}
+.clearColor{
+  cursor:pointer;
+}
+
+.optionComponent{
+    float:left;
+}
+
+.optionComponent span{
+  display:block;
+}
+
+.secondTitle{
+  float:left;
+  margin:0 10px;
+}
 
 .float-options .option{
   clear: none;
@@ -217,6 +452,43 @@ form .banner-fields-wrapper{
 .divider{clear:both;}
 .explanation{float:left; padding:0 10px;}
 
+
+.option.textarea textarea {
+  width: 100%;
+}
+
+.option {
+  transition: width 0.2s ease-in-out;
+  width: 100%;
+}
+.option.open {
+  transition: width 0.2s ease-in-out;
+  width:200%;
+  z-index:999;
+}
+
+.option .dashicons{
+  transition: transform 0.2s ease-in-out;
+}
+.option.open .dashicons{
+  transform: rotate(180deg);
+  transition: transform 0.2s ease-in-out;
+}
+
+
+
+.inline--clear-left {
+  clear:left;
+  float: left;
+  width: auto;
+}
+
+.inline--clear-left+.option.sidebar {
+  float: left;
+  width: auto;
+}
+
+
 /* -----------------------------------------------------------------
       mini colorstuff
 ------------------------------------------------------------------- */
@@ -230,16 +502,39 @@ form .banner-fields-wrapper{
     position:relative;
     width:100%;
 }
-  .color-option .link_color, .color_option .link_color{border:1px solid black; padding:5px; width:75px;}
-  .pickcolor{margin-left:20px;}
-  .colorpicker{background:white; top:-60px; left:500px; z-index:9999;}
+    .color-field .link_color,
+    .color-option .link_color,
+    .color_option .link_color {
+        border:1px solid black; padding:5px; width:75px;
+    }
+    .pickcolor{
+        margin-left:20px;
+    }
+    .colorpicker{
+        background:white; top:-60px; left:500px; z-index:9999;
+    }
 
 .option-component{ float: left; margin:0 10px 0 0;}
 .sub-label{display:block; clear:both; }
 
-.layout_select{clear:both;}
-.layout_preview{ float:left; height:75px; padding:5px 0 0 5px; position:relative; width:75px;}
-.layout_preview img{height:75px; position:absolute; width:75px;}
+/*
+    Sidebar Position preview
+ */
+.layout_select {
+    clear:both;
+}
+.layout_preview {
+
+    height:75px;
+    padding:5px 0 0 5px;
+    position:relative;
+    width:75px;
+}
+.layout_preview img {
+    height:75px;
+    position:absolute;
+    width:75px;
+}
 
 
 /* -----------------------------------------------------------------
@@ -256,19 +551,63 @@ a.button.upload_image{margin-bottom:-10px;}
 /* -----------------------------------------------------------------
           Frontpage layout sortable
 ------------------------------------------------------------------- */
-.connectedSortable{min-height:40px;}
-.whiteBackground{background:white;}
-  .frontPageLayoutList{float:left; margin-right:20px; width:400px;}
-  .frontPageLayoutList h3{padding:5px; cursor:auto !important;}
-  .frontPageLayoutList > div{padding:5px;}
-  .frontPageLayoutList label{padding:0 5px;width:auto;}
-  .frontPageLayoutList li > div input{margin-top:6px;}
-  .frontPageLayoutList li {background:; margin: 5px; line-height:24px; padding: 5px; width: 90%; }
-  .frontPageLayoutList li > div{float:right;}
 
-  .version-3-8 .frontPageLayoutList li {
-    padding: 5px 5px 10px;
-  }
+#frontpage-sortables .ui-state-highlight {
+  min-height: 35px;
+}
+
+.frontPageLayoutList,
+.frontPageLayoutList.postbox {
+  min-width: auto;
+}
+
+.frontPageLayoutList h3{
+  cursor:auto !important;
+  margin-bottom:5px;
+}
+
+.frontPageLayoutList > div{
+  padding:5px;
+}
+
+.frontPageLayoutList label{
+  padding:0 5px;
+  width:auto;
+}
+
+.frontPageLayoutList li > div input{
+  margin-top:6px;
+}
+
+
+
+.connectedSortable {
+  min-height:40px;
+}
+.whiteBackground {
+  background:white;
+}
+
+/**
+ * Sortable items
+ */
+.sortables-wrapper {
+
+}
+
+.sortable {
+  border-right:none;
+  border-left: none;
+  margin-bottom: 5px;
+  min-height:50px;
+  padding: 10px;
+}
+
+.sortable__title{
+  margin: 0;
+  margin-bottom: 10px;
+}
+
 
 /* -----------------------------------------------------------------
           Font preview - not working
@@ -298,10 +637,6 @@ a.button.upload_image{margin-bottom:-10px;}
 .cycler_mgmt .ui-state-highlight {
 
   min-height: 320px;
-}
-
-#frontpage-sortables .ui-state-highlight {
-  min-height: 35px;
 }
 
 .cycler_mgmt textarea{resize:none;}
@@ -365,6 +700,10 @@ li.cycler_image > div.option,li.cycler_image > h3{padding:5px;}
 }
 
 .remove_image:hover{	border: 1px solid #8f2828; color:white;}
+
+
+
+
 
 /**
  * Layout Diagram
@@ -438,9 +777,11 @@ li.cycler_image > div.option,li.cycler_image > h3{padding:5px;}
 
 
 
-.options-list {
-
-}
+/**
+ * -------------------------------------
+ * Options list
+ * -------------------------------------
+ */
 .options-list > li {
   display: inline-block;
   float: left;
@@ -454,3 +795,4 @@ li.cycler_image > div.option,li.cycler_image > h3{padding:5px;}
 .options-list__settings {
   padding-left:10px;
 }
+

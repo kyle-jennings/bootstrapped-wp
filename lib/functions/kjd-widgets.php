@@ -25,14 +25,18 @@ if(!empty($pageLayouts) && empty($postLayouts)){
 }
 
 
-function set_width($template,$frontpage_area = null)
-{
+function set_width($template, $frontpage_area = null){
 
 
-
+    global $layouts;
 // if the widget area is one of hte two front page widget areas, set the widget widths
 	if($template['name'] == 'front_page_widgets'){
 		$i = 1;
+
+        // error checking
+        if(!isset($layouts[$frontpage_area]) )
+            return;
+
 		$template = $layouts[$frontpage_area];
 		$sidebars = wp_get_sidebars_widgets($frontpage_area);
 		$widgetsCount = count($sidebars[$frontpage_area]);
@@ -94,6 +98,11 @@ function set_width($template,$frontpage_area = null)
 		// print '</pre>';
 
 		$sidebars = wp_get_sidebars_widgets($template['name']);
+
+        // error checking
+        if(!isset($sidebars[$template['name']]))
+            return;
+
 		$widgetsCount = count($sidebars[$template['name']]);
 		 if( $template['position'] != 'left' && $template['position'] != 'right') {
 
@@ -160,35 +169,22 @@ foreach($templates as $template){
 		$width = set_width($temp,$template);
 
 	}elseif($template == 'header_widgets' || $template == 'footer_widgets' ){
-		$temp = array('name' => $template, 'position' =>"top");
+    global $layouts;		$temp = array('name' => $template, 'position' =>"top");
 		$width = set_width($temp);
 	}else{
 		$width = set_width($layouts[$template]);
 
-
-		// $options = get_option('kjd_component_settings');
-
-	 //    if($options['style_widgets'] =='true') {
-
-		// 	$start_outer_well = '';
-		// 	$end_outer_well = '';
-
-		// 	$start_outer_well .= '<div class="well">';
-		// 	$end_outer_well .= '</div>';
-
-	 //    }
 	}
-
 
 	register_sidebar(
 		 array(
 			'name' => ucwords(str_replace('_',' ',$template)),
 			'id' => $template,
 			'description' => 'Widgets for the ' .ucwords(str_replace('_',' ',$template)),
-			'before_widget' =>'<div class="widget '.$width.'">'.$start_outer_well,
+			'before_widget' =>'<div class="widget '.$width.'">',
 			'before_title' => '<h3>',
-			'after_title' => '</h3>'.$start_inner_well,
-			'after_widget' => $end_inner_well.$end_outer_well.'</div>'
+			'after_title' => '</h3>',
+			'after_widget' => '</div>'
 		)
 	);
 
@@ -206,10 +202,10 @@ foreach($templates as $template){
 	$post_templates = $post_templates['kjd_post_layouts'];
 
 
-	if( !empty( $post_templates ) ){
+	if( !empty( $post_templates && isset($post_templates) ) ){
 		foreach($post_templates as $k => $v){
 
-			if( $v['toggled'] == 'true' ){
+			if( isset($v['toggled']) && $v['toggled'] == 'true' ){
 
 				$width = set_width($layouts[$k]);
 				register_sidebar(
@@ -237,6 +233,9 @@ foreach($templates as $template){
 
 	$templates = array('template_1', 'template_2', 'template_3', 'template_4', 'template_5', 'template_6' );
 	foreach($templates as $template){
+        // error checking
+        if(!isset($layouts[$template]))
+            continue;
 
 		$width = set_width($layouts[$template]);
 		register_sidebar(
