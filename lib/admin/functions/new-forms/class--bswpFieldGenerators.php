@@ -6,6 +6,20 @@ class bswpFieldGenerators {
     //  The field generators
     // ------------------------------------------
 
+
+    /**
+     * This is used for saved values which do not need fields
+     * @return [type] [description]
+     */
+    public function no_field_generator(){}
+
+
+    /**
+     * The base field, used for misc values
+     * @param  array  $args [description]
+     * @param  [type] $tab  [description]
+     * @return [type]       [description]
+     */
     public function text_field_generator($args=array(), $tab = null){
         extract($args);
         $value = isset($value) ? $value : '';
@@ -75,18 +89,22 @@ class bswpFieldGenerators {
         $output = '';
 
         $output .= '<label>'.$label.'</label>';
-        $output .= '<input class="minicolors opacity" name="bswp_'.$this->section.'['.$name.']"
-            value="'.$value.'"';
 
-        if( isset($end_rgba) && is_string($args) && $args == 'transparency'):
-            $output .= 'data-opacity ="'.$end_rgba.'"';
+        $alpha = '1';
+        if( is_string($args) && $args == 'transparency'):
+            $rgba = $this->find_value($name.'_rgba');
+            $alpha = $this->get_alpha($rgba);
         endif;
+
+        // the visible output
+        $output .= '<input class="minicolors opacity" data-opacity="'.$alpha.'" name="bswp_'.$this->section.'['.$name.']"
+            value="'.$value.'"';
         $output .= '/>';
 
-        if( is_string($args) && $args == 'transparency'):
-            $output .= '<input class="rgba-color" name="bswp_'.$this->section.'['.$name.'_rgba]" type="hidden"
-                     value="'.$value.'" />';
-        endif;
+        if( is_string($args) && $args == 'transparency'){
+            $output .= '<input class="rgba-color" name="bswp_'.$this->section.'['.$name.'_rgba]"
+            type="hidden" value="'.$alpha.'" />';
+        }
 
         $output .= '<a class="clearColor js--clear-color">Clear</a>';
 
@@ -309,4 +327,15 @@ class bswpFieldGenerators {
     }
 
 
+    // get alpha from RGBA
+    public function get_alpha($rgba){
+        $find = array('rgba','(',')');
+        $rgba = str_replace($find,'',$rgba);
+
+        $parts = explode(', ', $rgba);
+        $last = $parts[(sizeof($parts)-1)];
+
+        $alpha = $last;
+        return $alpha;
+    }
 }

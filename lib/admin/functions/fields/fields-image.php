@@ -12,45 +12,45 @@ foreach($image_types as $image){
     $images[$image] = array(
         'label'=>ucfirst(str_replace('_',' ',$image)),
         'fields'=>array(
-            'background_color'=>color_field(
+            $image.'_background_color'=>color_field(
                     array(
                         'name'=>$image.'_color',
                         'label'=>'Start Color',
                         'args'=>'transparency'
                     )
                 ),
-            'border_color'=>color_field(
+            $image.'_border_color'=>color_field(
                     array(
                         'name'=>$image.'_color',
                         'label'=>'Start Color',
                     )
                 ),
-            'hover_glow'=>color_field(
+            $image.'_hover_glow'=>color_field(
                     array(
                         'name'=>$image.'_color',
                         'label'=>'Start Color',
                         'args'=>'transparency'
                     )
                 ),
-            'text_color'=>color_field(
+            $image.'_text_color'=>color_field(
                     array(
                         'name'=>$image.'_color',
                         'label'=>'Start Color',
                     )
                 ),
-            'border_size'=>select_field(
+            $image.'_border_size'=>select_field(
                     array(
                             'name'=>$image.'_border_size',
                             'args'=>array_map('add_px_string', range(1,20))
                         )
                 ),
-            'border_style'=>select_field(
+            $image.'_border_style'=>select_field(
                     array(
                             'name'=>$image.'_border_style',
                             'args'=>array_map('add_px_string', range(1,20))
                         )
                 ),
-            'border_radius'=>select_field(
+            $image.'_border_radius'=>select_field(
                     array(
                             'name'=>$image.'_border_radius',
                             'args'=>array_map('add_px_string', range(1,20))
@@ -61,9 +61,9 @@ foreach($image_types as $image){
 
     // some fields are removed for specific image types
     if($image != 'captions')
-        unset($images[$image]['fields']['text_color']);
+        unset($images[$image]['fields'][$image.'_text_color']);
     if(in_array($image, array('images','iframe')))
-        unset($images[$image]['fields']['hover_glow']);
+        unset($images[$image]['fields'][$image.'_hover_glow']);
 
 }
 

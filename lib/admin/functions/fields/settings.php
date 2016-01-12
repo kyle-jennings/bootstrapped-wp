@@ -45,7 +45,7 @@ function text_field($settings = array()){
 
 
 function text_decoration_field($args = array()){
-    $args['name'] = 'text_decoration';
+    $args['name'] = $args['name'] ? $args['name'] : 'text_decoration';
     $args['label'] = isset($args['label']) ? $args['label'] : 'Text Decoration';
 
     $args['args'] = array(
@@ -60,7 +60,7 @@ function text_decoration_field($args = array()){
 }
 
 function text_shadow_color_field($args=array()){
-    $args['name'] = 'text_shadow_color';
+    $args['name'] = $args['name'] ? $args['name'] : 'text_shadow_color';
     $args['toggled_by'] = array('text_decoration'=>'text-shadow');
     return color_field($args);
 }
@@ -102,6 +102,13 @@ function label_field($args = array()){
     $args['type'] = 'label';
     return text_field($args);
 }
+
+function no_field($args = array()){
+    $args['name'] = isset($args['name']) ? $args['name'] : '';
+    $args['type'] = 'no';
+    return text_field($args);
+}
+
 
 /**
  * Helpers

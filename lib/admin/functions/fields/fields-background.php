@@ -37,19 +37,33 @@ $background_fields = array(
         'colors'=>array(
             'label'=>'Background Colors',
             'fields'=>array(
-                'color'=>color_field(
+                'background_start_color'=>color_field(
                     array(
                         'name'=>'background_start_color',
                         'label'=>'Start Color',
-                        'args'=>'transparency')
-                    ),
-                'endcolor'=>color_field(
+                        'args'=>'transparency'
+                    )
+                ),
+                'background_start_color_rgba'=>no_field(
+                    array(
+                        'name'=>'background_start_color_rgba',
+                        'label'=>''
+                    )
+                ),
+                'background_end_color'=>color_field(
                     array(
                         'name'=>'background_end_color',
                         'label'=>'End Color',
-                        'args'=>'transparency')
-                    ),
-                'gradient'=>select_field(
+                        'args'=>'transparency'
+                    )
+                ),
+                'background_end_color_rgba'=>no_field(
+                    array(
+                        'name'=>'background_end_color_rgba',
+                        'label'=>''
+                    )
+                ),
+                'background_gradient'=>select_field(
                     array(
                         'name'=>'background_gradient',
                         'label'=>'Color Fill',
@@ -67,7 +81,7 @@ $background_fields = array(
         'wallpaper'=>array(
             'label'=>'Background Wallpaper',
             'fields'=>array(
-                'use_wallpaper'=>select_field(array(
+                'background_use_wallpaper'=>select_field(array(
                         'name'=>'background_use_wallpaper',
                         'label'=>'Use Wallpaper?',
                         'args'=>array('no', 'yes'),
@@ -76,12 +90,12 @@ $background_fields = array(
                         // ),
                     )
                 ),
-                'image'=>file_field(array(
+                'background_image'=>file_field(array(
                         'name'=>'background_image',
                         'label'=>'Upload Image',
                     )
                 ),
-                'repeat'=>select_field(array(
+                'background_repeat'=>select_field(array(
                         'name'=>'background_repeat',
                         'label'=>'Repeat wallpaper?',
                         'args'=>array('no-repeat','repeat','repeat-x','repeat-y'),
@@ -89,14 +103,14 @@ $background_fields = array(
 
                     )
                 ),
-                'attachment'=>select_field(array(
+                'background_attachment'=>select_field(array(
                         'name'=>'background_attachment',
                         'label'=>'Scroll wallpaper?',
                         'args'=>array('scroll','fixed'),
 
                     )
                 ),
-                'position'=>select_field(array(
+                'background_position'=>select_field(array(
                         'name'=>'background_position',
                         'label'=>'Wallpaper position',
                         'args'=>array(
@@ -117,19 +131,19 @@ $background_fields = array(
 
                     )
                 ),
-                'positionX'=>text_field(array(
+                'background_positionX'=>text_field(array(
                         'name'=>'background_positionX',
                         'label'=>'Horizontal Position',
                         'toggled_by'=>array('background_position'=>'custom')
                     )
                 ),
-                'positionY'=>text_field(array(
+                'background_positionY'=>text_field(array(
                         'name'=>'background_positionY',
                         'label'=>'Vertical Position',
                         'toggled_by'=>array('background_position'=>'custom')
                     )
                 ),
-                'size'=>select_field(array(
+                'background_size'=>select_field(array(
                         'name'=>'background_size',
                         'label'=>'Wallpaper Size',
                         'args'=>array(
@@ -142,7 +156,7 @@ $background_fields = array(
 
                     )
                 ),
-                'percentage'=>text_field(array(
+                'background_percentage'=>text_field(array(
                         'name'=>'background_percentage',
                         'label'=>'Percentage Size',
                         'type'=>'text',

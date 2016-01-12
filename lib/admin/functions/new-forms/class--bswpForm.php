@@ -253,6 +253,8 @@ class bswpForm extends bswpFieldGenerators {
                 $toggles = $this->toggle_fields_markup($toggled_by, $name, $current_tab);
                 extract($toggles);
             }
+            if($type == 'no')
+                continue;
 
             $output .= '<div class="option '.$data_toggled_by.' '.$type.' '.$wrapper_class.'" '.$data_toggle_name.' >';
                 $output .= call_user_func( array($this, $type.'_field_generator'), $field, $tab);

@@ -76,6 +76,7 @@ class bswpFields{
         foreach ($settings_groups as $settings){
 
             $field_groups = $settings['tabs'];
+            $element = $settings['section'];
 
             add_settings_section(
                 'bswp_'.$section.'_section',
