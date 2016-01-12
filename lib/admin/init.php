@@ -22,12 +22,15 @@ include 'update/update.php';
 
 
 
+
 // add the new theme settings files
 include('functions/new-forms/class--bswpSections.php');
 include('functions/new-forms/class--bswpAdminMenu.php');
 
-if( (isset($_GET['page']) && $_GET['page'] == 'bswp_settings') || (isset($_POST['option_page']) ) )
+if( (isset($_GET['page']) && $_GET['page'] == 'bswp_settings') || (isset($_POST['option_page']) ) ) {
+
     include 'functions/new-forms/init.php';
+}
 
 // if we are not on the new theme settings page then dont load the old theme admin functions
 if( isset($_GET['page']) && $_GET['page'] != 'bswp_settings' ){

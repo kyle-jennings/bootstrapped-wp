@@ -103,7 +103,7 @@ class bswpFieldGenerators {
 
         if( is_string($args) && $args == 'transparency'){
             $output .= '<input class="rgba-color" name="bswp_'.$this->section.'['.$name.'_rgba]"
-            type="hidden" value="'.$alpha.'" />';
+            type="hidden" value="'.$rgba.'" />';
         }
 
         $output .= '<a class="clearColor js--clear-color">Clear</a>';
