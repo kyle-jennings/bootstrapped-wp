@@ -1,0 +1,11 @@
+{
+  "name": "kyle-jennings/bootstrapped-wp",
+  "description": "Responsive theme built with Twitter's Bootstrap, fully customizable",
+  "homepage": "https://github.com/kyle-jennings/bootstrapped-wp",
+  "type": "wordpress-theme",
+  "extra": {
+    "branch-alias": {
+      "dev-composer": "dev-master"
+    }
+  }
+}
