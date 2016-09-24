@@ -1,5 +1,21 @@
 <?php
 
+if(! function_exists('examine') ){
+
+    function examine($object, $examine_type = 'print_r'){
+        if(empty($object))
+            return;
+
+        echo '<pre>';
+        if($examine_type == 'var_dump')
+            var_dump($object);
+        else
+            print_r($object);
+
+        die;
+    }
+
+}
 
 $theme_root = get_template_directory();
 

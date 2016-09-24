@@ -118,6 +118,9 @@ class bswpForm extends bswpFieldGenerators {
      */
     public function field_tabs($settings = array()){
 
+        $section_component = $settings['section'];
+        $this->section_component = $section_component;
+
         $tabs = $settings['tabs'];
 
         if( empty($tabs) )
@@ -135,7 +138,7 @@ class bswpForm extends bswpFieldGenerators {
         else
             $output .= '<div class="tab-switcher--spacer"></div>';
 
-        // get the tab pain
+        // get the tab pane
         $output .= $this->fields_tab_pane($multi_tabs, $tabs);
 
         return $output;
@@ -158,9 +161,10 @@ class bswpForm extends bswpFieldGenerators {
         // generate the fields
         $i=0;
 
+
         foreach($tabs as $tab){
             $current_tab = key($tabs);
-            $output .= $this->create_tab_content($tab,$i,$current_tab);
+            $output .= $this->create_tab_content($tab, $i, $current_tab);
             $i++;
         }
 
@@ -225,7 +229,7 @@ class bswpForm extends bswpFieldGenerators {
 
         $output = '<div class="js--fields-group tab-pane cf '.$class.'" id="fields__'.$name.'">';
 
-            $output .= $this->identify_fields($fields, $name, $current_tab);
+            $output .= $this->identify_fields($fields, $name, $current_tab, $section_component);
         $output .= '</div>';
 
         return $output;
@@ -238,6 +242,7 @@ class bswpForm extends bswpFieldGenerators {
     public function identify_fields($fields = array(), $tab, $current_tab = null){
 
         $output = '';
+
 
 
         foreach($fields as $field){
@@ -257,7 +262,7 @@ class bswpForm extends bswpFieldGenerators {
                 continue;
 
             $output .= '<div class="option '.$data_toggled_by.' '.$type.' '.$wrapper_class.'" '.$data_toggle_name.' >';
-                $output .= call_user_func( array($this, $type.'_field_generator'), $field, $tab);
+                $output .= call_user_func( array($this, $type.'_field_generator'), $field, $tab, $section_component);
             $output .= '</div>';
         }
 

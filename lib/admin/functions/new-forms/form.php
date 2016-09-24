@@ -5,6 +5,7 @@
     // include_once($css_builder_dir . $css_builder_file);
     // $builder = new bswpBuildCSS;
 
+    // examine($builder);
 
     // set up the fields
     $field_settings = $GLOBALS['bswpFields'];

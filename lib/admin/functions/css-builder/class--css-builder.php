@@ -27,14 +27,16 @@ class bswpBuildCSS {
         'settings'
     );
 
-    public $saved_values;
+    public $saved_values = array();
     public $file_output = '';
 
     public function __construct(){
         $sections =  $this->sections;
+
         foreach($sections as $section){
-            $this->selector($section);
+            $this->get_saved_values($section);
         }
+
     }
 
 
@@ -62,7 +64,7 @@ class bswpBuildCSS {
         $output .= $selector. ' {';
 
             if( !empty($this->saved_values['background_start_color']) ){
-                if( empty($this->saved_values['background_start_color_rgba']) ){
+                if( empty($this->saved_values['background_start_color_rgba']) )
                     $output .= 'background-color:'.$this->saved_values['background_start_color'].';';
                 else
                     $output .= 'background-color:'.$this->saved_values['background_start_color_rgba'].';';
@@ -105,12 +107,9 @@ class bswpBuildCSS {
     }
 
 
-    public function selector($section){
+    public function get_saved_values($section){
 
-        $this->saved_values = get_option('bswp_'.$section);
-        $selector = str_replace('_settings','',$section);
-
-        $this->file_output .= $this->background_settings($selector);
+        $this->saved_values[$section] = get_option('bswp_'.$section);
 
     }
 
