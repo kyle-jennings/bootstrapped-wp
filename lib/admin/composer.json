@@ -1,0 +1,12 @@
+{
+    "name": "kyleJennings/bswp",
+    "description": "WP theme using Bootstrap and a ton of visual customization settings",
+    "type": "project",
+    "license": "MIT",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "bswp\\": "bswp/"
+        }
+    }
+}

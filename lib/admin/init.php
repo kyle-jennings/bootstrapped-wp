@@ -1,5 +1,12 @@
 <?php
 
+require "vendor/autoload.php";
+
+use bswp\menus\adminMenu;
+use bswp\menus\nav;
+
+add_action('admin_menu', array(new adminMenu, 'add_top_menu') );
+
 if(! function_exists('examine') ){
 
     function examine($object, $examine_type = 'print_r'){
@@ -19,45 +26,13 @@ if(! function_exists('examine') ){
 
 $theme_root = get_template_directory();
 
-/**
- * Helper Function  - examine object or array
- * Just prints out an object or array in a human readable way
- */
-function kjd($obj){
-    if (empty($obj))
-        return;
-    echo '<pre>';
-    print_r($obj);
-    echo '</pre>';
-    die;
-}
-
 // update function
 include 'update/update.php';
 
 
-
-
-
-// add the new theme settings files
-include('functions/new-forms/class--bswpSections.php');
-include('functions/new-forms/class--bswpAdminMenu.php');
-
 if( (isset($_GET['page']) && $_GET['page'] == 'bswp_settings') || (isset($_POST['option_page']) ) ) {
 
     include 'functions/new-forms/init.php';
-}
-
-// if we are not on the new theme settings page then dont load the old theme admin functions
-if( isset($_GET['page']) && $_GET['page'] != 'bswp_settings' ){
-
-    // include the file which builds the CSS
-    include 'functions/stylesheet-builder/styles_init.php';
-    include 'functions/admin_functions.php';
-
-    // The forms and menu items to said forms
-    include 'functions/forms/init.php';
-
 }
 
 /**
