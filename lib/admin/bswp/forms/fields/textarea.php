@@ -6,7 +6,7 @@ class textareaField extends field {
 
     public $output;
 
-    public function __construct($args=array(), $tab = null){
+    public function __construct($args=array(), $tab = null, $section, $group){
         extract($args);
         $value = isset($value) ? $value : '';
         $output = '';
@@ -23,7 +23,7 @@ class textareaField extends field {
             $output .= $ob_content;
         }
         else{
-            $output .= '<textarea name="bswp_'.$this->section.'['.$name.']" rows="5">'.$value.'</textarea>';
+            $output .= '<textarea name="bswp_'.$this->section.'['.$group.']['.$name.']" rows="5">'.$value.'</textarea>';
         }
 
 

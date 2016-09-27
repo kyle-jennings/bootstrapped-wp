@@ -8,8 +8,9 @@ class field {
     public $fields;
     public $section;
 
-    public function __construct(){
+    public function __construct($group){
         $this->section = $GLOBALS['bswp\fields\settings']->section;
+        $this->group = $group;
     }
     // ------------------------------------------
     //  The field generators
@@ -30,7 +31,8 @@ class field {
     // this is gross but im hungover
     public function find_value($target){
 
-        $fields = $this->fields->settings;
+        $fields = $GLOBALS['bswp\fields\settings']->settings;
+
         foreach($fields as $field){
 
             $tabs = $field['tabs'];
@@ -91,7 +93,7 @@ class field {
                 continue;
 
             $output .= '<div class="option '.$data_toggled_by.' '.$type.' '.$wrapper_class.'" '.$data_toggle_name.' >';
-                $output .= new $class($field, $tab_name, $this->section);
+                $output .= new $class($field, $tab_name, $this->section, $this->group);
             $output .= '</div>';
         }
 

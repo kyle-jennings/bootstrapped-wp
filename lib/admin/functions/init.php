@@ -9,6 +9,6 @@ add_filter( 'admin_body_class', 'bswp_admin_body_class' );
 
 
 add_action('admin_init', array(new settings, 'register_section_settings'));
-// examine($GLOBALS['bswp\fields\settings']);
+
 
 include($theme_root.'/lib/admin/functions/live-preview.php');

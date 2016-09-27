@@ -15,10 +15,11 @@ class colorField extends field {
     /**
      * produces color field
      */
-    public function __construct($args=array(), $tab = null, $section){
+    public function __construct($args=array(), $tab = null, $section, $group){
+
         $this->tab = $tab;
         $this->section = $section;
-        $this->fields = $GLOBALS['bswp\fields\settings'];
+
 
 
         extract($args);
@@ -34,12 +35,12 @@ class colorField extends field {
         endif;
 
         // the visible output
-        $output .= '<input class="minicolors opacity" data-opacity="'.$alpha.'" name="bswp_'.$this->section.'['.$name.']"
+        $output .= '<input class="minicolors opacity" data-opacity="'.$alpha.'" name="bswp_'.$this->section.'['.$group.']['.$name.']"
             value="'.$value.'"';
         $output .= '/>';
 
         if( is_string($args) && $args == 'transparency'){
-            $output .= '<input class="rgba-color" name="bswp_'.$this->section.'['.$name.'_rgba]"
+            $output .= '<input class="rgba-color" name="bswp_'.$this->section.'['.$group.']['.$name.'_rgba]"
             type="hidden" value="'.$rgba.'" />';
         }
 

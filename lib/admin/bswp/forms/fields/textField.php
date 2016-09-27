@@ -11,7 +11,7 @@ class textField extends field {
      * @param  [type] $tab  [description]
      * @return [type]       [description]
      */
-    public function __construct($args=array(), $tab = null){
+    public function __construct($args=array(), $tab = null, $section, $group){
         extract($args);
         $value = isset($value) ? $value : '';
         $output = '';
@@ -20,7 +20,7 @@ class textField extends field {
             $output .= $label;
         $output .= '</label>';
 
-        $output .='<input type="text" name="bswp_'.$this->section.'['.$name.']"
+        $output .='<input type="text" name="bswp_'.$this->section.'['.$group.']['.$name.']"
         value="'.$value.'" >';
 
         $this->output = $output;

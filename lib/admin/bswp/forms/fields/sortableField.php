@@ -6,7 +6,7 @@ class sortableField extends field  {
 
     public $output;
 
-    public function __construct($args=array(), $tab = null){
+    public function __construct($args=array(), $tab = null, $section, $group){
 
         extract($args);
         $output = '';

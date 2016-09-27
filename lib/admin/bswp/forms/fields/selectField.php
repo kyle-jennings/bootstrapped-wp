@@ -14,7 +14,7 @@ class selectField extends field {
      * otherwise the key is the value and the value is the label. huh?
      * @return [type]       [description]
      */
-    public function __construct($args=array(), $tab = null, $section){
+    public function __construct($args=array(), $tab = null, $section, $group){
         $this->section = $section;
 
         extract($args);
@@ -28,7 +28,7 @@ class selectField extends field {
         $value = isset($value) ? $value : '';
 
         $output .= '<label>'.$label.'</label>';
-        $output .= '<select class="'.$classes.'" '.$data.' name="bswp_'.$this->section.'['.$name.']">';
+        $output .= '<select class="'.$classes.'" '.$data.' name="bswp_'.$this->section.'['.$group.']['.$name.']">';
 
         foreach ($args as $option):
 

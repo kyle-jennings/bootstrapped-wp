@@ -10,14 +10,14 @@ class fileField extends field  {
     /**
      * Produces the file field input
      */
-    public function __construct($args=array(), $tab = null){
+    public function __construct($args=array(), $tab = null, $section, $group){
         extract($args);
         $value = isset($value) ? $value : '';
 
         $output = '';
 
         $output .= '<label>'.$label.'</label>';
-        $output .= '<input class="media_input"  type="text"  name="bswp_'.$this->section.'['.$name.']"
+        $output .= '<input class="media_input"  type="text"  name="bswp_'.$this->section.'['.$group.']['.$name.']"
                     value="'.$value.'" />';
         $output .= '<input class="button upload_image" type="button" value="Upload file" />';
 

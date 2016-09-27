@@ -97,7 +97,7 @@ class settingsTab {
         $fields = $tab['fields'];
         $class = $i == 0 ? 'active' : '';
 
-        $field = new field();
+        $field = new field($this->group);
         $output = '<div class="js--fields-group tab-pane cf '.$class.'" id="fields__'.$name.'">';
             $output .= $field->identify_fields($fields, $name, $current_tab);
         $output .= '</div>';

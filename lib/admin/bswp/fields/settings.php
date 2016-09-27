@@ -39,7 +39,7 @@ class settings{
         if ( empty( $GLOBALS[ $class ] ) )
             $GLOBALS[ $class ] = $this;
 
-        // unset($this->saved_values);
+        unset($this->saved_values);
     }
 
 
@@ -77,7 +77,7 @@ class settings{
         // loop through each tab's fields
         foreach($fields as $field_key=>$field){
             $name = $field['name'];
-            $value = $this->saved_values[$name];
+            $value = $this->saved_values[$group][$name];
             $this->settings[$group]['tabs'][$tab_key]['fields'][$field_key]['value'] = $value;
         }
 

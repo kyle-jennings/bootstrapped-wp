@@ -10,7 +10,7 @@ class labelField extends field  {
     /**
      * Creates a BIG section label
      */
-    public function __construct($args=array(), $tab = null){
+    public function __construct($args=array(), $tab = null, $section, $group){
         extract($args);
         $value = isset($value) ? $value : '';
         $output = '';
