@@ -3,7 +3,7 @@
 namespace bswp\forms\fields;
 
 
-class selectField {
+class selectField extends field {
 
     public $output;
 
@@ -14,8 +14,8 @@ class selectField {
      * otherwise the key is the value and the value is the label. huh?
      * @return [type]       [description]
      */
-    public function __construct($args=array(), $tab = null){
-
+    public function __construct($args=array(), $tab = null, $section){
+        $this->section = $section;
 
         extract($args);
 

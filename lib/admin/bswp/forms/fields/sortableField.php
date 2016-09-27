@@ -2,7 +2,7 @@
 
 namespace bswp\forms\fields;
 
-class sortableField {
+class sortableField extends field  {
 
     public $output;
 

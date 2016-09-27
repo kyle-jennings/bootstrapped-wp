@@ -2,7 +2,7 @@
 
 namespace bswp\forms\fields;
 
-class textField {
+class textField extends field {
 
     public $output;
     /**

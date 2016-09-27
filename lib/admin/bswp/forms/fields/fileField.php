@@ -3,7 +3,7 @@
 namespace bswp\forms\fields;
 
 
-class fileField {
+class fileField extends field  {
 
     public $output;
 

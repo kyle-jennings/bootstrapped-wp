@@ -32,7 +32,7 @@ include 'update/update.php';
 
 if( (isset($_GET['page']) && $_GET['page'] == 'bswp_settings') || (isset($_POST['option_page']) ) ) {
 
-    include 'functions/new-forms/init.php';
+    include 'functions/init.php';
 }
 
 /**

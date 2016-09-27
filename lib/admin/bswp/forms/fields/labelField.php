@@ -3,7 +3,7 @@
 namespace bswp\forms\fields;
 
 
-class labelField {
+class labelField extends field  {
 
     public $output;
 

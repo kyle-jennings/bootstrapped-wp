@@ -165,8 +165,8 @@ $site_styles = array(
 );
 
 $theme_settings_tabs = array(
-    $site_branding,
-    $site_settings,
-    $site_components,
-    $site_styles,
+    'site_branding' => $site_branding,
+    'site_settings' => $site_settings,
+    'site_components' => $site_components,
+    'site_styles' => $site_styles,
 );

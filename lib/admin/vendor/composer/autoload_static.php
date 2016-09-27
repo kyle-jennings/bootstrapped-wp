@@ -21,16 +21,17 @@ class ComposerStaticInit9948eaf4bd853dbddd3a6977eb7da93b
     );
 
     public static $classMap = array (
-        'bswp\\fields\\fields' => __DIR__ . '/../..' . '/bswp/fields/fields.php',
+        'bswp\\fields\\settings' => __DIR__ . '/../..' . '/bswp/fields/settings.php',
+        'bswp\\forms\\dropdown' => __DIR__ . '/../..' . '/bswp/forms/dropdown.php',
         'bswp\\forms\\fields\\colorField' => __DIR__ . '/../..' . '/bswp/forms/fields/colorField.php',
-        'bswp\\forms\\fields\\fieldMethods' => __DIR__ . '/../..' . '/bswp/forms/fields/fieldMethods.php',
+        'bswp\\forms\\fields\\field' => __DIR__ . '/../..' . '/bswp/forms/fields/field.php',
         'bswp\\forms\\fields\\fileField' => __DIR__ . '/../..' . '/bswp/forms/fields/fileField.php',
         'bswp\\forms\\fields\\labelField' => __DIR__ . '/../..' . '/bswp/forms/fields/labelField.php',
         'bswp\\forms\\fields\\selectField' => __DIR__ . '/../..' . '/bswp/forms/fields/selectField.php',
         'bswp\\forms\\fields\\sidebarField' => __DIR__ . '/../..' . '/bswp/forms/fields/sidebarField.php',
         'bswp\\forms\\fields\\sortableField' => __DIR__ . '/../..' . '/bswp/forms/fields/sortableField.php',
-        'bswp\\forms\\fields\\textAreaField' => __DIR__ . '/../..' . '/bswp/forms/fields/textArea.php',
         'bswp\\forms\\fields\\textField' => __DIR__ . '/../..' . '/bswp/forms/fields/textField.php',
+        'bswp\\forms\\fields\\textareaField' => __DIR__ . '/../..' . '/bswp/forms/fields/textarea.php',
         'bswp\\forms\\form' => __DIR__ . '/../..' . '/bswp/forms/form.php',
         'bswp\\forms\\settingsTab' => __DIR__ . '/../..' . '/bswp/forms/settingsTab.php',
         'bswp\\menus\\adminMenu' => __DIR__ . '/../..' . '/bswp/menus/adminMenu.php',

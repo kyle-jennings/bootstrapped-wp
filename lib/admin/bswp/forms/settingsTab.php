@@ -1,18 +1,20 @@
 <?php
 
 namespace bswp\forms;
-use bswp\forms\fields;
+use bswp\forms\fields\field;
 
 class settingsTab {
 
     public $fields;
     public $settings;
     public $settings_component;
+    public $group;
 
-    public function __construct($settings, $fields, $section){
-        $this->fields = $fields;
-        $this->settings = $settings;
-        $this->section = $section;
+    public function __construct($group){
+        // $this->fields = $fields;
+        // $this->settings = $settings;
+        $this->section = $GLOBALS['bswp\fields\settings']->section;
+        $this->group = $group;
 
     }
 
@@ -30,14 +32,10 @@ class settingsTab {
      */
     public function field_tabs(){
 
-        $section_component = $this->settings['section'];
-        $this->section_component = $section_component;
-
-        $tabs = $this->settings['tabs'];
+        $tabs = $GLOBALS['bswp\fields\settings']->settings[$this->group]['tabs'];
 
         if( empty($tabs) )
             return;
-
 
         // if there are more than one tab, set this flag
         $multi_tabs = (count($tabs) > 1) ? true : false;
@@ -45,8 +43,10 @@ class settingsTab {
         $output ='';
 
         // if there is more than one tab we create a dropdown to navigate them
-        if( $multi_tabs )
-            $output .= $this->fields_tab_dropdown($tabs);
+        if( $multi_tabs ){
+            $dropdown = new dropdown($tabs);
+            $output .= $dropdown->fields_tab_dropdown();
+        }
         else
             $output .= '<div class="tab-switcher--spacer"></div>';
 
@@ -73,10 +73,8 @@ class settingsTab {
         // generate the fields
         $i=0;
 
-
-        foreach($tabs as $tab){
-            $current_tab = key($tabs);
-            $output .= $this->create_tab_content($tab, $i, $current_tab);
+        foreach($tabs as $tab_name => $tab){
+            $output .= $this->create_tab_content($tab, $i, $tab_name);
             $i++;
         }
 
@@ -88,127 +86,25 @@ class settingsTab {
     }
 
 
-    // the tab dropdown
-    public function fields_tab_dropdown($tabs){
-
-        $output = '';
-
-        $first_tab = reset($tabs);
-        $first_label = $first_tab['label'];
-
-        $output .= '<div class="btn-group tab-switcher">';
-            $output .= '<a class="btn btn-primary dropdown-toggle tab-switcher__dropdown" data-toggle="dropdown" href="#">';
-                $output .= '<span class="btn-face">'.$first_label.'</span>';
-                $output .= '<span class="caret"></span>';
-            $output .= '</a>';
-            $output .= '<ul class="dropdown-menu">';
-
-                foreach($tabs as $tab)
-                    $output .= $this->fields_tab_dropdown_link($tab);
-
-            $output .= '</ul>';
-        $output .= '</div>';
-
-        return $output;
-    }
-
-    // The tab links in the dropdown
-    public function fields_tab_dropdown_link($tab){
-
-
-        $label = $tab['label'];
-        $name = str_replace(' ','_',strtolower($tab['label']));
-
-        $output = '';
-        $output .= '<li>';
-            $output .= '<a href="#fields__'.$name.'" data-toggle="tab">'.$label.'</a>';
-        $output .= '</li>';
-
-        return $output;
-    }
-
 
     /**
      * Generates the markup for the tab contents
      */
     public function create_tab_content($tab, $i=0, $current_tab = null){
 
-
-        $name = str_replace(' ','_',strtolower($tab['label']));
         $label = $tab['label'];
+        $name = str_replace(' ','_',strtolower($label));
         $fields = $tab['fields'];
         $class = $i == 0 ? 'active' : '';
 
+        $field = new field();
         $output = '<div class="js--fields-group tab-pane cf '.$class.'" id="fields__'.$name.'">';
-
-            $output .= $this->identify_fields($fields, $name, $current_tab, $section_component);
+            $output .= $field->identify_fields($fields, $name, $current_tab);
         $output .= '</div>';
 
         return $output;
     }
 
-
-    /**
-     * Identifies which field to use based on the 'type' key
-     */
-    public function identify_fields($fields = array(), $tab, $current_tab = null){
-
-        $output = '';
-
-        foreach($fields as $field){
-
-            $type = $field['type'];
-            $name = $field['name'];
-            $toggled_by = $field['toggled_by'];
-            $wrapper_class = $field['wrapper_class'] ? $field['wrapper_class'] : '';
-
-            $data_toggled_by = '';
-            $data_toggle_name = '';
-
-
-            if(!is_null($toggled_by) ){
-                $toggles = $this->toggle_fields_markup($toggled_by, $name, $current_tab);
-                extract($toggles);
-            }
-            if($type == 'no')
-                continue;
-
-            $output .= '<div class="option '.$data_toggled_by.' '.$type.' '.$wrapper_class.'" '.$data_toggle_name.' >';
-
-
-                $class = 'bswp\forms\fields\\' .$type.'Field';
-
-                $output .= new $class($field, $tab, $this->section);
-
-
-            $output .= '</div>';
-        }
-
-        return $output;
-    }
-
-
-
-    /**
-     * field toggling
-     */
-    public function get_toggled_by($toggled_bys, $current_tab = null){
-        $output = 'hide js--toggled-field ';
-        foreach ($toggled_bys as $field=>$value){
-            $output .= $field.' ';
-        }
-
-        return $output;
-    }
-
-
-    public function toggle_fields_markup($toggled_by, $name, $current_tab = null){
-
-        $data_toggled_by = !empty($toggled_by) ? $this->get_toggled_by($toggled_by, $current_tab) : '' ;
-        $data_toggle_name = !empty($toggled_by) ? 'data-toggle-name="'.$name.'"' : '';
-
-        return ['data_toggled_by'=>$data_toggled_by, 'data_toggle_name'=>$data_toggle_name];
-    }
 
 
 }

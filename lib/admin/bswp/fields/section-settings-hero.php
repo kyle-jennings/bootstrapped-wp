@@ -46,9 +46,9 @@ $hero_settings_fields = array(
 );
 
 $hero_settings_tabs = array(
-    $background_fields,
-    $borders_fields,
-    $headings_fields,
-    $text_fields,
-    $hero_settings_fields
+    'background' => $background_fields,
+    'borders' => $borders_fields,
+    'headings' => $headings_fields,
+    'text' => $text_fields,
+    'hero_settings' => $hero_settings_fields
 );

@@ -2,7 +2,7 @@
 
 namespace bswp\forms\fields;
 
-class sidebarField extends fieldMethods {
+class sidebarField extends field {
 
     public $output;
 

@@ -2,7 +2,7 @@
 
 namespace bswp\forms\fields;
 
-class colorField extends fieldMethods {
+class colorField extends field {
 
     public $fields;
     public $section;

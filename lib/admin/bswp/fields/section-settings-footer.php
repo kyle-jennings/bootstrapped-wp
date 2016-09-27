@@ -61,11 +61,11 @@ $footer_settings_fields = array(
 
 
 $footer_settings_tabs = array(
-    $background_fields,
-    $borders_fields,
-    $headings_fields,
-    $text_fields,
-    $components_fields,
-    $images_fields,
-    $footer_settings_fields
+    'background' => $background_fields,
+    'borders' => $borders_fields,
+    'headings' => $headings_fields,
+    'text' => $text_fields,
+    'components' => $components_fields,
+    'images' => $images_fields,
+    'footer_settings' => $footer_settings_fields
 );

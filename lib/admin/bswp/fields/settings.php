@@ -23,26 +23,24 @@ class settings{
 
         $settings_array = $this->section.'_tabs';
 
+
+
         // get the fields file
         $theme_root = get_template_directory();
         $file = dirname(__FILE__).'/field-settings.php';
         include_once($file);
 
         $this->settings = $$settings_array;
+        $this->set_saved_values();
+
 
         $class = __CLASS__;
 
         if ( empty( $GLOBALS[ $class ] ) )
             $GLOBALS[ $class ] = $this;
 
-        $this->set_saved_values();
+        // unset($this->saved_values);
     }
-
-
-
-
-
-
 
 
 
@@ -54,56 +52,66 @@ class settings{
 
     public function set_saved_values(){
 
-        $settings_groups = $this->settings;
-        if(empty($settings_groups))
+
+        if(empty($this->settings) || empty($this->saved_values))
             return;
 
-        // jesus christ nested forloops
         // loop through each group of settings
-        foreach ( $settings_groups as $key=>$settings){
-            // loop through eat groups tabs
+        foreach ($this->settings as $group => $settings){
+            $this->loop_through_tabs($group, $settings['tabs']);
 
-            $tabs = $settings_groups[$key]['tabs'];
-            foreach($tabs as $tab_key=>$tab){
-                $fields = $tab['fields'];
-                // loop through each tab's fields
-                foreach($fields as $field_key=>$field){
-                    $name = $field['name'];
-                    $value = $this->saved_values[$name];
-                    $this->settings[$key]['tabs'][$tab_key]['fields'][$field_key]['value'] = $value;
-                }
-            }
+        }
+
+    }
+
+    public function loop_through_tabs($group, $tabs){
+        // loop through each groups tabs
+        foreach($tabs as $tab_key=>$tab){
+            $this->loop_through_fields($group, $tab_key, $tab['fields']);
+        }
+    }
+
+
+    public function loop_through_fields($group, $tab_key, $fields){
+
+        // loop through each tab's fields
+        foreach($fields as $field_key=>$field){
+            $name = $field['name'];
+            $value = $this->saved_values[$name];
+            $this->settings[$group]['tabs'][$tab_key]['fields'][$field_key]['value'] = $value;
         }
 
     }
 
 
+
+
     public function register_section_settings(){
 
-        $section = $this->section;
-        $settings_groups = $this->settings;
-        if(empty($settings_groups))
+
+        if(empty($this->settings))
             return;
 
-        foreach ($settings_groups as $settings){
+        foreach ($this->settings as $settings){
 
             $field_groups = $settings['tabs'];
             $element = $settings['section'];
 
             add_settings_section(
-                'bswp_'.$section.'_section',
+                'bswp_'.$this->section.'_section',
                 null,
                 null,
-                'bswp_'.$section
+                'bswp_'.$this->section
             );
 
-            $this->register_field_settings($field_groups, $section);
+            $this->register_field_settings($field_groups);
 
-            register_setting('bswp_'.$section, 'bswp_'.$section);
+            register_setting('bswp_'.$this->section, 'bswp_'.$this->section);
         }
     }
 
-    public function register_field_settings($field_groups, $section){
+    public function register_field_settings($field_groups){
+
         // loop through each tab
         foreach($field_groups as $field_group){
             $fields = $field_group['fields'];
@@ -114,8 +122,8 @@ class settings{
                     $field['name'],
                     null,
                     null,
-                    'bswp_'.$section,
-                    'bswp_'.$section.'_section'
+                    'bswp_'.$this->section,
+                    'bswp_'.$this->section.'_section'
                 );
             }
         }

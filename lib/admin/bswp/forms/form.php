@@ -4,16 +4,14 @@ namespace bswp\forms;
 
 class form {
 
-    public $forms_root = '';
+    public $preview;
     public $section;
-    public $tab;
-    public $fields;
-    public $settings;
+
 
     public function __construct(){
-        $this->section = isset($_GET['section']) ? $_GET['section'] : 'theme_settings';
+        // $this->section = isset($_GET['section']) ? $_GET['section'] : 'theme_settings';
+        $this->section = $GLOBALS['bswp\fields\settings']->section;
         $this->preview = in_array($this->section, ['sidebar_settings','frontpage_settings'] ) ? false : true;
-        $this->settings = $GLOBALS['bswp\fields\settings']->get_field_settings();
 
     }
 
@@ -37,12 +35,13 @@ class form {
      * @return [string]           [the markup, dawg]
      */
     public function init(){
-
-        if(!$this->settings)
-            return;
-
-        $this->fields = $this->settings;
+        //
+        // if(!$this->settings)
+        //     return;
+        //
+        // $this->fields = $this->settings;
         wp_enqueue_media();
+
 
         $classes = !$this->preview ? 'fields-wrapper--no-preview' : '';
         $output = '';
@@ -81,12 +80,14 @@ class form {
         $output = '';
         $i = 0;
 
-        foreach($this->settings as $k=>$settings){
+        // examine($GLOBALS['bswp\fields\settings']);
 
-            $tab = new settingsTab($settings, $this->fields, $this->section);
+        foreach($GLOBALS['bswp\fields\settings']->settings as $group=>$tabs){
+            // examine($tabs);
+
+            $tab = new settingsTab($group);
             $active = '';
-
-            $id = $settings['section'];
+            $id = $group;
             if(isset($_GET['tab']) )
                 $active = $_GET['tab'] == $id ? 'active': '';
             else
@@ -98,7 +99,7 @@ class form {
             $output .= '</div>';
             $i++;
         }
-
+        //
         return $output;
     }
 
