@@ -41,6 +41,14 @@ class builder {
 
     }
 
+    public function add_breaklines(){
+
+        $first_char = $this->output[0];
+        $this->output = "\n".$this->output;
+        $this->output = str_replace('}', "} \n", $this->output);
+    }
+
+
     public function get_saved_values($section){
         $this->saved_values[$section] = get_option('bswp_'.$section);
     }
@@ -48,22 +56,26 @@ class builder {
 
     public function init(){
         foreach($this->saved_values as $section => $group ){
+
+            if(empty($this->saved_values[$section]))
+                continue;
+
             $selector = str_replace('_settings','-section', $section);
             $this->create_section_element($section, $selector);
-            // call_user_func(array($this, $group.'_settings'), $selector );
+
         }
     }
 
 
     public function create_section_element($section, $selector){
         $output = '';
-        $output .= $selector. ' {';
+        $output .= '#'.$selector. ' {';
 
             $output .= $this->background_settings($section);
 
         $output .= '}';
 
-        $this->output = $output;
+        $this->output .= $output;
     }
 
     public function background_settings($section){
@@ -76,7 +88,7 @@ class builder {
         $background_styles->wallpaper();
 
         $background_styles->add_breaklines();
-
+        return $background_styles->output;
     }
 
 

@@ -41,6 +41,8 @@ class background {
         $this->set_true_color('start');
         $this->set_true_color('end');
 
+        $this->set_wallpaper_defaults();
+
     }
 
     public function __toString(){
@@ -52,8 +54,9 @@ class background {
     public function add_breaklines(){
 
         $first_char = $this->output[0];
-        $this->output = "\n".$this->output;
-        $this->output = str_replace(';', "; \n", $this->output);
+        $this->output = "\n\t".$this->output;
+        $this->output = str_replace(';', "; \n\t", $this->output);
+        $this->output = rtrim($this->output, "\t");
     }
 
 
@@ -85,6 +88,15 @@ class background {
             $this->$true_value = 'transparent';
         }
 
+    }
+
+
+
+
+    public function set_wallpaper_defaults(){
+        $this->background_positionX = !empty($this->background_positionX) ? $this->background_positionX : '0' ;
+        $this->background_positionY = !empty($this->background_positionY) ? $this->background_positionY : '0' ;
+        $this->background_percentage = !empty($this->background_percentage) ? $this->background_percentage : '0' ;
     }
 
 
@@ -166,10 +178,6 @@ class background {
             return false;
 
         $output = '';
-        $this->background_positionX = !empty($this->background_positionX) ? $this->background_positionX : '0' ;
-    	$this->background_positionY = !empty($this->background_positionY) ? $this->background_positionY : '0' ;
-    	$this->background_percentage = !empty($this->background_percentage) ? $this->background_percentage : '0' ;;
-
 
 
         if(!empty($this->background_attachment)){
@@ -197,11 +205,8 @@ class background {
 
     	if( !empty($this->background_size) ){
     		if( $this->background_size == 'percentage' ){
-
     			$output .= 'background-size: '. $this->background_percentage .'% auto ;';
-
     		}else{
-
     			$output .= 'background-size: '. $this->background_size .';';
     		}
     	}
