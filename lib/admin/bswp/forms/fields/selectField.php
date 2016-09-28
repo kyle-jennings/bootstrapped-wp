@@ -15,6 +15,8 @@ class selectField extends field {
      * @return [type]       [description]
      */
     public function __construct($args=array(), $tab = null, $section, $group){
+
+        $this->tab = $tab;
         $this->section = $section;
 
         extract($args);

@@ -20,8 +20,6 @@ class colorField extends field {
         $this->tab = $tab;
         $this->section = $section;
 
-
-
         extract($args);
         $value = isset($value) ? $value : '';
         $output = '';

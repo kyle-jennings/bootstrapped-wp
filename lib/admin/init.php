@@ -22,18 +22,7 @@ if(! function_exists('examine') ){
         die;
     }
 
-}
 
-$theme_root = get_template_directory();
-
-// update function
-include 'update/update.php';
-
-
-if( (isset($_GET['page']) && $_GET['page'] == 'bswp_settings') || (isset($_POST['option_page']) ) ) {
-
-    include 'functions/init.php';
-}
 
 /**
  * Adds the admin area CSS and JS
@@ -66,3 +55,17 @@ function kjd_load_style_sheets_and_scripts() {
 
 }
 add_action('admin_init', 'kjd_load_style_sheets_and_scripts');
+
+
+
+}
+
+
+// update function
+include 'update/update.php';
+
+
+// initializae the BSWP stuff
+if( (isset($_GET['page']) && $_GET['page'] == 'bswp_settings') || (isset($_POST['option_page']) ) ) {
+    include 'functions/init.php';
+}

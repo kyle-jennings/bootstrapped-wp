@@ -21,6 +21,8 @@ class ComposerStaticInit9948eaf4bd853dbddd3a6977eb7da93b
     );
 
     public static $classMap = array (
+        'bswp\\css\\background' => __DIR__ . '/../..' . '/bswp/css/background.php',
+        'bswp\\css\\builder' => __DIR__ . '/../..' . '/bswp/css/builder.php',
         'bswp\\fields\\settings' => __DIR__ . '/../..' . '/bswp/fields/settings.php',
         'bswp\\forms\\dropdown' => __DIR__ . '/../..' . '/bswp/forms/dropdown.php',
         'bswp\\forms\\fields\\colorField' => __DIR__ . '/../..' . '/bswp/forms/fields/colorField.php',

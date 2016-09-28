@@ -8,6 +8,9 @@ class sidebarField extends field {
 
     public function __construct($args=array(), $tab = null, $section, $group){
 
+        $this->tab = $tab;
+        $this->section = $section;
+
         $output = '';
 
         // create the first select

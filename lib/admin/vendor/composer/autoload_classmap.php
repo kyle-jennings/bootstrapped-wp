@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'bswp\\css\\background' => $baseDir . '/bswp/css/background.php',
+    'bswp\\css\\builder' => $baseDir . '/bswp/css/builder.php',
     'bswp\\fields\\settings' => $baseDir . '/bswp/fields/settings.php',
     'bswp\\forms\\dropdown' => $baseDir . '/bswp/forms/dropdown.php',
     'bswp\\forms\\fields\\colorField' => $baseDir . '/bswp/forms/fields/colorField.php',

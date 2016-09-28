@@ -8,7 +8,11 @@ class sortableField extends field  {
 
     public function __construct($args=array(), $tab = null, $section, $group){
 
+        $this->tab = $tab;
+        $this->section = $section;
+
         extract($args);
+
         $output = '';
         $layout_order = array();
         $components = array('widget_area_1','widget_area_2','widget_area_3','content','secondary_content');
