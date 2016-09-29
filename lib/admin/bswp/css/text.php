@@ -156,7 +156,7 @@ class text {
             return false;
 
         if( $this->$decoration == 'text-shadow' && !empty($this->$shadow))
-            return 'text-shadow: 2px 2px 2px'.$this->$shadow.'; ';
+            return 'text-shadow: 2px 2px 2px '.$this->$shadow.'; ';
 
         return 'text-decoration: '.$this->$decoration.'; ';
 

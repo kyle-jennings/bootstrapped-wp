@@ -60,9 +60,11 @@ class builder {
             if(empty($this->saved_values[$section]))
                 continue;
 
+
             $this->background_settings($section);
             $this->borders_settings($section);
             $this->text_settings($section);
+            $this->headings_settings($section);
 
             // $selector = str_replace('_settings','-section', $section);
             // $this->create_section_element($section, $selector);
@@ -81,6 +83,8 @@ class builder {
 
         $output .= '}';
 
+        $output .= $this->sections[$section]['text']->output;
+        $output .= $this->sections[$section]['headings']->output;
 
 
         $this->output .= $output;
@@ -127,7 +131,17 @@ class builder {
     }
 
 
-    public function headings_settings(){
+    public function headings_settings($section){
+
+        if(empty($this->saved_values[$section]['headings']))
+            return;
+
+        $headings_styles = new headings($this->saved_values[$section]['headings'], $section);
+        $headings_styles->headings();
+
+        $headings_styles->add_breaklines();
+
+        $this->sections[$section]['headings'] = $headings_styles;
 
     }
 
