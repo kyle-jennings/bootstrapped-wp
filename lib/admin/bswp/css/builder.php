@@ -119,9 +119,9 @@ class builder {
         if(empty($this->saved_values[$section]['text']))
             return;
 
-        $text_styles = new text($this->saved_values[$section]['text']);
+        $text_styles = new text($this->saved_values[$section]['text'], $section);
+        $text_styles->links();
         $text_styles->add_breaklines();
-        examine($text_styles);
         $this->sections[$section]['text'] = $text_styles;
 
     }

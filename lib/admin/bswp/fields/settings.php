@@ -117,7 +117,7 @@ class settings{
             $fields = $field_group['fields'];
 
             foreach($fields as $field){
-
+            // error_log($field['name']);
               add_settings_field(
                     $field['name'],
                     null,

@@ -55,13 +55,11 @@ function text_decoration_field($args = array()){
                     'line-through',
                     'text-shadow',
                 );
-    $args['toggle_fields']= array('text-shadow'=>'text_shadow_color');
     return select_field($args);
 }
 
 function text_shadow_color_field($args=array()){
     $args['name'] = $args['name'] ? $args['name'] : 'text_shadow_color';
-    $args['toggled_by'] = array('text_decoration'=>'text-shadow');
     return color_field($args);
 }
 

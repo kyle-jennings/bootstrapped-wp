@@ -30,26 +30,31 @@ foreach($link_targets as $link){
                     'type'=>'color',
                 )
             ),
+
             $link.'_background_style'=>select_field(array(
                     'name'=>$link.'_background_style',
                     'label'=>'Background Style',
                     'args'=>array('none','highlighted','pills'),
-                    'toggle_fields'=>array('highlighted'=>'background_color', 'pills'=>'background_color')
+                    'toggle_fields'=>array('highlighted'=>$link.'_background_color', 'pills'=>$link.'_background_color')
                 )
             ),
             $link.'_background_color'=>color_field(array(
                     'name'=>$link.'_background_color',
                     'label'=>'Background Color',
-                    'toggled_by'=>array('background_style'=>'highlighted', 'background_style'=>'pills')
+                    'toggled_by'=>array( $link.'_background_style'=>'highlighted',  $link.'_background_style'=>'pills')
                 )
             ),
-            $link.'_decoration'=>text_decoration_field( array(
-                    'name'=>$link.'_text_decoration',
-                    'label'=>'Text Decoration'
+
+
+            $link.'_text_decoration' => text_decoration_field( array(
+                    'name' => $link.'_text_decoration',
+                    'label' => 'Text Decoration',
+                    'toggle_fields' => array('text-shadow'=>$link.'_text_shadow')
                 )
             ),
             $link.'_text_shadow'=>text_shadow_color_field( array(
-                'name'=>$link.'_text_decoration',
+                    'name'=>$link.'_text_shadow',
+                    'toggled_by' => array($link.'_text_decoration' => 'text-shadow')
                 )
             )
         ),
