@@ -23,9 +23,9 @@ foreach($border_targets as $border){
                         'toggled_by'=>array($border.'_border_style'=>$border_styles_true)
                     )
                 ),
-                $border.'_border_size'=>select_field(array(
-                        'name'=> $border.'_border_size',
-                        'label'=>'Size',
+                $border.'_border_width'=>select_field(array(
+                        'name'=> $border.'_border_width',
+                        'label'=>'Width',
                         'args'=>array_map('add_px_string', range(1,20)),
                         'toggled_by'=>array($border.'_border_style'=>$border_styles_true)
                     )

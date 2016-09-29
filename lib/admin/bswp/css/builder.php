@@ -60,8 +60,12 @@ class builder {
             if(empty($this->saved_values[$section]))
                 continue;
 
-            $selector = str_replace('_settings','-section', $section);
-            $this->create_section_element($section, $selector);
+            $this->background_settings($section);
+            $this->borders_settings($section);
+            $this->text_settings($section);
+
+            // $selector = str_replace('_settings','-section', $section);
+            // $this->create_section_element($section, $selector);
 
         }
     }
@@ -71,12 +75,17 @@ class builder {
         $output = '';
         $output .= '#'.$selector. ' {';
 
-            $output .= $this->background_settings($section);
+            $output .= $this->sections[$section]['text']->text_color;
+            $output .= $this->sections[$section]['background']->output;
+            $output .= $this->sections[$section]['borders']->output;
 
         $output .= '}';
 
+
+
         $this->output .= $output;
     }
+
 
     public function background_settings($section){
 
@@ -88,23 +97,37 @@ class builder {
         $background_styles->wallpaper();
 
         $background_styles->add_breaklines();
-        return $background_styles->output;
+        $this->sections[$section]['background'] = $background_styles;
     }
 
 
-    public function borders_settings(){
-        $sides = array('top','right','bottom','left');
-        $corners = array('top-right','bottom-right','bottom-left','top-left');
+    public function borders_settings($section){
+
+        if(empty($this->saved_values[$section]['borders']))
+            return;
+
+        $borders_styles = new borders($this->saved_values[$section]['borders']);
+        $borders_styles->borders();
+        $borders_styles->border_radii();
+        $borders_styles->add_breaklines();
+        $this->sections[$section]['borders'] = $borders_styles;
+    }
+
+
+    public function text_settings($section){
+
+        if(empty($this->saved_values[$section]['text']))
+            return;
+
+        $text_styles = new text($this->saved_values[$section]['text']);
+        $text_styles->add_breaklines();
+        examine($text_styles);
+        $this->sections[$section]['text'] = $text_styles;
 
     }
 
 
     public function headings_settings(){
-
-    }
-
-
-    public function text_settings(){
 
     }
 

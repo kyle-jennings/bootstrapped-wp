@@ -5,7 +5,7 @@
  * @var array
  */
 $links = array();
-$link_targets = array('normal','hover','active','visited');
+$link_targets = array('normal_links','hover_links','active_links','visited_links');
 
 $links['text'] = array(
     'label' => 'Text',
@@ -26,9 +26,8 @@ foreach($link_targets as $link){
        'fields'=>array(
            $link.'_color'=>color_field(array(
                     'name'=>$link.'_color',
-                    'label'=>$link.' Link',
+                    'label'=> ucwords(str_replace('_',' ',$link)).' Color',
                     'type'=>'color',
-
                 )
             ),
             $link.'_background_style'=>select_field(array(

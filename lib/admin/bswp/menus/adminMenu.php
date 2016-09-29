@@ -53,7 +53,7 @@ class adminMenu extends pageSections{
         $builder = new builder;
         $builder->init();
         $builder->add_breaklines();
-        examine($builder);
+        // examine($builder);
         // examine($GLOBALS['bswp\fields\settings']);
 
         // get the current section, settings tab, and sub settings
