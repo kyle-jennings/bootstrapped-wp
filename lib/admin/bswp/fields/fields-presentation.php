@@ -118,6 +118,16 @@ $forms = array(
     'button_text',
 );
 
+$init = array(
+    'iframe_background',
+    'iframe_border',
+    'iframe_glow',
+    'button_border_color',
+    'button_border_style',
+    'button_border_width',
+    'button_border_radius',
+);
+
 $components = array(
     'tabbed_content'=>array(
         'label'=>'Tabbed Content',

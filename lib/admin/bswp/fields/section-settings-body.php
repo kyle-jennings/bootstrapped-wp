@@ -73,7 +73,7 @@ $body_settings_tabs = array(
     'borders' => $borders_fields,
     'headings' => $headings_fields,
     'text' => $text_fields,
-    'components' => $components_fields,
     'images' => $images_fields,
+    'components' => $components_fields,
     'body_settings' => $body_settings_fields
 );

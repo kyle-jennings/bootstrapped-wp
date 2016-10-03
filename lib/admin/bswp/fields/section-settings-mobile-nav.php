@@ -132,7 +132,7 @@ $mobile_nav_settings_tabs = array(
     'borders' => $borders_fields,
     'headings' => $headings_fields,
     'text' => $text_fields,
-    'components' => $components_fields,
     'images' => $images_fields,
+    'components' => $components_fields,
     'mobile_nav_settings' => $mobile_nav_settings_fields
 );

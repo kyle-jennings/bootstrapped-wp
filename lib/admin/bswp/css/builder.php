@@ -65,7 +65,7 @@ class builder {
             $this->borders_settings($section);
             $this->text_settings($section);
             $this->headings_settings($section);
-
+            $this->images_settings($section);
             // $selector = str_replace('_settings','-section', $section);
             // $this->create_section_element($section, $selector);
 
@@ -145,15 +145,26 @@ class builder {
 
     }
 
+    public function images_settings($section){
+        if(empty($this->saved_values[$section]['images']))
+            return;
+
+        $images_styles = new images($this->saved_values[$section]['images'], $section);
+        $images_styles->image('inline');
+        $images_styles->image('caption');
+        $images_styles->image('linked');
+
+        // examine($images_styles);
+        $images_styles->add_breaklines();
+
+        $this->sections[$section]['images'] = $images_styles;
+    }
 
     public function components_settings(){
 
     }
 
 
-    public function images_settings(){
-
-    }
 
 
     public function setting_settings(){

@@ -26,6 +26,10 @@ class form {
     }
 
 
+    public function get_form_settings($field){
+        return $GLOBALS['bswp\fields\settings']->general_form_settings[$field];
+    }
+
     /**
      * Sets up the form tabs
      *
@@ -35,11 +39,7 @@ class form {
      * @return [string]           [the markup, dawg]
      */
     public function init(){
-        //
-        // if(!$this->settings)
-        //     return;
-        //
-        // $this->fields = $this->settings;
+
         wp_enqueue_media();
 
 
@@ -47,10 +47,13 @@ class form {
         $output = '';
 
         $output .= '<form class="bswp-form" method="post" action="options.php">';
+
             $output .= $this->grab_function_output('settings_fields', 'bswp_'.$this->section );
+            $output .= '<input id="js--group-tab-field" type="hidden" name="bswp_'.$this->section.'[general_form_settings][group_tab]" value="'.$this->get_form_settings('group_tab').'">';
+
             $output .= '<div class="fields-wrapper '.$classes.'">';
 
-                $output .= '<div class="tab-content">';
+                $output .= '<div id="groups-tabs" class="tab-content">';
                     $output .= $this->settings_tabs();
                 $output .= '</div>';
 

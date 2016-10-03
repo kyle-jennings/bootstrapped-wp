@@ -90,7 +90,7 @@ class nav extends pageSections{
         $replace = array('',' ');
 
 
-        $output .= '<ul class="section-dropdown-nav js--sections-dropdown">';
+        $output .= '<ul id="groups-nav" class="section-dropdown-nav js--sections-dropdown">';
 
         foreach($sections as $section):
             $label = str_replace($find,$replace ,$section);

@@ -7,7 +7,7 @@ class settings{
     public $section;
     public $settings;
     public $saved_values;
-
+    public $form_settings;
 
     public function __construct(){
 
@@ -20,10 +20,9 @@ class settings{
         }
 
         $this->saved_values = get_option('bswp_'.$this->section);
+        $this->general_form_settings = $this->saved_values['general_form_settings'];
 
         $settings_array = $this->section.'_tabs';
-
-
 
         // get the fields file
         $theme_root = get_template_directory();

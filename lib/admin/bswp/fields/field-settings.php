@@ -25,6 +25,9 @@
  * );
  */
 
+
+include_once('prefilled-selects.php');
+
 // Reusable fields
 function text_field($settings = array()){
     extract($settings);
@@ -107,6 +110,11 @@ function no_field($args = array()){
     return text_field($args);
 }
 
+function hidden_field($args = array()){
+    $args['name'] = isset($args['name']) ? $args['name'] : '';
+    $args['type'] = 'hidden';
+    return text_field($args);
+}
 
 /**
  * Helpers
@@ -148,53 +156,6 @@ function components_field_settings($fields = array()){
 function add_px_string($index){
     return ($index.'px');
 }
-
-/**
- * Hell if I'm going to write down all the border styles each time
- * @var array
- */
-$border_styles = array(
-    'none',
-    'solid',
-    'dotted',
-    'dashed',
-    'double',
-    'groove',
-    'ridge',
-    'inset',
-    'outset',
-);
-
-
-$border_styles_toggle = array('solid'=>'','dotted'=>'','dashed'=>'','double'=>'','groove'=>'','ridge'=>'','inset'=>'','outset'=>'',);
-$border_styles_true = array();
-$border_targets = array('top','right','bottom','left');
-
-foreach($border_styles_toggle as $key=>$v){
-    foreach($border_targets as $target){
-        $border_styles_toggle[$key] .= $target.'_border_color,'.$target.'_border_size,';
-        $border_styles_true[$target.'_border_style'] = 'solid,dotted,dashed,double,groove,ridge,inset,outset';
-    }
-}
-
-function heading_toggle($new, $array){
-    $heading = 'h1';
-    return($heading.'_border_color,'.$heading.'_border_size');
-}
-$heading_border_styles = array('solid','dotted','dashed','double','groove','ridge','inset','outset');
-
-
-// // Setting up the heading borders settings
-// $header_styles_toggle = array('solid'=>'','dotted'=>'','dashed'=>'','double'=>'','groove'=>'','ridge'=>'','inset'=>'','outset'=>'',);
-// $heading_tags = array('h1','h2','h3','h4','h5');
-// $header_styles_true = array();
-
-// foreach($header_styles_toggle as $key=>$v){
-//     foreach($heading_tags as $target){
-//         $header_styles_toggle[$key] .= $target.'_border_color,'.$target.'_border_size,';
-//         $header_styles_true[$target.'_border_style'] = 'solid,dotted,dashed,double,groove,ridge,inset,outset';
-//     }
-// }
 
 
 /**

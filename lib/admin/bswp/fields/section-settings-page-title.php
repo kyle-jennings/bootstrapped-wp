@@ -79,7 +79,7 @@ $page_title_settings_tabs = array(
     'borders' => $borders_fields,
     'headings' => $headings_fields,
     'text' => $text_fields,
-    'components' => $components_fields,
     'images' => $images_fields,
+    'components' => $components_fields,
     'page_title_settings' => $page_title_settings_fields
 );
