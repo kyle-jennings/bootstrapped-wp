@@ -167,7 +167,7 @@ include('fields-background.php');
 include('fields-border.php');
 include('fields-headings.php');
 include('fields-text.php');
-include('fields-presentation.php');
+include('fields-components.php');
 include('fields-image.php');
 
 // misc

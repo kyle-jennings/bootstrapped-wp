@@ -32,8 +32,9 @@ class colorField extends field {
             $alpha = $this->get_alpha($rgba);
         endif;
 
+        $opacity_opt = (is_string($args) && $args == 'transparency') ? 'opacity' : '';
         // the visible output
-        $output .= '<input class="minicolors opacity" data-opacity="'.$alpha.'" name="bswp_'.$this->section.'['.$group.']['.$name.']"
+        $output .= '<input class="minicolors '.$opacity_opt.'" data-opacity="'.$alpha.'" name="bswp_'.$this->section.'['.$group.']['.$name.']"
             value="'.$value.'"';
         $output .= '/>';
 

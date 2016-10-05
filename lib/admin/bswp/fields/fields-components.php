@@ -11,57 +11,68 @@
  * are color fields. If there ARE options (via arrays) then we handle that in a function
  */
 $tabbed_content = array(
-    'tabbed_content_background',
+    'tabbed_content_background'=>array('args'=>'transparency'),
+    'tabbed_content_background_rgba'=>array('type'=>'no'),
     'tabbed_content_border',
     'tabbed_content_text_color',
     'tabbed_content_link_color',
-    'active_tab_background',
+    'active_tab_background'=>array('args'=>'transparency'),
+    'active_tab_background_rgba'=>array('type'=>'no'),
     'active_tab_border',
     'active_tab_link_color',
     'inactive_tab_border',
-    'inactive_tab_background',
+    'inactive_tab_background'=>array('args'=>'transparency'),
+    'inactive_tab_background_rgba'=>array('type'=>'no'),
     'inactive_tab_link_color',
-    'hovered_tab_background',
+    'hovered_tab_background'=>array('args'=>'transparency'),
+    'hovered_tab_background_rgba'=>array('type'=>'no'),
     'hovered_tab_border',
     'hovered_tab_link_color',
 );
 $collapsibles = array(
-    'collapible_content_background',
+    'collapible_content_background'=>array('args'=>'transparency'),
+    'collapible_content_background_rgba'=>array('type'=>'no'),
     'collapible_content_border',
     'collapible_content_link_color',
     'collapible_content_text_color',
-    'active_title_background',
+    'active_title_background'=>array('args'=>'transparency'),
+    'active_title_background_rgba'=>array('type'=>'no'),
     'active_title_link_color',
-    'inactive_title_background',
+    'inactive_title_background'=>array('args'=>'transparency'),
+    'inactive_title_background_rgba'=>array('type'=>'no'),
     'inactive_title_link_color',
-    'hovered_title_background',
+    'hovered_title_background'=>array('args'=>'transparency'),
+    'hovered_title_background_rgba'=>array('type'=>'no'),
     'hovered_title_link_color',
 );
 
 $tables = array(
-    'table_header_background',
+    'table_header_background'=>array('args'=>'transparency'),
+    'table_header_background_rgba'=>array('type'=>'no'),
     'table_border',
     'table_header_link_color',
     'table_header_text_color',
-    'even_row_background',
+    'even_row_background'=>array('args'=>'transparency'),
+    'even_row_background_rgba'=>array('type'=>'no'),
     'even_row_link_color',
     'even_row_text_color',
-    'odd_row_background',
+    'odd_row_background'=>array('args'=>'transparency'),
+    'odd_row_background_rgba'=>array('type'=>'no'),
     'odd_row_link_color',
     'odd_row_text_color',
-    'hovered_row_background',
-    'hovered_row_link_color',
-    'hovered_row_text_color',
 );
 
 $pagination = array(
     'pagination_border',
-    'pagination_background',
+    'pagination_background'=>array('args'=>'transparency'),
+    'pagination_background_rgba'=>array('type'=>'no'),
     'pagination_text',
     'pagination_link',
-    'pagination_hover_background',
+    'pagination_hover_background'=>array('args'=>'transparency'),
+    'pagination_hover_background_rgba'=>array('type'=>'no'),
     'pagination_hover_link',
-    'pagination_current_background',
+    'pagination_current_background'=>array('args'=>'transparency'),
+    'pagination_current_background_rgba'=>array('type'=>'no'),
     'pagination_current_text',
 );
 
@@ -75,7 +86,8 @@ $nav_lists = array(
 
 
 $pre = array(
-    'pre_background',
+    'pre_background'=>array('args'=>'transparency'),
+    'pre_background_rgba'=>array('type'=>'no'),
     'pre_border',
     'pre_text',
     'pre_link',
@@ -85,7 +97,8 @@ $pre = array(
 );
 
 $address = array(
-    'address_background',
+    'address_background'=>array('args'=>'transparency'),
+    'address_background_rgba'=>array('type'=>'no'),
     'address_border',
     'address_text',
     'address_link',
@@ -95,7 +108,8 @@ $address = array(
 );
 
 $blockquote = array(
-    'blockquote_background',
+    'blockquote_background'=>array('args'=>'transparency'),
+    'blockquote_background_rgba'=>array('type'=>'no'),
     'blockquote_border',
     'blockquote_text',
     'blockquote_link',
@@ -105,12 +119,15 @@ $blockquote = array(
 );
 
 $forms = array(
-    'form_background',
+    'form_background'=>array('args'=>'transparency'),
+    'form_background_rgba'=>array('type'=>'no'),
     'form_border',
     'form_text',
-    'field_background',
+    'field_background'=>array('args'=>'transparency'),
+    'field_background_rgba'=>array('type'=>'no'),
     'field_border',
-    'field_glow',
+    'field_glow'=>array('args'=>'transparency'),
+    'field_glow_rgba'=>array('type'=>'no'),
     'field_text',
     'button_background',
     'button_background end',
@@ -119,9 +136,11 @@ $forms = array(
 );
 
 $init = array(
-    'iframe_background',
+    'iframe_background'=>array('args'=>'transparency'),
+    'iframe_background_rgba'=>array('type'=>'no'),
     'iframe_border',
-    'iframe_glow',
+    'iframe_glow'=>array('args'=>'transparency'),
+    'iframe_glow_rgba'=>array('type'=>'no'),
     'button_border_color',
     'button_border_style',
     'button_border_width',

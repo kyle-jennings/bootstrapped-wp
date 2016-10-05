@@ -22,7 +22,7 @@ $links['text'] = array(
 // Each link type is dynamically created, no need to repat ouselves since they are all the same.
 foreach($link_targets as $link){
     $links[$link] = array(
-       'label'=>ucfirst($link),
+       'label'=>str_replace('_',' ',ucfirst($link)),
        'fields'=>array(
            $link.'_color'=>color_field(array(
                     'name'=>$link.'_color',
