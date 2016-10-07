@@ -66,6 +66,7 @@ class builder {
             $this->text_settings($section);
             $this->headings_settings($section);
             $this->images_settings($section);
+            $this->components_settings($section);
             // $selector = str_replace('_settings','-section', $section);
             // $this->create_section_element($section, $selector);
 
@@ -85,6 +86,7 @@ class builder {
 
         $output .= $this->sections[$section]['text']->output;
         $output .= $this->sections[$section]['headings']->output;
+        $output .= $this->sections[$section]['images']->output;
 
 
         $this->output .= $output;
@@ -160,7 +162,39 @@ class builder {
         $this->sections[$section]['images'] = $images_styles;
     }
 
-    public function components_settings(){
+    public function components_settings($section){
+
+        if(empty($this->saved_values[$section]['components']))
+            return;
+
+        $components_styles = new components($this->saved_values[$section]['components'], $section);
+
+        // examine($components_styles);
+
+        $tabbable = new tabbable($components_styles->tabbable(), $this->section);
+        $tabbable->content_area_styles();
+        $tabbable->tabs_left_right_content();
+
+        $tabbable->tab_styles('active_tab');
+        $tabbable->tab_styles('inactive_tab');
+        $tabbable->tab_styles('hovered_tab');
+
+        $tabbable->add_breaklines();
+        // examine($tabbable);
+
+
+        $collapsible = new collapsible($components_styles->collapsible(), $this->section);
+        $collapsible->content_area_styles();
+        $collapsible->title_styles('active_title');
+        $collapsible->title_styles('inactive_title');
+        $collapsible->title_styles('hovered_title');
+        $collapsible->add_breaklines();
+
+        examine($collapsible);
+
+        $components_styles->add_breaklines();
+
+        $this->sections[$section]['components'] = $components_styles;
 
     }
 
