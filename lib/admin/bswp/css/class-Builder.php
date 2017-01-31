@@ -65,6 +65,8 @@ class Builder {
             $this->text_settings($section);
             $this->headings_settings($section);
             $this->images_settings($section);
+            // $this->images_settings($section);
+
             // $this->components_settings($section);
             // $selector = str_replace('_settings','-section', $section);
             // $this->create_section_element($section, $selector);

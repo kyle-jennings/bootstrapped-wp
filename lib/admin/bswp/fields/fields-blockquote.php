@@ -79,10 +79,10 @@ $blockquote = array(
 
             )
         ), // borders
-        // 'text' => array(
-        //     'label'=>'Text Colors',
-        //     'fields'=>array()
-        // ), //text
+        'text' => array(
+            'label'=>'Text Colors',
+            'fields'=>array()
+        ), //text
         // 'settings' => array(
         //     'label'=>'Misc',
         //     'fields'=>array(
