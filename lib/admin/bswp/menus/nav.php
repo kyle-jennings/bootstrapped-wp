@@ -47,7 +47,7 @@ class nav extends pageSections{
         $output = '';
 
         $output .= '<div class="overlay js--overlay js--sections-dropdown-toggle js--sections-dropdown"></div>';
-        $output .= '<div class="nav-wrapper">';
+        $output .= '<div id="settings-nav" class="nav-wrapper">';
             $output .= '<div class="components-nav cf">';
 
                 $output .= '<a class="components-nav__link components-nav__link--section js--sections-dropdown-toggle" href="#" >';

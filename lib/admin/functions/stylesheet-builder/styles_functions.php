@@ -711,20 +711,20 @@ $tabbed_markup .= $section.' .tabbable > ul.nav > li > a:hover{';
 	$tabbed_markup .= 'border-bottom-color: '. $tabbed_content['hovered_tab_border'].' ; ';
 	$tabbed_markup .= 'color:'. $tabbed_content['hovered_tab_link_color'].';';
 $tabbed_markup .= '}';
-
-$tabbed_markup .= $section.' .tabbable > ul.nav > li.active > a{';
-	$tabbed_markup .= 'background:'. $tabbed_content['tabbed_content_background'].';';
-	$tabbed_markup .= 'border-color:'. $tabbed_content['active_tab_border'].'; ';
-	$tabbed_markup .= 'border-bottom-color: '. $tabbed_content['active_tab_border'].' ; ';
-	$tabbed_markup .= 'color:'. $tabbed_content['active_tab_link_color'].';';
-$tabbed_markup .= '}';
-
-$tabbed_markup .= $section.' .tabbable > .tab-content{';
-	$tabbed_markup .= 'background:'. $tabbed_content['tabbed_content_background'].'; ';
-	$tabbed_markup .= 'border-color:'. $tabbed_content['tabbed_content_border'].'; ';
-	$tabbed_markup .= 'color:'. $tabbed_content['tabbed_content_text_color'].';';
-	$tabbed_markup .= 'border-style: solid; border-width: 1px; padding:20px;';
-$tabbed_markup .= '}';
+//
+// $tabbed_markup .= $section.' .tabbable > ul.nav > li.active > a{';
+// 	$tabbed_markup .= 'background:'. $tabbed_content['tabbed_content_background'].';';
+// 	$tabbed_markup .= 'border-color:'. $tabbed_content['active_tab_border'].'; ';
+// 	$tabbed_markup .= 'border-bottom-color: '. $tabbed_content['active_tab_border'].' ; ';
+// 	$tabbed_markup .= 'color:'. $tabbed_content['active_tab_link_color'].';';
+// $tabbed_markup .= '}';
+//
+// $tabbed_markup .= $section.' .tabbable > .tab-content{';
+// 	$tabbed_markup .= 'background:'. $tabbed_content['tabbed_content_background'].'; ';
+// 	$tabbed_markup .= 'border-color:'. $tabbed_content['tabbed_content_border'].'; ';
+// 	$tabbed_markup .= 'color:'. $tabbed_content['tabbed_content_text_color'].';';
+// 	$tabbed_markup .= 'border-style: solid; border-width: 1px; padding:20px;';
+// $tabbed_markup .= '}';
 
 
 $tabbed_markup .= $section.' .tabbable > .tab-content a{';

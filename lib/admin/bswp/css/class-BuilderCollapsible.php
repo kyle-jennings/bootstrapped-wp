@@ -108,29 +108,31 @@ class collapsible {
         $content_link = $this->collapsible_content_link_color;
 
 
-        // the active tab SHOULD match the content area styles tbh, so this should
-        // be killed in the future, but this is a lift and shift
-
-        if( empty($content_background) &&
-            empty($content_border) &&
-            empty($content_text)
-        )
-        return;
-
-
-        // the content area
-        $output .= $section.' .tabbable > .tab-content{';
-            if(!empty($content_background))
-                $output .= 'background:'. $content_background.'; ';
-            if(!empty($content_border))
-                $output .= 'border-color:'. $content_border.'; ';
-            if(!empty($content_text))
-                $output .= 'color:'. $content_text.';';
-
-            $output .= 'border-style: solid; border-width: 1px; padding:20px;';
+        $output ='';
+        $output .= $this->section.' .accordion-group{';
+            $output .= 'background:'. $content_background.'; ';
+            $output .= 'border-color:'. $content_border.' ;';
         $output .= '}';
 
-        $this->output .= $output;
+
+        /*the content */
+        $output .= $this->section.' .accordion-inner {';
+            $output .= 'border-top-color:'. $content_border.' ;';
+            $output .= 'color:'. $content_text.';';
+        $output .= '}';
+
+        /*the content */
+        $output .= $this->section.' .accordion-inner a{';
+            $output .= 'color:'.$content_link.';';
+        $output .= '}';
+
+
+
+        $output .= $this->section.' .accordion-heading > a.collapsed, ';
+        $output .= $this->section.' .accordion-heading >a,';
+        $output .= $this->section.' .accordion-heading >a:hover{ text-decoration:none ;}';
+
+
     }
 
 
@@ -161,18 +163,26 @@ class collapsible {
         return;
 
         $output = '';
-        $output .= $selector . ' {';
-            if(!empty($background_rgba))
-            $output .= 'background:'. $background_rgba.';';
-            if(!empty($border_color)){
-                $output .= 'border-bottom-color: '. $border_color.' ; ';
-            }
-            if(!empty($link_color))
-                $output .= 'color:'. $link_color.';';
-
+        $output .= $this->section.' .accordion-heading > .accordion-toggle.collapsed {';
+            $output .= 'background:'. $collapsible_content['inactive_title_background'].'; ';
+            $output .= 'color:'. $collapsible_content['inactive_title_link_color'].';';
         $output .= '}';
 
-        $this->output .= $output;
+        $output .= $this->section.' .accordion-heading > .accordion-toggle.collapsed:hover {';
+            $output .= 'background:'. $collapsible_content['inactive_title_background'].'; ';
+            $output .= 'color:'. $collapsible_content['inactive_title_link_color'].';';
+        $output .= '}';
+
+        $output .= $this->section.' .accordion-heading > .accordion-toggle {';
+            $output .= 'background:'. $collapsible_content['inactive_title_background'].'; ';
+            $output .= 'color:'. $collapsible_content['inactive_title_link_color'].';';
+        $output .= '}';
+
+        $output .= $this->section.' .accordion-heading > .accordion-toggle:hover {';
+            $output .= 'background:'. $collapsible_content['inactive_title_background'].'; ';
+            $output .= 'color:'. $collapsible_content['inactive_title_link_color'].';';
+        $output .= '}';
+
     }
 
 

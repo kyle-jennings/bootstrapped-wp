@@ -128,6 +128,5 @@ $navbar_settings_tabs = array(
     'headings' => $headings_fields,
     'text' => $text_fields,
     'images' => $images_fields,
-    'components' => $components_fields,
     'navbar_settings' => $navbar_settings_fields
 );

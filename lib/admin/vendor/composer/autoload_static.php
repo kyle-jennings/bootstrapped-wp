@@ -21,8 +21,16 @@ class ComposerStaticInit9948eaf4bd853dbddd3a6977eb7da93b
     );
 
     public static $classMap = array (
-        'bswp\\css\\background' => __DIR__ . '/../..' . '/bswp/css/background.php',
-        'bswp\\css\\builder' => __DIR__ . '/../..' . '/bswp/css/builder.php',
+        'bswp\\css\\Background' => __DIR__ . '/../..' . '/bswp/css/class-Background.php',
+        'bswp\\css\\Borders' => __DIR__ . '/../..' . '/bswp/css/class-Borders.php',
+        'bswp\\css\\Builder' => __DIR__ . '/../..' . '/bswp/css/class-Builder.php',
+        'bswp\\css\\Headings' => __DIR__ . '/../..' . '/bswp/css/class-Headings.php',
+        'bswp\\css\\Images' => __DIR__ . '/../..' . '/bswp/css/class-Images.php',
+        'bswp\\css\\Text' => __DIR__ . '/../..' . '/bswp/css/class-Text.php',
+        'bswp\\css\\collapsible' => __DIR__ . '/../..' . '/bswp/css/class-BuilderCollapsible.php',
+        'bswp\\css\\componentAbstract' => __DIR__ . '/../..' . '/bswp/css/component.php',
+        'bswp\\css\\components' => __DIR__ . '/../..' . '/bswp/css/components.php',
+        'bswp\\css\\tabbable' => __DIR__ . '/../..' . '/bswp/css/tabbable.php',
         'bswp\\fields\\settings' => __DIR__ . '/../..' . '/bswp/fields/settings.php',
         'bswp\\forms\\dropdown' => __DIR__ . '/../..' . '/bswp/forms/dropdown.php',
         'bswp\\forms\\fields\\colorField' => __DIR__ . '/../..' . '/bswp/forms/fields/colorField.php',

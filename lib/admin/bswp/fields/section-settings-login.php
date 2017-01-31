@@ -36,6 +36,5 @@ foreach($unset as $v)
 $login_settings_tabs = array(
     'background' => $background_fields,
     'text' => $text_fields,
-    'components' => $components_fields,
     'login_settings' => $login_settings_fields
 );

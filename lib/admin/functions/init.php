@@ -7,8 +7,10 @@ function bswp_admin_body_class( $classes ) {
 }
 add_filter( 'admin_body_class', 'bswp_admin_body_class' );
 
+$settings = new settings;
+add_action('admin_init', array($settings, 'register_section_settings'));
+add_action('admin_init', array($settings, 'build_css'));
 
-add_action('admin_init', array(new settings, 'register_section_settings'));
 
 
 include('live-preview.php');

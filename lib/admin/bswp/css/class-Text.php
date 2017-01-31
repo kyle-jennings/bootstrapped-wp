@@ -3,7 +3,7 @@
 namespace bswp\css;
 
 
-class text {
+class Text {
 
     public $section;
     public $links = array('normal','hover','active', 'visited');

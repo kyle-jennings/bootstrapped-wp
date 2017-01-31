@@ -6,8 +6,16 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'bswp\\css\\background' => $baseDir . '/bswp/css/background.php',
-    'bswp\\css\\builder' => $baseDir . '/bswp/css/builder.php',
+    'bswp\\css\\Background' => $baseDir . '/bswp/css/class-Background.php',
+    'bswp\\css\\Borders' => $baseDir . '/bswp/css/class-Borders.php',
+    'bswp\\css\\Builder' => $baseDir . '/bswp/css/class-Builder.php',
+    'bswp\\css\\Headings' => $baseDir . '/bswp/css/class-Headings.php',
+    'bswp\\css\\Images' => $baseDir . '/bswp/css/class-Images.php',
+    'bswp\\css\\Text' => $baseDir . '/bswp/css/class-Text.php',
+    'bswp\\css\\collapsible' => $baseDir . '/bswp/css/class-BuilderCollapsible.php',
+    'bswp\\css\\componentAbstract' => $baseDir . '/bswp/css/component.php',
+    'bswp\\css\\components' => $baseDir . '/bswp/css/components.php',
+    'bswp\\css\\tabbable' => $baseDir . '/bswp/css/tabbable.php',
     'bswp\\fields\\settings' => $baseDir . '/bswp/fields/settings.php',
     'bswp\\forms\\dropdown' => $baseDir . '/bswp/forms/dropdown.php',
     'bswp\\forms\\fields\\colorField' => $baseDir . '/bswp/forms/fields/colorField.php',

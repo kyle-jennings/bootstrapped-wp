@@ -2,7 +2,7 @@
 
 namespace bswp\css;
 
-class images {
+class Images {
 
     public $section;
 

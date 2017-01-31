@@ -2,8 +2,7 @@
 
 namespace bswp\css;
 
-
-class headings {
+class Headings {
 
     public $section;
     public $headings;

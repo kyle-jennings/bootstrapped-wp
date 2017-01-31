@@ -5,7 +5,6 @@ namespace bswp\menus;
 use bswp\pageSections;
 use bswp\menus\nav;
 use bswp\forms\form;
-use bswp\css\builder;
 
 class adminMenu extends pageSections{
 
@@ -50,11 +49,6 @@ class adminMenu extends pageSections{
 
     public function display_section(){
 
-        $builder = new builder;
-        $builder->init();
-        $builder->add_breaklines();
-        // examine($builder);
-        // examine($GLOBALS['bswp\fields\settings']);
 
         // get the current section, settings tab, and sub settings
         $bswp_nav = new nav;

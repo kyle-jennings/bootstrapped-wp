@@ -76,6 +76,5 @@ $feed_settings_tabs = array(
     'headings' => $headings_fields,
     'text' => $text_fields,
     'images' => $images_fields,
-    'components' => $components_fields,
     'feed_settings' => $feed_settings_fields
 );

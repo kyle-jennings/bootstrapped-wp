@@ -43,6 +43,5 @@ $nav_dropdown_settings_tabs = array(
     'headings' => $headings_fields,
     'text' => $text_fields,
     'images' => $images_fields,
-    'components' => $components_fields,
     'nav_dropdown_settings' => $nav_dropdown_settings_fields
 );

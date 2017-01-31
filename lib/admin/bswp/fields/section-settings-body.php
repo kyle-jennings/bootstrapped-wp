@@ -74,6 +74,7 @@ $body_settings_tabs = array(
     'headings' => $headings_fields,
     'text' => $text_fields,
     'images' => $images_fields,
-    'components' => $components_fields,
+    'blockquote' => $blockquote,
     'body_settings' => $body_settings_fields
 );
+// examine($body_settings_tabs['blockquote']);

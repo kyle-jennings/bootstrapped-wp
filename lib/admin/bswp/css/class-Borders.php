@@ -2,7 +2,7 @@
 
 namespace bswp\css;
 
-class borders {
+class Borders {
     public $directions = array('top','right','bottom','left');
     public $corners = array('top_left', 'top_right','bottom_right','bottom_left');
     public $parts = array('style', 'color', 'width');

@@ -37,6 +37,9 @@ class field {
 
             $tabs = $field['tabs'];
 
+            if(empty($tabs))
+                continue;
+
             foreach($tabs as $tab){
 
                 $tab_fields = $tab['fields'];
@@ -79,6 +82,8 @@ class field {
             $toggled_by = $field['toggled_by'];
             $wrapper_class = $field['wrapper_class'] ? $field['wrapper_class'] : '';
             $class = 'bswp\forms\fields\\' .$type.'Field';
+
+            // error_log($class);
 
             $data_toggled_by = '';
             $data_toggle_name = '';

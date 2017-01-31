@@ -1,9 +1,9 @@
 <?php
 
 namespace bswp\css;
-use bswp\css\background;
+use bswp\css\Background;
 
-class builder {
+class Builder {
 
     public $sections = array(
         'theme_settings',
@@ -25,7 +25,6 @@ class builder {
         'borders',
         'headings',
         'text',
-        'components',
         'images',
         'settings'
     );
@@ -66,7 +65,7 @@ class builder {
             $this->text_settings($section);
             $this->headings_settings($section);
             $this->images_settings($section);
-            $this->components_settings($section);
+            // $this->components_settings($section);
             // $selector = str_replace('_settings','-section', $section);
             // $this->create_section_element($section, $selector);
 
@@ -98,7 +97,7 @@ class builder {
         if(empty($this->saved_values[$section]['background']))
             return;
 
-        $background_styles = new background($this->saved_values[$section]['background']);
+        $background_styles = new Background($this->saved_values[$section]['background']);
         $background_styles->colors();
         $background_styles->wallpaper();
 
@@ -112,7 +111,7 @@ class builder {
         if(empty($this->saved_values[$section]['borders']))
             return;
 
-        $borders_styles = new borders($this->saved_values[$section]['borders']);
+        $borders_styles = new Borders($this->saved_values[$section]['borders']);
         $borders_styles->borders();
         $borders_styles->border_radii();
         $borders_styles->add_breaklines();
@@ -125,7 +124,7 @@ class builder {
         if(empty($this->saved_values[$section]['text']))
             return;
 
-        $text_styles = new text($this->saved_values[$section]['text'], $section);
+        $text_styles = new Text($this->saved_values[$section]['text'], $section);
         $text_styles->links();
         $text_styles->add_breaklines();
         $this->sections[$section]['text'] = $text_styles;
@@ -138,7 +137,7 @@ class builder {
         if(empty($this->saved_values[$section]['headings']))
             return;
 
-        $headings_styles = new headings($this->saved_values[$section]['headings'], $section);
+        $headings_styles = new Headings($this->saved_values[$section]['headings'], $section);
         $headings_styles->headings();
 
         $headings_styles->add_breaklines();
@@ -151,7 +150,7 @@ class builder {
         if(empty($this->saved_values[$section]['images']))
             return;
 
-        $images_styles = new images($this->saved_values[$section]['images'], $section);
+        $images_styles = new Images($this->saved_values[$section]['images'], $section);
         $images_styles->image('inline');
         $images_styles->image('caption');
         $images_styles->image('linked');
@@ -190,7 +189,7 @@ class builder {
         $collapsible->title_styles('hovered_title');
         $collapsible->add_breaklines();
 
-        examine($collapsible);
+        // examine($collapsible);
 
         $components_styles->add_breaklines();
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace bswp\fields;
+use bswp\css\Builder;
 
 class settings{
 
@@ -26,7 +27,7 @@ class settings{
 
         // get the fields file
         $theme_root = get_template_directory();
-        $file = dirname(__FILE__).'/field-settings.php';
+        $file = dirname(__FILE__).'/fields-settings.php';
         include_once($file);
 
         $this->settings = $$settings_array;
@@ -83,8 +84,6 @@ class settings{
     }
 
 
-
-
     public function register_section_settings(){
 
 
@@ -107,16 +106,18 @@ class settings{
 
             register_setting('bswp_'.$this->section, 'bswp_'.$this->section);
         }
+
     }
 
     public function register_field_settings($field_groups){
-
+        if(empty($field_groups))
+            return;
         // loop through each tab
         foreach($field_groups as $field_group){
             $fields = $field_group['fields'];
 
             foreach($fields as $field){
-            // error_log($field['name']);
+
               add_settings_field(
                     $field['name'],
                     null,
@@ -127,6 +128,22 @@ class settings{
             }
         }
 
+    }
+
+
+    public function build_css(){
+
+        add_filter('pre_update_option_'.'bswp_'.$this->section, function($new_value, $old_value = array() ){
+
+
+            $builder = new Builder;
+            $builder->init();
+            $builder->add_breaklines();
+            
+            // examine($GLOBALS['bswp\fields\settings']);
+
+            return $new_value;
+        });
     }
 
 }

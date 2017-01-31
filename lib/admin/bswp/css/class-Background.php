@@ -6,7 +6,7 @@ namespace bswp\css;
 /**
  * Background Colors
  */
-class background {
+class Background {
 
     public $start_color;
     public $end_color;
