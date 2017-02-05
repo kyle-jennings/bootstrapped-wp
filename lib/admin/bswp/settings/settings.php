@@ -1,6 +1,6 @@
 <?php
 
-namespace bswp\fields;
+namespace bswp\settings;
 use bswp\css\Builder;
 
 class settings{
@@ -21,6 +21,7 @@ class settings{
         }
 
         $this->saved_values = get_option('bswp_'.$this->section);
+
         $this->general_form_settings = $this->saved_values['general_form_settings'];
 
         $settings_array = $this->section.'_tabs';
@@ -30,8 +31,9 @@ class settings{
         $file = dirname(__FILE__).'/fields-settings.php';
         include_once($file);
 
+
         $this->settings = $$settings_array;
-        $this->set_saved_values();
+        // $this->set_saved_values();
 
 
         $class = __CLASS__;
@@ -139,7 +141,7 @@ class settings{
             $builder = new Builder;
             $builder->init();
             $builder->add_breaklines();
-            
+
             // examine($GLOBALS['bswp\fields\settings']);
 
             return $new_value;

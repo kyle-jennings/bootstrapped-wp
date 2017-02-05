@@ -2,26 +2,42 @@
 
 namespace bswp\forms\fields;
 
-class field {
+class Field {
 
-    public $tab;
-    public $fields;
-    public $section;
+    public $name;
+    public $label;
+    public $args;
+    public $toggle_fields;
+    public $toggled_by;
+    public $preview;
+    public $class;
+    public $wrapper_class;
 
-    public function __construct($group){
-        $this->section = $GLOBALS['bswp\fields\settings']->section;
-        $this->group = $group;
+    public $output = '';
+
+    public function __construct( $settings = array() ){
+        extract($settings);
+        $name = isset($name) ? $name : 'field';
+
+        $this->name = $name;
+        $this->label = isset($label) ? $label : ucfirst(str_replace(array('-','_'), ' ', $name ) );
+        $this->args = isset($args) ? $args : array();
+        $this->toggle_fields = isset($toggle_fields) ? $toggle_fields : array();
+        $this->toggled_by = isset($toggled_by) ? $toggled_by : array();
+        $this->preview = true;
+        $this->class = isset($class) ? $class : '';
+        $this->wrapper_class = isset($wrapper_class) ? $wrapper_class : '';
+
     }
-    // ------------------------------------------
-    //  The field generators
-    // ------------------------------------------
+
+
 
     public function __toString(){
         return $this->output;
     }
 
 
-    public function get_the_field(){
+    public function get_the_field() {
         return $this->output;
     }
 
@@ -30,14 +46,6 @@ class field {
     public function the_field(){
         echo $this->output;
     }
-
-    /**
-     * This is used for saved values which do not need fields
-     * @return [type] [description]
-     */
-    public function no_field_generator(){}
-
-
 
     // this is gross but im hungover
     public function find_value($target){
@@ -138,7 +146,4 @@ class field {
 
         return ['data_toggled_by'=>$data_toggled_by, 'data_toggle_name'=>$data_toggle_name];
     }
-
-
-
 }

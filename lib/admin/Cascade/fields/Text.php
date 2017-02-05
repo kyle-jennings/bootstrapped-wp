@@ -1,6 +1,6 @@
 <?php
 
-namespace bswp\forms\fields;
+namespace Cascade\fields;
 
 class textField extends field {
 

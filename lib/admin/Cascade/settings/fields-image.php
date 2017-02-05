@@ -96,7 +96,3 @@ foreach($image_types as $image){
 
 
 }
-$images_fields = array(
-    'section'=>'images',
-    'tabs'=>$images
-);

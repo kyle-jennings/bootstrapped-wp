@@ -1,29 +1,12 @@
 <?php
 
-namespace bswp\forms\fields;
-
-class colorField extends field {
-
-    public $fields;
-    public $section;
-    public $tab;
-    public $args;
+namespace Cascade\fields;
 
 
-    public $output = '';
+class ColorField extends Field {
 
-    /**
-     * produces color field
-     */
-    public function __construct($args=array(), $tab = null, $section, $group){
 
-        $this->tab = $tab;
-        $this->section = $section;
-
-        extract($args);
-        $value = isset($value) ? $value : '';
-        $output = '';
-
+    public function field_output(){
         $output .= '<label>'.$label.'</label>';
 
         $alpha = '1';
@@ -45,10 +28,7 @@ class colorField extends field {
 
         $output .= '<a class="clearColor js--clear-color">Clear</a>';
 
-        $this->output = $output;
-    }
-
-    public function __toString(){
-        return $this->output;
+        $this->output;
+        unset($output);
     }
 }

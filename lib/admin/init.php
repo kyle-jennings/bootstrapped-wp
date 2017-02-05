@@ -2,6 +2,8 @@
 
 require "vendor/autoload.php";
 
+require_once('nav-menu.php');
+
 use bswp\menus\adminMenu;
 use bswp\menus\nav;
 
@@ -22,7 +24,7 @@ if(! function_exists('examine') ){
         die;
     }
 
-
+}
 
 /**
  * Adds the admin area CSS and JS
@@ -57,8 +59,6 @@ function kjd_load_style_sheets_and_scripts() {
 add_action('admin_init', 'kjd_load_style_sheets_and_scripts');
 
 
-
-}
 
 
 // update function

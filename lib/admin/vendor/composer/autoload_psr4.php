@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'bswp\\' => array($baseDir . '/bswp'),
+    'Cascade\\' => array($baseDir . '/Cascade'),
 );

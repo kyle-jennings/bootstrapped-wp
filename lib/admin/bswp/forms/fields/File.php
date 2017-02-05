@@ -3,14 +3,14 @@
 namespace bswp\forms\fields;
 
 
-class fileField extends field {
+class File {
 
-    public $output;
+    
 
     /**
      * Produces the file field input
      */
-    public function __construct($args=array(), $tab = null, $section, $group){
+    public function generate_output( $args=array() ) {
 
         $this->tab = $tab;
         $this->section = $section;
@@ -29,7 +29,4 @@ class fileField extends field {
 
     }
 
-    public function __toString(){
-        return $this->output;
-    }
 }

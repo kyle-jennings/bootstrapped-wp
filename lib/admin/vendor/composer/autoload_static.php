@@ -11,6 +11,10 @@ class ComposerStaticInit9948eaf4bd853dbddd3a6977eb7da93b
         array (
             'bswp\\' => 5,
         ),
+        'C' => 
+        array (
+            'Cascade\\' => 8,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -18,35 +22,10 @@ class ComposerStaticInit9948eaf4bd853dbddd3a6977eb7da93b
         array (
             0 => __DIR__ . '/../..' . '/bswp',
         ),
-    );
-
-    public static $classMap = array (
-        'bswp\\css\\Background' => __DIR__ . '/../..' . '/bswp/css/class-Background.php',
-        'bswp\\css\\Borders' => __DIR__ . '/../..' . '/bswp/css/class-Borders.php',
-        'bswp\\css\\Builder' => __DIR__ . '/../..' . '/bswp/css/class-Builder.php',
-        'bswp\\css\\Headings' => __DIR__ . '/../..' . '/bswp/css/class-Headings.php',
-        'bswp\\css\\Images' => __DIR__ . '/../..' . '/bswp/css/class-Images.php',
-        'bswp\\css\\Text' => __DIR__ . '/../..' . '/bswp/css/class-Text.php',
-        'bswp\\css\\collapsible' => __DIR__ . '/../..' . '/bswp/css/class-BuilderCollapsible.php',
-        'bswp\\css\\componentAbstract' => __DIR__ . '/../..' . '/bswp/css/component.php',
-        'bswp\\css\\components' => __DIR__ . '/../..' . '/bswp/css/components.php',
-        'bswp\\css\\tabbable' => __DIR__ . '/../..' . '/bswp/css/tabbable.php',
-        'bswp\\fields\\settings' => __DIR__ . '/../..' . '/bswp/fields/settings.php',
-        'bswp\\forms\\dropdown' => __DIR__ . '/../..' . '/bswp/forms/dropdown.php',
-        'bswp\\forms\\fields\\colorField' => __DIR__ . '/../..' . '/bswp/forms/fields/colorField.php',
-        'bswp\\forms\\fields\\field' => __DIR__ . '/../..' . '/bswp/forms/fields/field.php',
-        'bswp\\forms\\fields\\fileField' => __DIR__ . '/../..' . '/bswp/forms/fields/fileField.php',
-        'bswp\\forms\\fields\\labelField' => __DIR__ . '/../..' . '/bswp/forms/fields/labelField.php',
-        'bswp\\forms\\fields\\selectField' => __DIR__ . '/../..' . '/bswp/forms/fields/selectField.php',
-        'bswp\\forms\\fields\\sidebarField' => __DIR__ . '/../..' . '/bswp/forms/fields/sidebarField.php',
-        'bswp\\forms\\fields\\sortableField' => __DIR__ . '/../..' . '/bswp/forms/fields/sortableField.php',
-        'bswp\\forms\\fields\\textField' => __DIR__ . '/../..' . '/bswp/forms/fields/textField.php',
-        'bswp\\forms\\fields\\textareaField' => __DIR__ . '/../..' . '/bswp/forms/fields/textarea.php',
-        'bswp\\forms\\form' => __DIR__ . '/../..' . '/bswp/forms/form.php',
-        'bswp\\forms\\settingsTab' => __DIR__ . '/../..' . '/bswp/forms/settingsTab.php',
-        'bswp\\menus\\adminMenu' => __DIR__ . '/../..' . '/bswp/menus/adminMenu.php',
-        'bswp\\menus\\nav' => __DIR__ . '/../..' . '/bswp/menus/nav.php',
-        'bswp\\pageSections' => __DIR__ . '/../..' . '/bswp/pageSections.php',
+        'Cascade\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Cascade',
+        ),
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -54,7 +33,6 @@ class ComposerStaticInit9948eaf4bd853dbddd3a6977eb7da93b
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit9948eaf4bd853dbddd3a6977eb7da93b::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit9948eaf4bd853dbddd3a6977eb7da93b::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit9948eaf4bd853dbddd3a6977eb7da93b::$classMap;
 
         }, null, ClassLoader::class);
     }

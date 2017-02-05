@@ -1,5 +1,7 @@
 <?php
 
+namespace bswp\settings;
+
 /**
  * Each set of fields can be automatically generated using ths following array
  * structure for settings:

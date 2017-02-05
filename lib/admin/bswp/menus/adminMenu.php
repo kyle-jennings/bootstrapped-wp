@@ -36,11 +36,11 @@ class adminMenu extends pageSections{
             $label = ucwords($label);
 
             add_submenu_page(
-                'bswp_settings',
+                'bswp_settings', // parent slug
                 $label,
                 $label,
                 'manage_options',
-                'bswp_settings&section='.$section,
+                'bswp_settings&section='.$section, // page slug
                 array($this, 'display_section')
             );
         }

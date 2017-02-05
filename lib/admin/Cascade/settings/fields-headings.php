@@ -57,8 +57,3 @@ foreach($heading_tags as $heading){
         ),
     );
 }
-// kjd($headings);
-$headings_fields = array(
-    'section'=>'headings',
-    'tabs'=>$headings
-);
