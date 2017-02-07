@@ -3,8 +3,8 @@
 namespace bswp\menus;
 
 use bswp\pageSections;
-use bswp\menus\nav;
-use bswp\forms\form;
+use bswp\menus\Nav;
+use bswp\forms\Form;
 
 class adminMenu extends pageSections{
 
@@ -51,13 +51,14 @@ class adminMenu extends pageSections{
 
 
         // get the current section, settings tab, and sub settings
-        $bswp_nav = new nav;
-        $form = new form;
+        $nav = new Nav;
+        $form = new Form;
 
 
         settings_errors();
-        echo $bswp_nav->tabs_nav();
-        echo $form->init();
+        echo $nav->tabs_nav();
+
+        $form->the_form();
 
 
     }

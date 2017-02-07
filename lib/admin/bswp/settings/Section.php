@@ -39,6 +39,7 @@ class Section {
     public $is_active = false;
     public $inherits_from = array();
 
+    public $current_group = '';
     public $groups;
     public $fields = array();
 
@@ -54,7 +55,7 @@ class Section {
         }elseif( isset($_GET['section']) ){
             $this->name = $_GET['section'];
         }elseif( isset($_POST) ){
-            $this->name = str_replace('bswp', '',$_POST['option_page']);
+            $this->name = str_replace('bswp_', '',$_POST['option_page']);
         }else{
             throw new Exception("Section not set");
         }
@@ -70,19 +71,16 @@ class Section {
         $this->get_section_field_settings();
 
         $this->set_values_to_fields();
+        $this->form_meta_settings = $this->saved_values['form_meta_settings'];
+        // examine($this->form_meta_settings);
+
+        unset($this->saved_values);
 
         $class = __CLASS__;
         // $class = $class;
 
-        if ( empty( $GLOBALS[ $class ] ) )
-            $GLOBALS[ $class ] = $this;
-
-    }
-
-
-    // get all the saved values for this section from the DB, options table
-    public function get_saved_values(){
-        $this->saved_values = get_option('bswp_'.$this->name);
+        // if ( empty( $GLOBALS[ $class ] ) )
+        $GLOBALS[ $class ] = $this;
 
     }
 
@@ -99,17 +97,25 @@ class Section {
         include_once( $this->settings_file );
 
         foreach( $groups as $key=>$group )
-            $this->groups[$key] = $group;
+        $this->groups[$key] = $group;
     }
 
 
-    public function set_values_to_fields(){
+    // get all the saved values for this section from the DB, options table
+    public function get_saved_values(){
+        $this->saved_values = get_option('bswp_'.$this->name);
 
+    }
+
+
+    // Start process to take the set values and save them to the fields
+    public function set_values_to_fields(){
         $this->loop_groups();
 
     }
 
 
+    // loop through the settings group
     private function loop_groups(){
 
         foreach( $this->groups as &$group ){
@@ -118,16 +124,22 @@ class Section {
     }
 
 
+
+    // loop through the groups' tabs
     private function loop_tabs( &$group ){
         $tabs = $group->tabs;
 
+        if(empty($tabs) )
+            return;
         foreach( $tabs as &$tab ){
-            $this->loop_fields($tab);
+            $this->loop_fields_setup_tasks($tab, $group->name);
         }
     }
 
 
-    private function loop_fields( &$tab = array() ){
+
+    // loop through the tabs' fields
+    private function loop_fields_setup_tasks( &$tab = array(), $group_name = null ){
 
         $fields = $tab;
 
@@ -136,6 +148,14 @@ class Section {
 
         foreach($fields as $name=>$field){
 
+            $type = new \ReflectionClass($field);
+            $type = $type->getShortName();
+
+            $tab[$name]->type = $type;
+            $tab[$name]->section_name = $this->name;
+            $tab[$name]->group_name = $group_name;
+            $tab[$name]->form_name_attr = $this->name.'_section';
+
             $saved_value = $this->find_saved_value($name);
             $tab[$name]->value = $saved_value;
         }
@@ -143,7 +163,12 @@ class Section {
     }
 
 
+
+    // see if the field has a saved value
     public function find_saved_value($name) {
+
+        if(empty($this->saved_values))
+            return false;
 
         // note, this is temporary, dont use nested forloops kyle
         foreach($this->saved_values as $group)
@@ -165,7 +190,8 @@ class Section {
             'bswp_'.$this->name
         );
 
-        $this->register_field($this->fields);
+        // examine($this->fields);
+        // $this->register_field($this->fields);
         register_setting('bswp_'.$this->name, 'bswp_'.$this->name);
 
     }

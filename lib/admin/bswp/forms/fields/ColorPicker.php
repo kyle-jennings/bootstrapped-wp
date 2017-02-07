@@ -9,35 +9,31 @@ class ColorPicker extends Field{
     /**
      * produces color field
      */
-    public function generate_output( $args=array() ) {
+    public function field_output() {
 
 
-        extract($args);
-        $value = isset($value) ? $value : '';
         $output = '';
 
-        $output .= '<label>'.$label.'</label>';
+
+        $output .= '<label>'.$this->label.'</label>';
 
         $alpha = '1';
-        if( is_string($args) && $args == 'transparency'):
-            $rgba = $this->find_value($name.'_rgba');
+        if( is_string($this->args) && $this->args == 'transparency'):
+            $rgba = $this->find_value($this->name.'_rgba');
             $alpha = $this->get_alpha($rgba);
         endif;
 
-        $opacity_opt = (is_string($args) && $args == 'transparency') ? 'opacity' : '';
+        $opacity_opt = ( is_string($this->args) && $this->args == 'transparency' ) ? 'opacity' : '';
+
         // the visible output
-        $output .= '<input class="minicolors '.$opacity_opt.'" data-opacity="'.$alpha.'" name="bswp_'.$this->section.'['.$group.']['.$name.']"
-            value="'.$value.'"';
+        $output .= '<input class="minicolors '.$opacity_opt.'" data-opacity="'.$alpha.'" name="bswp_'.$this->section_name.'['.$this->group_name.']['.$this->name.']"
+            value="'.$this->value.'"';
         $output .= '/>';
 
-        if( is_string($args) && $args == 'transparency'){
-            $output .= '<input class="rgba-color" name="bswp_'.$this->section.'['.$group.']['.$name.'_rgba]"
-            type="hidden" value="'.$rgba.'" />';
-        }
 
         $output .= '<a class="clearColor js--clear-color">Clear</a>';
 
-        $this->output = $output;
+        return $output;
     }
 
 

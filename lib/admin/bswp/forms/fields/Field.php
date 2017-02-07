@@ -6,12 +6,15 @@ class Field {
 
     public $name;
     public $label;
+    public $field_name;
     public $args;
     public $toggle_fields;
     public $toggled_by;
     public $preview;
     public $class;
     public $wrapper_class;
+
+    public $value = '';
 
     public $output = '';
 
@@ -32,44 +35,49 @@ class Field {
 
 
 
-    public function __toString(){
+    public function __toString() {
         return $this->output;
     }
 
 
     public function get_the_field() {
+        $this->generate_output();
         return $this->output;
     }
 
 
 
-    public function the_field(){
+    public function the_field() {
         echo $this->output;
     }
 
     // this is gross but im hungover
-    public function find_value($target){
+    public function find_value($target) {
 
-        $fields = $GLOBALS['bswp\fields\settings']->settings;
+        $section = $GLOBALS['bswp\settings\Section'];
 
-        foreach($fields as $field){
+        // loop through the settings group
+        foreach( $section->groups as $group ){
+            $tabs = $group->tabs;
 
-            $tabs = $field['tabs'];
-
-            if(empty($tabs))
+            // loop through the tabs
+            if( empty($tabs) )
                 continue;
 
-            foreach($tabs as $tab){
+            foreach( $tabs as $tab ){
+                $fields = $tab;
+                // loop through the fields
+                if(!is_array($fields))
+                    continue;
 
-                $tab_fields = $tab['fields'];
-                foreach($tab_fields as $tab_field){
-
-                    if($tab_field['name'] == $target){
-                        return $tab_field['value'];
-                    }
+                // when we find the matching field, return the value
+                foreach($fields as $name=>$field){
+                    if($target == $field->name)
+                        return $field->value;
                 }
             }
         }
+
         return false;
     }
 
@@ -90,38 +98,36 @@ class Field {
     /**
      * Identifies which field to use based on the 'type' key
      */
-    public function identify_fields($fields = array(), $tab_name, $current_tab = null){
+    public function generate_output(){
 
         $output = '';
 
-        foreach($fields as $field){
-
-            $type = $field['type'];
-            $name = $field['name'];
-            $toggled_by = $field['toggled_by'];
-            $wrapper_class = $field['wrapper_class'] ? $field['wrapper_class'] : '';
-            $class = 'bswp\forms\fields\\' .$type.'Field';
-
-            // error_log($class);
-
-            $data_toggled_by = '';
-            $data_toggle_name = '';
 
 
-            if(!is_null($toggled_by) ){
-                $toggles = $this->toggle_fields_markup($toggled_by, $name, $current_tab);
-                extract($toggles);
-            }
+        // $wrapper_class = $field['wrapper_class'] ? $field['wrapper_class'] : '';
+        // $class = 'bswp\forms\fields\\' .$type.'Field';
 
-            if($type == 'no')
-                continue;
 
-            $output .= '<div class="option '.$data_toggled_by.' '.$type.' '.$wrapper_class.'" '.$data_toggle_name.' >';
-                $output .= new $class($field, $tab_name, $this->section, $this->group);
-            $output .= '</div>';
+
+        $data_toggled_by = '';
+        $data_toggle_name = '';
+
+
+        if(!empty($this->toggled_by) ){
+            $toggles = $this->toggle_fields_markup($this->toggled_by);
+            extract($toggles);
         }
 
-        return $output;
+        $output .= '<div class="option '.$data_toggled_by.' '.$this->type.' '.$this->wrapper_class.'" '.$data_toggle_name.' >';
+            $output .= $this->field_output();
+        $output .= '</div>';
+
+        if(!empty($this->toggled_by) ){
+            // examine($output);
+            // examine('boom');
+        }
+
+        $this->output = $output;
     }
 
 
@@ -129,7 +135,9 @@ class Field {
     /**
      * field toggling
      */
-    public function get_toggled_by($toggled_bys, $current_tab = null){
+    public function get_toggled_by($toggled_bys){
+
+
         $output = 'hide js--toggled-field ';
         foreach ($toggled_bys as $field=>$value){
             $output .= $field.' ';
@@ -139,11 +147,18 @@ class Field {
     }
 
 
-    public function toggle_fields_markup($toggled_by, $name, $current_tab = null){
+    public function toggle_fields_markup($toggled_by){
 
-        $data_toggled_by = !empty($toggled_by) ? $this->get_toggled_by($toggled_by, $current_tab) : '' ;
-        $data_toggle_name = !empty($toggled_by) ? 'data-toggle-name="'.$name.'"' : '';
+        $data_toggled_by = !empty($toggled_by) ? $this->get_toggled_by($toggled_by) : '' ;
+        $data_toggle_name = !empty($toggled_by) ? 'data-toggle-name="'.$this->name.'"' : '';
 
-        return ['data_toggled_by'=>$data_toggled_by, 'data_toggle_name'=>$data_toggle_name];
+        $data = array(
+            'data_toggled_by'=>$data_toggled_by,
+            'data_toggle_name'=>$data_toggle_name
+        );
+
+
+
+        return $data;
     }
 }

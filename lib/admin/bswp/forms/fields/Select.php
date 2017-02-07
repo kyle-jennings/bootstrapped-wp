@@ -5,8 +5,6 @@ namespace bswp\forms\fields;
 
 class Select extends Field{
 
-    public $output;
-
     /**
      * Select field
      * 'args' field is in array - used to populate the options
@@ -14,41 +12,38 @@ class Select extends Field{
      * otherwise the key is the value and the value is the label. huh?
      * @return [type]       [description]
      */
-    public function generate_output( $args=array() ) {
-
-        $this->tab = $tab;
-        $this->section = $section;
-
-        extract($args);
+    public function field_output() {
 
         $output = '';
+        $classes = $this->class;
+        $classes .= $this->toggle_fields ? ' js--toggle-field' : '';
 
-        $classes = $class;
-        $classes .= $toggle_fields ? ' js--toggle-field' : '';
+        $data = $this->toggle_fields ? 'data-field-toggle="'.$this->name.'"' : '';
+        $value = isset($this->value) ? $this->value : '';
 
-        $data = $toggle_fields ? 'data-field-toggle="'.$name.'"' : '';
-        $value = isset($value) ? $value : '';
+        $output .= '<label>'.$this->label.'</label>';
+        $output .= '<select class="'.$classes.'" '.$data.' name="bswp_'.$this->section_name.'['.$this->group_name.']['.$this->name.']">';
 
-        $output .= '<label>'.$label.'</label>';
-        $output .= '<select class="'.$classes.'" '.$data.' name="bswp_'.$this->section.'['.$group.']['.$name.']">';
+        foreach ($this->args as $key=>$option):
 
-        foreach ($args as $option):
+            $option_test = $option;
+            if(is_string($key))
+                $option_text = $key;
 
             $name = strtolower(str_replace(' ','_',$option));
             $data_targets = '';
-            if(isset($toggle_fields[$option])){
-
-                $data_targets = is_string($toggle_fields[$option]) ? 'data-targets="'.$toggle_fields[$option].'"' : '' ;
+            if(isset($this->toggle_fields[$option])){
+                $data_targets = is_string($this->toggle_fields[$option]) ? 'data-targets="'.$this->toggle_fields[$option].'"' : '' ;
             }
 
-            $output .= '<option '.$data_targets.' value="'.$name.'" '.selected( $name, $value, false).'>';
+            $output .= '<option '.$data_targets.' value="'.$option.'" '.selected( $option, $this->value, false).'>';
                 $output .= str_replace('_',' ',$option);
             $output .= '</option>';
 
         endforeach;
         $output .= '</select>';
 
-        $this->output = $output;
+        return $output;
 
     }
 

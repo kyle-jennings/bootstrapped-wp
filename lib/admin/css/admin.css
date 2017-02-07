@@ -242,7 +242,8 @@ body.bswp .notice-dismiss:before:hover {
          form
 ------------------------------------------------------------------- */
 .bswp-form {
-
+    float: left;
+    width: 230px;
 }
 /* -----------------------------------------------------------------
          fields column
@@ -267,14 +268,14 @@ body.bswp .notice-dismiss:before:hover {
  */
 .btn-group.tab-switcher {
     margin-left: -20px;
-    margin-right: -30px;
+
     display: block;
 }
 
-.tab-switcher--spacer {
-  margin-bottom:20px;
-}
 
+.btn-group > .btn:first-child {
+  padding: 10px 20px;
+}
 
 @media screen and (max-width: 782px){
     .btn-group.tab-switcher {
@@ -297,6 +298,10 @@ body.bswp .notice-dismiss:before:hover {
 .tab-content--fields{
     padding-top: 20px;
 }
+
+
+
+
 /* -----------------------------------------------------------------
           Live Preview
 ------------------------------------------------------------------- */
@@ -331,11 +336,8 @@ body.bswp .notice-dismiss:before:hover {
 
 .preview-window {
     height:calc(100vh - 70px);
-
-/*  height: 100%;
-  height:auto;
-  min-height: 700px;*/
-  margin: 0 auto;
+    margin: 0 auto;
+    transition: width .3s ease-in-out;
 }
 
 .preview-window:after{
@@ -637,9 +639,21 @@ a.button.upload_image{margin-bottom:-10px;}
 /* -----------------------------------------------------------------
           Font preview - not working
 ------------------------------------------------------------------- */
-.pre_option{margin-right:20px;}
-.font_preview{clear:both; font-size:24px; line-height:16px; padding:15px 0;}
-.font_preview span{display:block;margin:10px 0;}
+.pre_option{
+    margin-right:20px;
+}
+
+.font_preview{
+    clear:both;
+    font-size:24px;
+    line-height:16px;
+    padding:15px 0;
+}
+
+.font_preview span{
+    display:block;
+    margin:10px 0;
+}
 
 
 
@@ -680,8 +694,9 @@ li.cycler_image > div.option,li.cycler_image > h3{padding:5px;}
 
 /* add and remove buttons for cycler*/
 .handlediv{
-	background:url(../img/arrows.png) no-repeat 6px 7px !important;
+	  background:url(../img/arrows.png) no-repeat 6px 7px !important;
 }
+
 #add_image {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
@@ -701,7 +716,12 @@ li.cycler_image > div.option,li.cycler_image > h3{padding:5px;}
 	text-shadow:
 		0px 1px 0px rgba(0,0,0,0.6);
 }
-#add_image:hover{	border: 1px solid #529128;}
+
+
+#add_image:hover {
+    border: 1px solid #529128;
+}
+
 .remove_image{
 	text-decoration:none;
 	font-family: Arial, Helvetica, sans-serif;
@@ -820,4 +840,3 @@ li.cycler_image > div.option,li.cycler_image > h3{padding:5px;}
 .options-list__settings {
   padding-left:10px;
 }
-

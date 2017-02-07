@@ -1,6 +1,7 @@
 <?php
 
-namespace bswp\settings;
+namespace bswp\settings\_helpers;
+
 
 
 /**
@@ -27,7 +28,7 @@ $border_styles = array(
 );
 
 
-function border_setings_map($return = 'border_styles_toggled_by', $border_targets = array() ){
+function border_settings_map($return = 'border_styles_toggled_by', $border_targets = array() ){
 
     $border_styles = array('solid'=>'','dotted'=>'','dashed'=>'','double'=>'','groove'=>'','ridge'=>'','inset'=>'','outset'=>'',);
 

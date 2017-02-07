@@ -2,7 +2,7 @@
 
 namespace bswp\forms\fields;
 
-class Text {
+class Text extends Field {
 
     public $output;
     /**
@@ -11,26 +11,19 @@ class Text {
      * @param  [type] $tab  [description]
      * @return [type]       [description]
      */
-    public function __construct( $args = array() ){
+    public function field_output(){
 
-        $this->tab = $tab;
-        $this->section = $section;
 
-        extract($args);
-        $value = isset($value) ? $value : '';
         $output = '';
 
         $output .= '<label>';
-            $output .= $label;
+            $output .= $this->label;
         $output .= '</label>';
 
-        $output .='<input type="text" name="bswp_'.$this->section.'['.$group.']['.$name.']"
-        value="'.$value.'" >';
+        $output .='<input type="text" name="bswp_'.$this->section_name.'['.$this->group_name.']['.$this->name.']"
+        value="'.$this->value.'" >';
 
-        $this->output = $output;
+        return $output;
     }
 
-    public function __toString(){
-        return $this->output;
-    }
 }

@@ -24,11 +24,11 @@ class nav extends pageSections{
     public function __construct(){
 
         $this->page = isset($_GET['page']) ? $_GET['page'] : null;
-        $this->section = isset($_GET['section']) ? $_GET['section'] : 'theme_settings';
-        $this->settings = isset($_GET['settings']) ? $_GET['settings'] : null;
+        $this->section = isset($GLOBALS['bswp\settings\Section']) ? $GLOBALS['bswp\settings\Section'] : null;
         $this->tab = isset($_GET['tab']) ? $_GET['tab'] : null;
 
-        $this->settings = $GLOBALS['bswp\fields\settings']->get_field_settings();
+
+        // $this->settings = $GLOBALS['bswp\fields\settings']->get_field_settings();
 
     }
 
@@ -41,7 +41,7 @@ class nav extends pageSections{
      */
     public function tabs_nav($active = null ){
 
-        if(empty($this->settings))
+        if(empty($this->section))
             return;
 
         $output = '';
@@ -52,21 +52,21 @@ class nav extends pageSections{
 
                 $output .= '<a class="components-nav__link components-nav__link--section js--sections-dropdown-toggle" href="#" >';
                     $output .= '<span class="dashicons dashicons-welcome-widgets-menus"></span>';
-                    $output .= ucfirst( str_replace('_',' ', $this->section ) );
+                    $output .= ucfirst( str_replace('_',' ', $this->section->name ) );
                 $output .= '</a>';
                 $output .= $this->sections_dropdown_nav();
 
-                foreach($this->settings as $tab):
+                foreach($this->section->groups as $group):
 
-                    $name = $tab['section'];
-                    $title = ucwords( str_replace('_',' ', $name ) );
+                    $name = $group->name;
+                    $display_name = $group->display_name;
 
                     $active_tab = $name == $this->settings ? 'active' : '';
 
                     $output .= '<a class="components-nav__link '.$active.'"';
                         $output .= 'data-toggle="tab"';
                         $output .= 'href="#'.$name.'">';
-                            $output .= $title;
+                            $output .= $display_name;
                     $output .= '</a>';
                 endforeach;
             $output .= '</div>';

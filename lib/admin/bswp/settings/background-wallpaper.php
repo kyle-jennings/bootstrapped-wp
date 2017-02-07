@@ -10,9 +10,6 @@ $background_wallpaper = array (
             'name'=>'background_use_wallpaper',
             'label'=>'Use Wallpaper?',
             'args'=>array('no', 'yes'),
-            // 'toggle_fields'=>array(
-            //     'yes'=>'image,repeat,attachment,position,positionX,positionY,size,percentage'
-            // ),
         )
     ),
     'background_image'=>new File(array(

@@ -13,7 +13,7 @@ $background_colors = array(
             'args'=>'transparency'
         )
     ),
-    'background_start_color_rgba'=>new HiddenField(
+    'background_start_color_rgba'=>new Hidden(
         array(
             'name'=>'background_start_color_rgba',
             'label'=>''
@@ -26,7 +26,7 @@ $background_colors = array(
             'args'=>'transparency'
         )
     ),
-    'background_end_color_rgba'=>new HiddenField(
+    'background_end_color_rgba'=>new Hidden(
         array(
             'name'=>'background_end_color_rgba',
             'label'=>''
