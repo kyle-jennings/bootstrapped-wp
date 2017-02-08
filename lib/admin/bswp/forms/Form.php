@@ -31,6 +31,8 @@ class Form {
 
 
     public function get_form_settings($field){
+        $form_meta_settings = $GLOBALS['bswp\settings\Section']->form_meta_settings;
+        $setting = isset($form_meta_settings[$field]) ? $form_meta_settings[$field] : '';
         return $GLOBALS['bswp\settings\Section']->form_meta_settings[$field];
     }
 
@@ -49,7 +51,7 @@ class Form {
 
         $classes = !$this->preview ? 'fields-wrapper--no-preview' : '';
         $current_tab_name_attr = 'bswp_'.$this->section_name.'[form_meta_settings][group_tab]';
-        $this->$current_tab_value = $current_tab_value = $this->get_form_settings('group_tab');
+        $this->current_tab_value = $current_tab_value = $this->get_form_settings('group_tab');
 
 
         $output = '';
@@ -114,7 +116,7 @@ class Form {
         if($this->current_tab_value)
             $active = ($current_tab_value == $id) ? 'active' : '';
         else
-            $active = '';
+            $active = $i == 0 ? 'active' : '';
 
         $output = '';
         // each section pane - ie background/borders/headers ect

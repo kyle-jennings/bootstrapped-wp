@@ -5,7 +5,8 @@ namespace bswp;
 class pageSections{
 
     public $sections = array(
-        'body_settings',
+        'base_settings',
+        // 'body_settings',
         // 'theme_settings',
         // 'header_settings',
         // 'navbar_settings',
