@@ -49,7 +49,7 @@ class Form {
 
         $classes = !$this->preview ? 'fields-wrapper--no-preview' : '';
         $current_tab_name_attr = 'bswp_'.$this->section_name.'[form_meta_settings][group_tab]';
-        $current_tab_value = $this->get_form_settings('group_tab');
+        $this->$current_tab_value = $current_tab_value = $this->get_form_settings('group_tab');
 
 
         $output = '';
@@ -110,12 +110,11 @@ class Form {
     public function group_content($group = null, $section_name = null, $i = 0) {
 
         $id = $group->name;
-        if($current_tab_value)
+
+        if($this->current_tab_value)
             $active = ($current_tab_value == $id) ? 'active' : '';
-        elseif(isset($_GET['tab']) )
-            $active = $_GET['tab'] == $id ? 'active': '';
         else
-            $active = ($i == 0) ? 'active' : '';
+            $active = '';
 
         $output = '';
         // each section pane - ie background/borders/headers ect

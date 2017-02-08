@@ -1,0 +1,20 @@
+// clearfix hack
+.row::before,
+.row::after,
+.cf::before,
+.cf::after {
+    content: ' ';
+    display: table;
+}
+
+.row::after,
+.cf::after {
+    clear: both;
+}
+
+
+
+.hide {
+
+    display: none;
+}

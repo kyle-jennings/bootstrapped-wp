@@ -20,7 +20,15 @@ class Text extends Field {
             $output .= $this->label;
         $output .= '</label>';
 
-        $output .='<input type="text" name="bswp_'.$this->section_name.'['.$this->group_name.']['.$this->name.']"
+        $class = '';
+        $data = '';
+
+        if($this->args['suffix']){
+            $class = 'js--add-suffix';
+            $data = 'data-suffix="'.$this->args['suffix'].'"';
+        }
+
+        $output .='<input class="'.$class.'" '.$data.' type="text" name="bswp_'.$this->section_name.'['.$this->group_name.']['.$this->name.']"
         value="'.$this->value.'" >';
 
         return $output;

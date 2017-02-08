@@ -1,0 +1,28 @@
+.btn-group.tab-switcher {
+    margin-left: -20px;
+
+    display: block;
+}
+
+
+.btn-group > .btn:first-child {
+  padding: 10px 20px;
+}
+
+@media screen and (max-width: 782px){
+    .btn-group.tab-switcher {
+        margin-left: -10px;
+        padding-left: -10px;
+    }
+}
+
+.btn-group .tab-switcher__dropdown {
+    border-radius: 0 !important;
+    display: block;
+    padding: 10px;
+    text-align: left;
+}
+
+.btn-group .tab-switcher__dropdown .caret {
+    float:right;
+}

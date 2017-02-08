@@ -1,0 +1,22 @@
+/* Zero Reset CSS */
+html,body,div,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,span,em,strong,b,i,img,q,samp,small,dl,dt,dd,ol,ul,li,fieldset,legend,form,label,object,embed,iframe,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,audio,canvas,figcaption,figure,footer,header,hgroup,output,section,video {margin:0;padding:0;border:0;outline:0;vertical-align:baseline;font-size:100%;background:transparent;}
+address,blockquote,dd,div,dl,fieldset,form,h1,h2,h3,h4,h5,h6,hr,noscript,ol,p,pre,table,tfoot,ul,article,aside,audio,canvas,figcaption,figure,footer,header,hgroup,output,section,video {display:block;}
+dl,ol,ul {list-style:none;}
+
+pre {font-family:monospace;}
+object,embed {vertical-align:bottom;}
+blockquote, q {quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after {content:'';content:none;}
+ins {text-decoration:none;}
+del {text-decoration:line-through;}
+:focus {outline:0;}
+em,i {font-style:italic;}
+b,strong {font-weight:bold;}
+a img {display:block;}
+a {text-decoration: none;}
+input, textarea { padding: 0; }
+
+* {
+    box-sizing: border-box;
+    user-select: none;
+}

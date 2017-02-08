@@ -1,0 +1,14 @@
+
+/*
+    New navbar
+*/
+.nav-wrapper {
+    margin:0 0 0 -20px;
+    /*overflow: hidden;*/
+}
+@media screen and (max-width: 782px){
+    .nav-wrapper {
+        margin:0 0 0 -10px;
+        overflow-x:auto;
+    }
+}

@@ -16,7 +16,7 @@ if (function_exists('add_theme_support')) {
     add_image_size( 'featured-image', $image['width'], $image['height'] );
 }
 
-include('live-preview.php');
-include('gallery.php');
+// include('live-preview.php');
+// include('gallery.php');
 // include('kjd-widgets.php');
-include('shortcode-injector/init.php');
+// include('shortcode-injector/init.php');

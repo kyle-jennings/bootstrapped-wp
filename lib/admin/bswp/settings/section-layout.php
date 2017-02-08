@@ -26,7 +26,7 @@ $section_layout = array(
         array(
             'name'=>'top_margin',
             'label'=>'Top Margin',
-            'args'=>array('suffix','px'),
+            'args'=>array('suffix'=>'px'),
             'toggled_by'=>array('float_section'=>'yes')
         )
     ),
@@ -34,7 +34,7 @@ $section_layout = array(
         array(
             'name'=>'bottom_margin',
             'label'=>'Bottom Margin',
-            'args'=>array('suffix','px'),
+            'args'=>array('suffix'=>'px'),
             'toggled_by'=>array('float_section'=>'yes')
         )
     ),

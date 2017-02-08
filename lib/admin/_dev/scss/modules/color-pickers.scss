@@ -1,0 +1,32 @@
+
+.color-option,
+.color_option,
+.bswp-option--color-select {
+    clear: both;
+    float: left;
+    margin-bottom: 10px;
+    padding-left: 0;
+    position: relative;
+    width: 100%;
+}
+
+.color-field .link_color,
+.color-option .link_color,
+.color_option .link_color {
+    border: 1px solid $black;
+    padding: 5px; 
+    width: 75px;
+}
+
+
+.pickcolor{
+    margin-left: 20px;
+}
+
+
+.colorpicker{
+    background: $white;
+    left: 500px;
+    top: -60px;
+    z-index: 9999;
+}

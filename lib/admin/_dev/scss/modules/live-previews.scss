@@ -1,0 +1,40 @@
+
+.preview-size {
+    float: left;
+    height: 30px;
+    margin-bottom: -44px;
+    position: relative;
+    z-index: 99;
+}
+
+.preview-options {
+    border: none;
+    height: calc(100vh - 70px);
+    overflow: hidden;
+    margin-left: 230px;
+
+}
+
+
+.preview-options .preview-wrapper {
+    background-color: #222;
+
+}
+
+.preview-options .preview-window {
+
+    clear: both;
+    display: block;
+}
+
+.preview-window {
+    height: calc(100vh - 70px);
+    margin: 0 auto;
+    transition: width .3s ease-in-out;
+}
+
+.preview-window::after {
+  clear: both;
+  content: '';
+  display: block;
+}

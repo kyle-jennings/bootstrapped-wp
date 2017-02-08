@@ -1,0 +1,21 @@
+{
+  "name": "howfuckedisthemetro",
+  "version": "1",
+  "homepage": "https://github.com/rugbert/howfuckedisthemetro",
+  "description": "a web app to display metro train times and status in a funny way",
+  "authors": [
+    "Kyle Jennings <kjennings@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "/js/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass" : "3.3.4",
+    "font-awesome" : "*"
+  }
+}
