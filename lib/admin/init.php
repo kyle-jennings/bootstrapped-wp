@@ -2,7 +2,6 @@
 
 require "vendor/autoload.php";
 
-require_once('nav-menu.php');
 
 use bswp\menus\adminMenu;
 use bswp\menus\nav;
@@ -40,13 +39,6 @@ function kjd_load_style_sheets_and_scripts() {
     wp_enqueue_script("bsjs", get_bloginfo('template_directory').'/lib/scripts/bootstrap.min.js');
 	wp_enqueue_style("admin", $assets_dir."/css/admin.css");
     wp_enqueue_script( 'admin', $assets_dir."/js/_admin.js", false, '1.0' ); //register script
-
-
-    // legacy
-    // wp_enqueue_style("bs",$adminDir."/css/bootstrap-tabs.css");
-    // wp_enqueue_style("admin", $adminDir."/css/admin.css");
-	// wp_enqueue_style("colorPicker", $adminDir."/css/minicolors.css");
-	// wp_enqueue_script("colorPicker", $assets_dir."/js/colorpicker/minicolors.js");
 
 
 

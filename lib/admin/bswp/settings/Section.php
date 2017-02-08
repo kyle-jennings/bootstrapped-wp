@@ -51,13 +51,25 @@ class Section {
     public function __construct($name = null, $fields = array(), $display_name = null){
 
         if($name){
+            // examine('set');
             $this->name = $name;
         }elseif( isset($_GET['section']) ){
+            // examine('get');
             $this->name = $_GET['section'];
-        }elseif( isset($_POST) ){
+        }elseif( !empty($_POST)){
+
+            if( !isset($_POST['option_page'])
+                || $_POST['option_page'] != 'bswp_site_settings'
+                || empty($_POST['bswp_site_settings'])
+            )
+                return;
+
+            // examine($_POST);
+            // examine('post');
             $this->name = str_replace('bswp_', '',$_POST['option_page']);
         }else{
-            throw new Exception("Section not set");
+            // examine('boom');
+            $this->name = 'site_settings';
         }
 
 
@@ -72,9 +84,9 @@ class Section {
 
         $this->set_values_to_fields();
         $this->form_meta_settings = $this->saved_values['form_meta_settings'];
-        // examine($this->form_meta_settings);
 
         unset($this->saved_values);
+        
 
         $class = __CLASS__;
         // $class = $class;
@@ -129,17 +141,19 @@ class Section {
     private function loop_tabs( &$group ){
         $tabs = $group->tabs;
 
+
         if(empty($tabs) )
             return;
-        foreach( $tabs as &$tab ){
-            $this->loop_fields_setup_tasks($tab, $group->name);
+
+        foreach( $tabs as $tab_name=>&$tab ){
+            $this->loop_fields_setup_tasks($tab, $group->name, $tab_name);
         }
     }
 
 
 
     // loop through the tabs' fields
-    private function loop_fields_setup_tasks( &$tab = array(), $group_name = null ){
+    private function loop_fields_setup_tasks( &$tab = array(), $group_name = null, $tab_name ){
 
         $fields = $tab;
 
@@ -151,9 +165,11 @@ class Section {
             $type = new \ReflectionClass($field);
             $type = $type->getShortName();
 
+
             $tab[$name]->type = $type;
             $tab[$name]->section_name = $this->name;
             $tab[$name]->group_name = $group_name;
+            $tab[$name]->tab_name = $tab_name;
             $tab[$name]->form_name_attr = $this->name.'_section';
 
             $saved_value = $this->find_saved_value($name);

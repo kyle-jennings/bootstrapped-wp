@@ -4,12 +4,13 @@ namespace bswp\menus;
 use bswp\pageSections;
 
 
-class nav extends pageSections{
+class nav {
 
     public $page;
     public $section;
     public $tab;
     public $settings;
+    public $sections = array('site_settings');
 
     public $tabs = array(
         'background',
@@ -27,8 +28,13 @@ class nav extends pageSections{
         $this->section = isset($GLOBALS['bswp\settings\Section']) ? $GLOBALS['bswp\settings\Section'] : null;
         $this->tab = isset($_GET['tab']) ? $_GET['tab'] : null;
 
+        $options = get_option('bswp_site_settings');
+        $sections = $options['available_sections'];
 
-        // $this->settings = $GLOBALS['bswp\fields\settings']->get_field_settings();
+        foreach($sections as $section=>$toggled){
+            if($toggled == 'yes')
+                $this->sections[] = str_replace('activate_','', $section.'_settings');
+        }
 
     }
 
@@ -86,8 +92,8 @@ class nav extends pageSections{
         $output = '';
 
         $sections = $this->sections;
-        $find = array('_settings','_');
-        $replace = array('',' ');
+        $find = array('_');
+        $replace = array(' ');
 
 
         $output .= '<ul id="groups-nav" class="section-dropdown-nav js--sections-dropdown">';

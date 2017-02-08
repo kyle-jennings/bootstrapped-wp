@@ -6,11 +6,24 @@ use bswp\pageSections;
 use bswp\menus\Nav;
 use bswp\forms\Form;
 
-class adminMenu extends pageSections{
+class adminMenu {
 
     public $view;
     public $forms_root = '';
+    public $sections = array();
+
     public function __construct(){
+
+        $options = get_option('bswp_site_settings');
+        $sections = $options['available_sections'];
+
+        foreach($sections as $section=>$toggled){
+
+            if($toggled == 'yes')
+                $this->sections[] = str_replace('activate_','', $section.'_settings');
+        }
+
+
         $theme_root = get_template_directory();
         $this->forms_root = $theme_root.'/lib/admin/functions/new-forms';
 
@@ -18,30 +31,54 @@ class adminMenu extends pageSections{
 
     public function add_top_menu(){
 
-        $sections = $this->sections;
+
+        // add_menu_page(
+        //     'My Page Title',
+        //     'My Menu Title',
+        //     'manage_options',
+        //     'my-menu',
+        //     'my_menu_output'
+        // );
+        // add_submenu_page(
+        //     'my-menu',
+        //     'Submenu Page Title',
+        //     'Whatever You Want',
+        //     'manage_options',
+        //     'my-menu'
+        // );
+
 
         add_menu_page(
-            'BSWP new home',
-            'BSWP new home',
-            'manage_options',
-            'bswp_settings',
-            array($this, 'display_section'),
-            'dashicons-admin-customizer'
+            'BSWP', // page title
+            'BSWP', // menu title
+            'manage_options', // caps
+            'bswp_settings', // slug
+            array($this, 'display_section'), // function
+            'dashicons-admin-customizer' // icon
         );
 
-        foreach ($sections as $section){
-            $find = array('_settings','_');
-            $replace = array('',' ');
+        add_submenu_page(
+            'bswp_settings', // parent slug
+            'Site Settings', // page title`
+            'Site Settings', // menu title
+            'manage_options', // caps
+            'bswp_settings', // page slug
+            null // function
+        );
+
+        foreach ($this->sections as $section){
+            $find = array('_');
+            $replace = array(' ');
             $label = str_replace($find,$replace,$section);
             $label = ucwords($label);
 
             add_submenu_page(
                 'bswp_settings', // parent slug
-                $label,
-                $label,
-                'manage_options',
+                $label, // page title
+                $label, // menu title
+                'manage_options', // caps
                 'bswp_settings&section='.$section, // page slug
-                array($this, 'display_section')
+                array($this, 'display_section') // function
             );
         }
 

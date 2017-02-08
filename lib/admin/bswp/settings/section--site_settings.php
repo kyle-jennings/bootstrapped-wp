@@ -52,8 +52,10 @@ $text->tabs['active-links'] = $active_links;
 // Misc settings
 $misc = new SettingsGroup('misc');
 $misc->tabs['layout'] = $section_layout;
-$misc->tabs['sections'] = $available_sections_toggles;
 $misc->tabs['misc'] = $site_settings;
+
+$available_sections = new SettingsGroup('available_sections');
+$available_sections->tabs['sections'] = $available_sections_toggles;
 
 
 
