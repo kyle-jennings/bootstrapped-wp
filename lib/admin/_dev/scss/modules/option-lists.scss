@@ -1,22 +1,21 @@
 
 
-/**
- * -------------------------------------
- * Options list
- * -------------------------------------
- */
+
 .options-list > li {
-  display: inline-block;
-  float: left;
-  width: 200px;
+    display: inline-block;
+    float: left;
+    width: 200px;
 }
 
 .options-list > li > a {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .options-list__settings {
-  padding-left:10px;
+    padding-left: 10px;
 }
 
-.option-component{ float: left; margin:0 10px 0 0;}
+.option-component{
+    float: left;
+    margin: 0 10px 0 0;
+}

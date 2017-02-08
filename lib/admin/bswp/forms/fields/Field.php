@@ -118,7 +118,7 @@ class Field {
             extract($toggles);
         }
 
-        $output .= '<div class="option '.$data_toggled_by.' '.$this->type.' '.$this->wrapper_class.'" '.$data_toggle_name.' >';
+        $output .= '<div class="field '.$data_toggled_by.' '.$this->type.' '.$this->wrapper_class.'" '.$data_toggle_name.' >';
             $output .= $this->field_output();
         $output .= '</div>';
 

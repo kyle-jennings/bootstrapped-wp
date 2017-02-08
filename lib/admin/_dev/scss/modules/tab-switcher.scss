@@ -1,12 +1,11 @@
 .btn-group.tab-switcher {
-    margin-left: -20px;
-
     display: block;
+    margin-left: -20px;
 }
 
 
 .btn-group > .btn:first-child {
-  padding: 10px 20px;
+    padding: 10px 20px;
 }
 
 @media screen and (max-width: 782px){
@@ -24,5 +23,5 @@
 }
 
 .btn-group .tab-switcher__dropdown .caret {
-    float:right;
+    float: right;
 }

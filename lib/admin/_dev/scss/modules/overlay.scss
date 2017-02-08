@@ -1,12 +1,12 @@
 
 
 .overlay{
-    display: none;
-    position: absolute;
-    top:0;
-    right:0;
     bottom: 0;
-    left:-20px;
+    display: none;
+    left: -20px;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .overlay.active{

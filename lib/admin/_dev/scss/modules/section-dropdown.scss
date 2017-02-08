@@ -2,35 +2,36 @@
 
 .section-dropdown-nav {
     background-color: #338FAB;
-    color: white;
+    color: $white;
     display: none;
+    left: 0;
     margin: 0;
     position: absolute;
     top: 38px;
-    left:0;
     width: 220px;
-    z-index:999;
+    z-index: 999;
 }
+
 @media screen and (max-width: 782px){
     .section-dropdown-nav {
-        left:-10px;
-        top:84px;
+        left: -10px;
+        top: 84px;
         width: 100%;
     }
 }
 
 .section-dropdown-nav.active {
-    display:block;
+    display: block;
 }
 
 .section-dropdown-nav li {
-    margin:0;
+    margin: 0;
 }
 
 .section-dropdown-nav a {
-    background-color:#338FAB;
-    color: white;
-    display:block;
+    background-color: #338FAB;
+    color: $white;
+    display: block;
     font-size: 14px;
     font-weight: bold;
     padding: 10px 20px;
@@ -40,10 +41,10 @@
 
 .section-dropdown-nav a:hover {
     background-color: #317E96;
-    color: white;
+    color: $white;
 }
 
 .section-dropdown-nav a:focus{
-    color: white;
     box-shadow: none;
+    color: $white;
 }

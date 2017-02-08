@@ -1,37 +1,38 @@
 
 
 #frontpage-sortables .ui-state-highlight {
-  min-height: 35px;
+    min-height: 35px;
 }
 
 .frontPageLayoutList,
 .frontPageLayoutList.postbox {
-  min-width: auto;
+    min-width: auto;
 }
 
 .frontPageLayoutList h3{
-  cursor:auto !important;
-  margin-bottom:5px;
+    cursor: auto !important;
+    margin-bottom: 5px;
 }
 
 .frontPageLayoutList > div{
-  padding:5px;
+    padding: 5px;
 }
 
 .frontPageLayoutList label{
-  padding:0 5px;
-  width:auto;
+    padding: 0 5px;
+    width: auto;
 }
 
 .frontPageLayoutList li > div input{
-  margin-top:6px;
+    margin-top: 6px;
 }
 
 
 
 .connectedSortable {
-  min-height:40px;
+    min-height: 40px;
 }
+
 .whiteBackground {
-  background:white;
+    background: $white;
 }

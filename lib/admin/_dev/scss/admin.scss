@@ -7,26 +7,44 @@
 @import 'base/classes';
 @import 'base/layout';
 
+// notifications (when saved)
+@import 'modules/notifications';
 
-@import 'modules/bootstrap-tabs';
-@import 'modules/minicolors';
+// navs
 @import 'modules/nav';
 @import 'modules/components-nav';
 @import 'modules/section-dropdown';
 @import 'modules/overlay';
-@import 'modules/kjd-admin-page-title';
-@import 'modules/notifications';
-@import 'modules/forms';
-@import 'modules/fields-wrappers';
+
+// tab panes
+@import 'modules/bootstrap-tabs';
 @import 'modules/tab-switcher';
+
+// titles and preview pane
+@import 'modules/kjd-admin-page-title';
 @import 'modules/live-previews';
-@import 'modules/options';
+
+// forms and fields
+@import 'modules/forms';
+@import 'modules/fields';
+@import 'modules/fields-wrappers';
+@import 'modules/option-lists';
+
+// color pickers
+@import 'modules/minicolors';
 @import 'modules/color-pickers';
-@import 'modules/layout-preview';
+
+//media library (uploader)
 @import 'modules/media-library';
+
+// frontpage layout
+@import 'modules/layout-preview';
+@import 'modules/layout-diagram';
 @import 'modules/front-page';
 @import 'modules/sortables';
+
+// fonts
 @import 'modules/font-preview';
+
+// image carousel
 @import 'modules/image-carousel';
-@import 'modules/layout-diagram';
-@import 'modules/option-lists';

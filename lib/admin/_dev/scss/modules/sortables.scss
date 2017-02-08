@@ -1,20 +1,12 @@
-
-/**
- * Sortable items
- */
-.sortables-wrapper {
-
-}
-
 .sortable {
-  border-right:none;
-  border-left: none;
-  margin-bottom: 5px;
-  min-height:50px;
-  padding: 10px;
+    border-right: 0;
+    border-left: 0;
+    margin-bottom: 5px;
+    min-height: 50px;
+    padding: 10px;
 }
 
 .sortable__title{
-  margin: 0;
-  margin-bottom: 10px;
+    margin: 0;
+    margin-bottom: 10px;
 }

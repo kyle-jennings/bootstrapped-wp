@@ -10,15 +10,14 @@
 .preview-options {
     border: none;
     height: calc(100vh - 70px);
-    overflow: hidden;
     margin-left: 230px;
+    overflow: hidden;
 
 }
 
 
 .preview-options .preview-wrapper {
     background-color: #222;
-
 }
 
 .preview-options .preview-window {
@@ -34,7 +33,7 @@
 }
 
 .preview-window::after {
-  clear: both;
-  content: '';
-  display: block;
+    clear: both;
+    content: '';
+    display: block;
 }

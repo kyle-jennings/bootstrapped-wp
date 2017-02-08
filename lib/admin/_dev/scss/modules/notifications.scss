@@ -3,20 +3,22 @@ notification bar
 ------------------------------------------------------------------- */
 
 body.bswp div.updated.notice{
-  background-color: #007823;
-  border-left-color: #007823;
-  color: white;
-  margin: 0 0 0 -20px;
+    background-color: #007823;
+    border-left-color: #007823;
+    color: white;
+    margin: 0 0 0 -20px;
 }
 
 body.bswp .notice-dismiss:before {
-  color: white;
+    color: white;
 }
+
 body.bswp .notice-dismiss:focus,
 body.bswp .notice-dismiss:hover,
-body.bswp .notice-dismiss:hover{
-  outline: none;
-  color:#4A4646;
+body.bswp .notice-dismiss:hover
+{
+    color: #4A4646;
+    outline: none;
 }
 
 body.bswp .notice-dismiss:before:focus,
