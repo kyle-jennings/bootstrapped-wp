@@ -17,12 +17,12 @@ foreach($heading_sizes as $heading){
 
         $heading.'_color'=>new ColorPicker(array(
                  'name'=>$heading.'_color',
-                 'label'=>'color',
+                 'label'=>$heading.' Color',
              )
          ),
         $heading.'_background_style'=>new Select(array(
                 'name'=>$heading.'_background_style',
-                'label'=>'Background Style',
+                'label'=>$heading.' Background Style',
                 'args'=>array('none','highlighted', 'pill'),
                 'toggle_fields'=>array(
                          'highlighted'=>$heading.'_background_color,',
@@ -33,7 +33,7 @@ foreach($heading_sizes as $heading){
         $heading.'_background_color'=>new ColorPicker(
              array(
                  'name'=>$heading.'_background_color',
-                 'label'=>'Background Color',
+                 'label'=>$heading.' Background Color',
                  'args'=>'transparency',
                  'toggled_by'=>array(
                      $heading.'_background_style'=>'highlighted',
@@ -45,6 +45,7 @@ foreach($heading_sizes as $heading){
 
         $heading.'_text_decoration'=>new Select(array(
                 'name'=>$heading.'_text_decoration',
+                'label'=>$heading.' Text Decoration',
                 'args' => array(
                     'none',
                     'overline',
@@ -61,7 +62,7 @@ foreach($heading_sizes as $heading){
             'args'=>'transparency'
             )
         ),
-        
+
         $heading.'_text_shadow_rgba'=>new Hidden(
             array(
                 'name'=>$heading.'_text_shadow_rgba',

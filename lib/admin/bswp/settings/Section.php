@@ -63,12 +63,9 @@ class Section {
                 || empty($_POST['bswp_site_settings'])
             )
                 return;
-
-            // examine($_POST);
-            // examine('post');
+            // examine($_POST['bswp_site_settings']);
             $this->name = str_replace('bswp_', '',$_POST['option_page']);
         }else{
-            // examine('boom');
             $this->name = 'site_settings';
         }
 
@@ -80,13 +77,18 @@ class Section {
 
         $this->get_settings_file();
         $this->get_saved_values();
+
+        if($_GET['show_saved_values'] == 'yes')
+            examine($this->saved_values);
+
+
         $this->get_section_field_settings();
 
         $this->set_values_to_fields();
         $this->form_meta_settings = $this->saved_values['form_meta_settings'];
 
         unset($this->saved_values);
-        
+
 
         $class = __CLASS__;
         // $class = $class;
@@ -94,6 +96,8 @@ class Section {
         // if ( empty( $GLOBALS[ $class ] ) )
         $GLOBALS[ $class ] = $this;
 
+        if($_GET['show_object'] == 'yes')
+            examine($this);
     }
 
 
@@ -172,7 +176,7 @@ class Section {
             $tab[$name]->tab_name = $tab_name;
             $tab[$name]->form_name_attr = $this->name.'_section';
 
-            $saved_value = $this->find_saved_value($name);
+            $saved_value = $this->find_saved_value($name, $group_name, $tab_name);
             $tab[$name]->value = $saved_value;
         }
 
@@ -188,6 +192,7 @@ class Section {
 
         // note, this is temporary, dont use nested forloops kyle
         foreach($this->saved_values as $group)
+            // loop through all fields
             foreach($group as $field_name=>$field){
                 if($name == $field_name){
                     return $field;
@@ -206,28 +211,30 @@ class Section {
             'bswp_'.$this->name
         );
 
-        // examine($this->fields);
-        // $this->register_field($this->fields);
         register_setting('bswp_'.$this->name, 'bswp_'.$this->name);
+        // foreach($this->groups as $group_name=>$group){
+        //     $this->register_field($group);
+        // }
 
     }
 
 
     // loop through each field and register it
-    public function register_field($fields){
-        if(empty($fields))
-            return;
+    public function register_field($group){
 
-        foreach($fields as $field){
+        // examine($group);
+
+        foreach($group->tabs as $name=>$fields){
 
             add_settings_field(
-                  $field['name'],
-                  null,
-                  null,
-                  'bswp_'.$this->name,
-                  'bswp_'.$this->name.'_section'
-              );
+                $group->name.'_'.$field->name,
+                null,
+                null,
+                'bswp_'.$this->name,
+                'bswp_'.$this->name.'_section'
+            );
         }
+
     }
 
 

@@ -6,9 +6,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "bswp\\": "bswp/",
-            "Cascade\\": "Cascade/"
-
+            "bswp\\": "bswp/"
         }
     }
 }

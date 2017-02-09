@@ -12,9 +12,7 @@ class Label extends field  {
 
         $output = '';
 
-        $output .= '<h3>'.$this->label.'</h3>';
-
-        $this->output = $output;
+        return '<h3>'.$this->label.'</h3>';
 
     }
 

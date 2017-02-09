@@ -36,7 +36,18 @@ class nav {
                 $this->sections[] = str_replace('activate_','', $section.'_settings');
         }
 
+
+        $current_tab_name_attr = 'bswp_'.$this->section_name.'[form_meta_settings][group_tab]';
+        $this->current_tab_value = $current_tab_value = $this->get_form_settings('group_tab');
     }
+
+
+    public function get_form_settings($field){
+        $form_meta_settings = $GLOBALS['bswp\settings\Section']->form_meta_settings;
+        $setting = isset($form_meta_settings[$field]) ? $form_meta_settings[$field] : '';
+        return $GLOBALS['bswp\settings\Section']->form_meta_settings[$field];
+    }
+
 
     /**
      * This is the green top navbar which allows users to navigate the current
@@ -67,9 +78,13 @@ class nav {
                     $name = $group->name;
                     $display_name = $group->display_name;
 
-                    $active_tab = $name == $this->settings ? 'active' : '';
 
-                    $output .= '<a class="components-nav__link '.$active.'"';
+                    $active_tab = ( $name == ltrim($this->current_tab_value,'#') ) ? 'active' : '';
+
+                    // if($active_tab == 'active')
+                    //     examine($name);
+
+                    $output .= '<a class="components-nav__link '.$active_tab.'"';
                         $output .= 'data-toggle="tab"';
                         $output .= 'href="#'.$name.'">';
                             $output .= $display_name;

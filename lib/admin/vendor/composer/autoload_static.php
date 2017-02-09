@@ -11,20 +11,12 @@ class ComposerStaticInit9948eaf4bd853dbddd3a6977eb7da93b
         array (
             'bswp\\' => 5,
         ),
-        'C' => 
-        array (
-            'Cascade\\' => 8,
-        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'bswp\\' => 
         array (
             0 => __DIR__ . '/../..' . '/bswp',
-        ),
-        'Cascade\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Cascade',
         ),
     );
 

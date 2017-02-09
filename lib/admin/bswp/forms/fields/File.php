@@ -5,8 +5,6 @@ namespace bswp\forms\fields;
 
 class File extends Field {
 
-
-
     /**
      * Produces the file field input
      */

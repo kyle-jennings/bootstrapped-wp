@@ -121,7 +121,7 @@ class Form {
         $output = '';
         // each section pane - ie background/borders/headers ect
         $output .= '<div id="'.$id.'" class="tab-pane group-content '.$active.'">';
-            $output .= $this->group_tabs($group->tabs,  $section_name );
+            $output .= $this->group_tabs($group->tabs,  $section_name, $group->name );
         $output .= '</div>';
 
 
@@ -131,10 +131,10 @@ class Form {
 
 
     // Loop through the tabs in a group
-    public function group_tabs($tabs,  $section_name = null) {
+    public function group_tabs($tabs,  $section_name = null, $group_name = null) {
         $output = '';
 
-        $output .= $this->tab_dropdown($tabs);
+        $output .= $this->tab_dropdown($tabs, $group_name);
 
         $output .= '<div class="tab-content tab-content--fields js--fields-tabs-wrapper">';
         $i = 0;
@@ -142,7 +142,7 @@ class Form {
             return;
 
         foreach($tabs as $tab_name=>$tab){
-            $output .= $this->tab_content($tab,  $section_name, $tab_name, $i );
+            $output .= $this->tab_content($tab,  $section_name, $tab_name, $i, $group_name );
             $i++;
         }
         $output .= '</div>';
@@ -152,11 +152,11 @@ class Form {
 
 
     // produce the tab markup
-    public function tab_content( $tab,  $section_name = null, $tab_name = '', $number = 0 ){
+    public function tab_content( $tab,  $section_name = null, $tab_name = '', $number = 0, $group_name = '' ){
 
         $output = '';
         $class = $number == 0 ? 'active' : '';
-        $output .= '<div class="js--fields-group tab-pane cf '.$class.'" id="fields__'.$tab_name.'">';
+        $output .= '<div class="js--fields-group tab-pane cf '.$class.'" id="fields_'.$group_name.'_'.$tab_name.'">';
             $output .= $this->fields($tab);
         $output .= '</div>';
 
@@ -183,7 +183,7 @@ class Form {
 
 
     // the tab dropdown
-    public function tab_dropdown($tabs){
+    public function tab_dropdown($tabs, $group_name = ''){
 
         $output = '';
 
@@ -191,7 +191,7 @@ class Form {
             return;
 
         reset($tabs);
-        $label = key($tabs);
+        $label = ucfirst(key($tabs));
 
         $output .= '<div class="btn-group tab-switcher">';
             $output .= '<a class="btn btn-primary dropdown-toggle tab-switcher__dropdown" data-toggle="dropdown" href="#">';
@@ -201,7 +201,7 @@ class Form {
             $output .= '<ul class="dropdown-menu">';
 
                 foreach($tabs as $key=>$tab)
-                    $output .= $this->tab_dropdown_link($tab, $key);
+                    $output .= $this->tab_dropdown_link($tab, $key, $group_name);
 
             $output .= '</ul>';
         $output .= '</div>';
@@ -211,13 +211,13 @@ class Form {
 
 
     // The tab links in the dropdown
-    public function tab_dropdown_link($tab, $label){
+    public function tab_dropdown_link($tab, $label, $group_name = ''){
 
         $name = str_replace(' ','_',strtolower($label));
-
+        $label = ucfirst($label);
         $output = '';
         $output .= '<li>';
-            $output .= '<a href="#fields__'.$name.'" data-toggle="tab">'.$label.'</a>';
+            $output .= '<a href="#fields_'.$group_name.'_'.$name.'" data-toggle="tab">'.$label.'</a>';
         $output .= '</li>';
 
         return $output;

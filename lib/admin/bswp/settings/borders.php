@@ -19,7 +19,6 @@ foreach($border_sides as $border){
 
         $border.'_border_style'=>new Select(array(
                 'name'=> $border.'_border_style',
-                'label'=>'Style',
                 'args'=>$border_styles,
                 'toggle_fields'=>border_settings_map('border_styles_toggle', $border_sides)
             )
@@ -31,7 +30,6 @@ foreach($border_sides as $border){
         ),
         $border.'_border_width'=>new Select(array(
                 'name'=> $border.'_border_width',
-                'label'=>'Width',
                 'args'=>array_map('bswp\settings\_helpers\add_px_string', range(1,20)),
                 'toggled_by'=>array($border.'_border_style' => border_settings_map('border_styles_toggled_by', $border_sides ) )
             )

@@ -23,7 +23,7 @@ class Field {
         $name = isset($name) ? $name : 'field';
 
         $this->name = $name;
-        $this->label = isset($label) ? $label : ucfirst(str_replace(array('-','_'), ' ', $name ) );
+        $this->label = isset($label) ? ucfirst($label) : ucfirst(str_replace(array('-','_'), ' ', $name ) );
         $this->args = isset($args) ? $args : array();
         $this->toggle_fields = isset($toggle_fields) ? $toggle_fields : array();
         $this->toggled_by = isset($toggled_by) ? $toggled_by : array();

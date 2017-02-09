@@ -2,7 +2,6 @@
 
 namespace bswp\settings;
 
-
 include dirname(__FILE__).'/_helpers.php';
 include dirname(__FILE__).'/background-color.php';
 include dirname(__FILE__).'/background-wallpaper.php';
@@ -11,9 +10,11 @@ include dirname(__FILE__).'/border-radius.php';
 include dirname(__FILE__).'/headings.php';
 include dirname(__FILE__).'/text.php';
 include dirname(__FILE__).'/section-layout.php';
-include dirname(__FILE__).'/available-sections.php';
 include dirname(__FILE__).'/site-settings.php';
+include dirname(__FILE__).'/available-sections.php';
+include dirname(__FILE__).'/available-components.php';
 
+include dirname(__FILE__).'/components.php';
 
 
 // Background settings
@@ -49,17 +50,35 @@ $text->tabs['hovered-links'] = $hovered_links;
 $text->tabs['active-links'] = $active_links;
 
 
+
+// add components
+foreach($options as $component=>$active){
+    if($active !== 'yes')
+        continue;
+
+    $name = str_replace('activate_','', $component);
+    $components[$name] = $$name;
+}
+
+
+
 // Misc settings
 $misc = new SettingsGroup('misc');
 $misc->tabs['layout'] = $section_layout;
 $misc->tabs['misc'] = $site_settings;
 
+// activate  components
+$available_components = new SettingsGroup('available_components');
+$available_components->tabs['components'] = $available_components_toggles;
+
+// activate sections
 $available_sections = new SettingsGroup('available_sections');
 $available_sections->tabs['sections'] = $available_sections_toggles;
 
 
 
 // this array is mounted by the section object
+// the Section object specifically looks for an array called "groups"
 $groups = array(
     'background' => $background,
     'borders' => $borders,
@@ -67,4 +86,10 @@ $groups = array(
     'text' => $text,
     'misc' => $misc,
     'available_sections' => $available_sections,
+    'available_components' => $available_components,
 );
+
+
+$groups = array_slice($groups, 0, 4, true) +
+    $components +
+    array_slice($groups, 4, count($groups) - 1, true);
