@@ -84,7 +84,7 @@ class nav {
                     // if($active_tab == 'active')
                     //     examine($name);
 
-                    $output .= '<a class="components-nav__link '.$active_tab.'"';
+                    $output .= '<a class="components-nav__link js--group-link '.$active_tab.'"';
                         $output .= 'data-toggle="tab"';
                         $output .= 'href="#'.$name.'">';
                             $output .= $display_name;

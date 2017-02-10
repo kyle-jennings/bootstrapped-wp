@@ -4,7 +4,7 @@ namespace bswp\settings;
 
 
 include dirname(__FILE__).'/_helpers.php';
-include dirname(__FILE__).'/background-color.php';
+include dirname(__FILE__).'/background-colors.php';
 include dirname(__FILE__).'/background-wallpaper.php';
 include dirname(__FILE__).'/borders.php';
 include dirname(__FILE__).'/border-radius.php';
