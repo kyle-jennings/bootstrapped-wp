@@ -82,19 +82,16 @@ class Section {
             examine($this->saved_values);
 
 
-        $this->get_section_field_settings();
+        $class = __CLASS__;
+            $GLOBALS[ $class ] = $this;
 
+        $this->get_section_field_settings();
         $this->set_values_to_fields();
+
         $this->form_meta_settings = $this->saved_values['form_meta_settings'];
 
         unset($this->saved_values);
 
-
-        $class = __CLASS__;
-        // $class = $class;
-
-        // if ( empty( $GLOBALS[ $class ] ) )
-        $GLOBALS[ $class ] = $this;
 
         if($_GET['show_object'] == 'yes')
             examine($this);
@@ -108,7 +105,6 @@ class Section {
 
     // now we grab the field settings
     public function get_section_field_settings(){
-
 
         include_once( $this->settings_file );
 
@@ -126,78 +122,25 @@ class Section {
 
     // Start process to take the set values and save them to the fields
     public function set_values_to_fields(){
-        $this->loop_groups();
-
-    }
-
-
-    // loop through the settings group
-    private function loop_groups(){
-
         foreach( $this->groups as &$group ){
-            $this->loop_tabs( $group );
+            $group->set_section($this->name);
+            $group->loop_tabs();
         }
     }
-
-
-
-    // loop through the groups' tabs
-    private function loop_tabs( &$group ){
-        $tabs = $group->tabs;
-
-
-        if(empty($tabs) )
-            return;
-
-        foreach( $tabs as $tab_name=>&$tab ){
-            $this->loop_fields_setup_tasks($tab, $group->name, $tab_name);
-        }
-    }
-
-
-
-    // loop through the tabs' fields
-    private function loop_fields_setup_tasks( &$tab = array(), $group_name = null, $tab_name ){
-
-        $fields = $tab;
-
-        if(!is_array($fields))
-            return;
-
-        foreach($fields as $name=>$field){
-
-            $type = new \ReflectionClass($field);
-            $type = $type->getShortName();
-
-
-            $tab[$name]->type = $type;
-            $tab[$name]->section_name = $this->name;
-            $tab[$name]->group_name = $group_name;
-            $tab[$name]->tab_name = $tab_name;
-            $tab[$name]->form_name_attr = $this->name.'_section';
-
-            $saved_value = $this->find_saved_value($name, $group_name, $tab_name);
-            $tab[$name]->value = $saved_value;
-        }
-
-    }
-
 
 
     // see if the field has a saved value
-    public function find_saved_value($name) {
+    public function find_saved_value($name, $group_name = '', $tab_name = '') {
 
-        if(empty($this->saved_values))
+        if( empty( $this->saved_values[$group_name] ) )
             return false;
 
-        // note, this is temporary, dont use nested forloops kyle
-        foreach($this->saved_values as $group)
-            // loop through all fields
-            foreach($group as $field_name=>$field){
-                if($name == $field_name){
-                    return $field;
-                }
+        // loop through all fields
+        foreach( $this->saved_values[$group_name] as $field_name=>$field ){
+            if($name == $field_name){
+                return $field;
             }
+        }
     }
 
 
@@ -219,23 +162,7 @@ class Section {
     }
 
 
-    // loop through each field and register it
-    public function register_field($group){
 
-        // examine($group);
-
-        foreach($group->tabs as $name=>$fields){
-
-            add_settings_field(
-                $group->name.'_'.$field->name,
-                null,
-                null,
-                'bswp_'.$this->name,
-                'bswp_'.$this->name.'_section'
-            );
-        }
-
-    }
 
 
 }

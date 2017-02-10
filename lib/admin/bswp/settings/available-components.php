@@ -28,5 +28,3 @@ foreach($components_array as $name){
         )
     );
 }
-
-// examine($available_components_toggles);
