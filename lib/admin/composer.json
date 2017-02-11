@@ -3,7 +3,9 @@
     "description": "WP theme using Bootstrap and a ton of visual customization settings",
     "type": "project",
     "license": "MIT",
-    "require": {},
+    "require": {
+      "leafo/scssphp": "0.6.6"
+    },
     "autoload": {
         "psr-4": {
             "bswp\\": "bswp/"

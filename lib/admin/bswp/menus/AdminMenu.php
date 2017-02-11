@@ -2,11 +2,10 @@
 
 namespace bswp\menus;
 
-use bswp\pageSections;
 use bswp\menus\Nav;
 use bswp\forms\Form;
 
-class adminMenu {
+class AdminMenu {
 
     public $view;
     public $forms_root = '';
@@ -90,7 +89,6 @@ class adminMenu {
         // get the current section, settings tab, and sub settings
         $nav = new Nav;
         $form = new Form;
-
 
         settings_errors();
         echo $nav->tabs_nav();

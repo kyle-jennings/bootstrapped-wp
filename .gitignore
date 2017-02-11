@@ -3,3 +3,4 @@ lib/styles/preview.css
 
 /vendor/
 */**/node_modules
+lib/admin/vendor/

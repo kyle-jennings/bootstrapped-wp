@@ -1,10 +1,8 @@
 <?php
 
 namespace bswp\menus;
-use bswp\pageSections;
 
-
-class nav {
+class Nav {
 
     public $page;
     public $section;
