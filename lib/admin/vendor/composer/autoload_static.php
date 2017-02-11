@@ -11,12 +11,20 @@ class ComposerStaticInit9948eaf4bd853dbddd3a6977eb7da93b
         array (
             'bswp\\' => 5,
         ),
+        'L' => 
+        array (
+            'Leafo\\ScssPhp\\' => 14,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'bswp\\' => 
         array (
             0 => __DIR__ . '/../..' . '/bswp',
+        ),
+        'Leafo\\ScssPhp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/leafo/scssphp/src',
         ),
     );
 

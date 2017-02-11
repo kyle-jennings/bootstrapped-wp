@@ -1,9 +1,5 @@
 <?php
 
-
-
-include_once('stylesheet-builder/styles_init.php');
-
 ///////////////////////////
 // featured image settings
 ///////////////////////////

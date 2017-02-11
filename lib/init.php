@@ -1,5 +1,23 @@
 <?php
 
+if(! function_exists('examine') ){
+
+    function examine($object, $examine_type = 'print_r'){
+        if(empty($object))
+            return;
+
+        echo '<pre>';
+        if($examine_type == 'var_dump')
+            var_dump($object);
+        else
+            print_r($object);
+
+        die;
+    }
+
+}
+
+
 // gets options function
 if(is_admin())
     include 'admin/init.php' ;
@@ -50,15 +68,12 @@ function kjd_add_assets(){
     }
 
 
-
-    wp_enqueue_style("bootstrap", $root."/styles/bootstrap/bootstrap.min.css");
-    wp_enqueue_style("bootstrap-responsive", $root."/styles/bootstrap/bootstrap-responsive.min.css");
-
+    wp_enqueue_style("site", $root."/styles/site.css");
 
     // wp_enqueue_style("custom", $wpcontent."/styles/custom.css");
     wp_enqueue_style("base", $root."/styles/common.css");
-    wp_enqueue_style("custom", $root."/styles/custom.css");
-    wp_enqueue_style("mobile", $root."/styles/mobile.css");
+
+    // wp_enqueue_style("mobile", $root."/styles/mobile.css");
 
     // Add slider scripts if on front page
     if( is_front_page() )

@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'bswp\\' => array($baseDir . '/bswp'),
+    'Leafo\\ScssPhp\\' => array($vendorDir . '/leafo/scssphp/src'),
 );

@@ -2,6 +2,8 @@
 
 namespace bswp\settings;
 
+use bswp\css\Builder;
+
 /**
  * A Section is a page of settings for some
  * section of the website.
@@ -50,6 +52,7 @@ class Section {
      */
     public function __construct($name = null, $fields = array(), $display_name = null){
 
+
         if($name){
             // examine('set');
             $this->name = $name;
@@ -63,8 +66,10 @@ class Section {
                 || empty($_POST['bswp_site_settings'])
             )
                 return;
-            // examine($_POST['bswp_site_settings']);
             $this->name = str_replace('bswp_', '',$_POST['option_page']);
+
+
+
         }else{
             $this->name = 'site_settings';
         }
@@ -95,6 +100,29 @@ class Section {
 
         if($_GET['show_object'] == 'yes')
             examine($this);
+
+        $this->build_css();
+    }
+
+
+
+    public function build_css() {
+
+        if( !empty($_POST)){
+
+            if( !isset($_POST['option_page'])
+                || $_POST['option_page'] != 'bswp_site_settings'
+                || empty($_POST['bswp_site_settings'])
+            )
+                return;
+
+
+            $builder = new Builder();
+            $builder->build();
+            $builder->save_to_file('dist');
+
+            unset($builder);
+        }
     }
 
 
@@ -145,7 +173,7 @@ class Section {
 
 
     // register this section to save the fields
-    public function register_section_settings(){
+    public function register_section_settings() {
 
         add_settings_section(
             'bswp_'.$this->name.'_section',
@@ -155,14 +183,13 @@ class Section {
         );
 
         register_setting('bswp_'.$this->name, 'bswp_'.$this->name);
+
+
         // foreach($this->groups as $group_name=>$group){
         //     $this->register_field($group);
         // }
 
     }
-
-
-
 
 
 }

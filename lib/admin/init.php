@@ -3,10 +3,10 @@
 require "vendor/autoload.php";
 
 
-use bswp\menus\adminMenu;
-use bswp\menus\nav;
+use bswp\menus\AdminMenu;
+use bswp\menus\Nav;
 
-add_action('admin_menu', array(new adminMenu, 'add_top_menu') );
+add_action('admin_menu', array(new AdminMenu, 'add_top_menu') );
 
 if(! function_exists('examine') ){
 
