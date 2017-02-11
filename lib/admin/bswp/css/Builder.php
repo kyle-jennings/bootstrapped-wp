@@ -39,7 +39,7 @@ class Builder {
 
         // set directory
         $bs_dir = dirname(dirname(__FILE__));
-        $bs_dir .= '/css/bootstrap-sass/vendor/assets/stylesheets/';
+        $bs_dir .= '/css/bootstrap/assets/stylesheets/';
 
         $this->bs_dir = is_dir($bs_dir) ? $bs_dir : null ;
 
