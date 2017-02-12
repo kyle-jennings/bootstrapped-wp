@@ -39,7 +39,7 @@ class Builder {
 
         // set directory
         $bs_dir = dirname(dirname(__FILE__));
-        $bs_dir .= '/css/bootstrap/assets/stylesheets/';
+        $bs_dir .= '/CSS/bootstrap/assets/stylesheets/';
 
         $this->bs_dir = is_dir($bs_dir) ? $bs_dir : null ;
 
@@ -47,15 +47,18 @@ class Builder {
         $filename = 'bootstrap.scss';
         $this->bs_file = is_readable($bs_dir . $filename) ? $filename : null;
 
+
         // sets responive bs filename
         $filename = 'bootstrap-responsive.scss';
         $this->bs_responsive_file = is_readable($bs_dir . $filename) ? $filename : null;
+
     }
 
 
     // gets the compiled path for the bootstrap file
     public function path_to_bs_file($target = 'bs') {
         $file = $target.'_file';
+
 
         return $this->bs_dir . $this->$file;
     }
@@ -73,9 +76,8 @@ class Builder {
         $file = file_get_contents( $this->path_to_bs_file() );
         $this->css = $this->compiler->compile($file);
 
-        $file = file_get_contents( $this->path_to_bs_file($this->path_to_bs_file('bs_responsive')) );
+        $file = file_get_contents( $this->path_to_bs_file('bs_responsive') );
         $this->css .= $this->compiler->compile($file);
-
 
     }
 
