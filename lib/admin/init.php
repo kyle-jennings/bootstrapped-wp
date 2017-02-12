@@ -3,8 +3,8 @@
 require "vendor/autoload.php";
 
 
-use bswp\menus\AdminMenu;
-use bswp\menus\Nav;
+use bswp\Menus\AdminMenu;
+use bswp\Menus\Nav;
 
 add_action('admin_menu', array(new AdminMenu, 'add_top_menu') );
 
