@@ -2,7 +2,7 @@
 
 namespace bswp\Settings;
 
-use bswp\css\Builder;
+use bswp\CSS\Builder;
 
 /**
  * A Section is a page of settings for some
@@ -95,7 +95,6 @@ class Section {
 
         $this->form_meta_settings = $this->saved_values['form_meta_settings'];
 
-        unset($this->saved_values);
 
 
         if($_GET['show_object'] == 'yes')
@@ -103,6 +102,7 @@ class Section {
 
 
         $this->build_css();
+        unset($this->saved_values);
     }
 
 
