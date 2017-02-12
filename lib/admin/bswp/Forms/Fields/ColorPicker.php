@@ -26,7 +26,7 @@ class ColorPicker extends Field{
         $opacity_opt = ( is_string($this->args) && $this->args == 'transparency' ) ? 'opacity' : '';
 
         // the visible output
-        $output .= '<input class="minicolors '.$opacity_opt.'" data-opacity="'.$alpha.'" name="bswp_'.$this->section_name.'['.$this->group_name.']['.$this->name.']"
+        $output .= '<input class="minicolors '.$opacity_opt.'" data-opacity="'.$alpha.'" name="bswp_'.$this->section_name.'['.$this->group_name.']['.$this->tab_name.']['.$this->name.']"
             value="'.$this->value.'"';
         $output .= '/>';
 

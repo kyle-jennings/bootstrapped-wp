@@ -28,8 +28,10 @@ class Text extends Field {
             $data = 'data-suffix="'.$this->args['suffix'].'"';
         }
 
-        $output .='<input class="'.$class.'" '.$data.' type="text" name="bswp_'.$this->section_name.'['.$this->group_name.']['.$this->name.']"
-        value="'.$this->value.'" >';
+        $output .='<input class="'.$class.'" '.$data.' type="text"
+            name="bswp_'.$this->section_name.
+            '['.$this->group_name.']['.$this->tab_name.']['.$this->name.']"
+            value="'.$this->value.'" >';
 
         return $output;
     }

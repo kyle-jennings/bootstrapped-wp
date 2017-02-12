@@ -22,7 +22,9 @@ class TextArea extends Field {
             $output .= $ob_content;
         }
         else{
-            $output .= '<textarea name="bswp_'.$this->section_name.'['.$this->group_name.']['.$this->name.']" rows="5">'.$this->value.'</textarea>';
+            $output .= '<textarea name="bswp_'.$this->section_name.
+                '['.$this->group_name.']['.$this->tab_name.']['.$this->name.']" 
+                rows="5">'.$this->value.'</textarea>';
         }
 
 

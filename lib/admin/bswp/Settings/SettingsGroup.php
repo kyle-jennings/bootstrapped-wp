@@ -57,6 +57,8 @@ class SettingsGroup {
         if(empty($this->tabs) )
             return;
 
+
+
         foreach( $this->tabs as $tab_name=>&$tab ){
             if(method_exists($this, $action))
                 $this->$action($tab, $tab_name);
@@ -67,6 +69,7 @@ class SettingsGroup {
 
     // loop through the tabs' fields
     private function setup_fields( &$tab, $tab_name = '' ){
+
 
         $fields = $tab;
         foreach($fields as $name=>$field){
@@ -80,8 +83,8 @@ class SettingsGroup {
             $tab[$name]->tab_name = $tab_name;
             $tab[$name]->form_name_attr = $this->section_name.'_section';
 
-
-            $saved_value = $GLOBALS['bswp\Settings\Section']->find_saved_value($name, $this->name, $tab_name);
+            // examine($this->name .'--'. $tab_name. '--' . $name );
+            $saved_value = $GLOBALS['bswp\Settings\Section']->find_saved_value($this->name, $tab_name, $name);
             $tab[$name]->value = $saved_value;
         }
 

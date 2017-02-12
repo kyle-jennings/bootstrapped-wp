@@ -22,7 +22,8 @@ class Select extends Field{
         $value = isset($this->value) ? $this->value : '';
 
         $output .= '<label>'.$this->label.'</label>';
-        $output .= '<select class="'.$classes.'" '.$data.' name="bswp_'.$this->section_name.'['.$this->group_name.']['.$this->name.']">';
+        $output .= '<select class="'.$classes.'" '.$data.' name="bswp_'.$this->section_name.
+            '['.$this->group_name.']['.$this->tab_name.']['.$this->name.']">';
 
         foreach ($this->args as $key=>$option):
 

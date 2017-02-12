@@ -1,5 +1,5 @@
-lib/styles/custom.css
-lib/styles/preview.css
+lib/admins/bswp/CSS/styles/site.css
+lib/styles/site.css
 
 /vendor/
 */**/node_modules

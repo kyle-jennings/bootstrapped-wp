@@ -109,6 +109,8 @@ class Section {
 
     public function build_css() {
 
+        // examine($this->saved_values);
+
         if( !empty($_POST)){
 
             if( !isset($_POST['option_page'])
@@ -159,16 +161,27 @@ class Section {
 
 
     // see if the field has a saved value
-    public function find_saved_value($name, $group_name = '', $tab_name = '') {
+    public function find_saved_value($group_name = '', $tab_name = '', $field_name = '') {
 
         if( empty( $this->saved_values[$group_name] ) )
             return false;
 
-        // loop through all fields
-        foreach( $this->saved_values[$group_name] as $field_name=>$field ){
-            if($name == $field_name){
-                return $field;
+
+        // examine( $group_name . '>' . $tab_name .'>'. $field_name );
+
+        // loop through all the group tabs
+        foreach( $this->saved_values[$group_name] as $tab_key=>$tab ){
+
+            if($tab_name !== $tab_key)
+                continue;
+
+            $fields = $tab;
+            // loop through the fields
+            foreach($fields as $field_key => $field_value){
+                if($field_name == $field_key)
+                    return $field_value;
             }
+
         }
     }
 
