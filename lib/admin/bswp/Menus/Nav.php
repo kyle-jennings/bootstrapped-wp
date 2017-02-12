@@ -8,7 +8,7 @@ class Nav {
     public $section;
     public $tab;
     public $settings;
-    public $sections = array('site_settings');
+    public $sections = array('site_settings', 'nav_settings');
 
     public $tabs = array(
         'background',

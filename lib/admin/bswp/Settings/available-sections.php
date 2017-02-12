@@ -21,14 +21,6 @@ $available_sections_toggles = array(
         )
     ),
 
-    'activate_Navbar'=>new Select(
-        array(
-            'args'=>array('no', 'yes'),
-            'name'=>'activate_Navbar',
-            'label'=>'Navbar Settings'
-        )
-    ),
-
     'activate_title_area'=>new Select(
         array(
             'args'=>array('no', 'yes'),
