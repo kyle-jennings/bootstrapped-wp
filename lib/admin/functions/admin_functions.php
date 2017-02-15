@@ -12,6 +12,13 @@ if (function_exists('add_theme_support')) {
     add_image_size( 'featured-image', $image['width'], $image['height'] );
 }
 
+// register the main nav
+register_nav_menus(
+    array(
+      'primary-menu' => __( 'Primary Nav' ),
+    )
+);
+
 // include('live-preview.php');
 // include('gallery.php');
 // include('kjd-widgets.php');

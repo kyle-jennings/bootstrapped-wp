@@ -8,28 +8,12 @@ use bswp\Menus\Nav;
 
 add_action('admin_menu', array(new AdminMenu, 'add_top_menu') );
 
-if(! function_exists('examine') ){
-
-    function examine($object, $examine_type = 'print_r'){
-        if(empty($object))
-            return;
-
-        echo '<pre>';
-        if($examine_type == 'var_dump')
-            var_dump($object);
-        else
-            print_r($object);
-
-        die;
-    }
-
-}
 
 /**
  * Adds the admin area CSS and JS
  * @return [type] [description]
  */
-function kjd_load_style_sheets_and_scripts() {
+function bswp_load_assets() {
 
 	$adminDir = get_bloginfo('template_directory');
 	$adminDir = $adminDir."/lib/admin/";
@@ -50,10 +34,10 @@ function kjd_load_style_sheets_and_scripts() {
 	wp_enqueue_script("admin"); //enqueue
 
 }
-add_action('admin_init', 'kjd_load_style_sheets_and_scripts');
 
 
-
+// adds admin functions
+include 'functions/admin_functions.php';
 
 // update function
 include 'update/update.php';
@@ -61,5 +45,6 @@ include 'update/update.php';
 
 // initializae the BSWP stuff
 if( (isset($_GET['page']) && $_GET['page'] == 'bswp_settings') || (isset($_POST['option_page']) ) ) {
+    add_action('admin_init', 'bswp_load_assets');
     include 'functions/init.php';
 }
