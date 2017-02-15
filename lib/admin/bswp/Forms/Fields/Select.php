@@ -18,6 +18,7 @@ class Select extends Field{
         $classes = $this->class;
         $classes .= $this->toggle_fields ? ' js--toggle-field' : '';
 
+
         $data = $this->toggle_fields ? 'data-field-toggle="'.$this->name.'"' : '';
         $value = isset($this->value) ? $this->value : '';
 

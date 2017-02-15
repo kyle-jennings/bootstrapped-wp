@@ -61,18 +61,21 @@ class Section {
             $this->name = $_GET['section'];
         }elseif( !empty($_POST)){
 
+            preg_match( '/(bswp_){1}[a-zA-Z]+(_settings){1}/', $_POST['option_page'], $m );
+
             if( !isset($_POST['option_page'])
-                || $_POST['option_page'] != 'bswp_site_settings'
-                || empty($_POST['bswp_site_settings'])
+                || !$m
+                || empty($_POST[$m[0]])
             )
                 return;
             $this->name = str_replace('bswp_', '',$_POST['option_page']);
 
-
-
         }else{
             $this->name = 'site_settings';
         }
+
+
+        $this->is_section_activated();
 
 
         if($display_name)
@@ -106,21 +109,46 @@ class Section {
     }
 
 
+    /**
+     * If the use attempts to goto a section page which has not been activated
+     * (ie: body_settings) then we redirect them to the site settings page
+     */
+    public function is_section_activated() {
 
+        $options = get_option('bswp_site_settings');
+        $sections = !empty( $options['available_sections']) ?  $options['available_sections'] : array();
+        $sections = array_merge(array('site_settings'), $sections);
+
+        if( in_array($this->name, $sections) )
+            return;
+
+        $url = admin_url('admin.php?page=bswp_settings&amp;section=site_settings');
+        wp_redirect($url);
+        exit;
+
+    }
+
+
+    /**
+     * Build the CSS!
+     * We only do this when the settings have been saved
+     */
     public function build_css() {
 
         // examine($this->saved_values);
 
         if( !empty($_POST)){
 
+            preg_match( '/(bswp_){1}[a-zA-Z]+(_settings){1}/', $_POST['option_page'], $m );
+
             if( !isset($_POST['option_page'])
-                || $_POST['option_page'] != 'bswp_site_settings'
-                || empty($_POST['bswp_site_settings'])
+                || !$m
+                || empty($_POST[$m[0]])
             )
                 return;
 
 
-            $builder = new Builder();
+            $builder = new Builder($this->name, $this->saved_values);
             $builder->build();
             $builder->save_to_file('dist');
 

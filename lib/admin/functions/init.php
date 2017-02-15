@@ -2,6 +2,7 @@
 
 use bswp\Settings;
 $section = new Settings\Section;
+
 add_action('admin_init', array($section, 'register_section_settings'));
 
 

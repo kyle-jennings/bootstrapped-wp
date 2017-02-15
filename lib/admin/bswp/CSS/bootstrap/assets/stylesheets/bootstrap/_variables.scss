@@ -13,6 +13,7 @@ $black:                 #000 !default;
 $grayDarker:            #222 !default;
 $grayDark:              #333 !default;
 $gray:                  #555 !default;
+$greyMedium:            #777 !default;
 $grayLight:             #999 !default;
 $grayLighter:           #eee !default;
 $white:                 #fff !default;
@@ -32,16 +33,46 @@ $purple:                #7a43b6 !default;
 
 // Scaffolding
 // -------------------------
-$bodyBackground:        $white !default;
-$textColor:             $grayDark !default;
+$bodyBackground:        #075901 !default;
+$bodyBackgroundEnd:        #075901 !default;
+$backgroundStyle: none !default;
+
+// text
+$textColor:             #22ff05 !default;
 
 
 // Links
 // -------------------------
-$linkColor:             #08c !default;
-$linkColorHover:        darken($linkColor, 15%) !default;
+$linkColor:         #041280 !default;
+$linkBackgroundStyle: pills !default;
+$linkBackgroundColor: #17a1bd !default;
+$linkDecoration: text-shadow !default;
+$linkTextShadow: #e68dd4 !default;
 
 
+$hoveredlinksColor:         #1015ad !default;
+$hoveredlinksBackgroundStyle: none !default;
+$hoveredlinksBackgroundColor: transparent !default;
+$hoveredlinksDecoration: none !default;
+$hoveredlinksTextShadow: darken($linkColor, 15%) !default;
+
+
+$visitedlinksColor:         #030000 !default;
+$visitedlinksBackgroundStyle: pills !default;
+$visitedlinksBackgroundColor: #ffffff !default;
+$visitedlinksDecoration: none !default;
+$visitedlinksTextShadow: darken($linkColor, 15%) !default;
+
+
+$activelinksColor:         #0d3809 !default;
+$activelinksBackgroundStyle: none !default;
+$activelinksBackgroundColor: transparent !default;
+$activelinksDecoration: none !default;
+$activelinksTextShadow: darken($linkColor, 15%) !default;
+
+
+
+$linkColorHover:        darken($hoveredlinksColor, 15%) !default;
 // Typography
 // -------------------------
 $sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif !default;
@@ -55,7 +86,43 @@ $altFontFamily:         $serifFontFamily !default;
 
 $headingsFontFamily:    inherit !default; // empty to use BS default, $baseFontFamily
 $headingsFontWeight:    bold !default;    // instead of browser default, bold
-$headingsColor:         inherit !default; // empty to use BS default, $textColor
+
+$headingsColor:         #033a82 !default;
+$headingsBackgroundStyle: none !default;
+$headingsBackgroundColor: transparent !default;
+$headingsDecoration: none !default;
+$headingsTextShadow: darken($headingsColor, 15%) !default;
+
+$h2Color:         #eb8d8d !default;
+$h2BackgroundStyle: highlighted !default;
+$h2BackgroundColor: #061373 !default;
+$h2Decoration: text-shadow !default;
+$h2TextShadow: #097f91 !default;
+
+$h3Color:         #6b0202 !default;
+$h3BackgroundStyle: highlighted !default;
+$h3BackgroundColor: #2eb03f !default;
+$h3Decoration: text-shadow !default;
+$h3TextShadow: #400303 !default;
+
+$h4Color:         #2f27d6 !default;
+$h4BackgroundStyle: highlighted !default;
+$h4BackgroundColor: #e3c3c3 !default;
+$h4Decoration: text-shadow !default;
+$h4TextShadow: #285c25 !default;
+
+$h5Color:         #2e2e2e !default;
+$h5BackgroundStyle: none !default;
+$h5BackgroundColor: transparent !default;
+$h5Decoration: none !default;
+$h5TextShadow: darken($headingsColor, 15%) !default;
+
+$h6Color:         #030303 !default;
+$h6BackgroundStyle: none !default;
+$h6BackgroundColor: transparent !default;
+$h6Decoration: none !default;
+$h6TextShadow: darken($headingsColor, 15%) !default;
+
 
 
 // Component sizing
@@ -77,10 +144,15 @@ $borderRadiusSmall:     3px !default;
 
 // Tables
 // -------------------------
-$tableBackground:                   transparent !default; // overall background-color
-$tableBackgroundAccent:             #f9f9f9 !default; // for striping
-$tableBackgroundHover:              #f5f5f5 !default; // for hover
-$tableBorder:                       #ddd !default; // table and cell border
+$tableBackground:                   #b83f3f !default; // overall background-color
+$tablesHeaderBackgroundColor:       $tableBackground;
+
+$tablesTextColor:       $tableBackground;
+
+$tableBackgroundAccent:             #0e40ad  !default; // for striping
+$tableBackgroundHover:              darken($tableBackground, 20%) !default; // for hover
+$tableBorder:                       #070f7a !default; // table and cell border
+
 
 // Buttons
 // -------------------------
@@ -180,43 +252,29 @@ $wellBackground:                  #f5f5f5 !default;
 $navbarCollapseWidth:             979px !default;
 $navbarCollapseDesktopWidth:      $navbarCollapseWidth + 1;
 
+// Navbar
+// -------------------------
+$navbarCollapseWidth:             979px !default;
+$navbarCollapseDesktopWidth:      $navbarCollapseWidth + 1;
+
 $navbarHeight:                    40px !default;
-$navbarBackgroundHighlight:       #ffffff !default;
+$navbarBackgroundHighlight:       $bodyBackground !default;
 $navbarBackground:                darken($navbarBackgroundHighlight, 5%) !default;
 $navbarBorder:                    darken($navbarBackground, 12%) !default;
 
-$navbarText:                      #777 !default;
-$navbarLinkColor:                 #777 !default;
-$navbarLinkColorHover:            $grayDark !default;
-$navbarLinkColorActive:           $gray !default;
+$navbarText:                      #22ff05 !default;
+$navbarLinkColor:                 $linkColor !default;
+$navbarLinkColorHover:            $linkColorHover !default;
+$navbarLinkColorActive:           $activelinksColor !default;
+
 $navbarLinkBackgroundHover:       transparent !default;
 $navbarLinkBackgroundActive:      darken($navbarBackground, 5%) !default;
 
 $navbarBrandColor:                $navbarLinkColor !default;
 
-// Inverted navbar
-$navbarInverseBackground:                #111111 !default;
-$navbarInverseBackgroundHighlight:       #222222 !default;
-$navbarInverseBorder:                    #252525 !default;
-
-$navbarInverseText:                      $grayLight !default;
-$navbarInverseLinkColor:                 $grayLight !default;
-$navbarInverseLinkColorHover:            $white !default;
-$navbarInverseLinkColorActive:           $navbarInverseLinkColorHover !default;
-$navbarInverseLinkBackgroundHover:       transparent !default;
-$navbarInverseLinkBackgroundActive:      $navbarInverseBackground !default;
-
-$navbarInverseSearchBackground:          lighten($navbarInverseBackground, 25%) !default;
-$navbarInverseSearchBackgroundFocus:     $white !default;
-$navbarInverseSearchBorder:              $navbarInverseBackground !default;
-$navbarInverseSearchPlaceholderColor:    #ccc !default;
-
-$navbarInverseBrandColor:                $navbarInverseLinkColor !default;
-
-
 // Pagination
 // -------------------------
-$paginationBackground:                #fff !default;
+$paginationBackground:                $white !default;
 $paginationBorder:                    #ddd !default;
 $paginationActiveBackground:          #f5f5f5 !default;
 
@@ -299,3 +357,5 @@ $fluidGridGutterWidth1200:     percentage($gridGutterWidth1200/$gridRowWidth1200
 // 768px-979px
 $fluidGridColumnWidth768:      percentage($gridColumnWidth768/$gridRowWidth768) !default;
 $fluidGridGutterWidth768:      percentage($gridGutterWidth768/$gridRowWidth768) !default;
+
+

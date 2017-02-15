@@ -8,7 +8,7 @@ class Nav {
     public $section;
     public $tab;
     public $settings;
-    public $sections = array('site_settings', 'nav_settings');
+    public $sections = array('site_settings');
 
     public $tabs = array(
         'background',
@@ -27,7 +27,9 @@ class Nav {
         $this->tab = isset($_GET['tab']) ? $_GET['tab'] : null;
 
         $options = get_option('bswp_site_settings');
-        $sections = $options['available_sections'];
+        $sections = !empty( $options['available_sections']) ?  $options['available_sections'] : array();
+        $sections = array_merge($this->sections,$sections);
+
 
         foreach($sections as $section=>$toggled){
             if($toggled == 'yes')

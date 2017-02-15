@@ -1,38 +1,3 @@
-<?php
-
-// background settings
-$background = $this->values['background'];
-$background_colors = $background['colors'];
-$background_wallpapers = $background['wallpapers'];
-
-// border settings
-$borders = $this->values['borders'];
-
-// headings
-if( $this->section == 'nav_settings'){
-    $site = get_option('bswp_site_settings');
-    $headings = $site['headings'];
-}else {
-    $headings = $this->values['headings'];
-}
-
-// text and links
-$text = $this->values['text'];
-$text_color = $text['text']['text_color'];
-
-$links = array(
-    'links' => $text['links'],
-    'hovered_links' => $text['hovered-links'],
-    'visited_links' => $text['visited-links'],
-    'active_links' => $text['active-links'],
-);
-
-// tables
-$tables = $this->values['tables'];
-
-
-ob_start();
-?>
 //
 // Variables
 // --------------------------------------------------
@@ -68,45 +33,16 @@ $purple:                #7a43b6 !default;
 
 // Scaffolding
 // -------------------------
-$bodyBackground:        <?php echo $background['colors']['background_start_color'] ? $background['colors']['background_start_color'] : '$white'; ?> !default;
-$bodyBackgroundEnd:        <?php echo $background['colors']['background_end_color'] ? $background['colors']['background_end_color'] : '$bodyBackground'; ?> !default;
-$backgroundStyle: <?php echo $background['colors']['background_fill'] ? $background['colors']['background_fill'] : 'none'; ?> !default;
-
-// text
-$textColor:             <?php echo $text_color ? $text_color : '$grayDark'; ?> !default;
+$bodyBackground:        $white !default;
+$textColor:             $grayDark !default;
 
 
 // Links
 // -------------------------
-<?php
-
-    $output = '';
-    foreach($links as $type=>$link):
-
-        $type_name = ($type == 'links') ? 'link': lcfirst(ucwords(str_replace('_','',$type)));
-
-        $output .= '$'.$type_name.'Color:         '. ($link[$type.'_color'] ? $link[$type.'_color'] : 'inherit' ).' !default;';
-        $output .= "\r\n";
-        $output .= '$'.$type_name.'BackgroundStyle: '. ($link[$type.'_background_style'] ? $link[$type.'_background_style'] : 'none' ).' !default;';
-        $output .= "\r\n";
-        $output .= '$'.$type_name.'BackgroundColor: '. ($link[$type.'_background_color'] ? $link[$type.'_background_color'] : 'transparent' ).' !default;';
-        $output .= "\r\n";
-        $output .= '$'.$type_name.'Decoration: '. ($link[$type.'_text_decoration'] ? $link[$type.'_text_decoration'] : 'none' ).' !default;';
-        $output .= "\r\n";
-        $output .= '$'.$type_name.'TextShadow: '. ($link[$type.'_text_shadow'] ? $link[$type.'_text_shadow'] : 'darken($linkColor, 15%)' ).' !default;';
-
-        $output .= "\r\n";
-        $output .= "\r\n";
-        $output .= "\r\n";
+$linkColor:             #08c !default;
+$linkColorHover:        darken($linkColor, 15%) !default;
 
 
-    endforeach;
-
-    echo $output;
-
-?>
-
-$linkColorHover:        darken($hoveredlinksColor, 15%) !default;
 // Typography
 // -------------------------
 $sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif !default;
@@ -120,34 +56,7 @@ $altFontFamily:         $serifFontFamily !default;
 
 $headingsFontFamily:    inherit !default; // empty to use BS default, $baseFontFamily
 $headingsFontWeight:    bold !default;    // instead of browser default, bold
-
-<?php
-
-    $output = '';
-
-    foreach($headings as $size=>$heading):
-
-        $size_name = ($size == 'h1') ? 'headings': $size;
-
-
-        $output .= '$'.$size_name.'Color:         '. ($heading[$size.'_color'] ? $heading[$size.'_color'] : 'inherit' ).' !default;';
-        $output .= "\r\n";
-        $output .= '$'.$size_name.'BackgroundStyle: '. ($heading[$size.'_background_style'] ? $heading[$size.'_background_style'] : 'none' ).' !default;';
-        $output .= "\r\n";
-        $output .= '$'.$size_name.'BackgroundColor: '. ($heading[$size.'_background_color'] ? $heading[$size.'_background_color'] : 'transparent' ).' !default;';
-        $output .= "\r\n";
-        $output .= '$'.$size_name.'Decoration: '. ($heading[$size.'_text_decoration'] ? $heading[$size.'_text_decoration'] : 'none' ).' !default;';
-        $output .= "\r\n";
-        $output .= '$'.$size_name.'TextShadow: '. ($heading[$size.'_text_shadow'] ? $heading[$size.'_text_shadow'] : 'darken($headingsColor, 15%)' ).' !default;';
-        $output .= "\r\n";
-        $output .= "\r\n";
-
-
-    endforeach;
-
-    echo $output;
-
-?>
+$headingsColor:         inherit !default; // empty to use BS default, $textColor
 
 
 // Component sizing
@@ -169,15 +78,10 @@ $borderRadiusSmall:     3px !default;
 
 // Tables
 // -------------------------
-$tableBackground:                   <?php echo $tables['rows']['background_color'] ? $tables['rows']['background_color'] : 'transparent' ;?> !default; // overall background-color
-$tablesHeaderBackgroundColor:       <?php echo $tables['header']['background_color'] ? $tables['header']['background_color'] : '$tableBackground' ;?>;
-
-$tablesTextColor:       <?php echo $tables['header']['background_colors']['background_color'] ? $tables['header']['background_colors']['background_color'] : '$tableBackground' ;?>;
-
-$tableBackgroundAccent:             <?php echo $tables['striped_rows']['background_color'] ? $tables['striped_rows']['background_color'] : '#f9f9f9' ; ?>  !default; // for striping
-$tableBackgroundHover:              darken($tableBackground, 20%) !default; // for hover
-$tableBorder:                       <?php echo $tables['borders']['border_color'] ? $tables['borders']['border_color'] :'#ddd' ; ?> !default; // table and cell border
-
+$tableBackground:                   transparent !default; // overall background-color
+$tableBackgroundAccent:             #f9f9f9 !default; // for striping
+$tableBackgroundHover:              #f5f5f5 !default; // for hover
+$tableBorder:                       #ddd !default; // table and cell border
 
 // Buttons
 // -------------------------
@@ -277,21 +181,15 @@ $wellBackground:                  #f5f5f5 !default;
 $navbarCollapseWidth:             979px !default;
 $navbarCollapseDesktopWidth:      $navbarCollapseWidth + 1;
 
-// Navbar
-// -------------------------
-$navbarCollapseWidth:             979px !default;
-$navbarCollapseDesktopWidth:      $navbarCollapseWidth + 1;
-
 $navbarHeight:                    40px !default;
 $navbarBackgroundHighlight:       $bodyBackground !default;
 $navbarBackground:                darken($navbarBackgroundHighlight, 5%) !default;
 $navbarBorder:                    darken($navbarBackground, 12%) !default;
 
-$navbarText:                      <?php echo $text_color ? $text_color : '$textColor'; ?> !default;
-$navbarLinkColor:                 <?php echo $linkColor ? $linkColor : '$linkColor'; ?> !default;
-$navbarLinkColorHover:            <?php echo $linkColor ? $linkColor : '$linkColorHover'; ?> !default;
-$navbarLinkColorActive:           $activelinksColor !default;
-
+$navbarText:                      $greyMedium !default;
+$navbarLinkColor:                 $greyMedium !default;
+$navbarLinkColorHover:            $grayDark !default;
+$navbarLinkColorActive:           $gray !default;
 $navbarLinkBackgroundHover:       transparent !default;
 $navbarLinkBackgroundActive:      darken($navbarBackground, 5%) !default;
 
@@ -299,7 +197,7 @@ $navbarBrandColor:                $navbarLinkColor !default;
 
 // Pagination
 // -------------------------
-$paginationBackground:                $white !default;
+$paginationBackground:                #fff !default;
 $paginationBorder:                    #ddd !default;
 $paginationActiveBackground:          #f5f5f5 !default;
 
@@ -382,10 +280,3 @@ $fluidGridGutterWidth1200:     percentage($gridGutterWidth1200/$gridRowWidth1200
 // 768px-979px
 $fluidGridColumnWidth768:      percentage($gridColumnWidth768/$gridRowWidth768) !default;
 $fluidGridGutterWidth768:      percentage($gridGutterWidth768/$gridRowWidth768) !default;
-
-
-<?php
-$contents = ob_get_contents();
-ob_end_clean();
-
-$this->bootstrap_vars = $contents;

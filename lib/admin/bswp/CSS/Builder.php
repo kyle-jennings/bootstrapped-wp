@@ -6,6 +6,9 @@ use Leafo\ScssPhp\Compiler;
 
 class Builder {
 
+    public $section = 'site';
+    private $values = array();
+
     public $bs_dir;
     public $bs_file;
     public $bs_responsive_file;
@@ -13,9 +16,26 @@ class Builder {
     public $compiler = null;
     public $css = '';
 
-    public function __construct() {
+    public $bootstrap_vars = '';
+
+    public function __construct($section = 'site', $values = array() ) {
+
+        $this->section = $section;
+        $this->values = $values;
+
         $this->initCompiler();
         $this->findBootstrapScssFile();
+        $this->set_variables();
+        $this->init_bootstrap_var_file();
+    }
+
+
+    public function set_variables() {
+
+        $var_file = dirname(__FILE__) . '/variables.php';
+
+        require_once($var_file);
+
     }
 
 
@@ -79,6 +99,14 @@ class Builder {
         $file = file_get_contents( $this->path_to_bs_file('bs_responsive') );
         $this->css .= $this->compiler->compile($file);
 
+    }
+
+
+    public function init_bootstrap_var_file() {
+        $file = $this->bs_dir . 'bootstrap/_variables.scss';
+        // examine($file);
+        file_put_contents($file, $this->bootstrap_vars);
+        // examine(file_get_contents($file) );
     }
 
 

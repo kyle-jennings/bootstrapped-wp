@@ -32,7 +32,7 @@ $background_colors = array(
             'label'=>''
         )
     ),
-    'background_gradient'=>new Select(
+    'background_fill'=>new Select(
         array(
             'name'=>'background_gradient',
             'label'=>'Color Fill',

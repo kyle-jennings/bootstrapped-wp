@@ -191,7 +191,9 @@ class Form {
             return;
 
         reset($tabs);
-        $label = ucfirst(key($tabs));
+        $label = key($tabs);
+        $label = str_replace('_', ' ', $label);
+        $label = ucfirst($label);
 
         $output .= '<div class="btn-group tab-switcher">';
             $output .= '<a class="btn btn-primary dropdown-toggle tab-switcher__dropdown" data-toggle="dropdown" href="#">';
@@ -214,7 +216,9 @@ class Form {
     public function tab_dropdown_link($tab, $label, $group_name = ''){
 
         $name = str_replace(' ','_',strtolower($label));
+        $label = str_replace('_', ' ', $label);
         $label = ucfirst($label);
+
         $output = '';
         $output .= '<li>';
             $output .= '<a href="#fields_'.$group_name.'_'.$name.'" data-toggle="tab">'.$label.'</a>';

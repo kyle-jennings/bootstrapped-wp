@@ -30,16 +30,6 @@ $borders->tabs['left'] = $left;
 $borders->tabs['border-radius'] = $radii_fields;
 
 
-// headings settings
-$headings = new SettingsGroup('headings');
-$headings->tabs['h1'] = $h1;
-$headings->tabs['h2'] = $h2;
-$headings->tabs['h3'] = $h3;
-$headings->tabs['h4'] = $h4;
-$headings->tabs['h5'] = $h5;
-$headings->tabs['h6'] = $h6;
-
-
 // Text settings
 $text = new SettingsGroup('text');
 $text->tabs['text'] = $regular_text;
@@ -59,7 +49,6 @@ $misc->tabs['layout'] = $section_layout;
 $groups = array(
     'background' => $background,
     'borders' => $borders,
-    'headings' => $headings,
     'text' => $text,
     'misc' => $misc,
 );

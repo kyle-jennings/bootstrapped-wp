@@ -15,6 +15,11 @@ include dirname(__FILE__).'/site-settings.php';
 include dirname(__FILE__).'/available-sections.php';
 include dirname(__FILE__).'/available-components.php';
 
+$component_options = get_option('bswp_site_settings');
+$component_options = $component_options['available_components']['components'];
+
+
+
 $section_name = basename(__FILE__, '.php');
 $section_name = str_replace('section--','',$section_name);
 
@@ -49,7 +54,7 @@ $headings->add_tab('h6', $h6);
 $text = new SettingsGroup('text');
 $text->add_tab('text', $regular_text);
 $text->add_tab('links', $links);
-$text->add_tab('visted-link', $visited_links);
+$text->add_tab('visited-links', $visited_links);
 $text->add_tab('hovered-links', $hovered_links);
 $text->add_tab('active-links', $active_links);
 
@@ -60,15 +65,19 @@ $text->add_tab('active-links', $active_links);
 // components are determined by the $available_components_toggles array
 // see available-components.php
 // settings are adding in components.php
-include dirname(__FILE__).'/components.php';
 
-foreach($options as $component=>$active){
+$components = array();
+foreach($component_options as $component=>$active){
+
     if($active !== 'yes')
         continue;
 
     $name = str_replace('activate_','', $component);
+    include_once('components/'.$name.'.php');
     $components[$name] = $$name;
+
 }
+
 //
 
 
@@ -89,8 +98,6 @@ $available_sections = new SettingsGroup('available_sections');
 $available_sections->add_tab('sections', $available_sections_toggles);
 
 
-
-
 // this array is mounted by the section object
 // the Section object specifically looks for an array called "groups"
 $groups = array(
@@ -99,7 +106,7 @@ $groups = array(
     'headings' => $headings,
     'text' => $text,
     'misc' => $misc,
-    'available_sections' => $available_sections,
+    // 'available_sections' => $available_sections,
     'available_components' => $available_components,
 );
 

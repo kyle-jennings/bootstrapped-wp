@@ -40,10 +40,16 @@ function border_settings_map($return = 'border_styles_toggled_by', $border_targe
     foreach($border_styles as $key=>$v){
 
         foreach($border_targets as $target){
+            $border_color = ltrim($target.'_border_color', '_');
+            $border_style = ltrim($target.'_border_style', '_');
+            $border_width = ltrim($target.'_border_width', '_');
+
+
+
             if($return == 'border_styles_toggle')
-                $return_arr[$key] .= $target.'_border_color,'.$target.'_border_width,';
+                $return_arr[$key] .= $border_color . ',' . $border_width .',';
             elseif($return == 'border_styles_toggled_by')
-                $return_arr[$target.'_border_style'] = 'solid,dotted,dashed,double,groove,ridge,inset,outset';
+                $return_arr[$border_style] = 'solid,dotted,dashed,double,groove,ridge,inset,outset';
         }
     }
     // examine($return_arr);

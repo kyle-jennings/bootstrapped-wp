@@ -11,16 +11,21 @@ class AdminMenu {
     public $forms_root = '';
     public $sections = array();
 
+
     public function __construct(){
 
+
         $options = get_option('bswp_site_settings');
-        $sections = $options['available_sections'];
+        $sections = !empty( $options['available_sections']) ?  $options['available_sections'] : array();
+        $sections = array_merge($this->sections,$sections);
+
 
         foreach($sections as $section=>$toggled){
 
             if($toggled == 'yes')
-                $this->sections[] = str_replace('activate_','', $section.'_settings');
+            $this->sections[] = str_replace('activate_','', $section.'_settings');
         }
+
 
 
         $theme_root = get_template_directory();
@@ -83,8 +88,11 @@ class AdminMenu {
 
     }
 
-    public function display_section(){
 
+
+
+
+    public function display_section(){
 
         // get the current section, settings tab, and sub settings
         $nav = new Nav;
