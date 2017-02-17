@@ -38,6 +38,7 @@ function bswp_load_assets() {
 
 // adds admin functions
 include 'functions/admin_functions.php';
+include 'functions/shortcode-injector/init.php';
 
 // update function
 include 'update/update.php';

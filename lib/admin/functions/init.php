@@ -6,7 +6,6 @@ $section = new Settings\Section;
 add_action('admin_init', array($section, 'register_section_settings'));
 
 
-
 function bswp_admin_body_class( $classes ) {
     return 'bswp';
 }

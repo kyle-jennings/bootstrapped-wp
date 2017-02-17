@@ -104,7 +104,7 @@ if(!empty($components)) {
 		  <h1>Please set up your front page!</h1>
 		  <p>And this ugly message goes away</p>
 		  <p>
-		    <a href="wp-admin/admin.php?page=kjd_page_layout_settings&tab=frontPage"class="btn btn-primary btn-large">
+		    <a href="wp-admin/admin.php?page=kjd_page_layout_settings&tab=frontPage"class="btn btn-warning btn-large">
 		      Go to your dashboard
 		    </a>
 		  </p>

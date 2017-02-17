@@ -9,13 +9,8 @@ $background_wallpapers = $background['wallpapers'];
 $borders = $this->values['borders'];
 
 // headings
-if( $this->section == 'nav_settings'){
-    $site = get_option('bswp_site_settings');
-    $headings = $site['headings'];
-}else {
-    $headings = $this->values['headings'];
-}
 
+$headings = $this->values['headings'];
 // text and links
 $text = $this->values['text'];
 $text_color = $text['text']['text_color'];
@@ -29,10 +24,23 @@ $links = array(
 
 // tables
 $tables = $this->values['tables'];
+// examine($tables);
 
 
+// navbar
+$navbar = $this->values['navbar'];
+$navbg = $navbar['background_colors'];
+$navtext = $navbar['text'];
+$navborders = $nav['borders'];
+
+$nav_submenu_bg = $navbar['submenu_background_colors'];
+$nav_submenu_text = $navbar['submenu_text'];
+$nav_submenu_border = $navbar['submenu_borders'];
+
+// examine($nav_submenu_border);
 ob_start();
 ?>
+
 //
 // Variables
 // --------------------------------------------------
@@ -89,7 +97,7 @@ $textColor:             <?php echo $text_color ? $text_color : '$grayDark'; ?> !
         $output .= "\r\n";
         $output .= '$'.$type_name.'BackgroundStyle: '. ($link[$type.'_background_style'] ? $link[$type.'_background_style'] : 'none' ).' !default;';
         $output .= "\r\n";
-        $output .= '$'.$type_name.'BackgroundColor: '. ($link[$type.'_background_color'] ? $link[$type.'_background_color'] : 'transparent' ).' !default;';
+        $output .= '$'.$type_name.'BackgroundColor: '. ($link[$type.'_background_color_rgba'] ? $link[$type.'_background_color_rgba'] : 'transparent' ).' !default;';
         $output .= "\r\n";
         $output .= '$'.$type_name.'Decoration: '. ($link[$type.'_text_decoration'] ? $link[$type.'_text_decoration'] : 'none' ).' !default;';
         $output .= "\r\n";
@@ -134,7 +142,7 @@ $headingsFontWeight:    bold !default;    // instead of browser default, bold
         $output .= "\r\n";
         $output .= '$'.$size_name.'BackgroundStyle: '. ($heading[$size.'_background_style'] ? $heading[$size.'_background_style'] : 'none' ).' !default;';
         $output .= "\r\n";
-        $output .= '$'.$size_name.'BackgroundColor: '. ($heading[$size.'_background_color'] ? $heading[$size.'_background_color'] : 'transparent' ).' !default;';
+        $output .= '$'.$size_name.'BackgroundColor: '. ($heading[$size.'_background_color_rgba'] ? $heading[$size.'_background_color_rgba'] : 'transparent' ).' !default;';
         $output .= "\r\n";
         $output .= '$'.$size_name.'Decoration: '. ($heading[$size.'_text_decoration'] ? $heading[$size.'_text_decoration'] : 'none' ).' !default;';
         $output .= "\r\n";
@@ -145,8 +153,8 @@ $headingsFontWeight:    bold !default;    // instead of browser default, bold
 
     endforeach;
 
-    echo $output;
 
+    echo $output;
 ?>
 
 
@@ -169,13 +177,25 @@ $borderRadiusSmall:     3px !default;
 
 // Tables
 // -------------------------
-$tableBackground:                   <?php echo $tables['rows']['background_color'] ? $tables['rows']['background_color'] : 'transparent' ;?> !default; // overall background-color
-$tablesHeaderBackgroundColor:       <?php echo $tables['header']['background_color'] ? $tables['header']['background_color'] : '$tableBackground' ;?>;
+$tableBackground:                   <?php echo $tables['rows']['background_color_rgba'] ? $tables['rows']['background_color_rgba'] : 'transparent' ;?> !default; // overall background-color
+$tablesTextColor:       <?php echo $tables['rows']['text_color'] ? $tables['rows']['text_color'] : '$textColor' ;?>;
+$tablesLinkColor:       <?php echo $tables['rows']['links_color'] ? $tables['rows']['links_color'] : '$linkColor' ;?>;
 
-$tablesTextColor:       <?php echo $tables['header']['background_colors']['background_color'] ? $tables['header']['background_colors']['background_color'] : '$tableBackground' ;?>;
-
-$tableBackgroundAccent:             <?php echo $tables['striped_rows']['background_color'] ? $tables['striped_rows']['background_color'] : '#f9f9f9' ; ?>  !default; // for striping
 $tableBackgroundHover:              darken($tableBackground, 20%) !default; // for hover
+
+$tablesHeaderBackgroundColor:       <?php echo $tables['header']['background_color_rgba'] ? $tables['header']['background_color_rgba'] : 'darken($tableBackground, 30%)' ;?>;
+$tablesHeaderTextColor:       <?php echo $tables['header']['text_color'] ? $tables['header']['text_color'] : 'darken($tablesTextColor, 30%)' ;?>;
+
+
+
+
+$tableBackgroundAccent:             <?php echo $tables['striped_rows']['background_color_rgba'] ? $tables['striped_rows']['background_color_rgba'] : '#f9f9f9' ; ?>  !default; // for striping
+$tableBackgroundAccentHover:              darken($tableBackgroundAccent, 20%) !default; // for hover
+$tablesStripedTextColor:       <?php echo $tables['striped_rows']['text_color'] ? $tables['striped_rows']['text_color'] : '$textColor' ;?>;
+$tablesStripedLinkColor:       <?php echo $tables['striped_rows']['links_color'] ? $tables['striped_rows']['links_color'] : '$linkColor' ;?>;
+
+
+
 $tableBorder:                       <?php echo $tables['borders']['border_color'] ? $tables['borders']['border_color'] :'#ddd' ; ?> !default; // table and cell border
 
 
@@ -279,23 +299,93 @@ $navbarCollapseDesktopWidth:      $navbarCollapseWidth + 1;
 
 // Navbar
 // -------------------------
+
+
+
 $navbarCollapseWidth:             979px !default;
 $navbarCollapseDesktopWidth:      $navbarCollapseWidth + 1;
 
 $navbarHeight:                    40px !default;
-$navbarBackgroundHighlight:       $bodyBackground !default;
-$navbarBackground:                darken($navbarBackgroundHighlight, 5%) !default;
+$navbarBackgroundStart:           <?php echo $navbg['background_start_color'] ? $navbg['background_start_color'] : '$bodyBackground'; ?> !default;
+$navbarBackgroundEnd:             <?php echo $navbg['background_end_color'] ? $navbg['background_end_color'] : 'darken($navbarBackgroundHighlight, 5%)'; ?> !default;
+
+$navbarBackgroundHighlight:       $navbarBackgroundStart !default;
+$navbarBackground:                $navbarBackgroundEnd !default;
+
 $navbarBorder:                    darken($navbarBackground, 12%) !default;
+$navbarBorderStyle:               'solid';
+$navbarBorderWidth:               '1px';
 
-$navbarText:                      <?php echo $text_color ? $text_color : '$textColor'; ?> !default;
-$navbarLinkColor:                 <?php echo $linkColor ? $linkColor : '$linkColor'; ?> !default;
-$navbarLinkColorHover:            <?php echo $linkColor ? $linkColor : '$linkColorHover'; ?> !default;
-$navbarLinkColorActive:           $activelinksColor !default;
+$navbarTopBorder:                      <?php echo $navbg['top_border_color'] ? $navbg['top_border_color'] : '$navbarBorder'; ?> !default;
+$navbarTopBorderStyle:                 <?php echo $navbg['top_border_style'] ? $navbg['top_border_style'] : '$navbarBorderStyle'; ?> !default;
+$navbarTopBorderWidth:                 <?php echo $navbg['top_border_width'] ? $navbg['top_border_width'] : '$navbarBorderWidth'; ?> !default;
 
-$navbarLinkBackgroundHover:       transparent !default;
-$navbarLinkBackgroundActive:      darken($navbarBackground, 5%) !default;
+$navbarRightBorder:                      <?php echo $navbg['right_border_color'] ? $navbg['right_border_color'] : '$navbarTopBorder'; ?> !default;
+$navbarRightBorderStyle:                 <?php echo $navbg['right_border_style'] ? $navbg['right_border_style'] : '$navbarTopBorderStyle'; ?> !default;
+$navbarRightBorderWidth:                 <?php echo $navbg['right_border_width'] ? $navbg['right_border_width'] : '$navbarTopBorderWidth'; ?> !default;
+
+$navbarBottomBorder:                      <?php echo $navbg['bottom_border_color'] ? $navbg['bottom_border_color'] : '$navbarTopBorder'; ?> !default;
+$navbarBottomBorderStyle:                 <?php echo $navbg['bottom_border_style'] ? $navbg['bottom_border_style'] : '$navbarTopBorderStyle'; ?> !default;
+$navbarBottomBorderWidth:                 <?php echo $navbg['bottom_border_width'] ? $navbg['bottom_border_width'] : '$navbarTopBorderWidth'; ?> !default;
+
+$navbarLeftBorder:                      <?php echo $navbg['left_border_color'] ? $navbg['left_border_color'] : '$navbarTopBorder'; ?> !default;
+$navbarLeftBorderStyle:                 <?php echo $navbg['left_border_style'] ? $navbg['left_border_style'] : '$navbarTopBorderStyle'; ?> !default;
+$navbarLeftBorderWidth:                 <?php echo $navbg['left_border_width'] ? $navbg['left_border_width'] : '$navbarTopBorderWidth'; ?> !default;
+$navbarText:                      <?php echo $navtext['text_color'] ? $navtext['text_color'] : '$textColor'; ?> !default;
+$navbarLinkColor:                 <?php echo $navtext['links_color'] ? $navtext['links_color'] : '$linkColor'; ?> !default;
+$navbarLinkColorHover:            <?php echo $navtext['hovered_links_color'] ? $navtext['hovered_links_color'] : 'darken($navbarBackground, 5%)'; ?> !default;
+$navbarLinkColorActive:           <?php echo $navtext['active_links_color'] ? $navtext['active_links_color'] : 'darken($navbarBackground, 5%)'; ?> !default;
+
+$navbarLinkBackground:       <?php echo $navtext['links_background_color_rgba'] ? $navtext['links_background_color_rgba'] : 'transparent' ;?> !default;
+$navbarLinkBackgroundHover:       <?php echo $navtext['hovered_links_background_color_rgba'] ? $navtext['hovered_links_background_color_rgba'] : 'transparent' ;?> !default;
+$navbarLinkBackgroundActive:      <?php echo $navtext['active_links_background_color_rgba'] ? $navtext['active_links_background_color_rgba'] : 'darken($navbarBackground, 5%)' ;?> !default;
 
 $navbarBrandColor:                $navbarLinkColor !default;
+
+
+
+
+
+// -------------------------
+// Navbar Dropdowns
+// -------------------------
+
+$navbarDropdownBackground:            <?php echo $nav_submenu_bg['color'] ? $nav_submenu_bg['color'] : '$white'; ?> !default;
+
+
+$navbarDropdownTopBorderColor:                <?php echo $nav_submenu_border['top_border_color'] ? $nav_submenu_border['top_border_color'] : 'rgba(0,0,0,.2)'; ?> !default;
+$navbarDropdownTopBorderStyle:                <?php echo $nav_submenu_border['top_border_style'] ? $nav_submenu_border['top_border_style'] : 'solid'; ?> !default;
+$navbarDropdownTopBorderWidth:                <?php echo $nav_submenu_border['top_border_width'] ? $nav_submenu_border['top_border_width'] : '1px'; ?> !default;
+
+$navbarDropdownRightBorderColor:                <?php echo $nav_submenu_border['right_border_color'] ? $nav_submenu_border['right_border_color'] : 'rgba(0,0,0,.2)'; ?> !default;
+$navbarDropdownRightBorderStyle:                <?php echo $nav_submenu_border['right_border_style'] ? $nav_submenu_border['right_border_style'] : 'solid'; ?> !default;
+$navbarDropdownRightBorderWidth:                <?php echo $nav_submenu_border['right_border_width'] ? $nav_submenu_border['right_border_width'] : '1px'; ?> !default;
+
+$navbarDropdownBottomBorderColor:                <?php echo $nav_submenu_border['bottom_border_color'] ? $nav_submenu_border['bottom_border_color'] : 'rgba(0,0,0,.2)'; ?> !default;
+$navbarDropdownBottomBorderStyle:                <?php echo $nav_submenu_border['bottom_border_style'] ? $nav_submenu_border['bottom_border_style'] : 'solid'; ?> !default;
+$navbarDropdownBottomBorderWidth:                <?php echo $nav_submenu_border['bottom_border_width'] ? $nav_submenu_border['bottom_border_width'] : '1px'; ?> !default;
+
+$navbarDropdownLeftBorderColor:                <?php echo $nav_submenu_border['left_border_color'] ? $nav_submenu_border['left_border_color'] : 'rgba(0,0,0,.2)'; ?> !default;
+$navbarDropdownLeftBorderStyle:                <?php echo $nav_submenu_border['left_border_style'] ? $nav_submenu_border['left_border_style'] : 'solid'; ?> !default;
+$navbarDropdownLeftBorderWidth:                <?php echo $nav_submenu_border['left_border_width'] ? $nav_submenu_border['left_border_width'] : '1px'; ?> !default;
+
+
+$navbarDropdownBorder:                $navbarDropdownTopBorderColor !default;
+
+$navbarDropdownDividerTop:            #e5e5e5 !default;
+$navbarDropdownDividerBottom:         $white !default;
+
+$navbarDropdownLinkColor:             <?php echo $nav_submenu_text['links_color'] ? $nav_submenu_text['links_color'] : '$grayDark'; ?> !default;
+$navbarDropdownLinkBackground:   <?php echo $nav_submenu_text['links_background_color_rgba'] ? $nav_submenu_text['links_background_color_rgba'] : 'transparent' ?> !default;
+
+$navbarDropdownLinkColorHover:        <?php echo $nav_submenu_text['hovered_links_color'] ? $nav_submenu_text['hovered_links_color'] : '$white'; ?> !default;
+$navbarDropdownLinkBackgroundHover:   <?php echo $nav_submenu_text['hovered_links_background_color_rgba'] ? $nav_submenu_text['hovered_links_background_color_rgba'] : 'darken($navbarDropdownBackground, 5%)' ?> !default;
+
+$navbarDropdownLinkColorActive:       <?php echo $nav_submenu_text['active_links_color'] ? $nav_submenu_text['active_links_color'] : '$white'; ?> !default;
+$navbarDropdownLinkBackgroundActive:  <?php echo $nav_submenu_text['active_links_background_color_rgba'] ? $nav_submenu_text['active_links_background_color_rgba'] : '$navbarDropdownLinkColor'; ?> !default;
+
+
+
 
 // Pagination
 // -------------------------
@@ -387,5 +477,5 @@ $fluidGridGutterWidth768:      percentage($gridGutterWidth768/$gridRowWidth768) 
 <?php
 $contents = ob_get_contents();
 ob_end_clean();
-
+// examine($contents);
 $this->bootstrap_vars = $contents;

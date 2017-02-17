@@ -1,3 +1,4 @@
+
 //
 // Variables
 // --------------------------------------------------
@@ -33,24 +34,24 @@ $purple:                #7a43b6 !default;
 
 // Scaffolding
 // -------------------------
-$bodyBackground:        #075901 !default;
-$bodyBackgroundEnd:        #075901 !default;
+$bodyBackground:        #e3e3e3 !default;
+$bodyBackgroundEnd:        #a8a8a8 !default;
 $backgroundStyle: none !default;
 
 // text
-$textColor:             #22ff05 !default;
+$textColor:             #909690 !default;
 
 
 // Links
 // -------------------------
-$linkColor:         #041280 !default;
+$linkColor:         #9197e6 !default;
 $linkBackgroundStyle: pills !default;
-$linkBackgroundColor: #17a1bd !default;
+$linkBackgroundColor: transparent !default;
 $linkDecoration: text-shadow !default;
 $linkTextShadow: #e68dd4 !default;
 
 
-$hoveredlinksColor:         #1015ad !default;
+$hoveredlinksColor:         #20ff03 !default;
 $hoveredlinksBackgroundStyle: none !default;
 $hoveredlinksBackgroundColor: transparent !default;
 $hoveredlinksDecoration: none !default;
@@ -59,14 +60,14 @@ $hoveredlinksTextShadow: darken($linkColor, 15%) !default;
 
 $visitedlinksColor:         #030000 !default;
 $visitedlinksBackgroundStyle: pills !default;
-$visitedlinksBackgroundColor: #ffffff !default;
+$visitedlinksBackgroundColor: transparent !default;
 $visitedlinksDecoration: none !default;
 $visitedlinksTextShadow: darken($linkColor, 15%) !default;
 
 
-$activelinksColor:         #0d3809 !default;
-$activelinksBackgroundStyle: none !default;
-$activelinksBackgroundColor: transparent !default;
+$activelinksColor:         #09c402 !default;
+$activelinksBackgroundStyle: highlighted !default;
+$activelinksBackgroundColor: rgba(179, 20, 2, 1) !default;
 $activelinksDecoration: none !default;
 $activelinksTextShadow: darken($linkColor, 15%) !default;
 
@@ -87,7 +88,7 @@ $altFontFamily:         $serifFontFamily !default;
 $headingsFontFamily:    inherit !default; // empty to use BS default, $baseFontFamily
 $headingsFontWeight:    bold !default;    // instead of browser default, bold
 
-$headingsColor:         #033a82 !default;
+$headingsColor:         #ff1003 !default;
 $headingsBackgroundStyle: none !default;
 $headingsBackgroundColor: transparent !default;
 $headingsDecoration: none !default;
@@ -95,19 +96,19 @@ $headingsTextShadow: darken($headingsColor, 15%) !default;
 
 $h2Color:         #eb8d8d !default;
 $h2BackgroundStyle: highlighted !default;
-$h2BackgroundColor: #061373 !default;
+$h2BackgroundColor: transparent !default;
 $h2Decoration: text-shadow !default;
 $h2TextShadow: #097f91 !default;
 
 $h3Color:         #6b0202 !default;
 $h3BackgroundStyle: highlighted !default;
-$h3BackgroundColor: #2eb03f !default;
+$h3BackgroundColor: transparent !default;
 $h3Decoration: text-shadow !default;
 $h3TextShadow: #400303 !default;
 
 $h4Color:         #2f27d6 !default;
 $h4BackgroundStyle: highlighted !default;
-$h4BackgroundColor: #e3c3c3 !default;
+$h4BackgroundColor: transparent !default;
 $h4Decoration: text-shadow !default;
 $h4TextShadow: #285c25 !default;
 
@@ -144,14 +145,26 @@ $borderRadiusSmall:     3px !default;
 
 // Tables
 // -------------------------
-$tableBackground:                   #b83f3f !default; // overall background-color
-$tablesHeaderBackgroundColor:       $tableBackground;
+$tableBackground:                   rgba(75, 2, 201, 1) !default; // overall background-color
+$tablesTextColor:       #1fff57;
+$tablesLinkColor:       #ffee03;
 
-$tablesTextColor:       $tableBackground;
-
-$tableBackgroundAccent:             #0e40ad  !default; // for striping
 $tableBackgroundHover:              darken($tableBackground, 20%) !default; // for hover
-$tableBorder:                       #070f7a !default; // table and cell border
+
+$tablesHeaderBackgroundColor:       darken($tableBackground, 30%);
+$tablesHeaderTextColor:       darken($tablesTextColor, 30%);
+
+
+
+
+$tableBackgroundAccent:             rgba(3, 3, 3, 1)  !default; // for striping
+$tableBackgroundAccentHover:              darken($tableBackgroundAccent, 20%) !default; // for hover
+$tablesStripedTextColor:       #fa0303;
+$tablesStripedLinkColor:       #01586e;
+
+
+
+$tableBorder:                       #03abff !default; // table and cell border
 
 
 // Buttons
@@ -254,23 +267,93 @@ $navbarCollapseDesktopWidth:      $navbarCollapseWidth + 1;
 
 // Navbar
 // -------------------------
+
+
+
 $navbarCollapseWidth:             979px !default;
 $navbarCollapseDesktopWidth:      $navbarCollapseWidth + 1;
 
 $navbarHeight:                    40px !default;
-$navbarBackgroundHighlight:       $bodyBackground !default;
-$navbarBackground:                darken($navbarBackgroundHighlight, 5%) !default;
+$navbarBackgroundStart:           #333333 !default;
+$navbarBackgroundEnd:             #333333 !default;
+
+$navbarBackgroundHighlight:       $navbarBackgroundStart !default;
+$navbarBackground:                $navbarBackgroundEnd !default;
+
 $navbarBorder:                    darken($navbarBackground, 12%) !default;
+$navbarBorderStyle:               'solid';
+$navbarBorderWidth:               '1px';
 
-$navbarText:                      #22ff05 !default;
-$navbarLinkColor:                 $linkColor !default;
-$navbarLinkColorHover:            $linkColorHover !default;
-$navbarLinkColorActive:           $activelinksColor !default;
+$navbarTopBorder:                      $navbarBorder !default;
+$navbarTopBorderStyle:                 $navbarBorderStyle !default;
+$navbarTopBorderWidth:                 $navbarBorderWidth !default;
 
+$navbarRightBorder:                      $navbarTopBorder !default;
+$navbarRightBorderStyle:                 $navbarTopBorderStyle !default;
+$navbarRightBorderWidth:                 $navbarTopBorderWidth !default;
+
+$navbarBottomBorder:                      $navbarTopBorder !default;
+$navbarBottomBorderStyle:                 $navbarTopBorderStyle !default;
+$navbarBottomBorderWidth:                 $navbarTopBorderWidth !default;
+
+$navbarLeftBorder:                      $navbarTopBorder !default;
+$navbarLeftBorderStyle:                 $navbarTopBorderStyle !default;
+$navbarLeftBorderWidth:                 $navbarTopBorderWidth !default;
+$navbarText:                      #f7f7f7 !default;
+$navbarLinkColor:                 #ffffff !default;
+$navbarLinkColorHover:            #ff0335 !default;
+$navbarLinkColorActive:           #ffffff !default;
+
+$navbarLinkBackground:       transparent !default;
 $navbarLinkBackgroundHover:       transparent !default;
-$navbarLinkBackgroundActive:      darken($navbarBackground, 5%) !default;
+$navbarLinkBackgroundActive:      rgba(15, 235, 7, 1) !default;
 
 $navbarBrandColor:                $navbarLinkColor !default;
+
+
+
+
+
+// -------------------------
+// Navbar Dropdowns
+// -------------------------
+
+$navbarDropdownBackground:            #525252 !default;
+
+
+$navbarDropdownTopBorderColor:                #033eff !default;
+$navbarDropdownTopBorderStyle:                solid !default;
+$navbarDropdownTopBorderWidth:                3px !default;
+
+$navbarDropdownRightBorderColor:                rgba(0,0,0,.2) !default;
+$navbarDropdownRightBorderStyle:                none !default;
+$navbarDropdownRightBorderWidth:                1px !default;
+
+$navbarDropdownBottomBorderColor:                rgba(0,0,0,.2) !default;
+$navbarDropdownBottomBorderStyle:                none !default;
+$navbarDropdownBottomBorderWidth:                1px !default;
+
+$navbarDropdownLeftBorderColor:                rgba(0,0,0,.2) !default;
+$navbarDropdownLeftBorderStyle:                none !default;
+$navbarDropdownLeftBorderWidth:                1px !default;
+
+
+$navbarDropdownBorder:                $navbarDropdownTopBorderColor !default;
+
+$navbarDropdownDividerTop:            #e5e5e5 !default;
+$navbarDropdownDividerBottom:         $white !default;
+
+$navbarDropdownLinkColor:             #030303 !default;
+$navbarDropdownLinkBackground:   transparent !default;
+
+$navbarDropdownLinkColorHover:        #94fff3 !default;
+$navbarDropdownLinkBackgroundHover:   rgba(3, 3, 3, 1) !default;
+
+$navbarDropdownLinkColorActive:       #66fc5b !default;
+$navbarDropdownLinkBackgroundActive:  rgba(52, 3, 247, 1) !default;
+
+
+
 
 // Pagination
 // -------------------------

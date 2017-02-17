@@ -10,6 +10,7 @@ include dirname(__FILE__).'/borders.php';
 include dirname(__FILE__).'/border-radius.php';
 include dirname(__FILE__).'/headings.php';
 include dirname(__FILE__).'/text.php';
+include dirname(__FILE__).'/navbar.php';
 include dirname(__FILE__).'/section-layout.php';
 include dirname(__FILE__).'/site-settings.php';
 include dirname(__FILE__).'/available-sections.php';
@@ -105,6 +106,7 @@ $groups = array(
     'borders' => $borders,
     'headings' => $headings,
     'text' => $text,
+    'navbar' => $navbar,
     'misc' => $misc,
     // 'available_sections' => $available_sections,
     'available_components' => $available_components,

@@ -47,6 +47,17 @@ class dropdown_menu extends Walker_Nav_Menu {
 
 	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 
+        foreach($item->classes as $key=>$class){
+            if(strpos($class, 'menu-item') !== false)
+                unset($item->classes[$key]);
+
+            if(strpos($class, 'current') !== false)
+                unset($item->classes[$key]);
+
+        }
+
+
+
 
 		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
 
@@ -69,7 +80,7 @@ class dropdown_menu extends Walker_Nav_Menu {
 			$classes[] = 'dropdown-submenu';
 		}
 
-
+        // join the classes with a comma
 		$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args ) );
 		$class_names = ' class="' . esc_attr( $class_names ) . '"';
 

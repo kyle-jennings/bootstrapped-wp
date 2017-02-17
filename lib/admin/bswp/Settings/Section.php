@@ -44,6 +44,7 @@ class Section {
     public $current_group = '';
     public $groups;
     public $fields = array();
+    public $current_tab = '';
 
 
     /**
@@ -105,6 +106,7 @@ class Section {
 
 
         $this->build_css();
+
         unset($this->saved_values);
     }
 
@@ -134,26 +136,16 @@ class Section {
      * We only do this when the settings have been saved
      */
     public function build_css() {
+        if(!empty($_POST) )
+            return;
 
         // examine($this->saved_values);
+        $builder = new Builder($this->name, $this->saved_values);
+        $builder->build();
+        $builder->save_to_file('dist');
 
-        if( !empty($_POST)){
+        unset($builder);
 
-            preg_match( '/(bswp_){1}[a-zA-Z]+(_settings){1}/', $_POST['option_page'], $m );
-
-            if( !isset($_POST['option_page'])
-                || !$m
-                || empty($_POST[$m[0]])
-            )
-                return;
-
-
-            $builder = new Builder($this->name, $this->saved_values);
-            $builder->build();
-            $builder->save_to_file('dist');
-
-            unset($builder);
-        }
     }
 
 

@@ -77,6 +77,7 @@ class SettingsGroup {
             $type = new \ReflectionClass($field);
             $type = $type->getShortName();
 
+
             $tab[$name]->type = $type;
             $tab[$name]->section_name = $this->section_name;
             $tab[$name]->group_name = $this->name;
@@ -85,7 +86,13 @@ class SettingsGroup {
 
             // examine($this->name .'--'. $tab_name. '--' . $name );
             $saved_value = $GLOBALS['bswp\Settings\Section']->find_saved_value($this->name, $tab_name, $name);
+            // if($type === 'Hidden' && strpos($field->name, 'rgba') ){
+            //     if(empty($saved_value) || !isset($saved_value))
+            //     $base = str_replace('_rgba','', $field->name);
+            //     $saved_value = $this->find_value($base);
+            // }
             $tab[$name]->value = $saved_value;
+
         }
 
     }

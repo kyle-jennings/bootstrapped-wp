@@ -175,10 +175,10 @@ html,body{
 .navbar-inner {
 	border:none;
 }
-.navbar-inner .nav-noBG > li > a,
+/*.navbar-inner .nav-noBG > li > a,
 .navbar-inner .nav-noBG > li > a:hover{
 	background: none !important;
-}
+}*/
 .navbar-inner .nav.nav-pills li a {
 	border-color: transparent;
 	border-width:1px;

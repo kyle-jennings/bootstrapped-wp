@@ -32,6 +32,7 @@ class Form {
 
     public function get_form_settings($field){
         $form_meta_settings = $GLOBALS['bswp\Settings\Section']->form_meta_settings;
+
         $setting = isset($form_meta_settings[$field]) ? $form_meta_settings[$field] : '';
         return $GLOBALS['bswp\Settings\Section']->form_meta_settings[$field];
     }
@@ -50,16 +51,23 @@ class Form {
 
 
         $classes = !$this->preview ? 'fields-wrapper--no-preview' : '';
-        $current_tab_name_attr = 'bswp_'.$this->section_name.'[form_meta_settings][group_tab]';
-        $this->current_tab_value = $current_tab_value = $this->get_form_settings('group_tab');
 
+        // the current group
+        $current_group_name_attr = 'bswp_'.$this->section_name.'[form_meta_settings][group_tab]';
+        $this->current_group_value = $current_group_value = $this->get_form_settings('group_tab');
+
+        // the current tab
+        $current_tab_name_attr = 'bswp_'.$this->section_name.'[form_meta_settings][field_tab]';
+        $this->current_tab_value = $current_tab_value = $this->get_form_settings('field_tab');
 
         $output = '';
 
         $output .= '<form class="bswp-form '.$classes.'" method="post" action="options.php" autocomplete="off">';
 
             $output .= $this->grab_function_output('settings_fields', 'bswp_'.$this->section_name );
-            $output .= '<input id="js--group-tab-field" type="hidden" name="'.$current_tab_name_attr.'" value="'.$current_tab_value.'">';
+            $output .= '<input id="js--group-tab-field" type="hidden" name="'.$current_group_name_attr.'" value="'.$current_group_value.'">';
+            $output .= '<input id="js--field-tab-field" type="hidden" name="'.$current_tab_name_attr.'" value="'.$current_tab_value.'">';
+
 
             // $output .= '<div class="fields-wrapper '.$classes.'">';
 
@@ -113,8 +121,8 @@ class Form {
 
         $id = $group->name;
 
-        if($this->current_tab_value)
-            $active = ($current_tab_value == $id) ? 'active' : '';
+        if($this->current_group_value)
+            $active = ($this->current_group_value == $id) ? 'active' : '';
         else
             $active = $i == 0 ? 'active' : '';
 
@@ -136,6 +144,7 @@ class Form {
 
         $output .= $this->tab_dropdown($tabs, $group_name);
 
+
         $output .= '<div class="tab-content tab-content--fields js--fields-tabs-wrapper">';
         $i = 0;
         if(!is_array($tabs))
@@ -154,8 +163,15 @@ class Form {
     // produce the tab markup
     public function tab_content( $tab,  $section_name = null, $tab_name = '', $number = 0, $group_name = '' ){
 
+        if($this->current_tab_value && $group_name == $this->current_group_value){
+
+            $class = ( $this->current_tab_value == '#fields_'.$group_name.'_'.$tab_name) ? 'active': '';
+        }
+        else
+            $class = $number == 0 ? 'active' : '';
+
         $output = '';
-        $class = $number == 0 ? 'active' : '';
+
         $output .= '<div class="js--fields-group tab-pane cf '.$class.'" id="fields_'.$group_name.'_'.$tab_name.'">';
             $output .= $this->fields($tab);
         $output .= '</div>';
@@ -191,12 +207,17 @@ class Form {
             return;
 
         reset($tabs);
-        $label = key($tabs);
+        if($this->current_tab_value && $group_name == $this->current_group_value){
+            $label = str_replace('#fields_'.$group_name.'_','',$this->current_tab_value);
+        }else
+            $label = key($tabs);
+
         $label = str_replace('_', ' ', $label);
         $label = ucfirst($label);
 
         $output .= '<div class="btn-group tab-switcher">';
             $output .= '<a class="btn btn-primary dropdown-toggle tab-switcher__dropdown" data-toggle="dropdown" href="#">';
+                $output .= '<h6>'. ucwords($group_name) . '</h6>';
                 $output .= '<span class="btn-face">'.$label.'</span>';
                 $output .= '<span class="caret"></span>';
             $output .= '</a>';
