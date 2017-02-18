@@ -90,21 +90,22 @@ class Builder {
      */
     public function build() {
 
-        $this->compiler->setImportPaths($this->bs_dir);
+
+        $this->compiler->setImportPaths($this->bs_dir.'src');
 
 
-        $file = file_get_contents( $this->path_to_bs_file() );
+        $file = file_get_contents( $this->bs_dir . $this->bs_file );
         $this->css = $this->compiler->compile($file);
 
-        $file = file_get_contents( $this->path_to_bs_file('bs_responsive') );
-        $this->css .= $this->compiler->compile($file);
+        // $file = file_get_contents( $this->path_to_bs_file('bs_responsive') );
+        // $this->css .= $this->compiler->compile($file);
 
     }
 
 
     public function init_bootstrap_var_file() {
-        $file = $this->bs_dir . 'bootstrap/_variables.scss';
-        // examine($file);
+        $file = $this->bs_dir . 'src/bootstrap/_variables.scss';
+
         file_put_contents($file, $this->bootstrap_vars);
         // examine(file_get_contents($file) );
     }

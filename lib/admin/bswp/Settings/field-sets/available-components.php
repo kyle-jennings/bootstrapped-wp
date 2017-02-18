@@ -7,16 +7,14 @@ use bswp\Forms\Fields;
 $available_components_toggles = array();
 $components_array = array(
     'activate_collapsibles',
-    'activate_tables',
     'activate_tabs',
     'activate_alerts',
     'activate_tooltips',
-    'activate_modals',
-    'activate_quotes',
-    'activate_preformatted',
-    'activate_breadcrumbs',
     'activate_pagination',
     'activate_well',
+
+    // 'activate_breadcrumbs',
+    // 'activate_modals',
 );
 
 foreach($components_array as $name){

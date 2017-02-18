@@ -9,7 +9,11 @@
 table {
   max-width: 100%;
   background-color: $tableBackground;
+  border-color: $tableOuterBorder;
+  border-style: $tableOuterBorderStyle;
+  border-width: $tableOuterBorderWidth;
   border-collapse: collapse;
+  border-radius: 0;
   border-spacing: 0;
   color: $tablesTextColor;
 
@@ -31,7 +35,8 @@ table {
     line-height: $baseLineHeight;
     text-align: left;
     vertical-align: top;
-    border-top: 1px solid $tableBorder;
+    border-top: $tableBorderWidth $tableBorderStyle $tableBorder;
+    border-radius: 0;
   }
   th {
     font-weight: bold;
@@ -67,7 +72,7 @@ table {
 // CONDENSED TABLE W/ HALF PADDING
 // -------------------------------
 
-table-condensed {
+.table-condensed {
   th,
   td {
     padding: 4px 5px;
@@ -78,7 +83,7 @@ table-condensed {
 // BORDERED VERSION
 // ----------------
 
-table-bordered {
+.table-bordered {
   border: 1px solid $tableBorder;
   border-collapse: separate; // Done so we can round those corners!
   *border-collapse: collapse; // IE7 can't round corners anyway
@@ -160,11 +165,16 @@ table-bordered {
 // --------------
 
 // Default zebra-stripe styles (alternating gray and transparent backgrounds)
-table-striped {
+.table-striped {
   tbody {
     > tr:nth-child(odd) > td,
     > tr:nth-child(odd) > th {
-      background-color: $tableBackgroundAccent;
+      background-color: $tableStripedBackground;
+      color: $tablesStripedTextColor;
+
+      a {
+          color: $tablesStripedLinkColor;
+      }
     }
   }
 }
@@ -173,7 +183,7 @@ table-striped {
 // HOVER EFFECT
 // ------------
 // Placed here since it has to come after the potential zebra striping
-table-hover {
+.table-hover {
   tbody {
     tr:hover > td,
     tr:hover > th {
@@ -208,7 +218,7 @@ table th {
 
 // TABLE BACKGROUNDS
 // -----------------
-// Exact selectors below required to override table-striped
+// Exact selectors below required to override .table-striped
 
 table tbody tr {
   &.success > td {
@@ -225,8 +235,8 @@ table tbody tr {
   }
 }
 
-// Hover states for table-hover
-table-hover tbody tr {
+// Hover states for .table-hover
+.table-hover tbody tr {
   &.success:hover > td {
     background-color: darken($successBackground, 5%);
   }

@@ -14,7 +14,7 @@ function add_px_string($index){
 }
 
 
-
+// this is used to populate the
 $border_styles = array(
     'none',
     'solid',
@@ -28,26 +28,26 @@ $border_styles = array(
 );
 
 
-function border_settings_map($return = 'border_styles_toggled_by', $border_targets = array() ){
-
-    $border_styles = array('solid'=>'','dotted'=>'','dashed'=>'','double'=>'','groove'=>'','ridge'=>'','inset'=>'','outset'=>'',);
-
+function border_settings_map(
+    $return = 'border_styles_toggled_by',
+    $border_targets = array(),
+    $toggles = array('solid','dotted','dashed','double','groove','ridge','inset','outset')
+){
+    // examine($toggles);
     if( empty($border_targets))
         return array();
 
     $return_arr = array();
 
-    foreach($border_styles as $key=>$v){
+    foreach($toggles as $toggle){
 
         foreach($border_targets as $target){
             $border_color = ltrim($target.'_border_color', '_');
             $border_style = ltrim($target.'_border_style', '_');
             $border_width = ltrim($target.'_border_width', '_');
 
-
-
             if($return == 'border_styles_toggle')
-                $return_arr[$key] .= $border_color . ',' . $border_width .',';
+                $return_arr[$toggle] .= $border_color . ',' . $border_width .',';
             elseif($return == 'border_styles_toggled_by')
                 $return_arr[$border_style] = 'solid,dotted,dashed,double,groove,ridge,inset,outset';
         }

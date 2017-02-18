@@ -1,5 +1,5 @@
-<?php 
-add_action( 'wp_before_admin_bar_render', 'customize_admin_bar' );
+<?php
+#add_action( 'wp_before_admin_bar_render', 'customize_admin_bar' );
 function customize_admin_bar()
 {
     global $wp_admin_bar;

@@ -4,20 +4,42 @@ namespace bswp\Settings;
 
 
 include dirname(__FILE__).'/_helpers.php';
-include dirname(__FILE__).'/background-colors.php';
-include dirname(__FILE__).'/background-wallpaper.php';
-include dirname(__FILE__).'/borders.php';
-include dirname(__FILE__).'/border-radius.php';
-include dirname(__FILE__).'/headings.php';
-include dirname(__FILE__).'/text.php';
-include dirname(__FILE__).'/navbar.php';
-include dirname(__FILE__).'/section-layout.php';
-include dirname(__FILE__).'/site-settings.php';
-include dirname(__FILE__).'/available-sections.php';
-include dirname(__FILE__).'/available-components.php';
+
+include dirname(__FILE__).'/field-sets/available-components.php';
+include dirname(__FILE__).'/field-sets/available-sections.php';
+include dirname(__FILE__).'/field-sets/background-colors.php';
+include dirname(__FILE__).'/field-sets/background-wallpaper.php';
+include dirname(__FILE__).'/field-sets/borders.php';
+include dirname(__FILE__).'/field-sets/border-radius.php';
+include dirname(__FILE__).'/field-sets/headings.php';
+include dirname(__FILE__).'/field-sets/section-layout.php';
+include dirname(__FILE__).'/field-sets/site-settings.php';
+include dirname(__FILE__).'/field-sets/text.php';
+
+
+include dirname(__FILE__).'/components/navbar.php';
+include dirname(__FILE__).'/components/preformatted.php';
+include dirname(__FILE__).'/components/quotes.php';
+include dirname(__FILE__).'/components/tables.php';
 
 $component_options = get_option('bswp_site_settings');
 $component_options = $component_options['available_components']['components'];
+
+// add components
+// components are determined by the $available_components_toggles array
+// see available-components.php
+// settings are adding in components.php
+
+$components = array();
+foreach($component_options as $component=>$active){
+
+    if($active !== 'yes')
+        continue;
+
+    $name = str_replace('activate_','', $component);
+    include_once('components/'.$name.'.php');
+    $components[$name] = $$name;
+}
 
 
 
@@ -32,6 +54,7 @@ $background->add_tab('wallpapers', $background_wallpaper);
 
 // Borders Settings
 $borders = new SettingsGroup('borders');
+$borders->add_tab('all_sides', $all_sides);
 $borders->add_tab('top', $top);
 $borders->add_tab('right', $right);
 $borders->add_tab('bottom', $bottom);
@@ -60,28 +83,6 @@ $text->add_tab('hovered-links', $hovered_links);
 $text->add_tab('active-links', $active_links);
 
 
-
-
-// add components
-// components are determined by the $available_components_toggles array
-// see available-components.php
-// settings are adding in components.php
-
-$components = array();
-foreach($component_options as $component=>$active){
-
-    if($active !== 'yes')
-        continue;
-
-    $name = str_replace('activate_','', $component);
-    include_once('components/'.$name.'.php');
-    $components[$name] = $$name;
-
-}
-
-//
-
-
 // Misc settings
 $misc = new SettingsGroup('misc');
 $misc->add_tab('layout', $section_layout);
@@ -107,6 +108,9 @@ $groups = array(
     'headings' => $headings,
     'text' => $text,
     'navbar' => $navbar,
+    'tables' => $tables,
+    'preformatted' => $preformatted,
+    'quotes' => $quotes,
     'misc' => $misc,
     // 'available_sections' => $available_sections,
     'available_components' => $available_components,

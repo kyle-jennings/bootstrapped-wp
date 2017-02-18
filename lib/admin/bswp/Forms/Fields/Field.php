@@ -118,7 +118,7 @@ class Field {
             extract($toggles);
         }
 
-        $output .= '<div class="field '.$data_toggled_by.' '.$this->type.' '.$this->wrapper_class.'" '.$data_toggle_name.' >';
+        $output .= '<div class="field '.$data_toggled_by.' '.$this->type.' '.$this->wrapper_class.'" '.$data_toggle_name.' '.$data_toggled_by_name.'>';
             $output .= $this->field_output();
         $output .= '</div>';
 
@@ -146,15 +146,29 @@ class Field {
         return $output;
     }
 
+    public function get_toggled_by_names($toggled_bys){
+
+
+        $output = 'data-toggle-name="';
+            foreach ($toggled_bys as $field=>$value){
+                $output .= $field.', ';
+            }
+        $output .= '"';
+        return $output;
+    }
+
+
 
     public function toggle_fields_markup($toggled_by){
 
         $data_toggled_by = !empty($toggled_by) ? $this->get_toggled_by($toggled_by) : '' ;
         $data_toggle_name = !empty($toggled_by) ? 'data-toggle-name="'.$this->name.'"' : '';
+        $data_toggled_by_name = !empty($toggled_by) ? $this->get_toggled_by_names($toggled_by) : '' ;
 
         $data = array(
-            'data_toggled_by'=>$data_toggled_by,
-            'data_toggle_name'=>$data_toggle_name
+            'data_toggled_by' => $data_toggled_by,
+            'data_toggle_name' => $data_toggle_name,
+            'data_toggled_by_name' => $data_toggled_by_name
         );
 
 

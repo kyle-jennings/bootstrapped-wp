@@ -35,12 +35,12 @@ $purple:                #7a43b6 !default;
 
 // Scaffolding
 // -------------------------
-$bodyBackground:        #e3e3e3 !default;
+$bodyBackground:        #f00303 !default;
 $bodyBackgroundEnd:        #a8a8a8 !default;
 $backgroundStyle: none !default;
 
 // text
-$textColor:             #909690 !default;
+$textColor:             #ffffff !default;
 
 
 // Links
@@ -89,7 +89,7 @@ $altFontFamily:         $serifFontFamily !default;
 $headingsFontFamily:    inherit !default; // empty to use BS default, $baseFontFamily
 $headingsFontWeight:    bold !default;    // instead of browser default, bold
 
-$headingsColor:         #ff1003 !default;
+$headingsColor:         #c9c9c9 !default;
 $headingsBackgroundStyle: none !default;
 $headingsBackgroundColor: transparent !default;
 $headingsDecoration: none !default;
@@ -152,20 +152,28 @@ $tablesLinkColor:       #ffee03;
 
 $tableBackgroundHover:              darken($tableBackground, 20%) !default; // for hover
 
-$tablesHeaderBackgroundColor:       darken($tableBackground, 30%);
-$tablesHeaderTextColor:       darken($tablesTextColor, 30%);
-
+$tablesHeaderBackgroundColor:       rgba(171, 16, 199, 1);
+$tablesHeaderTextColor:       #fafafa;
 
 
 
 $tableBackgroundAccent:             rgba(3, 3, 3, 1)  !default; // for striping
 $tableBackgroundAccentHover:              darken($tableBackgroundAccent, 20%) !default; // for hover
+
+$tableStripedBackground:        $tableBackgroundAccent;
 $tablesStripedTextColor:       #fa0303;
 $tablesStripedLinkColor:       #01586e;
 
 
 
-$tableBorder:                       #03abff !default; // table and cell border
+$tableBorder:                       #ddd !default; // table and cell border
+$tableBorderStyle: none !default; //
+$tableBorderWidth: 0 !default; //
+
+
+$tableOuterBorder: $tableBorder !default; //
+$tableOuterBorderStyle: none !default; //
+$tableOuterBorderWidth: 0 !default; //
 // Buttons
 // -------------------------
 $btnBackground:                     $white !default;
@@ -189,10 +197,6 @@ $btnDangerBackgroundHighlight:      #bd362f !default;
 
 $btnInverseBackground:              #444 !default;
 $btnInverseBackgroundHighlight:     $grayDarker !default;
-
-
-
-
 // Forms
 // -------------------------
 $inputBackground:               $white !default;
@@ -201,6 +205,10 @@ $inputBorderRadius:             $baseBorderRadius !default;
 $inputDisabledBackground:       $grayLighter !default;
 $formActionsBackground:         #f5f5f5 !default;
 $inputHeight:                   $baseLineHeight + 10px; // base line-height + 8px vertical padding + 2px top/bottom border
+
+
+
+
 
 
 // Dropdowns
@@ -302,12 +310,12 @@ $navbarLeftBorderStyle:                 $navbarTopBorderStyle !default;
 $navbarLeftBorderWidth:                 $navbarTopBorderWidth !default;
 $navbarText:                      #f7f7f7 !default;
 $navbarLinkColor:                 #ffffff !default;
-$navbarLinkColorHover:            #ff0335 !default;
+$navbarLinkColorHover:            #1ec962 !default;
 $navbarLinkColorActive:           #ffffff !default;
 
 $navbarLinkBackground:       transparent !default;
 $navbarLinkBackgroundHover:       transparent !default;
-$navbarLinkBackgroundActive:      rgba(15, 235, 7, 1) !default;
+$navbarLinkBackgroundActive:      rgba(3, 3, 3, 1) !default;
 
 $navbarBrandColor:                $navbarLinkColor !default;
 // -------------------------

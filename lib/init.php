@@ -18,6 +18,23 @@ if(! function_exists('examine') ){
 }
 
 
+function bswp_remove_customizer() {
+    global $wp_admin_bar;
+    $wp_admin_bar->remove_menu('customize');
+}
+
+add_action( 'wp_before_admin_bar_render', 'bswp_remove_customizer' );
+
+function bswp_remove_customizer_menu_item () {
+    global $submenu;
+    foreach($submenu['themes.php'] as $key=>$item)
+        if($item[1] == 'customize')
+            unset($submenu['themes.php'][$key]);
+}
+add_action('admin_menu', 'bswp_remove_customizer_menu_item');
+
+
+
 // gets options function
 if(is_admin())
     include 'admin/init.php' ;
@@ -52,7 +69,7 @@ function kjd_add_assets(){
         $mobilenav_style = $mobileNavSettings['mobilenav_style'];
     }
 
-    
+
     wp_enqueue_script("script", $root."/scripts/application.js", false, "1.0", true);
     wp_enqueue_script("jquery", $root."/scripts/jquery.js", false, "1.0", false);
     wp_enqueue_script("bootstrap", $root."/scripts/bootstrap.min.js", false, "1.0", true);
