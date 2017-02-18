@@ -32,7 +32,7 @@ class Builder {
 
     public function set_variables() {
 
-        $var_file = dirname(__FILE__) . '/variables.php';
+        $var_file = $this->bs_dir . '/variables.php';
 
         require_once($var_file);
 
@@ -59,17 +59,17 @@ class Builder {
 
         // set directory
         $bs_dir = dirname(dirname(__FILE__));
-        $bs_dir .= '/CSS/bootstrap/assets/stylesheets/';
+        $bs_dir .= '/CSS/bootstrap/';
 
         $this->bs_dir = is_dir($bs_dir) ? $bs_dir : null ;
 
         // set fbase bs ilename
-        $filename = 'bootstrap.scss';
+        $filename = 'src/bootstrap.scss';
         $this->bs_file = is_readable($bs_dir . $filename) ? $filename : null;
 
 
         // sets responive bs filename
-        $filename = 'bootstrap-responsive.scss';
+        $filename = 'src/bootstrap-responsive.scss';
         $this->bs_responsive_file = is_readable($bs_dir . $filename) ? $filename : null;
 
     }
