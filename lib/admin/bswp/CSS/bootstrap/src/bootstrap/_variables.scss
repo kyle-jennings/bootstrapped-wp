@@ -2,7 +2,9 @@
 //
 // Variables
 // --------------------------------------------------
-
+@function image-path($file) {
+  @return "../img/"+$file
+}
 
 // Global values
 // --------------------------------------------------
@@ -35,7 +37,7 @@ $purple:                #7a43b6 !default;
 
 // Scaffolding
 // -------------------------
-$bodyBackground:        #f00303 !default;
+$bodyBackground:        #ffffff !default;
 $bodyBackgroundEnd:        #a8a8a8 !default;
 $backgroundStyle: none !default;
 
@@ -152,8 +154,8 @@ $tablesLinkColor:       #ffee03;
 
 $tableBackgroundHover:              darken($tableBackground, 20%) !default; // for hover
 
-$tablesHeaderBackgroundColor:       rgba(171, 16, 199, 1);
-$tablesHeaderTextColor:       #fafafa;
+$tablesHeaderBackgroundColor:       rgba(156, 2, 173, 1);
+$tablesHeaderTextColor:       #ffffff;
 
 
 

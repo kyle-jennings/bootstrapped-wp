@@ -1,5 +1,6 @@
 <?php
 
+
 // background settings
 $background = $this->values['background'];
 $background_colors = $background['colors'];
@@ -44,7 +45,9 @@ ob_start();
 //
 // Variables
 // --------------------------------------------------
-
+@function image-path($file) {
+  @return "../img/"+$file
+}
 
 // Global values
 // --------------------------------------------------

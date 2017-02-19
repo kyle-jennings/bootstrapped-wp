@@ -1,3 +1,55 @@
+@keyframes spin {
+    100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); }
+}
+
+.preview-wrapper {
+
+    position: relative;
+
+    &::before {
+        // animation: spin 4s linear infinite;
+        // background-image: url('../img/glyphicons-halflings.png');
+        // background-position: -240px -24px;
+        // background-repeat: no-repeat;
+        content: 'Loading new styles';
+        display: none;
+        height: 14px;
+        left: 50%;
+        // line-height: 14px;
+        margin-top: 1px;
+        position: absolute;
+        top: 50%;
+        transform: translateX(-50%);
+        vertical-align: text-top;
+        // width: 14px;
+        z-index: 10;
+    }
+
+    &.reloading::before {
+        display: inline-block;
+    }
+
+    &::after {
+        background: transparent;
+        content: '';
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        transition: opacity .3s linear;
+        z-index: 9;
+    }
+
+    &.reloading::after {
+        background: $preview-overlay;
+        opacity: 1;
+        bottom: 0;
+        right: 0;
+    }
+
+
+
+}
 
 .preview-size {
     float: left;

@@ -6,8 +6,11 @@ use Leafo\ScssPhp\Compiler;
 
 class Builder {
 
+    public $preview = false;
     public $section = 'site';
     private $values = array();
+
+
 
     public $bs_dir;
     public $bs_file;
@@ -18,10 +21,11 @@ class Builder {
 
     public $bootstrap_vars = '';
 
-    public function __construct($section = 'site', $values = array() ) {
+    public function __construct($section = 'site', $values = array(), $preview = false ) {
 
         $this->section = $section;
         $this->values = $values;
+        $this->preview = $preview;
 
         $this->initCompiler();
         $this->findBootstrapScssFile();
@@ -46,7 +50,7 @@ class Builder {
 
         $root_dir = dirname($this->admin_dir);
 
-        $this->preview_styles = $this->admin_dir . '/styles';
+        $this->preview_styles = $this->admin_dir . '/assets/css';
         $this->dist_styles = $root_dir . '/styles';
 
         $this->compiler = new compiler();
@@ -119,10 +123,13 @@ class Builder {
      */
     public function save_to_file($target) {
         $target_dir = $target.'_styles';
-        $newfile = $this->$target_dir.'/site.css';
+        $filename = ($target == 'dist') ? 'site' : 'preview';
+        $newfile = $this->$target_dir.'/'.$filename.'.css';
+
+        error_log($newfile);
 
         $fh = fopen($newfile, 'w') or die("Can't create file");
         fwrite($fh, $this->css);
-        // file_put_contents($this->preview_styles.'preview.css', $this->css);
+
     }
 }
