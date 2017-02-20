@@ -518,21 +518,21 @@ $preBackgroundPercentage: 0% !default;
         $preBottomLeftBorderRadius: 7px !default;
 
     
-    $preLinksColor: #03ffee !default;
-    $preLinksBackgroundStyle: highlighted !default;
-    $preLinksBackgroundColor: rgba(255, 3, 255, 1) !default;
+    $preLinksColor: #03ddff !default;
+    $preLinksBackgroundStyle: pills !default;
+    $preLinksBackgroundColor: rgba(255, 3, 242, 1) !default;
     $preLinksDecoration: none !default;
     $preLinksTextShadow: darken($linkColor, 15%) !default;
 
 
-    $preVisitedLinksColor: #4902c2 !default;
+    $preVisitedLinksColor: #6c03ff !default;
     $preVisitedLinksBackgroundStyle: none !default;
     $preVisitedLinksBackgroundColor: transparent !default;
     $preVisitedLinksDecoration: none !default;
     $preVisitedLinksTextShadow: darken($linkColor, 15%) !default;
 
 
-    $preHoveredLinksColor: #030000 !default;
+    $preHoveredLinksColor: #ff1003 !default;
     $preHoveredLinksBackgroundStyle: highlighted !default;
     $preHoveredLinksBackgroundColor: rgba(255, 255, 255, 1) !default;
     $preHoveredLinksDecoration: none !default;

@@ -654,7 +654,18 @@ code, pre {
   font-size: 12px;
   padding: 0 3px 2px; }
   code a, pre a {
-    color: #03ffee; }
+    color: #03ddff;
+    background-color: rgba(255, 3, 242, 1);
+    border-radius: 4px;
+    text-decoration: none; }
+    code a:hover, pre a:hover, code a:hover:visited, pre a:hover:visited {
+      color: #ff1003;
+      background-color: rgba(255, 255, 255, 1); }
+    code a:visited, pre a:visited {
+      color: #6c03ff; }
+    code a:focus, pre a:focus, code a:active, pre a:active {
+      color: #d903ce;
+      background-color: rgba(171, 7, 138, 1.01); }
 
 code {
   padding: 2px 4px;

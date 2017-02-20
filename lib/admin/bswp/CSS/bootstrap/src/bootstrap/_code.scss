@@ -28,6 +28,31 @@ pre {
 
     a {
         color: $preLinksColor;
+        @include link-bg($preLinksBackgroundStyle, $preLinksBackgroundColor);
+        @include link-decoration($preLinksDecoration, $preLinksTextShadow);
+
+        &:hover,
+        &:hover:visited {
+            color: $preHoveredLinksColor;
+            @include link-bg($preHoveredLinksBackgroundStyle, $preHoveredLinksBackgroundColor);
+        }
+
+        &:visited {
+            color: $preVisitedLinksColor;
+            @if $preVisitedLinksBackgroundStyle != none {
+                background-color: $preVisitedLinksBackgroundColor;
+            }
+        }
+
+        &:focus,
+        &:active {
+            color: $preActiveLinksColor;
+            @if $preActiveLinksBackgroundStyle != none {
+                background-color: $preActiveLinksBackgroundColor;
+            }
+        }
+
+
     }
 }
 

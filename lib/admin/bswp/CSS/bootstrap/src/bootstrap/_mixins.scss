@@ -143,6 +143,25 @@
 }
 
 
+@mixin link-bg($linksBackgroundStyle: none, $linksBackgroundColor: transparent ){
+    @if $linksBackgroundStyle == pills {
+        background-color: $linksBackgroundColor;
+        border-radius: 4px;
+    }
+
+    @if $linksBackgroundStyle == highlighted {
+        background-color: $linksBackgroundColor;
+    }
+}
+
+@mixin link-decoration($linksDecoration: none, $linksTextShadow: none) {
+     @if $linksDecoration == text-shadow {
+         text-shadow: 1px 1px $linksTextShadow;
+     } @else {
+         text-decoration: $linksDecoration;
+     }
+}
+
 // FORMS
 // --------------------------------------------------
 
