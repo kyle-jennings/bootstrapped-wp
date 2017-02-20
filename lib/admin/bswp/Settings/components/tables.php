@@ -96,19 +96,7 @@ $tables->add_tab('striped_rows',
 );
 $table_borders = $all_sides;
 $table_borders['style_border_sides']->toggle_fields = border_settings_map('border_styles_toggle', $border_sides, array('yes') );
-//
-// $ttop = $top;
-// $ttop['top_border_color']->toggled_by['style_border_sides']['style_border_sides'] = 'yes';
-//
-// $tright = $right;
-// $tright['right_border_color']->toggled_by['style_border_sides']['style_border_sides'] = 'yes';
-//
-// $tbottom = $bottom;
-// $tbottom['bottom_border_color']->toggled_by['style_border_sides']['style_border_sides'] = 'yes';
-//
-// $tleft = $left;
-// $tleft['left_border_color']->toggled_by['style_border_sides']['style_border_sides'] = 'yes';
-//
+
 
 $tables->add_tab('borders', array_merge(
     array(
@@ -142,5 +130,3 @@ $tables->add_tab('borders', array_merge(
     $left
     )
 );
-
-// examine($top['top_border_color']->toggled_by['style_border_sides']['style_border_sides'] = 'yes' );

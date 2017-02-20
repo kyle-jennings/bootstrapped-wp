@@ -33,18 +33,13 @@ $navbar->add_tab('text',
 
 
 $navbar->add_tab('borders', array_merge(
-        $top,
+        $component_borders,
         array( 'divider1'=>new Divider()),
-        $right,
-        array( 'divider2'=>new Divider()),
-        $bottom,
-        array( 'divider3'=>new Divider()),
-        $left,
-        array( 'divider4'=>new Divider()),
         array( 'label1'=>new Label(array('name'=>'border_radius'))),
         $radii_fields
     )
 );
+
 
 
 $navbar->add_tab('submenu_background_colors', array(

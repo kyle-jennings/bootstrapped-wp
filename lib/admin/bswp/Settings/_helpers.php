@@ -57,6 +57,26 @@ function border_settings_map(
 }
 
 
+
+function border_corners_toggle_map($action = 'toggle'){
+
+    $corners = array('top_left','top_right','bottom_right','bottom_left');
+
+    $return_arr = array();
+
+    foreach($corners as $corner){
+
+        if($action == 'toggle')
+                $return_arr['yes'] .= $corner .',';
+        elseif($action == 'toggled_by')
+                $return_arr['style_corners'] = 'yes';
+
+    }
+    // examine($return_arr);
+    return $return_arr;
+}
+
+
 function heading_toggle($new, $array){
     $heading = 'h1';
     return($heading.'_border_color,'.$heading.'_border_size');
@@ -67,7 +87,7 @@ function remove_link_bg($link) {
     unset($link['links_background_style']);
     unset($link['links_background_color']);
     return $link;
-    
+
 }
 function remove_link_decoration($link) {
     unset($link['links_text_decoration']);

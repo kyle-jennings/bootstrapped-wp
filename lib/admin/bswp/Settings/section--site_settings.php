@@ -16,6 +16,10 @@ include dirname(__FILE__).'/field-sets/section-layout.php';
 include dirname(__FILE__).'/field-sets/site-settings.php';
 include dirname(__FILE__).'/field-sets/text.php';
 
+// component settings
+include dirname(__FILE__).'/field-sets/component-borders.php';
+
+
 
 include dirname(__FILE__).'/components/navbar.php';
 include dirname(__FILE__).'/components/preformatted.php';

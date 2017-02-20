@@ -319,31 +319,12 @@ $navbarCollapseWidth:             979px !default;
 $navbarCollapseDesktopWidth:      $navbarCollapseWidth + 1;
 
 $navbarHeight:                    40px !default;
-$navbarBackgroundStart:           #333333 !default;
+$navbarBackgroundStart:           #f5f5f5 !default;
 $navbarBackgroundEnd:             #333333 !default;
 
 $navbarBackgroundHighlight:       $navbarBackgroundStart !default;
 $navbarBackground:                $navbarBackgroundEnd !default;
 
-$navbarBorder:                    darken($navbarBackground, 12%) !default;
-$navbarBorderStyle:               'solid';
-$navbarBorderWidth:               '1px';
-
-$navbarTopBorder:                      $navbarBorder !default;
-$navbarTopBorderStyle:                 $navbarBorderStyle !default;
-$navbarTopBorderWidth:                 $navbarBorderWidth !default;
-
-$navbarRightBorder:                      $navbarTopBorder !default;
-$navbarRightBorderStyle:                 $navbarTopBorderStyle !default;
-$navbarRightBorderWidth:                 $navbarTopBorderWidth !default;
-
-$navbarBottomBorder:                      $navbarTopBorder !default;
-$navbarBottomBorderStyle:                 $navbarTopBorderStyle !default;
-$navbarBottomBorderWidth:                 $navbarTopBorderWidth !default;
-
-$navbarLeftBorder:                      $navbarTopBorder !default;
-$navbarLeftBorderStyle:                 $navbarTopBorderStyle !default;
-$navbarLeftBorderWidth:                 $navbarTopBorderWidth !default;
 $navbarText:                      #f7f7f7 !default;
 $navbarLinkColor:                 #ffffff !default;
 $navbarLinkColorHover:            #1ec962 !default;
@@ -354,7 +335,53 @@ $navbarLinkBackgroundHover:       rgba(1, 102, 42, 1) !default;
 $navbarLinkBackgroundActive:      rgba(94, 94, 94, 1) !default;
 
 $navbarBrandColor:                $navbarLinkColor !default;
-// -------------------------
+
+
+$navbarBorder:                    darken($navbarBackground, 12%) !default;
+$navbarBorderStyle:               'solid';
+$navbarBorderWidth:               '1px';
+
+
+
+    $navBorderColor: #ff0303 !default;
+    $navBorderStyle: solid !default;
+    $navBorderWidth: 1px !default;
+
+    
+    $navTopBorderColor: #8882fa !default;
+    $navTopBorderStyle: solid !default;
+    $navTopBorderWidth: 3px !default;
+    
+    $navRightBorderColor: #03f2ff !default;
+    $navRightBorderStyle: solid !default;
+    $navRightBorderWidth: 20px !default;
+    
+    $navBottomBorderColor: #03ff5f !default;
+    $navBottomBorderStyle: solid !default;
+    $navBottomBorderWidth: 10px !default;
+    
+    $navLeftBorderColor: transparent !default;
+    $navLeftBorderStyle: none !default;
+    $navLeftBorderWidth: 1px !default;
+    
+    $navBorderColor: $navTopBorderColor $navRightBorderColor $navBottomBorderColor $navLeftBorderColor;
+    $navBorderStyle: $navTopBorderStyle $navRightBorderStyle $navBottomBorderStyle $navLeftBorderStyle;
+    $navBorderWidth: $navTopBorderWidth $navRightBorderWidth $navBottomBorderWidth $navLeftBorderWidth;
+
+
+
+    
+    $navBorderRadius: 1px !default;
+        $navTopLeftBorderRadius: 1px !default;
+
+        $navTopRightBorderRadius: 1px !default;
+
+        $navBottomRightBorderRadius: 1px !default;
+
+        $navBottomLeftBorderRadius: 1px !default;
+
+    
+    // -------------------------
 // Navbar Dropdowns
 // -------------------------
 
@@ -426,6 +453,100 @@ $tooltipBackground:       #000 !default;
 $tooltipArrowWidth:       5px !default;
 $tooltipArrowColor:       $tooltipBackground !default;
 
+
+
+
+// Preformatted and Code
+// -------------------------
+
+$preColor: #03ff31;
+$preBackgroundColor: #030000;
+$preBackgroundEndColor: #030000;
+$preBackgroundFill: solid;
+
+
+$preBackgroundWallpaper: no !default;
+
+$preBackgroundImage: "none" !default;
+$preBackgroundRepeat: no-repeat !default;
+$preBackgroundAttachment: scroll !default;
+
+$preBackgroundPosition: left top !default;
+$preBackgroundPositionX: 0 !default;
+$preBackgroundPositionY: 0 !default;
+
+$preBackgroundSize: auto !default;
+$preBackgroundPercentage: 0% !default;
+
+
+
+    $preBorderColor: #ff0303 !default;
+    $preBorderStyle: solid !default;
+    $preBorderWidth: 6px !default;
+
+    
+    $preTopBorderColor: transparent !default;
+    $preTopBorderStyle: none !default;
+    $preTopBorderWidth: 1px !default;
+    
+    $preRightBorderColor: transparent !default;
+    $preRightBorderStyle: none !default;
+    $preRightBorderWidth: 1px !default;
+    
+    $preBottomBorderColor: transparent !default;
+    $preBottomBorderStyle: none !default;
+    $preBottomBorderWidth: 1px !default;
+    
+    $preLeftBorderColor: #02a32a !default;
+    $preLeftBorderStyle: solid !default;
+    $preLeftBorderWidth: 4px !default;
+    
+    $preBorderColor: $preTopBorderColor $preRightBorderColor $preBottomBorderColor $preLeftBorderColor;
+    $preBorderStyle: $preTopBorderStyle $preRightBorderStyle $preBottomBorderStyle $preLeftBorderStyle;
+    $preBorderWidth: $preTopBorderWidth $preRightBorderWidth $preBottomBorderWidth $preLeftBorderWidth;
+
+
+
+    
+    $preBorderRadius: 5px !default;
+        $preTopLeftBorderRadius: 5px !default;
+
+        $preTopRightBorderRadius: 19px !default;
+
+        $preBottomRightBorderRadius: 2px !default;
+
+        $preBottomLeftBorderRadius: 7px !default;
+
+    
+    $preLinksColor: #03ffee !default;
+    $preLinksBackgroundStyle: highlighted !default;
+    $preLinksBackgroundColor: rgba(255, 3, 255, 1) !default;
+    $preLinksDecoration: none !default;
+    $preLinksTextShadow: darken($linkColor, 15%) !default;
+
+
+    $preVisitedLinksColor: #4902c2 !default;
+    $preVisitedLinksBackgroundStyle: none !default;
+    $preVisitedLinksBackgroundColor: transparent !default;
+    $preVisitedLinksDecoration: none !default;
+    $preVisitedLinksTextShadow: darken($linkColor, 15%) !default;
+
+
+    $preHoveredLinksColor: #030000 !default;
+    $preHoveredLinksBackgroundStyle: highlighted !default;
+    $preHoveredLinksBackgroundColor: rgba(255, 255, 255, 1) !default;
+    $preHoveredLinksDecoration: none !default;
+    $preHoveredLinksTextShadow: darken($linkColor, 15%) !default;
+
+
+    $preActiveLinksColor: #d903ce !default;
+    $preActiveLinksBackgroundStyle: highlighted !default;
+    $preActiveLinksBackgroundColor: rgba(171, 7, 138, 1.01) !default;
+    $preActiveLinksDecoration: none !default;
+    $preActiveLinksTextShadow: darken($linkColor, 15%) !default;
+
+
+    
 
 
 

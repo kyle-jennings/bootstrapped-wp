@@ -1,5 +1,7 @@
 <?php
 
+include '__helpers.php';
+
 
 // background settings
 $background = $this->values['background'];
@@ -32,11 +34,22 @@ $tables = $this->values['tables'];
 $navbar = $this->values['navbar'];
 $navbg = $navbar['background_colors'];
 $navtext = $navbar['text'];
-$navborders = $nav['borders'];
+$navborders = $navbar['borders'];
+
 
 $nav_submenu_bg = $navbar['submenu_background_colors'];
 $nav_submenu_text = $navbar['submenu_text'];
 $nav_submenu_border = $navbar['submenu_borders'];
+
+
+$pre = $this->values['preformatted'];
+$pre_background_colors = $pre['background_colors'];
+$pre_text = $pre['text'];
+
+$pre_borders = $pre['borders'];
+
+
+$quotes = $this->values['quotes'];
 
 // examine($nav_submenu_border);
 ob_start();

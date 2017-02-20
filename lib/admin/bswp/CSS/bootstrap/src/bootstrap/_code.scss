@@ -6,19 +6,35 @@
 // Inline and block code styles
 code,
 pre {
-  padding: 0 3px 2px;
-  @include font-family-monospace;
-  font-size: $baseFontSize - 2;
-  color: $grayDark;
-  @include border-radius(3px);
+    border-radius: $preBorderRadius;
+    @include font-family-monospace;
+    background-color: $preBackgroundColor;
+    @if $preBackgroundFill == vertical {
+        @include gradient-vertical($preBackgroundColor, $preBackgroundEndColor );
+    } @else if $preBackgroundFill == horizontal {
+        @include gradient-horizontal($preBackgroundColor, $preBackgroundEndColor );
+    } @else if $preBackgroundFill == radial {
+        @include gradient-radial($preBackgroundColor, $preBackgroundEndColor );
+    } @else if $preBackgroundFill == none {
+      background-color: transparent;
+    }
+
+    border-color: $preBorderColor;
+    border-style: $preBorderStyle ;
+    border-width: $preBorderWidth ;
+    color: $preColor;
+    font-size: $baseFontSize - 2;
+    padding: 0 3px 2px;
+
+    a {
+        color: $preLinksColor;
+    }
 }
 
 // Inline code
 code {
   padding: 2px 4px;
-  color: #d14;
   background-color: #f7f7f9;
-  border: 1px solid #e1e1e8;
   white-space: nowrap;
 }
 
@@ -33,10 +49,7 @@ pre {
   word-wrap: break-word;
   white-space: pre;
   white-space: pre-wrap;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc; // fallback for IE7-8
-  border: 1px solid rgba(0,0,0,.15);
-  @include border-radius($baseBorderRadius);
+
 
   // Make prettyprint styles more spaced out for readability
   &.prettyprint {
@@ -46,11 +59,8 @@ pre {
   // Account for some code outputs that place code tags in pre tags
   code {
     padding: 0;
-    color: inherit;
     white-space: pre;
     white-space: pre-wrap;
-    background-color: transparent;
-    border: 0;
   }
 }
 

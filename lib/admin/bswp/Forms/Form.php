@@ -67,6 +67,7 @@ class Form {
             $output .= $this->grab_function_output('settings_fields', 'bswp_'.$this->section_name );
             $output .= '<input id="js--group-tab-field" type="hidden" name="'.$current_group_name_attr.'" value="'.$current_group_value.'">';
             $output .= '<input id="js--field-tab-field" type="hidden" name="'.$current_tab_name_attr.'" value="'.$current_tab_value.'">';
+            $output .= '<input id="js--saved_fields" type="hidden" name="bswp_'.$this->section_name.'[form_meta_settings][saved]" value="no">';
 
 
             // $output .= '<div class="fields-wrapper '.$classes.'">';
