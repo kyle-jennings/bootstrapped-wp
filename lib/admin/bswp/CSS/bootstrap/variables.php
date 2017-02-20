@@ -45,11 +45,20 @@ $nav_submenu_border = $navbar['submenu_borders'];
 $pre = $this->values['preformatted'];
 $pre_background_colors = $pre['background_colors'];
 $pre_text = $pre['text'];
-
 $pre_borders = $pre['borders'];
 
 
+$well = $this->values['well'];
+$well_background_colors = $well['background_colors'];
+$well_text = $well['text'];
+$well_borders = $well['borders'];
+
+
+
 $quotes = $this->values['quotes'];
+$quotes_background_colors = $quotes['background_colors'];
+$quotes_text = $quotes['text'];
+$quotes_borders = $quotes['borders'];
 
 // examine($nav_submenu_border);
 ob_start();
@@ -209,7 +218,7 @@ $horizontalComponentOffset:       180px !default;
 // Wells
 // -------------------------
 $wellBackground:                  #f5f5f5 !default;
-
+$wellBorder:                      darken($wellBackground, 7%);
 
 // Navbar
 // -------------------------

@@ -303,7 +303,7 @@ $horizontalComponentOffset:       180px !default;
 // Wells
 // -------------------------
 $wellBackground:                  #f5f5f5 !default;
-
+$wellBorder:                      darken($wellBackground, 7%);
 
 // Navbar
 // -------------------------
@@ -453,6 +453,90 @@ $tooltipBackground:       #000 !default;
 $tooltipArrowWidth:       5px !default;
 $tooltipArrowColor:       $tooltipBackground !default;
 
+// Quotes
+// -------------------------
+
+$quotesColor: $textColor;
+$quotesBackgroundColor: #024f1e;
+$quotesBackgroundEndColor: transparent;
+$quotesBackgroundFill: none;
+
+$quotesBackgroundWallpaper: no !default;
+
+$quotesBackgroundImage: "none" !default;
+$quotesBackgroundRepeat: no-repeat !default;
+$quotesBackgroundAttachment: scroll !default;
+
+$quotesBackgroundPosition: left top !default;
+$quotesBackgroundPositionX: 0 !default;
+$quotesBackgroundPositionY: 0 !default;
+
+$quotesBackgroundSize: auto !default;
+$quotesBackgroundPercentage: 0% !default;
+
+$quotesBorder: $grayLighter;
+
+    $quotesBorderColor: $quotesBorder !default;
+    $quotesBorderStyle: none !default;
+    $quotesBorderWidth: 1px !default;
+
+    
+    $quotesTopBorderColor: transparent !default;
+    $quotesTopBorderStyle: none !default;
+    $quotesTopBorderWidth: 1px !default;
+    
+    $quotesRightBorderColor: transparent !default;
+    $quotesRightBorderStyle: none !default;
+    $quotesRightBorderWidth: 1px !default;
+    
+    $quotesBottomBorderColor: transparent !default;
+    $quotesBottomBorderStyle: none !default;
+    $quotesBottomBorderWidth: 1px !default;
+    
+    $quotesLeftBorderColor: transparent !default;
+    $quotesLeftBorderStyle: none !default;
+    $quotesLeftBorderWidth: 1px !default;
+    
+    
+    $quotesBorderRadius: 1px !default;
+        $quotesTopLeftBorderRadius: 1px !default;
+
+        $quotesTopRightBorderRadius: 1px !default;
+
+        $quotesBottomRightBorderRadius: 1px !default;
+
+        $quotesBottomLeftBorderRadius: 1px !default;
+
+    
+    $quotesLinksColor: quotesLinksColor !default;
+    $quotesLinksBackgroundStyle: none !default;
+    $quotesLinksBackgroundColor: transparent !default;
+    $quotesLinksDecoration: none !default;
+    $quotesLinksTextShadow: darken($linkColor, 15%) !default;
+
+
+    $quotesVisitedLinksColor: quotesLinksColor !default;
+    $quotesVisitedLinksBackgroundStyle: none !default;
+    $quotesVisitedLinksBackgroundColor: transparent !default;
+    $quotesVisitedLinksDecoration: none !default;
+    $quotesVisitedLinksTextShadow: darken($linkColor, 15%) !default;
+
+
+    $quotesHoveredLinksColor: quotesLinksColor !default;
+    $quotesHoveredLinksBackgroundStyle: none !default;
+    $quotesHoveredLinksBackgroundColor: transparent !default;
+    $quotesHoveredLinksDecoration: none !default;
+    $quotesHoveredLinksTextShadow: darken($linkColor, 15%) !default;
+
+
+    $quotesActiveLinksColor: quotesLinksColor !default;
+    $quotesActiveLinksBackgroundStyle: none !default;
+    $quotesActiveLinksBackgroundColor: transparent !default;
+    $quotesActiveLinksDecoration: none !default;
+    $quotesActiveLinksTextShadow: darken($linkColor, 15%) !default;
+
+
+    
 
 
 
@@ -519,8 +603,8 @@ $preBackgroundPercentage: 0% !default;
 
     
     $preLinksColor: #03ddff !default;
-    $preLinksBackgroundStyle: pills !default;
-    $preLinksBackgroundColor: rgba(255, 3, 242, 1) !default;
+    $preLinksBackgroundStyle: highlighted !default;
+    $preLinksBackgroundColor: rgba(255, 3, 255, 1) !default;
     $preLinksDecoration: none !default;
     $preLinksTextShadow: darken($linkColor, 15%) !default;
 
@@ -544,6 +628,90 @@ $preBackgroundPercentage: 0% !default;
     $preActiveLinksBackgroundColor: rgba(171, 7, 138, 1.01) !default;
     $preActiveLinksDecoration: none !default;
     $preActiveLinksTextShadow: darken($linkColor, 15%) !default;
+
+
+    
+// Wellsss
+// -------------------------
+
+$wellColor: #030303;
+$wellBackgroundColor: #e85a5a;
+$wellBackgroundEndColor: transparent;
+$wellBackgroundFill: solid;
+
+$wellBackgroundWallpaper: no !default;
+
+$wellBackgroundImage: "none" !default;
+$wellBackgroundRepeat: no-repeat !default;
+$wellBackgroundAttachment: scroll !default;
+
+$wellBackgroundPosition: left top !default;
+$wellBackgroundPositionX: 0 !default;
+$wellBackgroundPositionY: 0 !default;
+
+$wellBackgroundSize: auto !default;
+$wellBackgroundPercentage: 0% !default;
+
+
+
+    $wellBorderColor: $wellBorder !default;
+    $wellBorderStyle: none !default;
+    $wellBorderWidth: 1px !default;
+
+    
+    $wellTopBorderColor: transparent !default;
+    $wellTopBorderStyle: none !default;
+    $wellTopBorderWidth: 1px !default;
+    
+    $wellRightBorderColor: transparent !default;
+    $wellRightBorderStyle: none !default;
+    $wellRightBorderWidth: 1px !default;
+    
+    $wellBottomBorderColor: transparent !default;
+    $wellBottomBorderStyle: none !default;
+    $wellBottomBorderWidth: 1px !default;
+    
+    $wellLeftBorderColor: transparent !default;
+    $wellLeftBorderStyle: none !default;
+    $wellLeftBorderWidth: 1px !default;
+    
+    
+    $wellBorderRadius: 1px !default;
+        $wellTopLeftBorderRadius: 1px !default;
+
+        $wellTopRightBorderRadius: 1px !default;
+
+        $wellBottomRightBorderRadius: 1px !default;
+
+        $wellBottomLeftBorderRadius: 1px !default;
+
+    
+    $wellLinksColor: #f2ff03 !default;
+    $wellLinksBackgroundStyle: none !default;
+    $wellLinksBackgroundColor: transparent !default;
+    $wellLinksDecoration: none !default;
+    $wellLinksTextShadow: darken($linkColor, 15%) !default;
+
+
+    $wellVisitedLinksColor: wellLinksColor !default;
+    $wellVisitedLinksBackgroundStyle: none !default;
+    $wellVisitedLinksBackgroundColor: transparent !default;
+    $wellVisitedLinksDecoration: none !default;
+    $wellVisitedLinksTextShadow: darken($linkColor, 15%) !default;
+
+
+    $wellHoveredLinksColor: #03c0ff !default;
+    $wellHoveredLinksBackgroundStyle: highlighted !default;
+    $wellHoveredLinksBackgroundColor: rgba(112, 122, 255, 1) !default;
+    $wellHoveredLinksDecoration: none !default;
+    $wellHoveredLinksTextShadow: darken($linkColor, 15%) !default;
+
+
+    $wellActiveLinksColor: wellLinksColor !default;
+    $wellActiveLinksBackgroundStyle: none !default;
+    $wellActiveLinksBackgroundColor: transparent !default;
+    $wellActiveLinksDecoration: none !default;
+    $wellActiveLinksTextShadow: darken($linkColor, 15%) !default;
 
 
     

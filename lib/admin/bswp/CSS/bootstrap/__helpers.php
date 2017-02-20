@@ -68,10 +68,10 @@ function _component_links_sass_vars($prefix = null, $links = array()) {
     $states = array('links','visited_links','hovered_links', 'active_links');
 
     foreach($states as $state):
-
         $state_name = ($type == 'links') ? 'Link': str_replace(' ','',ucwords(str_replace('_',' ',$state)));
+        $default = ($type == 'links') ? 'inherit' : $prefix.'LinksColor';
     ?>
-$<?php echo $prefix . $state_name; ?>Color: <?php echo $links[$state.'_color'] ? $links[$state.'_color'] : 'inherit'; ?> !default;
+$<?php echo $prefix . $state_name; ?>Color: <?php echo $links[$state.'_color'] ? $links[$state.'_color'] : $default; ?> !default;
     $<?php echo $prefix . $state_name; ?>BackgroundStyle: <?php echo $links[$state.'_background_style'] ? $links[$state.'_background_style'] : 'none'; ?> !default;
     $<?php echo $prefix . $state_name; ?>BackgroundColor: <?php echo $links[$state.'_background_color_rgba'] ? $links[$state.'_background_color_rgba'] : 'transparent'; ?> !default;
     $<?php echo $prefix . $state_name; ?>Decoration: <?php echo $links[$state.'_text_decoration'] ? $links[$state.'_text_decoration'] : 'none'; ?> !default;

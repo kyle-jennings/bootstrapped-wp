@@ -8,10 +8,55 @@
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
-  background-color: $wellBackground;
-  border: 1px solid darken($wellBackground, 7%);
-  @include border-radius($baseBorderRadius);
+  background-color: $wellBackgroundColor;
+  @if $wellBackgroundFill == vertical {
+      @include gradient-vertical($wellBackgroundColor, $wellBackgroundEndColor );
+  } @else if $wellBackgroundFill == horizontal {
+      @include gradient-horizontal($wellBackgroundColor, $wellBackgroundEndColor );
+  } @else if $wellBackgroundFill == radial {
+      @include gradient-radial($wellBackgroundColor, $wellBackgroundEndColor );
+  } @else if $wellBackgroundFill == none {
+    background-color: transparent;
+  }
+
+  border-radius: $wellBorderRadius;
+
+  border-color: $wellBorderColor;
+  border-style: $wellBorderStyle ;
+  border-width: $wellBorderWidth ;
+  color: $wellColor;
+
   @include box-shadow(inset 0 1px 1px rgba(0,0,0,.05));
+
+  a {
+      color: $wellLinksColor;
+      @include link-bg($wellLinksBackgroundStyle, $wellLinksBackgroundColor);
+      @include link-decoration($wellLinksDecoration, $wellLinksTextShadow);
+
+      &:hover,
+      &:hover:visited {
+          color: $wellHoveredLinksColor;
+          @include link-bg($wellHoveredLinksBackgroundStyle, $wellHoveredLinksBackgroundColor);
+      }
+
+      &:visited {
+          color: $wellVisitedLinksColor;
+          @if $wellVisitedLinksBackgroundStyle != none {
+              background-color: $wellVisitedLinksBackgroundColor;
+          }
+      }
+
+      &:focus,
+      &:active {
+          color: $wellActiveLinksColor;
+          @if $wellActiveLinksBackgroundStyle != none {
+              background-color: $wellActiveLinksBackgroundColor;
+          }
+      }
+
+
+  }
+
   blockquote {
     border-color: #ddd;
     border-color: rgba(0,0,0,.15);
