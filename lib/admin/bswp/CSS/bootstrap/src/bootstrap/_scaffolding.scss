@@ -13,6 +13,36 @@ body {
   line-height: $baseLineHeight;
   color: $textColor;
   background-color: $bodyBackground;
+
+  @if $backgroundStyle == vertical {
+      @include gradient-vertical($bodyBackground, $bodyBackgroundEnd );
+  } @else if $backgroundStyle == horizontal {
+      @include gradient-horizontal($bodyBackground, $bodyBackgroundEnd );
+  } @else if $backgroundStyle == radial {
+      @include gradient-radial($bodyBackground, $bodyBackgroundEnd );
+  } @else if $backgroundStyle == none {
+    background-color: transparent;
+  }
+
+    @if $useBackgroundWallpaper == yes {
+        background-image: url($backgroundImage);
+        background-repeat: $backgroundRepeat;
+        background-attachment: $backgroundAttachment;
+        @if $backgroundPosition == custom {
+            background-position: $backgroundPositionX  $backgroundPositionY;
+        } @else {
+            background-position: $backgroundPosition;
+
+        }
+
+        @if $backgroundSize == percentage {
+            background-size: $backgroundPercentage;
+        } @else {
+            background-size: $backgroundSize;
+
+        }
+    }
+
 }
 
 

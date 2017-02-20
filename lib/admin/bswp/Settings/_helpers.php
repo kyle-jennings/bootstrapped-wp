@@ -61,3 +61,16 @@ function heading_toggle($new, $array){
     $heading = 'h1';
     return($heading.'_border_color,'.$heading.'_border_size');
 }
+
+
+function remove_link_bg($link) {
+    unset($link['links_background_style']);
+    unset($link['links_background_color']);
+    return $link;
+    
+}
+function remove_link_decoration($link) {
+    unset($link['links_text_decoration']);
+    unset($link['links_text_shadow']);
+    return $link;
+}

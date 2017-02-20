@@ -37,9 +37,24 @@ $purple:                #7a43b6 !default;
 
 // Scaffolding
 // -------------------------
-$bodyBackground:        #ffffff !default;
+$bodyBackground:        #030000 !default;
 $bodyBackgroundEnd:        #a8a8a8 !default;
-$backgroundStyle: none !default;
+$backgroundStyle: vertical !default;
+
+
+$useBackgroundWallpaper: no !default;
+
+$backgroundImage: "http://kylejenningsdesign.loc/wp-content/uploads/2017/02/wallpaper-light.jpg" !default;
+$backgroundRepeat: no-repeat !default;
+$backgroundAttachment: scroll !default;
+
+$backgroundPosition: center center !default;
+$backgroundPositionX: 0 !default;
+$backgroundPositionY: 0 !default;
+
+$backgroundSize: cover !default;
+$backgroundPercentage: 0% !default;
+
 
 // text
 $textColor:             #ffffff !default;
@@ -154,8 +169,8 @@ $tablesLinkColor:       #ffee03;
 
 $tableBackgroundHover:              darken($tableBackground, 20%) !default; // for hover
 
-$tablesHeaderBackgroundColor:       rgba(156, 2, 173, 1);
-$tablesHeaderTextColor:       #ffffff;
+$tablesHeaderBackgroundColor:       rgba(171, 16, 199, 1);
+$tablesHeaderTextColor:       #fafafa;
 
 
 
@@ -170,12 +185,31 @@ $tablesStripedLinkColor:       #01586e;
 
 $tableBorder:                       #ddd !default; // table and cell border
 $tableBorderStyle: none !default; //
-$tableBorderWidth: 0 !default; //
+$tableBorderWidth: 1px !default; //
 
 
-$tableOuterBorder: $tableBorder !default; //
-$tableOuterBorderStyle: none !default; //
-$tableOuterBorderWidth: 0 !default; //
+$tableOuterBorder: #4f8ce8 !default; //
+$tableOuterBorderStyle: solid !default; //
+$tableOuterBorderWidth: 1px !default; //
+
+
+$tableTopBorder: #ff1003 !default; //
+$tableTopBorderStyle: dotted !default; //
+$tableTopBorderWidth: 4px !default; //
+
+$tableRightBorder: #f2ff03 !default; //
+$tableRightBorderStyle: dashed !default; //
+$tableRightBorderWidth: 3px !default; //
+
+$tableBottomBorder: #02d102 !default; //
+$tableBottomBorderStyle: groove !default; //
+$tableBottomBorderWidth: 4px !default; //
+
+$tableLeftBorder: #d6d6d6 !default; //
+$tableLeftBorderStyle: solid !default; //
+$tableLeftBorderWidth: 5px !default; //
+
+
 // Buttons
 // -------------------------
 $btnBackground:                     $white !default;
@@ -313,11 +347,11 @@ $navbarLeftBorderWidth:                 $navbarTopBorderWidth !default;
 $navbarText:                      #f7f7f7 !default;
 $navbarLinkColor:                 #ffffff !default;
 $navbarLinkColorHover:            #1ec962 !default;
-$navbarLinkColorActive:           #ffffff !default;
+$navbarLinkColorActive:           #c2c2c2 !default;
 
-$navbarLinkBackground:       transparent !default;
-$navbarLinkBackgroundHover:       transparent !default;
-$navbarLinkBackgroundActive:      rgba(3, 3, 3, 1) !default;
+$navbarLinkBackground:       rgba(102, 102, 102, 1) !default;
+$navbarLinkBackgroundHover:       rgba(1, 102, 42, 1) !default;
+$navbarLinkBackgroundActive:      rgba(94, 94, 94, 1) !default;
 
 $navbarBrandColor:                $navbarLinkColor !default;
 // -------------------------

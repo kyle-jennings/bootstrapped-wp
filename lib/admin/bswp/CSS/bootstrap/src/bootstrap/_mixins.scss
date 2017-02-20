@@ -408,6 +408,19 @@
 }
 
 // Gradients
+
+
+@mixin gradient-radial($startColor: #555, $endColor: #333) {
+  background-color: $endColor;
+  background-image: -moz-radial-gradient(circle, $startColor, $endColor);
+  background-image: -webkit-radial-gradient(circle, $startColor, $endColor);
+  background-image: -webkit-gradient(radial, center center, 0, center center, 460, from($startColor), to ($endColor)); // Safari 5.1+, Chrome 10+
+  background-image: -ms-radial-gradient(circle, $startColor, $endColor);
+  background-image: radial-gradient(circle, $startColor, $endColor);
+  background-repeat: repeat-x;
+
+}
+
 @mixin gradient-horizontal($startColor: #555, $endColor: #333) {
   background-color: $endColor;
   background-image: -moz-linear-gradient(left, $startColor, $endColor); // FF 3.6+

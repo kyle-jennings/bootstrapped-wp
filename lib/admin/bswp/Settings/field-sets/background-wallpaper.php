@@ -69,7 +69,7 @@ $background_wallpaper = array (
             'name'=>'background_size',
             'label'=>'Wallpaper Size',
             'args'=>array(
-                'default',
+                'auto',
                 'cover',
                 'contained',
                 'percentage',

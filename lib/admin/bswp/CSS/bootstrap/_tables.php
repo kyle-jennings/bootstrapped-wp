@@ -20,11 +20,39 @@ $tablesStripedLinkColor:       <?php echo $tables['striped_rows']['links_color']
 
 
 
-$tableBorder:                       <?php echo $tables['borders']['border_color'] ? $tables['borders']['border_color'] :'#ddd' ; ?> !default; // table and cell border
-$tableBorderStyle: <?php echo $tables['borders']['border_style'] ? $tables['borders']['border_style'] :'none' ; ?> !default; //
-$tableBorderWidth: <?php echo $tables['borders']['border_width'] ? $tables['borders']['border_width'] :'0' ; ?> !default; //
+$tableBorder:                       <?php echo $tables['borders']['inner_border_color'] ? $tables['borders']['inner_border_color'] :'#ddd' ; ?> !default; // table and cell border
+$tableBorderStyle: <?php echo $tables['borders']['inner_border_style'] ? $tables['borders']['inner_border_style'] :'none' ; ?> !default; //
+$tableBorderWidth: <?php echo $tables['borders']['inner_border_width'] ? $tables['borders']['inner_border_width'] :'0' ; ?> !default; //
 
 
-$tableOuterBorder: <?php echo $tables['borders']['outer_border_color'] ? $tables['borders']['outer_border_color'] :'$tableBorder' ; ?> !default; //
-$tableOuterBorderStyle: <?php echo $tables['borders']['outer_border_style'] ? $tables['borders']['outer_border_style'] :'none' ; ?> !default; //
-$tableOuterBorderWidth: <?php echo $tables['borders']['outer_border_width'] ? $tables['borders']['outer_border_width'] :'0' ; ?> !default; //
+$tableOuterBorder: <?php echo $tables['borders']['all_sides_border_color'] ? $tables['borders']['all_sides_border_color'] :'$tableBorder' ; ?> !default; //
+$tableOuterBorderStyle: <?php echo $tables['borders']['all_sides_border_style'] ? $tables['borders']['all_sides_border_style'] :'none' ; ?> !default; //
+$tableOuterBorderWidth: <?php echo $tables['borders']['all_sides_border_width'] ? $tables['borders']['all_sides_border_width'] :'0' ; ?> !default; //
+
+
+$tableTopBorder: <?php echo $tables['borders']['top_border_color'] ? $tables['borders']['top_border_color'] : 'transparent' ; ?> !default; //
+$tableTopBorderStyle: <?php echo $tables['borders']['top_border_style'] ? $tables['borders']['top_border_style'] :'none' ; ?> !default; //
+$tableTopBorderWidth: <?php echo $tables['borders']['top_border_width'] ? $tables['borders']['top_border_width'] :'0' ; ?> !default; //
+
+$tableRightBorder: <?php echo $tables['borders']['right_border_color'] ? $tables['borders']['right_border_color'] : 'transparent' ; ?> !default; //
+$tableRightBorderStyle: <?php echo $tables['borders']['right_border_style'] ? $tables['borders']['right_border_style'] :'none' ; ?> !default; //
+$tableRightBorderWidth: <?php echo $tables['borders']['right_border_width'] ? $tables['borders']['right_border_width'] :'0' ; ?> !default; //
+
+$tableBottomBorder: <?php echo $tables['borders']['bottom_border_color'] ? $tables['borders']['bottom_border_color'] : 'transparent' ; ?> !default; //
+$tableBottomBorderStyle: <?php echo $tables['borders']['bottom_border_style'] ? $tables['borders']['bottom_border_style'] :'none' ; ?> !default; //
+$tableBottomBorderWidth: <?php echo $tables['borders']['bottom_border_width'] ? $tables['borders']['bottom_border_width'] :'0' ; ?> !default; //
+
+$tableLeftBorder: <?php echo $tables['borders']['left_border_color'] ? $tables['borders']['left_border_color'] : 'transparent' ; ?> !default; //
+$tableLeftBorderStyle: <?php echo $tables['borders']['left_border_style'] ? $tables['borders']['left_border_style'] :'none' ; ?> !default; //
+$tableLeftBorderWidth: <?php echo $tables['borders']['left_border_width'] ? $tables['borders']['left_border_width'] :'0' ; ?> !default; //
+
+
+<?php
+    if($tables['borders']['style_border_sides'] == 'yes'):
+?>
+$tableOuterBorder: $tableTopBorder $tableRightBorder $tableBottomBorder $tableLeftBorder;
+$tableOuterBorderStyle: $tableTopBorderStyle $tableRightBorderStyle $tableBottomBorderStyle $tableLeftBorderStyle;
+$tableOuterBorderWidth: $tableTopBorderWidth $tableRightBorderWidth $tableBottomBorderWidth $tableLeftBorderWidth;
+<?php
+    endif;
+?>

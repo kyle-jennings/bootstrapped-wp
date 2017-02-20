@@ -34,7 +34,7 @@ $background_colors = array(
     ),
     'background_fill'=>new Select(
         array(
-            'name'=>'background_gradient',
+            'name'=>'background_fill',
             'label'=>'Color Fill',
             'args'=>array(
                 'none',

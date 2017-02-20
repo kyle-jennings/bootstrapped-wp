@@ -105,7 +105,7 @@ class Section {
             examine($this);
 
 
-        // $this->build_css();
+        $this->build_css();
         // examine($this->saved_values);
         unset($this->saved_values);
     }

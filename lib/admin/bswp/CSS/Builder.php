@@ -126,7 +126,6 @@ class Builder {
         $filename = ($target == 'dist') ? 'site' : 'preview';
         $newfile = $this->$target_dir.'/'.$filename.'.css';
 
-        error_log($newfile);
 
         $fh = fopen($newfile, 'w') or die("Can't create file");
         fwrite($fh, $this->css);
