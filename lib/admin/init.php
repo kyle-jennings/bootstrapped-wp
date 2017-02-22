@@ -21,7 +21,9 @@ function bswp_load_assets() {
     $assets_dir = $adminDir . 'assets';
 
     wp_deregister_script( 'jquery' );
-    wp_enqueue_script("bsjs", get_bloginfo('template_directory').'/lib/scripts/bootstrap.min.js');
+    wp_enqueue_script("boostrap-tab", get_bloginfo('template_directory').'/lib/scripts/bootstrap/bootstrap-tab.js');
+    wp_enqueue_script("boostrap-dropdown", get_bloginfo('template_directory').'/lib/scripts/bootstrap/bootstrap-dropdown.js');
+
 	wp_enqueue_style("admin", $assets_dir."/css/admin.css");
     wp_enqueue_script( 'admin', $assets_dir."/js/_admin.js", false, '1.0' ); //register script
 

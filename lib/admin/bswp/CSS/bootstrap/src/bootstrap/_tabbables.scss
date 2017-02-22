@@ -1,0 +1,408 @@
+// Clear any floats
+.tabbable {
+  @include clearfix();
+}
+
+.tab-content {
+  overflow: auto; // prevent content from running below tabs
+}
+
+
+.tabbable {
+    // TABS AND PILLS
+    // -------------
+    .nav-tabs,
+    .nav-pills {
+        @include clearfix();
+    }
+
+    .nav-tabs > li,
+    .nav-pills > li {
+        float: left;
+    }
+
+    .nav-tabs > li > a,
+    .nav-pills > li > a {
+        padding-right: 12px;
+        padding-left: 12px;
+        margin-right: 2px;
+        line-height: 14px; // keeps the overall height an even number
+    }
+
+    // TABS
+    // ----
+
+    // Give the tabs something to sit on
+    .nav-tabs {
+        border-bottom-color: $tabsBorderColor;
+        border-bottom-style: $tabsBorderStyle;
+        border-bottom-width: $tabsBorderWidth;
+        margin-bottom: 0;
+    }
+
+    // Make the list-items overlay the bottom border
+    .nav-tabs > li {
+        margin-bottom: 0;
+    }
+
+
+
+    // Actual tabs - base styles (in active tgabs)
+    .nav-tabs > li > a {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        line-height: $baseLineHeight;
+
+        @if $tabsInActiveBackgroundFill == vertical {
+            @include gradient-vertical($tabsInActiveBackgroundColor, $tabsInActiveBackgroundEndColor );
+        } @else if $tabsInActiveBackgroundFill == horizontal {
+            @include gradient-horizontal($tabsInActiveBackgroundColor, $tabsInActiveBackgroundEndColor );
+        } @else if $tabsInActiveBackgroundFill == radial {
+            @include gradient-radial($tabsInActiveBackgroundColor, $tabsInActiveBackgroundEndColor );
+        } @else if $tabsInActiveBackgroundFill == none {
+            background-color: transparent;
+        } @else {
+            background-color: $tabsInActiveBackgroundColor;
+        }
+
+        border-color: $tabsInActiveBorderColor;
+        border-style: $tabsInActiveBorderStyle;
+        border-width: $tabsBorderWidth;
+        border-bottom: none 0 transparent;
+
+        @include border-radius($tabsBorderRadius $tabsBorderRadius 0 0 );
+
+        color: $tabsInActiveColor;
+
+
+        &:hover,
+        &:focus {
+            background-color: darken($tabsInActiveBackgroundColor, 15%);
+            background-image: none;
+            border-color: darken($tabsInActiveBorderColor, 15%);
+
+        }
+
+    }
+
+
+    // there is a missing pixel in the first tab
+    .nav-tabs > li:first-child > a {
+        position: relative;
+        &::before {
+            content: '';
+            background-color: $tabsBorderColor;
+            display: block;
+            height: $tabsBorderWidth;
+            position: absolute;
+            bottom: -$tabsBorderWidth;
+            left: -$tabsBorderWidth;
+            width: $tabsBorderWidth;
+        }
+    }
+
+
+    // Active Tab
+    .nav-tabs > .active {
+        margin-bottom: -$tabsBorderWidth;
+    }
+    .nav-tabs > .active > a,
+    .nav-tabs > .active > a:hover,
+    .nav-tabs > .active > a:focus {
+        color: $tabsColor;
+
+        background-color: $tabsBackgroundColor;
+        background-image: none;
+
+        border-color: $tabsBorderColor;
+        border-style: $tabsBorderStyle;
+        border-width: $tabsBorderWidth;
+        border-bottom-color: $tabsBackgroundColor;
+
+        @include border-radius($tabsBorderRadius $tabsBorderRadius 0 0 );
+
+        border-bottom-color: transparent;
+        cursor: default;
+    }
+
+    .nav-tabs+.tab-content {
+        padding: 8px;
+    }
+
+
+    .tab-content {
+
+
+
+        @if $tabsBackgroundFill == vertical {
+            @include gradient-vertical($tabsBackgroundColor, $tabsBackgroundEndColor );
+        } @else if $tabsBackgroundFill == horizontal {
+            @include gradient-horizontal($tabsBackgroundColor, $tabsBackgroundEndColor );
+        } @else if $tabsBackgroundFill == radial {
+            @include gradient-radial($tabsBackgroundColor, $tabsBackgroundEndColor );
+        } @else if $tabsBackgroundFill == none {
+            background-color: transparent;
+        } @else {
+            background-color: $tabsBackgroundColor;
+        }
+
+        border-color: $tabsBorderColor;
+        border-style: $tabsBorderStyle;
+        border-width: $tabsBorderWidth;
+        border-top: none 0 transparent;
+
+        @include border-radius(0 0 $tabsBorderRadius $tabsBorderRadius);
+
+        color: $tabsColor;
+        padding: 10px;
+
+
+        // active tab links (content area)
+        a {
+            color: $tabsLinksColor;
+            @include link-bg($tabsLinksBackgroundStyle, $tabsLinksBackgroundColor);
+            @include link-decoration($tabsLinksDecoration, $tabsLinksTextShadow);
+
+            &:hover,
+            &:hover:visited {
+                color: $tabsHoveredLinksColor;
+                @include link-bg($tabsHoveredLinksBackgroundStyle, $tabsHoveredLinksBackgroundColor);
+            }
+
+            &:visited {
+                color: $tabsVisitedLinksColor;
+                @if $tabsVisitedLinksBackgroundStyle != none {
+                    background-color: $tabsVisitedLinksBackgroundColor;
+                }
+            }
+
+            &:focus,
+            &:active {
+                color: $tabsActiveLinksColor;
+                @if $tabsActiveLinksBackgroundStyle != none {
+                    background-color: $tabsActiveLinksBackgroundColor;
+                }
+            }
+        }
+
+        position: relative;
+    }
+
+}
+
+
+.tabbable {
+
+    // Remove border on bottom, left, right
+    &.tabs-below > .nav-tabs,
+    &.tabs-right > .nav-tabs,
+    &.tabs-left > .nav-tabs {
+        border-bottom: 0;
+    }
+
+    // Show/hide tabbable areas
+    .tab-content > .tab-pane,
+    .pill-content > .pill-pane {
+        display: none;
+    }
+    .tab-content > .active,
+    .pill-content > .active {
+        display: block;
+    }
+}
+
+
+// BOTTOM
+// ------
+.tabbable.tabs-below {
+
+    > .nav-tabs {
+        border-top-color: $tabsBorderColor;
+        border-top-style: $tabsBorderStyle;
+        border-top-width: $tabsBorderWidth;
+        border-bottom: none 0 transparent;
+    }
+
+
+    > .nav-tabs > li {
+        margin-top: -1px;
+        margin-bottom: 0;
+    }
+
+    > .nav-tabs > li > a {
+        border-color: $tabsInActiveBorderColor;
+        border-style: $tabsInActiveBorderStyle;
+        border-width: $tabsBorderWidth;
+        border-top-color: $tabsBorderColor;
+        @include border-radius(0 0 $tabsBorderRadius $tabsBorderRadius);
+
+        &:hover,
+        &:focus {
+
+        }
+    }
+
+    > .nav-tabs > .active > a,
+    > .nav-tabs > .active > a:hover,
+    > .nav-tabs > .active > a:focus {
+        border-color: $tabsBorderColor;
+        border-top-color: $tabsBackgroundColor;
+
+        &::before {
+            bottom: auto;
+            left: -$tabsBorderWidth;
+            top: -$tabsBorderWidth;
+        }
+    }
+
+    .tab-content {
+        border-top-color: $tabsBorderColor;
+        border-top-style: $tabsBorderStyle;
+        border-top-width: $tabsBorderWidth;
+        border-bottom: none 0 transparent;
+
+        @include border-radius($tabsBorderRadius $tabsBorderRadius 0 0 );
+
+    }
+}
+
+// LEFT & RIGHT
+// ------------
+
+
+.tabbable {
+
+    &.tabs-left > .nav-tabs,
+    &.tabs-right > .nav-tabs {
+        position: relative;
+        z-index: 9;
+    }
+    // Common styles
+    &.tabs-left > .nav-tabs > li,
+    &.tabs-right > .nav-tabs > li {
+        float: none;
+    }
+    &.tabs-left > .nav-tabs > li > a,
+    &.tabs-right > .nav-tabs > li > a {
+        min-width: 74px;
+        margin-right: 0;
+        margin-bottom: 3px;
+    }
+
+    &.tabs-left > .nav-tabs .active > a,
+    &.tabs-right > .nav-tabs .active > a {
+        &::before {
+            bottom: auto;
+            left: -$tabsBorderWidth;
+            top: -$tabsBorderWidth;
+        }
+    }
+}
+
+
+
+.tabbable.tabs-right {
+
+    // Tabs on the right
+    > .nav-tabs {
+        float: right;
+        margin-left: -$tabsBorderWidth;
+        border-left-color: $tabsBorderColor;
+        border-left-style: $tabsBorderStyle;
+        border-left-width: $tabsBorderWidth;
+
+
+    }
+
+    > .nav-tabs > li > a {
+        border-bottom-color: $tabsInActiveBorderColor;
+        border-bottom-style: $tabsInActiveBorderStyle;
+        border-bottom-width: $tabsBorderWidth;
+
+        margin-left: -$tabsBorderWidth;
+        @include border-radius(0 4px 4px 0);
+    }
+
+    > .nav-tabs > li > a:hover,
+    > .nav-tabs > li > a:focus {
+
+    }
+
+    > .nav-tabs .active > a,
+    > .nav-tabs .active > a:hover,
+    > .nav-tabs .active > a:focus {
+        border-bottom-color: $tabsBorderColor;
+        border-bottom-style: $tabsBorderStyle;
+        border-bottom-width: $tabsBorderWidth;
+        border-left-color: $tabsBackgroundColor;
+    }
+
+    .tab-content {
+        border-top-color: $tabsBorderColor;
+        border-top-style: $tabsBorderStyle;
+        border-top-width: $tabsBorderWidth;
+
+        border-right-color: $tabsBorderColor;
+        border-right-style: $tabsBorderStyle;
+        border-right-width: $tabsBorderWidth;
+        // border-right: none 0 transparent;
+
+        @include border-radius($tabsBorderRadius $tabsBorderRadius 0 0 );
+
+    }
+}
+
+
+
+
+// left
+.tabbable.tabs-left{
+
+    // Tabs on the left
+    > .nav-tabs {
+        border-right-color: $tabsBorderColor;
+        border-right-style: $tabsBorderStyle;
+        border-right-width: $tabsBorderWidth;
+
+        float: left;
+        margin-right: -$tabsBorderWidth;
+
+    }
+
+    > .nav-tabs > li > a {
+        border-bottom-color: $tabsInActiveBorderColor;
+        border-bottom-style: $tabsInActiveBorderStyle;
+        border-bottom-width: $tabsBorderWidth;
+        border-right: none;
+
+        margin-right: -$tabsBorderWidth;
+        @include border-radius(4px 0 0 4px);
+    }
+
+    > .nav-tabs > li > a:hover,
+    > .nav-tabs > li > a:focus {
+
+    }
+
+    > .nav-tabs .active > a,
+    > .nav-tabs .active > a:hover,
+    > .nav-tabs .active > a:focus {
+        border-bottom-color: $tabsBorderColor;
+        border-bottom-style: $tabsBorderStyle;
+        border-bottom-width: $tabsBorderWidth;
+        border-right-color: $tabsBackgroundColor;
+
+    }
+
+
+    .tab-content {
+
+        border-top-color: $tabsBorderColor;
+        border-top-style: $tabsBorderStyle;
+        border-top-width: $tabsBorderWidth;
+        // border-left: none 0 transparent;
+
+        @include border-radius( 0 $tabsBorderRadius $tabsBorderRadius 0 );
+
+    }
+}

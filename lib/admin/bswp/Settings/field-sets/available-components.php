@@ -8,11 +8,11 @@ $available_components_toggles = array();
 $components_array = array(
     'activate_collapsibles',
     'activate_tabs',
-    'activate_alerts',
     'activate_tooltips',
     'activate_pagination',
     'activate_well',
 
+    // 'activate_alerts',
     // 'activate_breadcrumbs',
     // 'activate_modals',
 );

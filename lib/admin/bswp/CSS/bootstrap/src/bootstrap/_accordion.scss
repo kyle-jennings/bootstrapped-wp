@@ -11,15 +11,121 @@
 // Group == heading + body
 .accordion-group {
   margin-bottom: 2px;
-  border: 1px solid #e5e5e5;
-  @include border-radius($baseBorderRadius);
+
+
+    @if $collapsiblesBackgroundFill == vertical {
+          @include gradient-vertical($collapsiblesBackgroundColor, $collapsiblesBackgroundEndColor );
+    } @else if $collapsiblesBackgroundFill == horizontal {
+          @include gradient-horizontal($collapsiblesBackgroundColor, $collapsiblesBackgroundEndColor );
+    } @else if $collapsiblesBackgroundFill == radial {
+          @include gradient-radial($collapsiblesBackgroundColor, $collapsiblesBackgroundEndColor );
+    } @else if $collapsiblesBackgroundFill == none {
+        background-color: transparent;
+    } @else {
+        background-color: $collapsiblesBackgroundColor;
+    }
+
+  // border-radius: $collapsiblesBorderRadius;
+
+  border-color: $collapsiblesBorderColor;
+  border-style: $collapsiblesBorderStyle;
+  border-width: $collapsiblesBorderWidth;
+  color: $collapsiblesColor;
+
+
+  a {
+      color: $collapsiblesLinksColor;
+      @include link-bg($collapsiblesLinksBackgroundStyle, $collapsiblesLinksBackgroundColor);
+      @include link-decoration($collapsiblesLinksDecoration, $collapsiblesLinksTextShadow);
+
+      &:hover,
+      &:hover:visited {
+          color: $collapsiblesHoveredLinksColor;
+          @include link-bg($collapsiblesHoveredLinksBackgroundStyle, $collapsiblesHoveredLinksBackgroundColor);
+      }
+
+      &:visited {
+          color: $collapsiblesVisitedLinksColor;
+          @if $collapsiblesVisitedLinksBackgroundStyle != none {
+              background-color: $collapsiblesVisitedLinksBackgroundColor;
+          }
+      }
+
+      &:focus,
+      &:active {
+          color: $collapsiblesActiveLinksColor;
+          @if $collapsiblesActiveLinksBackgroundStyle != none {
+              background-color: $collapsiblesActiveLinksBackgroundColor;
+          }
+      }
+    }
 }
+
 .accordion-heading {
-  border-bottom: 0;
+    border-bottom: 0;
 }
+
+
 .accordion-heading .accordion-toggle {
-  display: block;
-  padding: 8px 15px;
+
+    @if $collapsiblesHeaderBackgroundFill == vertical {
+        @include gradient-vertical($collapsiblesHeaderBackgroundColor, $collapsiblesHeaderBackgroundEndColor );
+    } @else if $collapsiblesHeaderBackgroundFill == horizontal {
+        @include gradient-horizontal($collapsiblesHeaderBackgroundColor, $collapsiblesHeaderBackgroundEndColor );
+    } @else if $collapsiblesHeaderBackgroundFill == radial {
+        @include gradient-radial($collapsiblesHeaderBackgroundColor, $collapsiblesHeaderBackgroundEndColor );
+    } @else if $collapsiblesHeaderBackgroundFill == none {
+      background-color: transparent;
+    } @else {
+      background-color: $collapsiblesHeaderBackgroundColor;
+    }
+
+    color: $collapsiblesHeaderTextColor;
+
+    text-decoration: none;
+    text-shadow: none;
+    display: block;
+    padding: 8px 15px;
+
+    &:hover {
+        color: $collapsiblesHeaderTextColor;
+
+        @if $collapsiblesHeaderBackgroundFill == vertical {
+            @include gradient-vertical( darken($collapsiblesHeaderBackgroundColor, 15%), darken($collapsiblesHeaderBackgroundEndColor, 15%) );
+        } @else if $collapsiblesHeaderBackgroundFill == horizontal {
+            @include gradient-horizontal( darken($collapsiblesHeaderBackgroundColor, 15%), darken($collapsiblesHeaderBackgroundEndColor, 15%) );
+        } @else if $collapsiblesHeaderBackgroundFill == radial {
+            @include gradient-radial( darken($collapsiblesHeaderBackgroundColor, 15%), darken($collapsiblesHeaderBackgroundEndColor, 15%) );
+        } @else if $collapsiblesHeaderBackgroundFill == none {
+            background-color: transparent;
+        } @else {
+            background-color:  darken($collapsiblesHeaderBackgroundColor, 15%);
+        }
+        text-decoration: none;
+        text-shadow: none;
+
+    }
+
+    &:active,
+    &:focus,
+    &:visited {
+        color: $collapsiblesHeaderTextColor;
+
+        @if $collapsiblesHeaderBackgroundFill == vertical {
+            @include gradient-vertical( darken($collapsiblesHeaderBackgroundColor, 15%), darken($collapsiblesHeaderBackgroundEndColor, 15%) );
+        } @else if $collapsiblesHeaderBackgroundFill == horizontal {
+            @include gradient-horizontal( darken($collapsiblesHeaderBackgroundColor, 15%), darken($collapsiblesHeaderBackgroundEndColor, 15%) );
+        } @else if $collapsiblesHeaderBackgroundFill == radial {
+            @include gradient-radial( darken($collapsiblesHeaderBackgroundColor, 15%), darken($collapsiblesHeaderBackgroundEndColor, 15%) );
+        } @else if $collapsiblesHeaderBackgroundFill == none {
+            background-color: transparent;
+        } @else {
+            background-color:  darken($collapsiblesHeaderBackgroundColor, 15%);
+        }
+
+        text-decoration: none;
+        text-shadow: none;
+    }
 }
 
 // General toggle styles
@@ -30,5 +136,7 @@
 // Inner needs the styles because you can't animate properly with any styles on the element
 .accordion-inner {
   padding: 9px 15px;
-  border-top: 1px solid #e5e5e5;
+  border-top-color: $collapsiblesInnerBorderColor;
+  border-top-style: $collapsiblesInnerBorderStyle;
+  border-top-width: $collapsiblesInnerBorderWidth;
 }

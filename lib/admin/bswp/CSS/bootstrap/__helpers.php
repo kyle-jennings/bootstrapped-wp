@@ -21,7 +21,7 @@ function _component_border_radius_sass_vars($prefix = null, $borders = array()){
     <?php endforeach; ?>
 
     <?php if($borders['style_corners'] == 'yes'):?>
-        $<?php echo $prefix; ?>BorderRadius: $preTopLeftBorderRadius $preTopRightBorderRadius $preBottomRightBorderRadius $preBottomLeftBorderRadius;
+        $<?php echo $prefix; ?>BorderRadius: $<?php echo $prefix?>TopLeftBorderRadius $<?php echo $prefix?>TopRightBorderRadius $<?php echo $prefix?>BottomRightBorderRadius $<?php echo $prefix?>BottomLeftBorderRadius;
     <?php endif;
 }
 
@@ -36,7 +36,7 @@ function _component_outer_border_sass_vars($prefix = null, $borders = array()){
     $sides = array('top','right','bottom', 'left');
 ?>
 
-    $<?php echo $prefix; ?>BorderColor: <?php echo $borders['all_sides_border_color'] ? $borders['all_sides_border_color'] :'$'.$prefix.'Border' ; ?> !default;
+    $<?php echo $prefix; ?>BorderColor: <?php echo $borders['all_sides_border_color'] ? $borders['all_sides_border_color'] :'rgba(0,0,0,.6)' ; ?> !default;
     $<?php echo $prefix; ?>BorderStyle: <?php echo $borders['all_sides_border_style'] ? $borders['all_sides_border_style'] :'none' ; ?> !default;
     $<?php echo $prefix; ?>BorderWidth: <?php echo $borders['all_sides_border_width'] ? $borders['all_sides_border_width'] :'0' ; ?> !default;
 

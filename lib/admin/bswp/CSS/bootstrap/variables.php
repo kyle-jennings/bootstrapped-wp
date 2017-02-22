@@ -36,31 +36,47 @@ $navbg = $navbar['background_colors'];
 $navtext = $navbar['text'];
 $navborders = $navbar['borders'];
 
-
+// navbar dropdow
 $nav_submenu_bg = $navbar['submenu_background_colors'];
 $nav_submenu_text = $navbar['submenu_text'];
 $nav_submenu_border = $navbar['submenu_borders'];
 
-
+// Preformatted and Code text
 $pre = $this->values['preformatted'];
 $pre_background_colors = $pre['background_colors'];
 $pre_text = $pre['text'];
 $pre_borders = $pre['borders'];
 
-
+// Wells
 $well = $this->values['well'];
 $well_background_colors = $well['background_colors'];
 $well_text = $well['text'];
 $well_borders = $well['borders'];
 
-
-
+// Quotes
 $quotes = $this->values['quotes'];
 $quotes_background_colors = $quotes['background_colors'];
 $quotes_text = $quotes['text'];
 $quotes_borders = $quotes['borders'];
 
-// examine($nav_submenu_border);
+// collapsibles
+$collapsibles = $this->values['collapsibles'];
+$collapsibles_header = $collapsibles['header'];
+$collapsibles_background_colors = $collapsibles['background_colors'];
+$collapsibles_text = $collapsibles['text'];
+$collapsibles_borders = $collapsibles['borders'];
+
+// tabs
+$tabs = $this->values['tabs'];
+$tabs_bg = $tabs['background_colors'];
+$tabs_text = $tabs['text'];
+$tabs_borders = $tabs['borders'];
+$tabs_inactive_colors = $tabs['inactive_tab_colors'];
+
+
+
+
+
 ob_start();
 ?>
 

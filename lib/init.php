@@ -72,7 +72,25 @@ function kjd_add_assets(){
 
     wp_enqueue_script("script", $root."/scripts/application.js", false, "1.0", true);
     wp_enqueue_script("jquery", $root."/scripts/jquery.js", false, "1.0", false);
-    wp_enqueue_script("bootstrap", $root."/scripts/bootstrap.min.js", false, "1.0", true);
+    // wp_enqueue_script("bootstrap", $root."/scripts/bootstrap.min.js", false, "1.0", true);
+    wp_enqueue_script("bootstrap-dropdown", $root."/scripts/bootstrap/bootstrap-dropdown.js", false, "1.0", true);
+    wp_enqueue_script("bootstrap-carousel", $root."/scripts/bootstrap/bootstrap-carousel.js", false, "1.0", true);
+
+
+    $component_options = get_option('bswp_site_settings');
+    $component_options = $component_options['available_components']['components'];
+    if($component_options['activate_collapsibles'])
+        wp_enqueue_script("bootstrap-collapse", $root."/scripts/bootstrap/bootstrap-collapse.js", false, "1.0", true);
+
+    if($component_options['activate_tabs'])
+        wp_enqueue_script("bootstrap-tab", $root."/scripts/bootstrap/bootstrap-tab.js", false, "1.0", true);
+
+    if($component_options['activate_tooltips'])
+        wp_enqueue_script("bootstrap-tooltip", $root."/scripts/bootstrap/bootstrap-tooltip.js", false, "1.0", true);
+
+    if($component_options['activate_popovers'])
+        wp_enqueue_script("bootstrap-popover", $root."/scripts/bootstrap/bootstrap-popover.js", false, "1.0", true);
+
 
     // if( $mobilenav_style == 'sidr' ){
     //     wp_enqueue_script("sidr", $root."/scripts/sidr.min.js", false, "1.0", true);
