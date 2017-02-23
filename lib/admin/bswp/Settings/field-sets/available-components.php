@@ -9,6 +9,7 @@ $components_array = array(
     'activate_collapsibles',
     'activate_tabs',
     'activate_tooltips',
+    'activate_popovers',
     'activate_pagination',
     'activate_well',
 
