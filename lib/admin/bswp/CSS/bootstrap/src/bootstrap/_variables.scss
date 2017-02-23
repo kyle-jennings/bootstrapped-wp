@@ -418,12 +418,87 @@ $navbarDropdownLinkBackgroundHover:   rgba(3, 3, 3, 1) !default;
 
 $navbarDropdownLinkColorActive:       #66fc5b !default;
 $navbarDropdownLinkBackgroundActive:  rgba(52, 3, 247, 1) !default;
+
+
+
 // Pagination
 // -------------------------
+$paginationLinkColor:                 #000 !default;
 $paginationBackground:                $white !default;
+
 $paginationBorder:                    #ddd !default;
+
+
 $paginationActiveBackground:          #f5f5f5 !default;
 
+
+    $paginationBorderColor: #ee03ff !default;
+    $paginationBorderStyle: solid !default;
+    $paginationBorderWidth: 2px !default;
+
+    
+    $paginationTopBorderColor: #ff0303 !default;
+    $paginationTopBorderStyle: solid !default;
+    $paginationTopBorderWidth: 1px !default;
+    
+    $paginationRightBorderColor: transparent !default;
+    $paginationRightBorderStyle: none !default;
+    $paginationRightBorderWidth: 1px !default;
+    
+    $paginationBottomBorderColor: transparent !default;
+    $paginationBottomBorderStyle: none !default;
+    $paginationBottomBorderWidth: 1px !default;
+    
+    $paginationLeftBorderColor: transparent !default;
+    $paginationLeftBorderStyle: none !default;
+    $paginationLeftBorderWidth: 1px !default;
+    
+    $paginationBorderColor: $paginationTopBorderColor $paginationRightBorderColor $paginationBottomBorderColor $paginationLeftBorderColor;
+    $paginationBorderStyle: $paginationTopBorderStyle $paginationRightBorderStyle $paginationBottomBorderStyle $paginationLeftBorderStyle;
+    $paginationBorderWidth: $paginationTopBorderWidth $paginationRightBorderWidth $paginationBottomBorderWidth $paginationLeftBorderWidth;
+
+
+
+    
+    $paginationBorderRadius: 2px !default;
+        $paginationTopLeftBorderRadius: 1px !default;
+
+        $paginationTopRightBorderRadius: 1px !default;
+
+        $paginationBottomRightBorderRadius: 1px !default;
+
+        $paginationBottomLeftBorderRadius: 1px !default;
+
+    
+    $paginationLinksColor: #ff0303 !default;
+    $paginationLinksBackgroundStyle: highlighted !default;
+    $paginationLinksBackgroundColor: rgba(3, 255, 116, 1.01) !default;
+    $paginationLinksDecoration: none !default;
+    $paginationLinksTextShadow: darken($linkColor, 15%) !default;
+
+
+    $paginationVisitedLinksColor: paginationLinksColor !default;
+    $paginationVisitedLinksBackgroundStyle: none !default;
+    $paginationVisitedLinksBackgroundColor: transparent !default;
+    $paginationVisitedLinksDecoration: none !default;
+    $paginationVisitedLinksTextShadow: darken($linkColor, 15%) !default;
+
+
+    $paginationHoveredLinksColor: #039edb !default;
+    $paginationHoveredLinksBackgroundStyle: highlighted !default;
+    $paginationHoveredLinksBackgroundColor: rgba(174, 107, 255, 1) !default;
+    $paginationHoveredLinksDecoration: none !default;
+    $paginationHoveredLinksTextShadow: darken($linkColor, 15%) !default;
+
+
+    $paginationActiveLinksColor: #fff703 !default;
+    $paginationActiveLinksBackgroundStyle: highlighted !default;
+    $paginationActiveLinksBackgroundColor: rgba(255, 137, 3, 1) !default;
+    $paginationActiveLinksDecoration: none !default;
+    $paginationActiveLinksTextShadow: darken($linkColor, 15%) !default;
+
+
+    
 // collapsibles
 // -------------------------
 

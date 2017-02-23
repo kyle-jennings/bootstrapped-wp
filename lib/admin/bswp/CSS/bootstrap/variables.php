@@ -91,6 +91,9 @@ $popovers_title = $popovers['title_colors'];
 $popovers_borders = $popovers['borders'];
 
 
+// pagination
+$pagination = $this->values['pagination'];
+
 ob_start();
 ?>
 

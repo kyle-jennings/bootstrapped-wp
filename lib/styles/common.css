@@ -544,7 +544,7 @@ div.img-circle img{
 /* pagination */
 .pagination{
 	clear:both;
-   margin-left: 30px;
+   /*margin-left: 30px;*/
 }
 
 /* posts */
@@ -558,7 +558,9 @@ div.img-circle img{
 {
 	margin-bottom:60px;
 }
-.paginationLinks{clear:both;}
+.paginationLinks{
+    clear:both;
+}
 
 /* ----------------------------------------------------------------------------------
 			WP styles
