@@ -679,9 +679,112 @@ $infoBorder:              darken(adjust-hue($infoBackground, -10), 7%) !default;
 // Tooltips
 // -------------------------
 $tooltipColor:            #fff !default;
-$tooltipBackground:       #000 !default;
+$tooltipBackgroundColor:       #000 !default;
+$tooltipBackgroundEndColor:       #000 !default;
+$tooltipBackgroundFill:       none !default;
+
 $tooltipArrowWidth:       5px !default;
-$tooltipArrowColor:       $tooltipBackground !default;
+$tooltipArrowColor:       $tooltipBackgroundColor !default;
+
+
+
+    $tooltipBorderColor: #ff03f2 !default;
+    $tooltipBorderStyle: solid !default;
+    $tooltipBorderWidth: 1px !default;
+
+    
+    $tooltipTopBorderColor: transparent !default;
+    $tooltipTopBorderStyle: none !default;
+    $tooltipTopBorderWidth: 1px !default;
+    
+    $tooltipRightBorderColor: transparent !default;
+    $tooltipRightBorderStyle: none !default;
+    $tooltipRightBorderWidth: 1px !default;
+    
+    $tooltipBottomBorderColor: transparent !default;
+    $tooltipBottomBorderStyle: none !default;
+    $tooltipBottomBorderWidth: 1px !default;
+    
+    $tooltipLeftBorderColor: transparent !default;
+    $tooltipLeftBorderStyle: none !default;
+    $tooltipLeftBorderWidth: 1px !default;
+    
+    
+    $tooltipBorderRadius: 20px !default;
+        $tooltipTopLeftBorderRadius: 1px !default;
+
+        $tooltipTopRightBorderRadius: 1px !default;
+
+        $tooltipBottomRightBorderRadius: 1px !default;
+
+        $tooltipBottomLeftBorderRadius: 1px !default;
+
+    
+    
+// popovers
+// -------------------------
+
+
+$popoverColor:            #fff !default;
+$popoverBackgroundColor:       rgba(255, 145, 240, 1) !default;
+$popoverBackgroundEndColor:       rgba(201, 109, 184, 1) !default;
+$popoverBackgroundFill:       vertical !default;
+
+$popoverTitleColor:            #fff !default;
+
+$popoverTitleBackgroundColor:       rgba(255, 84, 84, 1) !default;
+$popoverTitleBackgroundEndColor:       rgba(224, 92, 85, 1) !default;
+$popoverTitleBackgroundFill:       vertical !default;
+
+$popoverTitleBottomBorderStyle:    solid;
+$popoverTitleBottomBorderColor:    #910296;
+$popoverTitleBottomBorderWidth:    3px;
+
+
+
+    $popoverBorderColor: #780280 !default;
+    $popoverBorderStyle: solid !default;
+    $popoverBorderWidth: 1px !default;
+
+    
+    $popoverTopBorderColor: transparent !default;
+    $popoverTopBorderStyle: none !default;
+    $popoverTopBorderWidth: 1px !default;
+    
+    $popoverRightBorderColor: transparent !default;
+    $popoverRightBorderStyle: none !default;
+    $popoverRightBorderWidth: 1px !default;
+    
+    $popoverBottomBorderColor: transparent !default;
+    $popoverBottomBorderStyle: none !default;
+    $popoverBottomBorderWidth: 1px !default;
+    
+    $popoverLeftBorderColor: transparent !default;
+    $popoverLeftBorderStyle: none !default;
+    $popoverLeftBorderWidth: 1px !default;
+    
+    
+    $popoverBorderRadius: 1px !default;
+        $popoverTopLeftBorderRadius: 1px !default;
+
+        $popoverTopRightBorderRadius: 1px !default;
+
+        $popoverBottomRightBorderRadius: 1px !default;
+
+        $popoverBottomLeftBorderRadius: 1px !default;
+
+    
+    
+
+
+
+// arrows
+$popoverArrowWidth:       5px !default;
+$popoverArrowColor:       $popoverBorderColor !default;
+
+// Special enhancement for popovers
+$popoverArrowOuterWidth:  $popoverArrowWidth + 1 !default;
+$popoverArrowOuterColor:  rgba($popoverArrowColor, .25) !default;
 
 // Quotes
 // -------------------------
@@ -949,17 +1052,6 @@ $wellBackgroundPercentage: 0% !default;
 
 
 
-// popovers
-// -------------------------
-
-$popoverBackground:       #fff !default;
-$popoverArrowWidth:       10px !default;
-$popoverArrowColor:       #fff !default;
-$popoverTitleBackground:  darken($popoverBackground, 3%) !default;
-
-// Special enhancement for popovers
-$popoverArrowOuterWidth:  $popoverArrowWidth + 1 !default;
-$popoverArrowOuterColor:  rgba(0,0,0,.25) !default;
 
 
 

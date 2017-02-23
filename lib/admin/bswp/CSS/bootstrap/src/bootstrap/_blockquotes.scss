@@ -1,90 +1,91 @@
 // Blockquotes
 blockquote {
-  padding: 0 0 0 15px;
-  margin: 0 0 $baseLineHeight;
+    padding: 0 0 0 15px;
+    margin: 0 0 $baseLineHeight;
 
-  border-radius: $quotesBorderRadius;
+    border-radius: $quotesBorderRadius;
 
-  border-color: $quotesBorderColor;
-  border-style: $quotesBorderStyle ;
-  border-width: $quotesBorderWidth ;
-  color: $quotesColor;
+    border-color: $quotesBorderColor;
+    border-style: $quotesBorderStyle ;
+    border-width: $quotesBorderWidth ;
+    color: $quotesColor;
 
-  background-color: $quotesBackgroundColor;
-  @if $quotesBackgroundFill == vertical {
-      @include gradient-vertical($quotesBackgroundColor, $quotesBackgroundEndColor );
-  } @else if $quotesBackgroundFill == horizontal {
-      @include gradient-horizontal($quotesBackgroundColor, $quotesBackgroundEndColor );
-  } @else if $quotesBackgroundFill == radial {
-      @include gradient-radial($quotesBackgroundColor, $quotesBackgroundEndColor );
-  } @else if $quotesBackgroundFill == none {
-    background-color: transparent;
-  }
-
-  a {
-      color: $quotesLinksColor;
-      @include link-bg($quotesLinksBackgroundStyle, $quotesLinksBackgroundColor);
-      @include link-decoration($quotesLinksDecoration, $quotesLinksTextShadow);
-
-      &:hover,
-      &:hover:visited {
-          color: $quotesHoveredLinksColor;
-          @include link-bg($quotesHoveredLinksBackgroundStyle, $quotesHoveredLinksBackgroundColor);
-      }
-
-      &:visited {
-          color: $quotesVisitedLinksColor;
-          @if $quotesVisitedLinksBackgroundStyle != none {
-              background-color: $quotesVisitedLinksBackgroundColor;
-          }
-      }
-
-      &:focus,
-      &:active {
-          color: $quotesActiveLinksColor;
-          @if $quotesActiveLinksBackgroundStyle != none {
-              background-color: $quotesActiveLinksBackgroundColor;
-          }
-      }
-
-
-  }
-
-  p {
-    margin-bottom: 0;
-    font-size: $baseFontSize * 1.25;
-    font-weight: 300;
-    line-height: 1.25;
-  }
-  small {
-    display: block;
-    line-height: $baseLineHeight;
-    color: $grayLight;
-    &:before {
-      content: '\2014 \00A0';
+    @if $quotesBackgroundFill == vertical {
+        @include gradient-vertical($quotesBackgroundColor, $quotesBackgroundEndColor );
+    } @else if $quotesBackgroundFill == horizontal {
+        @include gradient-horizontal($quotesBackgroundColor, $quotesBackgroundEndColor );
+    } @else if $quotesBackgroundFill == radial {
+        @include gradient-radial($quotesBackgroundColor, $quotesBackgroundEndColor );
+    } @else if $quotesBackgroundFill == none {
+        background-color: transparent;
+    } @else {
+        background-color: $quotesBackgroundColor;
     }
-  }
 
-  // Float right with text-align: right
-  &.pull-right {
-    float: right;
-    padding-right: 15px;
-    padding-left: 0;
-    border-right: 5px solid $grayLighter;
-    border-left: 0;
-    p,
-    small {
-      text-align: right;
+    a {
+        color: $quotesLinksColor;
+        @include link-bg($quotesLinksBackgroundStyle, $quotesLinksBackgroundColor);
+        @include link-decoration($quotesLinksDecoration, $quotesLinksTextShadow);
+
+        &:hover,
+        &:hover:visited {
+            color: $quotesHoveredLinksColor;
+            @include link-bg($quotesHoveredLinksBackgroundStyle, $quotesHoveredLinksBackgroundColor);
+        }
+
+        &:visited {
+            color: $quotesVisitedLinksColor;
+            @if $quotesVisitedLinksBackgroundStyle != none {
+                background-color: $quotesVisitedLinksBackgroundColor;
+            }
+        }
+
+        &:focus,
+        &:active {
+            color: $quotesActiveLinksColor;
+            @if $quotesActiveLinksBackgroundStyle != none {
+                background-color: $quotesActiveLinksBackgroundColor;
+            }
+        }
+
+
+    }
+
+    p {
+        margin-bottom: 0;
+        font-size: $baseFontSize * 1.25;
+        font-weight: 300;
+        line-height: 1.25;
     }
     small {
-      &:before {
-        content: '';
-      }
-      &:after {
-        content: '\00A0 \2014';
-      }
+        display: block;
+        line-height: $baseLineHeight;
+        color: $grayLight;
+        &:before {
+            content: '\2014 \00A0';
+        }
     }
-  }
+
+    // Float right with text-align: right
+    &.pull-right {
+        float: right;
+        padding-right: 15px;
+        padding-left: 0;
+        border-right: 5px solid $grayLighter;
+        border-left: 0;
+        p,
+        small {
+            text-align: right;
+        }
+        small {
+            &:before {
+                content: '';
+            }
+            &:after {
+                content: '\00A0 \2014';
+            }
+        }
+    }
 }
 
 // Quotes
@@ -92,5 +93,5 @@ q:before,
 q:after,
 blockquote:before,
 blockquote:after {
-  content: "";
+    content: "";
 }

@@ -74,7 +74,21 @@ $tabs_borders = $tabs['borders'];
 $tabs_inactive_colors = $tabs['inactive_tab_colors'];
 
 
+// Tooltips
+$tooltips = $this->values['tooltips'];
+$tooltips_content = $tooltips['content_colors'];
+$tooltips_text = $tooltips['content_colors']['text_color'];
+$tooltips_title = $tooltips['title_colors'];
+$tooltips_text = $tooltips['title_colors']['text_color'];
 
+$tooltips_borders = $tooltips['borders'];
+
+// popovers
+$popovers = $this->values['popovers'];
+$popovers_content = $popovers['content_colors'];
+$popovers_title = $popovers['title_colors'];
+
+$popovers_borders = $popovers['borders'];
 
 
 ob_start();
@@ -251,6 +265,7 @@ require_once '_hero-unit.php';
 require_once '_tabs.php';
 require_once '_alerts.php';
 require_once '_tooltips.php';
+require_once '_popovers.php';
 require_once '_quotes.php';
 require_once '_preformatted.php';
 require_once '_well.php';
@@ -261,17 +276,6 @@ require_once '_well.php';
 
 
 
-// popovers
-// -------------------------
-
-$popoverBackground:       #fff !default;
-$popoverArrowWidth:       10px !default;
-$popoverArrowColor:       #fff !default;
-$popoverTitleBackground:  darken($popoverBackground, 3%) !default;
-
-// Special enhancement for popovers
-$popoverArrowOuterWidth:  $popoverArrowWidth + 1 !default;
-$popoverArrowOuterColor:  rgba(0,0,0,.25) !default;
 
 
 

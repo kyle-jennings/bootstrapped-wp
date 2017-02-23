@@ -620,7 +620,6 @@ blockquote {
   border-style: none;
   border-width: 1px;
   color: #fff;
-  background-color: #024f1e;
   background-color: transparent; }
   blockquote a {
     color: quotesLinksColor;
@@ -3718,8 +3717,8 @@ button.btn, input[type="submit"].btn {
   opacity: 0;
   filter: alpha(opacity=0); }
   .tooltip.in {
-    opacity: 0.8;
-    filter: alpha(opacity=80); }
+    opacity: 1;
+    filter: alpha(opacity=100); }
   .tooltip.top {
     margin-top: -3px;
     padding: 5px 0; }
@@ -3734,15 +3733,16 @@ button.btn, input[type="submit"].btn {
     padding: 0 5px; }
 
 .tooltip-inner {
+  color: #fff;
+  border-radius: 20px;
+  border-color: #ff03f2;
+  border-style: solid;
+  border-width: 1px;
+  background-color: transparent;
   max-width: 200px;
   padding: 8px;
-  color: #fff;
   text-align: center;
-  text-decoration: none;
-  background-color: #000;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px; }
+  text-decoration: none; }
 
 .tooltip-arrow {
   position: absolute;
@@ -3777,27 +3777,26 @@ button.btn, input[type="submit"].btn {
     border-bottom-color: #000; }
 
 .popover {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1010;
-  display: none;
-  max-width: 276px;
-  padding: 1px;
-  text-align: left;
-  background-color: #fff;
   -webkit-background-clip: padding-box;
   -moz-background-clip: padding;
   background-clip: padding-box;
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0, 0, 0, .2);
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
+  border-color: #780280;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 20px;
   -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
   -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
   box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
-  white-space: normal; }
+  display: none;
+  left: 0;
+  max-width: 276px;
+  padding: 1px;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  text-align: left;
+  white-space: normal;
+  z-index: 1010; }
   .popover.top {
     margin-top: -10px; }
   .popover.right {
@@ -3808,20 +3807,35 @@ button.btn, input[type="submit"].btn {
     margin-left: -10px; }
 
 .popover-title {
-  margin: 0;
-  padding: 8px 14px;
+  background-color: #5a2522;
+  background-image: -moz-linear-gradient(top, #000, rgba(224, 92, 85, 1));
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#000), to(rgba(224, 92, 85, 1)));
+  background-image: -webkit-linear-gradient(top, #000, rgba(224, 92, 85, 1));
+  background-image: -o-linear-gradient(top, #000, rgba(224, 92, 85, 1));
+  background-image: linear-gradient(to bottom, #000, rgba(224, 92, 85, 1));
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#FF000000", endColorstr="#FFE05C55", GradientType=0);
+  border-bottom-color: #910296;
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  color: #fff;
   font-size: 14px;
   font-weight: normal;
   line-height: 18px;
-  background-color: #f7f7f7;
-  border-bottom: 1px solid #ebebeb;
-  -webkit-border-radius: 5px 5px 0 0;
-  -moz-border-radius: 5px 5px 0 0;
-  border-radius: 5px 5px 0 0; }
+  margin: 0;
+  padding: 8px 14px; }
   .popover-title:empty {
     display: none; }
 
 .popover-content {
+  background-color: #502c4a;
+  background-image: -moz-linear-gradient(top, #000, rgba(201, 109, 184, 1));
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#000), to(rgba(201, 109, 184, 1)));
+  background-image: -webkit-linear-gradient(top, #000, rgba(201, 109, 184, 1));
+  background-image: -o-linear-gradient(top, #000, rgba(201, 109, 184, 1));
+  background-image: linear-gradient(to bottom, #000, rgba(201, 109, 184, 1));
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#FF000000", endColorstr="#FFC96DB8", GradientType=0);
   padding: 9px 14px; }
 
 .popover .arrow, .popover .arrow:after {
@@ -3850,7 +3864,7 @@ button.btn, input[type="submit"].btn {
     bottom: 1px;
     margin-left: -10px;
     border-bottom-width: 0;
-    border-top-color: #fff; }
+    border-top-color: rgba(255, 145, 240, 1); }
   .popover.right .arrow {
     top: 50%;
     left: -11px;
@@ -3862,7 +3876,7 @@ button.btn, input[type="submit"].btn {
     left: 1px;
     bottom: -10px;
     border-left-width: 0;
-    border-right-color: #fff; }
+    border-right-color: rgba(255, 145, 240, 1); }
   .popover.bottom .arrow {
     left: 50%;
     margin-left: -11px;
@@ -3874,7 +3888,7 @@ button.btn, input[type="submit"].btn {
     top: 1px;
     margin-left: -10px;
     border-top-width: 0;
-    border-bottom-color: #fff; }
+    border-bottom-color: rgba(255, 145, 240, 1); }
   .popover.left .arrow {
     top: 50%;
     right: -11px;
@@ -3885,7 +3899,7 @@ button.btn, input[type="submit"].btn {
   .popover.left .arrow:after {
     right: 1px;
     border-right-width: 0;
-    border-left-color: #fff;
+    border-left-color: rgba(255, 145, 240, 1);
     bottom: -10px; }
 
 .thumbnails {
