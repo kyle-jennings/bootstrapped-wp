@@ -26,6 +26,7 @@ include dirname(__FILE__).'/components/preformatted.php';
 include dirname(__FILE__).'/components/quotes.php';
 include dirname(__FILE__).'/components/tables.php';
 include dirname(__FILE__).'/components/images.php';
+include dirname(__FILE__).'/components/forms.php';
 
 $component_options = get_option('bswp_site_settings');
 $component_options = $component_options['available_components']['components'];
@@ -116,6 +117,7 @@ $groups = array(
     'text' => $text,
     'navbar' => $navbar,
     'images' => $images,
+    'forms' => $forms,
     'tables' => $tables,
     'preformatted' => $preformatted,
     'quotes' => $quotes,
@@ -127,6 +129,6 @@ $groups = array(
 
 // $groups = array_merge($groups, $components);
 
-$groups = array_slice($groups, 0, 4, true) +
+$groups = array_slice($groups, 0, 7, true) +
     $components +
-    array_slice($groups, 4, count($groups) - 1, true);
+    array_slice($groups, 7, count($groups) - 1, true);

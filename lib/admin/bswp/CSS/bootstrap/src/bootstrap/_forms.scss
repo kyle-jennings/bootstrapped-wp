@@ -7,9 +7,35 @@
 // --------------
 
 // Make all forms have space below them
-form {
+form,
+.form {
+    padding: 10px;
+
+    @if $formBackgroundFill == vertical {
+          @include gradient-vertical($formBackgroundColor, $formBackgroundEndColor );
+    } @else if $formBackgroundFill == horizontal {
+          @include gradient-horizontal($formBackgroundColor, $formBackgroundEndColor );
+    } @else if $formBackgroundFill == radial {
+          @include gradient-radial($formBackgroundColor, $formBackgroundEndColor );
+    } @else if $formBackgroundFill == none {
+        background-color: transparent;
+        padding: 0px !important;
+
+    } @else {
+        background-color: $formBackgroundColor;
+    }
+
+  // border-radius: $formBorderRadius;
+
+  border-color: $formBorderColor;
+  border-radius: $formBorderRadius;
+  border-style: $formBorderStyle;
+  border-width: $formBorderWidth;
+  color: $formTextColor;
+
   margin: 0 0 $baseLineHeight;
 }
+
 
 fieldset {
   padding: 0;
@@ -78,14 +104,32 @@ input[type="search"],
 input[type="tel"],
 input[type="color"],
 .uneditable-input {
+    @if $fieldBackgroundFill == vertical {
+          @include gradient-vertical($fieldBackgroundColor, $fieldBackgroundEndColor );
+    } @else if $fieldBackgroundFill == horizontal {
+          @include gradient-horizontal($fieldBackgroundColor, $fieldBackgroundEndColor );
+    } @else if $fieldBackgroundFill == radial {
+          @include gradient-radial($fieldBackgroundColor, $fieldBackgroundEndColor );
+    } @else if $fieldBackgroundFill == none {
+        background-color: transparent;
+    } @else {
+        background-color: $fieldBackgroundColor;
+    }
+
+  // border-radius: $fieldBorderRadius;
+
+  border-color: $fieldBorderColor;
+  border-radius: $fieldBorderRadius;
+  border-style: $fieldBorderStyle;
+  border-width: $fieldBorderWidth;
+  color: $fieldTextColor;
+
   display: inline-block;
+  font-size: $baseFontSize;
   height: $baseLineHeight;
   padding: 4px 6px;
-  margin-bottom: $baseLineHeight / 2;;
-  font-size: $baseFontSize;
   line-height: $baseLineHeight;
-  color: $gray;
-  @include border-radius($inputBorderRadius);
+  margin-bottom: $baseLineHeight / 2;;
   vertical-align: middle;
 }
 
@@ -117,17 +161,57 @@ input[type="search"],
 input[type="tel"],
 input[type="color"],
 .uneditable-input {
-  background-color: $inputBackground;
-  border: 1px solid $inputBorder;
-  @include box-shadow(inset 0 1px 1px rgba(0,0,0,.075));
+
+    @if $fieldBackgroundFill == vertical {
+          @include gradient-vertical($fieldBackgroundColor, $fieldBackgroundEndColor );
+    } @else if $fieldBackgroundFill == horizontal {
+          @include gradient-horizontal($fieldBackgroundColor, $fieldBackgroundEndColor );
+    } @else if $fieldBackgroundFill == radial {
+          @include gradient-radial($fieldBackgroundColor, $fieldBackgroundEndColor );
+    } @else if $fieldBackgroundFill == none {
+        background-color: transparent;
+    } @else {
+        background-color: $fieldBackgroundColor;
+    }
+
+  // border-radius: $fieldBorderRadius;
+
+  border-color: $fieldBorderColor;
+  border-radius: $fieldBorderRadius;
+  border-style: $fieldBorderStyle;
+  border-width: $fieldBorderWidth;
+  color: $fieldTextColor;
+
+
   @include transition(border linear .2s, box-shadow linear .2s);
 
   // Focus state
   &:focus {
-    border-color: rgba(82,168,236,.8);
+
+      @if $fieldActiveBackgroundFill == vertical {
+            @include gradient-vertical($fieldActiveBackgroundColor, $fieldActiveBackgroundEndColor );
+      } @else if $fieldActiveBackgroundFill == horizontal {
+            @include gradient-horizontal($fieldActiveBackgroundColor, $fieldActiveBackgroundEndColor );
+      } @else if $fieldActiveBackgroundFill == radial {
+            @include gradient-radial($fieldActiveBackgroundColor, $fieldActiveBackgroundEndColor );
+      } @else if $fieldActiveBackgroundFill == none {
+          background-color: transparent;
+      } @else {
+          background-color: $fieldActiveBackgroundColor;
+      }
+
+    // border-radius: $fieldActiveBorderRadius;
+
+    border-color: $fieldActiveBorderColor;
+    border-radius: $fieldActiveBorderRadius;
+    border-style: $fieldActiveBorderStyle;
+    border-width: $fieldActiveBorderWidth;
+    color: $fieldActiveTextColor;
+
+
     outline: 0;
     outline: thin dotted \9; /* IE6-9 */
-    @include box-shadow(inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6));
+    @include box-shadow(inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236, .6));
   }
 }
 
@@ -162,8 +246,6 @@ input[type="file"] {
 // Make select elements obey height by applying a border
 select {
   width: 220px; // default input width + 10px of padding that doesn't get applied
-  border: 1px solid $inputBorder;
-  background-color: $inputBackground; // Chrome on Linux and Mobile Safari need background-color
 }
 
 // Make multiple select elements height not fixed

@@ -22,32 +22,32 @@ h3 {
 /* ----------------------------------------------------------------------------------
 			Scaffolding
 ----------------------------------------------------------------------------------  */
-html,body{
-		height: 100%;
-		margin:0 !important;
-		position:relative;
+html,
+body{
+    margin:0;
+    position:relative;
 }
 
-	html.navbar-fixed-top {
-		padding-top: 50px
-	}
+html.navbar-fixed-top {
+	padding-top: 50px
+}
 
-	html.navbar-fixed-bottom {
-		padding-bottom: 50px
-	}
+html.navbar-fixed-bottom {
+	padding-bottom: 50px
+}
 
-	body {
-		height: auto;
-		min-height: 100%;
-	}
+body {
+	height: auto;
+	min-height: 100%;
+}
 
-	body.desktopnav-fixed-top {
-		padding-top: 40px;
-	}
+body.desktopnav-fixed-top {
+	padding-top: 40px;
+}
 
-	body.desktopnav-fixed-bottom {
-		padding-bottom: 40px;
-	}
+body.desktopnav-fixed-bottom {
+	padding-bottom: 40px;
+}
 
 	#wpadminbar {
 		position: fixed;
@@ -543,7 +543,18 @@ div.img-circle img{
 
 
 
+/**
+ * Accordions
+ */
 
+/**
+ * kill br
+ */
+.accordion-heading br ,
+.control-group br,
+.controls br {
+    display: none;
+}
 
 
 /* pagination */

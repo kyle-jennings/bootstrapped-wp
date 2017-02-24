@@ -25,6 +25,15 @@ $links = array(
     'active_links' => $text['active-links'],
 );
 
+
+// forms
+$forms = $this->values['forms'];
+$form = $forms['background_colors'];
+$field = $forms['field_colors'];
+$field_hovered = $forms['field_hovered_colors'];
+$field_active = $forms['field_active_colors'];
+
+
 // tables
 $tables = $this->values['tables'];
 // examine($tables);

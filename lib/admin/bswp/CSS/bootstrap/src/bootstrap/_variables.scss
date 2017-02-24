@@ -239,7 +239,7 @@ $btnInverseBackgroundHighlight:     $grayDarker !default;
 // Images
 ///////////////////////
 
-$imagePadding: 14px !default;
+$imagePadding: 0px !default;
 
     $imageBackgroundColor: rgba(121, 247, 146, 1) !default;
     $imageBackgroundEndColor: rgba(121, 247, 146, 1) !default;
@@ -284,7 +284,7 @@ $imagePadding: 14px !default;
 //////////////////
 
 $imageCaptionTextColor: $textColor !default;
-$imageCaptionPadding: 14px !default;
+$imageCaptionPadding: 0px !default;
 
     $imageCaptionBackgroundColor: rgba(28, 117, 1, 1) !default;
     $imageCaptionBackgroundEndColor: rgba(17, 87, 1, 1) !default;
@@ -333,7 +333,7 @@ $imageCaptionPadding: 14px !default;
 
 // thumbnail images
 /////////////////////
-$imageThumbnailPadding: 14px !default;
+$imageThumbnailPadding: 0px !default;
 
     $imageThumbnailBackgroundColor: rgba(195, 2, 209, 1) !default;
     $imageThumbnailBackgroundEndColor: rgba(161, 2, 129, 1) !default;
@@ -381,6 +381,133 @@ $inputDisabledBackground:       $grayLighter !default;
 $formActionsBackground:         #f5f5f5 !default;
 $inputHeight:                   $baseLineHeight + 10px; // base line-height + 8px vertical padding + 2px top/bottom border
 
+$formTextColor: #030303 !default;
+
+    $formBackgroundColor: rgba(199, 153, 255, 1) !default;
+    $formBackgroundEndColor: rgba(140, 96, 184, 1) !default;
+
+    $formBackgroundFill: vertical !default;
+
+    $formBorderColor: #9146db !default;
+    $formBorderStyle: solid !default;
+    $formBorderWidth: 4px !default;
+
+    
+    $formTopBorderColor: transparent !default;
+    $formTopBorderStyle: none !default;
+    $formTopBorderWidth: 1px !default;
+    
+    $formRightBorderColor: transparent !default;
+    $formRightBorderStyle: none !default;
+    $formRightBorderWidth: 1px !default;
+    
+    $formBottomBorderColor: transparent !default;
+    $formBottomBorderStyle: none !default;
+    $formBottomBorderWidth: 1px !default;
+    
+    $formLeftBorderColor: #1754d6 !default;
+    $formLeftBorderStyle: solid !default;
+    $formLeftBorderWidth: 7px !default;
+    
+    $formBorderColor: $formTopBorderColor $formRightBorderColor $formBottomBorderColor $formLeftBorderColor;
+    $formBorderStyle: $formTopBorderStyle $formRightBorderStyle $formBottomBorderStyle $formLeftBorderStyle;
+    $formBorderWidth: $formTopBorderWidth $formRightBorderWidth $formBottomBorderWidth $formLeftBorderWidth;
+
+
+
+    
+    $formBorderRadius: 0px !default;
+        $formTopLeftBorderRadius: 0px !default;
+
+        $formTopRightBorderRadius: 0px !default;
+
+        $formBottomRightBorderRadius: 0px !default;
+
+        $formBottomLeftBorderRadius: 0px !default;
+
+    
+    
+$fieldTextColor: #030303 !default;
+
+    $fieldBackgroundColor: rgba(252, 192, 192, 1) !default;
+    $fieldBackgroundEndColor: rgba(194, 111, 107, 1) !default;
+
+    $fieldBackgroundFill: solid !default;
+
+    $fieldBorderColor: #f03e35 !default;
+    $fieldBorderStyle: solid !default;
+    $fieldBorderWidth: 1px !default;
+
+    
+    $fieldTopBorderColor: transparent !default;
+    $fieldTopBorderStyle: none !default;
+    $fieldTopBorderWidth: 1px !default;
+    
+    $fieldRightBorderColor: transparent !default;
+    $fieldRightBorderStyle: none !default;
+    $fieldRightBorderWidth: 1px !default;
+    
+    $fieldBottomBorderColor: transparent !default;
+    $fieldBottomBorderStyle: none !default;
+    $fieldBottomBorderWidth: 1px !default;
+    
+    $fieldLeftBorderColor: transparent !default;
+    $fieldLeftBorderStyle: none !default;
+    $fieldLeftBorderWidth: 1px !default;
+    
+    
+    $fieldBorderRadius: 0px !default;
+        $fieldTopLeftBorderRadius: 0px !default;
+
+        $fieldTopRightBorderRadius: 0px !default;
+
+        $fieldBottomRightBorderRadius: 0px !default;
+
+        $fieldBottomLeftBorderRadius: 0px !default;
+
+    
+    
+
+$fieldActiveTextColor: #030303 !default;
+
+    $fieldActiveBackgroundColor: rgba(235, 182, 179, 1) !default;
+    $fieldActiveBackgroundEndColor: rgba(171, 100, 93, 1) !default;
+
+    $fieldActiveBackgroundFill: solid !default;
+
+    $fieldActiveBorderColor: #f03e35 !default;
+    $fieldActiveBorderStyle: solid !default;
+    $fieldActiveBorderWidth: 1px !default;
+
+    
+    $fieldActiveTopBorderColor: transparent !default;
+    $fieldActiveTopBorderStyle: none !default;
+    $fieldActiveTopBorderWidth: 1px !default;
+    
+    $fieldActiveRightBorderColor: transparent !default;
+    $fieldActiveRightBorderStyle: none !default;
+    $fieldActiveRightBorderWidth: 1px !default;
+    
+    $fieldActiveBottomBorderColor: transparent !default;
+    $fieldActiveBottomBorderStyle: none !default;
+    $fieldActiveBottomBorderWidth: 1px !default;
+    
+    $fieldActiveLeftBorderColor: transparent !default;
+    $fieldActiveLeftBorderStyle: none !default;
+    $fieldActiveLeftBorderWidth: 1px !default;
+    
+    
+    $fieldActiveBorderRadius: 0px !default;
+        $fieldActiveTopLeftBorderRadius: 0px !default;
+
+        $fieldActiveTopRightBorderRadius: 0px !default;
+
+        $fieldActiveBottomRightBorderRadius: 0px !default;
+
+        $fieldActiveBottomLeftBorderRadius: 0px !default;
+
+    
+    
 
 
 
