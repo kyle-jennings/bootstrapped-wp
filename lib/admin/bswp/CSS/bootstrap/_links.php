@@ -23,3 +23,6 @@ foreach($links as $type=>$link):
 endforeach;
 
 echo $output;
+
+
+// _component_links_sass_vars('imageCaption', $image_captions);

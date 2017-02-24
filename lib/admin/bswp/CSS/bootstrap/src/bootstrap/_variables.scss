@@ -233,7 +233,146 @@ $btnDangerBackgroundHighlight:      #bd362f !default;
 
 $btnInverseBackground:              #444 !default;
 $btnInverseBackgroundHighlight:     $grayDarker !default;
-// Forms
+
+
+
+// Images
+///////////////////////
+
+$imagePadding: 14px !default;
+
+    $imageBackgroundColor: rgba(121, 247, 146, 1) !default;
+    $imageBackgroundEndColor: rgba(121, 247, 146, 1) !default;
+
+    $imageBackgroundFill: solid !default;
+
+    $imageBorderColor: #e803c2 !default;
+    $imageBorderStyle: solid !default;
+    $imageBorderWidth: 4px !default;
+
+    
+    $imageTopBorderColor: transparent !default;
+    $imageTopBorderStyle: none !default;
+    $imageTopBorderWidth: 1px !default;
+    
+    $imageRightBorderColor: #1f02b0 !default;
+    $imageRightBorderStyle: dotted !default;
+    $imageRightBorderWidth: 4px !default;
+    
+    $imageBottomBorderColor: transparent !default;
+    $imageBottomBorderStyle: none !default;
+    $imageBottomBorderWidth: 1px !default;
+    
+    $imageLeftBorderColor: transparent !default;
+    $imageLeftBorderStyle: none !default;
+    $imageLeftBorderWidth: 1px !default;
+    
+    
+    $imageBorderRadius: 0px !default;
+        $imageTopLeftBorderRadius: 0px !default;
+
+        $imageTopRightBorderRadius: 0px !default;
+
+        $imageBottomRightBorderRadius: 0px !default;
+
+        $imageBottomLeftBorderRadius: 0px !default;
+
+    
+    
+
+// caption images
+//////////////////
+
+$imageCaptionTextColor: $textColor !default;
+$imageCaptionPadding: 14px !default;
+
+    $imageCaptionBackgroundColor: rgba(28, 117, 1, 1) !default;
+    $imageCaptionBackgroundEndColor: rgba(17, 87, 1, 1) !default;
+
+    $imageCaptionBackgroundFill: solid !default;
+
+    $imageCaptionBorderColor: rgba(0,0,0,.6) !default;
+    $imageCaptionBorderStyle: none !default;
+    $imageCaptionBorderWidth: 1px !default;
+
+    
+    $imageCaptionTopBorderColor: transparent !default;
+    $imageCaptionTopBorderStyle: none !default;
+    $imageCaptionTopBorderWidth: 1px !default;
+    
+    $imageCaptionRightBorderColor: transparent !default;
+    $imageCaptionRightBorderStyle: none !default;
+    $imageCaptionRightBorderWidth: 1px !default;
+    
+    $imageCaptionBottomBorderColor: transparent !default;
+    $imageCaptionBottomBorderStyle: none !default;
+    $imageCaptionBottomBorderWidth: 1px !default;
+    
+    $imageCaptionLeftBorderColor: #5185f5 !default;
+    $imageCaptionLeftBorderStyle: solid !default;
+    $imageCaptionLeftBorderWidth: 7px !default;
+    
+    $imageCaptionBorderColor: $imageCaptionTopBorderColor $imageCaptionRightBorderColor $imageCaptionBottomBorderColor $imageCaptionLeftBorderColor;
+    $imageCaptionBorderStyle: $imageCaptionTopBorderStyle $imageCaptionRightBorderStyle $imageCaptionBottomBorderStyle $imageCaptionLeftBorderStyle;
+    $imageCaptionBorderWidth: $imageCaptionTopBorderWidth $imageCaptionRightBorderWidth $imageCaptionBottomBorderWidth $imageCaptionLeftBorderWidth;
+
+
+
+    
+    $imageCaptionBorderRadius: 0px !default;
+        $imageCaptionTopLeftBorderRadius: 0px !default;
+
+        $imageCaptionTopRightBorderRadius: 0px !default;
+
+        $imageCaptionBottomRightBorderRadius: 0px !default;
+
+        $imageCaptionBottomLeftBorderRadius: 0px !default;
+
+    
+    
+
+// thumbnail images
+/////////////////////
+$imageThumbnailPadding: 14px !default;
+
+    $imageThumbnailBackgroundColor: rgba(195, 2, 209, 1) !default;
+    $imageThumbnailBackgroundEndColor: rgba(161, 2, 129, 1) !default;
+
+    $imageThumbnailBackgroundFill: radial !default;
+
+    $imageThumbnailBorderColor: #b4a6fc !default;
+    $imageThumbnailBorderStyle: dashed !default;
+    $imageThumbnailBorderWidth: 2px !default;
+
+    
+    $imageThumbnailTopBorderColor: transparent !default;
+    $imageThumbnailTopBorderStyle: none !default;
+    $imageThumbnailTopBorderWidth: 1px !default;
+    
+    $imageThumbnailRightBorderColor: transparent !default;
+    $imageThumbnailRightBorderStyle: none !default;
+    $imageThumbnailRightBorderWidth: 1px !default;
+    
+    $imageThumbnailBottomBorderColor: transparent !default;
+    $imageThumbnailBottomBorderStyle: none !default;
+    $imageThumbnailBottomBorderWidth: 1px !default;
+    
+    $imageThumbnailLeftBorderColor: transparent !default;
+    $imageThumbnailLeftBorderStyle: none !default;
+    $imageThumbnailLeftBorderWidth: 1px !default;
+    
+    
+    $imageThumbnailBorderRadius: 3px !default;
+        $imageThumbnailTopLeftBorderRadius: 0px !default;
+
+        $imageThumbnailTopRightBorderRadius: 0px !default;
+
+        $imageThumbnailBottomRightBorderRadius: 0px !default;
+
+        $imageThumbnailBottomLeftBorderRadius: 0px !default;
+
+    
+    // Forms
 // -------------------------
 $inputBackground:               $white !default;
 $inputBorder:                   #ccc !default;
@@ -437,8 +576,8 @@ $paginationActiveBackground:          #f5f5f5 !default;
     $paginationBorderWidth: 2px !default;
 
     
-    $paginationTopBorderColor: #ff0303 !default;
-    $paginationTopBorderStyle: solid !default;
+    $paginationTopBorderColor: transparent !default;
+    $paginationTopBorderStyle: none !default;
     $paginationTopBorderWidth: 1px !default;
     
     $paginationRightBorderColor: transparent !default;
@@ -453,12 +592,6 @@ $paginationActiveBackground:          #f5f5f5 !default;
     $paginationLeftBorderStyle: none !default;
     $paginationLeftBorderWidth: 1px !default;
     
-    $paginationBorderColor: $paginationTopBorderColor $paginationRightBorderColor $paginationBottomBorderColor $paginationLeftBorderColor;
-    $paginationBorderStyle: $paginationTopBorderStyle $paginationRightBorderStyle $paginationBottomBorderStyle $paginationLeftBorderStyle;
-    $paginationBorderWidth: $paginationTopBorderWidth $paginationRightBorderWidth $paginationBottomBorderWidth $paginationLeftBorderWidth;
-
-
-
     
     $paginationBorderRadius: 2px !default;
         $paginationTopLeftBorderRadius: 1px !default;

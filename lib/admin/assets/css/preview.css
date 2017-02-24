@@ -3483,18 +3483,18 @@ button.btn, input[type="submit"].btn {
   margin-left: 0;
   margin-bottom: 0;
   border-radius: 2px;
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, );
-  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, );
-  box-shadow: 0 1px 2px rgba(0, 0, 0, ); }
+  -webkit-box-shadow: 0 1px 2px rgba(238, 3, 255, .05);
+  -moz-box-shadow: 0 1px 2px rgba(238, 3, 255, .05);
+  box-shadow: 0 1px 2px rgba(238, 3, 255, .05); }
 
 .pagination ul > li {
   display: inline; }
 
 .pagination ul > li > a, .pagination ul > li > span {
   background-color: rgba(3, 255, 116, 1.01);
-  border-color: #ff0303 transparent transparent transparent;
-  border-style: solid none none none;
-  border-width: 1px 1px 1px 1px;
+  border-color: #ee03ff;
+  border-style: solid;
+  border-width: 2px;
   color: #ff0303;
   float: left;
   line-height: 20px;
@@ -3899,6 +3899,47 @@ button.btn, input[type="submit"].btn {
     border-right-width: 0;
     border-left-color: #780280;
     bottom: -5px; }
+
+img {
+  background-color: rgba(121, 247, 146, 1);
+  border-color: #e803c2;
+  border-radius: 0px;
+  border-style: solid;
+  border-width: 4px; }
+
+.link--image img {
+  border: 1px solid #0307ff;
+  border-radius: 0;
+  padding: 0; }
+
+.link--image:hover img {
+  border: 1px solid #20ff03;
+  border-radius: 0;
+  padding: 0; }
+
+.link--image:active img {
+  border: 1px solid #09c402;
+  border-radius: 0;
+  padding: 0; }
+
+.link--image:hover img {
+  border: 1px solid #030000;
+  border-radius: 0;
+  padding: 0; }
+
+.wp-caption {
+  background-color: rgba(28, 117, 1, 1);
+  border-color: transparent transparent transparent #5185f5;
+  border-radius: 0px;
+  border-style: none none none solid;
+  border-width: 1px 1px 1px 7px;
+  color: #fff;
+  padding: 14px; }
+  .wp-caption img {
+    border: 0;
+    border-radius: 0;
+    margin: 0 0 10px;
+    padding: 0; }
 
 .thumbnails {
   margin-left: -20px;

@@ -25,6 +25,7 @@ include dirname(__FILE__).'/components/navbar.php';
 include dirname(__FILE__).'/components/preformatted.php';
 include dirname(__FILE__).'/components/quotes.php';
 include dirname(__FILE__).'/components/tables.php';
+include dirname(__FILE__).'/components/images.php';
 
 $component_options = get_option('bswp_site_settings');
 $component_options = $component_options['available_components']['components'];
@@ -87,6 +88,8 @@ $text->add_tab('hovered-links', $hovered_links);
 $text->add_tab('active-links', $active_links);
 
 
+
+
 // Misc settings
 $misc = new SettingsGroup('misc');
 $misc->add_tab('layout', $section_layout);
@@ -112,6 +115,7 @@ $groups = array(
     'headings' => $headings,
     'text' => $text,
     'navbar' => $navbar,
+    'images' => $images,
     'tables' => $tables,
     'preformatted' => $preformatted,
     'quotes' => $quotes,

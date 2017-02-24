@@ -1,0 +1,80 @@
+img {
+
+    @if $imageBackgroundFill == vertical {
+          @include gradient-vertical($imageBackgroundColor, $imageBackgroundEndColor);
+    } @else if $imageBackgroundFill == horizontal {
+          @include gradient-horizontal($imageBackgroundColor, $imageBackgroundEndColor);
+    } @else if $imageBackgroundFill == radial {
+          @include gradient-radial($imageBackgroundColor, $imageBackgroundEndColor);
+    } @else if $imageBackgroundFill == none {
+        background-color: transparent;
+    } @else {
+        background-color: $imageBackgroundColor;
+    }
+
+    border-color: $imageBorderColor;
+    border-radius: $imageBorderRadius;
+    border-style: $imageBorderStyle;
+    border-width: $imageBorderWidth;
+
+}
+
+
+
+
+// Image links
+.link--image img {
+    border-color: $linkColor;
+    border-radius: $imageBorderRadius;
+    border-style: $imageBorderStyle;
+    border-width: $imageBorderWidth;
+    color: none;
+    padding: 0;
+}
+
+.link--image:hover img {
+    border-color: $hoveredlinksColor;
+
+}
+
+.link--image:active img {
+    border-color: $activelinksColor;
+
+}
+.link--image:hover img {
+    border-color: $visitedlinksColor;
+
+}
+
+
+
+// captions
+//
+
+.wp-caption {
+    @if $imageCaptionBackgroundFill == vertical {
+          @include gradient-vertical($imageCaptionBackgroundColor, $imageCaptionBackgroundEndColor);
+    } @else if $imageCaptionBackgroundFill == horizontal {
+          @include gradient-horizontal($imageCaptionBackgroundColor, $imageCaptionBackgroundEndColor);
+    } @else if $imageCaptionBackgroundFill == radial {
+          @include gradient-radial($imageCaptionBackgroundColor, $imageCaptionBackgroundEndColor);
+    } @else if $imageCaptionBackgroundFill == none {
+        background-color: transparent;
+    } @else {
+        background-color: $imageCaptionBackgroundColor;
+    }
+
+    border-color: $imageCaptionBorderColor;
+    border-radius: $imageCaptionBorderRadius;
+    border-style: $imageCaptionBorderStyle;
+    border-width: $imageCaptionBorderWidth;
+
+    color: $imageCaptionTextColor;
+    padding: $imageCaptionPadding;
+
+    img {
+
+        margin: 0 0 10px;
+        padding: 0;
+    }
+}

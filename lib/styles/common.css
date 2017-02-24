@@ -541,6 +541,11 @@ div.img-circle img{
           border-radius: 5000px;
 }
 
+
+
+
+
+
 /* pagination */
 .pagination{
 	clear:both;
@@ -613,11 +618,7 @@ a img.aligncenter {
 }
 
 .wp-caption {
-    background: #fff;
-    border: 1px solid #f0f0f0;
     max-width: 96%; /* Image does not overflow the content area */
-    padding: 5px 3px 10px;
-    text-align: center;
 }
 
 .wp-caption.alignnone {
@@ -632,18 +633,9 @@ a img.aligncenter {
     margin: 5px 0 20px 20px;
 }
 
-.wp-caption img {
-    border: 0 none;
-    height: auto;
-    margin: 0;
-    max-width: 98.5%;
-    padding: 0;
-    width: auto;
-}
-
 .wp-caption p.wp-caption-text {
     font-size: 11px;
     line-height: 17px;
-    margin: 0;
-    padding: 0 4px 5px;
+    margin: 10px 0 0;
+    text-align: center;
 }

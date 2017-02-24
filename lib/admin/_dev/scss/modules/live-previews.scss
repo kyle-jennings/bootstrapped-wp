@@ -2,6 +2,13 @@
     100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); }
 }
 
+.preview-options.affix {
+    height: calc(100vh - 32px);
+    position: fixed;
+    top: 0;
+    width: calc(100vw - 299px);
+}
+
 .preview-wrapper {
 
     position: relative;

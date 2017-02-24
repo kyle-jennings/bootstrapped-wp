@@ -17,7 +17,7 @@ $radii_fields['all_corners'] = new Select(
     array(
         'name'=>'all_corners',
         'label'=>'All Corners',
-        'args'=>array_map('bswp\Settings\_helpers\add_px_string', range(1,20))
+        'args'=>array_map('bswp\Settings\_helpers\add_px_string', $px_range)
     )
 );
 
@@ -34,7 +34,7 @@ foreach($radii as $radius){
         array(
             'name'=>$radius,
             'label'=>ucfirst(str_replace('_', ' ', $radius)),
-            'args'=>array_map('bswp\Settings\_helpers\add_px_string', range(1,20)),
+            'args'=>array_map('bswp\Settings\_helpers\add_px_string', $px_range),
             'toggled_by'=>array('style_corners' => border_corners_toggle_map('toggled_by') )
         )
     );

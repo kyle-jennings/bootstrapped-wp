@@ -94,6 +94,13 @@ $popovers_borders = $popovers['borders'];
 // pagination
 $pagination = $this->values['pagination'];
 
+
+// images
+$image_settings = $this->values['images'];
+$images = $image_settings['images'];
+$image_thumbnails = $image_settings['thumbnails'];
+$image_captions = $image_settings['image_captions'];
+
 ob_start();
 ?>
 
@@ -187,6 +194,7 @@ $borderRadiusSmall:     3px !default;
 <?php
     require_once '_tables.php';
     require_once '_buttons.php';
+    require_once '_images.php';
     require_once '_forms.php';
 ?>
 
