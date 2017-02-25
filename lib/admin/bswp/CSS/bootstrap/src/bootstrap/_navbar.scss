@@ -249,6 +249,9 @@
   // Vertically center the text given $navbarHeight
   padding: (($navbarHeight - $baseLineHeight) / 2) 15px (($navbarHeight - $baseLineHeight) / 2);
   color: $navbarLinkColor;
+  @include link-bg($navbarLinkBackgroundFill, $navbarLinkBackgroundColor);
+
+
   text-decoration: none;
   // text-shadow: 0 1px 0 $navbarBackgroundHighlight;
 }
@@ -259,8 +262,10 @@
 // Hover/focus
 .navbar .nav > li > a:focus,
 .navbar .nav > li > a:hover {
-  background-color: $navbarLinkBackgroundHover; // "transparent" is default to differentiate :hover/:focus from .active
+
   color: $navbarLinkColorHover;
+  @include link-bg($navbarLinkBackgroundHoverFill, $navbarLinkBackgroundHoverColor);
+  // @include link-decoration($navbarLinkDecoration, $navbarLinkTextShadow);
   text-decoration: none;
 }
 
@@ -269,9 +274,10 @@
 .navbar .nav > .active > a:hover,
 .navbar .nav > .active > a:focus {
   color: $navbarLinkColorActive;
-  text-decoration: none;
-  background-color: $navbarLinkBackgroundActive;
+  @include link-bg($navbarLinkBackgroundActiveFill, $navbarLinkBackgroundActiveColor);
   @include box-shadow(inset 0 3px 8px rgba(0,0,0,.125));
+
+  text-decoration: none;
 }
 
 // Navbar button for toggling navbar items in responsive layouts
@@ -357,7 +363,7 @@
 .navbar .nav li.dropdown.open > .dropdown-toggle,
 .navbar .nav li.dropdown.active > .dropdown-toggle,
 .navbar .nav li.dropdown.open.active > .dropdown-toggle {
-  background-color: $navbarLinkBackgroundActive;
+  background-color: $navbarLinkBackgroundActiveColor;
   color: $navbarLinkColorActive;
 }
 

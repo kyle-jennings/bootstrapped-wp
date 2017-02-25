@@ -82,7 +82,7 @@
         clear: both;
         font-weight: normal;
         line-height: $baseLineHeight;
-        color: $navbarDropdownLinkColor;
+        color: $navbarDropdownLinksColor;
         @media (max-width: $navbarCollapseWidth) {
             color: $navbarLinkColor;
         }
@@ -96,16 +96,16 @@
     .dropdown-menu > li > a:focus,
     .dropdown-submenu:hover > a,
     .dropdown-submenu:focus > a {
-      text-decoration: none;
-      color: $navbarDropdownLinkColorHover;
+      color: $navbarDropdownHoveredLinksColor;
 
-      @include gradient-vertical($navbarDropdownLinkBackgroundHover, darken($navbarDropdownLinkBackgroundHover, 5%));
+      @include link-bg($navbarDropdownHoveredLinksBackgroundStyle, $navbarDropdownHoveredLinksBackgroundColor);
 
       @media (max-width: $navbarCollapseWidth) {
           color: $navbarLinkColorHover;
-          @include gradient-vertical($navbarLinkBackgroundHover, darken($navbarLinkBackgroundHover, 5%));
-
+          @include gradient-vertical($navbarLinkBackgroundHoverColor, darken($navbarLinkBackgroundHoverColor, 5%));
       }
+      text-decoration: none;
+
     }
 
     // Active state
@@ -115,16 +115,16 @@
     .dropdown-menu > .active > a,
     .dropdown-menu > .active > a:hover,
     .dropdown-menu > .active > a:focus {
-      color: $navbarDropdownLinkColorActive !important;
-      text-decoration: none;
-      outline: 0;
-      @include gradient-vertical($navbarDropdownLinkBackgroundActive, darken($navbarDropdownLinkBackgroundActive, 5%));
+      color: $navbarDropdownActiveLinksColor !important;
+      @include link-bg($navbarDropdownActiveLinksBackgroundStyle, $navbarDropdownActiveLinksBackgroundColor);
 
       @media (max-width: $navbarCollapseWidth) {
           color: $navbarLinkColorActive !important;
-          @include gradient-vertical($navbarLinkBackgroundActive, darken($navbarLinkBackgroundActive, 5%));
+          @include gradient-vertical($navbarLinkBackgroundActiveColor, darken($navbarLinkBackgroundActiveColor, 5%));
 
       }
+      outline: 0;
+      text-decoration: none;
     }
 
     // Disabled state
@@ -246,7 +246,7 @@
       margin-right: -10px;
     }
     .dropdown-submenu:hover > a:after {
-      border-left-color: $navbarDropdownLinkColorHover;
+      border-left-color: $navbarDropdownHoveredLinksColor;
     }
 
     // Left aligned submenus

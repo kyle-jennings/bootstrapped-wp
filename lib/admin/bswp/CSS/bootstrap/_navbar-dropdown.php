@@ -27,11 +27,10 @@ $navbarDropdownBorder:                $navbarDropdownTopBorderColor !default;
 $navbarDropdownDividerTop:            #e5e5e5 !default;
 $navbarDropdownDividerBottom:         $white !default;
 
-$navbarDropdownLinkColor:             <?php echo $nav_submenu_text['links_color'] ? $nav_submenu_text['links_color'] : '$grayDark'; ?> !default;
-$navbarDropdownLinkBackground:   <?php echo $nav_submenu_text['links_background_color_rgba'] ? $nav_submenu_text['links_background_color_rgba'] : 'transparent' ?> !default;
 
-$navbarDropdownLinkColorHover:        <?php echo $nav_submenu_text['hovered_links_color'] ? $nav_submenu_text['hovered_links_color'] : '$white'; ?> !default;
-$navbarDropdownLinkBackgroundHover:   <?php echo $nav_submenu_text['hovered_links_background_color_rgba'] ? $nav_submenu_text['hovered_links_background_color_rgba'] : 'darken($navbarDropdownBackground, 5%)' ?> !default;
 
-$navbarDropdownLinkColorActive:       <?php echo $nav_submenu_text['active_links_color'] ? $nav_submenu_text['active_links_color'] : '$white'; ?> !default;
-$navbarDropdownLinkBackgroundActive:  <?php echo $nav_submenu_text['active_links_background_color_rgba'] ? $nav_submenu_text['active_links_background_color_rgba'] : '$navbarDropdownLinkColor'; ?> !default;
+<?php
+
+    _component_links_sass_vars('navbarDropdown', $nav_submenu_text);
+
+?>

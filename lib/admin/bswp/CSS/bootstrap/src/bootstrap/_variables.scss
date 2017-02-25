@@ -39,7 +39,7 @@ $purple:                #7a43b6 !default;
 // -------------------------
 $bodyBackground:        #030000 !default;
 $bodyBackgroundEnd:        #a8a8a8 !default;
-$backgroundStyle: vertical !default;
+$backgroundFill: vertical !default;
 
 
 $useBackgroundWallpaper: no !default;
@@ -62,36 +62,52 @@ $textColor:             #ffffff !default;
 
 // Links
 // -------------------------
-$linkColor:         #0307ff !default;
-$linkBackgroundStyle: pills !default;
-$linkBackgroundColor: transparent !default;
-$linkDecoration: text-shadow !default;
-$linkTextShadow: #e68dd4 !default;
+    $linkColor:         #a724ff !default;
+
+    $linkBackgroundFill: none !default;
+
+    $linkBackgroundColor: rgba(129, 8, 194, 1) !default;
+
+    $linkDecoration: none !default;
+
+    $linkTextShadow: darken($linkColor, 15%) !default;
 
 
-$hoveredlinksColor:         #20ff03 !default;
-$hoveredlinksBackgroundStyle: none !default;
-$hoveredlinksBackgroundColor: transparent !default;
-$hoveredlinksDecoration: none !default;
-$hoveredlinksTextShadow: darken($linkColor, 15%) !default;
+    $hoveredLinksColor:         #08c !default;
+
+    $hoveredLinksBackgroundFill: none !default;
+
+    $hoveredLinksBackgroundColor: transparent !default;
+
+    $hoveredLinksDecoration: none !default;
+
+    $hoveredLinksTextShadow: darken($linkColor, 15%) !default;
 
 
-$visitedlinksColor:         #030000 !default;
-$visitedlinksBackgroundStyle: pills !default;
-$visitedlinksBackgroundColor: transparent !default;
-$visitedlinksDecoration: none !default;
-$visitedlinksTextShadow: darken($linkColor, 15%) !default;
+    $visitedLinksColor:         #08c !default;
+
+    $visitedLinksBackgroundFill: none !default;
+
+    $visitedLinksBackgroundColor: transparent !default;
+
+    $visitedLinksDecoration: none !default;
+
+    $visitedLinksTextShadow: darken($linkColor, 15%) !default;
 
 
-$activelinksColor:         #09c402 !default;
-$activelinksBackgroundStyle: highlighted !default;
-$activelinksBackgroundColor: rgba(179, 20, 2, 1) !default;
-$activelinksDecoration: none !default;
-$activelinksTextShadow: darken($linkColor, 15%) !default;
+    $activeLinksColor:         #08c !default;
+
+    $activeLinksBackgroundFill: none !default;
+
+    $activeLinksBackgroundColor: transparent !default;
+
+    $activeLinksDecoration: none !default;
+
+    $activeLinksTextShadow: darken($linkColor, 15%) !default;
 
 
 
-$linkColorHover:        darken($hoveredlinksColor, 15%) !default;
+$linkColorHover:        darken($hoveredLinksColor, 15%) !default;
 // Typography
 // -------------------------
 $sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif !default;
@@ -106,41 +122,29 @@ $altFontFamily:         $serifFontFamily !default;
 $headingsFontFamily:    inherit !default; // empty to use BS default, $baseFontFamily
 $headingsFontWeight:    bold !default;    // instead of browser default, bold
 
-$headingsColor:         #c9c9c9 !default;
-$headingsBackgroundStyle: none !default;
-$headingsBackgroundColor: transparent !default;
-$headingsDecoration: none !default;
-$headingsTextShadow: darken($headingsColor, 15%) !default;
 
-$h2Color:         #eb8d8d !default;
-$h2BackgroundStyle: highlighted !default;
-$h2BackgroundColor: transparent !default;
-$h2Decoration: text-shadow !default;
-$h2TextShadow: #097f91 !default;
+        $headingsColor:         #030300 !default;
 
-$h3Color:         #6b0202 !default;
-$h3BackgroundStyle: highlighted !default;
-$h3BackgroundColor: transparent !default;
-$h3Decoration: text-shadow !default;
-$h3TextShadow: #400303 !default;
+        $headingsDecoration: none !default;
+        $headingsTextShadow: darken($headingsColor, 15%) !default;
 
-$h4Color:         #2f27d6 !default;
-$h4BackgroundStyle: highlighted !default;
-$h4BackgroundColor: transparent !default;
-$h4Decoration: text-shadow !default;
-$h4TextShadow: #285c25 !default;
 
-$h5Color:         #2e2e2e !default;
-$h5BackgroundStyle: none !default;
-$h5BackgroundColor: transparent !default;
-$h5Decoration: none !default;
-$h5TextShadow: darken($headingsColor, 15%) !default;
 
-$h6Color:         #030303 !default;
-$h6BackgroundStyle: none !default;
-$h6BackgroundColor: transparent !default;
-$h6Decoration: none !default;
-$h6TextShadow: darken($headingsColor, 15%) !default;
+
+        $headingsLinksColor:         #03fff7 !default;
+
+        $headingsLinksDecoration: none !default;
+        $headingsLinksTextShadow: darken($headingsColor, 15%) !default;
+
+
+
+
+        $headingsLinksHoveredColor:         #03ff42 !default;
+
+        $headingsLinksHoveredDecoration: none !default;
+        $headingsLinksHoveredTextShadow: darken($headingsColor, 15%) !default;
+
+
 
 
 
@@ -163,23 +167,23 @@ $borderRadiusSmall:     3px !default;
 
 // Tables
 // -------------------------
-$tableBackground:                   rgba(75, 2, 201, 1) !default; // overall background-color
-$tablesTextColor:       #1fff57;
+$tableBackground:                   rgba(199, 199, 199, 1) !default; // overall background-color
+$tablesTextColor:       #4a4a4a;
 $tablesLinkColor:       #ffee03;
 
 $tableBackgroundHover:              darken($tableBackground, 20%) !default; // for hover
 
-$tablesHeaderBackgroundColor:       rgba(171, 16, 199, 1);
-$tablesHeaderTextColor:       #fafafa;
+$tablesHeaderBackgroundColor:       rgba(235, 235, 235, 1);
+$tablesHeaderTextColor:       #4f4f4f;
 
 
 
-$tableBackgroundAccent:             rgba(3, 3, 3, 1)  !default; // for striping
+$tableBackgroundAccent:             rgba(107, 107, 107, 1)  !default; // for striping
 $tableBackgroundAccentHover:              darken($tableBackgroundAccent, 20%) !default; // for hover
 
 $tableStripedBackground:        $tableBackgroundAccent;
-$tablesStripedTextColor:       #fa0303;
-$tablesStripedLinkColor:       #01586e;
+$tablesStripedTextColor:       #fafafa;
+$tablesStripedLinkColor:       #57d5ff;
 
 
 
@@ -190,7 +194,7 @@ $tableBorderWidth: 1px !default; //
 
 $tableOuterBorder: #4f8ce8 !default; //
 $tableOuterBorderStyle: solid !default; //
-$tableOuterBorderWidth: 1px !default; //
+$tableOuterBorderWidth: 4px !default; //
 
 
 $tableTopBorder: #ff1003 !default; //
@@ -592,13 +596,18 @@ $navbarBackgroundHighlight:       $navbarBackgroundStart !default;
 $navbarBackground:                $navbarBackgroundEnd !default;
 
 $navbarText:                      #f7f7f7 !default;
-$navbarLinkColor:                 #ffffff !default;
-$navbarLinkColorHover:            #1ec962 !default;
-$navbarLinkColorActive:           #c2c2c2 !default;
+$navbarLinkColor:                  #ffffff !default;
+$navbarLinkBackgroundFill:       none !default;
+$navbarLinkBackgroundColor:       rgba(102, 102, 102, 1) !default;
 
-$navbarLinkBackground:       rgba(102, 102, 102, 1) !default;
-$navbarLinkBackgroundHover:       rgba(1, 102, 42, 1) !default;
-$navbarLinkBackgroundActive:      rgba(94, 94, 94, 1) !default;
+$navbarLinkColorHover:            #bf90c7 !default;
+$navbarLinkBackgroundHoverFill:       highlighted !default;
+$navbarLinkBackgroundHoverColor:       rgba(102, 66, 107, 1) !default;
+
+$navbarLinkColorActive:           #ffffff !default;
+$navbarLinkBackgroundActiveFill:      highlighted !default;
+$navbarLinkBackgroundActiveColor:      rgba(3, 3, 3, 1) !default;
+
 
 $navbarBrandColor:                $navbarLinkColor !default;
 
@@ -651,7 +660,7 @@ $navbarBorderWidth:               '1px';
 // Navbar Dropdowns
 // -------------------------
 
-$navbarDropdownBackground:            #525252 !default;
+$navbarDropdownBackground:            #030303 !default;
 
 
 $navbarDropdownTopBorderColor:                #033eff !default;
@@ -676,15 +685,37 @@ $navbarDropdownBorder:                $navbarDropdownTopBorderColor !default;
 $navbarDropdownDividerTop:            #e5e5e5 !default;
 $navbarDropdownDividerBottom:         $white !default;
 
-$navbarDropdownLinkColor:             #030303 !default;
-$navbarDropdownLinkBackground:   transparent !default;
 
-$navbarDropdownLinkColorHover:        #94fff3 !default;
-$navbarDropdownLinkBackgroundHover:   rgba(3, 3, 3, 1) !default;
 
-$navbarDropdownLinkColorActive:       #66fc5b !default;
-$navbarDropdownLinkBackgroundActive:  rgba(52, 3, 247, 1) !default;
+$navbarDropdownLinksColor: #f5f5f5 !default;
+    $navbarDropdownLinksBackgroundStyle: none !default;
+    $navbarDropdownLinksBackgroundColor: rgba(245, 245, 245, 1) !default;
+    $navbarDropdownLinksDecoration: none !default;
+    $navbarDropdownLinksTextShadow: darken($linkColor, 15%) !default;
 
+
+    $navbarDropdownVisitedLinksColor: navbarDropdownLinksColor !default;
+    $navbarDropdownVisitedLinksBackgroundStyle: none !default;
+    $navbarDropdownVisitedLinksBackgroundColor: transparent !default;
+    $navbarDropdownVisitedLinksDecoration: none !default;
+    $navbarDropdownVisitedLinksTextShadow: darken($linkColor, 15%) !default;
+
+
+    $navbarDropdownHoveredLinksColor: #94fff3 !default;
+    $navbarDropdownHoveredLinksBackgroundStyle: highlighted !default;
+    $navbarDropdownHoveredLinksBackgroundColor: rgba(255, 3, 3, 1) !default;
+    $navbarDropdownHoveredLinksDecoration: underline !default;
+    $navbarDropdownHoveredLinksTextShadow: darken($linkColor, 15%) !default;
+
+
+    $navbarDropdownActiveLinksColor: #66fc5b !default;
+    $navbarDropdownActiveLinksBackgroundStyle: highlighted !default;
+    $navbarDropdownActiveLinksBackgroundColor: rgba(2, 138, 56, 1) !default;
+    $navbarDropdownActiveLinksDecoration: none !default;
+    $navbarDropdownActiveLinksTextShadow: darken($linkColor, 15%) !default;
+
+
+    
 
 
 // Pagination
@@ -731,7 +762,7 @@ $paginationActiveBackground:          #f5f5f5 !default;
 
     
     $paginationLinksColor: #ff0303 !default;
-    $paginationLinksBackgroundStyle: highlighted !default;
+    $paginationLinksBackgroundStyle: none !default;
     $paginationLinksBackgroundColor: rgba(3, 255, 116, 1.01) !default;
     $paginationLinksDecoration: none !default;
     $paginationLinksTextShadow: darken($linkColor, 15%) !default;
@@ -745,14 +776,14 @@ $paginationActiveBackground:          #f5f5f5 !default;
 
 
     $paginationHoveredLinksColor: #039edb !default;
-    $paginationHoveredLinksBackgroundStyle: highlighted !default;
+    $paginationHoveredLinksBackgroundStyle: none !default;
     $paginationHoveredLinksBackgroundColor: rgba(174, 107, 255, 1) !default;
     $paginationHoveredLinksDecoration: none !default;
     $paginationHoveredLinksTextShadow: darken($linkColor, 15%) !default;
 
 
     $paginationActiveLinksColor: #fff703 !default;
-    $paginationActiveLinksBackgroundStyle: highlighted !default;
+    $paginationActiveLinksBackgroundStyle: none !default;
     $paginationActiveLinksBackgroundColor: rgba(255, 137, 3, 1) !default;
     $paginationActiveLinksDecoration: none !default;
     $paginationActiveLinksTextShadow: darken($linkColor, 15%) !default;
@@ -766,15 +797,15 @@ $paginationActiveBackground:          #f5f5f5 !default;
 $collapsiblesColor: #d6d6d6;
 
 // background colors
-$collapsiblesBackgroundColor: rgba(207, 3, 214, 1);
-$collapsiblesBackgroundEndColor: rgba(120, 2, 184, 1);
+$collapsiblesBackgroundColor: rgba(194, 194, 194, 1);
+$collapsiblesBackgroundEndColor: rgba(112, 112, 112, 1);
 $collapsiblesBackgroundFill: vertical;
 
 // header
-$collapsiblesHeaderBackgroundColor: rgba(255, 3, 3, 1);
-$collapsiblesHeaderBackgroundEndColor: rgba(156, 2, 2, 1);
-$collapsiblesHeaderBackgroundFill: solid;
-$collapsiblesHeaderTextColor: #ffffff;
+$collapsiblesHeaderBackgroundColor: rgba(230, 230, 230, 1);
+$collapsiblesHeaderBackgroundEndColor: rgba(204, 204, 204, 1);
+$collapsiblesHeaderBackgroundFill: vertical;
+$collapsiblesHeaderTextColor: #333333;
 
 
 
@@ -795,9 +826,9 @@ $collapsiblesBackgroundPercentage: 0% !default;
 
 
 
-    $collapsiblesBorderColor: #2f16cc !default;
+    $collapsiblesBorderColor: #474747 !default;
     $collapsiblesBorderStyle: solid !default;
-    $collapsiblesBorderWidth: 5px !default;
+    $collapsiblesBorderWidth: 2px !default;
 
     
     $collapsiblesTopBorderColor: transparent !default;
@@ -828,8 +859,8 @@ $collapsiblesBackgroundPercentage: 0% !default;
 
     
     $collapsiblesLinksColor: #379902 !default;
-    $collapsiblesLinksBackgroundStyle: none !default;
-    $collapsiblesLinksBackgroundColor: transparent !default;
+    $collapsiblesLinksBackgroundStyle: highlighted !default;
+    $collapsiblesLinksBackgroundColor: rgba(23, 255, 89, 1) !default;
     $collapsiblesLinksDecoration: none !default;
     $collapsiblesLinksTextShadow: darken($linkColor, 15%) !default;
 
@@ -875,15 +906,15 @@ $heroUnitLeadColor:               inherit !default;
 $tabsColor: #f2f2f2;
 
 // background colors
-$tabsBackgroundColor: rgba(255, 3, 3, 1);
-$tabsBackgroundEndColor: rgba(143, 2, 2, 1);
-$tabsBackgroundFill: solid;
+$tabsBackgroundColor: rgba(117, 117, 117, 1);
+$tabsBackgroundEndColor: rgba(150, 150, 150, 1);
+$tabsBackgroundFill: vertical;
 
 $tabsCorners: yes;
 $tabsBorders: no;
 
 
-    $tabsBorderColor: #02a177 !default;
+    $tabsBorderColor: rgba(0,0,0,.6) !default;
     $tabsBorderStyle: solid !default;
     $tabsBorderWidth: 1px !default;
 
@@ -931,7 +962,7 @@ $tabsBorders: no;
 
 
     $tabsHoveredLinksColor: tabsLinksColor !default;
-    $tabsHoveredLinksBackgroundStyle: highlighted !default;
+    $tabsHoveredLinksBackgroundStyle: none !default;
     $tabsHoveredLinksBackgroundColor: rgba(143, 94, 2, 1) !default;
     $tabsHoveredLinksDecoration: none !default;
     $tabsHoveredLinksTextShadow: darken($linkColor, 15%) !default;
@@ -953,8 +984,8 @@ $tabsBorders: no;
 $tabsInActiveColor: #d1d1d1;
 
 // background colors
-$tabsInActiveBackgroundColor: rgba(125, 125, 125, 1);
-$tabsInActiveBackgroundEndColor: rgba(84, 84, 84, 1);
+$tabsInActiveBackgroundColor: rgba(99, 99, 99, 1);
+$tabsInActiveBackgroundEndColor: rgba(54, 54, 54, 1);
 $tabsInActiveBackgroundFill: vertical;
 
 $tabInActiveCorners: no;
@@ -962,7 +993,7 @@ $tabInActiveBorders: no;
 
 
 
-    $tabsInActiveBorderColor: #03b6e3 !default;
+    $tabsInActiveBorderColor: #333333 !default;
     $tabsInActiveBorderStyle: solid !default;
     $tabsInActiveBorderWidth: 0 !default;
 
@@ -1013,10 +1044,10 @@ $infoBackground:          #d9edf7 !default;
 $infoBorder:              darken(adjust-hue($infoBackground, -10), 7%) !default;
 // Tooltips
 // -------------------------
-$tooltipColor:            #fff !default;
-$tooltipBackgroundColor:       #000 !default;
-$tooltipBackgroundEndColor:       #000 !default;
-$tooltipBackgroundFill:       none !default;
+$tooltipColor:            #ffffff !default;
+$tooltipBackgroundColor:       rgba(34, 200, 209, 1) !default;
+$tooltipBackgroundEndColor:       rgba(3, 148, 148, 1) !default;
+$tooltipBackgroundFill:       vertical !default;
 
 $tooltipArrowWidth:       5px !default;
 $tooltipArrowColor:       $tooltipBackgroundColor !default;
@@ -1025,7 +1056,7 @@ $tooltipArrowColor:       $tooltipBackgroundColor !default;
 
     $tooltipBorderColor: #ff03f2 !default;
     $tooltipBorderStyle: solid !default;
-    $tooltipBorderWidth: 1px !default;
+    $tooltipBorderWidth: 2px !default;
 
     
     $tooltipTopBorderColor: transparent !default;
@@ -1045,7 +1076,7 @@ $tooltipArrowColor:       $tooltipBackgroundColor !default;
     $tooltipLeftBorderWidth: 1px !default;
     
     
-    $tooltipBorderRadius: 20px !default;
+    $tooltipBorderRadius: 4px !default;
         $tooltipTopLeftBorderRadius: 1px !default;
 
         $tooltipTopRightBorderRadius: 1px !default;
@@ -1060,12 +1091,12 @@ $tooltipArrowColor:       $tooltipBackgroundColor !default;
 // -------------------------
 
 
-$popoverColor:            #fff !default;
+$popoverColor:            #5c5c5c !default;
 $popoverBackgroundColor:       rgba(255, 145, 240, 1) !default;
 $popoverBackgroundEndColor:       rgba(201, 109, 184, 1) !default;
 $popoverBackgroundFill:       vertical !default;
 
-$popoverTitleColor:            #fff !default;
+$popoverTitleColor:            #ffffff !default;
 
 $popoverTitleBackgroundColor:       rgba(255, 84, 84, 1) !default;
 $popoverTitleBackgroundEndColor:       rgba(224, 92, 85, 1) !default;
@@ -1278,7 +1309,7 @@ $preBackgroundPercentage: 0% !default;
 
 
     $preVisitedLinksColor: #6c03ff !default;
-    $preVisitedLinksBackgroundStyle: none !default;
+    $preVisitedLinksBackgroundStyle: highlighted !default;
     $preVisitedLinksBackgroundColor: transparent !default;
     $preVisitedLinksDecoration: none !default;
     $preVisitedLinksTextShadow: darken($linkColor, 15%) !default;
@@ -1292,7 +1323,7 @@ $preBackgroundPercentage: 0% !default;
 
 
     $preActiveLinksColor: #d903ce !default;
-    $preActiveLinksBackgroundStyle: highlighted !default;
+    $preActiveLinksBackgroundStyle: pills !default;
     $preActiveLinksBackgroundColor: rgba(171, 7, 138, 1.01) !default;
     $preActiveLinksDecoration: none !default;
     $preActiveLinksTextShadow: darken($linkColor, 15%) !default;
@@ -1303,9 +1334,9 @@ $preBackgroundPercentage: 0% !default;
 // -------------------------
 
 $wellColor: #030303;
-$wellBackgroundColor: #e85a5a;
+$wellBackgroundColor: #ff817a;
 $wellBackgroundEndColor: transparent;
-$wellBackgroundFill: solid;
+$wellBackgroundFill: vertical;
 
 $wellBackgroundWallpaper: no !default;
 
@@ -1339,10 +1370,16 @@ $wellBackgroundPercentage: 0% !default;
     $wellBottomBorderStyle: none !default;
     $wellBottomBorderWidth: 1px !default;
     
-    $wellLeftBorderColor: transparent !default;
-    $wellLeftBorderStyle: none !default;
-    $wellLeftBorderWidth: 1px !default;
+    $wellLeftBorderColor: #ff5e5e !default;
+    $wellLeftBorderStyle: solid !default;
+    $wellLeftBorderWidth: 4px !default;
     
+    $wellBorderColor: $wellTopBorderColor $wellRightBorderColor $wellBottomBorderColor $wellLeftBorderColor;
+    $wellBorderStyle: $wellTopBorderStyle $wellRightBorderStyle $wellBottomBorderStyle $wellLeftBorderStyle;
+    $wellBorderWidth: $wellTopBorderWidth $wellRightBorderWidth $wellBottomBorderWidth $wellLeftBorderWidth;
+
+
+
     
     $wellBorderRadius: 1px !default;
         $wellTopLeftBorderRadius: 1px !default;
@@ -1369,7 +1406,7 @@ $wellBackgroundPercentage: 0% !default;
 
 
     $wellHoveredLinksColor: #03c0ff !default;
-    $wellHoveredLinksBackgroundStyle: highlighted !default;
+    $wellHoveredLinksBackgroundStyle: none !default;
     $wellHoveredLinksBackgroundColor: rgba(112, 122, 255, 1) !default;
     $wellHoveredLinksDecoration: none !default;
     $wellHoveredLinksTextShadow: darken($linkColor, 15%) !default;

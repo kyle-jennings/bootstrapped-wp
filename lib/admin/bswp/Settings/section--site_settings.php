@@ -11,7 +11,7 @@ include dirname(__FILE__).'/field-sets/background-colors.php';
 include dirname(__FILE__).'/field-sets/background-wallpaper.php';
 include dirname(__FILE__).'/field-sets/borders.php';
 include dirname(__FILE__).'/field-sets/border-radius.php';
-include dirname(__FILE__).'/field-sets/headings.php';
+include dirname(__FILE__).'/field-sets/links.php';
 include dirname(__FILE__).'/field-sets/section-layout.php';
 include dirname(__FILE__).'/field-sets/site-settings.php';
 include dirname(__FILE__).'/field-sets/text.php';
@@ -70,23 +70,23 @@ $borders->add_tab('border-radius', $radii_fields);
 
 
 // headings settings
-$headings = new SettingsGroup('headings');
-$headings->add_tab('h1', $h1);
-$headings->add_tab('h2', $h2);
-$headings->add_tab('h3', $h3);
-$headings->add_tab('h4', $h4);
-$headings->add_tab('h5', $h5);
-$headings->add_tab('h6', $h6);
+$text = new SettingsGroup('text');
+$text->add_tab('text', $regular_text);
+$text->add_tab('headings', $headings_normal);
+$text->add_tab('headings_links', $headings_links);
+$text->add_tab('headings_links_hovered', $headings_links_hovered);
+
+
+
 
 
 
 // Text settings
-$text = new SettingsGroup('text');
-$text->add_tab('text', $regular_text);
-$text->add_tab('links', $links);
-$text->add_tab('visited-links', $visited_links);
-$text->add_tab('hovered-links', $hovered_links);
-$text->add_tab('active-links', $active_links);
+$link_settings = new SettingsGroup('links');
+$link_settings->add_tab('links', $links);
+$link_settings->add_tab('visited_links', $visited_links);
+$link_settings->add_tab('hovered_links', $hovered_links);
+$link_settings->add_tab('active_links', $active_links);
 
 
 
@@ -113,8 +113,8 @@ $available_sections->add_tab('sections', $available_sections_toggles);
 $groups = array(
     'background' => $background,
     'borders' => $borders,
-    'headings' => $headings,
     'text' => $text,
+    'links' => $link_settings,
     'navbar' => $navbar,
     'images' => $images,
     'forms' => $forms,

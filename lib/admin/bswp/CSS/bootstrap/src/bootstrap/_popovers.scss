@@ -10,7 +10,7 @@
     border-color: $popoverBorderColor;
     border-style: $popoverBorderStyle;
     border-width: $popoverBorderWidth;
-    border-radius: $tooltipBorderRadius;
+    border-radius: $popoverBorderRadius;
     @include box-shadow(0 5px 10px rgba(0,0,0,.2));
     display: none;
 
@@ -35,15 +35,19 @@
 
 .popover-title {
     @if $popoverTitleBackgroundFill == vertical {
-        @include gradient-vertical($tooltipBackgroundColor, $popoverTitleBackgroundEndColor );
+        @include gradient-vertical($popoverTitleBackgroundColor, $popoverTitleBackgroundEndColor );
     } @else if $popoverTitleBackgroundFill == horizontal {
-        @include gradient-horizontal($tooltipBackgroundColor, $popoverTitleBackgroundEndColor );
+        @include gradient-horizontal($popoverTitleBackgroundColor, $popoverTitleBackgroundEndColor );
     } @else if $popoverTitleBackgroundFill == radial {
-        @include gradient-radial($tooltipBackgroundColor, $popoverTitleBackgroundEndColor );
+        @include gradient-radial($popoverTitleBackgroundColor, $popoverTitleBackgroundEndColor );
     } @else if $popoverTitleBackgroundFill == none {
         background-color: transparent;
+        background-image: none;
+
     } @else {
         background-color: $popoverTitleBackgroundColor;
+        background-image: none;
+
     }
 
 
@@ -51,7 +55,7 @@
     border-bottom-style: $popoverTitleBottomBorderStyle;
     border-bottom-width: $popoverTitleBottomBorderWidth;
 
-    border-radius: $tooltipBorderRadius $tooltipBorderRadius 0 0;
+    border-radius: $popoverBorderRadius $popoverBorderRadius 0 0;
 
 
     color: $popoverTitleColor;
@@ -68,18 +72,23 @@
 
 .popover-content {
     @if $popoverBackgroundFill == vertical {
-        @include gradient-vertical($tooltipBackgroundColor, $popoverBackgroundEndColor );
+        @include gradient-vertical($popoverBackgroundColor, $popoverBackgroundEndColor );
     } @else if $popoverBackgroundFill == horizontal {
-        @include gradient-horizontal($tooltipBackgroundColor, $popoverBackgroundEndColor );
+        @include gradient-horizontal($popoverBackgroundColor, $popoverBackgroundEndColor );
     } @else if $popoverBackgroundFill == radial {
-        @include gradient-radial($tooltipBackgroundColor, $popoverBackgroundEndColor );
+        @include gradient-radial($popoverBackgroundColor, $popoverBackgroundEndColor );
     } @else if $popoverBackgroundFill == none {
         background-color: transparent;
+        background-image: none;
+
     } @else {
         background-color: $popoverBackgroundColor;
-    }
+        background-image: none;
 
-    border-radius:0 0 $tooltipBorderRadius $tooltipBorderRadius;
+    }
+    color: $popoverColor;
+
+    border-radius:0 0 $popoverBorderRadius $popoverBorderRadius;
 
     padding: 9px 14px;
 }

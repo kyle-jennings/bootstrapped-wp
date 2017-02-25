@@ -59,8 +59,6 @@ $navbar->add_tab('submenu_background_colors', array(
 ));
 
 $sub_links = remove_link_decoration(remove_link_bg($links));
-
-
 $navbar->add_tab('submenu_text',
     array_merge(
         $sub_links,

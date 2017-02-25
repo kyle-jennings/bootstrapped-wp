@@ -33,16 +33,16 @@ img {
 }
 
 .link--image:hover img {
-    border-color: $hoveredlinksColor;
+    border-color: $hoveredLinksColor;
 
 }
 
 .link--image:active img {
-    border-color: $activelinksColor;
+    border-color: $activeLinksColor;
 
 }
 .link--image:hover img {
-    border-color: $visitedlinksColor;
+    border-color: $visitedLinksColor;
 
 }
 

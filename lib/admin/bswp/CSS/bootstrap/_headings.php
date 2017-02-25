@@ -1,26 +1,21 @@
 <?php
 
-    $output = '';
 
-    foreach($headings as $size=>$heading):
-
-        $size_name = ($size == 'h1') ? 'headings': $size;
+    $heading_states = array('normal','links','links_hovered');
 
 
-        $output .= '$'.$size_name.'Color:         '. ($heading[$size.'_color'] ? $heading[$size.'_color'] : 'inherit' ).' !default;';
-        $output .= "\r\n";
-        $output .= '$'.$size_name.'BackgroundStyle: '. ($heading[$size.'_background_style'] ? $heading[$size.'_background_style'] : 'none' ).' !default;';
-        $output .= "\r\n";
-        $output .= '$'.$size_name.'BackgroundColor: '. ($heading[$size.'_background_color_rgba'] ? $heading[$size.'_background_color_rgba'] : 'transparent' ).' !default;';
-        $output .= "\r\n";
-        $output .= '$'.$size_name.'Decoration: '. ($heading[$size.'_text_decoration'] ? $heading[$size.'_text_decoration'] : 'none' ).' !default;';
-        $output .= "\r\n";
-        $output .= '$'.$size_name.'TextShadow: '. ($heading[$size.'_text_shadow'] ? $heading[$size.'_text_shadow'] : 'darken($headingsColor, 15%)' ).' !default;';
-        $output .= "\r\n";
-        $output .= "\r\n";
+    foreach($headings as $state=>$heading):
+
+        $state_name = ($state == 'headings_normal') ? 'headings': lcfirst(str_replace(' ','',ucwords(str_replace('_',' ',$state))));
+        $base = ($state == 'headings_normal') ? '$textColor' : '$linkColor';
+?>
+
+        $<?php echo $state_name; ?>Color:         <?php echo $heading[$state.'_color'] ? $heading[$state.'_color'] : $base; ?> !default;
+
+        $<?php echo $state_name; ?>Decoration: <?php echo $heading[$state.'_text_decoration'] ? $heading[$state.'_text_decoration'] : 'none'; ?> !default;
+        $<?php echo $state_name; ?>TextShadow: <?php echo $heading[$state.'_text_shadow'] ? $heading[$state.'_text_shadow'] : 'darken($headingsColor, 15%)'; ?> !default;
 
 
+
+<?php
     endforeach;
-
-
-    echo $output;

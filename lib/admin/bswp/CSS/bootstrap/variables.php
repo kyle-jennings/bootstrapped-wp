@@ -12,18 +12,23 @@ $background_wallpapers = $background['wallpapers'];
 $borders = $this->values['borders'];
 
 // headings
-
-$headings = $this->values['headings'];
-// text and links
 $text = $this->values['text'];
 $text_color = $text['text']['text_color'];
 
-$links = array(
-    'links' => $text['links'],
-    'hovered_links' => $text['hovered-links'],
-    'visited_links' => $text['visited-links'],
-    'active_links' => $text['active-links'],
+$headings = array(
+    'headings_normal' => $text['headings'],
+    'headings_links' => $text['headings_links'],
+    'headings_links_hovered' => $text['headings_links_hovered'],
 );
+
+$link_settings = $this->values['links'];
+$links = array(
+    'links' => $link_settings['links'],
+    'hovered_links' => $link_settings['hovered-links'],
+    'visited_links' => $link_settings['visited-links'],
+    'active_links' => $link_settings['active-links'],
+);
+
 
 
 // forms
@@ -85,19 +90,16 @@ $tabs_inactive_colors = $tabs['inactive_tab_colors'];
 
 // Tooltips
 $tooltips = $this->values['tooltips'];
-$tooltips_content = $tooltips['content_colors'];
-$tooltips_text = $tooltips['content_colors']['text_color'];
-$tooltips_title = $tooltips['title_colors'];
-$tooltips_text = $tooltips['title_colors']['text_color'];
+$tooltip_bg = $tooltips['background_colors'];
+$tooltip_text = $tooltips['text']['text_color'];
+$tooltip_borders = $tooltips['borders'];
 
-$tooltips_borders = $tooltips['borders'];
 
 // popovers
 $popovers = $this->values['popovers'];
-$popovers_content = $popovers['content_colors'];
-$popovers_title = $popovers['title_colors'];
-
-$popovers_borders = $popovers['borders'];
+$popover_content = $popovers['content_colors'];
+$popover_title = $popovers['title_colors'];
+$popover_borders = $popovers['borders'];
 
 
 // pagination
@@ -162,7 +164,7 @@ require_once '_links.php';
 
 ?>
 
-$linkColorHover:        darken($hoveredlinksColor, 15%) !default;
+$linkColorHover:        darken($hoveredLinksColor, 15%) !default;
 // Typography
 // -------------------------
 $sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif !default;

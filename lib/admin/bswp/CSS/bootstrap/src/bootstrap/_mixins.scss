@@ -146,11 +146,17 @@
 @mixin link-bg($linksBackgroundStyle: none, $linksBackgroundColor: transparent ){
     @if $linksBackgroundStyle == pills {
         background-color: $linksBackgroundColor;
+        background-image: none;
         border-radius: 4px;
-    }
-
-    @if $linksBackgroundStyle == highlighted {
+    }@elseif $linksBackgroundStyle == highlighted {
         background-color: $linksBackgroundColor;
+        background-image: none;
+        border-radius: 0;
+
+    }@else {
+        background-color: transparent;
+        background-image: none;
+        border-radius: 0;
     }
 }
 

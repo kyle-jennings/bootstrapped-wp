@@ -1,28 +1,22 @@
 <?php
 
-$output = '';
-foreach($links as $type=>$link):
 
-    $type_name = ($type == 'links') ? 'link': lcfirst(ucwords(str_replace('_','',$type)));
+foreach($links as $state=>$link):
 
-    $output .= '$'.$type_name.'Color:         '. ($link[$type.'_color'] ? $link[$type.'_color'] : 'inherit' ).' !default;';
-    $output .= "\r\n";
-    $output .= '$'.$type_name.'BackgroundStyle: '. ($link[$type.'_background_style'] ? $link[$type.'_background_style'] : 'none' ).' !default;';
-    $output .= "\r\n";
-    $output .= '$'.$type_name.'BackgroundColor: '. ($link[$type.'_background_color_rgba'] ? $link[$type.'_background_color_rgba'] : 'transparent' ).' !default;';
-    $output .= "\r\n";
-    $output .= '$'.$type_name.'Decoration: '. ($link[$type.'_text_decoration'] ? $link[$type.'_text_decoration'] : 'none' ).' !default;';
-    $output .= "\r\n";
-    $output .= '$'.$type_name.'TextShadow: '. ($link[$type.'_text_shadow'] ? $link[$type.'_text_shadow'] : 'darken($linkColor, 15%)' ).' !default;';
+    $state_name = ($state == 'links') ? 'link':  lcfirst(str_replace(' ','',ucwords(str_replace('_',' ',$state))));
+    ?>
+    $<?php echo $state_name; ?>Color:         <?php echo $link[$state.'_color'] ? $link[$state.'_color'] : '#08c'; ?> !default;
 
-    $output .= "\r\n";
-    $output .= "\r\n";
-    $output .= "\r\n";
+    $<?php echo $state_name; ?>BackgroundFill: <?php echo $link[$state.'_background_fill'] ? $link[$state.'_background_fill'] : 'none'; ?> !default;
+
+    $<?php echo $state_name; ?>BackgroundColor: <?php echo $link[$state.'_background_color_rgba'] ? $link[$state.'_background_color_rgba'] : 'transparent'; ?> !default;
+
+    $<?php echo $state_name; ?>Decoration: <?php echo $link[$state.'_text_decoration'] ? $link[$state.'_text_decoration'] : 'none'; ?> !default;
+
+    $<?php echo $state_name; ?>TextShadow: <?php echo $link[$state.'_text_shadow'] ? $link[$state.'_text_shadow'] : 'darken($linkColor, 15%)'; ?> !default;
 
 
+<?php
 endforeach;
-
-echo $output;
-
 
 // _component_links_sass_vars('imageCaption', $image_captions);
