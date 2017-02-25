@@ -20,6 +20,7 @@ include dirname(__FILE__).'/field-sets/text.php';
 include dirname(__FILE__).'/field-sets/component-borders.php';
 
 
+include dirname(__FILE__).'/components/title-area.php';
 
 include dirname(__FILE__).'/components/navbar.php';
 include dirname(__FILE__).'/components/preformatted.php';
@@ -116,6 +117,7 @@ $groups = array(
     'text' => $text,
     'links' => $link_settings,
     'navbar' => $navbar,
+    // 'title_area' => $title_area,
     'images' => $images,
     'forms' => $forms,
     'tables' => $tables,
