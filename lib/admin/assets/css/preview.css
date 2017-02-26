@@ -494,7 +494,7 @@ a.text-success:hover, a.text-success:focus {
   text-align: center; }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #030300;
+  color: #fdffe0;
   font-family: inherit;
   font-weight: bold;
   line-height: 20px;
@@ -3423,7 +3423,7 @@ button.btn, input[type="submit"].btn {
     border-color: transparent;
     border-style: solid;
     border-width: 5px 0 5px 5px;
-    border-left-color: #000;
+    border-left-color: #c2c2c2;
     margin-top: 5px;
     margin-right: -10px; }
   .navbar .dropdown-submenu:hover > a:after {
@@ -3499,6 +3499,8 @@ button.btn, input[type="submit"].btn {
     *background-color: #1a1a1a; }
   .navbar .btn-navbar:active, .navbar .btn-navbar.active {
     background-color: #0d0d0d \9; }
+  .navbar .btn-navbar:hover {
+    cursor: pointer; }
   .navbar .btn-navbar .icon-bar {
     background-color: #bf90c7;
     -webkit-border-radius: 1px;
@@ -3510,8 +3512,16 @@ button.btn, input[type="submit"].btn {
     display: block;
     height: 2px;
     width: 18px; }
+  .navbar .btn-navbar .icon-bar:hover {
+    cursor: pointer; }
   .navbar .btn-navbar.collapsed .icon-bar {
     background-color: #f7f7f7; }
+  .navbar .btn-navbar .btn-navbar__text {
+    color: #bf90c7; }
+  .navbar .btn-navbar .btn-navbar__text:hover {
+    cursor: pointer; }
+  .navbar .btn-navbar.collapsed .btn-navbar__text {
+    color: #f7f7f7; }
 
 .btn-navbar .icon-bar + .icon-bar {
   margin-top: 3px; }

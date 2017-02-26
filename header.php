@@ -1,12 +1,8 @@
 <?php
 
-if(function_exists('kjd_identify_template'))
-    kjd_identify_template('log--soft', 'dont-render-templates');
-
 	$root = get_stylesheet_directory_uri();
 
     $navbar = new Navbar('primary-menu');
-    // examine($navbar);
 
 ?>
 
