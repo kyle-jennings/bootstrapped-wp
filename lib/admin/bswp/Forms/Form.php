@@ -164,7 +164,7 @@ class Form {
     // produce the tab markup
     public function tab_content( $tab,  $section_name = null, $tab_name = '', $number = 0, $group_name = '' ){
 
-        if($this->current_tab_value && $group_name == $this->current_group_value){
+        if($this->current_tab_value && '#'.$group_name == $this->current_group_value){
 
             $class = ( $this->current_tab_value == '#fields_'.$group_name.'_'.$tab_name) ? 'active': '';
         }
@@ -208,7 +208,8 @@ class Form {
             return;
 
         reset($tabs);
-        if($this->current_tab_value && $group_name == $this->current_group_value){
+
+        if($this->current_tab_value && '#'.$group_name == $this->current_group_value){
             $label = str_replace('#fields_'.$group_name.'_','',$this->current_tab_value);
         }else
             $label = key($tabs);
