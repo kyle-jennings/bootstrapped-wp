@@ -132,9 +132,10 @@ body.desktopnav-fixed-bottom {
 	display:none;
 }
 
-#header .navbar-wrapper {
-	line-height: 40px;
-	margin-left: 20px;
+.navbar-wrapper > .navbar-inner{
+    border-left-width: 0 !important;
+    border-right-width: 0 !important;
+    border-radius: 0;
 }
 
 .navbar-wrapper {
@@ -228,6 +229,23 @@ body.desktopnav-fixed-bottom {
 }
 
 .navbar-fixed-bottom.navbar .nav .sub-menu{ margin-bottom:-32px; }
+
+
+
+
+body.logged-in .navbar-fixed-top {
+    top: 32px;
+}
+
+@media (max-width: 782px) {
+    body.logged-in .navbar-fixed-top {
+        top: 46px;
+    }
+}
+
+
+
+
 
 /* page title */
 #pageTitle.container.confined {

@@ -33,20 +33,26 @@ function bswp_remove_customizer_menu_item () {
 }
 add_action('admin_menu', 'bswp_remove_customizer_menu_item');
 
-
+register_nav_menus(
+    array(
+      'primary-menu' => __( 'Primary Nav' ),
+    )
+);
 
 // gets options function
 if(is_admin())
     include 'admin/init.php' ;
 
 if(!is_admin()){
-    require_once('functions/kjd-bootstrap-menus.php');
     require_once('functions/kjd-gallery.php');
     require_once('functions/kjd-shortcodes.php');
-    require_once('functions/kjd-adminbar-menu.php');
-    require_once('functions/kjd-class-navbar.php');
+    require_once('functions/class-Navbar.php');
     require_once('functions/kjd-class-layout.php');
+    require_once('functions/class-mobileMenu.php');
+    require_once('functions/class-navbarMenu.php');
 }
+
+
 require_once('functions/kjd-widgets.php');
 
 
@@ -72,7 +78,7 @@ function kjd_add_assets(){
 
     wp_enqueue_script("script", $root."/scripts/application.js", false, "1.0", true);
     wp_enqueue_script("jquery", $root."/scripts/jquery.js", false, "1.0", false);
-    // wp_enqueue_script("bootstrap", $root."/scripts/bootstrap.min.js", false, "1.0", true);
+
     wp_enqueue_script("bootstrap-dropdown", $root."/scripts/bootstrap/bootstrap-dropdown.js", false, "1.0", true);
     wp_enqueue_script("bootstrap-carousel", $root."/scripts/bootstrap/bootstrap-carousel.js", false, "1.0", true);
 
@@ -92,18 +98,9 @@ function kjd_add_assets(){
         wp_enqueue_script("bootstrap-popover", $root."/scripts/bootstrap/bootstrap-popover.js", false, "1.0", true);
 
 
-    // if( $mobilenav_style == 'sidr' ){
-    //     wp_enqueue_script("sidr", $root."/scripts/sidr.min.js", false, "1.0", true);
-    //     wp_enqueue_style("sidr", $root."/styles/sidr.css");
-    // }
-
 
     wp_enqueue_style("site", $root."/styles/site.css");
-
-    // wp_enqueue_style("custom", $wpcontent."/styles/custom.css");
     wp_enqueue_style("base", $root."/styles/common.css");
-
-    // wp_enqueue_style("mobile", $root."/styles/mobile.css");
 
     // Add slider scripts if on front page
     if( is_front_page() )
@@ -111,6 +108,7 @@ function kjd_add_assets(){
 
 }
 add_action( 'wp_enqueue_scripts', 'kjd_add_assets' );
+
 
 
 /* ----------------------------------------------------
@@ -302,6 +300,8 @@ function kjd_header_content($header_contents, $logo_toggle, $logo, $custom_heade
     $heading = is_front_page() ? 'h1' : 'h2' ;
     $header_output = '';
 
+
+
     if($header_contents == 'widgets'){
 
         dynamic_sidebar('header_widgets');
@@ -310,32 +310,34 @@ function kjd_header_content($header_contents, $logo_toggle, $logo, $custom_heade
         $header_output .= '<div class="span12">';
 
 
-        if($logo_toggle == 'text'){
+            if($logo_toggle == 'text'){
 
-            $header_output .= '<div class="header-wrapper">';
-                $header_output .= $custom_header;
-            $header_output .= '</div>';
+                $header_output .= '<div class="header-wrapper">';
+                    $header_output .= $custom_header;
+                $header_output .= '</div>';
 
-        }elseif($logo_toggle == 'logo' ){
+            }elseif($logo_toggle == 'logo' ){
 
-            $header_output .= '<'.$heading.' class="span logo-wrapper">';
-                $header_output .= '<a href="'.get_bloginfo('url').' ">';
-                    $header_output .= '<img src="'.$logo.'" alt=""/>';
-                $header_output .= '</a>';
-            $header_output .= '</'.$heading.'>';
+                $header_output .= '<'.$heading.' class="span logo-wrapper">';
+                    $header_output .= '<a href="'.get_bloginfo('url').' ">';
+                        $header_output .= '<img src="'.$logo.'" alt=""/>';
+                    $header_output .= '</a>';
+                $header_output .= '</'.$heading.'>';
 
-        }else{
+            }else{
 
-            $header_output .= '<div class="jumbotron no-background">';
-            $header_output .= '<'.$heading.' class="logo-wrapper" >';
-                $header_output .= '<a href="'.get_bloginfo('url').' ">';
-                    $header_output .= get_bloginfo( 'name');
-                $header_output .= '</a>';
-            $header_output .= '</'.$heading.'>';
-                $header_output .= '<div class="logo-wrapper">'.get_bloginfo('description').'</div>';
-            $header_output .= '</div>';
+                $header_output .= '<div class="jumbotron no-background">';
+                $header_output .= '<'.$heading.' class="logo-wrapper" >';
+                    $header_output .= '<a href="'.get_bloginfo('url').' ">';
+                        $header_output .= get_bloginfo( 'name');
+                    $header_output .= '</a>';
+                $header_output .= '</'.$heading.'>';
+                    $header_output .= '<div class="logo-wrapper">'.get_bloginfo('description').'</div>';
+                $header_output .= '</div>';
 
-        }
+            }
+
+
         $header_output .= '</div>';
         echo $header_output;
      }

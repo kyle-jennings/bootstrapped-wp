@@ -7,6 +7,7 @@ use bswp\Forms\Fields\Label;
 use bswp\Forms\Fields\ColorPicker;
 use bswp\Forms\Fields\Hidden;
 use bswp\Forms\Fields\Select;
+use bswp\Forms\Fields\File;
 
 use function bswp\Settings\_helpers\remove_link_decoration;
 use function bswp\Settings\_helpers\remove_link_bg;
@@ -79,4 +80,65 @@ $navbar->add_tab('submenu_borders', array_merge(
         array( 'label1'=>new Label(array('name'=>'border_radius'))),
         $radii_fields
     )
+);
+
+
+$navbar->add_tab('settings', array(
+        'brand' => new Select(array(
+                'label'=> 'Brand',
+                'name'=>'brand',
+                'args' => array(
+                    'none',
+                    'image',
+                    'text'
+                ),
+                'toggle_fields' => array(
+                    'image'=>'brand_image'
+                )
+        )),
+        'brand_image'=>new File(array(
+            'name'=>'brand_image',
+            'label'=>'Upload Image',
+            'toggled_by'=>array('brand'=>'image')
+        )),
+        'position' => new Select(
+            array(
+                'label'=> 'Position',
+                'name'=>'position',
+                'args'=> array(
+                    'stickied_to_top',
+                    'above_header',
+                    'in_header_bottom',
+                    'in_header_top',
+                    'below_header',
+                    'stickied_to_bottom'
+                ),
+                'preview'=>null
+            )
+        ),
+        'movement' => new Select(
+            array(
+                'label'=> 'Movement',
+                'name'=>'movement',
+                'args'=> array(
+                    'none',
+                    'stick_to_top_on_scroll',
+                ),
+                'preview'=>null
+
+            )
+        ),
+        'menu_toggle_type' => new Select(
+            array(
+                'label'=> 'Menu Toggle Type',
+                'name'=>'menu_toggle_type',
+                'args'=> array(
+                    'default',
+                    'text'
+                ),
+                'preview'=>null
+
+            )
+        )
+    ) // end array of settings
 );

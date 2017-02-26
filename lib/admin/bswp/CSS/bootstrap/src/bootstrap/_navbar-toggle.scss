@@ -1,0 +1,49 @@
+
+// Navbar button for toggling navbar items in responsive layouts
+// These definitions need to come after '.navbar .btn'
+.navbar .btn-navbar {
+    @include box-shadow(inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.075));
+    @include buttonBackground(darken($navbarBackgroundHighlight, 5%), darken($navbarBackground, 5%));
+    display: none;
+    float: right;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 7px 10px;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    .icon-bar {
+        background-color: $navbarLinkColorHover;
+        @include border-radius(1px);
+        @include box-shadow(0 1px 0 rgba(0,0,0,.25));
+        display: block;
+        height: 2px;
+        width: 18px;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &.collapsed .icon-bar {
+        background-color: $navbarLinkColor;
+    }
+
+    .btn-navbar__text {
+        color: $navbarLinkColorHover;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &.collapsed .btn-navbar__text {
+        color: $navbarLinkColor;
+
+    }
+}
+
+
+.btn-navbar .icon-bar + .icon-bar {
+    margin-top: 3px;
+}

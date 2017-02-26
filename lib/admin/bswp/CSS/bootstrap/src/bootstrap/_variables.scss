@@ -589,16 +589,16 @@ $navbarCollapseWidth:             979px !default;
 $navbarCollapseDesktopWidth:      $navbarCollapseWidth + 1;
 
 $navbarHeight:                    40px !default;
-$navbarBackgroundStart:           #f5f5f5 !default;
+$navbarBackgroundStart:           #969696 !default;
 $navbarBackgroundEnd:             #333333 !default;
 
 $navbarBackgroundHighlight:       $navbarBackgroundStart !default;
 $navbarBackground:                $navbarBackgroundEnd !default;
 
 $navbarText:                      #f7f7f7 !default;
-$navbarLinkColor:                  #ffffff !default;
+$navbarLinkColor:                  #f7f7f7 !default;
 $navbarLinkBackgroundFill:       none !default;
-$navbarLinkBackgroundColor:       rgba(102, 102, 102, 1) !default;
+$navbarLinkBackgroundColor:       rgba(247, 247, 247, 1) !default;
 
 $navbarLinkColorHover:            #bf90c7 !default;
 $navbarLinkBackgroundHoverFill:       highlighted !default;
@@ -618,9 +618,9 @@ $navbarBorderWidth:               '1px';
 
 
 
-    $navBorderColor: #ff0303 !default;
+    $navBorderColor: #4d4d4d !default;
     $navBorderStyle: solid !default;
-    $navBorderWidth: 1px !default;
+    $navBorderWidth: 2px !default;
 
     
     $navTopBorderColor: #8882fa !default;
@@ -633,18 +633,12 @@ $navbarBorderWidth:               '1px';
     
     $navBottomBorderColor: #03ff5f !default;
     $navBottomBorderStyle: solid !default;
-    $navBottomBorderWidth: 10px !default;
+    $navBottomBorderWidth: 1px !default;
     
     $navLeftBorderColor: transparent !default;
     $navLeftBorderStyle: none !default;
     $navLeftBorderWidth: 1px !default;
     
-    $navBorderColor: $navTopBorderColor $navRightBorderColor $navBottomBorderColor $navLeftBorderColor;
-    $navBorderStyle: $navTopBorderStyle $navRightBorderStyle $navBottomBorderStyle $navLeftBorderStyle;
-    $navBorderWidth: $navTopBorderWidth $navRightBorderWidth $navBottomBorderWidth $navLeftBorderWidth;
-
-
-
     
     $navBorderRadius: 1px !default;
         $navTopLeftBorderRadius: 1px !default;
