@@ -13,6 +13,9 @@ class Text extends Field {
      */
     public function field_output(){
 
+        $id = $this->group_name.'-'.$this->tab_name.'-'.$this->name;
+        $name = 'bswp_'.$this->section_name.
+            '['.$this->group_name.']['.$this->tab_name.']['.$this->name.']';
 
         $output = '';
 
@@ -29,9 +32,7 @@ class Text extends Field {
         }
 
         $output .='<input class="'.$class.'" '.$data.' type="text"
-            name="bswp_'.$this->section_name.
-            '['.$this->group_name.']['.$this->tab_name.']['.$this->name.']"
-            value="'.$this->value.'" >';
+            id="'.$id.'" name="'.$name.'" value="'.$this->value.'" >';
 
         return $output;
     }

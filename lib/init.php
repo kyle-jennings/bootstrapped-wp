@@ -50,6 +50,8 @@ if(!is_admin()){
     require_once('functions/kjd-class-layout.php');
     require_once('functions/class-mobileMenu.php');
     require_once('functions/class-navbarMenu.php');
+    add_action( 'wp_enqueue_scripts', 'bswp_add_assets' );
+
 }
 
 
@@ -59,7 +61,7 @@ require_once('functions/kjd-widgets.php');
 /* ------------------------------------------------
  kjd add js and css
  -------------------------------------------------- */
-function kjd_add_assets(){
+function bswp_add_assets(){
 
     //set tempplate root
     $root = get_bloginfo('template_directory');
@@ -75,27 +77,30 @@ function kjd_add_assets(){
         $mobilenav_style = $mobileNavSettings['mobilenav_style'];
     }
 
-
-    wp_enqueue_script("script", $root."/scripts/application.js", false, "1.0", true);
-    wp_enqueue_script("jquery", $root."/scripts/jquery.js", false, "1.0", false);
-
-    wp_enqueue_script("bootstrap-dropdown", $root."/scripts/bootstrap/bootstrap-dropdown.js", false, "1.0", true);
-    wp_enqueue_script("bootstrap-carousel", $root."/scripts/bootstrap/bootstrap-carousel.js", false, "1.0", true);
+    wp_enqueue_script("jquery", $root."/scripts/jquery.js", false, null, false);
+    
+    wp_enqueue_script("bootstrap-dropdown", $root."/scripts/bootstrap/bootstrap-dropdown.js", false, null, true);
+    wp_enqueue_script("bootstrap-carousel", $root."/scripts/bootstrap/bootstrap-carousel.js", false, null, true);
 
 
     $component_options = get_option('bswp_site_settings');
     $component_options = $component_options['available_components']['components'];
     if($component_options['activate_collapsibles'])
-        wp_enqueue_script("bootstrap-collapse", $root."/scripts/bootstrap/bootstrap-collapse.js", false, "1.0", true);
+        wp_enqueue_script("bootstrap-collapse", $root."/scripts/bootstrap/bootstrap-collapse.js", false, null, true);
 
     if($component_options['activate_tabs'])
-        wp_enqueue_script("bootstrap-tab", $root."/scripts/bootstrap/bootstrap-tab.js", false, "1.0", true);
+        wp_enqueue_script("bootstrap-tab", $root."/scripts/bootstrap/bootstrap-tab.js", false, null, true);
 
     if($component_options['activate_tooltips'])
-        wp_enqueue_script("bootstrap-tooltip", $root."/scripts/bootstrap/bootstrap-tooltip.js", false, "1.0", true);
+        wp_enqueue_script("bootstrap-tooltip", $root."/scripts/bootstrap/bootstrap-tooltip.js", false, null, true);
 
     if($component_options['activate_popovers'])
-        wp_enqueue_script("bootstrap-popover", $root."/scripts/bootstrap/bootstrap-popover.js", false, "1.0", true);
+        wp_enqueue_script("bootstrap-popover", $root."/scripts/bootstrap/bootstrap-popover.js", false, null, true);
+
+
+
+
+    wp_enqueue_script("site", $root."/scripts/application.js", 'jquery', null, true);
 
 
 
@@ -107,7 +112,6 @@ function kjd_add_assets(){
         include( 'functions/add-slider-scripts.php');
 
 }
-add_action( 'wp_enqueue_scripts', 'kjd_add_assets' );
 
 
 

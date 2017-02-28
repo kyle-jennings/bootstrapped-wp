@@ -8,6 +8,7 @@
 class Navbar{
 
     public $output = '';
+    public $class = '';
     public $brand = 'none';
     public $brand_image = null;
     public $menu_id;
@@ -17,28 +18,38 @@ class Navbar{
 
 
     // sets up the nav
-    public function __construct( $menu_id = 'primary-menu'){
+    public function __construct( $menu_id = 'primary-menu', $args = array(), $class = null){
+
         $this->menu_id = $menu_id;
+
+        // expecting: $position, $movement, $nav_style, $brand, $brand_image,  $menu_toggle_type
+        extract($args);
 
         $site_options = get_option('bswp_site_settings');
         $nav_settings = $site_options['navbar']['settings'];
 
-        $this->brand = $nav_settings['brand'];
-        $this->brand_image = ($this->brand == 'image' && $nav_settings['brand_image']) ? $nav_settings['brand_image'] : null;
+        $this->class = $class ? $class : '';
 
-        $this->position = $nav_settings['position'];
-        $this->movement = $nav_settings['movement'];
+        // position and movement
+        $this->position = $position ? $position : $nav_settings['position'];
+        $this->movement = $movement ? $movement : $nav_settings['movement'];
 
+        // navbar brand
+        $this->brand = $brand ? $brand : $nav_settings['brand'];
+        $this->brand_image = $brand_image ? $brand_image : $nav_settings['brand_image'];
+
+        // navbar style for stickied navbar
         if($this->position == 'stickied_to_top')
             $this->nav_style = 'navbar-fixed-top';
 
         if($this->position == 'stickied_to_bottom')
             $this->nav_style = 'navbar-fixed-bottom';
 
+        // mobile nav toggle button type
+        $this->button_type = $menu_toggle_type ? $menu_toggle_type : $nav_settings['menu_toggle_type'];
+
+        // modified navbar
         $this->walker = new navbarMenu();
-
-        $this->button_type = $nav_settings['menu_toggle_type'] ? $nav_settings['menu_toggle_type'] : 'default';
-
         $this->scaffolding();
     }
 
@@ -49,12 +60,14 @@ class Navbar{
     }
 
 
-    //							menu id,  nav style,   link style, sidr/dropdown/ect,     devise visibility,  position, logo, menu id again for some reason, button type
+
     public function scaffolding(){
 
         $output = '';
 
-        $output .= '<div class="navbar-wrapper '. $this->movement_class() .' '. $this->menu_id .' '. $this->nav_style . '">';
+        $output .= '<div id="navbar" class="navbar-wrapper '. $this->menu_id
+            .' '. $this->movement_class()
+            .' '. $this->nav_style() . '">';
 
             $output .= '<div class="navbar-inner">';
 
@@ -99,6 +112,7 @@ class Navbar{
 
     public function movement_class() {
 
+
         if(strpos($this->position, 'stickied') !== false )
             return '';
 
@@ -106,6 +120,11 @@ class Navbar{
             return 'js--'.str_replace('_','-',$this->movement);
 
         return '';
+    }
+
+
+    public function nav_style() {
+        return rtrim($this->nav_style . ' ' .$this->class);
     }
 
 
@@ -152,48 +171,48 @@ class Navbar{
         return;
     }
 
-public function toggle_button_type( ) {
 
-    $output = '';
-    $btn_output = '';
-    $button_class = '';
+    public function toggle_button_type( ) {
 
+        $output = '';
+        $btn_output = '';
+        $button_class = '';
 
-    switch($this->button_type):
-        case 'default':
-            $button_class = "btn btn-navbar collapsed";
+        switch($this->button_type):
+            case 'default':
+                $button_class = "btn btn-navbar collapsed";
 
-            $btn_output .= '<span class="icon-bar"></span>';
-            $btn_output .= '<span class="icon-bar"></span>';
-            $btn_output .= '<span class="icon-bar"></span>';
-            break;
-        case 'hamburger':
-            $button_class = "btn btn-navbar btn-hamburger collapsed";
+                $btn_output .= '<span class="icon-bar"></span>';
+                $btn_output .= '<span class="icon-bar"></span>';
+                $btn_output .= '<span class="icon-bar"></span>';
+                break;
+            case 'hamburger':
+                $button_class = "btn btn-navbar btn-hamburger collapsed";
 
-            $btn_output .= '<span class="icon-bar"></span>';
-            $btn_output .= '<span class="icon-bar"></span>';
-            $btn_output .= '<span class="icon-bar"></span>';
+                $btn_output .= '<span class="icon-bar"></span>';
+                $btn_output .= '<span class="icon-bar"></span>';
+                $btn_output .= '<span class="icon-bar"></span>';
 
-            break;
-        case 'text':
-            $button_class = "btn-navbar menu-text collapsed";
+                break;
+            case 'text':
+                $button_class = "btn-navbar menu-text collapsed";
 
-            $btn_output ='<span class="btn-navbar__text"> Menu </span>';
-            break;
-        default:
-            $button_class = "btn btn-navbar collapsed";
+                $btn_output ='<span class="btn-navbar__text"> Menu </span>';
+                break;
+            default:
+                $button_class = "btn btn-navbar collapsed";
 
-            $btn_output .= '<span class="icon-bar"></span>';
-            $btn_output .= '<span class="icon-bar"></span>';
-            $btn_output .= '<span class="icon-bar"></span>';
-            break;
-    endswitch;
-    $output .= '<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="navbar-menu-btn '.$button_class.'">';
-        $output .= $btn_output;
-    $output .= '</a>';
+                $btn_output .= '<span class="icon-bar"></span>';
+                $btn_output .= '<span class="icon-bar"></span>';
+                $btn_output .= '<span class="icon-bar"></span>';
+                break;
+        endswitch;
+        $output .= '<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="navbar-menu-btn '.$button_class.'">';
+            $output .= $btn_output;
+        $output .= '</a>';
 
-    return $output;
-}
+        return $output;
+    }
 
 
 

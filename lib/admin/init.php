@@ -1,8 +1,7 @@
 <?php
 
 require "vendor/autoload.php";
-
-
+use bswp\Settings;
 use bswp\Menus\AdminMenu;
 use bswp\Menus\Nav;
 use bswp\CSS\Builder;
@@ -14,7 +13,7 @@ add_action('admin_menu', array(new AdminMenu, 'add_top_menu') );
  * Adds the admin area CSS and JS
  * @return [type] [description]
  */
-function bswp_load_assets() {
+function bswp_admin_assets() {
 
 	$adminDir = get_bloginfo('template_directory');
 	$adminDir = $adminDir."/lib/admin/";
@@ -42,6 +41,7 @@ function bswp_load_assets() {
 
 // adds admin functions
 include 'functions/admin_functions.php';
+include 'functions/ajax-functions.php';
 include 'functions/shortcode-injector/init.php';
 
 // update function
@@ -50,32 +50,6 @@ include 'update/update.php';
 
 // initializae the BSWP stuff
 if( (isset($_GET['page']) && $_GET['page'] == 'bswp_settings') || (isset($_POST['option_page']) ) ) {
-    add_action('admin_init', 'bswp_load_assets');
+    add_action('admin_init', 'bswp_admin_assets');
     include 'functions/init.php';
 }
-
-
-
-
-
-/**
- * build the CSS to preview.css
- * @return [type] [description]
- */
-function bswp_live_preview() {
-
-    if( !isset($_POST['data']) )
-        die;
-
-    $data = $_POST['data'];
-
-
-    $builder = new Builder($data[$section], $data['form_values'], true);
-    $builder->build();
-    $builder->save_to_file('preview');
-
-    unset($builder);
-    die;
-}
-
-add_action('wp_ajax_bswp_live_preview', 'bswp_live_preview');

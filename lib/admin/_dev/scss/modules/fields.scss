@@ -55,6 +55,11 @@
 .field label {
     display: block;
     font-weight: bold;
+
+    small {
+        color: $red;
+        font-size: .8em;
+    }
 }
 
 .field input.smallInput {
@@ -66,127 +71,20 @@
 }
 
 
-//
-// .option-wrapper.banner_image_options {
-//     width: auto;
-// }
-//
-// .option-wrapper.banner_image_options .option {
-//     height: auto;
-// }
-//
-//
-// .short {
-//     width: 60px !important;
-// }
-//
-// .clearColor {
-//     cursor: pointer;
-// }
-//
-// .optionComponent {
-//     float: left;
-// }
-//
-// .optionComponent span {
-//     display: block;
-// }
-//
-// .secondTitle {
-//     float: left;
-//     margin: 0 10px;
-// }
-//
-// .float-options .option {
-//     clear: none;
-//     width: 45%;
-// }
-//
-// .float-options h3 {
-//     clear: both;
-// }
-//
-// .float-options .color-option,
-// .float-options .full-option,
-// .full-option  {
-//     clear: both;
-//     width: 100%;
-// }
-//
-// .checkbox-list li {
-//     clear: both;
-//     float: none;
-// }
-//
-// .checkbox-list li label {
-//     display: block;
-// }
-//
-// .checkbox-list li label span {
-//     display: block;
-//     float: left;
-//     width: 100px;
-// }
-//
-// .kjd-options_page_kjd_page_layout_settings .layout_select::first-child {
-//     margin-left: 52px;
-// }
-//
-// .margin-label {
-//     float: left;
-//     margin-right: 10px;
-// }
-//
-// .margin-label span {
-//     float: left;
-// }
-//
-// .submit {
-//     clear: both;
-// }
-//
-// .long_textarea {
-//     height: 150px;
-//     width: 99%;
-// }
-//
-// .tall-textarea {
-//     height: 400px;
-// }
-//
-// .divider {
-//     clear: both;
-// }
-//
-// .explanation {
-//     float: left; padding: 0 10px;
-// }
-//
-//
-// .option.textarea textarea {
-//     width: 100%;
-// }
-//
-//
-//
-// .inline--clear-left {
-//     clear: left;
-//     float: left;
-//     width: auto;
-// }
-//
-// .inline--clear-left+.field.sidebar {
-//     float: left;
-//     width: auto;
-// }
-//
-//
-// .tab-content--fields {
-//     padding-top: 20px;
-// }
-//
-//
-// .sub-label {
-//     clear: both;
-//     display: block;
-// }
+
+.save-warning {
+    label::after,
+    &.submit::before {
+        color: $red;
+        content: 'form save required';
+        display: block;
+        font-size: .7em;
+    }
+
+    input,
+    select {
+        border: 2px solid $red !important;
+        box-shadow: 0 0 4px $red !important;
+    }
+
+}

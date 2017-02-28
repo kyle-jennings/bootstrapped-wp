@@ -11,6 +11,10 @@ class Field {
     public $toggle_fields;
     public $toggled_by;
     public $preview;
+    public $preview_args;
+    public $preview_function;
+    public $preview_dependancies;
+
     public $class;
     public $wrapper_class;
 
@@ -25,9 +29,15 @@ class Field {
         $this->name = $name;
         $this->label = isset($label) ? ucfirst($label) : ucfirst(str_replace(array('-','_'), ' ', $name ) );
         $this->args = isset($args) ? $args : array();
+
         $this->toggle_fields = isset($toggle_fields) ? $toggle_fields : array();
         $this->toggled_by = isset($toggled_by) ? $toggled_by : array();
-        $this->preview = true;
+
+        $this->preview = isset($preview) ? $preview : 'auto';
+        $this->preview_callback = isset($preview_callback) ? $preview_callback : '';
+        $this->preview_args = isset($preview_args) ? $preview_args : '';
+        $this->preview_dependancies = isset($preview_dependancies) ? $preview_dependancies : '';
+
         $this->class = isset($class) ? $class : '';
         $this->wrapper_class = isset($wrapper_class) ? $wrapper_class : '';
 

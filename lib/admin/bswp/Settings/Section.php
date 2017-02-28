@@ -105,11 +105,12 @@ class Section {
             examine($this);
 
 
+        if($this->form_meta_settings['build_css'] == 'yes') {
             $this->build_css();
-        if($this->form_meta_settings['saved'] == 'yes') {
         }
 
         unset($this->saved_values);
+
     }
 
 
@@ -141,7 +142,6 @@ class Section {
         if(!empty($_POST) )
             return;
 
-        // examine($this->saved_values);
         $builder = new Builder($this->name, $this->saved_values);
         $builder->build();
         $builder->save_to_file('dist');
@@ -168,8 +168,12 @@ class Section {
 
     // get all the saved values for this section from the DB, options table
     public function get_saved_values(){
-        $this->saved_values = get_option('bswp_'.$this->name);
+        $values = $this->saved_values = get_option('bswp_'.$this->name);
+        if($values['form_meta_settings']['build_css'] == 'yes'){
+            $values['form_meta_settings']['build_css'] = 'no';
+            update_option('bswp_'.$this->name, $values, 'no');
 
+        }
     }
 
 

@@ -11,9 +11,11 @@ class ColorPicker extends Field{
      */
     public function field_output() {
 
+        $id = $this->group_name.'-'.$this->tab_name.'-'.$this->name;
+        $name = 'bswp_'.$this->section_name.
+            '['.$this->group_name.']['.$this->tab_name.']['.$this->name.']';
 
         $output = '';
-
 
         $output .= '<label>'.$this->label.'</label>';
 
@@ -26,8 +28,8 @@ class ColorPicker extends Field{
         $opacity_opt = ( is_string($this->args) && $this->args == 'transparency' ) ? 'opacity' : '';
 
         // the visible output
-        $output .= '<input class="minicolors '.$opacity_opt.'" data-opacity="'.$alpha.'" name="bswp_'.$this->section_name.'['.$this->group_name.']['.$this->tab_name.']['.$this->name.']"
-            value="'.$this->value.'"';
+        $output .= '<input class="minicolors '.$opacity_opt.'"  id="'.$id.'"
+        name="'.$name.'" data-opacity="'.$alpha.'" value="'.$this->value.'"';
         $output .= '/>';
 
 

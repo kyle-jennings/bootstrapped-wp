@@ -15,16 +15,22 @@ class Select extends Field{
     public function field_output() {
 
         $output = '';
-        $classes = $this->class;
+        $classes = $this->class . ' ' . $this->type;
         $classes .= $this->toggle_fields ? ' js--toggle-field' : '';
 
+        $preview_deps = $this->preview_dependancies;
 
         $data = $this->toggle_fields ? 'data-field-toggle="'.$this->name.'"' : '';
         $value = isset($this->value) ? $this->value : '';
 
+        $id = $this->group_name.'-'.$this->tab_name.'-'.$this->name;
+        $name = 'bswp_'.$this->section_name.
+            '['.$this->group_name.']['.$this->tab_name.']['.$this->name.']';
+
         $output .= '<label>'.$this->label.'</label>';
-        $output .= '<select class="'.$classes.'" '.$data.' name="bswp_'.$this->section_name.
-            '['.$this->group_name.']['.$this->tab_name.']['.$this->name.']">';
+
+        $output .= '<select class="'.$classes.'" '.$data.' id="'.$id.'" name="'.$name.'"
+            data-preview="'.$this->preview.'" data-preview-deps="'.$preview_deps.'" >';
 
         foreach ($this->args as $key=>$option):
 
@@ -47,6 +53,11 @@ class Select extends Field{
 
         return $output;
 
+    }
+
+    public function preview_dependancies() {
+
+        examine($this->preview_dependancies);
     }
 
 }
