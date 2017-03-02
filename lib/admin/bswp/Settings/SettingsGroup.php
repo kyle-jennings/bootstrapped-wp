@@ -84,8 +84,27 @@ class SettingsGroup {
             $tab[$name]->tab_name = $tab_name;
             $tab[$name]->form_name_attr = $this->section_name.'_section';
 
-            // examine($this->name .'--'. $tab_name. '--' . $name );
+            $tab[$name]->id = $this->name.'-'.$tab_name.'-'.$name;
+            $tab[$name]->field_name = 'bswp_'.$this->section_name. '['.$this->name.']['.$tab_name.']['.$name.']';
+
+
+            if($field->toggle_fields){
+                $data_target_fields = array_map(function($v){
+                    return $v;
+                }, $field->toggle_fields );
+
+                $data_target_fields =  implode($data_target_fields, ',');
+                $data_target_fields = implode(',',array_unique(explode(',', $data_target_fields)));
+
+                $tab[$name]->data_target_fields = rtrim(rtrim($data_target_fields, ', '));
+
+            }
+
+
+
             $saved_value = $GLOBALS['bswp\Settings\Section']->find_saved_value($this->name, $tab_name, $name);
+
+            // try and set hidden fields values if missing
             // if($type === 'Hidden' && strpos($field->name, 'rgba') ){
             //     if(empty($saved_value) || !isset($saved_value))
             //     $base = str_replace('_rgba','', $field->name);

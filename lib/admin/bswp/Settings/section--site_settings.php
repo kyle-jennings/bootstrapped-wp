@@ -38,14 +38,17 @@ $component_options = $component_options['available_components']['components'];
 // settings are adding in components.php
 
 $components = array();
-foreach($component_options as $component=>$active){
+if(!empty($component_options)){
 
-    if($active !== 'yes')
+    foreach($component_options as $component=>$active){
+
+        if($active !== 'yes')
         continue;
 
-    $name = str_replace('activate_','', $component);
-    include_once('components/'.$name.'.php');
-    $components[$name] = $$name;
+        $name = str_replace('activate_','', $component);
+        include_once('components/'.$name.'.php');
+        $components[$name] = $$name;
+    }
 }
 
 
@@ -61,6 +64,7 @@ $background->add_tab('wallpapers', $background_wallpaper);
 
 // Borders Settings
 $borders = new SettingsGroup('borders');
+
 $borders->add_tab('all_sides', $all_sides);
 $borders->add_tab('top', $top);
 $borders->add_tab('right', $right);
@@ -117,19 +121,17 @@ $groups = array(
     'text' => $text,
     'links' => $link_settings,
     'navbar' => $navbar,
-    // 'title_area' => $title_area,
     'images' => $images,
     'forms' => $forms,
     'tables' => $tables,
     'preformatted' => $preformatted,
     'quotes' => $quotes,
+    'title_area' => $title_area,
     'misc' => $misc,
-    // 'available_sections' => $available_sections,
     'available_components' => $available_components,
+    // 'available_sections' => $available_sections,
 );
 
-
-// $groups = array_merge($groups, $components);
 
 $groups = array_slice($groups, 0, 7, true) +
     $components +

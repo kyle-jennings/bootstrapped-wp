@@ -94,9 +94,6 @@ $tables->add_tab('striped_rows',
         )
     )
 );
-$table_borders = $all_sides;
-$table_borders['style_border_sides']->toggle_fields = border_settings_map('border_styles_toggle', $border_sides, array('yes') );
-
 
 $tables->add_tab('borders', array_merge(
     array(
@@ -119,14 +116,7 @@ $tables->add_tab('borders', array_merge(
         ),
     ),
     array('divider'=>new Divider()),
-    $table_borders,
-    array('divider1'=>new Divider()),
-    $top,
-    array('divider2'=>new Divider()),
-    $right,
-    array('divider3'=>new Divider()),
-    $bottom,
-    array('divider4'=>new Divider()),
-    $left
+    $component_borders
+
     )
 );

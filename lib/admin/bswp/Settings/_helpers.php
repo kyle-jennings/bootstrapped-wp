@@ -50,8 +50,11 @@ function border_settings_map(
             if($return == 'border_styles_toggle')
                 $return_arr[$toggle] .= $border_color . ',' . $border_width .',';
             elseif($return == 'border_styles_toggled_by')
-                $return_arr[$border_style] = 'solid,dotted,dashed,double,groove,ridge,inset,outset';
+                return 'solid,dotted,dashed,double,groove,ridge,inset,outset';
         }
+
+        $return_arr[$toggle] = rtrim($return_arr[$toggle],',');
+        
     }
     // examine($return_arr);
     return $return_arr;
@@ -70,7 +73,7 @@ function border_corners_toggle_map($action = 'toggle'){
         if($action == 'toggle')
                 $return_arr['yes'] .= $corner .',';
         elseif($action == 'toggled_by')
-                $return_arr['style_corners'] = 'yes';
+                return 'yes';
 
     }
     // examine($return_arr);

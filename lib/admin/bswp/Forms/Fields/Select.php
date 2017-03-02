@@ -18,20 +18,33 @@ class Select extends Field{
         $classes = $this->class . ' ' . $this->type;
         $classes .= $this->toggle_fields ? ' js--toggle-field' : '';
 
-        $preview_deps = $this->preview_dependancies;
 
-        $data = $this->toggle_fields ? 'data-field-toggle="'.$this->name.'"' : '';
+        // all the data attrs
+        $data_preview_deps = $this->preview_dependancies ? 'data-preview_deps="'.$this->preview_dependancies.'"' : '' ;
+        $data_preview = $this->preview ? 'data-preview="'.$this->preview.'"' : '';
+        $data_field_name = $this->toggle_fields ? 'data-field_name="'.$this->name.'"' : '';
+        // list of the fields which are toggled by this one
+        $data_target_fields = $this->data_target_fields
+        ? 'data-target_fields="'.$this->data_target_fields.'"' : '';
+
         $value = isset($this->value) ? $this->value : '';
 
+        // the id and field name
         $id = $this->group_name.'-'.$this->tab_name.'-'.$this->name;
-        $name = 'bswp_'.$this->section_name.
+        $field_name = 'bswp_'.$this->section_name.
             '['.$this->group_name.']['.$this->tab_name.']['.$this->name.']';
 
+        // the label
         $output .= '<label>'.$this->label.'</label>';
 
-        $output .= '<select class="'.$classes.'" '.$data.' id="'.$id.'" name="'.$name.'"
-            data-preview="'.$this->preview.'" data-preview-deps="'.$preview_deps.'" >';
 
+        // the select
+        $output .= '<select class="'.$classes.'" id="'.$id.'" name="'.$field_name.'"
+            '.$data_field_name.'
+            '.$data_preview.' '.$data_preview_deps.'"
+            '.$data_target_fields.'>';
+
+        // loop through the args to set the select options
         foreach ($this->args as $key=>$option):
 
             $option_test = $option;
@@ -40,10 +53,8 @@ class Select extends Field{
 
             $name = strtolower(str_replace(' ','_',$option));
             $data_targets = '';
-            if(isset($this->toggle_fields[$option])){
-                $data_targets = is_string($this->toggle_fields[$option]) ? 'data-targets="'.$this->toggle_fields[$option].'"' : '' ;
-            }
 
+            // the option markup
             $output .= '<option '.$data_targets.' value="'.$option.'" '.selected( $option, $this->value, false).'>';
                 $output .= str_replace('_',' ',$option);
             $output .= '</option>';

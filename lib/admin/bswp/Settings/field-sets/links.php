@@ -27,13 +27,16 @@ foreach($link_targets as $link){
                 'name'=>$link.'_background_style',
                 'label'=>'Background Style',
                 'args'=>array('none','highlighted','pills'),
-                'toggle_fields'=>array('highlighted'=>$link.'_background_color', 'pills'=>$link.'_background_color')
+                'toggle_fields'=>array(
+                    'highlighted'=> $link.'_background_color',
+                    'pills' =>  $link.'_background_color',
+                ),
             )
         ),
         $link.'_background_color'=>new ColorPicker(array(
                 'name'=>$link.'_background_color',
                 'label'=>'Background Color',
-                'toggled_by'=>array( $link.'_background_style'=>'highlighted',  $link.'_background_style'=>'pills'),
+                'toggled_by'=>array( $link.'_background_style'=>'highlighted,pills' ),
                 'args' =>'transparency'
             )
         ),
@@ -72,3 +75,6 @@ foreach($link_targets as $link){
 
     );
 }
+
+
+// examine($links);

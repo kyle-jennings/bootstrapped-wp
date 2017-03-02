@@ -59,11 +59,11 @@ $navbar->add_tab('settings', array(
                 'label'=> 'Settings',
                 'name'=>'settings',
                 'args' => array(
-                    'simple',
+                    'basic',
                     'advanced',
                 ),
                 'toggle_fields' => array(
-                    'simple'=>'brand,brand_image,position,movement,menu_toggle_type'
+                    'basic'=>'brand,brand_image,position,movement,menu_toggle_type'
                 ),
                 'preview'=>'form_save_warning'
         )),
@@ -79,7 +79,7 @@ $navbar->add_tab('settings', array(
                     'image'=>'brand_image'
                 ),
                 'toggled_by' => array(
-                    'settings'=>'simple'
+                    'settings'=>'basic'
                 ),
                 'preview'=>'ajax',
                 'preview_args'=>'rebuild_nav',
@@ -91,7 +91,7 @@ $navbar->add_tab('settings', array(
             'label'=>'Upload Image',
             'toggled_by'=>array(
                 'brand'=>'image',
-                'settings'=>'simple'
+                'settings'=>'basic'
 
             ),
             'preview'=>'ajax',
@@ -112,7 +112,7 @@ $navbar->add_tab('settings', array(
                     'stickied_to_bottom'
                 ),
                 'toggled_by' => array(
-                    'settings'=>'simple'
+                    'settings'=>'basic'
                 ),
                 'preview'=>'ajax',
                 'preview_args'=>'rebuild_nav',
@@ -129,7 +129,7 @@ $navbar->add_tab('settings', array(
                     'stick_to_top_on_scroll',
                 ),
                 'toggled_by' => array(
-                    'settings'=>'simple'
+                    'settings'=>'basic'
                 ),
                 'preview'=>'ajax',
                 'preview_args'=>'rebuild_nav',
@@ -147,7 +147,7 @@ $navbar->add_tab('settings', array(
                     'text'
                 ),
                 'toggled_by' => array(
-                    'settings'=>'simple'
+                    'settings'=>'basic'
                 ),
                 'preview'=>'ajax',
                 'preview_args'=>'rebuild_nav',

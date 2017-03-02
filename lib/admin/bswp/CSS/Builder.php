@@ -99,10 +99,12 @@ class Builder {
 
 
         $file = file_get_contents( $this->bs_dir . $this->bs_file );
-        $this->css = $this->compiler->compile($file);
+        try{
+            $this->css = $this->compiler->compile($file);
+        }catch(Exception $e){
+            return;
+        }
 
-        // $file = file_get_contents( $this->path_to_bs_file('bs_responsive') );
-        // $this->css .= $this->compiler->compile($file);
 
     }
 

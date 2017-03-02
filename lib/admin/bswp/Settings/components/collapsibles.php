@@ -65,8 +65,8 @@ if($component_options['activate_collapsibles'] == 'yes'){
                     )
                 ),
             ),
-            array( 'divider2'=>new Divider()),
-            array( 'label2'=>new Label(array('name'=>'border_radius'))),
+            array( 'divider9'=>new Divider()),
+            array( 'label9'=>new Label(array('name'=>'border_radius'))),
             $radii_fields
         )
     );
