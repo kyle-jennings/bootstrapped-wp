@@ -23,7 +23,8 @@ foreach($components_array as $name){
         array(
             'args'=>array('no', 'yes'),
             'name'=>$name,
-            'label'=>ucfirst(str_replace('_', ' ', $name))
+            'label'=>ucfirst(str_replace('_', ' ', $name)),
+            'preview'=>'form_save_warning'
         )
     );
 }

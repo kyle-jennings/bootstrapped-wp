@@ -28,31 +28,41 @@ class Navbar{
         $site_options = get_option('bswp_site_settings');
         $nav_settings = $site_options['navbar']['settings'];
 
+
         $this->class = $class ? $class : '';
 
         // position and movement
-        $this->position = $position ? $position : $nav_settings['position'];
-        $this->movement = $movement ? $movement : $nav_settings['movement'];
+        $this->position = $position ? $position : $this->get_default('position', 'below_header');
+        $this->movement = $movement ? $movement : $this->get_default('movement', 'none');
 
         // navbar brand
-        $this->brand = $brand ? $brand : $nav_settings['brand'];
-        $this->brand_image = $brand_image ? $brand_image : $nav_settings['brand_image'];
+        $this->brand = $brand ? $brand : $this->get_default('brand', 'none');
+        $this->brand_image = $brand_image ? $brand_image : $this->get_default('brand_image', '');
 
         // navbar style for stickied navbar
         if($this->position == 'stickied_to_top')
             $this->nav_style = 'navbar-fixed-top';
-
-        if($this->position == 'stickied_to_bottom')
+        elseif($this->position == 'stickied_to_bottom')
             $this->nav_style = 'navbar-fixed-bottom';
+        else
+            $this->nav_style = '';
 
         // mobile nav toggle button type
-        $this->button_type = $menu_toggle_type ? $menu_toggle_type : $nav_settings['menu_toggle_type'];
+        $this->button_type = $menu_toggle_type ? $menu_toggle_type : $this->get_default('menu_toggle_type', 'default');
 
         // modified navbar
         $this->walker = new navbarMenu();
+
         $this->scaffolding();
     }
 
+
+    public function get_default($arg = null, $default = '') {
+        if(!$arg)
+            return '';
+
+        return $nav_settings[$arg] ? $nav_settings[$arg] : $default;
+    }
 
 
     public function __toString(){

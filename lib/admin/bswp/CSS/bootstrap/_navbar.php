@@ -7,8 +7,8 @@ $navbarCollapseWidth:             979px !default;
 $navbarCollapseDesktopWidth:      $navbarCollapseWidth + 1;
 
 $navbarHeight:                    40px !default;
-$navbarBackgroundStart:           <?php echo $navbg['background_start_color'] ? $navbg['background_start_color'] : '$bodyBackground'; ?> !default;
-$navbarBackgroundEnd:             <?php echo $navbg['background_end_color'] ? $navbg['background_end_color'] : 'darken($navbarBackgroundHighlight, 5%)'; ?> !default;
+$navbarBackgroundStart:           <?php echo $navbg['background_start_color_rgba'] ? $navbg['background_start_color_rgba'] : '$bodyBackground'; ?> !default;
+$navbarBackgroundEnd:             <?php echo $navbg['background_end_color_rgba'] ? $navbg['background_end_color_rgba'] : '$navbarBackgroundStart'; ?> !default;
 
 $navbarBackgroundHighlight:       $navbarBackgroundStart !default;
 $navbarBackground:                $navbarBackgroundEnd !default;

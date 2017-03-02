@@ -105,9 +105,12 @@ class Section {
             examine($this);
 
 
-        if($this->form_meta_settings['build_css'] == 'yes') {
+        if( !get_option('bswp_site_settings') || $this->form_meta_settings['build_css'] == 'yes') {
             $this->build_css();
+        }else{
+            $this->delete_preview_css();
         }
+
 
         unset($this->saved_values);
 
@@ -150,6 +153,11 @@ class Section {
 
     }
 
+
+    public function delete_preview_css() {
+        $builder = new Builder($this->name, null, true);
+        $builder->delete_preview_css_file('preview');
+    }
 
     // we use a settings file as an index of all settings
     public function get_settings_file(){

@@ -11,7 +11,7 @@ $collapsiblesBackgroundEndColor: <?php echo $collapsibles_background_colors['bac
 $collapsiblesBackgroundFill: <?php echo $collapsibles_background_colors['background_fill'] ? $collapsibles_background_colors['background_fill'] : 'solid'; ?>;
 
 // header
-$collapsiblesHeaderBackgroundColor: <?php echo $collapsibles_header['background_start_color_rgba'] ? $collapsibles_header['background_start_color_rgba'] : $collapsiblesBackgroundColor; ?>;
+$collapsiblesHeaderBackgroundColor: <?php echo $collapsibles_header['background_start_color_rgba'] ? $collapsibles_header['background_start_color_rgba'] : '$collapsiblesBackgroundColor'; ?>;
 $collapsiblesHeaderBackgroundEndColor: <?php echo $collapsibles_header['background_end_color_rgba'] ? $collapsibles_header['background_end_color_rgba'] : 'transparent'; ?>;
 $collapsiblesHeaderBackgroundFill: <?php echo $collapsibles_header['background_fill'] ? $collapsibles_header['background_fill'] : 'solid'; ?>;
 $collapsiblesHeaderTextColor: <?php echo $collapsibles_header['text_color'] ? $collapsibles_header['text_color'] : '$collapsiblesColor'; ?>;

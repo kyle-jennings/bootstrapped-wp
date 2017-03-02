@@ -109,6 +109,17 @@ class Builder {
     }
 
 
+
+    public function delete_preview_css_file($target = 'preview'){
+        $target_dir = $target.'_styles';
+        $filename = ($target == 'dist') ? 'site' : 'preview';
+        $file = $this->$target_dir.'/'.$filename.'.css';
+
+        if(is_readable($file))
+            unlink($file);
+    }
+
+
     public function init_bootstrap_var_file() {
         $file = $this->bs_dir . 'src/bootstrap/_variables.scss';
 

@@ -30,7 +30,7 @@ $popoverTitleBottomBorderWidth:    <?php echo $popover_title['title_bottom_borde
 
 // arrows
 $popoverArrowWidth:       5px !default;
-$popoverArrowColor:       $popoverBorderColor !default;
+$popoverArrowColor:       $popoverBackgroundColor !default;
 
 // Special enhancement for popovers
 $popoverArrowOuterWidth:  $popoverArrowWidth + 1 !default;

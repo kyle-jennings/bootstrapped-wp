@@ -66,7 +66,6 @@ $well = $this->values['well'];
 $well_background_colors = $well['background_colors'];
 $well_text = $well['text'];
 $well_borders = $well['borders'];
-
 // Quotes
 $quotes = $this->values['quotes'];
 $quotes_background_colors = $quotes['background_colors'];
@@ -90,6 +89,7 @@ $tabs_inactive_colors = $tabs['inactive_tab_colors'];
 
 // Tooltips
 $tooltips = $this->values['tooltips'];
+
 $tooltip_bg = $tooltips['background_colors'];
 $tooltip_text = $tooltips['text']['text_color'];
 $tooltip_borders = $tooltips['borders'];
@@ -277,21 +277,43 @@ $wellBorder:                      darken($wellBackground, 7%);
 $navbarCollapseWidth:             979px !default;
 $navbarCollapseDesktopWidth:      $navbarCollapseWidth + 1;
 
+
+
+// Form states and alerts
+// -------------------------
+$warningText:             #c09853;
+$warningBackground:       #fcf8e3;
+$warningBorder:           darken(adjust-hue($warningBackground, -10), 3%);
+
+$errorText:               #b94a48;
+$errorBackground:         #f2dede;
+$errorBorder:             darken(adjust-hue($errorBackground, -10), 3%);
+
+$successText:             #468847;
+$successBackground:       #dff0d8;
+$successBorder:           darken(adjust-hue($successBackground, -10), 5%);
+
+$infoText:                #3a87ad;
+$infoBackground:          #d9edf7;
+$infoBorder:              darken(adjust-hue($infoBackground, -10), 7%);
+
 <?php
 
-require_once '_navbar.php';
-require_once '_navbar-dropdown.php';
-require_once '_pagination.php';
-require_once '_collapsibles.php';
-require_once '_hero-unit.php';
-require_once '_tabs.php';
-require_once '_alerts.php';
-require_once '_tooltips.php';
-require_once '_popovers.php';
 require_once '_quotes.php';
 require_once '_preformatted.php';
 require_once '_well.php';
 
+require_once '_navbar.php';
+require_once '_navbar-dropdown.php';
+
+
+require_once '_pagination.php';
+require_once '_tooltips.php';
+require_once '_popovers.php';
+require_once '_collapsibles.php';
+require_once '_tabs.php';
+require_once '_hero-unit.php';
+// require_once '_alerts.php';
 ?>
 
 
@@ -340,5 +362,7 @@ $fluidGridGutterWidth768:      percentage($gridGutterWidth768/$gridRowWidth768) 
 <?php
 $contents = ob_get_contents();
 ob_end_clean();
+
 // examine($contents);
+
 $this->bootstrap_vars = $contents;

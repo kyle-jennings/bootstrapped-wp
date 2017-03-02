@@ -1,8 +1,12 @@
 <?php
 
 
+
+/**
+ * Sets the background color variables for a component
+ */
 function _component_background_colors_sass_vars($prefix = null, $settings = array()) {
-    if(is_null($prefix) || empty($settings) )
+    if(is_null($prefix) )
         return;
 
     // $things = array('background_start_color', 'background_end_color', 'background_fill');
@@ -20,13 +24,16 @@ function _component_background_colors_sass_vars($prefix = null, $settings = arra
  * Set the border radius
  */
 function _component_border_radius_sass_vars($prefix = null, $borders = array()){
+?>
+    $<?php echo $prefix; ?>BorderRadius: <?php echo $borders['all_corners'] ? $borders['all_corners'] :'$baseBorderRadius' ; ?> !default;
+
+    <?php
     if(is_null($prefix) || empty($borders) )
         return;
 
     $corners = array('top_left','top_right','bottom_right', 'bottom_left');
     ?>
 
-    $<?php echo $prefix; ?>BorderRadius: <?php echo $borders['all_corners'] ? $borders['all_corners'] :'$baseBorderRadius' ; ?> !default;
     <?php
         foreach($corners as $corner):
             $cornerName = str_replace(' ','',ucwords(str_replace('_',' ',$corner)));
@@ -46,15 +53,19 @@ function _component_border_radius_sass_vars($prefix = null, $borders = array()){
  * Set the borders for a component
  */
 function _component_outer_border_sass_vars($prefix = null, $borders = array()){
+
+?>
+$<?php echo $prefix; ?>BorderColor: <?php echo $borders['all_sides_border_color'] ? $borders['all_sides_border_color'] :'rgba(0,0,0, .6)' ; ?> !default;
+$<?php echo $prefix; ?>BorderStyle: <?php echo $borders['all_sides_border_style'] ? $borders['all_sides_border_style'] :'solid' ; ?> !default;
+$<?php echo $prefix; ?>BorderWidth: <?php echo $borders['all_sides_border_width'] ? $borders['all_sides_border_width'] :'1px' ; ?> !default;
+
+<?php
     if(is_null($prefix) || empty($borders) )
         return;
 
     $sides = array('top','right','bottom', 'left');
 ?>
 
-    $<?php echo $prefix; ?>BorderColor: <?php echo $borders['all_sides_border_color'] ? $borders['all_sides_border_color'] :'rgba(0,0,0,.6)' ; ?> !default;
-    $<?php echo $prefix; ?>BorderStyle: <?php echo $borders['all_sides_border_style'] ? $borders['all_sides_border_style'] :'none' ; ?> !default;
-    $<?php echo $prefix; ?>BorderWidth: <?php echo $borders['all_sides_border_width'] ? $borders['all_sides_border_width'] :'0' ; ?> !default;
 
     <?php foreach($sides as $side): ?>
 
@@ -75,8 +86,20 @@ $<?php echo $prefix; ?>BorderColor: $<?php echo $prefix; ?>TopBorderColor $<?php
 
 }
 
+
+/**
+ * function to set the link styles for a component (they are all on the same page)
+ * @param  string $prefix used for naming the sass var
+ * @param  array  $links  the settings
+ */
 function _component_links_sass_vars($prefix = null, $links = array()) {
-    if(is_null($prefix) || empty($links) )
+
+?>
+
+$<?php echo $prefix ?>LinksColor: $linkColor;
+
+<?php
+    if(is_null($prefix) )
         return;
 
 
@@ -91,7 +114,7 @@ $<?php echo $prefix . $state_name; ?>Color: <?php echo $links[$state.'_color'] ?
     $<?php echo $prefix . $state_name; ?>BackgroundStyle: <?php echo $links[$state.'_background_style'] ? $links[$state.'_background_style'] : 'none'; ?> !default;
     $<?php echo $prefix . $state_name; ?>BackgroundColor: <?php echo $links[$state.'_background_color_rgba'] ? $links[$state.'_background_color_rgba'] : 'transparent'; ?> !default;
     $<?php echo $prefix . $state_name; ?>Decoration: <?php echo $links[$state.'_text_decoration'] ? $links[$state.'_text_decoration'] : 'none'; ?> !default;
-    $<?php echo $prefix . $state_name; ?>TextShadow: <?php echo $links[$state.'_text_shadow'] ? $links[$state.'_text_shadow'] : 'darken($linkColor, 15%)'; ?> !default;
+    $<?php echo $prefix . $state_name; ?>TextShadow: <?php echo $links[$state.'_text_shadow'] ? $links[$state.'_text_shadow'] : 'none'; ?> !default;
 
 
     <?php
@@ -102,6 +125,10 @@ $<?php echo $prefix . $state_name; ?>Color: <?php echo $links[$state.'_color'] ?
 
 
 
+
+/**
+ * depreciated link varss helper - this is used for the section's links
+ */
 function _link_sass_vars($links) {
     $output = '';
     foreach($links as $type=>$link):
