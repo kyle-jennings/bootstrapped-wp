@@ -1,12 +1,12 @@
-/* ----------------------------------------------------------------
-notification bar
-------------------------------------------------------------------- */
-
 body.bswp div.updated.notice{
     background-color: #007823;
     border-left-color: #007823;
     color: white;
+    left: 0;
     margin: 0 0 0 -20px;
+    position: absolute;
+    right: 0;
+    z-index: 9999;
 }
 
 body.bswp .notice-dismiss:before {
@@ -24,5 +24,5 @@ body.bswp .notice-dismiss:hover
 body.bswp .notice-dismiss:before:focus,
 body.bswp .notice-dismiss:before:hover,
 body.bswp .notice-dismiss:before:hover {
-    color:#4A4646;
+    color: #4A4646;
 }
