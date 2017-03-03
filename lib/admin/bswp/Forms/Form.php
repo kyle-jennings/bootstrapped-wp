@@ -82,7 +82,7 @@ class Form {
         $output .= '</form>';
 
         if( $this->preview ) {
-            $output .= '<div class="preview-options">';
+            $output .= '<div class="preview-options hidden-phone ">';
                 $output .= kjd_site_preview($this->section_name);
             $output .= '</div>';
         }

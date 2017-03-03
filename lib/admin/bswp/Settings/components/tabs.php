@@ -40,7 +40,12 @@ if($component_options['activate_tabs'] == 'yes'){
     );
 
 
+    // remove the border width settings from the inactive tabs
     $inactive_tab_borders = $tabs_borders;
+    $inactive_tab_borders['all_sides_border_style'] = clone $tabs_borders['all_sides_border_style'];
+    foreach($inactive_tab_borders['all_sides_border_style']->toggle_fields as $k=>&$option)
+        $option = str_replace(',all_sides_border_width','', $option);
+
     unset($inactive_tab_borders['all_sides_border_width']);
     $tabs->add_tab('inactive_tab_colors',
         array_merge(

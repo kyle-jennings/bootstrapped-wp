@@ -15,14 +15,6 @@
     }
 }
 
-@media screen and (max-width: 782px){
-    .nav-dropdown {
-        left: -10px;
-        top: 84px;
-        width: 100%;
-    }
-}
-
 .nav-dropdown.active {
     display: block;
 }

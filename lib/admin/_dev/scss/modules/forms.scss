@@ -5,6 +5,11 @@ form.kjd-options{
 .bswp-form {
     float: left;
     width: 230px;
+
+    @media(max-width: $phone-width) {
+        float: none;
+        width: auto;
+    }
 }
 
 
