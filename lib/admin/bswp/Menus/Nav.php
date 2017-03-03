@@ -63,33 +63,33 @@ class Nav {
 
         $output = '';
 
-        $output .= '<div class="overlay js--overlay js--sections-dropdown-toggle js--sections-dropdown"></div>';
+        $output .= '<div class="overlay js--overlay"></div>';
         $output .= '<div id="settings-nav" class="nav-wrapper">';
             $output .= '<div class="components-nav cf">';
 
-                $output .= '<a class="components-nav__link components-nav__link--section js--sections-dropdown-toggle" href="#" >';
+                $output .= '<a class="components-nav__link
+                            components-nav__link--dropdown
+                            components-nav__link--section
+                            js--nav-dropdown-toggle"
+                            data-target="section-nav" href="#" >';
                     $output .= '<span class="dashicons dashicons-welcome-widgets-menus"></span>';
                     $output .= ucfirst( str_replace('_',' ', $this->section->name ) );
                 $output .= '</a>';
-                $output .= $this->sections_dropdown_nav();
-
-                foreach($this->section->groups as $group):
-
-                    $name = $group->name;
-                    $display_name = $group->display_name;
+                $output .= $this->dropdown_nav($this->sections, 'js--sections-dropdown', 'nav-dropdown--section', 'section-nav');
 
 
-                    $active_tab = ( $name == ltrim($this->current_tab_value, '#' ) ) ? 'active' : '';
+                $output .= '<a class="components-nav__link
+                            components-nav__link--dropdown
+                            components-nav__link--group
+                            js--nav-dropdown-toggle"
+                            data-target="group-nav"
+                            href="#" >';
+                    $output .= reset($this->section->groups)->display_name;
+                $output .= '</a>';
+                $output .= $this->dropdown_nav($this->section->groups, 'js--group-link', 'nav-dropdown--group', 'group-nav');
 
-                    // if($active_tab == 'active')
-                    //     examine($name);
+                // examine($this->section->groups);
 
-                    $output .= '<a class="components-nav__link js--group-link '.$active_tab.'"';
-                        $output .= 'data-toggle="tab"';
-                        $output .= 'href="#'.$name.'">';
-                            $output .= $display_name;
-                    $output .= '</a>';
-                endforeach;
             $output .= '</div>';
         $output .= '</div>';
 
@@ -102,23 +102,36 @@ class Nav {
      * users to navigate between the different sections
      * @return [type] [description]
      */
-    public function sections_dropdown_nav(){
+    public function dropdown_nav($links = array(), $js = '', $class ='', $id =''){
+
 
         $output = '';
 
-        $sections = $this->sections;
+
         $find = array('_');
         $replace = array(' ');
 
+        // examine($links);
+        $output .= '<ul id="'.$id.'" class="nav-dropdown '.$class.' '.$js.'">';
 
-        $output .= '<ul id="groups-nav" class="section-dropdown-nav js--sections-dropdown">';
+        foreach($links as $link):
+            //set up the label
+            if(is_object($link))
+                $label =  $link->display_name;
+            else {
+                $label = str_replace($find,$replace ,$link);
+                $label = ucwords($label);
+            }
 
-        foreach($sections as $section):
-            $label = str_replace($find,$replace ,$section);
-            $label = ucwords($label);
+            // set up the section arg
+            if(is_object($link))
+                $arg = '#'.$link->name;
+            else
+                $arg = ($link != 'site_settings') ? '?page=bswp_settings&section='.$link : $link;
 
+            // examine($link);
             $output .= '<li>';
-                $output .= '<a href="?page=bswp_settings&section='.$section.'">';
+                $output .= '<a href="'.$arg.'">';
                     $output .= $label;
                 $output .= '</a>';
             $output .= '</li>';
