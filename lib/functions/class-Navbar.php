@@ -190,14 +190,14 @@ class Navbar{
 
         switch($this->button_type):
             case 'default':
-                $button_class = "btn btn-navbar collapsed";
+                $button_class = "btn collapsed";
 
                 $btn_output .= '<span class="icon-bar"></span>';
                 $btn_output .= '<span class="icon-bar"></span>';
                 $btn_output .= '<span class="icon-bar"></span>';
                 break;
             case 'hamburger':
-                $button_class = "btn btn-navbar btn-hamburger collapsed";
+                $button_class = "btn btn-hamburger collapsed";
 
                 $btn_output .= '<span class="icon-bar"></span>';
                 $btn_output .= '<span class="icon-bar"></span>';
@@ -205,19 +205,19 @@ class Navbar{
 
                 break;
             case 'text':
-                $button_class = "btn-navbar menu-text collapsed";
+                $button_class = "menu-text collapsed";
 
                 $btn_output ='<span class="btn-navbar__text"> Menu </span>';
                 break;
             default:
-                $button_class = "btn btn-navbar collapsed";
+                $button_class = "btn collapsed";
 
                 $btn_output .= '<span class="icon-bar"></span>';
                 $btn_output .= '<span class="icon-bar"></span>';
                 $btn_output .= '<span class="icon-bar"></span>';
                 break;
         endswitch;
-        $output .= '<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="navbar-menu-btn '.$button_class.'">';
+        $output .= '<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="navbar-menu-btn btn-navbar '.$button_class.'">';
             $output .= $btn_output;
         $output .= '</a>';
 

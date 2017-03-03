@@ -1,8 +1,9 @@
 <?php
 
-	$root = get_stylesheet_directory_uri();
+global $page, $paged;
+$root = get_stylesheet_directory_uri();
 
-    $navbar = new Navbar('primary-menu');
+$navbar = new Navbar('primary-menu');
 
 ?>
 
@@ -14,70 +15,34 @@
 	<link rel="icon" type="image/png" href="<?php echo $favicon; ?>">
 
 	<title>
+
 <?php
-		global $page, $paged;
 
-		wp_title( '|', true, 'right' );
+	wp_title( '|', true, 'right' );
 
-		// Add the blog name.
-		bloginfo( 'name' );
+	// Add the blog name.
+	bloginfo( 'name' );
 
-		// Add the blog description for the home/front page.
-		$site_description = get_bloginfo( 'description', 'display' );
-		if ( $site_description && ( is_home() || is_front_page() ) ){
-			echo " | $site_description";
-		}
+	// Add the blog description for the home/front page.
+	$site_description = get_bloginfo( 'description', 'display' );
+	if ( $site_description && ( is_home() || is_front_page() ) ){
+		echo " | $site_description";
+	}
 
-		// Add a page number if necessary:
-		if ( $paged >= 2 || $page >= 2 ){
-			echo ' | ' . sprintf( __( 'Page %s', 'page' ), max( $paged, $page ) );
-		}
+	// Add a page number if necessary:
+	if ( $paged >= 2 || $page >= 2 ){
+		echo ' | ' . sprintf( __( 'Page %s', 'page' ), max( $paged, $page ) );
+	}
 
 
 ?>
 	</title>
 <?php
-
-	if(is_front_page() ) {
-
-		$frontpage_styles = '<style>';
-
-		if($hide_header == 'frontpage' || $hide_header =='all' ){
-			$frontpage_styles .= '#header{display:none;}';
-		}
-
-		if($hide_footer == 'frontpage' || $hide_footer == 'all'){
-			$frontpage_styles .= "#pageWrapper{margin:0 auto !important;}";
-			$frontpage_styles .= "#footer,#push{display:none;}";
-		}
-
-		$frontpage_styles .=  "</style>";
-
-	}else {
-
-		$frontpage_styles = '<style>';
-
-		if($hide_header == 'inside' || $hide_header =='all' ){
-			$frontpage_styles .= '#header{display:none;}';
-		}
-
-		if($hide_footer == 'inside' || $hide_footer == 'all'){
-			$frontpage_styles .= "#pageWrapper{margin:0 auto !important;}";
-			$frontpage_styles .= "#footer,#push{display:none;}";
-		}
-
-
-		$frontpage_styles .=  "</style>";
-
-	}
-
-  	wp_head();
-
-  	echo $frontpage_styles;
-	echo $analytics;
-
+    wp_head();
 ?>
 </head>
+
+
 <body <?php body_class(); ?> >
 
 <div id="pageWrapper">
