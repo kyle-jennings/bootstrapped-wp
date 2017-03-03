@@ -1,8 +1,8 @@
 
 // Scaffolding
 // -------------------------
-$bodyBackground:        <?php echo $background['colors']['background_start_color'] ? $background['colors']['background_start_color'] : '$white'; ?> !default;
-$bodyBackgroundEnd:        <?php echo $background['colors']['background_end_color'] ? $background['colors']['background_end_color'] : '$bodyBackground'; ?> !default;
+$bodyBackground:        <?php echo $background['colors']['background_start_color_rgba'] ? $background['colors']['background_start_color_rgba'] : '$white'; ?> !default;
+$bodyBackgroundEnd:        <?php echo $background['colors']['background_end_color_rgba'] ? $background['colors']['background_end_color_rgba'] : '$bodyBackground'; ?> !default;
 $backgroundFill: <?php echo $background['colors']['background_fill'] ? $background['colors']['background_fill'] : 'none'; ?> !default;
 
 

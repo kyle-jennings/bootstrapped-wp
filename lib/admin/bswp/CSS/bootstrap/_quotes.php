@@ -3,8 +3,8 @@
 // -------------------------
 
 $quotesColor: <?php echo $quotes_text['text_color'] ? $quotes_text['text_color'] : '$textColor'; ?>;
-$quotesBackgroundColor: <?php echo $quotes_background_colors['background_start_color'] ? $quotes_background_colors['background_start_color'] : '#f5f5f5'; ?>;
-$quotesBackgroundEndColor: <?php echo $quotes_background_colors['background_end_color'] ? $quotes_background_colors['background_end_color'] : 'transparent'; ?>;
+$quotesBackgroundColor: <?php echo $quotes_background_colors['background_start_color_rgba'] ? $quotes_background_colors['background_start_color_rgba'] : '#f5f5f5'; ?>;
+$quotesBackgroundEndColor: <?php echo $quotes_background_colors['background_end_color_rgba'] ? $quotes_background_colors['background_end_color_rgba'] : 'transparent'; ?>;
 $quotesBackgroundFill: <?php echo $quotes_background_colors['background_fill'] ? $quotes_background_colors['background_fill'] : 'solid'; ?>;
 
 $quotesBackgroundWallpaper: <?php echo $quotes_wallpapers['background_use_wallpaper'] ? $quotes_wallpapers['background_use_wallpaper'] : 'no'; ?> !default;

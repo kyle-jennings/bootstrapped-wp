@@ -3,8 +3,8 @@
 // -------------------------
 
 $wellColor: <?php echo $well_text['text_color'] ? $well_text['text_color'] : '$textColor'; ?>;
-$wellBackgroundColor: <?php echo $well_background_colors['background_start_color'] ? $well_background_colors['background_start_color'] : '#f5f5f5'; ?>;
-$wellBackgroundEndColor: <?php echo $well_background_colors['background_end_color'] ? $well_background_colors['background_end_color'] : 'transparent'; ?>;
+$wellBackgroundColor: <?php echo $well_background_colors['background_start_color_rgba'] ? $well_background_colors['background_start_color_rgba'] : '#f5f5f5'; ?>;
+$wellBackgroundEndColor: <?php echo $well_background_colors['background_end_color_rgba'] ? $well_background_colors['background_end_color_rgba'] : 'transparent'; ?>;
 $wellBackgroundFill: <?php echo $well_background_colors['background_fill'] ? $well_background_colors['background_fill'] : 'solid'; ?>;
 
 $wellBackgroundWallpaper: <?php echo $well_wallpapers['background_use_wallpaper'] ? $well_wallpapers['background_use_wallpaper'] : 'no'; ?> !default;

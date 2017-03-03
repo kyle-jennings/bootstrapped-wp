@@ -6,8 +6,8 @@
 // -------------------------
 
 $preColor: <?php echo $pre_text['text_color'] ? $pre_text['text_color'] : '$textColor'; ?>;
-$preBackgroundColor: <?php echo $pre_background_colors['background_start_color'] ? $pre_background_colors['background_start_color'] : '#f5f5f5'; ?>;
-$preBackgroundEndColor: <?php echo $pre_background_colors['background_end_color'] ? $pre_background_colors['background_end_color'] : 'transparent'; ?>;
+$preBackgroundColor: <?php echo $pre_background_colors['background_start_color_rgba'] ? $pre_background_colors['background_start_color_rgba'] : '#f5f5f5'; ?>;
+$preBackgroundEndColor: <?php echo $pre_background_colors['background_end_color_rgba'] ? $pre_background_colors['background_end_color_rgba'] : 'transparent'; ?>;
 $preBackgroundFill: <?php echo $pre_background_colors['background_fill'] ? $pre_background_colors['background_fill'] : 'solid'; ?>;
 
 
