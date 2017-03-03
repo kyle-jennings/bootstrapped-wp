@@ -120,16 +120,22 @@ class Form {
     // markup for the tab which is a group
     public function group_content($group = null, $section_name = null, $i = 0) {
 
-        $id = $group->name;
 
-        if($this->current_group_value)
-            $active = ($this->current_group_value == $id) ? 'active' : '';
-        else
+        $active = '';
+
+        if($this->current_group_value){
+            $is_group = $this->is_saved_group($this->current_group_value, $group->name );
+            if($is_group)
+                $active = 'active';
+
+        }else
             $active = $i == 0 ? 'active' : '';
+
+
 
         $output = '';
         // each section pane - ie background/borders/headers ect
-        $output .= '<div id="'.$id.'" class="tab-pane group-content '.$active.'">';
+        $output .= '<div id="'.$group->name.'" class="tab-pane group-content '.$active.'">';
             $output .= $this->group_tabs($group->tabs,  $section_name, $group->name );
         $output .= '</div>';
 
@@ -148,11 +154,12 @@ class Form {
 
         $output .= '<div class="tab-content tab-content--fields js--fields-tabs-wrapper">';
         $i = 0;
+
         if(!is_array($tabs))
             return;
 
         foreach($tabs as $tab_name=>$tab){
-            $output .= $this->tab_content($tab,  $section_name, $tab_name, $i, $group_name );
+            $output .= $this->tab_content($tab,  $section_name, $tab_name, $group_name, $i );
             $i++;
         }
         $output .= '</div>';
@@ -162,18 +169,18 @@ class Form {
 
 
     // produce the tab markup
-    public function tab_content( $tab,  $section_name = null, $tab_name = '', $number = 0, $group_name = '' ){
+    public function tab_content( $tab,  $section_name = null, $tab_name = '', $group_name = '', $number = 0  ){
 
-        if($this->current_tab_value && '#'.$group_name == $this->current_group_value){
+        $is_group = $this->is_saved_group($this->current_group_value, $group_name );
+        $is_tab = $this->is_saved_tab($this->current_tab_value, 'fields_'.$group_name.'_'.$tab_name);
 
-            $class = ( $this->current_tab_value == '#fields_'.$group_name.'_'.$tab_name) ? 'active': '';
-        }
-        else
-            $class = $number == 0 ? 'active' : '';
+        $active = $number === 0 ? 'active' : '';
+        if( $this->current_tab_value && $is_group  )
+                $active = $is_tab ? 'active' : '';
 
         $output = '';
 
-        $output .= '<div class="js--fields-group tab-pane cf '.$class.'" id="fields_'.$group_name.'_'.$tab_name.'">';
+        $output .= '<div class="js--fields-group tab-pane cf '.$active.'" id="fields_'.$group_name.'_'.$tab_name.'">';
             $output .= $this->fields($tab);
         $output .= '</div>';
 
@@ -207,12 +214,18 @@ class Form {
         if(!is_array($tabs))
             return;
 
+        // reset the tabs to get first tabname
         reset($tabs);
+        $tab_name = key($tabs);
+        $label = $tab_name;
 
-        if($this->current_tab_value && '#'.$group_name == $this->current_group_value){
-            $label = str_replace('#fields_'.$group_name.'_','',$this->current_tab_value);
-        }else
-            $label = key($tabs);
+        // sets the correct label
+        $is_group = $this->is_saved_group($this->current_group_value, $group_name );
+        $is_tab = $this->is_saved_tab($this->current_tab_value, 'fields_'.$group_name.'_'.$tab_name);
+        if( $this->current_tab_value && $is_group  )
+            $label= str_replace('#','',str_replace('fields_'.$group_name.'_','' , $this->current_tab_value));
+
+
 
         $label = str_replace('_', ' ', $label);
         $label = ucfirst($label);
@@ -250,5 +263,29 @@ class Form {
         return $output;
     }
 
+
+
+    public function is_saved_group( $saved_group_name, $current_group_name) {
+
+        if($saved_group_name == $current_group_name || strpos($saved_group_name, $current_group_name) != false ){
+            // error_log('Group: '.$saved_group_name . ' - ' . $current_group_name );
+            return true;
+        }
+
+
+        return false;
+
+    }
+
+
+
+    public function is_saved_tab($saved_tab_name, $current_tab_name) {
+
+        if($saved_tab_name == $current_tab_name || strpos($saved_tab_name, $current_tab_name) != false ){
+            return true;
+        }
+
+        return false;
+    }
 
 }

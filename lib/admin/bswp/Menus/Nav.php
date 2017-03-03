@@ -79,7 +79,7 @@ class Nav {
                     $display_name = $group->display_name;
 
 
-                    $active_tab = ( $name == ltrim($this->current_tab_value,'#') ) ? 'active' : '';
+                    $active_tab = ( $name == ltrim($this->current_tab_value, '#' ) ) ? 'active' : '';
 
                     // if($active_tab == 'active')
                     //     examine($name);
