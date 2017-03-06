@@ -1,6 +1,6 @@
 
 .nav-dropdown {
-    background-color: $section-dropdown;
+    background-color: $navbg;
     color: $white;
     display: none;
     left: 0;
@@ -10,9 +10,32 @@
     top: 42px;
     z-index: 999;
 
-    &.nav-dropdown--group {
-        background-color: $group-dropdown;
+    a:hover,
+    a:focus,
+    a.active {
+        background-color: darken($third_nav_link, 5%);
+        box-shadow: none;
+        color: $white;
     }
+
+    &.section-nav {
+        background-color: $first_nav_link;
+        a:hover,
+        a:focus,
+        a.active {
+            background-color: darken($first_nav_link, 15%);
+        }
+    }
+
+    &.group-nav {
+        background-color: $second_nav_link;
+        a:hover,
+        a:focus,
+        a.active {
+            background-color: darken($second_nav_link, 15%);
+        }
+    }
+
 }
 
 .nav-dropdown.active {
@@ -33,16 +56,6 @@
     padding: 10px 20px;
     position: relative;
     text-decoration: none;
-}
-
-.nav-dropdown a:hover {
-    background-color: darken($section-dropdown, 5%);
-    color: $white;
-}
-
-
-.nav-dropdown--group a:hover {
-    background-color: darken($group-dropdown, 5%);
 }
 
 .nav-dropdown a:focus{

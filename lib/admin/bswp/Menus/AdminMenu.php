@@ -99,7 +99,7 @@ class AdminMenu {
         $form = new Form;
 
         settings_errors();
-        echo $nav->tabs_nav();
+        echo $nav->create_nav();
 
         $form->the_form();
 

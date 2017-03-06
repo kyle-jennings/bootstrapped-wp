@@ -66,7 +66,7 @@ function kjd_deviceViewSettings($deviceView){
  Add login css
 --------------------------------------------------------- */
 function kjd_login_css() {
-    require_once('styles/login.php');
+    require_once dirname(dirname(__FILE__)).'/styles/login.php';
 }
 add_action('login_head', 'kjd_login_css');
 

@@ -149,7 +149,7 @@ class Form {
     public function group_tabs($tabs,  $section_name = null, $group_name = null) {
         $output = '';
 
-        $output .= $this->tab_dropdown($tabs, $group_name);
+        // $output .= $this->tab_dropdown($tabs, $group_name);
 
 
         $output .= '<div class="tab-content tab-content--fields js--fields-tabs-wrapper">';
