@@ -42,6 +42,10 @@ class Builder {
 
     }
 
+    public function set_manifest() {
+        // $var_file = $this->bs_dir . 
+    }
+
 
     // create new compiler object
     public function initCompiler() {
