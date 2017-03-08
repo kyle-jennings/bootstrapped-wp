@@ -7,16 +7,6 @@
 // -----------------
 @media (max-width: $navbarCollapseWidth) {
 
-    .navbar-wrapper {
-        margin-left: -$gridGutterWidth;
-        margin-right: -$gridGutterWidth;
-
-        &.navbar-fixed-top {
-            margin-left: 0;
-            margin-right: 0;
-
-        }
-    }
     // UNFIX THE TOPBAR
     // ----------------
     // Remove any padding from the body
@@ -165,7 +155,19 @@
 
 }
 
+@media (max-width: 768px) {
 
+    .navbar-wrapper {
+        margin-left: -$gridGutterWidth;
+        margin-right: -$gridGutterWidth;
+
+        &.navbar-fixed-top {
+            margin-left: 0;
+            margin-right: 0;
+
+        }
+    }
+}
 // DEFAULT DESKTOP
 // ---------------
 

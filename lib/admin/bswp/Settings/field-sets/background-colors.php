@@ -25,14 +25,13 @@ $background_colors = array(
             'name'=>'background_fill',
             'label'=>'Color Fill',
             'args'=>array(
-                'none',
                 'solid',
+                'none',
                 'vertical',
                 'horizontal',
                 'radial'
             ),
             'toggle_fields' => array(
-                'solid' => 'background_end_color',
                 'vertical' => 'background_end_color',
                 'horizontal' => 'background_end_color',
                 'radial' => 'background_end_color',
@@ -46,7 +45,7 @@ $background_colors = array(
             'label'=>'End Color',
             'args'=>'transparency',
             'toggled_by' => array(
-                'background_fill' => 'solid,vertical,horizontal,radial'
+                'background_fill' => 'vertical,horizontal,radial'
             )
         )
     ),

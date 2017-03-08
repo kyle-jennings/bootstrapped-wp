@@ -152,12 +152,15 @@
         background-color: $linksBackgroundColor;
         background-image: none;
         border-radius: 0;
-
-    }@else {
+    } @elseif $linksBackgroundStyle == default {
+        background-color: $linksBackgroundColor;
+        background-image: none;
+    } @else {
         background-color: transparent;
         background-image: none;
         border-radius: 0;
     }
+
 }
 
 @mixin link-decoration($linksDecoration: none, $linksTextShadow: none) {

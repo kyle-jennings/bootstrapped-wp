@@ -15,7 +15,7 @@ class Navbar{
     public $movement = 'none';
     public $walker;
     public $button_type = 'default';
-
+    public $nav_settings;
 
     // sets up the nav
     public function __construct( $menu_id = 'primary-menu', $args = array(), $class = null){
@@ -26,7 +26,7 @@ class Navbar{
         extract($args);
 
         $site_options = get_option('bswp_site_settings');
-        $nav_settings = $site_options['navbar']['settings'];
+        $this->nav_settings = $site_options['navbar']['settings'];
 
 
         $this->class = $class ? $class : '';
@@ -61,7 +61,7 @@ class Navbar{
         if(!$arg)
             return '';
 
-        return $nav_settings[$arg] ? $nav_settings[$arg] : $default;
+        return $this->nav_settings[$arg] ? $this->nav_settings[$arg] : $default;
     }
 
 

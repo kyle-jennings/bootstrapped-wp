@@ -61,12 +61,15 @@ a {
     &:hover:visited {
         color: $hoveredLinksColor;
         @include link-bg($hoveredLinksBackgroundFill, $hoveredLinksBackgroundColor);
+        @include link-decoration($hoveredLinksDecoration, $hoveredLinksTextShadow);
+
     }
 
     &:visited {
         color: $visitedLinksColor;
         @if $visitedLinksBackgroundFill != none {
             background-color: $visitedLinksBackgroundColor;
+            @include link-decoration($visitedLinksDecoration, $visitedLinksTextShadow);
         }
     }
 
@@ -75,6 +78,7 @@ a {
         color: $activeLinksColor;
         @if $activeLinksBackgroundFill != none {
             background-color: $activeLinksBackgroundColor;
+            @include link-decoration($activeLinksDecoration, $activeLinksTextShadow);
         }
     }
   }

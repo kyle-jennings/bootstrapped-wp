@@ -3,7 +3,7 @@
 // -------------------------
 $bodyBackground:        <?php echo $background['colors']['background_start_color_rgba'] ? $background['colors']['background_start_color_rgba'] : '$white'; ?> !default;
 $bodyBackgroundEnd:        <?php echo $background['colors']['background_end_color_rgba'] ? $background['colors']['background_end_color_rgba'] : '$bodyBackground'; ?> !default;
-$backgroundFill: <?php echo $background['colors']['background_fill'] ? $background['colors']['background_fill'] : 'none'; ?> !default;
+$backgroundFill: <?php echo $background['colors']['background_fill'] ? $background['colors']['background_fill'] : 'solid'; ?> !default;
 
 
 $useBackgroundWallpaper: <?php echo $background_wallpapers['background_use_wallpaper'] ? $background_wallpapers['background_use_wallpaper'] : 'no'; ?> !default;

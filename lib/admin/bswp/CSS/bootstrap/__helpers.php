@@ -37,10 +37,8 @@ function _component_border_radius_sass_vars($prefix = null, $borders = array()){
     <?php
         foreach($corners as $corner):
             $cornerName = str_replace(' ','',ucwords(str_replace('_',' ',$corner)));
-
     ?>
-    $<?php echo $prefix.$cornerName; ?>BorderRadius: <?php echo $borders[$corner] ? $borders[$corner] :'$baseBorderRadius' ; ?> !default;
-
+        $<?php echo $prefix.$cornerName; ?>BorderRadius: <?php echo $borders[$corner] ? $borders[$corner] :'$baseBorderRadius' ; ?> !default;
     <?php endforeach; ?>
 
     <?php if($borders['style_corners'] == 'yes'):?>
@@ -52,12 +50,20 @@ function _component_border_radius_sass_vars($prefix = null, $borders = array()){
 /**
  * Set the borders for a component
  */
-function _component_outer_border_sass_vars($prefix = null, $borders = array()){
-
+function _component_outer_border_sass_vars($prefix = null, $borders = array(), $defaults = array()){
+    $count = 0;
 ?>
-$<?php echo $prefix; ?>BorderColor: <?php echo $borders['all_sides_border_color'] ? $borders['all_sides_border_color'] :'rgba(0,0,0, .6)' ; ?> !default;
-$<?php echo $prefix; ?>BorderStyle: <?php echo $borders['all_sides_border_style'] ? $borders['all_sides_border_style'] :'solid' ; ?> !default;
-$<?php echo $prefix; ?>BorderWidth: <?php echo $borders['all_sides_border_width'] ? $borders['all_sides_border_width'] :'1px' ; ?> !default;
+    $<?php echo $prefix; ?>BorderColor: <?php echo $borders['all_sides_border_color']
+        ? $borders['all_sides_border_color']
+        : _default('rgba(0,0,0, .2)', $defaults[$count], $count) ; ?> !default;
+
+    $<?php echo $prefix; ?>BorderStyle: <?php echo $borders['all_sides_border_style']
+        ? $borders['all_sides_border_style']
+        : _default('solid', $defaults[$count], $count) ; ?> !default;
+
+    $<?php echo $prefix; ?>BorderWidth: <?php echo $borders['all_sides_border_width']
+        ? $borders['all_sides_border_width']
+        :_default('1px', $defaults[$count], $count) ; ?> !default;
 
 <?php
     if(is_null($prefix) || empty($borders) )
@@ -69,18 +75,33 @@ $<?php echo $prefix; ?>BorderWidth: <?php echo $borders['all_sides_border_width'
 
     <?php foreach($sides as $side): ?>
 
-    $<?php echo $prefix; ?><?php echo ucfirst($side);?>BorderColor: <?php echo $borders[$side.'_border_color'] ? $borders[$side.'_border_color'] : 'transparent' ; ?> !default;
-    $<?php echo $prefix; ?><?php echo ucfirst($side);?>BorderStyle: <?php echo $borders[$side.'_border_style'] ? $borders[$side.'_border_style'] :'none' ; ?> !default;
-    $<?php echo $prefix; ?><?php echo ucfirst($side);?>BorderWidth: <?php echo $borders[$side.'_border_width'] ? $borders[$side.'_border_width'] :'0' ; ?> !default;
+    $<?php echo $prefix; ?><?php echo ucfirst($side);?>BorderColor: <?php echo $borders[$side.'_border_color']
+        ? $borders[$side.'_border_color']
+        : 'transparent' ; ?> !default;
+    $<?php echo $prefix; ?><?php echo ucfirst($side);?>BorderStyle: <?php echo $borders[$side.'_border_style']
+        ? $borders[$side.'_border_style']
+        : 'none' ; ?> !default;
+    $<?php echo $prefix; ?><?php echo ucfirst($side);?>BorderWidth: <?php echo $borders[$side.'_border_width']
+        ? $borders[$side.'_border_width']
+        : '0' ; ?> !default;
     <?php endforeach; ?>
 
     <?php if($borders['style_border_sides'] == 'yes'): ?>
-$<?php echo $prefix; ?>BorderColor: $<?php echo $prefix; ?>TopBorderColor $<?php echo $prefix; ?>RightBorderColor $<?php echo $prefix; ?>BottomBorderColor $<?php echo $prefix; ?>LeftBorderColor;
-    $<?php echo $prefix; ?>BorderStyle: $<?php echo $prefix; ?>TopBorderStyle $<?php echo $prefix; ?>RightBorderStyle $<?php echo $prefix; ?>BottomBorderStyle $<?php echo $prefix; ?>LeftBorderStyle;
-    $<?php echo $prefix; ?>BorderWidth: $<?php echo $prefix; ?>TopBorderWidth $<?php echo $prefix; ?>RightBorderWidth $<?php echo $prefix; ?>BottomBorderWidth $<?php echo $prefix; ?>LeftBorderWidth;
-
-
-
+        $<?php echo $prefix; ?>BorderColor:
+            $<?php echo $prefix; ?>TopBorderColor
+            $<?php echo $prefix; ?>RightBorderColor
+            $<?php echo $prefix; ?>BottomBorderColor
+            $<?php echo $prefix; ?>LeftBorderColor;
+        $<?php echo $prefix; ?>BorderStyle:
+            $<?php echo $prefix; ?>TopBorderStyle
+            $<?php echo $prefix; ?>RightBorderStyle
+            $<?php echo $prefix; ?>BottomBorderStyle
+            $<?php echo $prefix; ?>LeftBorderStyle;
+        $<?php echo $prefix; ?>BorderWidth:
+            $<?php echo $prefix; ?>TopBorderWidth
+            $<?php echo $prefix; ?>RightBorderWidth
+            $<?php echo $prefix; ?>BottomBorderWidth
+            $<?php echo $prefix; ?>LeftBorderWidth;
     <?php
     endif;
 
@@ -153,4 +174,15 @@ function _link_sass_vars($links) {
     endforeach;
 
     echo $output;
+}
+
+
+
+function _default($fallback, $default = null, &$count = 0) {
+    if(!$fallback)
+        return '';
+
+    $count ++;
+    return $default ? $default : $fallback;
+
 }

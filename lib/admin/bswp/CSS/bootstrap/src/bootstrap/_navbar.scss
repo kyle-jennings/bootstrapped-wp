@@ -29,7 +29,11 @@
     border-style:$navBorderStyle !important;
     border-width:$navBorderWidth !important;
     @include border-radius($baseBorderRadius);
-    // @include box-shadow(0 1px 4px rgba(0,0,0,.065));
+    @if($navbarDisableBoxShadow == no){
+        @include box-shadow(0 1px 4px rgba(0,0,0,.065), 0 -1px 4px rgba(0,0,0,.065));
+    } @else {
+        box-shadow: none;
+    }
 
     // Prevent floats from breaking the navbar
     @include clearfix();

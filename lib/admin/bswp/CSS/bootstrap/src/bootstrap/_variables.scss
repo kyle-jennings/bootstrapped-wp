@@ -39,7 +39,7 @@ $purple:                #7a43b6 !default;
 // -------------------------
 $bodyBackground:        $white !default;
 $bodyBackgroundEnd:        $bodyBackground !default;
-$backgroundFill: none !default;
+$backgroundFill: solid !default;
 
 
 $useBackgroundWallpaper: no !default;
@@ -79,7 +79,7 @@ $textColor:             $grayDark !default;
 
     $hoveredLinksBackgroundColor: transparent !default;
 
-    $hoveredLinksDecoration: none !default;
+    $hoveredLinksDecoration: underline !default;
 
     $hoveredLinksTextShadow: darken($linkColor, 15%) !default;
 
@@ -90,7 +90,7 @@ $textColor:             $grayDark !default;
 
     $visitedLinksBackgroundColor: transparent !default;
 
-    $visitedLinksDecoration: none !default;
+    $visitedLinksDecoration: underline !default;
 
     $visitedLinksTextShadow: darken($linkColor, 15%) !default;
 
@@ -101,7 +101,7 @@ $textColor:             $grayDark !default;
 
     $activeLinksBackgroundColor: transparent !default;
 
-    $activeLinksDecoration: none !default;
+    $activeLinksDecoration: underline !default;
 
     $activeLinksTextShadow: darken($linkColor, 15%) !default;
 
@@ -249,9 +249,11 @@ $imagePadding: 0px !default;
     $imageBackgroundEndColor: $bodyBackgroundEnd !default;
 
     $imageBackgroundFill: none !default;
-$imageBorderColor: rgba(0,0,0, .6) !default;
-$imageBorderStyle: solid !default;
-$imageBorderWidth: 1px !default;
+    $imageBorderColor: rgba(0,0,0, .2) !default;
+
+    $imageBorderStyle: solid !default;
+
+    $imageBorderWidth: 1px !default;
 
     $imageBorderRadius: $baseBorderRadius !default;
 
@@ -267,9 +269,11 @@ $imageCaptionPadding: 0px !default;
     $imageCaptionBackgroundEndColor: $bodyBackgroundEnd !default;
 
     $imageCaptionBackgroundFill: none !default;
-$imageCaptionBorderColor: rgba(0,0,0, .6) !default;
-$imageCaptionBorderStyle: solid !default;
-$imageCaptionBorderWidth: 1px !default;
+    $imageCaptionBorderColor: rgba(0,0,0, .2) !default;
+
+    $imageCaptionBorderStyle: solid !default;
+
+    $imageCaptionBorderWidth: 1px !default;
 
     $imageCaptionBorderRadius: $baseBorderRadius !default;
 
@@ -283,9 +287,11 @@ $imageThumbnailPadding: 0px !default;
     $imageThumbnailBackgroundEndColor: $bodyBackgroundEnd !default;
 
     $imageThumbnailBackgroundFill: none !default;
-$imageThumbnailBorderColor: rgba(0,0,0, .6) !default;
-$imageThumbnailBorderStyle: solid !default;
-$imageThumbnailBorderWidth: 1px !default;
+    $imageThumbnailBorderColor: rgba(0,0,0, .2) !default;
+
+    $imageThumbnailBorderStyle: solid !default;
+
+    $imageThumbnailBorderWidth: 1px !default;
 
     $imageThumbnailBorderRadius: $baseBorderRadius !default;
 
@@ -304,9 +310,11 @@ $formTextColor: $textColor !default;
     $formBackgroundEndColor: $bodyBackgroundEnd !default;
 
     $formBackgroundFill: none !default;
-$formBorderColor: rgba(0,0,0, .6) !default;
-$formBorderStyle: solid !default;
-$formBorderWidth: 1px !default;
+    $formBorderColor: rgba(0,0,0, .2) !default;
+
+    $formBorderStyle: solid !default;
+
+    $formBorderWidth: 1px !default;
 
     $formBorderRadius: $baseBorderRadius !default;
 
@@ -317,9 +325,11 @@ $fieldTextColor: $textColor !default;
     $fieldBackgroundEndColor: $bodyBackgroundEnd !default;
 
     $fieldBackgroundFill: none !default;
-$fieldBorderColor: rgba(0,0,0, .6) !default;
-$fieldBorderStyle: solid !default;
-$fieldBorderWidth: 1px !default;
+    $fieldBorderColor: rgba(0,0,0, .2) !default;
+
+    $fieldBorderStyle: solid !default;
+
+    $fieldBorderWidth: 1px !default;
 
     $fieldBorderRadius: $baseBorderRadius !default;
 
@@ -331,32 +341,15 @@ $fieldActiveTextColor: $textColor !default;
     $fieldActiveBackgroundEndColor: $bodyBackgroundEnd !default;
 
     $fieldActiveBackgroundFill: none !default;
-$fieldActiveBorderColor: rgba(0,0,0, .6) !default;
-$fieldActiveBorderStyle: solid !default;
-$fieldActiveBorderWidth: 1px !default;
+    $fieldActiveBorderColor: rgba(0,0,0, .2) !default;
+
+    $fieldActiveBorderStyle: solid !default;
+
+    $fieldActiveBorderWidth: 1px !default;
 
     $fieldActiveBorderRadius: $baseBorderRadius !default;
 
     
-
-
-
-
-
-// Dropdowns
-// -------------------------
-$dropdownBackground:            $white !default;
-$dropdownBorder:                rgba(0,0,0,.2) !default;
-$dropdownDividerTop:            #e5e5e5 !default;
-$dropdownDividerBottom:         $white !default;
-
-$dropdownLinkColor:             $grayDark !default;
-$dropdownLinkColorHover:        $white !default;
-$dropdownLinkColorActive:       $white !default;
-
-$dropdownLinkBackgroundActive:  $linkColor !default;
-$dropdownLinkBackgroundHover:   $dropdownLinkBackgroundActive !default;
-
 
 
 // COMPONENT VARIABLES
@@ -427,6 +420,22 @@ $infoBackground:          #d9edf7;
 $infoBorder:              darken(adjust-hue($infoBackground, -10), 7%);
 
 
+// Dropdowns
+$dropdownBackground:            $white !default;
+$dropdownBorder:                rgba(0,0,0,.2) !default;
+$dropdownDividerTop:            #e5e5e5 !default;
+$dropdownDividerBottom:         $white !default;
+
+$dropdownLinkColor:             $grayDark !default;
+$dropdownLinkColorHover:        $white !default;
+$dropdownLinkColorActive:       $white !default;
+
+$dropdownLinkBackgroundActive:  $linkColor !default;
+$dropdownLinkBackgroundHover:   $dropdownLinkBackgroundActive !default;
+
+
+
+
 // Quotes
 // -------------------------
 
@@ -449,9 +458,11 @@ $quotesBackgroundSize: auto !default;
 $quotesBackgroundPercentage: 0% !default;
 
 $quotesBorder: $grayLighter;
-$quotesBorderColor: rgba(0,0,0, .6) !default;
-$quotesBorderStyle: solid !default;
-$quotesBorderWidth: 1px !default;
+    $quotesBorderColor: rgba(0,0,0, .2) !default;
+
+    $quotesBorderStyle: solid !default;
+
+    $quotesBorderWidth: 1px !default;
 
     $quotesBorderRadius: $baseBorderRadius !default;
 
@@ -513,9 +524,11 @@ $preBackgroundSize: auto !default;
 $preBackgroundPercentage: 0% !default;
 
 
-$preBorderColor: rgba(0,0,0, .6) !default;
-$preBorderStyle: solid !default;
-$preBorderWidth: 1px !default;
+    $preBorderColor: rgba(0,0,0, .2) !default;
+
+    $preBorderStyle: solid !default;
+
+    $preBorderWidth: 1px !default;
 
     $preBorderRadius: $baseBorderRadius !default;
 
@@ -573,9 +586,11 @@ $wellBackgroundSize: auto !default;
 $wellBackgroundPercentage: 0% !default;
 
 
-$wellBorderColor: rgba(0,0,0, .6) !default;
-$wellBorderStyle: solid !default;
-$wellBorderWidth: 1px !default;
+    $wellBorderColor: rgba(0,0,0, .2) !default;
+
+    $wellBorderStyle: solid !default;
+
+    $wellBorderWidth: 1px !default;
 
     $wellBorderRadius: $baseBorderRadius !default;
 
@@ -625,31 +640,34 @@ $navbarBackgroundEnd:             $navbarBackgroundStart !default;
 $navbarBackgroundHighlight:       $navbarBackgroundStart !default;
 $navbarBackground:                $navbarBackgroundEnd !default;
 
-$navbarText:                      $textColor !default;
-$navbarLinkColor:                  $linkColor !default;
+$navbarText:                      #777 !default;
+$navbarLinkColor:                  $navbarText !default;
 $navbarLinkBackgroundFill:       none !default;
 $navbarLinkBackgroundColor:       transparent !default;
 
-$navbarLinkColorHover:            darken($navbarBackground, 5%) !default;
+$navbarLinkColorHover:            $grayDark !default;
 $navbarLinkBackgroundHoverFill:       transparent !default;
 $navbarLinkBackgroundHoverColor:       transparent !default;
 
-$navbarLinkColorActive:           darken($navbarBackground, 5%) !default;
-$navbarLinkBackgroundActiveFill:      darken($navbarBackground, 5%) !default;
-$navbarLinkBackgroundActiveColor:      darken($navbarBackground, 5%) !default;
+$navbarLinkColorActive:           $navbarLinkColorHover !default;
+$navbarLinkBackgroundActiveFill:      $navbarLinkBackgroundHoverFill !default;
+$navbarLinkBackgroundActiveColor:      $navbarLinkBackgroundHoverColor !default;
 
 
 $navbarBrandColor:                $navbarLinkColor !default;
 
+$navbarDisableBoxShadow:       no !default;
 
-$navbarBorder:                    darken($navbarBackground, 12%) !default;
-$navbarBorderStyle:               'solid';
-$navbarBorderWidth:               '1px';
+$navbarBorder:                    rgba(0,0,0,.2) !default;
+$navbarBorderStyle:               solid;
+$navbarBorderWidth:               1px;
 
 
-$navBorderColor: rgba(0,0,0, .6) !default;
-$navBorderStyle: solid !default;
-$navBorderWidth: 1px !default;
+    $navBorderColor: $navbarBorder !default;
+
+    $navBorderStyle: $navbarBorderStyle !default;
+
+    $navBorderWidth: $navbarBorderWidth !default;
 
     $navBorderRadius: $baseBorderRadius !default;
 
@@ -678,44 +696,32 @@ $navbarDropdownLeftBorderWidth:                1px !default;
 
 
 $navbarDropdownBorder:                $navbarDropdownTopBorderColor !default;
-
 $navbarDropdownDividerTop:            #e5e5e5 !default;
 $navbarDropdownDividerBottom:         $white !default;
 
+// the links - too specific to use the helper
+$navbarDropdownLinksColor: $grayDark !default;
+$navbarDropdownLinksBackgroundStyle: none !default;
+$navbarDropdownLinksBackgroundColor: $white !default;
+$navbarDropdownLinksDecoration: none !default;
+$navbarDropdownLinksTextShadow: none !default;
 
 
 
-$navbarDropdownLinksColor: $linkColor;
-
-$navbarDropdownLinksColor: navbarDropdownLinksColor !default;
-    $navbarDropdownLinksBackgroundStyle: none !default;
-    $navbarDropdownLinksBackgroundColor: transparent !default;
-    $navbarDropdownLinksDecoration: none !default;
-    $navbarDropdownLinksTextShadow: none !default;
+$navbarDropdownHoveredLinksColor: $white !default;
+$navbarDropdownHoveredLinksBackgroundStyle: default !default;
+$navbarDropdownHoveredLinksBackgroundColor: $linkColor !default;
+$navbarDropdownHoveredLinksDecoration: none !default;
+$navbarDropdownHoveredLinksTextShadow: none !default;
 
 
-    $navbarDropdownVisitedLinksColor: navbarDropdownLinksColor !default;
-    $navbarDropdownVisitedLinksBackgroundStyle: none !default;
-    $navbarDropdownVisitedLinksBackgroundColor: transparent !default;
-    $navbarDropdownVisitedLinksDecoration: none !default;
-    $navbarDropdownVisitedLinksTextShadow: none !default;
 
+$navbarDropdownActiveLinksColor: $white !default;
+$navbarDropdownActiveLinksBackgroundStyle: default !default;
+$navbarDropdownActiveLinksBackgroundColor: $linkColor !default;
+$navbarDropdownActiveLinksDecoration: none !default;
+$navbarDropdownActiveLinksTextShadow: none !default;
 
-    $navbarDropdownHoveredLinksColor: navbarDropdownLinksColor !default;
-    $navbarDropdownHoveredLinksBackgroundStyle: none !default;
-    $navbarDropdownHoveredLinksBackgroundColor: transparent !default;
-    $navbarDropdownHoveredLinksDecoration: none !default;
-    $navbarDropdownHoveredLinksTextShadow: none !default;
-
-
-    $navbarDropdownActiveLinksColor: navbarDropdownLinksColor !default;
-    $navbarDropdownActiveLinksBackgroundStyle: none !default;
-    $navbarDropdownActiveLinksBackgroundColor: transparent !default;
-    $navbarDropdownActiveLinksDecoration: none !default;
-    $navbarDropdownActiveLinksTextShadow: none !default;
-
-
-    
 
 
 // Pagination
@@ -728,9 +734,11 @@ $paginationBorder:                    #ddd !default;
 
 $paginationActiveBackground:          #f5f5f5 !default;
 
-$paginationBorderColor: rgba(0,0,0, .6) !default;
-$paginationBorderStyle: solid !default;
-$paginationBorderWidth: 1px !default;
+    $paginationBorderColor: rgba(0,0,0, .2) !default;
+
+    $paginationBorderStyle: solid !default;
+
+    $paginationBorderWidth: 1px !default;
 
     $paginationBorderRadius: $baseBorderRadius !default;
 
@@ -776,9 +784,11 @@ $tooltipArrowWidth:       5px !default;
 $tooltipArrowColor:       $tooltipBackgroundColor !default;
 
 
-$tooltipBorderColor: rgba(0,0,0, .6) !default;
-$tooltipBorderStyle: solid !default;
-$tooltipBorderWidth: 1px !default;
+    $tooltipBorderColor: rgba(0,0,0, .2) !default;
+
+    $tooltipBorderStyle: solid !default;
+
+    $tooltipBorderWidth: 1px !default;
 
     $tooltipBorderRadius: $baseBorderRadius !default;
 
@@ -803,9 +813,11 @@ $popoverTitleBottomBorderColor:    transparent;
 $popoverTitleBottomBorderWidth:    1px;
 
 
-$popoverBorderColor: rgba(0,0,0, .6) !default;
-$popoverBorderStyle: solid !default;
-$popoverBorderWidth: 1px !default;
+    $popoverBorderColor: rgba(0,0,0, .2) !default;
+
+    $popoverBorderStyle: solid !default;
+
+    $popoverBorderWidth: 1px !default;
 
     $popoverBorderRadius: $baseBorderRadius !default;
 
@@ -856,9 +868,11 @@ $collapsiblesBackgroundSize: auto !default;
 $collapsiblesBackgroundPercentage: 0% !default;
 
 
-$collapsiblesBorderColor: rgba(0,0,0, .6) !default;
-$collapsiblesBorderStyle: solid !default;
-$collapsiblesBorderWidth: 1px !default;
+    $collapsiblesBorderColor: rgba(0,0,0, .2) !default;
+
+    $collapsiblesBorderStyle: solid !default;
+
+    $collapsiblesBorderWidth: 1px !default;
 
     $collapsiblesBorderRadius: $baseBorderRadius !default;
 
@@ -914,9 +928,11 @@ $tabsBackgroundFill: solid;
 $tabsCorners: no;
 $tabsBorders: no;
 
-$tabsBorderColor: rgba(0,0,0, .6) !default;
-$tabsBorderStyle: solid !default;
-$tabsBorderWidth: 1px !default;
+    $tabsBorderColor: rgba(0,0,0, .2) !default;
+
+    $tabsBorderStyle: solid !default;
+
+    $tabsBorderWidth: 1px !default;
 
     $tabsBorderRadius: $baseBorderRadius !default;
 
@@ -968,9 +984,11 @@ $tabInActiveCorners: no;
 $tabInActiveBorders: no;
 
 
-$tabsInActiveBorderColor: rgba(0,0,0, .6) !default;
-$tabsInActiveBorderStyle: solid !default;
-$tabsInActiveBorderWidth: 1px !default;
+    $tabsInActiveBorderColor: rgba(0,0,0, .2) !default;
+
+    $tabsInActiveBorderStyle: solid !default;
+
+    $tabsInActiveBorderWidth: 1px !default;
 
     $tabsInActiveBorderRadius: $baseBorderRadius !default;
 

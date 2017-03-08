@@ -55,7 +55,8 @@ $rebuild_nav_script = '
 ';
 
 $navbar->add_tab('settings', array(
-        'settings' => new Select(array(
+        'settings' => new Select(
+            array(
                 'label'=> 'Settings',
                 'name'=>'settings',
                 'args' => array(
@@ -66,6 +67,15 @@ $navbar->add_tab('settings', array(
                     'basic'=>'brand,brand_image,position,movement,menu_toggle_type'
                 ),
                 'preview'=>'form_save_warning'
+            )
+        ),
+        'box_shadow' => new Select(array(
+            'label'=> 'Disable Box Shadow?',
+            'name' => 'box_shadow',
+            'args' => array(
+                'no',
+                'yes'
+            )
         )),
         'brand' => new Select(array(
                 'label'=> 'Brand',
@@ -199,15 +209,27 @@ $navbar->add_tab('submenu_background_colors', array(
     )
 ));
 
+
+// add the "default" option to the background styles
 $sub_links = remove_link_decoration(remove_link_bg($links));
+$sub_hovered = $hovered_links;
+$sub_hovered['hovered_links_background_style'] = clone $sub_hovered['hovered_links_background_style'];
+array_unshift($sub_hovered['hovered_links_background_style']->args,  'default');
+
+$sub_active = $active_links;
+$sub_active['active_links_background_style'] = clone $sub_active['active_links_background_style'];
+array_unshift($sub_active['active_links_background_style']->args,  'default');
+
 $navbar->add_tab('submenu_text',
     array_merge(
         $sub_links,
-        $hovered_links,
-        $active_links
+        $sub_hovered,
+        $sub_active
     )
 );
 
+
+// subnav borders
 $navbar->add_tab('submenu_borders', array_merge(
         $top,
         array( 'divider1'=>new Divider()),

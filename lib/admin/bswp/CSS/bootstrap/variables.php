@@ -49,6 +49,8 @@ $navbar = $this->values['navbar'];
 $navbg = $navbar['background_colors'];
 $navtext = $navbar['text'];
 $navborders = $navbar['borders'];
+$navsettings = $navbar['settings'];
+
 
 // navbar dropdow
 $nav_submenu_bg = $navbar['submenu_background_colors'];
@@ -211,25 +213,6 @@ $borderRadiusSmall:     3px !default;
 
 
 
-
-
-
-// Dropdowns
-// -------------------------
-$dropdownBackground:            $white !default;
-$dropdownBorder:                rgba(0,0,0,.2) !default;
-$dropdownDividerTop:            #e5e5e5 !default;
-$dropdownDividerBottom:         $white !default;
-
-$dropdownLinkColor:             $grayDark !default;
-$dropdownLinkColorHover:        $white !default;
-$dropdownLinkColorActive:       $white !default;
-
-$dropdownLinkBackgroundActive:  $linkColor !default;
-$dropdownLinkBackgroundHover:   $dropdownLinkBackgroundActive !default;
-
-
-
 // COMPONENT VARIABLES
 // --------------------------------------------------
 
@@ -296,6 +279,22 @@ $successBorder:           darken(adjust-hue($successBackground, -10), 5%);
 $infoText:                #3a87ad;
 $infoBackground:          #d9edf7;
 $infoBorder:              darken(adjust-hue($infoBackground, -10), 7%);
+
+
+// Dropdowns
+$dropdownBackground:            $white !default;
+$dropdownBorder:                rgba(0,0,0,.2) !default;
+$dropdownDividerTop:            #e5e5e5 !default;
+$dropdownDividerBottom:         $white !default;
+
+$dropdownLinkColor:             $grayDark !default;
+$dropdownLinkColorHover:        $white !default;
+$dropdownLinkColorActive:       $white !default;
+
+$dropdownLinkBackgroundActive:  $linkColor !default;
+$dropdownLinkBackgroundHover:   $dropdownLinkBackgroundActive !default;
+
+
 
 <?php
 

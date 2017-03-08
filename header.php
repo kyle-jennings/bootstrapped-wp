@@ -4,7 +4,7 @@ global $page, $paged;
 $root = get_stylesheet_directory_uri();
 
 $navbar = new Navbar('primary-menu');
-
+// examine($navbar);
 ?>
 
 <!DOCTYPE html>

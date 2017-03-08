@@ -5,64 +5,65 @@
 
 // Parent container
 .accordion {
-  margin-bottom: $baseLineHeight;
+    margin-bottom: $baseLineHeight;
 }
 
 // Group == heading + body
 .accordion-group {
-  margin-bottom: 2px;
+    margin-bottom: 2px;
 
 
     @if $collapsiblesBackgroundFill == vertical {
-          @include gradient-vertical($collapsiblesBackgroundColor, $collapsiblesBackgroundEndColor );
+        @include gradient-vertical($collapsiblesBackgroundColor, $collapsiblesBackgroundEndColor );
     } @else if $collapsiblesBackgroundFill == horizontal {
-          @include gradient-horizontal($collapsiblesBackgroundColor, $collapsiblesBackgroundEndColor );
+        @include gradient-horizontal($collapsiblesBackgroundColor, $collapsiblesBackgroundEndColor );
     } @else if $collapsiblesBackgroundFill == radial {
-          @include gradient-radial($collapsiblesBackgroundColor, $collapsiblesBackgroundEndColor );
+        @include gradient-radial($collapsiblesBackgroundColor, $collapsiblesBackgroundEndColor );
     } @else if $collapsiblesBackgroundFill == none {
         background-color: transparent;
     } @else {
         background-color: $collapsiblesBackgroundColor;
     }
 
-  // border-radius: $collapsiblesBorderRadius;
+    border-radius: $collapsiblesBorderRadius;
 
-  border-color: $collapsiblesBorderColor;
-  border-style: $collapsiblesBorderStyle;
-  border-width: $collapsiblesBorderWidth;
-  color: $collapsiblesColor;
+    border-color: $collapsiblesBorderColor;
+    border-style: $collapsiblesBorderStyle;
+    border-width: $collapsiblesBorderWidth;
+    color: $collapsiblesColor;
+    overflow: hidden;
 
+    a {
+        color: $collapsiblesLinksColor;
+        @include link-bg($collapsiblesLinksBackgroundStyle, $collapsiblesLinksBackgroundColor);
+        @include link-decoration($collapsiblesLinksDecoration, $collapsiblesLinksTextShadow);
 
-  a {
-      color: $collapsiblesLinksColor;
-      @include link-bg($collapsiblesLinksBackgroundStyle, $collapsiblesLinksBackgroundColor);
-      @include link-decoration($collapsiblesLinksDecoration, $collapsiblesLinksTextShadow);
+        &:hover,
+        &:hover:visited {
+            color: $collapsiblesHoveredLinksColor;
+            @include link-bg($collapsiblesHoveredLinksBackgroundStyle, $collapsiblesHoveredLinksBackgroundColor);
+        }
 
-      &:hover,
-      &:hover:visited {
-          color: $collapsiblesHoveredLinksColor;
-          @include link-bg($collapsiblesHoveredLinksBackgroundStyle, $collapsiblesHoveredLinksBackgroundColor);
-      }
+        &:visited {
+            color: $collapsiblesVisitedLinksColor;
+            @if $collapsiblesVisitedLinksBackgroundStyle != none {
+                background-color: $collapsiblesVisitedLinksBackgroundColor;
+            }
+        }
 
-      &:visited {
-          color: $collapsiblesVisitedLinksColor;
-          @if $collapsiblesVisitedLinksBackgroundStyle != none {
-              background-color: $collapsiblesVisitedLinksBackgroundColor;
-          }
-      }
-
-      &:focus,
-      &:active {
-          color: $collapsiblesActiveLinksColor;
-          @if $collapsiblesActiveLinksBackgroundStyle != none {
-              background-color: $collapsiblesActiveLinksBackgroundColor;
-          }
-      }
+        &:focus,
+        &:active {
+            color: $collapsiblesActiveLinksColor;
+            @if $collapsiblesActiveLinksBackgroundStyle != none {
+                background-color: $collapsiblesActiveLinksBackgroundColor;
+            }
+        }
     }
 }
 
 .accordion-heading {
     border-bottom: 0;
+
 }
 
 
@@ -75,9 +76,9 @@
     } @else if $collapsiblesHeaderBackgroundFill == radial {
         @include gradient-radial($collapsiblesHeaderBackgroundColor, $collapsiblesHeaderBackgroundEndColor );
     } @else if $collapsiblesHeaderBackgroundFill == none {
-      background-color: transparent;
+        background-color: transparent;
     } @else {
-      background-color: $collapsiblesHeaderBackgroundColor;
+        background-color: $collapsiblesHeaderBackgroundColor;
     }
 
     color: $collapsiblesHeaderTextColor;
@@ -130,13 +131,13 @@
 
 // General toggle styles
 .accordion-toggle {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 // Inner needs the styles because you can't animate properly with any styles on the element
 .accordion-inner {
-  padding: 9px 15px;
-  border-top-color: $collapsiblesInnerBorderColor;
-  border-top-style: $collapsiblesInnerBorderStyle;
-  border-top-width: $collapsiblesInnerBorderWidth;
+    padding: 9px 15px;
+    border-top-color: $collapsiblesInnerBorderColor;
+    border-top-style: $collapsiblesInnerBorderStyle;
+    border-top-width: $collapsiblesInnerBorderWidth;
 }
