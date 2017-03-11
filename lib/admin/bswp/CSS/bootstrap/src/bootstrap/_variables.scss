@@ -625,7 +625,95 @@ $wellLinksColor: wellLinksColor !default;
     $wellActiveLinksTextShadow: none !default;
 
 
-    // Navbar
+    // header
+//////////////////////
+
+// base settings
+$headingAlignment: center;
+
+
+// the background colors
+$headerBackgroundStartColor:           $bodyBackground !default;
+$headerBackgroundEndColor:             $headerBackgroundStartColor !default;
+$headerBackgroundFill: solid !default;
+
+// background wallpaper
+$headerUseBackgroundWallpaper: no !default;
+
+$headerBackgroundImage: "none" !default;
+$headerBackgroundRepeat: no-repeat !default;
+$headerBackgroundAttachment: scroll !default;
+
+$headerBackgroundPosition: left top !default;
+$headerBackgroundPositionX: 0 !default;
+$headerBackgroundPositionY: 0 !default;
+
+$headerBackgroundSize: auto !default;
+$headerBackgroundPercentage: 0% !default;
+
+// Text and Headings
+$headerText:                      #777 !default;
+
+    $headerBorderColor: rgba(0,0,0, .2) !default;
+
+    $headerBorderStyle: solid !default;
+
+    $headerBorderWidth: 1px !default;
+
+    $headerBorderRadius: $baseBorderRadius !default;
+
+    
+$headerLinksColor: $linkColor;
+
+$headerLinksColor: headerLinksColor !default;
+    $headerLinksBackgroundStyle: none !default;
+    $headerLinksBackgroundColor: transparent !default;
+    $headerLinksDecoration: none !default;
+    $headerLinksTextShadow: none !default;
+
+
+    $headerVisitedLinksColor: headerLinksColor !default;
+    $headerVisitedLinksBackgroundStyle: none !default;
+    $headerVisitedLinksBackgroundColor: transparent !default;
+    $headerVisitedLinksDecoration: none !default;
+    $headerVisitedLinksTextShadow: none !default;
+
+
+    $headerHoveredLinksColor: headerLinksColor !default;
+    $headerHoveredLinksBackgroundStyle: none !default;
+    $headerHoveredLinksBackgroundColor: transparent !default;
+    $headerHoveredLinksDecoration: none !default;
+    $headerHoveredLinksTextShadow: none !default;
+
+
+    $headerActiveLinksColor: headerLinksColor !default;
+    $headerActiveLinksBackgroundStyle: none !default;
+    $headerActiveLinksBackgroundColor: transparent !default;
+    $headerActiveLinksDecoration: none !default;
+    $headerActiveLinksTextShadow: none !default;
+
+
+    
+
+
+    $headerHeadingsColor:         $headerText !default;
+
+    $headerHeadingsDecoration: none !default;
+    $headerHeadingsTextShadow: darken($headingsColor, 15%) !default;
+
+
+    $headerHeadingsLinksColor:         $headerLinksColor !default;
+
+    $headerHeadingsLinksDecoration: none !default;
+    $headerHeadingsLinksTextShadow: darken($headingsColor, 15%) !default;
+
+
+    $headerHeadingsLinksHoveredColor:         $headerLinksColor !default;
+
+    $headerHeadingsLinksHoveredDecoration: none !default;
+    $headerHeadingsLinksHoveredTextShadow: darken($headingsColor, 15%) !default;
+
+// Navbar
 // -------------------------
 
 

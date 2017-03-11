@@ -34,7 +34,7 @@ function kjd_site_preview($src = null){
     $output .= '</select>';
 
     $output .= '<div class="preview-wrapper">';
-        $output .= '<iframe class="preview-window" src="'.$src.'" width="100%" height="600" seamless></iframe>';
+        $output .= '<iframe id="preview-window" class="preview-window" src="'.$src.'" width="100%" height="600" seamless></iframe>';
     $output .= '</div>';
 
     return $output;

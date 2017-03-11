@@ -3,9 +3,22 @@
 global $page, $paged;
 $root = get_stylesheet_directory_uri();
 
+$site_options = get_option('bswp_site_settings');
+$header_settings = $site_options['header'];
+
 $navbar = new Navbar('primary-menu');
-// examine($navbar);
+
+
+
+// $args = array();
+// $content_type = 'title';
+// $custom_content = '<h1>Lorem Ipsum</h1><p><span style=\"color: black !important; font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify;\" data-mce-style=\"color: black !important; font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify;\">Vivamus laoreet nisi at enim ornare, id sollicitudin neque iaculis. Suspendisse commodo elementum dictum. Sed a arcu volutpat, elementum felis in, lacinia lorem. Proin malesuada non sem in rutrum.&nbsp;</span></p>';
+// content, styles, page type, url
+// $header = new Header(null, $args, null, 'http://kylejenningsdesign.loc/');
+// examine($header);
+
 ?>
+
 
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> >
@@ -59,9 +72,7 @@ $navbar = new Navbar('primary-menu');
                 ?>
 				<div class="container">
 					<div class="row">
-					<?php
-                        kjd_header_content($header_contents, $logo_toggle, $logo, $custom_header);
-                    ?>
+					<?php echo new Header(); ?>
 					</div> <!-- end row -->
 				</div><!-- end header container -->
                 <?php

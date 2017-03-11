@@ -2,7 +2,7 @@
 
 if(! function_exists('examine') ){
 
-    function examine($object, $examine_type = 'print_r'){
+    function examine($object, $examine_type = 'print_r', $die = 'hard'){
         if(empty($object))
             return;
 
@@ -12,7 +12,8 @@ if(! function_exists('examine') ){
         else
             print_r($object);
 
-        die;
+        if($die != 'soft')
+            die;
     }
 
 }
@@ -47,6 +48,7 @@ if(!is_admin()){
     require_once('functions/kjd-gallery.php');
     require_once('functions/kjd-shortcodes.php');
     require_once('functions/class-Navbar.php');
+    require_once('functions/class-Header.php');
     require_once('functions/kjd-class-layout.php');
     require_once('functions/class-mobileMenu.php');
     require_once('functions/class-navbarMenu.php');

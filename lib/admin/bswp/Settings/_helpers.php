@@ -2,7 +2,12 @@
 
 namespace bswp\settings\_helpers;
 
+$save_form_script = '
+    var $this = $(this);
+    var thisVal = $this.val();
 
+    $this.closest("form").find("#submit").addClass()
+';
 
 /**
  * Pixel width helper - Adds 'px' to each step in the range
@@ -54,7 +59,7 @@ function border_settings_map(
         }
 
         $return_arr[$toggle] = rtrim($return_arr[$toggle],',');
-        
+
     }
     // examine($return_arr);
     return $return_arr;

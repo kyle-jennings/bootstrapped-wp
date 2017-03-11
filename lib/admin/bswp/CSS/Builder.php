@@ -43,7 +43,7 @@ class Builder {
     }
 
     public function set_manifest() {
-        // $var_file = $this->bs_dir . 
+        // $var_file = $this->bs_dir .
     }
 
 

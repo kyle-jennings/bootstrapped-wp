@@ -1,0 +1,98 @@
+#header,
+.section--header,
+.front_page_custom_content.wp-editor {
+
+    @if $headerBackgroundFill == vertical {
+        @include gradient-vertical($headerBackgroundStartColor, $headerBackgroundEndColor);
+    } @else if $headerBackgroundFill == horizontal {
+        @include gradient-horizontal($headerBackgroundStartColor, $headerBackgroundEndColor);
+    } @else if $headerBackgroundFill == radial {
+        @include gradient-radial($headerBackgroundStartColor, $headerBackgroundEndColor);
+    } @else if $headerBackgroundFill == none {
+        background-color: transparent;
+        background-image: none;
+    } @else {
+        background-color: $headerBackgroundStartColor;
+        background-image: none;
+    }
+
+
+    @if $headerUseBackgroundWallpaper == yes {
+        background-attachment: $headerBackgroundAttachment;
+        background-image: url($headerBackgroundImage);
+        @if $headerBackgroundPosition == custom {
+            background-position: $headerBackgroundPositionX  $headerBackgroundPositionY;
+        } @else {
+            background-position: $headerBackgroundPosition;
+        }
+        background-repeat: $headerBackgroundRepeat;
+
+        @if $headerBackgroundSize == percentage {
+            background-size: $headerBackgroundPercentage;
+        } @else {
+            background-size: $headerBackgroundSize;
+
+        }
+    }
+
+    border-radius: $headerBorderRadius;
+
+    border-color: $headerBorderColor;
+    border-style: $headerBorderStyle;
+    border-width: $headerBorderWidth;
+    border-left: none;
+    border-right: none;
+
+    color: $headerText;
+
+    a {
+        color: $headerLinksColor;
+        @include link-bg($headerLinksBackgroundStyle, $headerLinksBackgroundColor);
+        @include link-decoration($headerLinksDecoration, $headerLinksTextShadow);
+
+        &:hover,
+        &:hover:visited {
+            color: $headerHoveredLinksColor;
+            @include link-bg($headerHoveredLinksBackgroundStyle, $headerHoveredLinksBackgroundColor);
+            @include link-decoration($headerHoveredLinksDecoration, $headerHoveredLinksTextShadow);
+
+        }
+
+        &:focus,
+        &:active {
+            color: $headerActiveLinksColor;
+            @include link-bg($headerActiveLinksBackgroundStyle, $headerActiveLinksBackgroundColor);
+            @include link-decoration($headerActiveLinksDecoration, $headerActiveLinksTextShadow);
+        }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: $headerHeadingsColor;
+        @include link-decoration($headerHeadingsDecoration, $headerHeadingsTextShadow);
+        a {
+            color: $headerHeadingsLinksColor;
+            @include link-decoration($headerHeadingsLinksDecoration, $headerHeadingsLinksTextShadow);
+        }
+
+
+        a:hover,
+        a:focus,
+        a:active {
+
+            color: $headerHeadingsLinksHoveredColor;
+            @include link-decoration($headerHeadingsLinksHoveredDecoration, $headerHeadingsLinksHoveredTextShadow);
+        }
+    }
+
+
+    text-align: $headingAlignment;
+
+    .jumbotron {
+        text-align: $headingAlignment;
+    }
+}

@@ -86,3 +86,34 @@ function rebuild_nav($args = array()) {
     );
 
 }
+
+
+function rebuild_header($args = array()){
+
+    $lib_dir = dirname(dirname(dirname(__FILE__)));
+    include $lib_dir . '/functions/class-Header.php';
+
+    $custom_content = null;
+    $styles = null;
+    $page_type = null;
+    $url = $args['iframeURL'] ? $args['iframeURL'] : null;
+
+    if( rtrim($url, '/') != rtrim(get_site_url(),'/') && $args['tab'] == 'front_page' )
+        return array('output' => 'no-change');
+
+    foreach($args['dependancies'] as $dep){
+        if(strpos($dep['name'], 'custom_content') !== false)
+            $custom_content = $args['value'] !== 'title' ? $dep['value'] : null;
+        else
+            $new_args[str_replace('#header-settings-','', $dep['name'])] = $dep['value'];
+    }
+
+    // content, styles, page type, url
+    $header = new Header($custom_content, $styles, $page_type, $url);
+
+    return array(
+        'output' => $header->output,
+        'callback_args' => '',
+        'args' => $new_args
+    );
+}
