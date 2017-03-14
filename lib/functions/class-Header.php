@@ -4,7 +4,7 @@ class Header {
 
     // settings
     public $page_id;
-    public $page;
+    public $page_type;
     public $args;
     public $content_type;
     public $custom_content;
@@ -13,23 +13,22 @@ class Header {
     public $output = '';
     public $content ='';
 
-    public function __construct($custom_content = null, $args = array(), $page = null, $url = null ) {
+    // args: content_type, custom content, styles, page type, url, content type
+    public function __construct($content_type = null, $custom_content = null, $args = array(), $page_type = null, $url = null ) {
 
         // examine(get_queried_object());
 
         // get current page ID
         $this->page_id  = get_queried_object_id();
-        // error_log('quieried page ID: '. $this->page_id );
         // get posts page_id
         $this->post_page_id = get_option('page_for_posts', true);
 
         // if the page_id is not set is a url is passed in..
         if(!$this->page_id || $this->page_id == 0 ){
-            $this->page_id = $url ? $this->get_page($url) : null;
-            // error_log('new page id: '. $this->page_id);
+            $this->page_id = $url ? $this->get_page_id($url) : null;
         }
 
-        $this->page = $page ? $page : $this->set_page_type($this->page_id);
+        $this->page_type = $page_type ? $page_type : $this->set_page_type($this->page_id);
 
 
 
@@ -39,10 +38,11 @@ class Header {
             extract($args);
 
         // set the passed in content_type and content if any
-        $this->content_type = $custom_content ? 'custom_content' : null;
+        $this->content_type = $content_type ? $content_type : null;
         $this->custom_content = ($this->content_type == 'custom_content' && $custom_content)
             ? $custom_content
             : null;
+
 
 
         if($this->custom_content){
@@ -58,7 +58,6 @@ class Header {
 
         // use the correct content
         $this->select_content();
-
         // unset the uneeded vars
         unset($this->args);
         unset($this->saved_settings);
@@ -73,15 +72,12 @@ class Header {
 
 
         // set the current page
-        if($id === null || is_front_page($id) || ( $this->page_id != $this->post_page_id && is_home($id) ) ){
-            // error_log('front page: '. $id);
+        if($id === null || is_front_page($id) || (  $this->page_id !== get_option('page_for_posts', true) && strpos($template, 'index')) ){
             return 'frontpage';
         }elseif( is_archive($id) || ($this->page_id == $this->post_page_id  || is_home($id)) ){
-            // error_log('feed: '. $id);
 
             return 'feed';
         }else {
-            // error_log('single: '. $id);
 
             return 'single';
         }
@@ -89,45 +85,17 @@ class Header {
 
     }
 
-
-    public function set_content($content = '') {
-
-        $this->content = $content;
+    /**
+     * Displays custom content as defined in the theme settings
+     */
+    public function custom_content() {
         $output = '';
-        $output .= '<div class="span12 js--header-content">';
-            $output .= $this->content;
-        $output .= '</div>';
-        $this->output = $output;
-        unset($this->custom_content);
+        $output .= $this->custom_content ? $this->custom_content : '';
+
+        return $output;
     }
 
-
-    // Waht page are we on and what content do we serve?
-    public function select_content(){
-
-        // error_log('selecting content');
-        $post_page = get_option('page_for_posts', true);
-
-        if( $this->page == 'frontpage'){
-            // error_log('fp');
-            $content = $this->frontpage();
-        }elseif( $this->page == 'feed' ){
-            // error_log('feed');
-
-            $content = $this->feed();
-        }else {
-            // error_log('page');
-
-            $content = $this->get_page_content();
-        }
-
-        $this->set_content($content);
-
-    }
-
-
-    public function get_page($url) {
-        // error_log('supplied url:' . $url . ', id: ' . $this->page_id);
+    public function get_page_id($url) {
         $number = url_to_postid($url);
         $id = null;
         if($number > 0)
@@ -140,9 +108,62 @@ class Header {
                 $id =  null;  // front page
         }
 
-        // error_log('found page id: '. $id);
         return $id;
     }
+
+
+    public function set_content($content = '') {
+
+        $this->content = $content;
+        $output = '';
+        $output .= '<div class="span12 header-content js--header-content">';
+            $output .= '<div class="jumbotron no-background">';
+                $output .= $this->content;
+            $output .= '</div>';
+
+        $output .= '</div>';
+        $this->output = $output;
+        unset($this->custom_content);
+    }
+
+
+    // Waht page are we on and what content do we serve?
+    public function select_content(){
+
+        $post_page = get_option('page_for_posts', true);
+
+        if( $this->page_type == 'frontpage'){
+            $content = $this->get_frontpage_content();
+        }elseif( $this->page_type == 'feed' ){
+
+            $content = $this->get_feed_content();
+        }else {
+
+            $content = $this->get_page_content();
+        }
+
+        $this->set_content($content);
+
+    }
+
+
+
+    /**
+     * Displays the Site Title and descriptoin
+     * @return [type] [description]
+     */
+    public function site_title() {
+        $output = '';
+
+            $output .= '<h1 class="logo-wrapper" >';
+                    $output .= get_bloginfo( 'name');
+            $output .= '</h1>';
+            $output .= '<div class="logo-wrapper">'.get_bloginfo('description').'</div>';
+
+
+        return $output;
+    }
+
 
 
     /**
@@ -150,7 +171,7 @@ class Header {
      * (or widgets eventually).  So the logic for that is here
      * @return [type] [description]
      */
-    public function frontpage() {
+    public function get_frontpage_content() {
         // get the saved front page values
         $this->_get_default('front_page');
 
@@ -162,43 +183,11 @@ class Header {
     }
 
 
-    /**
-     * Displays the Site Title and descriptoin
-     * @return [type] [description]
-     */
-    public function site_title() {
-        $output = '';
-        $output .= '<div class="jumbotron no-background">';
-            $output .= '<h1 class="logo-wrapper" >';
-                    $output .= get_bloginfo( 'name');
-            $output .= '</h1>';
-            $output .= '<div class="logo-wrapper">'.get_bloginfo('description').'</div>';
-        $output .= '</div>';
-
-
-        return $output;
-    }
-
-
-    /**
-     * Displays custom content as defined in the theme settings
-     */
-    public function custom_content() {
-        $output = '';
-
-
-        $output .= '<div class="jumbotron no-background">';
-            $output .= $this->custom_content ? $this->custom_content : '';
-        $output .= '</div>';
-
-        return $output;
-    }
-
-
     /** Page title for feeds */
-    public function feed() {
+    public function get_feed_content() {
 
-        // error_log('getting feed title');
+        $this->_get_default('feed_page');
+
         $post = get_queried_object();
 
         if( $post->post_title)
@@ -211,12 +200,11 @@ class Header {
             $title = '';
 
 
-        $output = '';
-        $output .= '<div class="jumbotron no-background">';
-            $output .= '<h1 class="logo-wrapper" >';
-                    $output .= $title;
-            $output .= '</h1>';
-        $output .= '</div>';
+
+        if($this->content_type == 'title')
+            $output = $this->title_markup($title);
+        else
+            $output = $this->featured_post_markup($post);
 
         return $output;
     }
@@ -226,23 +214,57 @@ class Header {
     public function get_page_content() {
         global $post;
 
-        $title = $post->post_title ? $post->post_title : get_the_title($this->page_id);
-        $output = '';
+        $this->_get_default('feed_page');
 
-        $output .= '<div class="jumbotron no-background">';
-            $output .= '<h1 class="logo-wrapper" >';
-                    $output .= $title;
-            $output .= '</h1>';
-            // $output .= '<div class="logo-wrapper">'.get_bloginfo('description').'</div>';
-        $output .= '</div>';
+        $title = $post->post_title ? $post->post_title : get_the_title($this->page_id);
+
+
+        if($this->content_type == 'title')
+            $output = $this->title_markup($title);
+        else
+            $output = $this->excerpt_markup($title);
+
+
 
         return $output;
     }
 
 
-    public function _get_default($target) {
+    public function featured_post_markup($post) {
+        $f_id = get_option('featured-post--post');
+        include dirname(__FILE__) . '/class-FeaturedPost.php';
 
-        $this->content_type = ($this->content_type != null)
+        $use_exceprt = strpos($this->content_type, 'excerpt') !== false ? 'use-excerpt' : null;
+        $featured_post = new FeaturedPost($f_id, 'post', $use_exceprt);
+        return $featured_post->output;
+        // return '';
+    }
+
+
+    public function excerpt_markup($title) {
+        $output = '';
+
+        $use_title = strpos($this->content_type, 'title') !== false ? 'use-title' : null;
+        if($use_title == 'use-title')
+            $output = $this->title_markup($title);
+
+        $output .= '<p>'.get_the_excerpt($this->page_id).'</p>';
+        return $output;
+    }
+
+    public function title_markup($title) {
+        $output = '';
+        $output .= '<h1 class="logo-wrapper" >';
+                $output .= $title;
+        $output .= '</h1>';
+
+        return $output;
+    }
+
+
+    // if custom content has not been passed in, then we
+    public function _get_default($target) {
+        $this->content_type = $this->content_type
             ? $this->content_type
             : $this->saved_settings[$target]['content_type'];
 

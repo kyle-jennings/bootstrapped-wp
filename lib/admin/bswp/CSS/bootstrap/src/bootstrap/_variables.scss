@@ -651,6 +651,7 @@ $headerBackgroundPositionY: 0 !default;
 $headerBackgroundSize: auto !default;
 $headerBackgroundPercentage: 0% !default;
 
+$headerBackgroundOverlay: transparent !default;;
 // Text and Headings
 $headerText:                      #777 !default;
 
@@ -713,6 +714,15 @@ $headerLinksColor: headerLinksColor !default;
     $headerHeadingsLinksHoveredDecoration: none !default;
     $headerHeadingsLinksHoveredTextShadow: darken($headingsColor, 15%) !default;
 
+// front page settings
+$frontpageAlignment: center;
+
+
+// feed page settings
+$feedAlignment: center;
+
+// single page settings
+$singleAlignment: center;
 // Navbar
 // -------------------------
 

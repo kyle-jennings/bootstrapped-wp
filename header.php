@@ -8,15 +8,6 @@ $header_settings = $site_options['header'];
 
 $navbar = new Navbar('primary-menu');
 
-
-
-// $args = array();
-// $content_type = 'title';
-// $custom_content = '<h1>Lorem Ipsum</h1><p><span style=\"color: black !important; font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify;\" data-mce-style=\"color: black !important; font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify;\">Vivamus laoreet nisi at enim ornare, id sollicitudin neque iaculis. Suspendisse commodo elementum dictum. Sed a arcu volutpat, elementum felis in, lacinia lorem. Proin malesuada non sem in rutrum.&nbsp;</span></p>';
-// content, styles, page type, url
-// $header = new Header(null, $args, null, 'http://kylejenningsdesign.loc/');
-// examine($header);
-
 ?>
 
 
@@ -59,13 +50,13 @@ $navbar = new Navbar('primary-menu');
 <body <?php body_class(); ?> >
 
 <div id="pageWrapper">
-	<div id="mastArea" class="<?php echo $confine_mast == 'true' ? 'container' : '' ;?>">
+	<div id="mastArea">
     <?php
     	if( $navbar->position == 'above_header' || $navbar->position == 'stickied_to_top')
             echo $navbar;
     ?>
 
-			<div id="header" class="<?php echo $confine_header_background =='true' ? 'container confined' : '' ;?>">
+			<div id="header">
                 <?php
                 if($navbar->position == 'in_header_top')
                     echo $navbar;

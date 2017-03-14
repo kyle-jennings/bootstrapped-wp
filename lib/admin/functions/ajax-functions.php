@@ -74,8 +74,11 @@ function rebuild_nav($args = array()) {
 
     $new_args = array();
     // get all the ars for the new navbar
-    foreach($args['dependancies'] as &$dep){
-        $new_args[str_replace('#navbar-settings-','', $dep['name'])] = $dep['value'];
+    //
+    if(!empty($args['dependancies'])) {
+        foreach($args['dependancies'] as &$dep){
+            $new_args[str_replace('#navbar-settings-','', $dep['name'])] = $dep['value'];
+        }
     }
 
     $navbar = new Navbar('primary-menu', $new_args, 'preview');
@@ -97,23 +100,41 @@ function rebuild_header($args = array()){
     $styles = null;
     $page_type = null;
     $url = $args['iframeURL'] ? $args['iframeURL'] : null;
+    $content_type = $args['field'] == 'content_type' ? $args['value'] : null;
 
-    if( rtrim($url, '/') != rtrim(get_site_url(),'/') && $args['tab'] == 'front_page' )
-        return array('output' => 'no-change');
 
-    foreach($args['dependancies'] as $dep){
-        if(strpos($dep['name'], 'custom_content') !== false)
-            $custom_content = $args['value'] !== 'title' ? $dep['value'] : null;
-        else
-            $new_args[str_replace('#header-settings-','', $dep['name'])] = $dep['value'];
+    // foreach($args as $arg => $val)
+    //     error_log($arg .'=>'. $val);
+
+
+    if(!empty($args['dependancies'])) {
+        foreach($args['dependancies'] as $dep){
+
+            // if the dep name is custom content,
+            // and the arg value is not title (that is to say, the content type is not sety to "title")
+            if(strpos($dep['name'], 'custom_content') !== false)
+                $custom_content = $args['value'] !== 'title' ? $dep['value'] : null;
+            else
+                $new_args[str_replace('#header-settings-','', $dep['name'])] = $dep['value'];
+        }
     }
 
+
     // content, styles, page type, url
-    $header = new Header($custom_content, $styles, $page_type, $url);
+    $header = new Header($content_type, $custom_content, $styles, $page_type, $url);
+    // $output = $header->output;
 
     return array(
-        'output' => $header->output,
+        'output' => $output = $header->output,
         'callback_args' => '',
         'args' => $new_args
     );
+}
+
+
+function rebuild_header_custom_content($args = array()){
+
+    $args['value'] = 'custom_content';
+    return rebuild_header($args);
+
 }

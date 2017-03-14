@@ -34,6 +34,7 @@ $headerBackgroundPositionY: <?php echo $header_wallpaper['background_positionY']
 $headerBackgroundSize: <?php echo $header_wallpaper['background_size'] ? $header_wallpaper['background_size'] : 'auto'; ?> !default;
 $headerBackgroundPercentage: <?php echo $header_wallpaper['background_percentage'] ? $header_wallpaper['background_percentage'] : '0%'; ?> !default;
 
+$headerBackgroundOverlay: <?php echo $header_wallpaper['overlay_color_rgba'] ? $header_wallpaper['overlay_color_rgba'] : 'transparent'; ?> !default;;
 // Text and Headings
 $headerText:                      <?php echo $header_text['text_color'] ? $header_text['text_color'] : '#777'; ?> !default;
 
@@ -62,3 +63,13 @@ foreach($headings as $state=>$heading):
 
 <?php
     endforeach;
+?>
+// front page settings
+$frontpageAlignment: <?php echo $header_frontpage['title_alignment'] ? $header_frontpage['title_alignment'] : 'center' ?>;
+
+
+// feed page settings
+$feedAlignment: <?php echo $header_feed['title_alignment'] ? $header_feed['title_alignment'] : 'center' ?>;
+
+// single page settings
+$singleAlignment: <?php echo $header_single['title_alignment'] ? $header_single['title_alignment'] : 'center' ?>;

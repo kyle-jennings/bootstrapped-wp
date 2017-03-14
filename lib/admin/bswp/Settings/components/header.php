@@ -62,7 +62,25 @@ $header->add_tab('settings', array(
 
 // the colors
 $header->add_tab('background_colors', $background_colors);
-$header->add_tab('background_wallpaper', $background_wallpaper);
+$header->add_tab('background_wallpaper', array_merge(
+        $background_wallpaper,
+        array(
+            'overlay_color'=>new ColorPicker(
+                array(
+                    'name'=>'overlay_color',
+                    'label'=>'Overlay Color',
+                    'args'=>'transparency'
+                )
+            ),
+            'overlay_color_rgba'=>new Hidden(
+                array(
+                    'name'=>'overlay_color_rgba',
+                    'label'=>''
+                )
+            ),
+        )
+    )
+);
 
 $header->add_tab('text',
     array_merge(
@@ -117,14 +135,14 @@ $header->add_tab('front_page',array(
                 'custom_content',
             ),
             'toggle_fields' => array(
-                'site_title'=>'title_alignment',
+                'title'=>'title_alignment',
                 'custom_content'=>'custom_content'
 
             ),
             'preview'=>'ajax',
             'preview_args'=>'rebuild_header',
             'preview_callback' => $rebuild_header_script,
-            'preview_dependancies' => '$(\'#front_page_custom_content_ifr\').contents().find(\'body\').html()'
+            'preview_dependancies' => '$(\'#front_page_custom_content_ifr\').contents().find(\'body\').html(),title_alignment'
         )
     ),
     'title_alignment' => new Select(
@@ -137,7 +155,7 @@ $header->add_tab('front_page',array(
                 'right'
             ),
             'toggled_by' => array(
-                'content_type' => 'site_title'
+                'content_type' => 'title'
             ),
         )
     ),
@@ -149,11 +167,76 @@ $header->add_tab('front_page',array(
             'toggled_by' => array(
                 'content_type' => 'custom_content'
             ),
-            'preview'=>'form_save_warning',
+            'preview'=>'ajax',
+            'preview_args' => 'rebuild_header_custom_content',
+            'preview_callback' => $rebuild_header_script,
             'args'=> array(
                 'type'=>'wp_editor',
                 'args' => array(),
+            ),
+            'preview_dependancies' => '$(\'#front_page_custom_content_ifr\').contents().find(\'body\').html(),title_alignment,content_type'
+        )
+    ),
+));
+
+
+$header->add_tab('feed_page',array(
+    'content_type' => new Select(
+        array(
+            'label'=> 'Content Type',
+            'name'=>'content_type',
+            'args' => array(
+                'title',
+                'featured_post',
+                'featured_post_and_excerpt',
+            ),
+            'preview'=>'ajax',
+            'preview_args'=>'rebuild_header',
+            'preview_callback' => $rebuild_header_script,
+            'preview_dependancies' => ''
+        )
+    ),
+    'title_alignment' => new Select(
+        array(
+            'label'=> 'Title Alignment',
+            'name'=>'title_alignment',
+            'args' => array(
+                'left',
+                'center',
+                'right'
             )
         )
     ),
+
+));
+
+
+$header->add_tab('single_page',array(
+    'content_type' => new Select(
+        array(
+            'label'=> 'Content Type',
+            'name'=>'content_type',
+            'args' => array(
+                'title',
+                'title_and_excerpt',
+                'excerpt',
+            ),
+            'preview'=>'ajax',
+            'preview_args'=>'rebuild_header',
+            'preview_callback' => $rebuild_header_script,
+            'preview_dependancies' => ''
+        )
+    ),
+    'title_alignment' => new Select(
+        array(
+            'label'=> 'Title Alignment',
+            'name'=>'title_alignment',
+            'args' => array(
+                'left',
+                'center',
+                'right'
+            )
+        )
+    ),
+
 ));

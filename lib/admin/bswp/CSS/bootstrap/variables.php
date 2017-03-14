@@ -126,7 +126,9 @@ $header_text = $header['text'];
 $header_links = $header['links'];
 $header_borders = $header['borders'];
 $header_settings = $header['settings'];
-
+$header_frontpage = $header['front_page'];
+$header_feed = $header['feed_page'];
+$header_single = $header['single_page'];
 
 ob_start();
 ?>

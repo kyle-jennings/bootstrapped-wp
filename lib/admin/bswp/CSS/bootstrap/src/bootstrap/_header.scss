@@ -31,7 +31,18 @@
             background-size: $headerBackgroundPercentage;
         } @else {
             background-size: $headerBackgroundSize;
+        }
 
+        &::before {
+            background-color: $headerBackgroundOverlay;
+            bottom: 0;
+            content: '';
+            display: block;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 1;
         }
     }
 
@@ -89,10 +100,18 @@
         }
     }
 
-
+    position: relative;
     text-align: $headingAlignment;
 
-    .jumbotron {
-        text-align: $headingAlignment;
+    body.frontpage & {
+        text-align: $frontpageAlignment;
+    }
+
+    body.feed & {
+        text-align: $feedAlignment;
+    }
+
+    body.single & {
+        text-align: $singleAlignment;
     }
 }
