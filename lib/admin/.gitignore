@@ -1,0 +1,8 @@
+bswp/CSS/styles/site.css
+assets/
+assets/css/admin.css
+assets/css/preview.css
+
+vendor/
+*/**/node_modules
+lib/admin/vendor/

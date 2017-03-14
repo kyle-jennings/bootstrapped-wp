@@ -1,5 +1,7 @@
-lib/admins/bswp/CSS/styles/site.css
-lib/admins/assets/css/preview.css
+lib/admin/bswp/css/styles/site.css
+lib/admin/assets/css/admin.css
+lib/admin/assets/css/preview.css
+
 lib/styles/site.css
 
 /vendor/
