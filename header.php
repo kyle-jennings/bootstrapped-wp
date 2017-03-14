@@ -3,9 +3,13 @@
 global $page, $paged;
 $root = get_stylesheet_directory_uri();
 
+$site_options = get_option('bswp_site_settings');
+$header_settings = $site_options['header'];
+
 $navbar = new Navbar('primary-menu');
-// examine($navbar);
+
 ?>
+
 
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> >
@@ -46,22 +50,20 @@ $navbar = new Navbar('primary-menu');
 <body <?php body_class(); ?> >
 
 <div id="pageWrapper">
-	<div id="mastArea" class="<?php echo $confine_mast == 'true' ? 'container' : '' ;?>">
+	<div id="mastArea">
     <?php
     	if( $navbar->position == 'above_header' || $navbar->position == 'stickied_to_top')
             echo $navbar;
     ?>
 
-			<div id="header" class="<?php echo $confine_header_background =='true' ? 'container confined' : '' ;?>">
+			<div id="header">
                 <?php
                 if($navbar->position == 'in_header_top')
                     echo $navbar;
                 ?>
 				<div class="container">
 					<div class="row">
-					<?php
-                        kjd_header_content($header_contents, $logo_toggle, $logo, $custom_header);
-                    ?>
+					<?php echo new Header(); ?>
 					</div> <!-- end row -->
 				</div><!-- end header container -->
                 <?php

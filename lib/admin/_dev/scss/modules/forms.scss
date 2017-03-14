@@ -23,3 +23,13 @@ form.kjd-options{
 .bswp-form .tab-content--fields {
     padding-top: 20px;
 }
+
+
+.bswp-form .field.TextArea {
+
+    &.expand{
+        
+        z-index: 9999;
+        width: 300%;
+    }
+}

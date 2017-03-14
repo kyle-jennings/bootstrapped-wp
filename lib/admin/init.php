@@ -39,10 +39,21 @@ function bswp_admin_assets() {
 }
 
 
+function bswp_add_editor_styles() {
+    $dir = get_bloginfo('template_directory');
+    $frontend_dir = $dir."/lib/styles/";
+    $admin_dir = $dir."/lib/admin/assets/css/";
+
+    $files = array($frontend_dir.'site.css', $admin_dir.'editor.css');
+    add_editor_style( $files );
+}
+add_action( 'admin_init', 'bswp_add_editor_styles' );
+
 // adds admin functions
 include 'functions/admin_functions.php';
 include 'functions/ajax-functions.php';
 include 'functions/shortcode-injector/init.php';
+include 'functions/metabox--featured-post.php';
 
 // update function
 include 'update/update.php';

@@ -105,10 +105,14 @@ body.desktopnav-fixed-bottom {
 /* ----------------------------------------------------------------------------------
 			Header
 ----------------------------------------------------------------------------------  */
-
+.header-content {
+    position: relative;
+    z-index: 2;
+}
 .logo-wrapper > a > img:hover,
 .logo-wrapper > img:hover {
-	box-shadow: none !important; }
+	box-shadow: none !important;
+}
 
 .jumbotron h1.logo-wrapper,
 .jumbotron h2.logo-wrapper{
@@ -448,7 +452,6 @@ body.logged-in .navbar-fixed-top {
 
 .jumbotron {
     margin: 60px 0;
-    text-align: center;
 }
 .jumbotron h1 {
     font-size: 72px;

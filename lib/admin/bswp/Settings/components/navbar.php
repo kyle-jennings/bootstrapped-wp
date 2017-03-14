@@ -25,12 +25,7 @@ unset($navbar_links['links_text_shadow']);
 
 
 
-$save_form_script = '
-    var $this = $(this);
-    var thisVal = $this.val();
 
-    $this.closest("form").find("#submit").addClass()
-';
 
 $rebuild_nav_script = '
     var $preview = $(".preview-window").contents();

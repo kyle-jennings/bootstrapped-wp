@@ -185,7 +185,7 @@ add_filter( 'dynamic_sidebar_params', 'kjd_add_device_visibility' );
 /* --------------------------------------------------
  Site logo
  ----------------------------------------------------*/
-function kjd_header_content($header_contents, $logo_toggle, $logo, $custom_header){
+function kjd_header_content(){
 
     $heading = is_front_page() ? 'h1' : 'h2' ;
     $header_output = '';
@@ -254,37 +254,30 @@ function kjd_empty_nav_fallback_callback( $args ) {
 function kjd_add_body_class( $classes ){
 
     $classes = array();
+    $classes[] = 'bswp-body';
+    $id = get_queried_object_id();
+    global $template;
 
-    $navbar_settings = get_option('kjd_navbar_misc_settings');
-    $navbar_settings = $navbar_settings['kjd_navbar_misc'];
-    $navbar_position = $navbar_settings['navbar_position'];
-
-    $mobile_nav_settings = get_option('kjd_mobileNav_misc_settings');
-    $mobile_nav_settings = $mobile_nav_settings['kjd_mobileNav_misc'];
-    $mobile_nav_position = $mobile_nav_settings['mobilenav_position'];
 
     if(is_front_page() ) {
-        $classes[] = 'home';
-    }elseif( is_page() ){
+        $classes[] = 'frontpage';
+    } elseif( $id == get_option('page_for_posts', true) ){
+        $classes[] = 'posts-page';
+        $classes[] = 'feed';
+    } elseif(is_archive() ){
+        $classes[] = 'feed';
+    } elseif( is_page() ){
+        $classes[] = 'page';
+        $classes[] = 'single';
         $classes[] = get_page_template_slug();
+    }elseif( $id !== get_option('page_for_posts', true) && strpos($template, 'index') ) {
+        $classes[] = 'frontpage';
     }
+
 
     if( is_user_logged_in() ){
         $classes[] = 'logged-in';
-    }
 
-    //navbar
-    if( $navbar_position == 'fixed-top'){
-        $classes[] = 'desktopnav-fixed-top';
-    }elseif( $navbar_position == 'fixed-bottom'){
-        $classes[] = 'desktopnav-fixed-bottom';
-    }
-
-    //mobilenav
-    if( $mobile_nav_position == 'fixed-top'){
-        $classes[] = 'mobilenav-fixed-top';
-    }elseif( $mobile_nav_position == 'fixed-bottom'){
-        $classes[] = 'mobilenav-fixed-bottom';
     }
 
     return $classes;

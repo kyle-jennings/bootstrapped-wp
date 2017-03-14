@@ -19,8 +19,8 @@ include dirname(__FILE__).'/field-sets/text.php';
 // component settings
 include dirname(__FILE__).'/field-sets/component-borders.php';
 
+include dirname(__FILE__).'/components/header.php';
 
-include dirname(__FILE__).'/components/title-area.php';
 
 include dirname(__FILE__).'/components/navbar.php';
 include dirname(__FILE__).'/components/preformatted.php';
@@ -74,7 +74,7 @@ $borders->add_tab('border-radius', $radii_fields);
 
 
 
-// headings settings
+// text and headings settings
 $text = new SettingsGroup('text');
 $text->add_tab('text', $regular_text);
 $text->add_tab('headings', $headings_normal);
@@ -84,9 +84,7 @@ $text->add_tab('headings_links_hovered', $headings_links_hovered);
 
 
 
-
-
-// Text settings
+// Link settings
 $link_settings = new SettingsGroup('links');
 $link_settings->add_tab('links', $links);
 $link_settings->add_tab('visited_links', $visited_links);
@@ -120,13 +118,13 @@ $groups = array(
     'borders' => $borders,
     'text' => $text,
     'links' => $link_settings,
+    'header' => $header,
     'navbar' => $navbar,
     'images' => $images,
     'forms' => $forms,
     'tables' => $tables,
     'preformatted' => $preformatted,
     'quotes' => $quotes,
-    'title_area' => $title_area,
     'misc' => $misc,
     'available_components' => $available_components,
     // 'available_sections' => $available_sections,

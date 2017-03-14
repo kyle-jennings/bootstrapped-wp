@@ -25,7 +25,7 @@ class kjdScaffolding extends kjdLayout {
  * This is the layout class. It builds the main content shit
  */
 class kjdLayout {
-	
+
 	public $output = '';
 
 	public function __toString(){
@@ -38,9 +38,9 @@ class kjdLayout {
 		$layoutSettings = $this->kjd_get_layout_settings();
 
 		$template = $layoutSettings['name'];
-		
+
 		$bodySettings = get_option('kjd_body_misc_settings');
-		$bodySettings = $bodySettings['kjd_body_misc'];	
+		$bodySettings = $bodySettings['kjd_body_misc'];
 		$confineBodyBackground = $bodySettings['kjd_body_confine_background'];
 		$confineClass = ($confineBodyBackground =='true' )? 'container confined' : '' ;
 		$device_view = $layoutSettings['deviceView'];
@@ -60,8 +60,8 @@ class kjdLayout {
 			$widthClass = 'span12';
 		}
 
-		// get the title	
-		$scaffolding_markup .= $this->kjd_get_the_title();
+		// get the title
+		// $scaffolding_markup .= $this->kjd_get_the_title();
 
 		//start scaffolding
 		$scaffolding_markup .= '<div id="body" class="'.$confineClass.'">';
@@ -71,12 +71,12 @@ class kjdLayout {
 
 
 					/* ----------------- top or left sidebar ------------------- */
-					 if($position =='top' || $position =='left'){ 
-			
-						$scaffolding_markup .= ($position =='top') ? 
+					 if($position =='top' || $position =='left'){
+
+						$scaffolding_markup .= ($position =='top') ?
 						 $this->kjd_get_sidebar($template,'horizontal',$position, $device_view) :
 						 $this->kjd_get_sidebar($template,null,$position, $device_view);
-					} 
+					}
 
 					//content div
 					$scaffolding_markup .= '<div id="main-content" class="'.$widthClass.'">';
@@ -94,9 +94,9 @@ class kjdLayout {
 						}else{
 							$scaffolding_markup .= '<div class="content-single">';
 						}
-						 while (have_posts()){ 
+						 while (have_posts()){
 
-							the_post(); 
+							the_post();
 							$scaffolding_markup .= $this->kjd_the_content_wrapper();
 
 						}
@@ -110,7 +110,7 @@ class kjdLayout {
 					}else{
 							$scaffolding_markup .= '<div class="content-wrapper">';
 									$scaffolding_markup .= kjd_the_404();
-							$scaffolding_markup .= '</div>';	
+							$scaffolding_markup .= '</div>';
 					}
 					/* ---------------------- End Loop ----------------------- */
 
@@ -118,11 +118,11 @@ class kjdLayout {
 					$scaffolding_markup .= '</div>'; // end maincontent span
 
 		/* ----------------- right or bottom sidebar ------------------- */
-			if($position =='bottom' || $position =='right'){ 
-				$scaffolding_markup .= ($position =='bottom') ? 
-				$this->kjd_get_sidebar($template,'horizontal',$position, $device_view) : 
+			if($position =='bottom' || $position =='right'){
+				$scaffolding_markup .= ($position =='bottom') ?
+				$this->kjd_get_sidebar($template,'horizontal',$position, $device_view) :
 				$this->kjd_get_sidebar($template,null,$position, $device_view);
-			} 
+			}
 
 
 		// close scaffolding
@@ -131,7 +131,7 @@ class kjdLayout {
 			$scaffolding_markup .= '</div>';// <!-- end container -->
 		$scaffolding_markup .= '</div>'; //<!-- end body -->
 
-		
+
 		return $scaffolding_markup;
 
 	}
@@ -140,7 +140,7 @@ class kjdLayout {
 	/**
 	 * This detects the current page's/post's /feed's template and gets teh layout settings appropriately
 	 * Layout settings for now, are nothing more than the position of the sidebar, as well as sidebar visibility.
-	 * 
+	 *
 	 * @param  [type] $template [description]
 	 * @return [type]           [description]
 	 */
@@ -160,7 +160,7 @@ class kjdLayout {
 			$template = 'attachment';
 
 		}elseif( is_404() ){
-			
+
 			$template = '404';
 
 		}elseif( is_category() ){
@@ -195,45 +195,45 @@ class kjdLayout {
 
 			// if current page is page template
 			if( is_page_template() ){
-				
+
 				$options = get_option('kjd_page_layout_settings');
 				$layoutSettings = $options['kjd_page_layouts'];
 				$is_page_template = true;
-				
+
 					if ( is_page_template('pageTemplate1.php') ){
 
 						$template = 'template_1';
-					
+
 					}elseif( is_page_template('pageTemplate2.php') ){
 
 						$template = 'template_2';
-					
+
 					}elseif( is_page_template('pageTemplate3.php') ){
 
 						$template = 'template_3';
-					
+
 					}elseif( is_page_template('pageTemplate4.php') ){
 
 						$template = 'template_4';
-					
+
 					}elseif( is_page_template('pageTemplate5.php') ){
 
 						$template = 'template_5';
-					
+
 					}elseif( is_page_template('pageTemplate6.php') ){
 
 						$template = 'template_6';
-					
+
 					}else{
-						
-						$template = 'page';							
+
+						$template = 'page';
 					}
 
 
 			// if current page is a page but not a template
 			}else{
 				$template = 'page';
-			
+
 			}
 
 		//fallback - if not a post template OR a page
@@ -277,7 +277,7 @@ class kjdLayout {
 
 		// this will wrap the content in a well if need be
 		$the_content_markup .= '<div class="the-content-wrapper '.$content_well.' '. $media_class .'">';
-			
+
 		if( is_attachment() ){
 
 			$the_content_markup .= $this->kjd_attachment_layout($post_options);
@@ -285,7 +285,7 @@ class kjdLayout {
 		}elseif( is_page() || is_single () ){
 
 			$the_content_markup .= $this->kjd_single_page_layout($post_options);
-		
+
 		}else{
 
 			$the_content_markup .= $this->kjd_posts_layout($post_options);
@@ -362,7 +362,7 @@ class kjdLayout {
 
 
 
-		
+
 		ob_start();
 			comment_form($args);
 			$buffered_comments = ob_get_contents();
@@ -376,7 +376,7 @@ class kjdLayout {
 	 *
 	 * As in, the shit from the wp editor or the attached image
 	 */
-		
+
 	public function kjd_get_the_content($post_display = null)
 	{
 		$allow_comments = get_option('kjd_pageTitle_misc_settings');
@@ -394,7 +394,7 @@ class kjdLayout {
 
 			if ( wp_attachment_is_image( $post->id ) ){
 				$att_image = wp_get_attachment_image_src( $post->id, "full");
-		        
+
 		        $the_content_markup .= '<div class="attachment">';
 		        	$the_content_markup .= '<a href="'.wp_get_attachment_url($post->id).'" title="'.get_the_title().'" rel="attachment">';
 		        		$the_content_markup .= '<img src="'.$att_image[0].'" class="attachment-medium" alt="'.$post->post_excerpt.'" />';
@@ -407,7 +407,7 @@ class kjdLayout {
 			$the_content_markup = kjd_the_404();
 
 		}elseif(is_single() || is_page()){
-			
+
 			ob_start();
 				the_content();
 				wp_link_pages();
@@ -418,8 +418,8 @@ class kjdLayout {
 			if($allow_comments == 'true' && is_single() ){
 				$the_content_markup .= kjd_comment_form();
 			}
-		
-		
+
+
 		}else{
 			ob_start();
 			if($post_display !='excerpt'){
@@ -495,7 +495,7 @@ class kjdLayout {
 	 */
 	public function kjd_get_the_title($content_type = null)
 	{
-		
+
 		$pageTitleSettings = get_option('kjd_pageTitle_misc_settings');
 		$pageTitleSettings = $pageTitleSettings['kjd_pageTitle_misc'];
 		$confineTitleBackground = $pageTitleSettings['kjd_pageTitle_confine_background'];
@@ -505,16 +505,16 @@ class kjdLayout {
 
 		$the_title_markup ='<div id="pageTitle" class="'.$class.'">';
 		$the_title_markup .= '<div class="container">';
-		
+
 		if( $use_breadcrumbs == 'true' ){
 			$the_title_markup .= '<h3>';
 				$the_title_markup .= kjd_build_breadcrumbs();
 			$the_title_markup .= '</h3>';
 		}else{
-		
+
 			$the_title_markup .= '<h1>';
 			if( is_archive() ){
-					
+
 
 					if ( is_day() ) :
 						$the_title_markup .= 'Daily Archives: <span>'.get_the_date() . '</span>';
@@ -534,14 +534,14 @@ class kjdLayout {
 
 							$the_title_markup .= 'Posted in: '.$buffered_cat;
 						}
-					endif;		
+					endif;
 
 				}elseif( is_search() ){
-					
+
 					global $wp_query;
 					$total_results = $wp_query->found_posts;
 					$the_title_markup .=  $total_results ? 'Posts containing: '.get_search_query() : 'No results found' ;
-				
+
 
 				}elseif( is_404() ){
 
@@ -551,18 +551,18 @@ class kjdLayout {
 
 					$the_title = get_the_title();
 					if( isset($the_title) && !empty($the_title) && !is_null($the_title) ){
-					
+
 						$the_title_markup .= $the_title;
 
 					}else {
 						$the_title_markup .= 'No Title';
 					}
-				}	
-			
+				}
+
 			$the_title_markup .= '</h1>';
-		
+
 		}
-			
+
 
 		$the_title_markup .=  '</div></div>';
 
@@ -606,10 +606,10 @@ class kjdLayout {
 		} else {
 
 			$breadcrumbs_output .= '<ul class="breadcrumb">';
-			
+
 			if ($show_home_link == 1) {
 				$breadcrumbs_output .=  sprintf($link, $home_link, $text['home']);
-				if ($frontpage_id == 0 || $parent_id != $frontpage_id) 
+				if ($frontpage_id == 0 || $parent_id != $frontpage_id)
 					$breadcrumbs_output .=  $delimiter;
 			}
 
@@ -721,7 +721,7 @@ class kjdLayout {
 	} // end dimox_breadcrumbs()
 
 	/**
-	 * builds and gets the sidebar, must call kjd_set_sidebar_area to get the correct widgts 
+	 * builds and gets the sidebar, must call kjd_set_sidebar_area to get the correct widgts
 	 * @param  string $sidebar     [description]
 	 * @param  [type] $location    [description]
 	 * @param  [type] $width       [description]
@@ -760,10 +760,10 @@ class kjdLayout {
 		);
 		if( !empty($post_templates) ){
 			foreach($post_templates as $k => $v){
-				$available_sidebars[] = $k; 
+				$available_sidebars[] = $k;
 			}
 		}
-		
+
 
 		if(!in_array($sidebar, $available_sidebars)){
 			$sidebar = 'default';
@@ -791,7 +791,7 @@ class kjdLayout {
 
 			// puts featured image before content wrapper
 			if( in_array($featured_image, array('atop_post','left_of_post') ) && $show_thumbnail == 'true'){
-				
+
 				$the_content_markup .= $this->kjd_get_featured_image($featured_image);
 
 			}
@@ -834,7 +834,7 @@ class kjdLayout {
 			if(in_array($featured_image, array('after_post','right_of_post')) && $show_thumbnail == 'true'){
 				$the_content_markup .= $this->kjd_get_featured_image($featured_image);
 			}
-			
+
 			return $the_content_markup;
 	}
 
@@ -862,20 +862,20 @@ class kjdLayout {
 
 			if( $attachment_layout == 'text-above' || $attachment_layout == 'text-left' ){
 				if( get_the_content()  ){
-					$the_content_markup .= '<p class="attachment-description">'.get_the_content().'</p>';	
+					$the_content_markup .= '<p class="attachment-description">'.get_the_content().'</p>';
 				}
 			}
 
 			// the content
 			$the_content_markup .= $this->kjd_get_the_content();
-			//the content	
+			//the content
 
 			if($attachment_layout == 'text-below' || $attachment_layout == 'text-right'){
 				if( get_the_content()  ){
-					$the_content_markup .= '<p class="attachment-description">'.get_the_content().'</p>';	
+					$the_content_markup .= '<p class="attachment-description">'.get_the_content().'</p>';
 				}
 			}
-		
+
 
 			$the_content_markup .= $this->kjd_get_the_post_meta();
 
@@ -914,40 +914,40 @@ class kjdLayout {
 		$the_content_markup .= '</div>';
 
 		return $the_content_markup;
-	}		
+	}
 
 	/* --------------------------------------------
-	 pagination  
+	 pagination
 	 ------------------------------------------- */
 	public function kjd_get_posts_pagination(){
-		
+
 		$pagination_markup ='';
 
-		global $wp_query;  
-		  
-		$total_pages = $wp_query->max_num_pages;  
-		  
-		if ($total_pages > 1){  
-		  
-		  $current_page = max(1, get_query_var('paged'));  
+		global $wp_query;
+
+		$total_pages = $wp_query->max_num_pages;
+
+		if ($total_pages > 1){
+
+		  $current_page = max(1, get_query_var('paged'));
 		  $pagination_markup .= '<div class="row">';
 
 			  $pagination_markup .= '<div class="pagination">';
-			  $pagination_markup .=  paginate_links(array(  
-			      'base' => get_pagenum_link(1) . '%_%',  
-			      'format' => 'page/%#%',  
-			      'current' => $current_page,  
-			      'total' => $total_pages,  
+			  $pagination_markup .=  paginate_links(array(
+			      'base' => get_pagenum_link(1) . '%_%',
+			      'format' => 'page/%#%',
+			      'current' => $current_page,
+			      'total' => $total_pages,
 			      'type' => 'list',
-			      'prev_text' => 'Prev',  
+			      'prev_text' => 'Prev',
 			      'next_text' => 'Next',
 			      'mid_size' => 1,
 			      'end_size' => 1
-			    ));  
+			    ));
 			  $pagination_markup .= '</div>';
-		  $pagination_markup .= '</div>';  
-		    
-		}  
+		  $pagination_markup .= '</div>';
+
+		}
 		return $pagination_markup;
 	}
 
@@ -970,7 +970,7 @@ class kjdLayout {
 			$images = kjd_get_post_images($parent_id);
 			foreach($images as $k=>$image)
 			{
-				
+
 
 				if($image['image_id'] == $post->ID){
 					// $next_url = '<a href="'.get_attachment_link( $id ).'"><img src="'.$url[0].'" /></a>';
@@ -990,28 +990,28 @@ class kjdLayout {
 		$navigation_markup .= '</div>';
 		return $navigation_markup;
 	}
- 
+
 	/* -----------------------------------------------
-	 set featured image size 
+	 set featured image size
 	 ------------------------------------------------- */
 	public function kjd_get_featured_image($position = null, $wrapper = 'div'){
-		
+
 		if($position == 'left_of_post'){
-		
+
 			$wrapper = 'span';
-		
+
 			$wrapper_class = 'pull-left';
-		
+
 		}elseif($position == 'right_of_post'){
-		
+
 			$wrapper = 'span';
-		
+
 			$wrapper_class = 'pull-right';
-		
+
 		}else{
 
 			$wrapper = 'div';
-		
+
 		}
 
 		$featured_image_markup = '';
@@ -1024,7 +1024,7 @@ class kjdLayout {
 				)
 			);
 			$featured_image_markup .= '</'.$wrapper.'>';
-		} 
+		}
 
 
 		return $featured_image_markup;

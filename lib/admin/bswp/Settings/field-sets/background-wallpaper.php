@@ -21,8 +21,6 @@ $background_wallpaper = array (
             'name'=>'background_repeat',
             'label'=>'Repeat wallpaper?',
             'args'=>array('no-repeat','repeat','repeat-x','repeat-y'),
-
-
         )
     ),
     'background_attachment'=>new Select(array(

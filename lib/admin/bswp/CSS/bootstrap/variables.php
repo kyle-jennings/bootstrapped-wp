@@ -46,10 +46,13 @@ $tables = $this->values['tables'];
 
 // navbar
 $navbar = $this->values['navbar'];
-$navbg = $navbar['background_colors'];
-$navtext = $navbar['text'];
-$navborders = $navbar['borders'];
 $navsettings = $navbar['settings'];
+if($navsettings['settings'] == 'basic'){
+
+    $navbg = $navbar['background_colors'];
+    $navtext = $navbar['text'];
+    $navborders = $navbar['borders'];
+}
 
 
 // navbar dropdow
@@ -113,6 +116,19 @@ $image_settings = $this->values['images'];
 $images = $image_settings['images'];
 $image_thumbnails = $image_settings['thumbnails'];
 $image_captions = $image_settings['image_captions'];
+
+
+// header
+$header = $this->values['header'];
+$header_bgcolors = $header['background_colors'];
+$header_wallpaper = $header['background_wallpaper'];
+$header_text = $header['text'];
+$header_links = $header['links'];
+$header_borders = $header['borders'];
+$header_settings = $header['settings'];
+$header_frontpage = $header['front_page'];
+$header_feed = $header['feed_page'];
+$header_single = $header['single_page'];
 
 ob_start();
 ?>
@@ -301,6 +317,10 @@ $dropdownLinkBackgroundHover:   $dropdownLinkBackgroundActive !default;
 require_once '_quotes.php';
 require_once '_preformatted.php';
 require_once '_well.php';
+
+// if($header_settings['settings'] == 'basic'){
+// }
+require_once '_header.php';
 
 require_once '_navbar.php';
 require_once '_navbar-dropdown.php';
