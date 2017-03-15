@@ -8,7 +8,7 @@ class Builder {
 
     public $preview = false;
     public $section = 'site';
-    private $values = array();
+    public $values = array();
 
 
 
@@ -22,7 +22,6 @@ class Builder {
     public $bootstrap_vars = '';
 
     public function __construct($section = 'site', $values = array(), $preview = false ) {
-
         $this->section = $section;
         $this->values = $values;
         $this->preview = $preview;
@@ -36,8 +35,7 @@ class Builder {
 
     public function set_variables() {
 
-        $var_file = $this->bs_dir . '/variables.php';
-
+        $var_file = $this->bs_dir . 'variables.php';
         require_once($var_file);
 
     }
@@ -53,9 +51,11 @@ class Builder {
         $this->admin_dir = dirname(dirname(dirname(__FILE__)));
 
         $root_dir = dirname($this->admin_dir);
+        $uploads_dir = wp_upload_dir();
+        $uploads_dir = $uploads_dir['basedir'];
 
-        $this->preview_styles = $this->admin_dir . '/assets/css';
-        $this->dist_styles = $root_dir . '/styles';
+        $this->preview_dir = $uploads_dir . '/bswp/preview-assets/css';
+        $this->dist_dir = $uploads_dir . '/bswp/assets/css';
 
         $this->compiler = new compiler();
 
@@ -139,13 +139,43 @@ class Builder {
      * The public section file is used to render the site and should be minimized
      */
     public function save_to_file($target) {
-        $target_dir = $target.'_styles';
+        $folder = $target.'_dir';
         $filename = ($target == 'dist') ? 'site' : 'preview';
-        $newfile = $this->$target_dir.'/'.$filename.'.css';
+        $filename.= '.css';
 
 
-        $fh = fopen($newfile, 'w') or die("Can't create file");
-        fwrite($fh, $this->css);
 
+        // $fh = fopen($newfile, 'w') or die("Can't create file");
+        // fwrite($fh, $this->css);
+        $result = $this->saveFile($this->$folder, $filename, $this->css);
+           if (  $result == 1){
+              error_log("File was saved!");
+          } else if ( $result == -2){
+              error_log("An error occured during saving file!");
+          } else if ( $result == -1){
+              error_log("Wrong file name!");
+           }
+    }
+
+
+
+    function saveFile($folderPath, $filename, $filecontent){
+
+        if (strlen($filename)>0){
+
+            if (!file_exists($folderPath)) {
+
+                mkdir($folderPath, 0777, true);
+            }
+
+            $file = @fopen($folderPath . '/' . $filename,"w");
+            if ($file != false){
+                fwrite($file,$filecontent);
+                fclose($file);
+                return 1;
+            }
+            return -2;
+        }
+        return -1;
     }
 }

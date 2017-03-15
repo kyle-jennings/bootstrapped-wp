@@ -202,7 +202,7 @@ class Header {
         // get the saved front page values
         self::_get_default('front_page');
 
-        if(self::$content_type == 'title')
+        if(self::$content_type == 'title' || self::$content_type == null)
             return self::site_title();
         else
             return self::custom_content();
@@ -260,7 +260,7 @@ class Header {
 
 
         // select the content type markup
-        if(self::$content_type == 'title')
+        if(self::$content_type == 'title' || self::$content_type == null)
             $output = self::title_markup($title);
         else
             $output = self::featured_post_markup($post);
@@ -300,7 +300,7 @@ class Header {
         // gets the post image
         self::set_post_image($post->ID);
 
-        if(self::$content_type == 'title')
+        if(self::$content_type == 'title' || self::$content_type == null)
             $output = self::title_markup($title);
         else
             $output = self::excerpt_markup($title);

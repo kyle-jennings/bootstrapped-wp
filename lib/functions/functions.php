@@ -182,57 +182,6 @@ function kjd_add_device_visibility( $params ){
 
 add_filter( 'dynamic_sidebar_params', 'kjd_add_device_visibility' );
 
-/* --------------------------------------------------
- Site logo
- ----------------------------------------------------*/
-function kjd_header_content(){
-
-    $heading = is_front_page() ? 'h1' : 'h2' ;
-    $header_output = '';
-
-
-
-    if($header_contents == 'widgets'){
-
-        dynamic_sidebar('header_widgets');
-
-    }else{
-        $header_output .= '<div class="span12">';
-
-
-            if($logo_toggle == 'text'){
-
-                $header_output .= '<div class="header-wrapper">';
-                    $header_output .= $custom_header;
-                $header_output .= '</div>';
-
-            }elseif($logo_toggle == 'logo' ){
-
-                $header_output .= '<'.$heading.' class="span logo-wrapper">';
-                    // $header_output .= '<a href="'.get_bloginfo('url').' ">';
-                        $header_output .= '<img src="'.$logo.'" alt=""/>';
-                    // $header_output .= '</a>';
-                $header_output .= '</'.$heading.'>';
-
-            }else{
-
-                $header_output .= '<div class="jumbotron no-background">';
-                $header_output .= '<'.$heading.' class="logo-wrapper" >';
-                    // $header_output .= '<a href="'.get_bloginfo('url').' ">';
-                        $header_output .= get_bloginfo( 'name');
-                    // $header_output .= '</a>';
-                $header_output .= '</'.$heading.'>';
-                    $header_output .= '<div class="logo-wrapper">'.get_bloginfo('description').'</div>';
-                $header_output .= '</div>';
-
-            }
-
-
-        $header_output .= '</div>';
-        echo $header_output;
-     }
-
-}
 
 /* --------------------------------------------------
   create a default navbar if no menu is selected

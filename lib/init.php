@@ -108,7 +108,8 @@ function bswp_add_assets(){
 
 
 
-    wp_enqueue_style("site", $root."/styles/site.css");
+
+    wp_enqueue_style("site", wp_upload_dir()['baseurl'].'/bswp/assets/css/site.css');
     wp_enqueue_style("base", $root."/styles/common.css");
 
     // Add slider scripts if on front page

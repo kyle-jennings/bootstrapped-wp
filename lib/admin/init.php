@@ -9,6 +9,21 @@ use bswp\CSS\Builder;
 add_action('admin_menu', array(new AdminMenu, 'add_top_menu') );
 
 
+function bswp_check_for_styles() {
+    $file = wp_upload_dir()['basedir'].'/bswp/assets/css/site.css';
+    if(!file_exists($file)){
+        $name = 'site_settings';
+        $settings = get_option('bswp_'.$name);
+
+        $builder = new Builder($name, $settings);
+        $builder->build();
+        $builder->save_to_file('dist');
+        unset($builder);
+    }
+
+}
+add_action("after_switch_theme", "bswp_check_for_styles");
+
 /**
  * Adds the admin area CSS and JS
  * @return [type] [description]
