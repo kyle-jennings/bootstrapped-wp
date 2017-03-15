@@ -52,14 +52,14 @@ $navbar = new Navbar('primary-menu');
 <div id="pageWrapper">
 	<div id="mastArea">
     <?php
-    	if( $navbar->position == 'above_header' || $navbar->position == 'stickied_to_top')
+    	if( $navbar::$position == 'above_header' || $navbar::$position == 'stickied_to_top')
             echo $navbar;
 
         $header = new Header(null, $navbar);
-        $header->set_scaffolding();
+        $header::set_scaffolding();
 
 
-    	if( $navbar->position == 'below_header' || $navbar->position == 'stickied_to_bottom' )
+    	if( $navbar::$position == 'below_header' || $navbar::$position == 'stickied_to_bottom' )
             echo $navbar;
 	?>
 	</div> <!-- end mast -->

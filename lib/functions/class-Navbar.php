@@ -7,77 +7,81 @@
 */
 class Navbar{
 
-    public $output = '';
-    public $class = '';
-    public $brand = 'none';
-    public $brand_image = null;
-    public $menu_id;
-    public $movement = 'none';
-    public $walker;
-    public $button_type = 'default';
-    public $nav_settings;
+    public static $output = '';
+    public static $class = '';
+    public static $brand = 'none';
+    public static $brand_image = null;
+    public static $menu_id;
+    public static $movement = 'none';
+    public static $nav_style;
+    public static $position;
+    public static $walker;
+    public static $button_type = 'default';
+    public static $nav_settings;
 
     // sets up the nav
     public function __construct( $menu_id = 'primary-menu', $args = array(), $class = null){
 
-        $this->menu_id = $menu_id;
+        self::$menu_id = $menu_id;
 
         // expecting: $position, $movement, $nav_style, $brand, $brand_image,  $menu_toggle_type
         extract($args);
 
         $site_options = get_option('bswp_site_settings');
-        $this->nav_settings = $site_options['navbar']['settings'];
+        self::$nav_settings = $site_options['navbar']['settings'];
 
 
-        $this->class = $class ? $class : '';
+        self::$class = $class ? $class : '';
 
         // position and movement
-        $this->position = $position ? $position : $this->get_default('position', 'below_header');
-        $this->movement = $movement ? $movement : $this->get_default('movement', 'none');
+        self::$position = $position ? $position : self::get_default('position', 'below_header');
+        self::$movement = $movement ? $movement : self::get_default('movement', 'none');
 
         // navbar brand
-        $this->brand = $brand ? $brand : $this->get_default('brand', 'none');
-        $this->brand_image = $brand_image ? $brand_image : $this->get_default('brand_image', '');
+        self::$brand = $brand ? $brand : self::get_default('brand', 'none');
+        self::$brand_image = $brand_image ? $brand_image : self::get_default('brand_image', '');
 
         // navbar style for stickied navbar
-        if($this->position == 'stickied_to_top')
-            $this->nav_style = 'navbar-fixed-top';
-        elseif($this->position == 'stickied_to_bottom')
-            $this->nav_style = 'navbar-fixed-bottom';
+        if(self::$position == 'stickied_to_top')
+            self::$nav_style = 'navbar-fixed-top';
+        elseif(self::$position == 'stickied_to_bottom')
+            self::$nav_style = 'navbar-fixed-bottom';
         else
-            $this->nav_style = '';
+            self::$nav_style = '';
 
         // mobile nav toggle button type
-        $this->button_type = $menu_toggle_type ? $menu_toggle_type : $this->get_default('menu_toggle_type', 'default');
+        self::$button_type = $menu_toggle_type ? $menu_toggle_type : self::get_default('menu_toggle_type', 'default');
 
         // modified navbar
-        $this->walker = new navbarMenu();
+        self::$walker = new navbarMenu();
 
-        $this->scaffolding();
+
+        self::scaffolding();
+
     }
 
+    public function __toString(){
+        return self::$output;
+    }
 
-    public function get_default($arg = null, $default = '') {
+    public static function get_default($arg = null, $default = '') {
         if(!$arg)
             return '';
 
-        return $this->nav_settings[$arg] ? $this->nav_settings[$arg] : $default;
-    }
-
-
-    public function __toString(){
-        return $this->output;
+        return self::$nav_settings[$arg] ? self::$nav_settings[$arg] : $default;
     }
 
 
 
-    public function scaffolding(){
+
+
+    public static function scaffolding(){
 
         $output = '';
 
-        $output .= '<div id="navbar" class="navbar-wrapper '. $this->menu_id
-            .' '. $this->movement_class()
-            .' '. $this->nav_style() . '">';
+        $output .= '<div id="navbar" class="navbar-wrapper '. self::$menu_id
+            .' '. self::movement_class()
+            .' '. self::nav_style() . '">';
 
             $output .= '<div class="navbar-inner">';
 
@@ -86,10 +90,10 @@ class Navbar{
                     $output .= '<div class="navbar">';
 
                         // $output .= '<a class="brand '.$logo.'" href="'.home_url().'">'.get_bloginfo( 'name' ).'</a>';
-                        $output .= $this->toggle_button_type();
-                        $output .= $this->brand();
+                        $output .= self::toggle_button_type();
+                        $output .= self::brand();
                         $output .= '<div class="nav-collapse collapse navbar-responsive-collapse">';
-                            $output .= $this->build_menu();
+                            $output .= self::build_menu();
                             $output .= $navbar_contents;
                         $output .= '</div>'; // en nav collapse
 
@@ -103,42 +107,42 @@ class Navbar{
 
 
         $output .= '</div>'; // end #navbar
-
-        $this->output = $output;
+        
+        self::$output = $output;
     }
 
-    public function brand() {
+    public static function brand() {
 
 
-        if($this->brand == 'none')
+        if(self::$brand == 'none')
             return '';
 
-        if($this->brand == 'image' && $this->brand_image != null )
-            return '<a class="brand brand--image" href="'.home_url().'"><img src="'.$this->brand_image.'" /></a>';
+        if(self::$brand == 'image' && self::$brand_image != null )
+            return '<a class="brand brand--image" href="'.home_url().'"><img src="'.self::$brand_image.'" /></a>';
         else
             return '<a class="brand" href="'.home_url().'">'.get_bloginfo( 'name' ).'</a>';
     }
 
 
-    public function movement_class() {
+    public static function movement_class() {
 
 
-        if(strpos($this->position, 'stickied') !== false )
+        if(strpos(self::$position, 'stickied') !== false )
             return '';
 
-        if($this->movement == 'stick_to_top_on_scroll')
-            return 'js--'.str_replace('_','-',$this->movement);
+        if(self::$movement == 'stick_to_top_on_scroll')
+            return 'js--'.str_replace('_','-',self::$movement);
 
         return '';
     }
 
 
-    public function nav_style() {
-        return rtrim($this->nav_style . ' ' .$this->class);
+    public static function nav_style() {
+        return rtrim(self::$nav_style . ' ' .self::$class);
     }
 
 
-    public function build_menu(){
+    public static function build_menu(){
 
 
         /*
@@ -152,7 +156,7 @@ class Navbar{
                     'theme_location' => 'primary-menu',
                     'menu_class' => 'nav',
                     'container'=> '',
-                    'walker'=> $this->walker
+                    'walker'=> self::$walker
                 )
             );
             $output = ob_get_contents();
@@ -182,13 +186,13 @@ class Navbar{
     }
 
 
-    public function toggle_button_type( ) {
+    public static function toggle_button_type( ) {
 
         $output = '';
         $btn_output = '';
         $button_class = '';
 
-        switch($this->button_type):
+        switch(self::$button_type):
             case 'default':
                 $button_class = "btn collapsed";
 

@@ -115,7 +115,7 @@ class Header {
         ?>
         <div class="section section--header" id="header" <?php echo self::get_bg_styles(); ?> >
             <?php
-            if(self::$navbar->position == 'in_header_top')
+            if(self::$navbar::$position == 'in_header_top')
                 echo $navbar;
             ?>
             <div class="container">
@@ -126,7 +126,7 @@ class Header {
                 </div> <!-- end row -->
             </div><!-- end header container -->
             <?php
-            if(self::$navbar->position == 'in_header_bottom'){
+            if(self::$navbar::$position == 'in_header_bottom'){
                 echo self::$navbar;
             }
             ?>
