@@ -1,6 +1,7 @@
 <?php
 
 
-class HeaderContent extends Header {
-    
+class HeaderTitle {
+
+    public function __construct() {}
 }

@@ -44,6 +44,9 @@
             top: 0;
             z-index: 1;
         }
+
+        position: relative;
+
     }
 
     border-radius: $headerBorderRadius;
@@ -53,6 +56,16 @@
     border-width: $headerBorderWidth;
     border-left: none;
     border-right: none;
+
+
+    .navbar-wrapper {
+        z-index: 9;
+    }
+}
+
+#header > .container ,
+.section--header > .container,
+.front_page_custom_content.wp-editor {
 
     color: $headerText;
 
@@ -100,7 +113,6 @@
         }
     }
 
-    position: relative;
     text-align: $headingAlignment;
 
     body.frontpage & {

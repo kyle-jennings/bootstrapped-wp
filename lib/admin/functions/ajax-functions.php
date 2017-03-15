@@ -95,6 +95,9 @@ function rebuild_header($args = array()){
 
     $lib_dir = dirname(dirname(dirname(__FILE__)));
     include $lib_dir . '/functions/class-Header.php';
+    include $lib_dir . '/functions/class-navbarMenu.php';
+    include $lib_dir . '/functions/class-Navbar.php';
+
 
     $custom_content = null;
     $styles = null;
@@ -103,8 +106,7 @@ function rebuild_header($args = array()){
     $content_type = $args['field'] == 'content_type' ? $args['value'] : null;
 
 
-    // foreach($args as $arg => $val)
-    //     error_log($arg .'=>'. $val);
+
 
 
     if(!empty($args['dependancies'])) {
@@ -120,12 +122,12 @@ function rebuild_header($args = array()){
     }
 
 
-    // content, styles, page type, url
-    $header = new Header($content_type, $custom_content, $styles, $page_type, $url);
-    // $output = $header->output;
+    $header = new Header($url, new Navbar('primary-menu'));
+    $header->set_content($content_type, $custom_content);
+    $header->select_content();
 
     return array(
-        'output' => $output = $header->output,
+        'output' => $header::$output,
         'callback_args' => '',
         'args' => $new_args
     );

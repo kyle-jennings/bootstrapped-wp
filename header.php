@@ -54,25 +54,11 @@ $navbar = new Navbar('primary-menu');
     <?php
     	if( $navbar->position == 'above_header' || $navbar->position == 'stickied_to_top')
             echo $navbar;
-    ?>
 
-			<div id="header">
-                <?php
-                if($navbar->position == 'in_header_top')
-                    echo $navbar;
-                ?>
-				<div class="container">
-					<div class="row">
-					<?php echo new Header(); ?>
-					</div> <!-- end row -->
-				</div><!-- end header container -->
-                <?php
-                if($navbar->position == 'in_header_bottom')
-                    echo $navbar;
-                ?>
-			</div> <!-- end header area -->
+        $header = new Header(null, $navbar);
+        $header->set_scaffolding();
 
-	<?php
+
     	if( $navbar->position == 'below_header' || $navbar->position == 'stickied_to_bottom' )
             echo $navbar;
 	?>
