@@ -34,12 +34,12 @@ class Navbar{
         self::$class = $class ? $class : '';
 
         // position and movement
-        self::$position = $position ? $position : self::get_default('position', 'below_header');
-        self::$movement = $movement ? $movement : self::get_default('movement', 'none');
+        self::$position = isset($position) ? $position : self::get_default('position', 'below_header');
+        self::$movement = isset($movement) ? $movement : self::get_default('movement', 'none');
 
         // navbar brand
-        self::$brand = $brand ? $brand : self::get_default('brand', 'none');
-        self::$brand_image = $brand_image ? $brand_image : self::get_default('brand_image', '');
+        self::$brand = isset($brand) ? $brand : self::get_default('brand', 'text');
+        self::$brand_image = isset($brand_image) ? $brand_image : self::get_default('brand_image', '');
 
         // navbar style for stickied navbar
         if(self::$position == 'stickied_to_top')
@@ -50,7 +50,7 @@ class Navbar{
             self::$nav_style = '';
 
         // mobile nav toggle button type
-        self::$button_type = $menu_toggle_type ? $menu_toggle_type : self::get_default('menu_toggle_type', 'default');
+        self::$button_type = isset($menu_toggle_type) ? $menu_toggle_type : self::get_default('menu_toggle_type', 'default');
 
         // modified navbar
         self::$walker = new navbarMenu();
@@ -94,7 +94,6 @@ class Navbar{
                         $output .= self::brand();
                         $output .= '<div class="nav-collapse collapse navbar-responsive-collapse">';
                             $output .= self::build_menu();
-                            $output .= $navbar_contents;
                         $output .= '</div>'; // en nav collapse
 
 
@@ -107,7 +106,7 @@ class Navbar{
 
 
         $output .= '</div>'; // end #navbar
-        
+
         self::$output = $output;
     }
 

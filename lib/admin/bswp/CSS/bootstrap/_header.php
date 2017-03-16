@@ -35,11 +35,60 @@ $headerBackgroundSize: <?php echo $header_wallpaper['background_size'] ? $header
 $headerBackgroundPercentage: <?php echo $header_wallpaper['background_percentage'] ? $header_wallpaper['background_percentage'] : '0%'; ?> !default;
 
 $headerBackgroundOverlay: <?php echo $header_wallpaper['overlay_color_rgba'] ? $header_wallpaper['overlay_color_rgba'] : 'transparent'; ?> !default;;
+
+
 // Text and Headings
-$headerText:                      <?php echo $header_text['text_color'] ? $header_text['text_color'] : '#777'; ?> !default;
+$headerText:                      <?php echo $header_text['text_color'] ? $header_text['text_color'] : '$headingsColor'; ?> !default;
+
+// fullheight
+$headerHeight: <?php echo ($header_settings['height'] == 'fullpage') ? '100vh' : 'auto' ; ?> !default;
+
+// container and title sizes
+<?php
+    switch($header_settings['height']):
+        case 'small':
+            $header_padding = '20px 0';
+            break;
+        case 'medium':
+            $header_padding = '40px 0';
+            break;
+        case 'large':
+            $header_padding = '60px 0';
+            break;
+        case 'custom':
+            $header_padding = isset($header_settings['header_padding']) ? $header_settings['header_padding'].'px 0' : '0';
+            break;
+        default:
+            $header_padding = '20px 0';
+            break;
+    endswitch;
+
+?>
+$headerPadding:  <?php echo $header_padding; ?> !default;
+
 
 <?php
+    switch($header_settings['title_size']):
+        case 'small':
+            $header_title_size = '39px';
+            break;
+        case 'medium':
+            $header_title_size = '52px';
+            break;
+        case 'large':
+            $header_title_size = '72px';
+            break;
+        default:
+            $header_title_size = '39px';
+            break;
+    endswitch;
 
+?>
+// Text and Headings
+$headerTitleSize:       <?php echo $header_title_size; ?> !default;
+
+
+<?php
 
     _component_outer_border_sass_vars('header', $header_borders);
     _component_border_radius_sass_vars('header', $header_borders);

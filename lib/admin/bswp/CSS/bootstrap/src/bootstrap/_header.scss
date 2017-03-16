@@ -57,6 +57,13 @@
     border-left: none;
     border-right: none;
 
+    height: $headerHeight;
+
+    @if $headerHeight == 100vh {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
     .navbar-wrapper {
         z-index: 9;
@@ -126,4 +133,15 @@
     body.single & {
         text-align: $singleAlignment;
     }
+}
+
+
+.header-content {
+    padding: $headerPadding;
+
+    .header-content__title {
+        font-size: $headerTitleSize;
+        line-height: $headerTitleSize+1;
+    }
+
 }

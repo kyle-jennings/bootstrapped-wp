@@ -26,11 +26,11 @@ class FeaturedPost {
 
     public function set_content() {
         $output = '';
-        $output .= '<h1 class="logo-wrapper" >';
+        $output .= '<h1 class="header-content__title" >';
             $output .= $this->title;
         $output .= '</h1>';
 
-        $output .= '<div class="header_content__meta">';
+        $output .= '<div class="header-content__meta">';
 
             $output .= '<div class="header-content__terms">';
                 $output .= $this->terms;
@@ -43,7 +43,7 @@ class FeaturedPost {
         $output .= '</div>';
 
         if($this->format == 'use-excerpt' && $this->excerpt ){
-            $output .= '<p class="header-content__excerpt">';
+            $output .= '<p class="header-content__description">';
                 $output .= $this->excerpt;
             $output .= '</p>';
         }

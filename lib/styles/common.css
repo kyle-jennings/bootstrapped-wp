@@ -71,11 +71,8 @@ body.desktopnav-fixed-bottom {
 	#footer{
 		clear: both;
 	}
-
-	#imageSliderWrapper > .container,
-	#header > .container,
+,
 	.navbar-wrapper > .container,
-	#cycler > .container,
 	#body > .container,
 	#footer > .container{
 		padding:20px 0;

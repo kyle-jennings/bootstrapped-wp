@@ -22,11 +22,6 @@ unset($navbar_links['links_background_color']);
 unset($navbar_links['links_text_decoration']);
 unset($navbar_links['links_text_shadow']);
 
-
-
-
-
-
 $rebuild_nav_script = '
     var $preview = $(".preview-window").contents();
     var $output = $(json.output);
@@ -76,9 +71,9 @@ $navbar->add_tab('settings', array(
                 'label'=> 'Brand',
                 'name'=>'brand',
                 'args' => array(
+                    'text',
                     'none',
                     'image',
-                    'text'
                 ),
                 'toggle_fields' => array(
                     'image'=>'brand_image'
@@ -109,6 +104,7 @@ $navbar->add_tab('settings', array(
                 'label'=> 'Position',
                 'name'=>'position',
                 'args'=> array(
+                    'default',
                     'stickied_to_top',
                     'above_header',
                     'in_header_top',

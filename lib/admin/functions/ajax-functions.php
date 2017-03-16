@@ -84,7 +84,7 @@ function rebuild_nav($args = array()) {
     $navbar = new Navbar('primary-menu', $new_args, 'preview');
     // return the navbar output, and the callback
     return array(
-        'output' => $navbar->output,
+        'output' => $navbar::$output,
         'callback_args' => $new_args['position']
     );
 

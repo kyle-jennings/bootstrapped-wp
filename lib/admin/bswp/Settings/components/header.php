@@ -8,6 +8,7 @@ use bswp\Forms\Fields\ColorPicker;
 use bswp\Forms\Fields\Hidden;
 use bswp\Forms\Fields\Select;
 use bswp\Forms\Fields\TextArea;
+use bswp\Forms\Fields\Text;
 
 
 use function bswp\Settings\_helpers\remove_link_decoration;
@@ -43,21 +44,29 @@ $header->add_tab('settings', array(
                 'fullpage',
                 'custom'
             ),
-            'toggled_by' => array(),
+            'toggle_fields'=>array(
+                'custom'=>'header_padding',
+            ),
         )
     ),
-    'title_alignment' => new Select(
+    'header_padding'=>new Text(array(
+            'name'=>'header_padding',
+            'label'=>'Header Veritcal Padding',
+            'toggled_by'=>array('height'=>'custom')
+        )
+    ),
+    'title_size' => new Select(
         array(
-            'label'=> 'Title Alignment',
-            'name'=>'title_alignment',
+            'label'=> 'Title Size',
+            'name'=>'title_size',
             'args' => array(
-                'left',
-                'center',
-                'right'
+                'small',
+                'medium',
+                'large',
             ),
             'toggled_by' => array(),
         )
-    ),
+    )
 ));
 
 // the colors

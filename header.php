@@ -16,7 +16,6 @@ $navbar = new Navbar('primary-menu');
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width" />
-	<link rel="icon" type="image/png" href="<?php echo $favicon; ?>">
 
 	<title>
 
@@ -59,7 +58,7 @@ $navbar = new Navbar('primary-menu');
         $header::set_scaffolding();
 
 
-    	if( $navbar::$position == 'below_header' || $navbar::$position == 'stickied_to_bottom' )
+    	if( $navbar::$position == 'default' || $navbar::$position == 'below_header' || $navbar::$position == 'stickied_to_bottom' )
             echo $navbar;
 	?>
 	</div> <!-- end mast -->

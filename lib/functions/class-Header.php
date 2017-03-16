@@ -12,6 +12,9 @@ class Header {
     public static $saved_settings;
     public static $bg_image_url;
     public static $navbar;
+    public static $background_use_wallpaper;
+    public static $height;
+    public static $title_size;
 
     // the output
     public static $output = '';
@@ -37,10 +40,19 @@ class Header {
         $site_options = get_option('bswp_site_settings');
         self::$saved_settings = $site_options['header'];
 
+        // sizes
+        self::$height = self::$saved_settings['settings']['height'];
+        self::$title_size = self::$saved_settings['settings']['title_size'];
+
+        //bg wallpaper
+        self::$background_use_wallpaper = self::$saved_settings['background_wallpaper']['background_use_wallpaper'];
+
         // set navbar
         self::$navbar = $navbar;
 
     }
+
+
     // magic method to echo string
     public function __toString(){
         return self::$output;
@@ -120,9 +132,11 @@ class Header {
             ?>
             <div class="container">
                 <div class="row">
+                    <div class="span12 header-content js--header-content">
                     <?php
                         echo self::$output;
                     ?>
+                    </div>
                 </div> <!-- end row -->
             </div><!-- end header container -->
             <?php
@@ -138,10 +152,8 @@ class Header {
 
 
     public static function get_bg_styles() {
-
         $output = '';
-        if(self::$bg_image_url) {
-
+        if(self::$bg_image_url && self::$background_use_wallpaper == 'yes') {
             $output .= 'style="';
                 $output .= 'background-image:url('.self::$bg_image_url.')';
             $output .= '"';
@@ -149,6 +161,18 @@ class Header {
 
         return $output;
     }
+
+
+    public static function get_height_and_title_size() {
+        $output = '';
+
+        $output .= isset(self::$height) ? self::$height. ' ' : ' ';
+        $output .= isset(self::$title_size) ? 'title-'.self::$title_size : ' ';
+
+
+        return $output;
+    }
+
 
     /**
      * sets the header object's output based on what was set as teh content
@@ -159,12 +183,9 @@ class Header {
 
         self::$content = $content;
         $output = '';
-        $output .= '<div class="span12 header-content js--header-content">';
-            $output .= '<div class="jumbotron no-background">';
-                $output .= self::$content;
-            $output .= '</div>';
 
-        $output .= '</div>';
+            $output .= self::$content;
+
         self::$output = $output;
         self::$custom_content = null;;
     }
@@ -227,10 +248,10 @@ class Header {
     public static function site_title() {
         $output = '';
 
-        $output .= '<h1 class="logo-wrapper" >';
+        $output .= '<h1 class="header-content__title" >';
                 $output .= get_bloginfo( 'name');
         $output .= '</h1>';
-        $output .= '<div class="logo-wrapper">'.get_bloginfo('description').'</div>';
+        $output .= '<p class="header-content__description">'.get_bloginfo('description').'</p>';
 
 
         return $output;
@@ -324,7 +345,7 @@ class Header {
             $output = self::title_markup($title);
 
         if(get_the_excerpt(self::$page_id))
-            $output .= '<p>'.get_the_excerpt(self::$page_id).'</p>';
+            $output .= '<p class="header-content__description">'.get_the_excerpt(self::$page_id).'</p>';
 
         return $output;
     }

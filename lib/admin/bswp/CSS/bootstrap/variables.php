@@ -130,6 +130,8 @@ $header_frontpage = $header['front_page'];
 $header_feed = $header['feed_page'];
 $header_single = $header['single_page'];
 
+
+
 ob_start();
 ?>
 
