@@ -54,7 +54,7 @@ $navbar->add_tab('settings', array(
                     'advanced',
                 ),
                 'toggle_fields' => array(
-                    'basic'=>'brand,brand_image,position,movement,menu_toggle_type'
+                    'basic'=>'brand,brand_image,position,movement,menu_toggle_type,box_shadow'
                 ),
                 'preview'=>'form_save_warning'
             )
@@ -65,7 +65,10 @@ $navbar->add_tab('settings', array(
             'args' => array(
                 'no',
                 'yes'
-            )
+            ),
+            'toggled_by' => array(
+                'settings'=>'basic'
+            ),
         )),
         'brand' => new Select(array(
                 'label'=> 'Brand',

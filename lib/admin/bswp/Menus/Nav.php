@@ -158,7 +158,7 @@ class Nav {
     // the group's tabs are numeraous and unwiedly, so i gave them their own function
     public function groups_tabs_nav(&$count = 0, $group_name, $tabs) {
 
-        $tab_name = $this->get_active_field_tab_label(key($tabs) );
+        $tab_name = $this->get_active_field_tab_label(key($tabs), $group_name );
         $class = 'tabs-nav';
 
         $hide = $this->unhide_first_or_saved_fields_nav($count, $group_name);
@@ -185,9 +185,9 @@ class Nav {
 
 
     // get the saved field tab
-    public function get_active_field_tab_label($default){
+    public function get_active_field_tab_label($default, $group_name){
 
-        if(!$this->current_tab_value || !$this->current_group_value)
+        if(!$this->current_tab_value || !$this->current_group_value || $group_name !== $this->current_group_value)
             return $default;
 
         $saved_tab = ltrim($this->current_tab_value,'#');
