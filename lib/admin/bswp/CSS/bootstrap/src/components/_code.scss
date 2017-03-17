@@ -24,7 +24,6 @@ pre {
     border-width: $preBorderWidth ;
     color: $preColor;
     font-size: $baseFontSize - 2;
-    padding: 0 3px 2px;
 
     a {
         color: $preLinksColor;
@@ -46,16 +45,13 @@ pre {
 
 
     }
-}
 
-// Inline code
-code {
-  padding: 2px 4px;
-  background-color: #f7f7f9;
-  white-space: nowrap;
+    padding: 2px 4px;
+    white-space: nowrap;
 }
 
 // Blocks of code
+code,
 pre {
   display: block;
   padding: ($baseLineHeight - 1) / 2;
