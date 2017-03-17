@@ -3,23 +3,15 @@
 // -------------------------
 
 $navbarDropdownBackground:            <?php echo _tern($nav_submenu_bg['color'], '$white'); ?> !default;
+$styleBorderSides: <?php echo _tern($nav_submenu_border['style_border_sides'], 'no'); ?>;
+<?php
+// $navbarDropdownTopBorderColor
+// $navbarDropdownTopBorderStyle
+// $navbarDropdownTopBorderWidth
+_component_outer_border_sass_vars('navbarDropdown', $nav_submenu_border);
+_component_border_radius_sass_vars('navbarDropdown', $nav_submenu_border);
+?>
 
-
-$navbarDropdownTopBorderColor:                <?php echo _tern( $nav_submenu_border['top_border_color'], 'rgba(0,0,0,.2)'); ?> !default;
-$navbarDropdownTopBorderStyle:                <?php echo _tern( $nav_submenu_border['top_border_style'], 'solid'); ?> !default;
-$navbarDropdownTopBorderWidth:                <?php echo _tern( $nav_submenu_border['top_border_width'], '1px'); ?> !default;
-
-$navbarDropdownRightBorderColor:                <?php echo _tern( $nav_submenu_border['right_border_color'], 'rgba(0,0,0,.2)'); ?> !default;
-$navbarDropdownRightBorderStyle:                <?php echo _tern( $nav_submenu_border['right_border_style'], 'solid'); ?> !default;
-$navbarDropdownRightBorderWidth:                <?php echo _tern( $nav_submenu_border['right_border_width'], '1px'); ?> !default;
-
-$navbarDropdownBottomBorderColor:                <?php echo _tern( $nav_submenu_border['bottom_border_color'], 'rgba(0,0,0,.2)'); ?> !default;
-$navbarDropdownBottomBorderStyle:                <?php echo _tern( $nav_submenu_border['bottom_border_style'], 'solid'); ?> !default;
-$navbarDropdownBottomBorderWidth:                <?php echo _tern( $nav_submenu_border['bottom_border_width'], '1px'); ?> !default;
-
-$navbarDropdownLeftBorderColor:                <?php echo _tern( $nav_submenu_border['left_border_color'], 'rgba(0,0,0,.2)'); ?> !default;
-$navbarDropdownLeftBorderStyle:                <?php echo _tern( $nav_submenu_border['left_border_style'], 'solid'); ?> !default;
-$navbarDropdownLeftBorderWidth:                <?php echo _tern( $nav_submenu_border['left_border_width'], '1px'); ?> !default;
 
 
 $navbarDropdownBorder:                $navbarDropdownTopBorderColor !default;

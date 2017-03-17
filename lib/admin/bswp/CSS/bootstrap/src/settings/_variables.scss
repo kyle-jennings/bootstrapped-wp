@@ -111,7 +111,7 @@ $linkColorHover:        darken($hoveredLinkColor, 15%) !default;
 
         $headingsLinksColor:         #ac03d6 !default;
 
-        $headingsLinksDecoration: underline !default;
+        $headingsLinksDecoration: none !default;
         $headingsLinksTextShadow: darken($headingsColor, 15%) !default;
 
 
@@ -936,7 +936,7 @@ $headerLinksColor: $linkColor;
 
     $headerHeadingsLinksColor:         #ac03d6 !default;
 
-    $headerHeadingsLinksDecoration: underline !default;
+    $headerHeadingsLinksDecoration: none !default;
     $headerHeadingsLinksTextShadow: darken($headingsColor, 15%) !default;
 
 
@@ -1030,23 +1030,41 @@ $navbarBorderWidth:               1px;
 // -------------------------
 
 $navbarDropdownBackground:            #635d5d !default;
+$styleBorderSides: no;
+    $navbarDropdownBorderColor: #f5f5f5 !default;
+
+    $navbarDropdownBorderStyle: solid !default;
+
+    $navbarDropdownBorderWidth: 1px !default;
 
 
-$navbarDropdownTopBorderColor:                #f53636 !default;
-$navbarDropdownTopBorderStyle:                solid !default;
-$navbarDropdownTopBorderWidth:                1px !default;
 
-$navbarDropdownRightBorderColor:                #023085 !default;
-$navbarDropdownRightBorderStyle:                solid !default;
-$navbarDropdownRightBorderWidth:                1px !default;
+    
+    $navbarDropdownTopBorderColor: #f53636 !default;
+    $navbarDropdownTopBorderStyle: solid !default;
+    $navbarDropdownTopBorderWidth: 1px !default;
+    
+    $navbarDropdownRightBorderColor: #023085 !default;
+    $navbarDropdownRightBorderStyle: solid !default;
+    $navbarDropdownRightBorderWidth: 1px !default;
+    
+    $navbarDropdownBottomBorderColor: #0a8202 !default;
+    $navbarDropdownBottomBorderStyle: solid !default;
+    $navbarDropdownBottomBorderWidth: 1px !default;
+    
+    $navbarDropdownLeftBorderColor: #fafafa !default;
+    $navbarDropdownLeftBorderStyle: solid !default;
+    $navbarDropdownLeftBorderWidth: 4px !default;
+    
+        $navbarDropdownBorderRadius: 1px !default;
 
-$navbarDropdownBottomBorderColor:                #0a8202 !default;
-$navbarDropdownBottomBorderStyle:                solid !default;
-$navbarDropdownBottomBorderWidth:                1px !default;
-
-$navbarDropdownLeftBorderColor:                #fafafa !default;
-$navbarDropdownLeftBorderStyle:                solid !default;
-$navbarDropdownLeftBorderWidth:                4px !default;
+    
+            $navbarDropdownTopLeftBorderRadius: 0px !default;
+            $navbarDropdownTopRightBorderRadius: 0px !default;
+            $navbarDropdownBottomRightBorderRadius: 0px !default;
+            $navbarDropdownBottomLeftBorderRadius: 0px !default;
+    
+    
 
 
 $navbarDropdownBorder:                $navbarDropdownTopBorderColor !default;

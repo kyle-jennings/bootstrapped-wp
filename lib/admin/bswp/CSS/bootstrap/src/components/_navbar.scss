@@ -270,47 +270,6 @@
 }
 
 
-// Menu position and menu carets
-.navbar .nav > li > .dropdown-menu {
-    &:before {
-        content: '';
-        display: inline-block;
-        border-left:   7px solid transparent;
-        border-right:  7px solid transparent;
-        border-bottom: 7px solid #ccc;
-        border-bottom-color: $navbarDropdownBorder;
-        position: absolute;
-        top: -7px;
-        left: 9px;
-    }
-    &:after {
-        content: '';
-        display: inline-block;
-        border-left:   6px solid transparent;
-        border-right:  6px solid transparent;
-        border-bottom: 6px solid $navbarDropdownBackground;
-        position: absolute;
-        top: -6px;
-        left: 10px;
-    }
-}
-// Menu position and menu caret support for dropups via extra dropup class
-.navbar-fixed-bottom .nav > li > .dropdown-menu {
-    &:before {
-        border-top: 7px solid #ccc;
-        border-top-color: $navbarDropdownBorder;
-        border-bottom: 0;
-        bottom: -7px;
-        top: auto;
-    }
-    &:after {
-        border-top: 6px solid $navbarDropdownBackground;
-        border-bottom: 0;
-        bottom: -6px;
-        top: auto;
-    }
-}
-
 
 
 /////////////////////////////////////////////////

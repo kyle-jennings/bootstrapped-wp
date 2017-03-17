@@ -255,13 +255,7 @@ $navbar->add_tab('submenu_text',
 
 // subnav borders
 $navbar->add_tab('submenu_borders', array_merge(
-        $top,
-        array( 'divider1'=>new Divider()),
-        $right,
-        array( 'divider2'=>new Divider()),
-        $bottom,
-        array( 'divider3'=>new Divider()),
-        $left,
+        $component_borders,
         array( 'divider4'=>new Divider()),
         array( 'label1'=>new Label(array('name'=>'border_radius'))),
         $radii_fields

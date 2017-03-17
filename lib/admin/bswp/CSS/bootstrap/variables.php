@@ -383,5 +383,5 @@ $fluidGridGutterWidth768:      percentage($gridGutterWidth768/$gridRowWidth768) 
 <?php
 $contents = ob_get_contents();
 ob_end_clean();
-
+// examine($contents);
 $this->bootstrap_vars = $contents;

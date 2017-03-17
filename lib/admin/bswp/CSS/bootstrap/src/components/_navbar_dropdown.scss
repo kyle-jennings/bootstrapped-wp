@@ -55,10 +55,13 @@
       margin: 2px 0 0; // override default ul
       list-style: none;
       background-color: $navbarDropdownBackground;
-      border: 1px solid $navbarDropdownBorder;
-      *border-right-width: 2px;
-      *border-bottom-width: 2px;
-      @include border-radius(6px);
+      border-radius: $navbarDropdownBorderRadius;
+
+      border-color: $navbarDropdownBorderColor;
+      border-style: $navbarDropdownBorderStyle ;
+      border-width: $navbarDropdownBorderWidth ;
+
+
       @include box-shadow(0 5px 10px rgba(0,0,0,.2));
       -webkit-background-clip: padding-box;
          -moz-background-clip: padding;
@@ -232,7 +235,7 @@
     }
 
     // Caret to indicate there is a submenu
-    .dropdown-submenu > a:after {
+    .dropdown-submenu > a::after {
       display: block;
       content: " ";
       float: right;
@@ -241,7 +244,7 @@
       border-color: transparent;
       border-style: solid;
       border-width: 5px 0 5px 5px;
-      border-left-color: darken($navbarDropdownLinksColor, 20%);
+      border-left-color: $navbarDropdownLinksColor;
       margin-top: 5px;
       margin-right: -10px;
     }
@@ -280,4 +283,62 @@
     }
 
 
+}
+
+
+// Navbar Dropdown Border
+// Menu position and menu carets
+.navbar .nav > li > .dropdown-menu {
+    &:before {
+        content: '';
+        display: inline-block;
+        border-left:   7px solid transparent;
+        border-right:  7px solid transparent;
+        border-bottom: 7px solid #ccc;
+        @if($navbarDropdownTopBorderStyle != none && $styleBorderSides != no){
+            border-bottom-color: $navbarDropdownTopBorderColor;
+        }@else{
+            border-bottom-color: transparent;
+        }
+        position: absolute;
+        top: -7px;
+        left: 9px;
+    }
+    &:after {
+        content: '';
+        display: inline-block;
+        border-left:   6px solid transparent;
+        border-right:  6px solid transparent;
+        border-bottom: 6px solid $navbarDropdownBackground;
+        position: absolute;
+        top: -6px;
+        left: 10px;
+    }
+}
+// Menu position and menu caret support for dropups via extra dropup class
+.navbar-fixed-bottom .nav > li > .dropdown-menu {
+    &:before {
+        border-top: 7px solid #ccc;
+        @if($navbarDropdownBottomBorderStyle != none){
+            border-top-color: $navbarDropdownBottomBorderColor;
+        }@else{
+            border-top-color: transparent;
+        }
+        border-bottom: 0;
+        bottom: -7px;
+        top: auto;
+    }
+    &:after {
+        border-top: 6px solid $navbarDropdownBackground;
+        border-bottom: 0;
+        bottom: -6px;
+        top: auto;
+    }
+}
+
+.navbar .dropdown-menu .dropdown-menu.sub-menu {
+    &::before,
+    &::after {
+        display: none !important;
+    }
 }
