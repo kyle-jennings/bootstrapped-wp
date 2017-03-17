@@ -15,8 +15,15 @@ class ColorPicker extends Field{
         $name = 'bswp_'.$this->section_name.
             '['.$this->group_name.']['.$this->tab_name.']['.$this->name.']';
 
-        $output = '';
+        $data_preview_deps = $this->preview_dependancies ? 'data-preview_deps="'.$this->preview_dependancies.'"' : '' ;
+        $data_preview = $this->preview ? 'data-preview="'.$this->preview.'"' : '';
+        $data_field_name = $this->toggle_fields ? 'data-field_name="'.$this->name.'"' : '';
+        // list of the fields which are toggled by this one
+        $data_target_fields = $this->data_target_fields
+        ? 'data-target_fields="'.$this->data_target_fields.'"' : '';
 
+
+        $output = '';
         $output .= '<label>'.$this->label.'</label>';
 
         $alpha = '1';
@@ -28,8 +35,15 @@ class ColorPicker extends Field{
         $opacity_opt = ( is_string($this->args) && $this->args == 'transparency' ) ? 'opacity' : '';
 
         // the visible output
-        $output .= '<input class="minicolors '.$opacity_opt.'"  id="'.$id.'"
-        name="'.$name.'" data-opacity="'.$alpha.'" value="'.$this->value.'"';
+        $output .= '<input class="minicolors '.$opacity_opt.'"
+        '.$data_preview.'
+        '.$data_field_name.'
+        '.$data_preview_deps.'
+        '.$data_target_fields.'
+        id="'.$id.'"
+        name="'.$name.'"
+        data-opacity="'.$alpha.'"
+        value="'.$this->value.'"';
         $output .= '/>';
 
 

@@ -121,7 +121,7 @@ class Builder {
 
 
     public function init_bootstrap_var_file() {
-        $file = $this->bs_dir . 'src/bootstrap/_variables.scss';
+        $file = $this->bs_dir . 'src/settings/_variables.scss';
 
         file_put_contents($file, $this->bootstrap_vars);
         // examine(file_get_contents($file) );
@@ -139,18 +139,7 @@ class Builder {
         $filename = ($target == 'dist') ? 'site' : 'preview';
         $filename.= '.css';
 
-
-
-        // $fh = fopen($newfile, 'w') or die("Can't create file");
-        // fwrite($fh, $this->css);
         $result = $this->saveFile($this->$folder, $filename, $this->css);
-           if (  $result == 1){
-              error_log("File was saved!");
-          } else if ( $result == -2){
-              error_log("An error occured during saving file!");
-          } else if ( $result == -1){
-              error_log("Wrong file name!");
-           }
     }
 
 

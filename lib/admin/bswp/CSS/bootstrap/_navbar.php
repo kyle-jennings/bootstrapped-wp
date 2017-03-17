@@ -19,12 +19,12 @@ $navbarLinkBackgroundFill:       <?php echo _tern($navtext['link_background_styl
 $navbarLinkBackgroundColor:       <?php echo _tern($navtext['link_background_color_rgba'], 'rgba(0,0,0,0)'); ?> !default;
 
 $navbarLinkColorHover:            <?php echo _tern($navtext['hovered_link_color'], '$grayDark'); ?> !default;
-$navbarLinkBackgroundHoverFill:       <?php echo _tern($navtext['hovered_link_background_style'], 'transparent'); ?> !default;
-$navbarLinkBackgroundHoverColor:       <?php echo _tern($navtext['hovered_link_background_color_rgba'], 'rgba(0,0,0,0)'); ?> !default;
+$navbarLinkBackgroundHoverFill:       <?php echo _tern($navtext['hovered_link_background_style'], '$navbarLinkBackgroundFill'); ?> !default;
+$navbarLinkBackgroundHoverColor:       <?php echo _tern($navtext['hovered_link_background_color_rgba'], '$navbarLinkBackgroundColor'); ?> !default;
 
 $navbarLinkColorActive:           <?php echo _tern($navtext['active_link_color'], '$navbarLinkColorHover'); ?> !default;
 $navbarLinkBackgroundActiveFill:      <?php echo _tern($navtext['active_link_background_style'], '$navbarLinkBackgroundHoverFill'); ?> !default;
-$navbarLinkBackgroundActiveColor:      <?php echo _tern($navtext['active_link_background_color_rgba'], 'rgba(0,0,0,0)'); ?> !default;
+$navbarLinkBackgroundActiveColor:      <?php echo _tern($navtext['active_link_background_color_rgba'], '$navbarLinkBackgroundHoverColor'); ?> !default;
 
 
 $navbarBrandColor:                $navbarLinkColor !default;

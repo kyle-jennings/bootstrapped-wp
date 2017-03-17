@@ -15,13 +15,7 @@ use function bswp\Settings\_helpers\border_settings_map;
 
 $navbar = new SettingsGroup('navbar');
 
-// set navbar link, theyre special
-$navbar_link = $link;
 
-// unset($navbar_link['link_background_style']);
-// unset($navbar_link['link_background_color']);
-// unset($navbar_link['link_text_decoration']);
-// unset($navbar_link['link_text_shadow']);
 
 $rebuild_nav_script = '
     var $preview = $(".preview-window").contents();
@@ -167,12 +161,43 @@ $navbar->add_tab('settings', array(
 // the colors
 $navbar->add_tab('background_colors', $background_colors);
 
+// // set navbar link, theyre special
+$navbar_link = $link;
+
+unset($navbar_link['link_text_decoration']);
+unset($navbar_link['link_text_shadow']);
+unset($navbar_link['link_text_shadow_rgba']);
+unset($navbar_link['link_background_style']);
+unset($navbar_link['link_background_color']);
+unset($navbar_link['link_background_color_rgba']);
+
+$navbar_hovered_link = $hovered_link;
+$navbar_hovered_link['hovered_link_background_style'] = clone $hovered_link['hovered_link_background_style'];
+unset($navbar_hovered_link['hovered_link_background_style']->args[2]);
+unset($navbar_hovered_link['hovered_link_background_style']->toggle_fields['pills']);
+unset($navbar_hovered_link['hovered_link_text_decoration']);
+unset($navbar_hovered_link['hovered_link_text_shadow']);
+unset($navbar_hovered_link['hovered_link_text_shadow_rgba']);
+
+$navbar_active_link = $active_link;
+$navbar_active_link['active_link_background_style'] = clone $active_link['active_link_background_style'];
+unset($navbar_active_link['active_link_background_style']->args[2]);
+unset($navbar_active_link['active_link_background_style']->toggle_fields['pills']);
+unset($navbar_active_link['active_link_text_decoration']);
+unset($navbar_active_link['active_link_text_shadow']);
+unset($navbar_active_link['active_link_text_shadow_rgba']);
+
+
+
 $navbar->add_tab('text',
     array_merge(
         $regular_text,
+        array( 'divider1'=>new Divider()),
         $navbar_link,
-        $hovered_link,
-        $active_link
+        array( 'divider2'=>new Divider()),
+        $navbar_hovered_link,
+        array( 'divider3'=>new Divider()),
+        $navbar_active_link
     )
 );
 

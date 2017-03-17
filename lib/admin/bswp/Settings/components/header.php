@@ -98,9 +98,9 @@ $header->add_tab('text',
         array( 'label0'=>new Label(array('name'=>'Headings'))),
         $headings_normal,
         array( 'divider1'=>new Divider()),
-        $headings_link,
+        $headings_links,
         array( 'divider2'=>new Divider()),
-        $headings_link_hovered
+        $headings_links_hovered
 
     )
 );
