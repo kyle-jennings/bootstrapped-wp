@@ -27,13 +27,13 @@ if($component_options['activate_alerts'] == 'yes'){
     $alerts->add_tab('text', array_merge(
             $regular_text,
             array( 'divider1'=>new Divider()),
-            $links,
+            $link,
             array( 'divider2'=>new Divider()),
-            $visited_links,
+            $visited_link,
             array( 'divider3'=>new Divider()),
-            $hovered_links,
+            $hovered_link,
             array( 'divider4'=>new Divider()),
-            $active_links
+            $active_link
         )
     );
 

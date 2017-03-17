@@ -98,20 +98,20 @@ $header->add_tab('text',
         array( 'label0'=>new Label(array('name'=>'Headings'))),
         $headings_normal,
         array( 'divider1'=>new Divider()),
-        $headings_links,
+        $headings_link,
         array( 'divider2'=>new Divider()),
-        $headings_links_hovered
+        $headings_link_hovered
 
     )
 );
 
 $header->add_tab('links',
     array_merge(
-        $links,
+        $link,
         array( 'divider0'=>new Divider()),
-        $hovered_links,
+        $hovered_link,
         array( 'divider1'=>new Divider()),
-        $active_links
+        $active_link
     )
 );
 

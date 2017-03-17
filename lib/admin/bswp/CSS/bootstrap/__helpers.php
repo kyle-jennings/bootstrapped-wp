@@ -176,6 +176,11 @@ function _link_sass_vars($links) {
 }
 
 
+function _tern($try, $default) {
+    return $try ? $try : $default;
+
+}
+
 
 function _default($fallback, $default = null, &$count = 0) {
     if(!$fallback)

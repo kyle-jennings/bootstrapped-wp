@@ -93,13 +93,14 @@ function heading_toggle($new, $array){
 
 
 function remove_link_bg($link) {
-    unset($link['links_background_style']);
-    unset($link['links_background_color']);
+
+    unset($link['link_background_style']);
+    unset($link['link_background_color']);
     return $link;
 
 }
 function remove_link_decoration($link) {
-    unset($link['links_text_decoration']);
-    unset($link['links_text_shadow']);
+    unset($link['link_text_decoration']);
+    unset($link['link_text_shadow']);
     return $link;
 }

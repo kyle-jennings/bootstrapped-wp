@@ -85,11 +85,14 @@ $text->add_tab('headings_links_hovered', $headings_links_hovered);
 
 
 // Link settings
-$link_settings = new SettingsGroup('links');
-$link_settings->add_tab('links', $links);
-$link_settings->add_tab('visited_links', $visited_links);
-$link_settings->add_tab('hovered_links', $hovered_links);
-$link_settings->add_tab('active_links', $active_links);
+$links = new SettingsGroup('links');
+$links->add_tab('link', $link);
+$links->add_tab('hovered_link', $hovered_link);
+$links->add_tab('active_link', $active_link);
+$links->add_tab('visited_link', $visited_link);
+
+
+
 
 
 
@@ -117,7 +120,7 @@ $groups = array(
     'background' => $background,
     'borders' => $borders,
     'text' => $text,
-    'links' => $link_settings,
+    'links' => $links,
     'header' => $header,
     'navbar' => $navbar,
     'images' => $images,

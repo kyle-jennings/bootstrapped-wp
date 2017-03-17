@@ -38,18 +38,11 @@
         @include link-bg($collapsiblesLinksBackgroundStyle, $collapsiblesLinksBackgroundColor);
         @include link-decoration($collapsiblesLinksDecoration, $collapsiblesLinksTextShadow);
 
-        &:hover,
-        &:hover:visited {
+        &:hover {
             color: $collapsiblesHoveredLinksColor;
             @include link-bg($collapsiblesHoveredLinksBackgroundStyle, $collapsiblesHoveredLinksBackgroundColor);
         }
 
-        &:visited {
-            color: $collapsiblesVisitedLinksColor;
-            @if $collapsiblesVisitedLinksBackgroundStyle != none {
-                background-color: $collapsiblesVisitedLinksBackgroundColor;
-            }
-        }
 
         &:focus,
         &:active {
@@ -108,8 +101,7 @@
     }
 
     &:active,
-    &:focus,
-    &:visited {
+    &:focus{
         color: $collapsiblesHeaderTextColor;
 
         @if $collapsiblesHeaderBackgroundFill == vertical {

@@ -3,6 +3,7 @@
 namespace bswp\css;
 // use Leafo\ScssPhp;
 use Leafo\ScssPhp\Compiler;
+use Leafo\ScssPhp\Exception;
 
 class Builder {
 
@@ -103,12 +104,7 @@ class Builder {
 
 
         $file = file_get_contents( $this->bs_dir . $this->bs_file );
-        try{
-            $this->css = $this->compiler->compile($file);
-        }catch(Exception $e){
-            return;
-        }
-
+        $this->css = $this->compiler->compile($file);
 
     }
 

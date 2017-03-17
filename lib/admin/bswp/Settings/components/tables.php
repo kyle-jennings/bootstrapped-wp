@@ -60,8 +60,8 @@ $tables->add_tab('rows',
                 'type'=>'color',
             )
         ),
-        'links_color'=>new ColorPicker(array(
-                'name'=>'links_color',
+        'link_color'=>new ColorPicker(array(
+                'name'=>'link_color',
                 'type'=>'color',
             )
         )
@@ -87,8 +87,8 @@ $tables->add_tab('striped_rows',
                 'type'=>'color',
             )
         ),
-        'links_color'=>new ColorPicker(array(
-                'name'=>'links_color',
+        'link_color'=>new ColorPicker(array(
+                'name'=>'link_color',
                 'type'=>'color',
             )
         )

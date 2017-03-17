@@ -41,12 +41,6 @@
           @include link-bg($wellHoveredLinksBackgroundStyle, $wellHoveredLinksBackgroundColor);
       }
 
-      &:visited {
-          color: $wellVisitedLinksColor;
-          @if $wellVisitedLinksBackgroundStyle != none {
-              background-color: $wellVisitedLinksBackgroundColor;
-          }
-      }
 
       &:focus,
       &:active {

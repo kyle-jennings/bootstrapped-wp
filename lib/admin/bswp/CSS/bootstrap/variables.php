@@ -21,13 +21,15 @@ $headings = array(
     'headings_links_hovered' => $text['headings_links_hovered'],
 );
 
-$link_settings = $this->values['links'];
-$links = array(
-    'links' => $link_settings['links'],
-    'hovered_links' => $link_settings['hovered-links'],
-    'visited_links' => $link_settings['visited-links'],
-    'active_links' => $link_settings['active-links'],
-);
+$links = $this->values['links'];
+
+// $links = array(
+//     'links' => $link_settings['links'],
+//     'hovered_links' => $link_settings['hovered_link'],
+//     'visited_links' => $link_settings['visited_link'],
+//     'active_links' => $link_settings['active_link'],
+// );
+
 
 
 
@@ -175,16 +177,6 @@ $purple:                #7a43b6 !default;
 require_once '_scaffolding.php';
 ?>
 
-
-// Links
-// -------------------------
-<?php
-
-require_once '_links.php';
-
-?>
-
-$linkColorHover:        darken($hoveredLinksColor, 15%) !default;
 // Typography
 // -------------------------
 $sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif !default;
@@ -196,11 +188,19 @@ $baseFontFamily:        $sansFontFamily !default;
 $baseLineHeight:        20px !default;
 $altFontFamily:         $serifFontFamily !default;
 
-$headingsFontFamily:    inherit !default; // empty to use BS default, $baseFontFamily
+$headingsFontFamily:    $baseFontFamily !default; // empty to use BS default, $baseFontFamily
 $headingsFontWeight:    bold !default;    // instead of browser default, bold
 
-<?php
 
+
+// Links
+// -------------------------
+<?php
+require_once '_links.php';
+?>
+$linkColorHover:        darken($hoveredLinkColor, 15%) !default;
+
+<?php
     require_once '_headings.php';
 ?>
 
@@ -383,7 +383,5 @@ $fluidGridGutterWidth768:      percentage($gridGutterWidth768/$gridRowWidth768) 
 <?php
 $contents = ob_get_contents();
 ob_end_clean();
-
-// examine($contents);
 
 $this->bootstrap_vars = $contents;

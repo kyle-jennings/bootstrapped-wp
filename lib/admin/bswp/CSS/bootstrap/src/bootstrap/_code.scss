@@ -31,17 +31,9 @@ pre {
         @include link-bg($preLinksBackgroundStyle, $preLinksBackgroundColor);
         @include link-decoration($preLinksDecoration, $preLinksTextShadow);
 
-        &:hover,
-        &:hover:visited {
+        &:hover{
             color: $preHoveredLinksColor;
             @include link-bg($preHoveredLinksBackgroundStyle, $preHoveredLinksBackgroundColor);
-        }
-
-        &:visited {
-            color: $preVisitedLinksColor;
-            @if $preVisitedLinksBackgroundStyle != none {
-                background-color: $preVisitedLinksBackgroundColor;
-            }
         }
 
         &:focus,

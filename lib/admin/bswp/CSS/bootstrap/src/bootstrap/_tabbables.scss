@@ -169,13 +169,6 @@
                 @include link-bg($tabsHoveredLinksBackgroundStyle, $tabsHoveredLinksBackgroundColor);
             }
 
-            &:visited {
-                color: $tabsVisitedLinksColor;
-                @if $tabsVisitedLinksBackgroundStyle != none {
-                    background-color: $tabsVisitedLinksBackgroundColor;
-                }
-            }
-
             &:focus,
             &:active {
                 color: $tabsActiveLinksColor;

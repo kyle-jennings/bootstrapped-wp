@@ -59,26 +59,18 @@ a {
 
     &:hover,
     &:hover:visited {
-        color: $hoveredLinksColor;
-        @include link-bg($hoveredLinksBackgroundFill, $hoveredLinksBackgroundColor);
-        @include link-decoration($hoveredLinksDecoration, $hoveredLinksTextShadow);
+        color: $hoveredLinkColor;
+        @include link-bg($hoveredLinkBackgroundFill, $hoveredLinkBackgroundColor);
+        @include link-decoration($hoveredLinkDecoration, $hoveredLinkTextShadow);
 
-    }
-
-    &:visited {
-        color: $visitedLinksColor;
-        @if $visitedLinksBackgroundFill != none {
-            background-color: $visitedLinksBackgroundColor;
-            @include link-decoration($visitedLinksDecoration, $visitedLinksTextShadow);
-        }
     }
 
     &:focus,
     &:active {
-        color: $activeLinksColor;
-        @if $activeLinksBackgroundFill != none {
-            background-color: $activeLinksBackgroundColor;
-            @include link-decoration($activeLinksDecoration, $activeLinksTextShadow);
+        color: $activeLinkColor;
+        @if $activeLinkBackgroundFill != none {
+            background-color: $activeLinkBackgroundColor;
+            @include link-decoration($activeLinkDecoration, $activeLinkTextShadow);
         }
     }
   }

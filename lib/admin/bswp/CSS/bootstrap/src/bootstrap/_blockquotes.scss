@@ -27,18 +27,11 @@ blockquote {
         @include link-bg($quotesLinksBackgroundStyle, $quotesLinksBackgroundColor);
         @include link-decoration($quotesLinksDecoration, $quotesLinksTextShadow);
 
-        &:hover,
-        &:hover:visited {
+        &:hover{
             color: $quotesHoveredLinksColor;
             @include link-bg($quotesHoveredLinksBackgroundStyle, $quotesHoveredLinksBackgroundColor);
         }
 
-        &:visited {
-            color: $quotesVisitedLinksColor;
-            @if $quotesVisitedLinksBackgroundStyle != none {
-                background-color: $quotesVisitedLinksBackgroundColor;
-            }
-        }
 
         &:focus,
         &:active {

@@ -59,55 +59,6 @@ $backgroundPercentage: 0% !default;
 // text
 $textColor:             #ebebeb !default;
 
-
-// Links
-// -------------------------
-    $linkColor:         #08c !default;
-
-    $linkBackgroundFill: none !default;
-
-    $linkBackgroundColor: transparent !default;
-
-    $linkDecoration: none !default;
-
-    $linkTextShadow: darken($linkColor, 15%) !default;
-
-
-    $hoveredLinksColor:         #08c !default;
-
-    $hoveredLinksBackgroundFill: none !default;
-
-    $hoveredLinksBackgroundColor: transparent !default;
-
-    $hoveredLinksDecoration: underline !default;
-
-    $hoveredLinksTextShadow: darken($linkColor, 15%) !default;
-
-
-    $visitedLinksColor:         #08c !default;
-
-    $visitedLinksBackgroundFill: none !default;
-
-    $visitedLinksBackgroundColor: transparent !default;
-
-    $visitedLinksDecoration: underline !default;
-
-    $visitedLinksTextShadow: darken($linkColor, 15%) !default;
-
-
-    $activeLinksColor:         #08c !default;
-
-    $activeLinksBackgroundFill: none !default;
-
-    $activeLinksBackgroundColor: transparent !default;
-
-    $activeLinksDecoration: underline !default;
-
-    $activeLinksTextShadow: darken($linkColor, 15%) !default;
-
-
-
-$linkColorHover:        darken($hoveredLinksColor, 15%) !default;
 // Typography
 // -------------------------
 $sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif !default;
@@ -119,8 +70,35 @@ $baseFontFamily:        $sansFontFamily !default;
 $baseLineHeight:        20px !default;
 $altFontFamily:         $serifFontFamily !default;
 
-$headingsFontFamily:    inherit !default; // empty to use BS default, $baseFontFamily
+$headingsFontFamily:    $baseFontFamily !default; // empty to use BS default, $baseFontFamily
 $headingsFontWeight:    bold !default;    // instead of browser default, bold
+
+
+
+// Links
+// -------------------------
+    $linkColor:         #01751e !default;
+    $linkBackgroundFill: none !default;
+    $linkBackgroundColor: transparent !default;
+    $linkDecoration: none !default;
+    $linkTextShadow: darken($linkColor, 15%) !default;
+
+
+    $hoveredLinkColor:         #0202b3 !default;
+    $hoveredLinkBackgroundFill: none !default;
+    $hoveredLinkBackgroundColor: transparent !default;
+    $hoveredLinkDecoration: none !default;
+    $hoveredLinkTextShadow: darken($linkColor, 15%) !default;
+
+
+    $activeLinkColor:         #029e29 !default;
+    $activeLinkBackgroundFill: none !default;
+    $activeLinkBackgroundColor: transparent !default;
+    $activeLinkDecoration: none !default;
+    $activeLinkTextShadow: darken($linkColor, 15%) !default;
+
+
+$linkColorHover:        darken($hoveredLinkColor, 15%) !default;
 
 
         $headingsColor:         $textColor !default;
@@ -919,14 +897,14 @@ $headerTitleSize:       72px !default;
     
 $headerLinksColor: $linkColor;
 
-    $headerLinksColor: #242424 !default;
+    $headerLinksColor: $headerLinksColor !default;
     $headerLinksBackgroundStyle: none !default;
     $headerLinksBackgroundColor: transparent !default;
     $headerLinksDecoration: none !default;
     $headerLinksTextShadow: none !default;
 
 
-        $headerHoveredLinksColor: #f70303 !default;
+        $headerHoveredLinksColor: $headerLinksColor !default;
     $headerHoveredLinksBackgroundStyle: none !default;
     $headerHoveredLinksBackgroundColor: transparent !default;
     $headerHoveredLinksDecoration: none !default;
@@ -991,18 +969,18 @@ $navbarBackgroundEnd:             $navbarBackgroundStart !default;
 $navbarBackgroundHighlight:       $navbarBackgroundStart !default;
 $navbarBackground:                $navbarBackgroundEnd !default;
 
-$navbarText:                      #777 !default;
-$navbarLinkColor:                  $navbarText !default;
+$navbarText:                      #f7f7f7 !default;
+$navbarLinkColor:                  #ff1003 !default;
 $navbarLinkBackgroundFill:       none !default;
-$navbarLinkBackgroundColor:       transparent !default;
+$navbarLinkBackgroundColor:       rgba(0,0,0,0) !default;
 
-$navbarLinkColorHover:            $grayDark !default;
+$navbarLinkColorHover:            #022099 !default;
 $navbarLinkBackgroundHoverFill:       none !default;
-$navbarLinkBackgroundHoverColor:       transparent !default;
+$navbarLinkBackgroundHoverColor:       rgba(0,0,0,0) !default;
 
 $navbarLinkColorActive:           $navbarLinkColorHover !default;
 $navbarLinkBackgroundActiveFill:      none !default;
-$navbarLinkBackgroundActiveColor:      $navbarLinkBackgroundHoverColor !default;
+$navbarLinkBackgroundActiveColor:      rgba(0,0,0,0) !default;
 
 
 $navbarBrandColor:                $navbarLinkColor !default;
@@ -1051,7 +1029,7 @@ $navbarBorderWidth:               1px;
 // Navbar Dropdowns
 // -------------------------
 
-$navbarDropdownBackground:            $white !default;
+$navbarDropdownBackground:            #f0aba8 !default;
 
 
 $navbarDropdownTopBorderColor:                rgba(0,0,0,.2) !default;
@@ -1076,23 +1054,23 @@ $navbarDropdownDividerTop:            #e5e5e5 !default;
 $navbarDropdownDividerBottom:         $white !default;
 
 // the links - too specific to use the helper
-$navbarDropdownLinksColor: $grayDark !default;
+$navbarDropdownLinksColor: #02c423 !default;
 $navbarDropdownLinksBackgroundStyle: none !default;
-$navbarDropdownLinksBackgroundColor: $white !default;
+$navbarDropdownLinksBackgroundColor: rgba(2, 196, 35, 1) !default;
 $navbarDropdownLinksDecoration: none !default;
 $navbarDropdownLinksTextShadow: none !default;
 
 
 
-$navbarDropdownHoveredLinksColor: $white !default;
-$navbarDropdownHoveredLinksBackgroundStyle: default !default;
+$navbarDropdownHoveredLinksColor: #020da8 !default;
+$navbarDropdownHoveredLinksBackgroundStyle: none !default;
 $navbarDropdownHoveredLinksBackgroundColor: $linkColor !default;
 $navbarDropdownHoveredLinksDecoration: none !default;
 $navbarDropdownHoveredLinksTextShadow: none !default;
 
 
 
-$navbarDropdownActiveLinksColor: $white !default;
+$navbarDropdownActiveLinksColor: #4b8702 !default;
 $navbarDropdownActiveLinksBackgroundStyle: default !default;
 $navbarDropdownActiveLinksBackgroundColor: $linkColor !default;
 $navbarDropdownActiveLinksDecoration: none !default;

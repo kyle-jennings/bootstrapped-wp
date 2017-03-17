@@ -15,12 +15,13 @@ use function bswp\Settings\_helpers\border_settings_map;
 
 $navbar = new SettingsGroup('navbar');
 
-// set navbar links, theyre special
-$navbar_links = $links;
-unset($navbar_links['links_background_style']);
-unset($navbar_links['links_background_color']);
-unset($navbar_links['links_text_decoration']);
-unset($navbar_links['links_text_shadow']);
+// set navbar link, theyre special
+$navbar_link = $link;
+
+// unset($navbar_link['link_background_style']);
+// unset($navbar_link['link_background_color']);
+// unset($navbar_link['link_text_decoration']);
+// unset($navbar_link['link_text_shadow']);
 
 $rebuild_nav_script = '
     var $preview = $(".preview-window").contents();
@@ -169,9 +170,9 @@ $navbar->add_tab('background_colors', $background_colors);
 $navbar->add_tab('text',
     array_merge(
         $regular_text,
-        $navbar_links,
-        $hovered_links,
-        $active_links
+        $navbar_link,
+        $hovered_link,
+        $active_link
     )
 );
 
@@ -205,18 +206,22 @@ $navbar->add_tab('submenu_background_colors', array(
 
 
 // add the "default" option to the background styles
-$sub_links = remove_link_decoration(remove_link_bg($links));
-$sub_hovered = $hovered_links;
-$sub_hovered['hovered_links_background_style'] = clone $sub_hovered['hovered_links_background_style'];
-array_unshift($sub_hovered['hovered_links_background_style']->args,  'default');
 
-$sub_active = $active_links;
-$sub_active['active_links_background_style'] = clone $sub_active['active_links_background_style'];
-array_unshift($sub_active['active_links_background_style']->args,  'default');
+
+$sub_link = remove_link_bg($link);
+$sub_link = remove_link_decoration($sub_link);
+$sub_hovered = $hovered_link;
+
+$sub_hovered['hovered_link_background_style'] = clone $sub_hovered['hovered_link_background_style'];
+array_unshift($sub_hovered['hovered_link_background_style']->args,  'default');
+
+$sub_active = $active_link;
+$sub_active['active_link_background_style'] = clone $sub_active['active_link_background_style'];
+array_unshift($sub_active['active_link_background_style']->args,  'default');
 
 $navbar->add_tab('submenu_text',
     array_merge(
-        $sub_links,
+        $sub_link,
         $sub_hovered,
         $sub_active
     )
