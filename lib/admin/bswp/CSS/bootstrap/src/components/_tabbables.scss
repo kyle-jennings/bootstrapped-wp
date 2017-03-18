@@ -159,22 +159,23 @@
 
         // active tab links (content area)
         a {
-            color: $tabsLinksColor;
-            @include link-bg($tabsLinksBackgroundStyle, $tabsLinksBackgroundColor);
-            @include link-decoration($tabsLinksDecoration, $tabsLinksTextShadow);
+            color: $tabsLinkColor;
+            @include link-bg($tabsLinkBackgroundStyle, $tabsLinkBackgroundColor);
+            @include link-decoration($tabsLinkTextDecoration, $tabsLinkTextShadow);
 
             &:hover,
             &:hover:visited {
-                color: $tabsHoveredLinksColor;
-                @include link-bg($tabsHoveredLinksBackgroundStyle, $tabsHoveredLinksBackgroundColor);
+                color: $tabsHoveredLinkColor;
+                @include link-bg($tabsHoveredLinkBackgroundStyle, $tabsHoveredLinkBackgroundColor);
+                @include link-decoration($tabsHoveredLinkTextDecoration, $tabsHoveredLinkTextShadow);
             }
 
             &:focus,
             &:active {
-                color: $tabsActiveLinksColor;
-                @if $tabsActiveLinksBackgroundStyle != none {
-                    background-color: $tabsActiveLinksBackgroundColor;
-                }
+                color: $tabsActiveLinkColor;
+                @include link-bg($tabsActiveLinkBackgroundStyle, $tabsActiveLinkBackgroundColor);
+                @include link-decoration($tabsActiveLinkTextDecoration, $tabsActiveLinkTextShadow);
+
             }
         }
 

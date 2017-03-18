@@ -1,7 +1,11 @@
+<?php
+// Preformatted and Code text
+$pre = $this->values['preformatted'];
+$pre_background_colors = $pre['background_colors'];
+$pre_text = $pre['text'];
+$pre_borders = $pre['borders'];
 
-
-
-
+?>
 // Preformatted and Code
 // -------------------------
 

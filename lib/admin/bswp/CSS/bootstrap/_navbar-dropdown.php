@@ -1,3 +1,11 @@
+<?php
+// navbar dropdow
+$nav_submenu_bg = $navbar['submenu_background_colors'];
+$nav_submenu_text = $navbar['submenu_text'];
+$nav_submenu_border = $navbar['submenu_borders'];
+
+?>
+
 // -------------------------
 // Navbar Dropdowns
 // -------------------------

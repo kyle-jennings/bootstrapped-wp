@@ -23,22 +23,24 @@ blockquote {
     }
 
     a {
-        color: $quotesLinksColor;
-        @include link-bg($quotesLinksBackgroundStyle, $quotesLinksBackgroundColor);
-        @include link-decoration($quotesLinksDecoration, $quotesLinksTextShadow);
+        color: $quotesLinkColor;
+        @include link-bg($quotesLinkBackgroundStyle, $quotesLinkBackgroundColor);
+        @include link-decoration($quotesLinkTextDecoration, $quotesLinkTextShadow);
 
         &:hover{
-            color: $quotesHoveredLinksColor;
-            @include link-bg($quotesHoveredLinksBackgroundStyle, $quotesHoveredLinksBackgroundColor);
+            color: $quotesHoveredLinkColor;
+            @include link-bg($quotesHoveredLinkBackgroundStyle, $quotesHoveredLinkBackgroundColor);
+            @include link-decoration($quotesHoveredLinkTextDecoration, $quotesHoveredLinkTextShadow);
+
         }
 
 
         &:focus,
         &:active {
-            color: $quotesActiveLinksColor;
-            @if $quotesActiveLinksBackgroundStyle != none {
-                background-color: $quotesActiveLinksBackgroundColor;
-            }
+            color: $quotesActiveLinkColor;
+            @include link-bg($quotesActiveLinkBackgroundStyle, $quotesActiveLinkBackgroundColor);
+            @include link-decoration($quotesActiveLinkTextDecoration, $quotesActiveLinkTextShadow);
+
         }
 
 

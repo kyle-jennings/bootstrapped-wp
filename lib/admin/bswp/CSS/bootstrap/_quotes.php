@@ -1,4 +1,11 @@
+<?php
+// Quotes
+$quotes = $this->values['quotes'];
+$quotes_background_colors = $quotes['background_colors'];
+$quotes_text = $quotes['text'];
+$quotes_borders = $quotes['borders'];
 
+?>
 // Quotes
 // -------------------------
 

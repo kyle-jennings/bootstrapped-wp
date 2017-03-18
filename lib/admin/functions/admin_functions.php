@@ -19,6 +19,6 @@ register_nav_menus(
     )
 );
 
-// include('live-preview.php');
+
 // include('gallery.php');
 // include('kjd-widgets.php');

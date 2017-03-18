@@ -26,21 +26,23 @@ pre {
     font-size: $baseFontSize - 2;
 
     a {
-        color: $preLinksColor;
-        @include link-bg($preLinksBackgroundStyle, $preLinksBackgroundColor);
-        @include link-decoration($preLinksDecoration, $preLinksTextShadow);
+        color: $preLinkColor;
+        @include link-bg($preLinkBackgroundStyle, $preLinkBackgroundColor);
+        @include link-decoration($preLinkTextDecoration, $preLinkTextShadow);
 
         &:hover{
-            color: $preHoveredLinksColor;
-            @include link-bg($preHoveredLinksBackgroundStyle, $preHoveredLinksBackgroundColor);
+            color: $preHoveredLinkColor;
+            @include link-bg($preHoveredLinkBackgroundStyle, $preHoveredLinkBackgroundColor);
+            @include link-decoration($preHoveredLinkTextDecoration, $preHoveredLinkTextShadow);
+
         }
 
         &:focus,
         &:active {
-            color: $preActiveLinksColor;
-            @if $preActiveLinksBackgroundStyle != none {
-                background-color: $preActiveLinksBackgroundColor;
-            }
+            color: $preActiveLinkColor;
+            @include link-bg($preActiveLinkBackgroundStyle, $preActiveLinkBackgroundColor);
+            @include link-decoration($preActiveLinkTextDecoration, $preActiveLinkTextShadow);
+
         }
 
 

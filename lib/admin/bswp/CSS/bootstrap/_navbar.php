@@ -1,3 +1,16 @@
+<?php
+// navbar
+$navbar = $this->values['navbar'];
+$navsettings = $navbar['settings'];
+if($navsettings['settings'] == 'basic'){
+
+    $navbg = $navbar['background_colors'];
+    $navtext = $navbar['text'];
+    $navborders = $navbar['borders'];
+}
+
+
+?>
 // Navbar
 // -------------------------
 

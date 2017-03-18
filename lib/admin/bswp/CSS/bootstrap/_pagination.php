@@ -1,4 +1,7 @@
-
+<?php
+// pagination
+$pagination = $this->values['pagination'];
+?>
 
 
 // Pagination

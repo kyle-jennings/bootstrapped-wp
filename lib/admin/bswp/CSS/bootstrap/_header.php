@@ -2,43 +2,49 @@
 //////////////////////
 <?php
 
-// $header = $this->values['header'];
-// $header_bgcolors = $header['background_colors'];
-// $header_wallpaper = $header['background_wallpaper'];
-// $header_text = $header['text'];
-// $header_links = $header['links'];
-// $header_borders = $header['borders'];
+// header
+$header = $this->values['header'];
+$header_bgcolors = $header['background_colors'];
+$header_wallpaper = $header['background_wallpaper'];
+$header_text = $header['text'];
+$header_links = $header['links'];
+$header_borders = $header['borders'];
+$header_settings = $header['settings'];
+$header_frontpage = $header['front_page'];
+$header_feed = $header['feed_page'];
+$header_single = $header['single_page'];
+
 
 ?>
 
 // base settings
-$headingAlignment: <?php echo $header_settings['title_alignment'] ? $header_settings['title_alignment'] : 'center' ?>;
+$headingAlignment: <?php echo _tern($header_settings['title_alignment'], 'center'); ?>;
 
 
 // the background colors
-$headerBackgroundStartColor:           <?php echo $header_bgcolors['background_start_color_rgba'] ? $header_bgcolors['background_start_color_rgba'] : '$bodyBackground'; ?> !default;
-$headerBackgroundEndColor:             <?php echo $header_bgcolors['background_end_color_rgba'] ? $header_bgcolors['background_end_color_rgba'] : '$headerBackgroundStartColor'; ?> !default;
-$headerBackgroundFill: <?php echo $header_bgcolors['background_fill'] ? $header_bgcolors['background_fill'] : 'solid'; ?> !default;
+$headerBackgroundStartColor:           <?php echo _tern($header_bgcolors['background_start_color_rgba'], '$bodyBackground'); ?> !default;
+$headerBackgroundEndColor:             <?php echo _tern($header_bgcolors['background_end_color_rgba'], '$headerBackgroundStartColor'); ?> !default;
+$headerBackgroundFill: <?php echo _tern($header_bgcolors['background_fill'], 'solid'); ?> !default;
 
 // background wallpaper
-$headerUseBackgroundWallpaper: <?php echo $header_wallpaper['background_use_wallpaper'] ? $header_wallpaper['background_use_wallpaper'] : 'no'; ?> !default;
+$headerUseBackgroundWallpaper: <?php echo _tern($header_wallpaper['background_use_wallpaper'], 'no'); ?> !default;
 
-$headerBackgroundImage: "<?php echo $header_wallpaper['background_image'] ? $header_wallpaper['background_image'] : 'none'; ?>" !default;
-$headerBackgroundRepeat: <?php echo $header_wallpaper['background_repeat'] ? $header_wallpaper['background_repeat'] : 'no-repeat'; ?> !default;
-$headerBackgroundAttachment: <?php echo $header_wallpaper['background_attachment'] ? $header_wallpaper['background_attachment'] : 'scroll'; ?> !default;
+$headerBackgroundImage: "<?php echo _tern($header_wallpaper['background_image'], 'none'); ?>" !default;
+$headerBackgroundRepeat: <?php echo _tern($header_wallpaper['background_repeat'], 'no-repeat'); ?> !default;
+$headerBackgroundAttachment: <?php echo _tern($header_wallpaper['background_attachment'], 'scroll'); ?> !default;
 
-$headerBackgroundPosition: <?php echo $header_wallpaper['background_position'] ? $header_wallpaper['background_position'] : 'left top'; ?> !default;
-$headerBackgroundPositionX: <?php echo $header_wallpaper['background_positionX'] ? $header_wallpaper['background_positionX'] : '0'; ?> !default;
-$headerBackgroundPositionY: <?php echo $header_wallpaper['background_positionY'] ? $header_wallpaper['background_positionY'] : '0'; ?> !default;
+$headerBackgroundPosition: <?php echo _tern($header_wallpaper['background_position'], 'left top'); ?> !default;
+$headerBackgroundPositionX: <?php echo _tern($header_wallpaper['background_positionX'], '0'); ?> !default;
+$headerBackgroundPositionY: <?php echo _tern($header_wallpaper['background_positionY'], '0'); ?> !default;
 
-$headerBackgroundSize: <?php echo $header_wallpaper['background_size'] ? $header_wallpaper['background_size'] : 'auto'; ?> !default;
-$headerBackgroundPercentage: <?php echo $header_wallpaper['background_percentage'] ? $header_wallpaper['background_percentage'] : '0%'; ?> !default;
+$headerBackgroundSize: <?php echo _tern($header_wallpaper['background_size'], 'auto'); ?> !default;
+$headerBackgroundPercentage: <?php echo _tern($header_wallpaper['background_percentage'], '0%'); ?> !default;
 
-$headerBackgroundOverlay: <?php echo $header_wallpaper['overlay_color_rgba'] ? $header_wallpaper['overlay_color_rgba'] : 'transparent'; ?> !default;;
+$headerBackgroundOverlay: <?php echo _tern($header_wallpaper['overlay_color_rgba'], 'transparent'); ?> !default;;
 
 
 // Text and Headings
-$headerText:                      <?php echo $header_text['text_color'] ? $header_text['text_color'] : '$headingsColor'; ?> !default;
+$headerText:                      <?php echo _tern($header_text['text_color'], '$headingsColor'); ?> !default;
 
 // fullheight
 $headerHeight: <?php echo ($header_settings['height'] == 'fullpage') ? '100vh' : 'auto' ; ?> !default;
@@ -97,22 +103,18 @@ $headerTitleSize:       <?php echo $header_title_size; ?> !default;
 ?>
 
 
-<?php
-$heading_states = array('normal','links','links_hovered');
-foreach($headings as $state=>$heading):
+$headerHeadingsColor:         <?php echo _tern( $header_text['headings_normal_color'],'$headerText'); ?> !default;
+$headerHeadingsTextDecoration: <?php echo _tern( $header_text['headings_normal_text_decoration'], 'none'); ?> !default;
+$headerHeadingsTextShadow: <?php echo _tern( $header_text['headings_normal_text_shadow_rgba'], 'rgba(0,0,0,0)'); ?> !default;
 
-    $state_name = ($state == 'headings_normal') ? 'Headings': ucfirst(str_replace(' ','',ucwords(str_replace('_',' ',$state))));
-    $base = ($state == 'headings_normal') ? '$headerText' : '$headerLinksColor';
-?>
+$headerHeadingsLinkColor:         <?php echo _tern( $header_text['headings_link_color'],'$headerText'); ?> !default;
+$headerHeadingsLinkTextDecoration: <?php echo _tern( $header_text['headings_link_text_decoration'], 'none'); ?> !default;
+$headerHeadingsLinkTextShadow: <?php echo _tern( $header_text['headings_link_text_shadow_rgba'], 'rgba(0,0,0,0)'); ?> !default;
 
-    $header<?php echo $state_name; ?>Color:         <?php echo $heading[$state.'_color'] ? $heading[$state.'_color'] : $base; ?> !default;
+$headerHeadingsLinkHoveredColor:         <?php echo _tern( $header_text['headings_link_hovered_color'],'$headerText'); ?> !default;
+$headerHeadingsLinkHoveredTextDecoration: <?php echo _tern( $header_text['headings_link_hovered_text_decoration'], 'none'); ?> !default;
+$headerHeadingsLinkHoveredTextShadow: <?php echo _tern( $header_text['headings_link_hovered_text_shadow_rgba'], 'rgba(0,0,0,0)'); ?> !default;
 
-    $header<?php echo $state_name; ?>Decoration: <?php echo $heading[$state.'_text_decoration'] ? $heading[$state.'_text_decoration'] : 'none'; ?> !default;
-    $header<?php echo $state_name; ?>TextShadow: <?php echo $heading[$state.'_text_shadow'] ? $heading[$state.'_text_shadow'] : 'darken($headingsColor, 15%)'; ?> !default;
-
-<?php
-    endforeach;
-?>
 // front page settings
 $frontpageAlignment: <?php echo $header_frontpage['title_alignment'] ? $header_frontpage['title_alignment'] : 'center' ?>;
 

@@ -1,4 +1,14 @@
+<?php
 
+// collapsibles
+$collapsibles = $this->values['collapsibles'];
+$collapsibles_header = $collapsibles['header'];
+$collapsibles_background_colors = $collapsibles['background_colors'];
+$collapsibles_text = $collapsibles['text'];
+$collapsibles_borders = $collapsibles['borders'];
+
+
+?>
 // collapsibles
 // -------------------------
 

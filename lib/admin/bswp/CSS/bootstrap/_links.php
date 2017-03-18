@@ -16,5 +16,3 @@ foreach($links as $state=>$link):
 
 <?php
 endforeach;
-
-// _component_links_sass_vars('imageCaption', $image_captions);

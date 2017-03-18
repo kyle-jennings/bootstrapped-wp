@@ -77,23 +77,23 @@
     color: $headerText;
 
     a {
-        color: $headerLinksColor;
-        @include link-bg($headerLinksBackgroundStyle, $headerLinksBackgroundColor);
-        @include link-decoration($headerLinksDecoration, $headerLinksTextShadow);
+        color: $headerLinkColor;
+        @include link-bg($headerLinkBackgroundStyle, $headerLinkBackgroundColor);
+        @include link-decoration($headerLinkTextDecoration, $headerLinkTextShadow);
 
         &:hover,
         &:hover:visited {
-            color: $headerHoveredLinksColor;
-            @include link-bg($headerHoveredLinksBackgroundStyle, $headerHoveredLinksBackgroundColor);
-            @include link-decoration($headerHoveredLinksDecoration, $headerHoveredLinksTextShadow);
+            color: $headerHoveredLinkColor;
+            @include link-bg($headerHoveredLinkBackgroundStyle, $headerHoveredLinkBackgroundColor);
+            @include link-decoration($headerHoveredLinkTextDecoration, $headerHoveredLinkTextShadow);
 
         }
 
         &:focus,
         &:active {
-            color: $headerActiveLinksColor;
-            @include link-bg($headerActiveLinksBackgroundStyle, $headerActiveLinksBackgroundColor);
-            @include link-decoration($headerActiveLinksDecoration, $headerActiveLinksTextShadow);
+            color: $headerActiveLinkColor;
+            @include link-bg($headerActiveLinkBackgroundStyle, $headerActiveLinkBackgroundColor);
+            @include link-decoration($headerActiveLinkTextDecoration, $headerActiveLinkTextShadow);
         }
     }
 
@@ -104,10 +104,10 @@
     h5,
     h6 {
         color: $headerHeadingsColor;
-        @include link-decoration($headerHeadingsDecoration, $headerHeadingsTextShadow);
+        @include link-decoration($headerHeadingsTextDecoration, $headerHeadingsTextShadow);
         a {
-            color: $headerHeadingsLinksColor;
-            @include link-decoration($headerHeadingsLinksDecoration, $headerHeadingsLinksTextShadow);
+            color: $headerHeadingsLinkColor;
+            @include link-decoration($headerHeadingsLinkTextDecoration, $headerHeadingsLinkTextShadow);
         }
 
 
@@ -115,8 +115,8 @@
         a:focus,
         a:active {
 
-            color: $headerHeadingsLinksHoveredColor;
-            @include link-decoration($headerHeadingsLinksHoveredDecoration, $headerHeadingsLinksHoveredTextShadow);
+            color: $headerHeadingsLinkHoveredColor;
+            @include link-decoration($headerHeadingsLinkHoveredTextDecoration, $headerHeadingsLinkHoveredTextShadow);
         }
     }
 

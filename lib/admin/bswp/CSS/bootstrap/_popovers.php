@@ -1,3 +1,11 @@
+<?php
+
+// popovers
+$popovers = $this->values['popovers'];
+$popover_content = $popovers['content_colors'];
+$popover_title = $popovers['title_colors'];
+$popover_borders = $popovers['borders'];
+?>
 
 // popovers
 // -------------------------

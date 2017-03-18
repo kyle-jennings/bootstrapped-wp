@@ -1,3 +1,14 @@
+<?php
+
+// Tooltips
+$tooltips = $this->values['tooltips'];
+
+$tooltip_bg = $tooltips['background_colors'];
+$tooltip_text = $tooltips['text']['text_color'];
+$tooltip_borders = $tooltips['borders'];
+
+?>
+
 // Tooltips
 // -------------------------
 $tooltipColor:            <?php echo $tooltip_text ? $tooltip_text : '#fff'; ?> !default;

@@ -280,7 +280,7 @@ class Form {
 
 
     public function is_saved_tab($saved_tab_name, $current_tab_name) {
-
+        // error_log($saved_tab_name .'--'. $current_tab_name);
         if($saved_tab_name == $current_tab_name || strpos($saved_tab_name, $current_tab_name) != false ){
             return true;
         }

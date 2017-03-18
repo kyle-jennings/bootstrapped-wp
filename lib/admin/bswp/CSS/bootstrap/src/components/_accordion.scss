@@ -34,22 +34,25 @@
     overflow: hidden;
 
     a {
-        color: $collapsiblesLinksColor;
-        @include link-bg($collapsiblesLinksBackgroundStyle, $collapsiblesLinksBackgroundColor);
-        @include link-decoration($collapsiblesLinksDecoration, $collapsiblesLinksTextShadow);
+        color: $collapsiblesLinkColor;
+        @include link-bg($collapsiblesLinkBackgroundStyle, $collapsiblesLinkBackgroundColor);
+        @include link-decoration($collapsiblesLinkTextDecoration, $collapsiblesLinkTextShadow);
 
         &:hover {
-            color: $collapsiblesHoveredLinksColor;
-            @include link-bg($collapsiblesHoveredLinksBackgroundStyle, $collapsiblesHoveredLinksBackgroundColor);
+            color: $collapsiblesHoveredLinkColor;
+            @include link-bg($collapsiblesHoveredLinkBackgroundStyle, $collapsiblesHoveredLinkBackgroundColor);
+            @include link-decoration($collapsiblesHoveredLinkTextDecoration, $collapsiblesHoveredLinkTextShadow);
+
         }
 
 
         &:focus,
         &:active {
-            color: $collapsiblesActiveLinksColor;
-            @if $collapsiblesActiveLinksBackgroundStyle != none {
-                background-color: $collapsiblesActiveLinksBackgroundColor;
-            }
+            color: $collapsiblesActiveLinkColor;
+
+            @include link-bg($collapsiblesActiveLinkBackgroundStyle, $collapsiblesActiveLinkBackgroundColor);
+            @include link-decoration($collapsiblesActiveLinkTextDecoration, $collapsiblesActiveLinkTextShadow);
+
         }
     }
 }

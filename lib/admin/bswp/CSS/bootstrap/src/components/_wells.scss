@@ -31,23 +31,25 @@
 
 
   a {
-      color: $wellLinksColor;
-      @include link-bg($wellLinksBackgroundStyle, $wellLinksBackgroundColor);
-      @include link-decoration($wellLinksDecoration, $wellLinksTextShadow);
+      color: $wellLinkColor;
+      @include link-bg($wellLinkBackgroundStyle, $wellLinkBackgroundColor);
+      @include link-decoration($wellLinkTextDecoration, $wellLinkTextShadow);
 
       &:hover,
       &:hover:visited {
-          color: $wellHoveredLinksColor;
-          @include link-bg($wellHoveredLinksBackgroundStyle, $wellHoveredLinksBackgroundColor);
+          color: $wellHoveredLinkColor;
+          @include link-bg($wellHoveredLinkBackgroundStyle, $wellHoveredLinkBackgroundColor);
+          @include link-decoration($wellHoveredLinkTextDecoration, $wellHoveredLinkTextShadow);
+
       }
 
 
       &:focus,
       &:active {
-          color: $wellActiveLinksColor;
-          @if $wellActiveLinksBackgroundStyle != none {
-              background-color: $wellActiveLinksBackgroundColor;
-          }
+          color: $wellActiveLinkColor;
+          @include link-bg($wellActiveLinkBackgroundStyle, $wellActiveLinkBackgroundColor);
+          @include link-decoration($wellActiveLinkTextDecoration, $wellActiveLinkTextShadow);
+
       }
 
 

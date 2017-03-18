@@ -110,69 +110,46 @@ function _component_outer_border_sass_vars($prefix = null, $borders = array(), $
 
 /**
  * function to set the link styles for a component (they are all on the same page)
- * @param  string $prefix used for naming the sass var
- * @param  array  $links  the settings
+ *
+ *    $componentLinkColor
+ *    $componentLinkBackgroundStyle
+ *    $componentLinkBackgroundColor
+ *    $componentLinkTextDecpration
+ *    $componentLinkTextShadow
+ *    $componentHoveredLinkTextShadow
+ *    ...
  */
 function _component_links_sass_vars($prefix = null, $links = array()) {
 
 ?>
-
-$<?php echo $prefix ?>LinksColor: $linkColor;
+$<?php echo $prefix ?>LinkColor: $linkColor;
 
 <?php
     if(is_null($prefix) )
         return;
 
-    $states = array('links','hovered_links', 'active_links', 'visited_links');
+    $states = array('link','hovered_link', 'active_link', 'visited_link');
 
     foreach($states as $state):
-        $state_name = ($type == 'links') ? 'Link': str_replace(' ','',ucwords(str_replace('_',' ',$state)));
-        $default = ($type == 'links') ? 'inherit' : $prefix.'LinksColor';
+        // removes the underscore and StudyCases the link type
+        // hovered_link => HoveredLink
+        $state_name = $prefix . str_replace(' ','',ucwords(str_replace('_',' ',$state)));
+        $default = $prefix.'LinksColor';
 
     ?>
-    $<?php echo $prefix . $state_name; ?>Color: <?php echo $links[$state.'_color'] ? $links[$state.'_color'] : '$'.$prefix.'LinksColor'; ?> !default;
-    $<?php echo $prefix . $state_name; ?>BackgroundStyle: <?php echo $links[$state.'_background_style'] ? $links[$state.'_background_style'] : 'none'; ?> !default;
-    $<?php echo $prefix . $state_name; ?>BackgroundColor: <?php echo $links[$state.'_background_color_rgba'] ? $links[$state.'_background_color_rgba'] : 'transparent'; ?> !default;
-    $<?php echo $prefix . $state_name; ?>Decoration: <?php echo $links[$state.'_text_decoration'] ? $links[$state.'_text_decoration'] : 'none'; ?> !default;
-    $<?php echo $prefix . $state_name; ?>TextShadow: <?php echo $links[$state.'_text_shadow'] ? $links[$state.'_text_shadow'] : 'none'; ?> !default;
+
+    $<?php echo $state_name; ?>Color: <?php echo _tern($links[$state.'_color'],'$'.$prefix.'LinkColor'); ?> !default;
+
+    $<?php echo $state_name; ?>BackgroundStyle: <?php echo _tern($links[$state.'_background_style'],'none'); ?> !default;
+    $<?php echo $state_name; ?>BackgroundColor: <?php echo _tern($links[$state.'_background_color_rgba'],'transparent'); ?> !default;
+    $<?php echo $state_name; ?>TextDecoration: <?php echo _tern($links[$state.'_text_decoration'],'none'); ?> !default;
+    $<?php echo $state_name; ?>TextShadow: <?php echo _tern($links[$state.'_text_shadow'],'none'); ?> !default;
 
 
     <?php
 
     endforeach;
 
-}
-
-
-
-
-/**
- * depreciated link varss helper - this is used for the section's links
- */
-function _link_sass_vars($links) {
-    $output = '';
-    foreach($links as $type=>$link):
-
-        $type_name = ($type == 'links') ? 'link': lcfirst(ucwords(str_replace('_','',$type)));
-
-        $output .= '$'.$type_name.'Color:         '. ($link[$type.'_color'] ? $link[$type.'_color'] : 'inherit' ).' !default;';
-        $output .= "\r\n";
-        $output .= '$'.$type_name.'BackgroundStyle: '. ($link[$type.'_background_style'] ? $link[$type.'_background_style'] : 'none' ).' !default;';
-        $output .= "\r\n";
-        $output .= '$'.$type_name.'BackgroundColor: '. ($link[$type.'_background_color_rgba'] ? $link[$type.'_background_color_rgba'] : 'transparent' ).' !default;';
-        $output .= "\r\n";
-        $output .= '$'.$type_name.'Decoration: '. ($link[$type.'_text_decoration'] ? $link[$type.'_text_decoration'] : 'none' ).' !default;';
-        $output .= "\r\n";
-        $output .= '$'.$type_name.'TextShadow: '. ($link[$type.'_text_shadow'] ? $link[$type.'_text_shadow'] : 'darken($linkColor, 15%)' ).' !default;';
-
-        $output .= "\r\n";
-        $output .= "\r\n";
-        $output .= "\r\n";
-
-
-    endforeach;
-
-    echo $output;
 }
 
 

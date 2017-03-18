@@ -78,8 +78,8 @@ $borders->add_tab('border-radius', $radii_fields);
 $text = new SettingsGroup('text');
 $text->add_tab('text', $regular_text);
 $text->add_tab('headings', $headings_normal);
-$text->add_tab('headings_links', $headings_links);
-$text->add_tab('headings_links_hovered', $headings_links_hovered);
+$text->add_tab('headings_link', $headings_link);
+$text->add_tab('headings_link_hovered', $headings_link_hovered);
 
 
 

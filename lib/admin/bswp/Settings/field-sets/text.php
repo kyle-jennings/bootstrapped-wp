@@ -20,7 +20,7 @@ $regular_text = array(
 );
 
 
-$heading_states = array('normal','links','links_hovered');
+$heading_states = array('normal','link','link_hovered');
 // each H tag is the same, so lets just loop through them to create them
 foreach($heading_states as $state){
     $name = 'headings_'. $state;

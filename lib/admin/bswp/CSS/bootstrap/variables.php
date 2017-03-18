@@ -17,120 +17,12 @@ $text_color = $text['text']['text_color'];
 
 $headings = array(
     'headings_normal' => $text['headings'],
-    'headings_links' => $text['headings_links'],
-    'headings_links_hovered' => $text['headings_links_hovered'],
+    'headings_link' => $text['headings_link'],
+    'headings_link_hovered' => $text['headings_link_hovered'],
 );
 
 $links = $this->values['links'];
 
-// $links = array(
-//     'links' => $link_settings['links'],
-//     'hovered_links' => $link_settings['hovered_link'],
-//     'visited_links' => $link_settings['visited_link'],
-//     'active_links' => $link_settings['active_link'],
-// );
-
-
-
-
-// forms
-$forms = $this->values['forms'];
-$form = $forms['background_colors'];
-$field = $forms['field_colors'];
-$field_hovered = $forms['field_hovered_colors'];
-$field_active = $forms['field_active_colors'];
-
-
-// tables
-$tables = $this->values['tables'];
-// examine($tables);
-
-
-// navbar
-$navbar = $this->values['navbar'];
-$navsettings = $navbar['settings'];
-if($navsettings['settings'] == 'basic'){
-
-    $navbg = $navbar['background_colors'];
-    $navtext = $navbar['text'];
-    $navborders = $navbar['borders'];
-}
-
-
-// navbar dropdow
-$nav_submenu_bg = $navbar['submenu_background_colors'];
-$nav_submenu_text = $navbar['submenu_text'];
-$nav_submenu_border = $navbar['submenu_borders'];
-
-// Preformatted and Code text
-$pre = $this->values['preformatted'];
-$pre_background_colors = $pre['background_colors'];
-$pre_text = $pre['text'];
-$pre_borders = $pre['borders'];
-
-// Wells
-$well = $this->values['well'];
-$well_background_colors = $well['background_colors'];
-$well_text = $well['text'];
-$well_borders = $well['borders'];
-// Quotes
-$quotes = $this->values['quotes'];
-$quotes_background_colors = $quotes['background_colors'];
-$quotes_text = $quotes['text'];
-$quotes_borders = $quotes['borders'];
-
-// collapsibles
-$collapsibles = $this->values['collapsibles'];
-$collapsibles_header = $collapsibles['header'];
-$collapsibles_background_colors = $collapsibles['background_colors'];
-$collapsibles_text = $collapsibles['text'];
-$collapsibles_borders = $collapsibles['borders'];
-
-// tabs
-$tabs = $this->values['tabs'];
-$tabs_bg = $tabs['background_colors'];
-$tabs_text = $tabs['text'];
-$tabs_borders = $tabs['borders'];
-$tabs_inactive_colors = $tabs['inactive_tab_colors'];
-
-
-// Tooltips
-$tooltips = $this->values['tooltips'];
-
-$tooltip_bg = $tooltips['background_colors'];
-$tooltip_text = $tooltips['text']['text_color'];
-$tooltip_borders = $tooltips['borders'];
-
-
-// popovers
-$popovers = $this->values['popovers'];
-$popover_content = $popovers['content_colors'];
-$popover_title = $popovers['title_colors'];
-$popover_borders = $popovers['borders'];
-
-
-// pagination
-$pagination = $this->values['pagination'];
-
-
-// images
-$image_settings = $this->values['images'];
-$images = $image_settings['images'];
-$image_thumbnails = $image_settings['thumbnails'];
-$image_captions = $image_settings['image_captions'];
-
-
-// header
-$header = $this->values['header'];
-$header_bgcolors = $header['background_colors'];
-$header_wallpaper = $header['background_wallpaper'];
-$header_text = $header['text'];
-$header_links = $header['links'];
-$header_borders = $header['borders'];
-$header_settings = $header['settings'];
-$header_frontpage = $header['front_page'];
-$header_feed = $header['feed_page'];
-$header_single = $header['single_page'];
 
 
 

@@ -1,3 +1,8 @@
+<?php
+// tables
+$tables = $this->values['tables'];
+
+?>
 // Tables
 // -------------------------
 $tableBackground:                   <?php echo $tables['rows']['background_color_rgba'] ? $tables['rows']['background_color_rgba'] : 'transparent' ;?> !default; // overall background-color
