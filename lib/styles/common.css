@@ -61,6 +61,8 @@ body.desktopnav-fixed-bottom {
 	    min-height: 100%;
 	    height: auto !important;
 	    height: 100%;
+        position: relative;
+        z-index: 2;
 	}
 
 	#imageSliderWrapper,
@@ -90,6 +92,11 @@ body.desktopnav-fixed-bottom {
 		padding:0 20px;
 	}
 
+
+    #footer {
+        position: relative;
+        z-index: 2;
+    }
 /* ----------------------------------------------------------------------------------
 			Front page
 ----------------------------------------------------------------------------------  */

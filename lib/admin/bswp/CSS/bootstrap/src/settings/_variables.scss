@@ -34,7 +34,6 @@ $pink:                  #c3325f !default;
 $purple:                #7a43b6 !default;
 
 
-
 // Scaffolding
 // -------------------------
 $bodyBackground:        rgba(48, 48, 48, 1) !default;
@@ -42,10 +41,10 @@ $bodyBackgroundEnd:        $bodyBackground !default;
 $backgroundFill: solid !default;
 
 
-$useBackgroundWallpaper: no !default;
+$useBackgroundWallpaper: yes !default;
 
-$backgroundImage: "none" !default;
-$backgroundRepeat: no-repeat !default;
+$backgroundImage: "http://kylejenningsdesign.loc/wp-content/uploads/2017/02/TbuoDgY.jpg" !default;
+$backgroundRepeat: repeat !default;
 $backgroundAttachment: scroll !default;
 
 $backgroundPosition: left top !default;
@@ -55,6 +54,7 @@ $backgroundPositionY: 0 !default;
 $backgroundSize: auto !default;
 $backgroundPercentage: 0% !default;
 
+$backgroundOverlay: rgba(56, 56, 56, 0.61) !default;
 
 // text
 $textColor:             #ebebeb !default;
@@ -844,20 +844,20 @@ $headerBackgroundEndColor:             rgba(2, 155, 163, 1) !default;
 $headerBackgroundFill: vertical !default;
 
 // background wallpaper
-$headerUseBackgroundWallpaper: no !default;
+$headerUseBackgroundWallpaper: yes !default;
 
 $headerBackgroundImage: "http://kylejenningsdesign.loc/wp-content/uploads/2017/03/winwall7057_24large.jpg" !default;
-$headerBackgroundRepeat: no-repeat !default;
-$headerBackgroundAttachment: scroll !default;
+$headerBackgroundRepeat: repeat !default;
+$headerBackgroundAttachment: fixed !default;
 
 $headerBackgroundPosition: left top !default;
 $headerBackgroundPositionX: 0 !default;
 $headerBackgroundPositionY: 0 !default;
 
-$headerBackgroundSize: auto !default;
+$headerBackgroundSize: cover !default;
 $headerBackgroundPercentage: 0% !default;
 
-$headerBackgroundOverlay: rgba(0,0,0,0) !default;;
+$headerBackgroundOverlay: rgba(54, 54, 54, 0.46) !default;
 
 
 // Text and Headings

@@ -40,7 +40,7 @@ $headerBackgroundPositionY: <?php echo _tern($header_wallpaper['background_posit
 $headerBackgroundSize: <?php echo _tern($header_wallpaper['background_size'], 'auto'); ?> !default;
 $headerBackgroundPercentage: <?php echo _tern($header_wallpaper['background_percentage'], '0%'); ?> !default;
 
-$headerBackgroundOverlay: <?php echo _tern($header_wallpaper['overlay_color_rgba'], 'transparent'); ?> !default;;
+$headerBackgroundOverlay: <?php echo _tern($header_wallpaper['overlay_color_rgba'], 'transparent'); ?> !default;
 
 
 // Text and Headings

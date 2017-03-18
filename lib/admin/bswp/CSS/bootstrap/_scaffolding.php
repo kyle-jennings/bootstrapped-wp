@@ -1,24 +1,27 @@
+<?php
 
+?>
 // Scaffolding
 // -------------------------
-$bodyBackground:        <?php echo $background['colors']['background_start_color_rgba'] ? $background['colors']['background_start_color_rgba'] : '$white'; ?> !default;
-$bodyBackgroundEnd:        <?php echo $background['colors']['background_end_color_rgba'] ? $background['colors']['background_end_color_rgba'] : '$bodyBackground'; ?> !default;
-$backgroundFill: <?php echo $background['colors']['background_fill'] ? $background['colors']['background_fill'] : 'solid'; ?> !default;
+$bodyBackground:        <?php echo _tern($background_colors['background_start_color_rgba'], '$white'); ?> !default;
+$bodyBackgroundEnd:        <?php echo _tern($background_colors['background_end_color_rgba'], '$bodyBackground'); ?> !default;
+$backgroundFill: <?php echo _tern($background_colors['background_fill'], 'solid'); ?> !default;
 
 
-$useBackgroundWallpaper: <?php echo $background_wallpapers['background_use_wallpaper'] ? $background_wallpapers['background_use_wallpaper'] : 'no'; ?> !default;
+$useBackgroundWallpaper: <?php echo _tern($background_wallpaper['background_use_wallpaper'], 'no'); ?> !default;
 
-$backgroundImage: "<?php echo $background_wallpapers['background_image'] ? $background_wallpapers['background_image'] : 'none'; ?>" !default;
-$backgroundRepeat: <?php echo $background_wallpapers['background_repeat'] ? $background_wallpapers['background_repeat'] : 'no-repeat'; ?> !default;
-$backgroundAttachment: <?php echo $background_wallpapers['background_attachment'] ? $background_wallpapers['background_attachment'] : 'scroll'; ?> !default;
+$backgroundImage: "<?php echo _tern($background_wallpaper['background_image'], 'none'); ?>" !default;
+$backgroundRepeat: <?php echo _tern($background_wallpaper['background_repeat'], 'no-repeat'); ?> !default;
+$backgroundAttachment: <?php echo _tern($background_wallpaper['background_attachment'], 'scroll'); ?> !default;
 
-$backgroundPosition: <?php echo $background_wallpapers['background_position'] ? $background_wallpapers['background_position'] : 'left top'; ?> !default;
-$backgroundPositionX: <?php echo $background_wallpapers['background_positionX'] ? $background_wallpapers['background_positionX'] : '0'; ?> !default;
-$backgroundPositionY: <?php echo $background_wallpapers['background_positionY'] ? $background_wallpapers['background_positionY'] : '0'; ?> !default;
+$backgroundPosition: <?php echo _tern($background_wallpaper['background_position'], 'left top'); ?> !default;
+$backgroundPositionX: <?php echo _tern($background_wallpaper['background_positionX'], '0'); ?> !default;
+$backgroundPositionY: <?php echo _tern($background_wallpaper['background_positionY'], '0'); ?> !default;
 
-$backgroundSize: <?php echo $background_wallpapers['background_size'] ? $background_wallpapers['background_size'] : 'auto'; ?> !default;
-$backgroundPercentage: <?php echo $background_wallpapers['background_percentage'] ? $background_wallpapers['background_percentage'] : '0%'; ?> !default;
+$backgroundSize: <?php echo _tern($background_wallpaper['background_size'], 'auto'); ?> !default;
+$backgroundPercentage: <?php echo _tern($background_wallpaper['background_percentage'], '0%'); ?> !default;
 
+$backgroundOverlay: <?php echo _tern($background_wallpaper['overlay_color_rgba'], 'transparent'); ?> !default;
 
 // text
 $textColor:             <?php echo $text_color ? $text_color : '$grayDark'; ?> !default;

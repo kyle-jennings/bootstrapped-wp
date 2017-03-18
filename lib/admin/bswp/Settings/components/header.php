@@ -71,25 +71,7 @@ $header->add_tab('settings', array(
 
 // the colors
 $header->add_tab('background_colors', $background_colors);
-$header->add_tab('background_wallpaper', array_merge(
-        $background_wallpaper,
-        array(
-            'overlay_color'=>new ColorPicker(
-                array(
-                    'name'=>'overlay_color',
-                    'label'=>'Overlay Color',
-                    'args'=>'transparency'
-                )
-            ),
-            'overlay_color_rgba'=>new Hidden(
-                array(
-                    'name'=>'overlay_color_rgba',
-                    'label'=>''
-                )
-            ),
-        )
-    )
-);
+$header->add_tab('background_wallpaper', $background_wallpaper);
 
 $header->add_tab('text',
     array_merge(

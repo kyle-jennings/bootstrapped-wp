@@ -4,12 +4,15 @@ include '__helpers.php';
 
 
 // background settings
-$background = $this->values['background'];
-$background_colors = $background['colors'];
-$background_wallpapers = $background['wallpapers'];
+$background_and_borders = $this->values['background_and_borders'];
+$background_colors = $background_and_borders['background_colors'];
+$background_wallpaper = $background_and_borders['wallpaper'];
+// examine($background_and_borders);
+
 
 // border settings
-$borders = $this->values['borders'];
+$borders = $background_and_borders['borders'];
+$border_radii = $background_and_borders['border_radii'];
 
 // headings
 $text = $this->values['text'];

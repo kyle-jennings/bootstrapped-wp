@@ -17,6 +17,20 @@ $background_wallpaper = array (
             'label'=>'Upload Image',
         )
     ),
+
+    'overlay_color'=>new ColorPicker(
+        array(
+            'name'=>'overlay_color',
+            'label'=>'Overlay Color',
+            'args'=>'transparency'
+        )
+    ),
+    'overlay_color_rgba'=>new Hidden(
+        array(
+            'name'=>'overlay_color_rgba',
+            'label'=>''
+        )
+    ),
     'background_repeat'=>new Select(array(
             'name'=>'background_repeat',
             'label'=>'Repeat wallpaper?',

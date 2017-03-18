@@ -56,21 +56,13 @@ if(!empty($component_options)){
 $section_name = basename(__FILE__, '.php');
 $section_name = str_replace('section--','',$section_name);
 
-// Background settings
-$background = new SettingsGroup('background');
-$background->add_tab('colors', $background_colors);
-$background->add_tab('wallpapers', $background_wallpaper);
+// background and border colors
+$background_and_borders = new SettingsGroup('background_and_borders');
+$background_and_borders->add_tab('background_colors', $background_colors);
+$background_and_borders->add_tab('wallpaper', $background_wallpaper);
 
-
-// Borders Settings
-$borders = new SettingsGroup('borders');
-
-$borders->add_tab('all_sides', $all_sides);
-$borders->add_tab('top', $top);
-$borders->add_tab('right', $right);
-$borders->add_tab('bottom', $bottom);
-$borders->add_tab('left', $left);
-$borders->add_tab('border-radius', $radii_fields);
+$background_and_borders->add_tab('borders', $component_borders);
+$background_and_borders->add_tab('border-radius', $radii_fields);
 
 
 
@@ -117,8 +109,7 @@ $available_sections->add_tab('sections', $available_sections_toggles);
 // this array is mounted by the section object
 // the Section object specifically looks for an array called "groups"
 $groups = array(
-    'background' => $background,
-    'borders' => $borders,
+    'background_and_borders' => $background_and_borders,
     'text' => $text,
     'links' => $links,
     'header' => $header,
