@@ -12,7 +12,7 @@ $background_wallpaper = $background_and_borders['wallpaper'];
 
 // border settings
 $borders = $background_and_borders['borders'];
-$border_radii = $background_and_borders['border_radii'];
+$border_radii = $background_and_borders['border-radius'];
 
 // headings
 $text = $this->values['text'];
@@ -112,6 +112,9 @@ $paddingLarge:          11px 19px !default; // 44px
 $paddingSmall:          2px 10px !default;  // 26px
 $paddingMini:           0px 6px !default;   // 22px
 
+<?php
+// examine($border_radii);
+?>
 $baseBorderRadius:      4px !default;
 $borderRadiusLarge:     6px !default;
 $borderRadiusSmall:     3px !default;

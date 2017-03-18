@@ -1,15 +1,21 @@
 <?php
 
 namespace bswp\forms\fields;
-use bswp\forms\fields;
 
+use bswp\forms\fields;
+use function bswp\Settings\_helpers;
+use function bswp\Settings\_helpers\border_settings_map;
+use function bswp\Settings\_helpers\add_px_string;
+use function bswp\Settings\_helpers\heading_toggle;
 
 $section_layout = array(
-    'confine_section' => new Select (
+    'full_width' => new Select (
         array(
-            'name'=>'confine_section',
-            'label'=>'Confine Section',
-            'args'=>array('no','yes')
+            'name'=>'full_width',
+            'label'=>'Full Width',
+            'args'=>array('yes','no'),
+            'preview'=>'toggle-class',
+            'preview_args'=>'container',
         )
     ),
     'float_section' => new Select (
@@ -19,22 +25,24 @@ $section_layout = array(
             'args'=>array('no','yes'),
             'toggle_fields'=>array(
                 'yes'=>'top_margin,bottom_margin,outer_glow'
-            )
+            ),
+            'preview'=>'toggle-class',
+            'preview_args'=>'float-section',
         )
     ),
-    'top_margin' => new Text(
+    'top_margin' => new Select(
         array(
             'name'=>'top_margin',
             'label'=>'Top Margin',
-            'args'=>array('suffix'=>'px'),
+            'args' => array_map('bswp\Settings\_helpers\add_px_string', $px_range ),
             'toggled_by'=>array('float_section'=>'yes')
         )
     ),
-    'bottom_margin' => new Text(
+    'bottom_margin' => new Select(
         array(
             'name'=>'bottom_margin',
             'label'=>'Bottom Margin',
-            'args'=>array('suffix'=>'px'),
+            'args' => array_map('bswp\Settings\_helpers\add_px_string', $px_range ),
             'toggled_by'=>array('float_section'=>'yes')
         )
     ),
