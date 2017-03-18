@@ -28,14 +28,12 @@ foreach($heading_states as $state){
 
         'headings_'.$state.'_color'=>new ColorPicker(array(
                  'name'=>'headings_'.$state.'_color',
-                 'label'=>'headings '.$state.' Color',
              )
          ),
 
 
         'headings_'.$state.'_text_decoration'=>new Select(array(
                 'name'=>'headings_'.$state.'_text_decoration',
-                'label'=>'headings '.$state.' Text Decoration',
                 'args' => array(
                     'none',
                     'overline',
