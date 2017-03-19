@@ -26,8 +26,6 @@ $section_layout = array(
             'toggle_fields'=>array(
                 'yes'=>'top_margin,bottom_margin,outer_glow'
             ),
-            'preview'=>'toggle-class',
-            'preview_args'=>'float-section',
         )
     ),
     'top_margin' => new Text(

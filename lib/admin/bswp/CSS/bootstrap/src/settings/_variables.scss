@@ -64,7 +64,7 @@ $textColor:             #ebebeb !default;
 
 // float the section?
 $section: body;
-$floatSection: yes !default;
+$floatSection: no !default;
 $topMargin: 100px !default;
 $bottomMargin: 100px !default;
 
@@ -1146,11 +1146,11 @@ $navbarDropdownHoveredLinksTextShadow: none !default;
 
 
 
-$navbarDropdownActiveLinksColor: #8c8c8c !default;
-$navbarDropdownActiveLinksBackgroundStyle: default !default;
-$navbarDropdownActiveLinksBackgroundColor: $linkColor !default;
-$navbarDropdownActiveLinksDecoration: none !default;
-$navbarDropdownActiveLinksTextShadow: none !default;
+$navbarDropdownActiveLinksColor: #ebe4e4 !default;
+$navbarDropdownActiveLinksBackgroundStyle: highlighted !default;
+$navbarDropdownActiveLinksBackgroundColor: rgba(28, 156, 168, 1) !default;
+$navbarDropdownActiveLinksDecoration: text-shadow !default;
+$navbarDropdownActiveLinksTextShadow: #d94343 !default;
 
 
 // Pagination
