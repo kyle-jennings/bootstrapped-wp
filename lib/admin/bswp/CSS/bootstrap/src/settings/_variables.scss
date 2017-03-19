@@ -1,4 +1,6 @@
 
+
+
 //
 // Variables
 // --------------------------------------------------
@@ -59,6 +61,47 @@ $backgroundOverlay: rgba(102, 102, 102, 0.75) !default;
 // text
 $textColor:             #ebebeb !default;
 
+
+// float the section?
+$section: body;
+$floatSection: yes !default;
+$topMargin: 100px !default;
+$bottomMargin: 100px !default;
+
+    $BorderColor: #c2c2c2 !default;
+
+    $BorderStyle: solid !default;
+
+    $BorderWidth: 4px !default;
+
+
+
+    
+    $TopBorderColor: transparent !default;
+    $TopBorderStyle: none !default;
+    $TopBorderWidth: 1px !default;
+    
+    $RightBorderColor: transparent !default;
+    $RightBorderStyle: none !default;
+    $RightBorderWidth: 1px !default;
+    
+    $BottomBorderColor: transparent !default;
+    $BottomBorderStyle: none !default;
+    $BottomBorderWidth: 1px !default;
+    
+    $LeftBorderColor: transparent !default;
+    $LeftBorderStyle: none !default;
+    $LeftBorderWidth: 1px !default;
+    
+        $BorderRadius: 0px !default;
+
+    
+            $TopLeftBorderRadius: 0px !default;
+            $TopRightBorderRadius: 0px !default;
+            $BottomRightBorderRadius: 0px !default;
+            $BottomLeftBorderRadius: 0px !default;
+    
+    
 // Typography
 // -------------------------
 $sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif !default;
@@ -848,7 +891,7 @@ $headerUseBackgroundWallpaper: yes !default;
 
 $headerBackgroundImage: "http://kylejenningsdesign.loc/wp-content/uploads/2017/03/winwall7057_24large.jpg" !default;
 $headerBackgroundRepeat: repeat !default;
-$headerBackgroundAttachment: fixed !default;
+$headerBackgroundAttachment: scroll !default;
 
 $headerBackgroundPosition: left top !default;
 $headerBackgroundPositionX: 0 !default;

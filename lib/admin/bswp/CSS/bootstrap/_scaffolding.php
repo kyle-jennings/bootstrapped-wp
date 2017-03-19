@@ -25,3 +25,15 @@ $backgroundOverlay: <?php echo _tern($background_wallpaper['overlay_color_rgba']
 
 // text
 $textColor:             <?php echo $text_color ? $text_color : '$grayDark'; ?> !default;
+
+
+// float the section?
+$section: body;
+$floatSection: <?php echo _tern($layout['float_section'], 'no'); ?> !default;
+$topMargin: <?php echo _tern($layout['top_margin'], '0'); ?> !default;
+$bottomMargin: <?php echo _tern($layout['bottom_margin'], '0'); ?> !default;
+
+<?php
+
+_component_outer_border_sass_vars('', $borders);
+_component_border_radius_sass_vars('', $border_radii);

@@ -15,7 +15,7 @@ $section_layout = array(
             'label'=>'Full Width',
             'args'=>array('yes','no'),
             'preview'=>'toggle-class',
-            'preview_args'=>'container',
+            'preview_args'=>'body=>container',
         )
     ),
     'float_section' => new Select (
@@ -30,19 +30,19 @@ $section_layout = array(
             'preview_args'=>'float-section',
         )
     ),
-    'top_margin' => new Select(
+    'top_margin' => new Text(
         array(
             'name'=>'top_margin',
             'label'=>'Top Margin',
-            'args' => array_map('bswp\Settings\_helpers\add_px_string', $px_range ),
+            'args'=>array('suffix'=>'px'),
             'toggled_by'=>array('float_section'=>'yes')
         )
     ),
-    'bottom_margin' => new Select(
+    'bottom_margin' => new Text(
         array(
             'name'=>'bottom_margin',
             'label'=>'Bottom Margin',
-            'args' => array_map('bswp\Settings\_helpers\add_px_string', $px_range ),
+            'args'=>array('suffix'=>'px'),
             'toggled_by'=>array('float_section'=>'yes')
         )
     ),

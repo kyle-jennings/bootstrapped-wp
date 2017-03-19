@@ -2,7 +2,6 @@
 
 include '__helpers.php';
 
-
 // background settings
 $background_and_borders = $this->values['background_and_borders'];
 $background_colors = $background_and_borders['background_colors'];
@@ -27,10 +26,13 @@ $headings = array(
 $links = $this->values['links'];
 
 
-
+$misc = $this->values['misc'];
+$layout = $misc['layout'];
 
 ob_start();
 ?>
+
+
 
 //
 // Variables

@@ -207,6 +207,13 @@ function kjd_add_body_class( $classes ){
     $id = get_queried_object_id();
     global $template;
 
+    $site_options = get_option('bswp_site_settings');
+    $misc_settings = $site_options['misc'];
+
+
+    if($misc_settings['layout']['full_width'] == 'no'){
+        $classes[] = 'container';
+    }
 
     if(is_front_page() ) {
         $classes[] = 'frontpage';

@@ -3,11 +3,9 @@
 // --------------------------------------------------
 
 
-// Body reset
-// -------------------------
+
 
 body {
-    margin: 0;
     font-family: $baseFontFamily;
     font-size: $baseFontSize;
     line-height: $baseLineHeight;
@@ -60,6 +58,21 @@ body {
         position: relative;
     }
 
+    border-radius: $BorderRadius;
+    border-color: $BorderColor;
+    border-style: $BorderStyle;
+    border-width: $BorderWidth;
+
+
+    margin-right: 0;
+    margin-left: 0;
+    @if $floatSection == yes {
+        margin-bottom: $bottomMargin !important;
+        margin-top: $topMargin !important;
+    } @else {
+        margin-bottom: 0;
+        margin-top: 0;
+    }
 }
 
 

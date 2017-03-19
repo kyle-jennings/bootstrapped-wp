@@ -4,8 +4,8 @@ global $page, $paged;
 $root = get_stylesheet_directory_uri();
 
 $site_options = get_option('bswp_site_settings');
+$misc_settings = $site_options['misc'];
 $header_settings = $site_options['header'];
-
 $navbar = new Navbar('primary-menu');
 
 ?>
