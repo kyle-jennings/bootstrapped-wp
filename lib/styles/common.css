@@ -23,7 +23,11 @@ h3 {
 			Scaffolding
 ----------------------------------------------------------------------------------  */
 html {
-    min-height: 100%;
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
 }
 
 html,
@@ -40,11 +44,6 @@ html.navbar-fixed-bottom {
 	padding-bottom: 50px
 }
 
-body {
-	height: auto;
-	min-height: 100%;
-}
-
 body.desktopnav-fixed-top {
 	padding-top: 40px;
 }
@@ -53,50 +52,29 @@ body.desktopnav-fixed-bottom {
 	padding-bottom: 40px;
 }
 
-	#wpadminbar {
-		position: fixed;
-	}
+#wpadminbar {
+	position: fixed;
+}
 
-	#pageWrapper{
-	    min-height: 100%;
-	    height: auto !important;
-	    height: 100%;
-        position: relative;
-        z-index: 2;
-	}
-
-	#imageSliderWrapper,
-	#header,
-	.navbar-wrapper,
-	#cycler,
-	#body,
-	#footer{
-		clear: both;
-	}
-
-    .section > .container {
-        padding: 0 20px;
-    }
-
-	.navbar-wrapper > .container,
-	#body > .container,
-	#footer > .container {
-		padding:20px 0;
-	}
-
-	#imageSliderWrapper.container.confined,
-	#header.container.confined,
-	#cycler.container.confined,
-	#body.container.confined,
-	#footer.container.confined{
-		padding:0 20px;
-	}
+#pageWrapper{
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+}
 
 
-    #footer {
-        position: relative;
-        z-index: 2;
-    }
+.section > .container {
+    padding: 0 20px;
+}
+
+
+
+#footer {
+    position: relative;
+    z-index: 2;
+}
 /* ----------------------------------------------------------------------------------
 			Front page
 ----------------------------------------------------------------------------------  */

@@ -9,7 +9,8 @@ class Header {
     public static $args;
     public static $content_type;
     public static $custom_content;
-    public static $saved_settings;
+    public static $header_settings;
+    public static $site_settings;
     public static $bg_image_url;
     public static $navbar;
     public static $background_use_wallpaper;
@@ -37,19 +38,19 @@ class Header {
         // set the page type - used for previews mostly
         self::$template_type = self::set_template_type(self::$page_id);
         // lets go ahead and grab the saved values
-        $site_options = get_option('bswp_site_settings');
-        self::$saved_settings = $site_options['header'];
-
+        self::$site_settings = get_option('bswp_site_settings');
+        self::$header_settings = self::$site_settings['header'];
         // sizes
-        self::$height = self::$saved_settings['settings']['height'];
-        self::$title_size = self::$saved_settings['settings']['title_size'];
+        self::$height = self::$header_settings['settings']['height'];
+        self::$title_size = self::$header_settings['settings']['title_size'];
 
         //bg wallpaper
-        self::$background_use_wallpaper = self::$saved_settings['background_wallpaper']['background_use_wallpaper'];
+        self::$background_use_wallpaper = self::$header_settings['background_wallpaper']['background_use_wallpaper'];
 
         // set navbar
         self::$navbar = $navbar;
 
+        // examine(self::$site_settings['misc']['layout']);
     }
 
 
@@ -58,7 +59,17 @@ class Header {
         return self::$output;
     }
 
+    public static function is_body_contained() {
+        $layout = self::$site_settings['misc']['layout'];
+        $full_width = ($layout['full_width'] == 'no') ? true : false;
+        return $full_width;
+    }
 
+
+    public static function contain_section() {
+        $contained = self::is_body_contained();
+        return $contained ? '' : 'container';
+    }
 
     /**
      * We identify the page type (template) and set it to frontpage/feed/single post
@@ -130,7 +141,7 @@ class Header {
             if(self::$navbar::$position == 'in_header_top')
                 echo $navbar;
             ?>
-            <div class="container">
+            <div class="<?php echo self::contain_section(); ?>">
                 <div class="row">
                     <div class="span12 header-content js--header-content">
                     <?php
@@ -210,7 +221,7 @@ class Header {
         }
 
         self::set_content_markup($content);
-        self::$saved_settings = null;
+        self::$header_settings = null;
     }
 
 
@@ -384,12 +395,12 @@ class Header {
     public static function _get_default($target) {
         self::$content_type = self::$content_type
             ? self::$content_type
-            : self::$saved_settings[$target]['content_type'];
+            : self::$header_settings[$target]['content_type'];
 
         // get the saved front page values
         self::$custom_content = (self::$content_type == 'custom_content' && self::$custom_content != null)
             ? self::$custom_content
-            : self::$saved_settings[$target]['custom_content'];
+            : self::$header_settings[$target]['custom_content'];
     }
 
 }

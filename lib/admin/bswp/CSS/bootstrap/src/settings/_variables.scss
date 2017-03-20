@@ -1146,11 +1146,11 @@ $navbarDropdownHoveredLinksTextShadow: none !default;
 
 
 
-$navbarDropdownActiveLinksColor: #ebe4e4 !default;
-$navbarDropdownActiveLinksBackgroundStyle: highlighted !default;
-$navbarDropdownActiveLinksBackgroundColor: rgba(28, 156, 168, 1) !default;
-$navbarDropdownActiveLinksDecoration: text-shadow !default;
-$navbarDropdownActiveLinksTextShadow: #d94343 !default;
+$navbarDropdownActiveLinksColor: #8c8c8c !default;
+$navbarDropdownActiveLinksBackgroundStyle: default !default;
+$navbarDropdownActiveLinksBackgroundColor: $linkColor !default;
+$navbarDropdownActiveLinksDecoration: none !default;
+$navbarDropdownActiveLinksTextShadow: none !default;
 
 
 // Pagination

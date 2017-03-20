@@ -6,10 +6,6 @@
 
 
 body {
-    font-family: $baseFontFamily;
-    font-size: $baseFontSize;
-    line-height: $baseLineHeight;
-    color: $textColor;
 
     @if $backgroundFill == vertical {
         @include gradient-vertical($bodyBackground, $bodyBackgroundEnd);
@@ -58,17 +54,25 @@ body {
         position: relative;
     }
 
-    border-radius: $BorderRadius;
     border-color: $BorderColor;
+    border-radius: $BorderRadius;
     border-style: $BorderStyle;
     border-width: $BorderWidth;
 
 
+    color: $textColor;
+    font-family: $baseFontFamily;
+    font-size: $baseFontSize;
+    line-height: $baseLineHeight;
     margin: 0;
 
     @if $floatSection == yes {
         margin-bottom: $bottomMargin !important;
         margin-top: $topMargin !important;
+    }
+
+    &.container {
+        padding: 0 20px;
     }
 }
 

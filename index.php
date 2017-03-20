@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The index.php file is used to build the page scaffolding 
+ * The index.php file is used to build the page scaffolding
  * for every possible wordpress template sans the custom templates.
  *
  * All logic and markup is handled in the functions files.
@@ -10,4 +10,4 @@
  * These files will be further abstracted and cleaned up in the near future
  */
 
-new kjdScaffolding;
+new Scaffolding;

@@ -49,7 +49,7 @@ $navbar = new Navbar('primary-menu');
 <body <?php body_class(); ?> >
 
 <div id="pageWrapper">
-	<div id="mastArea">
+
     <?php
     	if( $navbar::$position == 'above_header' || $navbar::$position == 'stickied_to_top')
             echo $navbar;
@@ -61,5 +61,3 @@ $navbar = new Navbar('primary-menu');
     	if( $navbar::$position == 'default' || $navbar::$position == 'below_header' || $navbar::$position == 'stickied_to_bottom' )
             echo $navbar;
 	?>
-	</div> <!-- end mast -->
-	<div id="contentArea">

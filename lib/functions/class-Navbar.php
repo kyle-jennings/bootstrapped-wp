@@ -18,6 +18,8 @@ class Navbar{
     public static $walker;
     public static $button_type = 'default';
     public static $nav_settings;
+    public static $site_settings;
+
 
     // sets up the nav
     public function __construct( $menu_id = 'primary-menu', $args = array(), $class = null){
@@ -27,8 +29,8 @@ class Navbar{
         // expecting: $position, $movement, $nav_style, $brand, $brand_image,  $menu_toggle_type
         extract($args);
 
-        $site_options = get_option('bswp_site_settings');
-        self::$nav_settings = $site_options['navbar']['settings'];
+        self::$site_settings = get_option('bswp_site_settings');
+        self::$nav_settings = self::$site_settings['navbar']['settings'];
 
 
         self::$class = $class ? $class : '';
@@ -64,6 +66,20 @@ class Navbar{
         return self::$output;
     }
 
+
+    public static function is_body_contained() {
+        $layout = self::$site_settings['misc']['layout'];
+        $full_width = ($layout['full_width'] == 'no') ? true : false;
+        return $full_width;
+    }
+
+
+    public static function contain_section() {
+        $contained = self::is_body_contained();
+        return $contained ? '' : 'container';
+    }
+
+
     public static function get_default($arg = null, $default = '') {
         if(!$arg)
             return '';
@@ -72,21 +88,18 @@ class Navbar{
     }
 
 
-
-
-
     public static function scaffolding(){
 
         $output = '';
 
-        $output .= '<div id="navbar" class="navbar-wrapper '. self::$menu_id
+        $output .= '<div id="navbar" class="section section--navbar navbar-wrapper '. self::$menu_id
             .' '. self::movement_class()
             .' '. self::nav_style() . '">';
 
             $output .= '<div class="navbar-inner">';
 
                 // if the navbar type is not set to contained then we need to put the container inside the inn=er
-                $output .= '<div class="container">';
+                $output .= '<div class="'.self::contain_section().'">';
                     $output .= '<div class="navbar">';
 
                         // $output .= '<a class="brand '.$logo.'" href="'.home_url().'">'.get_bloginfo( 'name' ).'</a>';

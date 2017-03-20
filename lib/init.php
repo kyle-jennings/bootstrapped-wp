@@ -49,7 +49,10 @@ if(!is_admin()){
     require_once('functions/kjd-shortcodes.php');
     require_once('functions/class-Navbar.php');
     require_once('functions/class-Header.php');
-    require_once('functions/kjd-class-layout.php');
+    require_once('functions/class-Sidebar.php');
+    require_once('functions/class-Layout.php');
+    require_once('functions/class-Scaffolding.php');
+    require_once('functions/class-Content.php');
     require_once('functions/class-mobileMenu.php');
     require_once('functions/class-navbarMenu.php');
     add_action( 'wp_enqueue_scripts', 'bswp_add_assets' );
