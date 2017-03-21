@@ -70,31 +70,38 @@ class Navbar{
     }
 
 
-    public static function is_body_contained() {
+    //is the body contained?
+    public static function is_body_full_width() {
         $layout = self::$site_settings['layout'];
 
-        $full_width = ($layout['full_width'] == 'yes') ? false : true;
+        $full_width = ($layout['full_width'] == 'yes') ? true : false;
         return $full_width;
     }
 
+
+
+    // is the navbar fullwidth?
     public static function is_navbar_full_width() {
 
         return self::$full_width == 'yes' ? true : false;
     }
 
+    // is the section contained? get container class
     public static function contain_section() {
-        $body_contained = self::is_body_contained();
+        $body_fullwidth = self::is_body_full_width();
 
-        $contained = !$body_contained && self::is_navbar_full_width() ? true : false;
+        $contained = !$body_fullwidth && self::is_navbar_full_width() ? true : false;
         return $contained ? '' : 'container';
     }
 
+    // do we need the container class for the inner navbar?
     public static function inner_container() {
-        $body_contained = self::is_body_contained();
-        $container = !$body_contained && self::is_navbar_full_width() ? 'container' : '';
+        $body_fullwidth = self::is_body_full_width();
+        $container = !$body_fullwidth && self::is_navbar_full_width() ? 'container' : '';
     }
 
 
+    // get the default settings
     public static function get_default($arg = null, $default = '') {
         if(!$arg)
             return '';
@@ -139,11 +146,10 @@ class Navbar{
         $output .= '<div id="navbar" class="section section--navbar navbar-wrapper '. self::$menu_id
             .' '. self::movement_class()
             .' '. self::nav_style()
-            .' '. self::contain_section()
             .'">';
             $output .= '<div class="navbar-inner">';
                 // if the navbar type is not set to contained then we need to put the container inside the inn=er
-                if(self::is_navbar_full_width())
+                if(self::is_body_full_width())
                     $output .= self::wrap_with_container(self::inner_markup());
                 else
                     $output .= self::inner_markup();

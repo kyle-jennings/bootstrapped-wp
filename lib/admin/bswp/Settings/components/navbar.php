@@ -156,15 +156,6 @@ $navbar->add_tab('settings', array(
 
             )
         ),
-        'full_width' => new Select (
-            array(
-                'name'=>'full_width',
-                'label'=>'Full Width',
-                'args'=>array('yes','no'),
-                'preview'=>'toggle-class',
-                'preview_args'=>'.section--navbar=>container',
-            )
-        ),
         'float_section' => new Select (
             array(
                 'name'=>'float_section',

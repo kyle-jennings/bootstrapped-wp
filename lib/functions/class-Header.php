@@ -10,6 +10,7 @@ class Header {
     public static $content_type;
     public static $custom_content;
     public static $header_settings;
+    public static $full_width;
     public static $site_settings;
     public static $bg_image_url;
     public static $navbar;
@@ -40,6 +41,10 @@ class Header {
         // lets go ahead and grab the saved values
         self::$site_settings = get_option('bswp_site_settings');
         self::$header_settings = self::$site_settings['header'];
+
+        self::$full_width = self::$header_settings['settings']['full_width'];
+
+
         // sizes
         self::$height = self::$header_settings['settings']['height'];
         self::$title_size = self::$header_settings['settings']['title_size'];
@@ -59,17 +64,30 @@ class Header {
         return self::$output;
     }
 
-    public static function is_body_contained() {
+    public static function is_body_full_width() {
         $layout = self::$site_settings['misc']['layout'];
-        $full_width = ($layout['full_width'] == 'no') ? true : false;
+        $full_width = ($layout['full_width'] == 'yes') ? true : false;
         return $full_width;
     }
 
 
+
+    public static function is_full_width() {
+        return self::$full_width == 'yes' ? true : false;
+    }
+
     public static function contain_section() {
-        $contained = self::is_body_contained();
+        $body_contained = self::is_body_full_width();
+        $contained = !$body_contained && self::is_navbar_full_width() ? true : false;
         return $contained ? '' : 'container';
     }
+
+    public static function inner_container() {
+
+        $body_contained = self::is_body_contained();
+        $container = !$body_contained && self::is_navbar_full_width() ? 'container' : '';
+    }
+
 
     /**
      * We identify the page type (template) and set it to frontpage/feed/single post
@@ -132,25 +150,46 @@ class Header {
     }
 
 
+    public static function wrap_with_container($markup ='') {
+        $output = '';
+        // if the navbar type is not set to contained then we need to put the container inside the inn=er
+        $output .= '<div class="container">';
+            $output .= $markup;
+        $output .= '</div>'; // end container -->
+
+        return $output;
+    }
+
+
+
+    public static function inner_markup() {
+        $output = '';
+        $output .= '<div class="row">';
+            $output .= '<div class="span12 header-content js--header-content">';
+                $output .= self::$output;
+            $output .= '</div>';
+        $output .= '</div>';
+
+        return $output;
+    }
+
+
+
     public static function set_scaffolding() {
         self::select_content();
 
         ?>
-        <div class="section section--header" id="header" <?php echo self::get_bg_styles(); ?> >
+        <div class="section section--header"
+            <?php echo self::get_bg_styles(); ?> >
             <?php
             if(self::$navbar::$position == 'in_header_top')
                 echo $navbar;
-            ?>
-            <div class="<?php echo self::contain_section(); ?>">
-                <div class="row">
-                    <div class="span12 header-content js--header-content">
-                    <?php
-                        echo self::$output;
-                    ?>
-                    </div>
-                </div> <!-- end row -->
-            </div><!-- end header container -->
-            <?php
+
+            if(self::is_body_full_width())
+                echo self::wrap_with_container(self::inner_markup());
+            else
+                echo self::inner_markup();
+
             if(self::$navbar::$position == 'in_header_bottom'){
                 echo self::$navbar;
             }
