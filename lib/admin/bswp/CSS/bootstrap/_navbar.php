@@ -2,12 +2,12 @@
 // navbar
 $navbar = $this->values['navbar'];
 $navsettings = $navbar['settings'];
-if($navsettings['settings'] == 'basic'){
+// if($navsettings['settings'] == 'basic'){
 
     $navbg = $navbar['background_colors'];
     $navtext = $navbar['text'];
     $navborders = $navbar['borders'];
-}
+// }
 
 
 ?>
@@ -55,3 +55,10 @@ $navbarBorderWidth:               1px;
     _component_border_radius_sass_vars('nav', $navborders);
 
 ?>
+
+
+// float the section?
+
+$navbarFloatSection: <?php echo _tern($navsettings['float_section'], 'no'); ?> !default;
+$navbarTopMargin: <?php echo _tern($navsettings['top_margin'], '0'); ?> !default;
+$navbarBottomMargin: <?php echo _tern($navsettings['bottom_margin'], '0'); ?> !default;

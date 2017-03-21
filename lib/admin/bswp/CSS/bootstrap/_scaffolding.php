@@ -23,8 +23,7 @@ $backgroundPercentage: <?php echo _tern($background_wallpaper['background_percen
 
 $backgroundOverlay: <?php echo _tern($background_wallpaper['overlay_color_rgba'], 'transparent'); ?> !default;
 
-// text
-$textColor:             <?php echo $text_color ? $text_color : '$grayDark'; ?> !default;
+
 
 
 // float the section?

@@ -55,7 +55,7 @@ $greyMedium:            #777 !default;
 $grayLight:             #999 !default;
 $grayLighter:           #eee !default;
 $white:                 #fff !default;
-
+$offWhite:           #f5f5f5 !default;
 
 // Accent colors
 // -------------------------
@@ -73,6 +73,10 @@ $purple:                #7a43b6 !default;
 
 require_once '_scaffolding.php';
 ?>
+
+// text
+$textColor:             <?php echo $text_color ? $text_color : '$grayDark'; ?> !default;
+
 
 // Typography
 // -------------------------

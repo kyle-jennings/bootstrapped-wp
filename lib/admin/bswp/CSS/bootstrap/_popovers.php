@@ -11,20 +11,20 @@ $popover_borders = $popovers['borders'];
 // -------------------------
 
 
-$popoverColor:            <?php echo $popover_content['text_color'] ? $popover_content['text_color'] : '#fff'; ?> !default;
-$popoverBackgroundColor:       <?php echo $popover_content['background_start_color_rgba'] ? $popover_content['background_start_color_rgba'] : '#000'; ?> !default;
-$popoverBackgroundEndColor:       <?php echo $popover_content['background_end_color_rgba'] ? $popover_content['background_end_color_rgba'] : '#000'; ?> !default;
-$popoverBackgroundFill:       <?php echo $popover_content['background_fill'] ? $popover_content['background_fill'] : 'none'; ?> !default;
+$popoverColor:            <?php echo _tern($popover_content['text_color'], '$white'); ?> !default;
+$popoverBackgroundColor:       <?php echo _tern($popover_content['background_start_color_rgba'], '$black'); ?> !default;
+$popoverBackgroundEndColor:       <?php echo _tern($popover_content['background_end_color_rgba'], '$popoverBackgroundColor'); ?> !default;
+$popoverBackgroundFill:       <?php echo _tern($popover_content['background_fill'], 'none'); ?> !default;
 
-$popoverTitleColor:            <?php echo $popover_title['text_color'] ? $popover_title['text_color'] : '#fff'; ?> !default;
+$popoverTitleColor:            <?php echo _tern($popover_title['text_color'], '$white'); ?> !default;
 
-$popoverTitleBackgroundColor:       <?php echo $popover_title['background_start_color_rgba'] ? $popover_title['background_start_color_rgba'] : '#000'; ?> !default;
-$popoverTitleBackgroundEndColor:       <?php echo $popover_title['background_end_color_rgba'] ? $popover_title['background_end_color_rgba'] : '#000'; ?> !default;
-$popoverTitleBackgroundFill:       <?php echo $popover_title['background_fill'] ? $popover_title['background_fill'] : 'none'; ?> !default;
+$popoverTitleBackgroundColor:       <?php echo _tern($popover_title['background_start_color_rgba'], '$popoverBackgroundColor'); ?> !default;
+$popoverTitleBackgroundEndColor:       <?php echo _tern($popover_title['background_end_color_rgba'], '$popoverTitleBackgroundColor'); ?> !default;
+$popoverTitleBackgroundFill:       <?php echo _tern($popover_title['background_fill'], 'none'); ?> !default;
 
-$popoverTitleBottomBorderStyle:    <?php echo $popover_title['title_bottom_border_style'] ? $popover_title['title_bottom_border_style'] : 'none' ?>;
-$popoverTitleBottomBorderColor:    <?php echo $popover_title['title_bottom_border_color'] ? $popover_title['title_bottom_border_color'] : 'transparent' ?>;
-$popoverTitleBottomBorderWidth:    <?php echo $popover_title['title_bottom_border_width'] ? $popover_title['title_bottom_border_width'] : '1px' ?>;
+$popoverTitleBottomBorderStyle:    <?php echo _tern($popover_title['title_bottom_border_style'], 'none') ?>;
+$popoverTitleBottomBorderColor:    <?php echo _tern($popover_title['title_bottom_border_color'], 'transparent') ?>;
+$popoverTitleBottomBorderWidth:    <?php echo _tern($popover_title['title_bottom_border_width'], '1px') ?>;
 
 
 <?php

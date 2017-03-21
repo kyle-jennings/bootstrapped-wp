@@ -22,7 +22,7 @@ $greyMedium:            #777 !default;
 $grayLight:             #999 !default;
 $grayLighter:           #eee !default;
 $white:                 #fff !default;
-
+$offWhite:           #f5f5f5 !default;
 
 // Accent colors
 // -------------------------
@@ -58,8 +58,7 @@ $backgroundPercentage: 0% !default;
 
 $backgroundOverlay: rgba(102, 102, 102, 0.75) !default;
 
-// text
-$textColor:             #ebebeb !default;
+
 
 
 // float the section?
@@ -69,9 +68,7 @@ $topMargin: 100px !default;
 $bottomMargin: 100px !default;
 
     $BorderColor: #c2c2c2 !default;
-
     $BorderStyle: solid !default;
-
     $BorderWidth: 4px !default;
 
 
@@ -102,6 +99,10 @@ $bottomMargin: 100px !default;
             $BottomLeftBorderRadius: 0px !default;
     
     
+// text
+$textColor:             #cccccc !default;
+
+
 // Typography
 // -------------------------
 $sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif !default;
@@ -188,51 +189,52 @@ $borderRadiusSmall:     3px !default;
 
 // Tables
 // -------------------------
-$tableBackground:                   transparent !default; // overall background-color
-$tablesTextColor:       $textColor;
+$tableBackground:                   rgba(199, 101, 101, 1) !default;
+$tablesTextColor:       #ede1e1;
 $tablesLinkColor:       $linkColor;
 
-$tableBackgroundHover:              darken($tableBackground, 20%) !default; // for hover
+$tableBackgroundHover:              darken($tableBackground, 20%) !default;
 
-$tablesHeaderBackgroundColor:       darken($tableBackground, 30%);
-$tablesHeaderTextColor:       darken($tablesTextColor, 30%);
+$tablesHeaderBackgroundColor:       rgba(23, 14, 181, 1);
+$tablesHeaderTextColor:       #a9abf2;
 
 
 
-$tableBackgroundAccent:             #f9f9f9  !default; // for striping
-$tableBackgroundAccentHover:              darken($tableBackgroundAccent, 20%) !default; // for hover
+$tableBackgroundAccent:             rgba(184, 148, 2, 1)  !default;
+$tableBackgroundAccentHover:              darken($tableBackgroundAccent, 20%) !default;
 
 $tableStripedBackground:        $tableBackgroundAccent;
-$tablesStripedTextColor:       $textColor;
+$tableStripedBackground:        darken($tableBackgroundAccent, 20%) !default;
+$tablesStripedTextColor:       #5c5c1b;
 $tablesStripedLinkColor:       $linkColor;
 
 
 
-$tableBorder:                       #ddd !default; // table and cell border
-$tableBorderStyle: none !default; //
-$tableBorderWidth: 1px !default; //
+$tableBorder:                       #030303 !default;
+$tableBorderStyle: solid !default;
+$tableBorderWidth: 2px !default;
 
 
-$tableOuterBorder: $tableBorder !default; //
-$tableOuterBorderStyle: none !default; //
-$tableOuterBorderWidth: 0px !default; //
+$tableOuterBorder: #18b2d9 !default;
+$tableOuterBorderStyle: solid !default;
+$tableOuterBorderWidth: 2px !default;
 
 
-$tableTopBorder: transparent !default; //
-$tableTopBorderStyle: none !default; //
-$tableTopBorderWidth: 1px !default; //
+$tableTopBorder: transparent !default;
+$tableTopBorderStyle: none !default;
+$tableTopBorderWidth: 1px !default;
 
-$tableRightBorder: transparent !default; //
-$tableRightBorderStyle: none !default; //
-$tableRightBorderWidth: 1px !default; //
+$tableRightBorder: transparent !default;
+$tableRightBorderStyle: none !default;
+$tableRightBorderWidth: 1px !default;
 
-$tableBottomBorder: transparent !default; //
-$tableBottomBorderStyle: none !default; //
-$tableBottomBorderWidth: 1px !default; //
+$tableBottomBorder: transparent !default;
+$tableBottomBorderStyle: none !default;
+$tableBottomBorderWidth: 1px !default;
 
-$tableLeftBorder: transparent !default; //
-$tableLeftBorderStyle: none !default; //
-$tableLeftBorderWidth: 1px !default; //
+$tableLeftBorder: transparent !default;
+$tableLeftBorderStyle: none !default;
+$tableLeftBorderWidth: 1px !default;
 
 
 // Buttons
@@ -267,10 +269,8 @@ $imagePadding: 0px !default;
     $imageBackgroundEndColor: $bodyBackgroundEnd !default;
 
     $imageBackgroundFill: solid !default;
-    $imageBorderColor: rgba(0,0,0, .2) !default;
-
+    $imageBorderColor: rgba(0, 0, 0, 0.2) !default;
     $imageBorderStyle: none !default;
-
     $imageBorderWidth: 0px !default;
 
 
@@ -312,10 +312,8 @@ $imageCaptionPadding: 0px !default;
     $imageCaptionBackgroundEndColor: $bodyBackgroundEnd !default;
 
     $imageCaptionBackgroundFill: solid !default;
-    $imageCaptionBorderColor: rgba(0,0,0, .2) !default;
-
+    $imageCaptionBorderColor: rgba(0, 0, 0, 0.2) !default;
     $imageCaptionBorderStyle: none !default;
-
     $imageCaptionBorderWidth: 0px !default;
 
 
@@ -355,10 +353,8 @@ $imageThumbnailPadding: 0px !default;
     $imageThumbnailBackgroundEndColor: $bodyBackgroundEnd !default;
 
     $imageThumbnailBackgroundFill: solid !default;
-    $imageThumbnailBorderColor: rgba(0,0,0, .2) !default;
-
+    $imageThumbnailBorderColor: rgba(0, 0, 0, 0.2) !default;
     $imageThumbnailBorderStyle: none !default;
-
     $imageThumbnailBorderWidth: 0px !default;
 
 
@@ -404,10 +400,8 @@ $formTextColor: $textColor !default;
     $formBackgroundEndColor: $bodyBackgroundEnd !default;
 
     $formBackgroundFill: solid !default;
-    $formBorderColor: rgba(0,0,0, .2) !default;
-
+    $formBorderColor: rgba(0, 0, 0, 0.2) !default;
     $formBorderStyle: none !default;
-
     $formBorderWidth: 0px !default;
 
 
@@ -444,10 +438,8 @@ $fieldTextColor: $textColor !default;
     $fieldBackgroundEndColor: $bodyBackgroundEnd !default;
 
     $fieldBackgroundFill: solid !default;
-    $fieldBorderColor: rgba(0,0,0, .2) !default;
-
+    $fieldBorderColor: rgba(0, 0, 0, 0.2) !default;
     $fieldBorderStyle: none !default;
-
     $fieldBorderWidth: 0px !default;
 
 
@@ -485,10 +477,8 @@ $fieldActiveTextColor: $textColor !default;
     $fieldActiveBackgroundEndColor: $bodyBackgroundEnd !default;
 
     $fieldActiveBackgroundFill: solid !default;
-    $fieldActiveBorderColor: rgba(0,0,0, .2) !default;
-
+    $fieldActiveBorderColor: rgba(0, 0, 0, 0.2) !default;
     $fieldActiveBorderStyle: none !default;
-
     $fieldActiveBorderWidth: 0px !default;
 
 
@@ -626,10 +616,8 @@ $quotesBackgroundSize: auto !default;
 $quotesBackgroundPercentage: 0% !default;
 
 $quotesBorder: $grayLighter;
-    $quotesBorderColor: rgba(0,0,0, .2) !default;
-
+    $quotesBorderColor: rgba(0, 0, 0, 0.2) !default;
     $quotesBorderStyle: none !default;
-
     $quotesBorderWidth: 0px !default;
 
 
@@ -736,9 +724,7 @@ $preBackgroundPercentage: 0% !default;
 
 
     $preBorderColor: #167001 !default;
-
     $preBorderStyle: solid !default;
-
     $preBorderWidth: 2px !default;
 
 
@@ -806,11 +792,11 @@ $preBackgroundPercentage: 0% !default;
     $preVisitedLinkTextShadow: none !default;
 
 
-    // Wellsss
+    // Wells
 // -------------------------
 
-$wellColor: $textColor;
-$wellBackgroundColor: #f5f5f5;
+$wellColor: $grayDark;
+$wellBackgroundColor: $offWhite;
 $wellBackgroundEndColor: transparent;
 $wellBackgroundFill: solid;
 
@@ -828,10 +814,8 @@ $wellBackgroundSize: auto !default;
 $wellBackgroundPercentage: 0% !default;
 
 
-    $wellBorderColor: rgba(0,0,0, .2) !default;
-
+    $wellBorderColor: rgba(0, 0, 0, 0.2) !default;
     $wellBorderStyle: solid !default;
-
     $wellBorderWidth: 1px !default;
 
     $wellBorderRadius: $baseBorderRadius !default;
@@ -917,10 +901,8 @@ $headerPadding:  60px 0 !default;
 $headerTitleSize:       72px !default;
 
 
-    $headerBorderColor: rgba(0,0,0, .2) !default;
-
+    $headerBorderColor: rgba(0, 0, 0, 0.2) !default;
     $headerBorderStyle: none !default;
-
     $headerBorderWidth: 0px !default;
 
 
@@ -1050,9 +1032,7 @@ $navbarBorderWidth:               1px;
 
 
     $navBorderColor: #a1a1a1 !default;
-
     $navBorderStyle: solid !default;
-
     $navBorderWidth: 2px !default;
 
 
@@ -1083,6 +1063,13 @@ $navbarBorderWidth:               1px;
             $navBottomLeftBorderRadius: 0px !default;
     
     
+
+// float the section?
+
+$navbarFloatSection: no !default;
+$navbarTopMargin: 20px !default;
+$navbarBottomMargin: 20px !default;
+
 // -------------------------
 // Navbar Dropdowns
 // -------------------------
@@ -1090,9 +1077,7 @@ $navbarBorderWidth:               1px;
 $navbarDropdownBackground:            #635d5d !default;
 $styleBorderSides: no;
     $navbarDropdownBorderColor: #f5f5f5 !default;
-
     $navbarDropdownBorderStyle: solid !default;
-
     $navbarDropdownBorderWidth: 1px !default;
 
 
@@ -1155,109 +1140,161 @@ $navbarDropdownActiveLinksTextShadow: none !default;
 
 // Pagination
 // -------------------------
-$paginationLinkColor:                 #000 !default;
-$paginationBackground:                $white !default;
-
+$paginationBackground:                #fff !default;
 $paginationBorder:                    #ddd !default;
-
-
 $paginationActiveBackground:          #f5f5f5 !default;
 
-    $paginationBorderColor: rgba(0,0,0, .2) !default;
 
+    $paginationBorderColor: #a6a6a6 !default;
     $paginationBorderStyle: solid !default;
-
     $paginationBorderWidth: 1px !default;
 
-    $paginationBorderRadius: $baseBorderRadius !default;
-
-    $paginationLinkColor: $linkColor;
-
-
-    $paginationLinkColor: $paginationLinkColor !default;
-
-    $paginationLinkBackgroundStyle: none !default;
-    $paginationLinkBackgroundColor: transparent !default;
-    $paginationLinkTextDecoration: none !default;
-    $paginationLinkTextShadow: none !default;
 
 
     
-    $paginationHoveredLinkColor: $paginationLinkColor !default;
-
-    $paginationHoveredLinkBackgroundStyle: none !default;
-    $paginationHoveredLinkBackgroundColor: transparent !default;
-    $paginationHoveredLinkTextDecoration: none !default;
-    $paginationHoveredLinkTextShadow: none !default;
-
+    $paginationTopBorderColor: transparent !default;
+    $paginationTopBorderStyle: none !default;
+    $paginationTopBorderWidth: 1px !default;
+    
+    $paginationRightBorderColor: transparent !default;
+    $paginationRightBorderStyle: none !default;
+    $paginationRightBorderWidth: 1px !default;
+    
+    $paginationBottomBorderColor: #969696 !default;
+    $paginationBottomBorderStyle: none !default;
+    $paginationBottomBorderWidth: 3px !default;
+    
+    $paginationLeftBorderColor: #969696 !default;
+    $paginationLeftBorderStyle: solid !default;
+    $paginationLeftBorderWidth: 3px !default;
+    
+            $paginationBorderColor:
+            $paginationTopBorderColor
+            $paginationRightBorderColor
+            $paginationBottomBorderColor
+            $paginationLeftBorderColor;
+        $paginationBorderStyle:
+            $paginationTopBorderStyle
+            $paginationRightBorderStyle
+            $paginationBottomBorderStyle
+            $paginationLeftBorderStyle;
+        $paginationBorderWidth:
+            $paginationTopBorderWidth
+            $paginationRightBorderWidth
+            $paginationBottomBorderWidth
+            $paginationLeftBorderWidth;
+        $paginationBorderRadius: 5px !default;
 
     
-    $paginationActiveLinkColor: $paginationLinkColor !default;
-
-    $paginationActiveLinkBackgroundStyle: none !default;
-    $paginationActiveLinkBackgroundColor: transparent !default;
-    $paginationActiveLinkTextDecoration: none !default;
-    $paginationActiveLinkTextShadow: none !default;
-
-
+            $paginationTopLeftBorderRadius: 0px !default;
+            $paginationTopRightBorderRadius: 4px !default;
+            $paginationBottomRightBorderRadius: 4px !default;
+            $paginationBottomLeftBorderRadius: 0px !default;
     
-    $paginationVisitedLinkColor: $paginationLinkColor !default;
+            $paginationBorderRadius: $paginationTopLeftBorderRadius $paginationTopRightBorderRadius $paginationBottomRightBorderRadius $paginationBottomLeftBorderRadius;
+    $paginationLinkColor: #9174db !default;
+$paginationLinkBackgroundColor: rgba(20, 23, 102, 1) !default;
 
-    $paginationVisitedLinkBackgroundStyle: none !default;
-    $paginationVisitedLinkBackgroundColor: transparent !default;
-    $paginationVisitedLinkTextDecoration: none !default;
-    $paginationVisitedLinkTextShadow: none !default;
+$paginationHoveredLinkColor: #65f57d !default;
+$paginationHoveredLinkBackgroundColor: rgba(9, 115, 18, 1) !default;
 
+$paginationActiveLinkColor: #cd02d4 !default;
+$paginationActiveLinkBackgroundColor: rgba(167, 2, 189, 1) !default;
 
-    
 // Tooltips
 // -------------------------
 $tooltipColor:            #fff !default;
 $tooltipBackgroundColor:       #000 !default;
 $tooltipBackgroundEndColor:       #000 !default;
-$tooltipBackgroundFill:       none !default;
+$tooltipBackgroundFill:       solid !default;
 
 $tooltipArrowWidth:       5px !default;
 $tooltipArrowColor:       $tooltipBackgroundColor !default;
 
 
-    $tooltipBorderColor: rgba(0,0,0, .2) !default;
+    $tooltipBorderColor: rgba(0, 0, 0, 0.2) !default;
+    $tooltipBorderStyle: none !default;
+    $tooltipBorderWidth: 0px !default;
 
-    $tooltipBorderStyle: solid !default;
 
-    $tooltipBorderWidth: 1px !default;
 
-    $tooltipBorderRadius: $baseBorderRadius !default;
+    
+    $tooltipTopBorderColor: transparent !default;
+    $tooltipTopBorderStyle: none !default;
+    $tooltipTopBorderWidth: 1px !default;
+    
+    $tooltipRightBorderColor: transparent !default;
+    $tooltipRightBorderStyle: none !default;
+    $tooltipRightBorderWidth: 1px !default;
+    
+    $tooltipBottomBorderColor: transparent !default;
+    $tooltipBottomBorderStyle: none !default;
+    $tooltipBottomBorderWidth: 1px !default;
+    
+    $tooltipLeftBorderColor: transparent !default;
+    $tooltipLeftBorderStyle: none !default;
+    $tooltipLeftBorderWidth: 1px !default;
+    
+        $tooltipBorderRadius: 0px !default;
 
+    
+            $tooltipTopLeftBorderRadius: 0px !default;
+            $tooltipTopRightBorderRadius: 0px !default;
+            $tooltipBottomRightBorderRadius: 0px !default;
+            $tooltipBottomLeftBorderRadius: 0px !default;
+    
     
 // popovers
 // -------------------------
 
 
-$popoverColor:            #fff !default;
-$popoverBackgroundColor:       #000 !default;
-$popoverBackgroundEndColor:       #000 !default;
-$popoverBackgroundFill:       none !default;
+$popoverColor:            $white !default;
+$popoverBackgroundColor:       $black !default;
+$popoverBackgroundEndColor:       $popoverBackgroundColor !default;
+$popoverBackgroundFill:       solid !default;
 
-$popoverTitleColor:            #fff !default;
+$popoverTitleColor:            $white !default;
 
-$popoverTitleBackgroundColor:       #000 !default;
-$popoverTitleBackgroundEndColor:       #000 !default;
-$popoverTitleBackgroundFill:       none !default;
+$popoverTitleBackgroundColor:       rgba(255, 16, 3, 1) !default;
+$popoverTitleBackgroundEndColor:       $popoverTitleBackgroundColor !default;
+$popoverTitleBackgroundFill:       solid !default;
 
 $popoverTitleBottomBorderStyle:    none;
 $popoverTitleBottomBorderColor:    transparent;
 $popoverTitleBottomBorderWidth:    1px;
 
 
-    $popoverBorderColor: rgba(0,0,0, .2) !default;
+    $popoverBorderColor: rgba(0, 0, 0, 0.2) !default;
+    $popoverBorderStyle: none !default;
+    $popoverBorderWidth: 0px !default;
 
-    $popoverBorderStyle: solid !default;
 
-    $popoverBorderWidth: 1px !default;
 
-    $popoverBorderRadius: $baseBorderRadius !default;
+    
+    $popoverTopBorderColor: transparent !default;
+    $popoverTopBorderStyle: none !default;
+    $popoverTopBorderWidth: 1px !default;
+    
+    $popoverRightBorderColor: transparent !default;
+    $popoverRightBorderStyle: none !default;
+    $popoverRightBorderWidth: 1px !default;
+    
+    $popoverBottomBorderColor: transparent !default;
+    $popoverBottomBorderStyle: none !default;
+    $popoverBottomBorderWidth: 1px !default;
+    
+    $popoverLeftBorderColor: transparent !default;
+    $popoverLeftBorderStyle: none !default;
+    $popoverLeftBorderWidth: 1px !default;
+    
+        $popoverBorderRadius: 0px !default;
 
+    
+            $popoverTopLeftBorderRadius: 0px !default;
+            $popoverTopRightBorderRadius: 0px !default;
+            $popoverBottomRightBorderRadius: 0px !default;
+            $popoverBottomLeftBorderRadius: 0px !default;
+    
     
 
 
@@ -1273,10 +1310,10 @@ $popoverArrowOuterColor:  rgba($popoverArrowColor, .25) !default;
 // -------------------------
 
 //scaffolding
-$collapsiblesColor: $textColor;
+$collapsiblesColor: $grayDark;
 
 // background colors
-$collapsiblesBackgroundColor: #f5f5f5;
+$collapsiblesBackgroundColor: $offWhite;
 $collapsiblesBackgroundEndColor: transparent;
 $collapsiblesBackgroundFill: solid;
 
@@ -1304,10 +1341,8 @@ $collapsiblesBackgroundSize: auto !default;
 $collapsiblesBackgroundPercentage: 0% !default;
 
 
-    $collapsiblesBorderColor: rgba(0,0,0, .2) !default;
-
+    $collapsiblesBorderColor: rgba(0, 0, 0, 0.2) !default;
     $collapsiblesBorderStyle: solid !default;
-
     $collapsiblesBorderWidth: 1px !default;
 
     $collapsiblesBorderRadius: $baseBorderRadius !default;
@@ -1353,14 +1388,14 @@ $collapsiblesBackgroundPercentage: 0% !default;
     
 
 // borders
-$collapsiblesInnerBorderColor: rgba(0, 0, 0, .6);
+$collapsiblesInnerBorderColor: $grayLight;
 $collapsiblesInnerBorderStyle: solid;
 $collapsiblesInnerBorderWidth: 1px;
 // Tabs - Active
 // -------------------------
 
 //scaffolding
-$tabsColor: $textColor;
+$tabsColor: $grayDark;
 
 // background colors
 $tabsBackgroundColor: #f5f5f5;
@@ -1370,10 +1405,8 @@ $tabsBackgroundFill: solid;
 $tabsCorners: no;
 $tabsBorders: no;
 
-    $tabsBorderColor: rgba(0,0,0, .2) !default;
-
+    $tabsBorderColor: rgba(0, 0, 0, 0.2) !default;
     $tabsBorderStyle: solid !default;
-
     $tabsBorderWidth: 1px !default;
 
     $tabsBorderRadius: $baseBorderRadius !default;
@@ -1422,7 +1455,7 @@ $tabsBorders: no;
 // -------------------------
 
 // scaffolding
-$tabsInActiveColor: $textColor;
+$tabsInActiveColor: $grayDark;
 
 // background colors
 $tabsInActiveBackgroundColor: #f5f5f5;
@@ -1433,10 +1466,8 @@ $tabInActiveCorners: no;
 $tabInActiveBorders: no;
 
 
-    $tabsInActiveBorderColor: rgba(0,0,0, .2) !default;
-
+    $tabsInActiveBorderColor: rgba(0, 0, 0, 0.2) !default;
     $tabsInActiveBorderStyle: solid !default;
-
     $tabsInActiveBorderWidth: 1px !default;
 
     $tabsInActiveBorderRadius: $baseBorderRadius !default;

@@ -15,6 +15,7 @@ class Navbar{
     public static $movement = 'none';
     public static $nav_style;
     public static $position;
+    public static $full_width;
     public static $walker;
     public static $button_type = 'default';
     public static $nav_settings;
@@ -29,8 +30,9 @@ class Navbar{
         // expecting: $position, $movement, $nav_style, $brand, $brand_image,  $menu_toggle_type
         extract($args);
 
-        self::$site_settings = get_option('bswp_site_settings');
-        self::$nav_settings = self::$site_settings['navbar']['settings'];
+        $site_settings = get_option('bswp_site_settings');
+        self::$site_settings = $site_settings['misc'];
+        self::$nav_settings = $site_settings['navbar']['settings'];
 
 
         self::$class = $class ? $class : '';
@@ -38,6 +40,7 @@ class Navbar{
         // position and movement
         self::$position = isset($position) ? $position : self::get_default('position', 'below_header');
         self::$movement = isset($movement) ? $movement : self::get_default('movement', 'none');
+        self::$full_width = isset($full_width) ? $full_width : self::get_default('full_width', 'none');
 
         // navbar brand
         self::$brand = isset($brand) ? $brand : self::get_default('brand', 'text');
@@ -68,15 +71,27 @@ class Navbar{
 
 
     public static function is_body_contained() {
-        $layout = self::$site_settings['misc']['layout'];
-        $full_width = ($layout['full_width'] == 'no') ? true : false;
+        $layout = self::$site_settings['layout'];
+
+        $full_width = ($layout['full_width'] == 'yes') ? false : true;
         return $full_width;
     }
 
+    public static function is_navbar_full_width() {
+
+        return self::$full_width == 'yes' ? true : false;
+    }
 
     public static function contain_section() {
-        $contained = self::is_body_contained();
+        $body_contained = self::is_body_contained();
+
+        $contained = !$body_contained && self::is_navbar_full_width() ? true : false;
         return $contained ? '' : 'container';
+    }
+
+    public static function inner_container() {
+        $body_contained = self::is_body_contained();
+        $container = !$body_contained && self::is_navbar_full_width() ? 'container' : '';
     }
 
 
@@ -88,34 +103,52 @@ class Navbar{
     }
 
 
+    public static function wrap_with_container($markup ='') {
+        $output = '';
+        // if the navbar type is not set to contained then we need to put the container inside the inn=er
+        $output .= '<div class="container">';
+            $output .= $markup;
+        $output .= '</div>'; // end container -->
+
+        return $output;
+    }
+
+
+    public static function inner_markup() {
+        $output = '';
+        $output .= '<div class="navbar">';
+
+            // $output .= '<a class="brand '.$logo.'" href="'.home_url().'">'.get_bloginfo( 'name' ).'</a>';
+            $output .= self::toggle_button_type();
+            $output .= self::brand();
+            $output .= '<div class="nav-collapse collapse navbar-responsive-collapse">';
+                $output .= self::build_menu();
+            $output .= '</div>'; // en nav collapse
+
+
+        $output .= '</div>'; // end navbar -->
+
+        return $output;
+    }
+
+
     public static function scaffolding(){
 
         $output = '';
 
         $output .= '<div id="navbar" class="section section--navbar navbar-wrapper '. self::$menu_id
             .' '. self::movement_class()
-            .' '. self::nav_style() . '">';
-
+            .' '. self::nav_style()
+            .' '. self::contain_section()
+            .'">';
             $output .= '<div class="navbar-inner">';
-
                 // if the navbar type is not set to contained then we need to put the container inside the inn=er
-                $output .= '<div class="'.self::contain_section().'">';
-                    $output .= '<div class="navbar">';
+                if(self::is_navbar_full_width())
+                    $output .= self::wrap_with_container(self::inner_markup());
+                else
+                    $output .= self::inner_markup();
 
-                        // $output .= '<a class="brand '.$logo.'" href="'.home_url().'">'.get_bloginfo( 'name' ).'</a>';
-                        $output .= self::toggle_button_type();
-                        $output .= self::brand();
-                        $output .= '<div class="nav-collapse collapse navbar-responsive-collapse">';
-                            $output .= self::build_menu();
-                        $output .= '</div>'; // en nav collapse
-
-
-                    $output .= '</div>'; // end navbar -->
-
-                $output .= '</div>'; // end container -->
-
-
-            $output .= '</div>'; // end navbar-inner-->
+            $output .= '</div>'; // end navbar inner
 
 
         $output .= '</div>'; // end #navbar

@@ -53,17 +53,9 @@ function _component_border_radius_sass_vars($prefix = null, $borders = array()){
 function _component_outer_border_sass_vars($prefix = null, $borders = array(), $defaults = array()){
     $count = 0;
 ?>
-    $<?php echo $prefix; ?>BorderColor: <?php echo $borders['all_sides_border_color']
-        ? $borders['all_sides_border_color']
-        : _default('rgba(0,0,0, .2)', $defaults[$count], $count) ; ?> !default;
-
-    $<?php echo $prefix; ?>BorderStyle: <?php echo $borders['all_sides_border_style']
-        ? $borders['all_sides_border_style']
-        : _default('solid', $defaults[$count], $count) ; ?> !default;
-
-    $<?php echo $prefix; ?>BorderWidth: <?php echo $borders['all_sides_border_width']
-        ? $borders['all_sides_border_width']
-        :_default('1px', $defaults[$count], $count) ; ?> !default;
+    $<?php echo $prefix; ?>BorderColor: <?php echo _tern( $borders['all_sides_border_color'], 'rgba(0, 0, 0, 0.2)'); ?> !default;
+    $<?php echo $prefix; ?>BorderStyle: <?php echo _tern( $borders['all_sides_border_style'], 'solid'); ?> !default;
+    $<?php echo $prefix; ?>BorderWidth: <?php echo _tern( $borders['all_sides_border_width'], '1px'); ?> !default;
 
 <?php
     if(is_null($prefix) || empty($borders) )
@@ -75,15 +67,9 @@ function _component_outer_border_sass_vars($prefix = null, $borders = array(), $
 
     <?php foreach($sides as $side): ?>
 
-    $<?php echo $prefix; ?><?php echo ucfirst($side);?>BorderColor: <?php echo $borders[$side.'_border_color']
-        ? $borders[$side.'_border_color']
-        : 'transparent' ; ?> !default;
-    $<?php echo $prefix; ?><?php echo ucfirst($side);?>BorderStyle: <?php echo $borders[$side.'_border_style']
-        ? $borders[$side.'_border_style']
-        : 'none' ; ?> !default;
-    $<?php echo $prefix; ?><?php echo ucfirst($side);?>BorderWidth: <?php echo $borders[$side.'_border_width']
-        ? $borders[$side.'_border_width']
-        : '0' ; ?> !default;
+    $<?php echo $prefix; ?><?php echo ucfirst($side);?>BorderColor: <?php echo _tern($borders[$side.'_border_color'], 'transparent'); ?> !default;
+    $<?php echo $prefix; ?><?php echo ucfirst($side);?>BorderStyle: <?php echo _tern($borders[$side.'_border_style'], 'none'); ?> !default;
+    $<?php echo $prefix; ?><?php echo ucfirst($side);?>BorderWidth: <?php echo _tern($borders[$side.'_border_width'], '0'); ?> !default;
     <?php endforeach; ?>
 
     <?php if($borders['style_border_sides'] == 'yes'): ?>

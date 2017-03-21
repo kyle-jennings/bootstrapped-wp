@@ -11,15 +11,15 @@ $tabs_inactive_colors = $tabs['inactive_tab_colors'];
 // -------------------------
 
 //scaffolding
-$tabsColor: <?php echo $tabs_text['text_color'] ? $tabs_text['text_color'] : '$textColor'; ?>;
+$tabsColor: <?php echo _tern($tabs_text['text_color'], '$grayDark'); ?>;
 
 // background colors
-$tabsBackgroundColor: <?php echo $tabs_bg['background_start_color_rgba'] ? $tabs_bg['background_start_color_rgba'] : '#f5f5f5'; ?>;
-$tabsBackgroundEndColor: <?php echo $tabs_bg['background_end_color_rgba'] ? $tabs_bg['background_end_color_rgba'] : 'transparent'; ?>;
-$tabsBackgroundFill: <?php echo $tabs_bg['background_fill'] ? $tabs_bg['background_fill'] : 'solid'; ?>;
+$tabsBackgroundColor: <?php echo _tern($tabs_bg['background_start_color_rgba'], '#f5f5f5'); ?>;
+$tabsBackgroundEndColor: <?php echo _tern($tabs_bg['background_end_color_rgba'], 'transparent'); ?>;
+$tabsBackgroundFill: <?php echo _tern($tabs_bg['background_fill'], 'solid'); ?>;
 
-$tabsCorners: <?php echo $tabs_borders['style_corners'] ? $tabs_borders['style_corners'] : 'no' ?>;
-$tabsBorders: <?php echo $tabs_borders['style_border_sides'] ? $tabs_borders['style_border_sides'] : 'no' ?>;
+$tabsCorners: <?php echo _tern($tabs_borders['style_corners'], 'no'); ?>;
+$tabsBorders: <?php echo _tern($tabs_borders['style_border_sides'], 'no'); ?>;
 
 <?php
 
@@ -34,15 +34,15 @@ $tabsBorders: <?php echo $tabs_borders['style_border_sides'] ? $tabs_borders['st
 // -------------------------
 
 // scaffolding
-$tabsInActiveColor: <?php echo $tabs_inactive_colors['text_color'] ? $tabs_inactive_colors['text_color'] : '$textColor'; ?>;
+$tabsInActiveColor: <?php echo _tern($tabs_inactive_colors['text_color'], '$grayDark'); ?>;
 
 // background colors
-$tabsInActiveBackgroundColor: <?php echo $tabs_inactive_colors['background_start_color_rgba'] ? $tabs_inactive_colors['background_start_color_rgba'] : '#f5f5f5'; ?>;
-$tabsInActiveBackgroundEndColor: <?php echo $tabs_inactive_colors['background_end_color_rgba'] ? $tabs_inactive_colors['background_end_color_rgba'] : 'transparent'; ?>;
-$tabsInActiveBackgroundFill: <?php echo $tabs_inactive_colors['background_fill'] ? $tabs_inactive_colors['background_fill'] : 'solid'; ?>;
+$tabsInActiveBackgroundColor: <?php echo _tern($tabs_inactive_colors['background_start_color_rgba'], '#f5f5f5'); ?>;
+$tabsInActiveBackgroundEndColor: <?php echo _tern($tabs_inactive_colors['background_end_color_rgba'], 'transparent'); ?>;
+$tabsInActiveBackgroundFill: <?php echo _tern($tabs_inactive_colors['background_fill'], 'solid'); ?>;
 
-$tabInActiveCorners: <?php echo $tabs_inactive_colors['style_corners'] ? $tabs_inactive_colors['style_corners'] : 'no' ?>;
-$tabInActiveBorders: <?php echo $tabs_inactive_colors['style_border_sides'] ? $tabs_inactive_colors['style_border_sides'] : 'no' ?>;
+$tabInActiveCorners: <?php echo _tern($tabs_inactive_colors['style_corners'], 'no'); ?>;
+$tabInActiveBorders: <?php echo _tern($tabs_inactive_colors['style_border_sides'], 'no'); ?>;
 
 
 <?php

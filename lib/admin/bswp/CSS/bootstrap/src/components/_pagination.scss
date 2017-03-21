@@ -64,12 +64,15 @@
 }
 .pagination ul > li:first-child > a,
 .pagination ul > li:first-child > span {
-    border-left-width: 1px;
-    @include border-left-radius($paginationBorderRadius);
+    border-radius: $paginationBorderRadius;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }
 .pagination ul > li:last-child > a,
 .pagination ul > li:last-child > span {
-    @include border-right-radius($paginationBorderRadius);
+    border-radius: $paginationBorderRadius;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 

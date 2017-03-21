@@ -8,6 +8,7 @@ use bswp\Forms\Fields\ColorPicker;
 use bswp\Forms\Fields\Hidden;
 use bswp\Forms\Fields\Select;
 use bswp\Forms\Fields\File;
+use bswp\Forms\Fields\Text;
 
 use function bswp\Settings\_helpers\remove_link_decoration;
 use function bswp\Settings\_helpers\remove_link_bg;
@@ -154,7 +155,50 @@ $navbar->add_tab('settings', array(
                 'preview_dependancies' => 'brand,brand_image,position,movement,menu_toggle_type'
 
             )
-        )
+        ),
+        'full_width' => new Select (
+            array(
+                'name'=>'full_width',
+                'label'=>'Full Width',
+                'args'=>array('yes','no'),
+                'preview'=>'toggle-class',
+                'preview_args'=>'.section--navbar=>container',
+            )
+        ),
+        'float_section' => new Select (
+            array(
+                'name'=>'float_section',
+                'label'=>'Float Section',
+                'args'=>array('no','yes'),
+                'toggle_fields'=>array(
+                    'yes'=>'top_margin,bottom_margin,outer_glow'
+                ),
+            )
+        ),
+        'top_margin' => new Text(
+            array(
+                'name'=>'top_margin',
+                'label'=>'Top Margin',
+                'args'=>array('suffix'=>'px'),
+                'toggled_by'=>array('float_section'=>'yes')
+            )
+        ),
+        'bottom_margin' => new Text(
+            array(
+                'name'=>'bottom_margin',
+                'label'=>'Bottom Margin',
+                'args'=>array('suffix'=>'px'),
+                'toggled_by'=>array('float_section'=>'yes')
+            )
+        ),
+        'outer_glow' => new Select (
+            array(
+                'name'=>'outer_glow',
+                'label'=>'Outer Glow',
+                'args'=>array('none','left_and_right','top_and_bottom','top','bottom','all_sides'),
+                'toggled_by'=>array('float_section'=>'yes')
+            )
+        ),
     ) // end array of settings
 );
 
@@ -239,10 +283,17 @@ $sub_hovered = $hovered_link;
 
 $sub_hovered['hovered_link_background_style'] = clone $sub_hovered['hovered_link_background_style'];
 array_unshift($sub_hovered['hovered_link_background_style']->args,  'default');
+unset($sub_hovered['hovered_link_text_decoration']);
+unset($sub_hovered['hovered_link_text_shadow']);
+unset($sub_hovered['hovered_link_text_shadow_rgba']);
 
 $sub_active = $active_link;
 $sub_active['active_link_background_style'] = clone $sub_active['active_link_background_style'];
 array_unshift($sub_active['active_link_background_style']->args,  'default');
+unset($sub_active['active_link_text_decoration']);
+unset($sub_active['active_link_text_shadow']);
+unset($sub_active['active_link_text_shadow_rgba']);
+
 
 $navbar->add_tab('submenu_text',
     array_merge(
