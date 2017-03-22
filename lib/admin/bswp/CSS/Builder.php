@@ -41,6 +41,19 @@ class Builder {
 
     }
 
+
+    public function getSectionName($section) {
+        switch($section):
+            case 'site_settings';
+                return '.page-wrapper';
+                break;
+            default:
+                return '.page-wrapper';
+                break;
+        endswitch;
+    }
+
+
     public function set_manifest() {
         // $var_file = $this->bs_dir .
     }

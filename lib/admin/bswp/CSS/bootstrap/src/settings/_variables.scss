@@ -1,45 +1,51 @@
 
 
-
-//
-// Variables
-// --------------------------------------------------
-@function image-path($file) {
-  @return "../img/"+$file
-}
-
-// Global values
-// --------------------------------------------------
+$section: site_settings !default;
 
 
-// Grays
+
+
+// start section
+
+
+    // Variables
+    // --------------------------------------------------
+    @function image-path($file) {
+      @return "../img/"+$file
+    }
+
+    // Global values
+    // --------------------------------------------------
+
+
+    // Grays
+    // -------------------------
+    $black:                 #000 !default;
+    $grayDarker:            #222 !default;
+    $grayDark:              #333 !default;
+    $gray:                  #555 !default;
+    $greyMedium:            #777 !default;
+    $grayLight:             #999 !default;
+    $grayLighter:           #eee !default;
+    $white:                 #fff !default;
+    $offWhite:           #f5f5f5 !default;
+
+    // Accent colors
+    // -------------------------
+    $blue:                  #049cdb !default;
+    $blueDark:              #0064cd !default;
+    $green:                 #46a546 !default;
+    $red:                   #9d261d !default;
+    $yellow:                #ffc40d !default;
+    $orange:                #f89406 !default;
+    $pink:                  #c3325f !default;
+    $purple:                #7a43b6 !default;
+
+
+    // Scaffolding
 // -------------------------
-$black:                 #000 !default;
-$grayDarker:            #222 !default;
-$grayDark:              #333 !default;
-$gray:                  #555 !default;
-$greyMedium:            #777 !default;
-$grayLight:             #999 !default;
-$grayLighter:           #eee !default;
-$white:                 #fff !default;
-$offWhite:           #f5f5f5 !default;
-
-// Accent colors
-// -------------------------
-$blue:                  #049cdb !default;
-$blueDark:              #0064cd !default;
-$green:                 #46a546 !default;
-$red:                   #9d261d !default;
-$yellow:                #ffc40d !default;
-$orange:                #f89406 !default;
-$pink:                  #c3325f !default;
-$purple:                #7a43b6 !default;
-
-
-// Scaffolding
-// -------------------------
-$bodyBackground:        rgba(48, 48, 48, 1) !default;
-$bodyBackgroundEnd:        $bodyBackground !default;
+$background:        rgba(48, 48, 48, 1) !default;
+$backgroundEnd:        $background !default;
 $backgroundFill: solid !default;
 
 
@@ -99,29 +105,29 @@ $bottomMargin: 100px !default;
             $BottomLeftBorderRadius: 0px !default;
     
     
-// text
-$textColor:             #cccccc !default;
+    // text
+    $textColor:             #cccccc !default;
 
 
-// Typography
-// -------------------------
-$sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif !default;
-$serifFontFamily:       Georgia, "Times New Roman", Times, serif !default;
-$monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace !default;
+    // Typography
+    // -------------------------
+    $sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+    $serifFontFamily:       Georgia, "Times New Roman", Times, serif !default;
+    $monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace !default;
 
-$baseFontSize:          14px !default;
-$baseFontFamily:        $sansFontFamily !default;
-$baseLineHeight:        20px !default;
-$altFontFamily:         $serifFontFamily !default;
+    $baseFontSize:          14px !default;
+    $baseFontFamily:        $sansFontFamily !default;
+    $baseLineHeight:        20px !default;
+    $altFontFamily:         $serifFontFamily !default;
 
-$headingsFontFamily:    $baseFontFamily !default; // empty to use BS default, $baseFontFamily
-$headingsFontWeight:    bold !default;    // instead of browser default, bold
+    $headingsFontFamily:    $baseFontFamily !default; // empty to use BS default, $baseFontFamily
+    $headingsFontWeight:    bold !default;    // instead of browser default, bold
 
 
 
-// Links
-// -------------------------
-    $linkColor:         #01751e !default;
+    // Links
+    // -------------------------
+        $linkColor:         #01751e !default;
     $linkBackgroundFill: none !default;
     $linkBackgroundColor: transparent !default;
     $linkDecoration: none !default;
@@ -142,9 +148,9 @@ $headingsFontWeight:    bold !default;    // instead of browser default, bold
     $activeLinkTextShadow: darken($linkColor, 15%) !default;
 
 
-$linkColorHover:        darken($hoveredLinkColor, 15%) !default;
+    $linkColorHover:        darken($hoveredLinkColor, 15%) !default;
 
-
+    
         $headingsColor:         #ffffff !default;
 
         $headingsTextDecoration: none !default;
@@ -170,24 +176,24 @@ $linkColorHover:        darken($hoveredLinkColor, 15%) !default;
 
 
 
-// Component sizing
-// -------------------------
-// Based on 14px font-size and 20px line-height
+    // Component sizing
+    // -------------------------
+    // Based on 14px font-size and 20px line-height
 
-$fontSizeLarge:         $baseFontSize * 1.25; // ~18px
-$fontSizeSmall:         $baseFontSize * 0.85; // ~12px
-$fontSizeMini:          $baseFontSize * 0.75; // ~11px
+    $fontSizeLarge:         $baseFontSize * 1.25; // ~18px
+    $fontSizeSmall:         $baseFontSize * 0.85; // ~12px
+    $fontSizeMini:          $baseFontSize * 0.75; // ~11px
 
-$paddingLarge:          11px 19px !default; // 44px
-$paddingSmall:          2px 10px !default;  // 26px
-$paddingMini:           0px 6px !default;   // 22px
+    $paddingLarge:          11px 19px !default; // 44px
+    $paddingSmall:          2px 10px !default;  // 26px
+    $paddingMini:           0px 6px !default;   // 22px
 
-$baseBorderRadius:      4px !default;
-$borderRadiusLarge:     6px !default;
-$borderRadiusSmall:     3px !default;
+        $baseBorderRadius:      4px !default;
+    $borderRadiusLarge:     6px !default;
+    $borderRadiusSmall:     3px !default;
 
 
-// Tables
+    // Tables
 // -------------------------
 $tableBackground:                   rgba(199, 101, 101, 1) !default;
 $tablesTextColor:       #ede1e1;
@@ -265,8 +271,8 @@ $btnInverseBackgroundHighlight:     $grayDarker !default;
 
 $imagePadding: 0px !default;
 
-    $imageBackgroundColor: $bodyBackground !default;
-    $imageBackgroundEndColor: $bodyBackgroundEnd !default;
+    $imageBackgroundColor: $background !default;
+    $imageBackgroundEndColor: $backgroundEnd !default;
 
     $imageBackgroundFill: solid !default;
     $imageBorderColor: rgba(0, 0, 0, 0.2) !default;
@@ -308,8 +314,8 @@ $imagePadding: 0px !default;
 $imageCaptionTextColor: $textColor !default;
 $imageCaptionPadding: 0px !default;
 
-    $imageCaptionBackgroundColor: $bodyBackground !default;
-    $imageCaptionBackgroundEndColor: $bodyBackgroundEnd !default;
+    $imageCaptionBackgroundColor: $background !default;
+    $imageCaptionBackgroundEndColor: $backgroundEnd !default;
 
     $imageCaptionBackgroundFill: solid !default;
     $imageCaptionBorderColor: rgba(0, 0, 0, 0.2) !default;
@@ -349,8 +355,8 @@ $imageCaptionPadding: 0px !default;
 /////////////////////
 $imageThumbnailPadding: 0px !default;
 
-    $imageThumbnailBackgroundColor: $bodyBackground !default;
-    $imageThumbnailBackgroundEndColor: $bodyBackgroundEnd !default;
+    $imageThumbnailBackgroundColor: $background !default;
+    $imageThumbnailBackgroundEndColor: $backgroundEnd !default;
 
     $imageThumbnailBackgroundFill: solid !default;
     $imageThumbnailBorderColor: rgba(0, 0, 0, 0.2) !default;
@@ -396,8 +402,8 @@ $inputHeight:                   $baseLineHeight + 10px; // base line-height + 8p
 
 $formTextColor: $textColor !default;
 
-    $formBackgroundColor: $bodyBackground !default;
-    $formBackgroundEndColor: $bodyBackgroundEnd !default;
+    $formBackgroundColor: $background !default;
+    $formBackgroundEndColor: $backgroundEnd !default;
 
     $formBackgroundFill: solid !default;
     $formBorderColor: rgba(0, 0, 0, 0.2) !default;
@@ -434,8 +440,8 @@ $formTextColor: $textColor !default;
     
 $fieldTextColor: $textColor !default;
 
-    $fieldBackgroundColor: $bodyBackground !default;
-    $fieldBackgroundEndColor: $bodyBackgroundEnd !default;
+    $fieldBackgroundColor: $background !default;
+    $fieldBackgroundEndColor: $backgroundEnd !default;
 
     $fieldBackgroundFill: solid !default;
     $fieldBorderColor: rgba(0, 0, 0, 0.2) !default;
@@ -473,8 +479,8 @@ $fieldTextColor: $textColor !default;
 
 $fieldActiveTextColor: $textColor !default;
 
-    $fieldActiveBackgroundColor: $bodyBackground !default;
-    $fieldActiveBackgroundEndColor: $bodyBackgroundEnd !default;
+    $fieldActiveBackgroundColor: $background !default;
+    $fieldActiveBackgroundEndColor: $backgroundEnd !default;
 
     $fieldActiveBackgroundFill: solid !default;
     $fieldActiveBorderColor: rgba(0, 0, 0, 0.2) !default;
@@ -511,90 +517,90 @@ $fieldActiveTextColor: $textColor !default;
     
 
 
-// COMPONENT VARIABLES
-// --------------------------------------------------
+    // COMPONENT VARIABLES
+    // --------------------------------------------------
 
 
-// Z-index master list
-// -------------------------
-// Used for a bird's eye view of components dependent on the z-axis
-// Try to avoid customizing these :)
-$zindexDropdown:          1000 !default;
-$zindexPopover:           1010 !default;
-$zindexTooltip:           1030 !default;
-$zindexFixedNavbar:       1030 !default;
-$zindexModalBackdrop:     1040 !default;
-$zindexModal:             1050 !default;
+    // Z-index master list
+    // -------------------------
+    // Used for a bird's eye view of components dependent on the z-axis
+    // Try to avoid customizing these :)
+    $zindexDropdown:          1000 !default;
+    $zindexPopover:           1010 !default;
+    $zindexTooltip:           1030 !default;
+    $zindexFixedNavbar:       1030 !default;
+    $zindexModalBackdrop:     1040 !default;
+    $zindexModal:             1050 !default;
 
 
-// Sprite icons path
-// -------------------------
-$iconSpritePath:          image-path("glyphicons-halflings.png") !default;
-$iconWhiteSpritePath:     image-path("glyphicons-halflings-white.png") !default;
+    // Sprite icons path
+    // -------------------------
+    $iconSpritePath:          image-path("glyphicons-halflings.png") !default;
+    $iconWhiteSpritePath:     image-path("glyphicons-halflings-white.png") !default;
 
 
-// Input placeholder text color
-// -------------------------
-$placeholderText:         $grayLight !default;
+    // Input placeholder text color
+    // -------------------------
+    $placeholderText:         $grayLight !default;
 
 
-// Hr border color
-// -------------------------
-$hrBorder:                $grayLighter !default;
+    // Hr border color
+    // -------------------------
+    $hrBorder:                $grayLighter !default;
 
 
-// Horizontal forms & lists
-// -------------------------
-$horizontalComponentOffset:       180px !default;
+    // Horizontal forms & lists
+    // -------------------------
+    $horizontalComponentOffset:       180px !default;
 
 
-// Wells
-// -------------------------
-$wellBackground:                  #f5f5f5 !default;
-$wellBorder:                      darken($wellBackground, 7%);
+    // Wells
+    // -------------------------
+    $wellBackground:                  #f5f5f5 !default;
+    $wellBorder:                      darken($wellBackground, 7%);
 
-// Navbar
-// -------------------------
-$navbarCollapseWidth:             979px !default;
-$navbarCollapseDesktopWidth:      $navbarCollapseWidth + 1;
-
-
-
-// Form states and alerts
-// -------------------------
-$warningText:             #c09853;
-$warningBackground:       #fcf8e3;
-$warningBorder:           darken(adjust-hue($warningBackground, -10), 3%);
-
-$errorText:               #b94a48;
-$errorBackground:         #f2dede;
-$errorBorder:             darken(adjust-hue($errorBackground, -10), 3%);
-
-$successText:             #468847;
-$successBackground:       #dff0d8;
-$successBorder:           darken(adjust-hue($successBackground, -10), 5%);
-
-$infoText:                #3a87ad;
-$infoBackground:          #d9edf7;
-$infoBorder:              darken(adjust-hue($infoBackground, -10), 7%);
-
-
-// Dropdowns
-$dropdownBackground:            $white !default;
-$dropdownBorder:                rgba(0,0,0,.2) !default;
-$dropdownDividerTop:            #e5e5e5 !default;
-$dropdownDividerBottom:         $white !default;
-
-$dropdownLinkColor:             $grayDark !default;
-$dropdownLinkColorHover:        $white !default;
-$dropdownLinkColorActive:       $white !default;
-
-$dropdownLinkBackgroundActive:  $linkColor !default;
-$dropdownLinkBackgroundHover:   $dropdownLinkBackgroundActive !default;
+    // Navbar
+    // -------------------------
+    $navbarCollapseWidth:             979px !default;
+    $navbarCollapseDesktopWidth:      $navbarCollapseWidth + 1;
 
 
 
-// Quotes
+    // Form states and alerts
+    // -------------------------
+    $warningText:             #c09853;
+    $warningBackground:       #fcf8e3;
+    $warningBorder:           darken(adjust-hue($warningBackground, -10), 3%);
+
+    $errorText:               #b94a48;
+    $errorBackground:         #f2dede;
+    $errorBorder:             darken(adjust-hue($errorBackground, -10), 3%);
+
+    $successText:             #468847;
+    $successBackground:       #dff0d8;
+    $successBorder:           darken(adjust-hue($successBackground, -10), 5%);
+
+    $infoText:                #3a87ad;
+    $infoBackground:          #d9edf7;
+    $infoBorder:              darken(adjust-hue($infoBackground, -10), 7%);
+
+
+    // Dropdowns
+    $dropdownBackground:            $white !default;
+    $dropdownBorder:                rgba(0,0,0,.2) !default;
+    $dropdownDividerTop:            #e5e5e5 !default;
+    $dropdownDividerBottom:         $white !default;
+
+    $dropdownLinkColor:             $grayDark !default;
+    $dropdownLinkColorHover:        $white !default;
+    $dropdownLinkColorActive:       $white !default;
+
+    $dropdownLinkBackgroundActive:  $linkColor !default;
+    $dropdownLinkBackgroundHover:   $dropdownLinkBackgroundActive !default;
+
+
+
+    // Quotes
 // -------------------------
 
 $quotesColor: $textColor;
@@ -1024,7 +1030,7 @@ $navbarLinkBackgroundActiveColor:      rgba(128, 128, 128, 1) !default;
 
 $navbarBrandColor:                $navbarLinkColor !default;
 
-$navbarDisableBoxShadow:       yes !default;
+$navbarDisableBoxShadow:       no !default;
 
 $navbarBorder:                    rgba(0,0,0,.2) !default;
 $navbarBorderStyle:               solid;
@@ -1066,7 +1072,7 @@ $navbarAlign: right;
 
 // float the section?
 
-$navbarFloatSection: yes !default;
+$navbarFloatSection: no !default;
 $navbarTopMargin: 20px !default;
 $navbarBottomMargin: 20px !default;
 
@@ -1486,39 +1492,39 @@ $heroUnitLeadColor:               inherit !default;
 
 
 
-// GRID
-// --------------------------------------------------
+    // GRID
+    // --------------------------------------------------
 
 
-// Default 940px grid
-// -------------------------
-$gridColumns:             12 !default;
-$gridColumnWidth:         60px !default;
-$gridGutterWidth:         20px !default;
-$gridRowWidth:            ($gridColumns * $gridColumnWidth) + ($gridGutterWidth * ($gridColumns - 1)) !default;
+    // Default 940px grid
+    // -------------------------
+    $gridColumns:             12 !default;
+    $gridColumnWidth:         60px !default;
+    $gridGutterWidth:         20px !default;
+    $gridRowWidth:            ($gridColumns * $gridColumnWidth) + ($gridGutterWidth * ($gridColumns - 1)) !default;
 
-// 1200px min
-$gridColumnWidth1200:     70px !default;
-$gridGutterWidth1200:     30px !default;
-$gridRowWidth1200:        ($gridColumns * $gridColumnWidth1200) + ($gridGutterWidth1200 * ($gridColumns - 1)) !default;
+    // 1200px min
+    $gridColumnWidth1200:     70px !default;
+    $gridGutterWidth1200:     30px !default;
+    $gridRowWidth1200:        ($gridColumns * $gridColumnWidth1200) + ($gridGutterWidth1200 * ($gridColumns - 1)) !default;
 
-// 768px-979px
-$gridColumnWidth768:      42px !default;
-$gridGutterWidth768:      20px !default;
-$gridRowWidth768:         ($gridColumns * $gridColumnWidth768) + ($gridGutterWidth768 * ($gridColumns - 1)) !default;
+    // 768px-979px
+    $gridColumnWidth768:      42px !default;
+    $gridGutterWidth768:      20px !default;
+    $gridRowWidth768:         ($gridColumns * $gridColumnWidth768) + ($gridGutterWidth768 * ($gridColumns - 1)) !default;
 
 
-// Fluid grid
-// -------------------------
-$fluidGridColumnWidth:    percentage($gridColumnWidth/$gridRowWidth) !default;
-$fluidGridGutterWidth:    percentage($gridGutterWidth/$gridRowWidth) !default;
+    // Fluid grid
+    // -------------------------
+    $fluidGridColumnWidth:    percentage($gridColumnWidth/$gridRowWidth) !default;
+    $fluidGridGutterWidth:    percentage($gridGutterWidth/$gridRowWidth) !default;
 
-// 1200px min
-$fluidGridColumnWidth1200:     percentage($gridColumnWidth1200/$gridRowWidth1200) !default;
-$fluidGridGutterWidth1200:     percentage($gridGutterWidth1200/$gridRowWidth1200) !default;
+    // 1200px min
+    $fluidGridColumnWidth1200:     percentage($gridColumnWidth1200/$gridRowWidth1200) !default;
+    $fluidGridGutterWidth1200:     percentage($gridGutterWidth1200/$gridRowWidth1200) !default;
 
-// 768px-979px
-$fluidGridColumnWidth768:      percentage($gridColumnWidth768/$gridRowWidth768) !default;
-$fluidGridGutterWidth768:      percentage($gridGutterWidth768/$gridRowWidth768) !default;
+    // 768px-979px
+    $fluidGridColumnWidth768:      percentage($gridColumnWidth768/$gridRowWidth768) !default;
+    $fluidGridGutterWidth768:      percentage($gridGutterWidth768/$gridRowWidth768) !default;
 
 

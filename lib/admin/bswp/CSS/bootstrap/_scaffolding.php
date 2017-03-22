@@ -3,8 +3,8 @@
 ?>
 // Scaffolding
 // -------------------------
-$bodyBackground:        <?php echo _tern($background_colors['background_start_color_rgba'], '$white'); ?> !default;
-$bodyBackgroundEnd:        <?php echo _tern($background_colors['background_end_color_rgba'], '$bodyBackground'); ?> !default;
+$background:        <?php echo _tern($background_colors['background_start_color_rgba'], '$white'); ?> !default;
+$backgroundEnd:        <?php echo _tern($background_colors['background_end_color_rgba'], '$background'); ?> !default;
 $backgroundFill: <?php echo _tern($background_colors['background_fill'], 'solid'); ?> !default;
 
 

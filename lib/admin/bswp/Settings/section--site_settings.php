@@ -60,6 +60,8 @@ $section_name = str_replace('section--','',$section_name);
 $background_and_borders = new SettingsGroup('background_and_borders');
 $background_and_borders->add_tab('background_colors', $background_colors);
 $background_and_borders->add_tab('wallpaper', $background_wallpaper);
+$background_and_borders->add_tab('body_background_colors', $background_colors);
+$background_and_borders->add_tab('body_wallpaper', $background_wallpaper);
 
 $background_and_borders->add_tab('borders', $component_borders);
 $background_and_borders->add_tab('border-radius', $radii_fields);
@@ -93,6 +95,7 @@ $links->add_tab('visited_link', $visited_link);
 $misc = new SettingsGroup('misc');
 $misc->add_tab('layout', $section_layout);
 $misc->add_tab('misc', $site_settings);
+
 
 
 // activate  components

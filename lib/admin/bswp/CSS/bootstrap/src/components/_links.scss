@@ -1,0 +1,26 @@
+
+// Links
+// -------------------------
+
+a {
+    color: $linkColor;
+    @include link-bg($linkBackgroundFill, $linkBackgroundColor);
+    @include link-decoration($linkDecoration, $linkTextShadow);
+
+    &:hover,
+    &:hover:visited {
+        color: $hoveredLinkColor;
+        @include link-bg($hoveredLinkBackgroundFill, $hoveredLinkBackgroundColor);
+        @include link-decoration($hoveredLinkDecoration, $hoveredLinkTextShadow);
+
+    }
+
+    &:focus,
+    &:active {
+        color: $activeLinkColor;
+        @if $activeLinkBackgroundFill != none {
+            background-color: $activeLinkBackgroundColor;
+            @include link-decoration($activeLinkDecoration, $activeLinkTextShadow);
+        }
+    }
+  }

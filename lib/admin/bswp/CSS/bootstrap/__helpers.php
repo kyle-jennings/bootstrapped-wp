@@ -12,8 +12,8 @@ function _component_background_colors_sass_vars($prefix = null, $settings = arra
     // $things = array('background_start_color', 'background_end_color', 'background_fill');
     ?>
 
-    $<?php echo $prefix; ?>BackgroundColor: <?php echo $settings['background_start_color_rgba'] ? $settings['background_start_color_rgba'] : '$bodyBackground'; ?> !default;
-    $<?php echo $prefix; ?>BackgroundEndColor: <?php echo $settings['background_end_color_rgba'] ? $settings['background_end_color_rgba'] : '$bodyBackgroundEnd'; ?> !default;
+    $<?php echo $prefix; ?>BackgroundColor: <?php echo $settings['background_start_color_rgba'] ? $settings['background_start_color_rgba'] : '$background'; ?> !default;
+    $<?php echo $prefix; ?>BackgroundEndColor: <?php echo $settings['background_end_color_rgba'] ? $settings['background_end_color_rgba'] : '$backgroundEnd'; ?> !default;
 
     $<?php echo $prefix; ?>BackgroundFill: <?php echo $settings['background_fill'] ? $settings['background_fill'] : 'none'; ?> !default;
 <?php

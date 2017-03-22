@@ -1,23 +1,20 @@
 //
-// Scaffolding
+// page wrapper
 // --------------------------------------------------
 
 
-
-
 .page-wrapper {
-
     @if $backgroundFill == vertical {
-        @include gradient-vertical($bodyBackground, $bodyBackgroundEnd);
+        @include gradient-vertical($background, $backgroundEnd);
     } @else if $backgroundFill == horizontal {
-        @include gradient-horizontal($bodyBackground, $bodyBackgroundEnd);
+        @include gradient-horizontal($background, $backgroundEnd);
     } @else if $backgroundFill == radial {
-        @include gradient-radial($bodyBackground, $bodyBackgroundEnd);
+        @include gradient-radial($background, $backgroundEnd);
     } @else if $backgroundFill == none {
         background-color: transparent;
         background-image: none;
     } @else {
-        background-color: $bodyBackground;
+        background-color: $background;
         background-image: none;
     }
 
@@ -74,53 +71,4 @@
     &.container {
         padding: 0 20px;
     }
-}
-
-
-// Links
-// -------------------------
-
-a {
-    color: $linkColor;
-    @include link-bg($linkBackgroundFill, $linkBackgroundColor);
-    @include link-decoration($linkDecoration, $linkTextShadow);
-
-    &:hover,
-    &:hover:visited {
-        color: $hoveredLinkColor;
-        @include link-bg($hoveredLinkBackgroundFill, $hoveredLinkBackgroundColor);
-        @include link-decoration($hoveredLinkDecoration, $hoveredLinkTextShadow);
-
-    }
-
-    &:focus,
-    &:active {
-        color: $activeLinkColor;
-        @if $activeLinkBackgroundFill != none {
-            background-color: $activeLinkBackgroundColor;
-            @include link-decoration($activeLinkDecoration, $activeLinkTextShadow);
-        }
-    }
-  }
-
-// Images
-// -------------------------
-
-// Rounded corners
-.img-rounded {
-    @include border-radius(6px);
-}
-
-// Add polaroid-esque trim
-.img-polaroid {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border: 1px solid rgba(0,0,0,.2);
-    @include box-shadow(0 1px 3px rgba(0,0,0,.1));
-    padding: 4px;
-}
-
-// Perfect circle
-.img-circle {
-    @include border-radius(500px); // crank the border-radius so it works with most reasonably sized images
 }

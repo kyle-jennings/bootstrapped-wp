@@ -1,0 +1,57 @@
+//
+// Scaffolding
+// --------------------------------------------------
+
+
+
+
+body {
+
+    @if $bodyBackgroundFill == vertical {
+        @include gradient-vertical($bodyBackground, $bodyBackgroundEnd);
+    } @else if $bodyBackgroundFill == horizontal {
+        @include gradient-horizontal($bodyBackground, $bodyBackgroundEnd);
+    } @else if $bodyBackgroundFill == radial {
+        @include gradient-radial($bodyBackground, $bodyBackgroundEnd);
+    } @else if $bodyBackgroundFill == none {
+        background-color: transparent;
+        background-image: none;
+    } @else {
+        background-color: $bodyBackground;
+        background-image: none;
+    }
+
+
+    @if $useBackgroundWallpaper == yes {
+        background-attachment: $bodyBackgroundAttachment;
+        background-image: url($bodyBackgroundImage);
+        @if $bodyBackgroundPosition == custom {
+            background-position: $bodyBackgroundPositionX  $bodyBackgroundPositionY;
+        } @else {
+            background-position: $bodyBackgroundPosition;
+        }
+        background-repeat: $bodyBackgroundRepeat;
+
+        @if $bodyBackgroundSize == percentage {
+            background-size: $bodyBackgroundPercentage;
+        } @else {
+            background-size: $bodyBackgroundSize;
+
+        }
+
+        &::before {
+            background-color: $bodyBackgroundOverlay;
+            bottom: 0;
+            content: '';
+            display: block;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 1;
+        }
+
+        position: relative;
+    }
+
+}
