@@ -36,6 +36,15 @@ body{
     position:relative;
 }
 
+
+.page-wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+}
+
 html.navbar-fixed-top {
 	padding-top: 50px
 }
@@ -56,13 +65,6 @@ body.desktopnav-fixed-bottom {
 	position: fixed;
 }
 
-#pageWrapper{
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    position: relative;
-    z-index: 2;
-}
 
 
 .section > .container {
@@ -84,34 +86,6 @@ body.desktopnav-fixed-bottom {
 }
 .frontpage-component{
 	margin-bottom: 30px;
-}
-
-
-
-/* ----------------------------------------------------------------------------------
-			Header
-----------------------------------------------------------------------------------  */
-.header-content {
-    position: relative;
-    z-index: 2;
-}
-.logo-wrapper > a > img:hover,
-.logo-wrapper > img:hover {
-	box-shadow: none !important;
-}
-
-.jumbotron h1.logo-wrapper,
-.jumbotron h2.logo-wrapper{
-	display: block;
-	font-size: 72px;
-	letter-spacing: -1px;
-	line-height: 72px;
-	/*margin: 0 0 0 30px;*/
-	position: relative;
-	z-index: 99;
-}
-#header .widget {
-	margin-bottom: 0px;
 }
 
 /* ----------------------------------------------------------------------------------

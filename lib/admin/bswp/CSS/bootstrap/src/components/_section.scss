@@ -1,5 +1,7 @@
 .section {
     padding: 20px;
+    position: relative;
+    z-index: 2;
     
     body.container & {
         margin: 0 -20px;

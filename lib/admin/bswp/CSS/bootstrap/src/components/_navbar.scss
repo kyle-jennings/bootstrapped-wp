@@ -35,11 +35,8 @@
     border-style:$navBorderStyle !important;
     border-width:$navBorderWidth !important;
     @include border-radius($baseBorderRadius);
-    @if($navbarDisableBoxShadow == no){
-        @include box-shadow(0 1px 4px rgba(0,0,0,.065), 0 -1px 4px rgba(0,0,0,.065));
-    } @else {
-        box-shadow: none;
-    }
+    box-shadow: none;
+
 
     // Prevent floats from breaking the navbar
     @include clearfix();
@@ -51,6 +48,15 @@
     width: auto;
 }
 
+.nav-collapse {
+    float: $navbarAlign;
+
+    @if($navbarAlign == 'right'){
+         >.nav {
+             margin-right: 0 !important;
+         }
+    }
+}
 // Override the default collapsed state
 .nav-collapse.collapse {
     height: auto;

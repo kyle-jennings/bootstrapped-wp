@@ -48,7 +48,7 @@ $navbar = new Navbar('primary-menu');
 
 <body <?php body_class(); ?> >
 
-<div id="pageWrapper">
+<div class="page-wrapper">
 
     <?php
     	if( $navbar::$position == 'above_header' || $navbar::$position == 'stickied_to_top')

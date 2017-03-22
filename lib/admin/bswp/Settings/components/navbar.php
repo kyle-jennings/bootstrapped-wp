@@ -50,23 +50,13 @@ $navbar->add_tab('settings', array(
                     'advanced',
                 ),
                 'toggle_fields' => array(
-                    'basic'=>'brand,brand_image,position,movement,menu_toggle_type,box_shadow'
+                    'basic'=>'brand,brand_image,position,movement,menu_toggle_type,align'
                 ),
                 'preview'=>'form_save_warning'
             )
         ),
-        'box_shadow' => new Select(array(
-            'label'=> 'Disable Box Shadow?',
-            'name' => 'box_shadow',
-            'args' => array(
-                'no',
-                'yes'
-            ),
-            'toggled_by' => array(
-                'settings'=>'basic'
-            ),
-        )),
-        'brand' => new Select(array(
+        'brand' => new Select(
+            array(
                 'label'=> 'Brand',
                 'name'=>'brand',
                 'args' => array(
@@ -84,7 +74,8 @@ $navbar->add_tab('settings', array(
                 'preview_args'=>'rebuild_nav',
                 'preview_callback' => $rebuild_nav_script,
                 'preview_dependancies' => 'brand,brand_image,position,movement,menu_toggle_type'
-        )),
+            )
+        ),
         'brand_image'=>new File(array(
             'name'=>'brand_image',
             'label'=>'Upload Image',
@@ -188,6 +179,19 @@ $navbar->add_tab('settings', array(
                 'label'=>'Outer Glow',
                 'args'=>array('none','left_and_right','top_and_bottom','top','bottom','all_sides'),
                 'toggled_by'=>array('float_section'=>'yes')
+            )
+        ),
+        'align' => new Select(
+            array(
+                'label'=> 'Align',
+                'name'=>'align',
+                'args' => array(
+                    'left',
+                    'right',
+                ),
+                'toggled_by' => array(
+                    'settings'=>'basic'
+                ),
             )
         ),
     ) // end array of settings

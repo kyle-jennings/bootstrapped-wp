@@ -2,6 +2,7 @@
 // navbar
 $navbar = $this->values['navbar'];
 $navsettings = $navbar['settings'];
+
 // if($navsettings['settings'] == 'basic'){
 
     $navbg = $navbar['background_colors'];
@@ -48,7 +49,7 @@ $navbarBorder:                    rgba(0,0,0,.2) !default;
 $navbarBorderStyle:               solid;
 $navbarBorderWidth:               1px;
 
-
+$navbarAlign: <?php echo _tern($navsettings['align'], 'left');?>;
 <?php
     $defaults = array('$navbarBorder', '$navbarBorderStyle', '$navbarBorderWidth');
     _component_outer_border_sass_vars('nav', $navborders, $defaults);
