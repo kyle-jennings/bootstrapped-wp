@@ -1,13 +1,7 @@
 //
 // Navbars (Redux)
 // --------------------------------------------------
-.section--navbar {
-    @if $navbarFloatSection == yes {
-        margin-bottom: $navbarBottomMargin !important;
-        margin-top: $navbarTopMargin !important;
-    }
-    z-index: 2001;
-}
+
 
 // COMMON STYLES
 // -------------
@@ -18,10 +12,18 @@
     margin-bottom: $baseLineHeight;
 
     // Fix for IE7's bad z-indexing so dropdowns don't appear below content that follows the navbar
-    position: relative;
-    z-index: 2;
 
 }
+
+.section--navbar {
+    @if $navbarFloatSection == yes {
+        margin-bottom: $navbarBottomMargin !important;
+        margin-top: $navbarTopMargin !important;
+    }
+    position: relative;
+    z-index: 10 !important;
+}
+
 
 // Inner for background effects
 // Gradient is applied to its own element because overflow visible is not honored by IE when filter is present
@@ -49,13 +51,16 @@
     width: auto;
 }
 
-.nav-collapse {
-    float: $navbarAlign;
+@media (min-width: $navbarCollapseWidth) {
+    .nav-collapse {
 
-    @if($navbarAlign == 'right'){
-         >.nav {
-             margin-right: 0 !important;
-         }
+        float: $navbarAlign;
+
+        @if($navbarAlign == 'right'){
+             >.nav {
+                 margin-right: 0 !important;
+             }
+        }
     }
 }
 // Override the default collapsed state

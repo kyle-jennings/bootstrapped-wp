@@ -3,7 +3,7 @@
     position: relative;
     z-index: 2;
 
-    body.container & {
+    .page-wrapper.container & {
         margin: 0 -20px;
     }
 }

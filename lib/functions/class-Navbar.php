@@ -73,31 +73,16 @@ class Navbar{
     //is the body contained?
     public static function is_body_full_width() {
         $layout = self::$site_settings['layout'];
-
-        $full_width = ($layout['full_width'] == 'yes') ? true : false;
+        $width = $layout['full_width'];
+        $full_width = ($width == 'yes') ? true : false;
         return $full_width;
-    }
-
-
-
-    // is the navbar fullwidth?
-    public static function is_navbar_full_width() {
-
-        return self::$full_width == 'yes' ? true : false;
     }
 
     // is the section contained? get container class
     public static function contain_section() {
         $body_fullwidth = self::is_body_full_width();
 
-        $contained = !$body_fullwidth && self::is_navbar_full_width() ? true : false;
-        return $contained ? '' : 'container';
-    }
-
-    // do we need the container class for the inner navbar?
-    public static function inner_container() {
-        $body_fullwidth = self::is_body_full_width();
-        $container = !$body_fullwidth && self::is_navbar_full_width() ? 'container' : '';
+        return $body_fullwidth ? 'container' : '';
     }
 
 

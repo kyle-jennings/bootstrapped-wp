@@ -8,6 +8,12 @@ $misc_settings = $site_options['misc'];
 $header_settings = $site_options['header'];
 $navbar = new Navbar('primary-menu');
 
+
+    if($misc_settings['layout']['full_width'] == 'no'){
+        $page_wrapper_class = 'container';
+    }else {
+        $page_wrapper_class = '';
+    }
 ?>
 
 
@@ -48,7 +54,7 @@ $navbar = new Navbar('primary-menu');
 
 <body <?php body_class(); ?> >
 
-<div class="page-wrapper">
+<div class="page-wrapper <?php echo $page_wrapper_class; ?>">
 
     <?php
     	if( $navbar::$position == 'above_header' || $navbar::$position == 'stickied_to_top')

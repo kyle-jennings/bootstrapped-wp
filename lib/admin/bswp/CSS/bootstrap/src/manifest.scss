@@ -1,33 +1,47 @@
 // Settings
 ///////////////////////
 
-    // Core variables and mixins
-    @import 'settings/constants';
-    @import 'settings/variables'; // Modify this for custom colors, font-sizes, etc
-    @import 'settings/mixins';
+// Core variables and mixins
+@import 'settings/constants';
+@import 'settings/variables'; // Modify this for custom colors, font-sizes, etc
+@import 'settings/mixins';
 
-    // CSS Reset
-    @import 'settings/reset';
-    // Utility classes
-    @import 'settings/utilities'; // Has to be last to override when necessary
+// CSS Reset
+@import 'settings/reset';
+// Utility classes
+@import 'settings/utilities'; // Has to be last to override when necessary
+
+// the body background
+@import './body';
 
 
+// these are not repeatable in other sections
+@import 'settings/grid';
+@import 'settings/layouts';
+@import 'components/section';
 
-    @import './body';
+@import 'components/navs';
+@import 'components/navbar';
+@import 'components/dropdowns';
+@import 'components/navbar_dropdown';
+@import 'components/brand';
+@import 'components/navbar-toggle';
 
-    // Components
-    ///////////////////////////
+@import 'settings/responsive-utilities'; // RESPONSIVE CLASSES
+@import 'settings/responsive-1200px-min'; // Large desktops
+@import 'settings/responsive-768px-979px'; // Tablets to regular desktops
+@import 'settings/responsive-767px-max'; // Phones to portrait tablets and narrow desktops
+@import 'components/responsive-navbar';
+@import 'components/component-animations';
+@import 'components/sprites';
+@import 'components/modals';
 
+// Components
+///////////////////////////
 .page-wrapper {
     // Grid system and page structure
     @import 'components/scaffolding';
     @import 'components/links';
-    @import 'components/grid';
-    @import 'components/layouts';
-    @import 'components/section';
-
-
-
     // Base CSS
     @import 'components/type';
     @import 'components/blockquotes';
@@ -36,10 +50,7 @@
     @import 'components/tables';
 
     // Components: common
-    @import 'components/sprites';
-    @import 'components/dropdowns';
     @import 'components/wells';
-    @import 'components/component-animations';
     @import 'components/close';
 
     // Components: Buttons & Alerts
@@ -47,21 +58,11 @@
     @import 'components/button-groups';
     @import 'components/alerts'; // Note: alerts share common CSS with buttons and thus have styles in buttons
 
-    // Components: Nav
-    @import 'components/navs';
-    @import 'components/navbar';
-    @import 'components/navbar_dropdown';
-
-    @import 'components/brand';
-    @import 'components/navbar-toggle';
-
-
     @import 'components/breadcrumbs';
     @import 'components/pagination';
     @import 'components/pager';
 
     // Components: Popovers
-    @import 'components/modals';
     @import 'components/tooltip';
     @import 'components/popovers';
 
@@ -82,22 +83,3 @@
 
     @import 'components/header';
 }
-
-
-
-
-    // RESPONSIVE CLASSES
-    // ------------------
-    @import 'settings/responsive-utilities';
-    // MEDIA QUERIES
-    // ------------------
-    // Large desktops
-    @import 'components/responsive-1200px-min';
-    // Tablets to regular desktops
-    @import 'components/responsive-768px-979px';
-    // Phones to portrait tablets and narrow desktops
-    @import 'components/responsive-767px-max';
-    // RESPONSIVE NAVBAR
-    // ------------------
-    // From 979px and below, show a button to toggle navbar contents
-    @import 'components/responsive-navbar';
