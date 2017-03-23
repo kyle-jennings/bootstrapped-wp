@@ -11,14 +11,16 @@ $field_active = $forms['field_active_colors'];
 
 // Forms
 // -------------------------
-$inputBackground:               $white !default;
-$inputBorder:                   #ccc !default;
-$inputBorderRadius:             $baseBorderRadius !default;
-$inputDisabledBackground:       $grayLighter !default;
-$formActionsBackground:         #f5f5f5 !default;
+$inputBackground:               $white ;
+$inputBorder:                   #ccc ;
+$inputBorderRadius:             $baseBorderRadius ;
+$inputDisabledBackground:       $grayLighter ;
+$formActionsBackground:         #f5f5f5 ;
 $inputHeight:                   $baseLineHeight + 10px; // base line-height + 8px vertical padding + 2px top/bottom border
+$placeholderText:         $grayLight;
 
-$formTextColor: <?php echo $form['text_color'] ? $form['text_color'] : '$textColor';  ?> !default;
+
+$formTextColor: <?php echo $form['text_color'] ? $form['text_color'] : '$textColor';  ?> ;
 <?php
 
     _component_background_colors_sass_vars('form', $form);
@@ -27,7 +29,7 @@ $formTextColor: <?php echo $form['text_color'] ? $form['text_color'] : '$textCol
 
 ?>
 
-$fieldTextColor: <?php echo $field['text_color'] ? $field['text_color'] : '$textColor';  ?> !default;
+$fieldTextColor: <?php echo $field['text_color'] ? $field['text_color'] : '$textColor';  ?> ;
 <?php
 
     _component_background_colors_sass_vars('field', $field);
@@ -37,7 +39,7 @@ $fieldTextColor: <?php echo $field['text_color'] ? $field['text_color'] : '$text
 ?>
 
 
-$fieldActiveTextColor: <?php echo $field_active['text_color'] ? $field_active['text_color'] : '$textColor';  ?> !default;
+$fieldActiveTextColor: <?php echo $field_active['text_color'] ? $field_active['text_color'] : '$textColor';  ?> ;
 <?php
 
     _component_background_colors_sass_vars('fieldActive', $field_active);

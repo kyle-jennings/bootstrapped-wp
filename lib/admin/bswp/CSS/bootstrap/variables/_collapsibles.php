@@ -30,18 +30,18 @@ $collapsiblesHeaderTextColor: <?php echo _tern($collapsibles_header['text_color'
 
 
 // bg wallpapers
-$collapsiblesBackgroundWallpaper: <?php echo _tern($collapsibles_wallpapers['background_use_wallpaper'], 'no'); ?> !default;
+$collapsiblesBackgroundWallpaper: <?php echo _tern($collapsibles_wallpapers['background_use_wallpaper'], 'no'); ?> ;
 
-$collapsiblesBackgroundImage: "<?php echo _tern($collapsibles_wallpapers['background_image'], 'none'); ?>" !default;
-$collapsiblesBackgroundRepeat: <?php echo _tern($collapsibles_wallpapers['background_repeat'], 'no-repeat'); ?> !default;
-$collapsiblesBackgroundAttachment: <?php echo _tern($collapsibles_wallpapers['background_attachment'], 'scroll'); ?> !default;
+$collapsiblesBackgroundImage: "<?php echo _tern($collapsibles_wallpapers['background_image'], 'none'); ?>" ;
+$collapsiblesBackgroundRepeat: <?php echo _tern($collapsibles_wallpapers['background_repeat'], 'no-repeat'); ?> ;
+$collapsiblesBackgroundAttachment: <?php echo _tern($collapsibles_wallpapers['background_attachment'], 'scroll'); ?> ;
 
-$collapsiblesBackgroundPosition: <?php echo _tern($collapsibles_wallpapers['background_position'], 'left top'); ?> !default;
-$collapsiblesBackgroundPositionX: <?php echo _tern($collapsibles_wallpapers['background_positionX'], '0'); ?> !default;
-$collapsiblesBackgroundPositionY: <?php echo _tern($collapsibles_wallpapers['background_positionY'], '0'); ?> !default;
+$collapsiblesBackgroundPosition: <?php echo _tern($collapsibles_wallpapers['background_position'], 'left top'); ?> ;
+$collapsiblesBackgroundPositionX: <?php echo _tern($collapsibles_wallpapers['background_positionX'], '0'); ?> ;
+$collapsiblesBackgroundPositionY: <?php echo _tern($collapsibles_wallpapers['background_positionY'], '0'); ?> ;
 
-$collapsiblesBackgroundSize: <?php echo _tern($collapsibles_wallpapers['background_size'], 'auto'); ?> !default;
-$collapsiblesBackgroundPercentage: <?php echo _tern($collapsibles_wallpapers['background_percentage'], '0%'); ?> !default;
+$collapsiblesBackgroundSize: <?php echo _tern($collapsibles_wallpapers['background_size'], 'auto'); ?> ;
+$collapsiblesBackgroundPercentage: <?php echo _tern($collapsibles_wallpapers['background_percentage'], '0%'); ?> ;
 
 
 <?php

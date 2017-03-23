@@ -9,7 +9,7 @@ $image_captions = $image_settings['image_captions'];
 // Images
 ///////////////////////
 
-$imagePadding: <?php echo $image_captions['padding'] ? $image_captions['padding'] : '0px' ;?> !default;
+$imagePadding: <?php echo $image_captions['padding'] ? $image_captions['padding'] : '0px' ;?> ;
 <?php
 
     _component_background_colors_sass_vars('image', $images);
@@ -22,8 +22,8 @@ $imagePadding: <?php echo $image_captions['padding'] ? $image_captions['padding'
 // caption images
 //////////////////
 
-$imageCaptionTextColor: <?php echo $image_captions['text_color'] ? $image_captions['text_color'] : '$textColor' ;?> !default;
-$imageCaptionPadding: <?php echo $image_captions['padding'] ? $image_captions['padding'] : '0px' ;?> !default;
+$imageCaptionTextColor: <?php echo $image_captions['text_color'] ? $image_captions['text_color'] : '$textColor' ;?> ;
+$imageCaptionPadding: <?php echo $image_captions['padding'] ? $image_captions['padding'] : '0px' ;?> ;
 <?php
 
     _component_background_colors_sass_vars('imageCaption', $image_captions);
@@ -35,7 +35,7 @@ $imageCaptionPadding: <?php echo $image_captions['padding'] ? $image_captions['p
 
 // thumbnail images
 /////////////////////
-$imageThumbnailPadding: <?php echo $image_thumbnails['padding'] ? $image_captions['padding'] : '0px' ;?> !default;
+$imageThumbnailPadding: <?php echo $image_thumbnails['padding'] ? $image_captions['padding'] : '0px' ;?> ;
 <?php
 
     _component_background_colors_sass_vars('imageThumbnail', $image_thumbnails);

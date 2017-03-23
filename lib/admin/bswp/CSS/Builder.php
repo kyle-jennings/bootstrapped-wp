@@ -11,19 +11,16 @@ class Builder {
     public $section = 'site';
     public $values = array();
 
-
-
     public $bs_dir;
     public $bs_file;
-    public $bs_responsive_file;
 
     public $compiler = null;
     public $css = '';
 
     public $bootstrap_vars = '';
 
-    public function __construct($section = 'site', $values = array(), $preview = false ) {
-        $this->section = $section;
+    public function __construct($section = 'site_settings', $values = array(), $preview = false ) {
+        $this->section = !empty($section) ? $section : 'site_settings';
         $this->values = $values;
         $this->preview = $preview;
 
@@ -42,7 +39,8 @@ class Builder {
     }
 
 
-    public function getSectionName($section) {
+    public function getSectionName($section = null) {
+        $section = $section ? $section : 'site_settings';
         switch($section):
             case 'site_settings';
                 return '.page-wrapper';
@@ -86,13 +84,9 @@ class Builder {
         $this->bs_dir = is_dir($bs_dir) ? $bs_dir : null ;
 
         // set fbase bs ilename
-        $filename = 'src/bootstrap.scss';
+        $filename = 'src/manifest.scss';
         $this->bs_file = is_readable($bs_dir . $filename) ? $filename : null;
 
-
-        // sets responive bs filename
-        $filename = 'src/bootstrap-responsive.scss';
-        $this->bs_responsive_file = is_readable($bs_dir . $filename) ? $filename : null;
 
     }
 

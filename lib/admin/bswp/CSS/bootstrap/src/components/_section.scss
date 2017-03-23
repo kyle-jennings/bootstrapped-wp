@@ -2,7 +2,7 @@
     padding: 20px;
     position: relative;
     z-index: 2;
-    
+
     body.container & {
         margin: 0 -20px;
     }
@@ -16,14 +16,8 @@
 
 @media (max-width: 768px) {
 
-    .section {
-        margin-left: -$gridGutterWidth;
-        margin-right: -$gridGutterWidth;
-
-        &.navbar-fixed-top {
-            margin-left: 0;
-            margin-right: 0;
-
-        }
+    &.navbar-fixed-top {
+        margin-left: 0;
+        margin-right: 0;
     }
 }

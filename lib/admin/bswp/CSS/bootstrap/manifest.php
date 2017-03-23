@@ -16,7 +16,9 @@
 }
 // Components
 ///////////////////////////
-
+<?php
+    echo $section_name . '{'; 
+?>
 // Grid system and page structure
 @import "components/scaffolding";
 @import "components/links";
@@ -79,7 +81,9 @@
 @import "components/hero-unit";
 
 @import "components/header";
-
+<?
+    echo '}';
+?>
 
 
 
