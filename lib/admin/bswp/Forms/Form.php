@@ -132,7 +132,6 @@ class Form {
             $active = $i == 0 ? 'active' : '';
 
 
-
         $output = '';
         // each section pane - ie background/borders/headers ect
         $output .= '<div id="'.$group->name.'" class="tab-pane group-content '.$active.'">';
@@ -280,12 +279,17 @@ class Form {
 
 
     public function is_saved_tab($saved_tab_name, $current_tab_name) {
-        // error_log($saved_tab_name .'--'. $current_tab_name);
-        if($saved_tab_name == $current_tab_name || strpos($saved_tab_name, $current_tab_name) != false ){
+        
+        // if($saved_tab_name == $current_tab_name || strpos($saved_tab_name, $current_tab_name) != false ){
+        if($this->clean_name($saved_tab_name) == $this->clean_name($current_tab_name) ){
             return true;
         }
 
         return false;
+    }
+
+    private function clean_name($name){
+        return strtolower(ltrim($name, '#'));
     }
 
 }

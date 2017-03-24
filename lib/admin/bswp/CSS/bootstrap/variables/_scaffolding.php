@@ -39,6 +39,7 @@ $floatSection: <?php echo _tern($layout['float_section'], 'no'); ?> ;
 $topMargin: <?php echo _tern($layout['top_margin'], '0'); ?> ;
 $bottomMargin: <?php echo _tern($layout['bottom_margin'], '0'); ?> ;
 
+$outerGlow: <?php echo _tern($layout['outer_glow'], 'none'); ?>;
 <?php
 
 _component_outer_border_sass_vars('', $borders);

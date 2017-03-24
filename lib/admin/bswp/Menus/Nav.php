@@ -185,13 +185,15 @@ class Nav {
 
 
     // get the saved field tab
-    public function get_active_field_tab_label($default, $group_name){
+    public function get_active_field_tab_label($current_tab, $group_name){
 
-        if(!$this->current_tab_value || !$this->current_group_value || $group_name !== $this->current_group_value)
-            return $default;
 
         $saved_tab = ltrim($this->current_tab_value,'#');
         $saved_group = ltrim($this->current_group_value, '#');
+
+        if(!$this->current_tab_value || !$this->current_group_value || $group_name !== $saved_group)
+            return $current_tab;
+
         $find = array('fields_', $saved_group.'_', '_');
         $replace = array('','',' ');
 
@@ -216,6 +218,7 @@ class Nav {
 
             $saved_group = ltrim($this->current_group_value,'#');
             $saved_tab = ltrim($this->current_tab_value,'#');
+
 
             // unhide the nav
             if( strtolower($saved_group) == strtolower($group_name)){
@@ -304,9 +307,8 @@ class Nav {
             $label = $v['label'] ? $v['label'] : ucfirst(str_replace('_',' ',$name));
             $url = $this->get_link_url($type, $name);
 
-
             // do the saved_value and the current name match? then its active
-            $active = ( strpos( $active_name, $name) !== false) ? 'active' : '';
+            $active = ( $this->clean($active_name) == $this->clean($name) ) ? 'active' : '';
 
             $output .= '<li>';
                 $output .= '<a class="'.$class.' '.$active.'" data-type="'.$class.'" href="'.$url.'" '.$data_target.'>';
@@ -363,6 +365,10 @@ class Nav {
         }
 
         return false;
+    }
+
+    private function clean($name){
+        return strtolower(ltrim($name, '#'));
     }
 
 }

@@ -13,7 +13,6 @@ include dirname(__FILE__).'/field-sets/borders.php';
 include dirname(__FILE__).'/field-sets/border-radius.php';
 include dirname(__FILE__).'/field-sets/links.php';
 include dirname(__FILE__).'/field-sets/section-layout.php';
-include dirname(__FILE__).'/field-sets/site-settings.php';
 include dirname(__FILE__).'/field-sets/text.php';
 
 // component settings
@@ -94,7 +93,6 @@ $links->add_tab('visited_link', $visited_link);
 // Misc settings
 $misc = new SettingsGroup('misc');
 $misc->add_tab('layout', $section_layout);
-$misc->add_tab('misc', $site_settings);
 
 
 
