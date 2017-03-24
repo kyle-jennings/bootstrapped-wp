@@ -91,20 +91,10 @@ $links->add_tab('visited_link', $visited_link);
 
 
 // Misc settings
-$misc = new SettingsGroup('misc');
-$misc->add_tab('layout', $section_layout);
-
-
-
-// activate  components
-$available_components = new SettingsGroup('available_components');
-$available_components->add_tab('components', $available_components_toggles);
-
-
-
-// activate sections
-$available_sections = new SettingsGroup('available_sections');
-$available_sections->add_tab('sections', $available_sections_toggles);
+$settings = new SettingsGroup('settings');
+$settings->add_tab('layout', $section_layout);
+$settings->add_tab('components', $available_components_toggles);
+// $settings->add_tab('sections', $available_sections_toggles);
 
 
 // this array is mounted by the section object
@@ -120,8 +110,7 @@ $groups = array(
     'tables' => $tables,
     'preformatted' => $preformatted,
     'quotes' => $quotes,
-    'misc' => $misc,
-    'available_components' => $available_components,
+    'settings' => $settings,
     // 'available_sections' => $available_sections,
 );
 

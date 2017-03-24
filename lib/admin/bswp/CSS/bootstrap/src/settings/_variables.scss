@@ -91,10 +91,10 @@ $backgroundOverlay: rgba(102, 102, 102, 0.75) ;
 // float the section?
 $section: body;
 $floatSection: no ;
-$topMargin: 100px ;
-$bottomMargin: 100px ;
+$topMargin: 0 ;
+$bottomMargin: 0 ;
 
-$outerGlow: all_sides;
+$outerGlow: none;
     $BorderColor: #c2c2c2 !default;
     $BorderStyle: solid !default;
     $BorderWidth: 4px !default;
@@ -1031,8 +1031,8 @@ $navbarAlign: right;
 // float the section?
 
 $navbarFloatSection: no ;
-$navbarTopMargin: 20px ;
-$navbarBottomMargin: 20px ;
+$navbarTopMargin: 0 ;
+$navbarBottomMargin: 0 ;
 
 // -------------------------
 // Navbar Dropdowns
