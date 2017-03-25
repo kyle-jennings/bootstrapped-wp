@@ -5,17 +5,17 @@
 /**
  * Sets the background color variables for a component
  */
-function _component_background_colors_sass_vars($prefix = null, $settings = array()) {
+function _component_background_colors_sass_vars($prefix = null, $settings = array(), $default = '$white') {
     if(is_null($prefix) )
         return;
 
     // $things = array('background_start_color', 'background_end_color', 'background_fill');
     ?>
 
-    $<?php echo $prefix; ?>BackgroundColor: <?php echo $settings['background_start_color_rgba'] ? $settings['background_start_color_rgba'] : '$background'; ?> !default;
-    $<?php echo $prefix; ?>BackgroundEndColor: <?php echo $settings['background_end_color_rgba'] ? $settings['background_end_color_rgba'] : '$backgroundEnd'; ?> !default;
+    $<?php echo $prefix; ?>BackgroundColor: <?php echo _tern($settings['background_start_color_rgba'], $default); ?> !default;
+    $<?php echo $prefix; ?>BackgroundEndColor: <?php echo _tern($settings['background_end_color_rgba'], $default); ?> !default;
 
-    $<?php echo $prefix; ?>BackgroundFill: <?php echo $settings['background_fill'] ? $settings['background_fill'] : 'none'; ?> !default;
+    $<?php echo $prefix; ?>BackgroundFill: <?php echo _tern($settings['background_fill'], 'none'); ?> !default;
 <?php
 }
 
@@ -23,9 +23,9 @@ function _component_background_colors_sass_vars($prefix = null, $settings = arra
 /**
  * Set the border radius
  */
-function _component_border_radius_sass_vars($prefix = null, $borders = array()){
+function _component_border_radius_sass_vars($prefix = null, $borders = array(), $default = '$baseBorderRadius' ){
 ?>
-    $<?php echo $prefix; ?>BorderRadius: <?php echo $borders['all_corners'] ? $borders['all_corners'] :'$baseBorderRadius' ; ?> !default;
+    $<?php echo $prefix; ?>BorderRadius: <?php echo _tern($borders['all_corners'], $default); ?> !default;
 
     <?php
     if(is_null($prefix) || empty($borders) )
@@ -36,9 +36,9 @@ function _component_border_radius_sass_vars($prefix = null, $borders = array()){
 
     <?php
         foreach($corners as $corner):
-            $cornerName = str_replace(' ','',ucwords(str_replace('_',' ',$corner)));
+            $cornerName = $prefix . str_replace(' ','',ucwords(str_replace('_',' ',$corner)));
     ?>
-        $<?php echo $prefix.$cornerName; ?>BorderRadius: <?php echo $borders[$corner] ? $borders[$corner] :'$baseBorderRadius' ; ?> !default;
+        $<?php echo $cornerName; ?>BorderRadius: <?php echo _tern($borders[$corner], $default) ; ?> !default;
     <?php endforeach; ?>
 
     <?php if($borders['style_corners'] == 'yes'):?>
@@ -50,15 +50,22 @@ function _component_border_radius_sass_vars($prefix = null, $borders = array()){
 /**
  * Set the borders for a component
  */
-function _component_outer_border_sass_vars($prefix = null, $borders = array(), $defaults = array()){
+function _component_outer_border_sass_vars(
+    $prefix = null,
+    $borders = array(),
+    $defaults = array('color'=>'$transGrayLight', 'style'=>'solid', 'width'=>'1px' )
+    ) {
+
+    extract($defaults);
+
     $count = 0;
 ?>
-    $<?php echo $prefix; ?>BorderColor: <?php echo _tern( $borders['all_sides_border_color'], 'rgba(0, 0, 0, 0.2)'); ?> !default;
-    $<?php echo $prefix; ?>BorderStyle: <?php echo _tern( $borders['all_sides_border_style'], 'solid'); ?> !default;
-    $<?php echo $prefix; ?>BorderWidth: <?php echo _tern( $borders['all_sides_border_width'], '1px'); ?> !default;
+    $<?php echo $prefix; ?>BorderColor: <?php echo _tern( $borders['all_sides_border_color'], $color); ?> !default;
+    $<?php echo $prefix; ?>BorderStyle: <?php echo _tern( $borders['all_sides_border_style'], $style); ?> !default;
+    $<?php echo $prefix; ?>BorderWidth: <?php echo _tern( $borders['all_sides_border_width'], $width); ?> !default;
 
 <?php
-    if(is_null($prefix) || empty($borders) )
+    if(is_null($prefix) )
         return;
 
     $sides = array('top','right','bottom', 'left');
@@ -105,7 +112,7 @@ function _component_outer_border_sass_vars($prefix = null, $borders = array(), $
  *    $componentHoveredLinkTextShadow
  *    ...
  */
-function _component_links_sass_vars($prefix = null, $links = array()) {
+function _component_links_sass_vars($prefix = null, $links = array(), $default = '$blue') {
 
 ?>
 $<?php echo $prefix ?>LinkColor: $linkColor;
@@ -114,22 +121,22 @@ $<?php echo $prefix ?>LinkColor: $linkColor;
     if(is_null($prefix) )
         return;
 
-    $states = array('link','hovered_link', 'active_link', 'visited_link');
+    $states = array('link','hovered_link', 'active_link');
 
     foreach($states as $state):
         // removes the underscore and StudyCases the link type
         // hovered_link => HoveredLink
         $state_name = $prefix . str_replace(' ','',ucwords(str_replace('_',' ',$state)));
-        $default = $prefix.'LinksColor';
+
 
     ?>
 
-    $<?php echo $state_name; ?>Color: <?php echo _tern($links[$state.'_color'],'$'.$prefix.'LinkColor'); ?> !default;
+    $<?php echo $state_name; ?>Color: <?php echo _tern($links[$state.'_color'], $default); ?>;
 
-    $<?php echo $state_name; ?>BackgroundStyle: <?php echo _tern($links[$state.'_background_style'],'none'); ?> !default;
-    $<?php echo $state_name; ?>BackgroundColor: <?php echo _tern($links[$state.'_background_color_rgba'],'transparent'); ?> !default;
-    $<?php echo $state_name; ?>TextDecoration: <?php echo _tern($links[$state.'_text_decoration'],'none'); ?> !default;
-    $<?php echo $state_name; ?>TextShadow: <?php echo _tern($links[$state.'_text_shadow'],'none'); ?> !default;
+    $<?php echo $state_name; ?>BackgroundStyle: <?php echo _tern($links[$state.'_background_style'],'none'); ?>;
+    $<?php echo $state_name; ?>BackgroundColor: <?php echo _tern($links[$state.'_background_color_rgba'],'transparent'); ?>;
+    $<?php echo $state_name; ?>TextDecoration: <?php echo _tern($links[$state.'_text_decoration'],'none'); ?>;
+    $<?php echo $state_name; ?>TextShadow: <?php echo _tern($links[$state.'_text_shadow'],'none'); ?>;
 
 
     <?php

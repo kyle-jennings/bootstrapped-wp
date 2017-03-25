@@ -14,17 +14,19 @@ $borders_targets = array();
 $border_sides = array('top','right','bottom','left');
 
 $all_sides = array(
-    'all_sides_border_style'=>new Select(array(
+    'all_sides_border_style'=>new Select(
+        array(
             'name'=> 'all_sides_border_style',
             'args'=>$border_styles,
-            'toggle_fields'=>border_settings_map('border_styles_toggle', array('all_sides'))
+            'toggle_fields'=>border_settings_map('border_styles_toggle', array('all_sides')),
+            'default' => 'solid'
         )
     ),
     'all_sides_border_color'=>new ColorPicker(array(
             'name' => 'all_sides_border_color',
             'toggled_by' => array(
                 'all_sides_border_style' => border_settings_map('border_styles_toggled_by', array('all_sides') )
-        )
+            ),
         )
     ),
     'all_sides_border_width'=>new Select(array(

@@ -4,21 +4,24 @@
 
 $links = $this->values['links'];
 
-
-foreach($links as $state=>$link):
-
-    $state_name = lcfirst(str_replace(' ','',ucwords(str_replace('_',' ',$state))));
-
-    $decoration = ($state != 'link') ? 'underline' : 'none';
-    ?>
-    $<?php echo $state_name; ?>Color:         <?php echo $link[$state.'_color'] ? $link[$state.'_color'] : '#08c'; ?> ;
-    $<?php echo $state_name; ?>BackgroundFill: <?php echo $link[$state.'_background_fill'] ? $link[$state.'_background_fill'] : 'none'; ?> ;
-    $<?php echo $state_name; ?>BackgroundColor: <?php echo $link[$state.'_background_color_rgba'] ? $link[$state.'_background_color_rgba'] : 'transparent'; ?> ;
-    $<?php echo $state_name; ?>Decoration: <?php echo $link[$state.'_text_decoration'] ? $link[$state.'_text_decoration'] : $decoration; ?> ;
-    $<?php echo $state_name; ?>TextShadow: <?php echo $link[$state.'_text_shadow'] ? $link[$state.'_text_shadow'] : 'darken($linkColor, 15%)'; ?> ;
-
-
-<?php
-endforeach;
 ?>
+
+$linkColor:         <?php echo $link['link_color'] ? $link['link_color'] : '$blue'; ?> ;
+$linkBackgroundFill: <?php echo $link['link_background_fill'] ? $link['link_background_fill'] : 'none'; ?> ;
+$linkBackgroundColor: <?php echo $link['link_background_color_rgba'] ? $link['link_background_color_rgba'] : 'transparent'; ?> ;
+$linkTextDecoration: <?php echo $link['link_text_decoration'] ? $link['link_text_decoration'] : 'none'; ?> ;
+$linkTextShadow: <?php echo $link['link_text_shadow'] ? $link['link_text_shadow'] : 'darken($linkColor, 15%)'; ?> ;
+
+$hoveredLinkColor:         <?php echo $hovered_link['hovered_link_color'] ? $hovered_link['hovered_link_color'] : '$blue'; ?> ;
+$hoveredLinkBackgroundFill: <?php echo $hovered_link['hovered_link_background_fill'] ? $hovered_link['hovered_link_background_fill'] : 'none'; ?> ;
+$hoveredLinkBackgroundColor: <?php echo $hovered_link['hovered_link_background_color_rgba'] ? $hovered_link['hovered_link_background_color_rgba'] : 'transparent'; ?> ;
+$hoveredLinkTextDecoration: <?php echo $hovered_link['hovered_link_text_decoration'] ? $hovered_link['hovered_link_text_decoration'] : 'none'; ?> ;
+$hoveredLinkTextShadow: <?php echo $hovered_link['hovered_link_text_shadow'] ? $link['hovered_link_text_shadow'] : 'darken($linkColor, 15%)'; ?> ;
+
+$activeLinkColor:         <?php echo $active_link['active_color'] ? $active_link['active_color'] : '$blue'; ?> ;
+$activeLinkBackgroundFill: <?php echo $active_link['active_background_fill'] ? $active_link['active_background_fill'] : 'none'; ?> ;
+$activeLinkBackgroundColor: <?php echo $active_link['active_background_color_rgba'] ? $active_link['active_background_color_rgba'] : 'transparent'; ?> ;
+$activeLinkTextDecoration: <?php echo $active_link['active_text_decoration'] ? $active_link['active_text_decoration'] : 'none'; ?> ;
+$activeLinkTextShadow: <?php echo $active_link['active_text_shadow'] ? $link['active_text_shadow'] : 'darken($linkColor, 15%)'; ?> ;
+
 $linkColorHover:        darken($hoveredLinkColor, 15%);

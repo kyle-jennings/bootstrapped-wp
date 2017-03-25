@@ -74,7 +74,7 @@ class Navbar{
     public static function is_body_full_width() {
         $layout = self::$site_settings['layout'];
         $width = $layout['full_width'];
-        $full_width = ($width == 'yes') ? true : false;
+        $full_width = ($width != 'no') ? true : false;
         return $full_width;
     }
 

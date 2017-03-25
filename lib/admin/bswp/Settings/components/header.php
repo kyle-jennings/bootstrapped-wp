@@ -15,6 +15,11 @@ use function bswp\Settings\_helpers\remove_link_decoration;
 use function bswp\Settings\_helpers\remove_link_bg;
 use function bswp\Settings\_helpers\border_settings_map;
 
+
+$header_borders = $component_borders;
+
+$header_borders['all_sides_border_style'] = clone $component_borders['all_sides_border_style'];
+
 $header = new SettingsGroup('header');
 
 
@@ -133,7 +138,7 @@ $header->add_tab('links',
 );
 
 $header->add_tab('borders', array_merge(
-        $component_borders,
+        $header_borders,
         array( 'divider1'=>new Divider()),
         array( 'label1'=>new Label(array('name'=>'border_radius'))),
         $radii_fields

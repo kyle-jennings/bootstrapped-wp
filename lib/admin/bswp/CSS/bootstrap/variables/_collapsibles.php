@@ -48,7 +48,7 @@ $collapsiblesBackgroundPercentage: <?php echo _tern($collapsibles_wallpapers['ba
 
     _component_outer_border_sass_vars('collapsibles', $collapsibles_borders);
     _component_border_radius_sass_vars('collapsibles', $collapsibles_borders);
-    _component_links_sass_vars('collapsibles', $collapsibles_text);
+    _component_links_sass_vars('collapsibles', $collapsibles_text, '$blue');
 
 ?>
 

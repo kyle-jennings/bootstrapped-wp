@@ -10,7 +10,7 @@ $well_borders = $well['borders'];
 
 // Wells
 ////////
-$wellBackground:                  #f5f5f5;
+$wellBackground:                  $offWhite;
 $wellBorder:                      darken($wellBackground, 7%);
 
 $wellColor: <?php echo _tern($well_text['text_color'], '$grayDark'); ?>;

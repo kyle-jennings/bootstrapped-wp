@@ -18,11 +18,11 @@ $header_single = $header['single_page'];
 ?>
 
 // base settings
-$headingAlignment: <?php echo _tern($header_settings['title_alignment'], 'center'); ?>;
+$headingAlignment: <?php echo _tern($header_settings['title_alignment'], 'left'); ?>;
 
 
 // the background colors
-$headerBackgroundStartColor:           <?php echo _tern($header_bgcolors['background_start_color_rgba'], '$bodyBackground'); ?> ;
+$headerBackgroundStartColor:           <?php echo _tern($header_bgcolors['background_start_color_rgba'], '$transparent'); ?> ;
 $headerBackgroundEndColor:             <?php echo _tern($header_bgcolors['background_end_color_rgba'], '$headerBackgroundStartColor'); ?> ;
 $headerBackgroundFill: <?php echo _tern($header_bgcolors['background_fill'], 'solid'); ?> ;
 
@@ -95,9 +95,9 @@ $headerTitleSize:       <?php echo $header_title_size; ?> ;
 
 
 <?php
-
-    _component_outer_border_sass_vars('header', $header_borders);
-    _component_border_radius_sass_vars('header', $header_borders);
+    $default_borders = array('color'=>'$transGrayLight', 'style'=>'none', 'width'=>'1px');
+    _component_outer_border_sass_vars('header', $header_borders, $default_borders);
+    _component_border_radius_sass_vars('header', $header_borders, '0px');
     _component_links_sass_vars('header', $header_links);
 
 ?>
@@ -116,11 +116,11 @@ $headerHeadingsLinkHoveredTextDecoration: <?php echo _tern( $header_text['headin
 $headerHeadingsLinkHoveredTextShadow: <?php echo _tern( $header_text['headings_link_hovered_text_shadow_rgba'], 'rgba(0,0,0,0)'); ?> ;
 
 // front page settings
-$frontpageAlignment: <?php echo $header_frontpage['title_alignment'] ? $header_frontpage['title_alignment'] : 'center' ?>;
+$frontpageAlignment: <?php echo $header_frontpage['title_alignment'] ? $header_frontpage['title_alignment'] : '$headingAlignment' ?>;
 
 
 // feed page settings
-$feedAlignment: <?php echo $header_feed['title_alignment'] ? $header_feed['title_alignment'] : 'center' ?>;
+$feedAlignment: <?php echo $header_feed['title_alignment'] ? $header_feed['title_alignment'] : '$headingAlignment' ?>;
 
 // single page settings
-$singleAlignment: <?php echo $header_single['title_alignment'] ? $header_single['title_alignment'] : 'center' ?>;
+$singleAlignment: <?php echo $header_single['title_alignment'] ? $header_single['title_alignment'] : '$headingAlignment' ?>;

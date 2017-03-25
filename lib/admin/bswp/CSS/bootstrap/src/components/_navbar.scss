@@ -28,18 +28,18 @@
 // Inner for background effects
 // Gradient is applied to its own element because overflow visible is not honored by IE when filter is present
 .navbar-inner {
-    min-height: $navbarHeight;
-    padding-left:  20px;
-    padding-right: 20px;
     @include gradient-vertical($navbarBackgroundHighlight, $navbarBackground);
 
 
-    border-color:$navBorderColor !important;
-    border-style:$navBorderStyle !important;
-    border-width:$navBorderWidth !important;
-    @include border-radius($baseBorderRadius);
+    border-color: $navBorderColor !important;
+    border-style: $navBorderStyle !important;
+    border-width: $navBorderWidth !important;
+    @include border-radius($navBorderRadius);
     box-shadow: none;
 
+    min-height: $navbarHeight;
+    padding-left:  20px;
+    padding-right: 20px;
 
     // Prevent floats from breaking the navbar
     @include clearfix();

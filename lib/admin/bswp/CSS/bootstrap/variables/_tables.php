@@ -5,32 +5,34 @@ $tables = $this->values['tables'];
 ?>
 // Tables
 // -------------------------
+
+// standard row
 $tableBackground:                   <?php echo _tern($tables['rows']['background_color_rgba'],  '$offWhite'); ?> ;
 $tablesTextColor:       <?php echo _tern($tables['rows']['text_color'],  '$grayDark'); ?>;
 $tablesLinkColor:       <?php echo _tern($tables['rows']['links_color'],  '$linkColor'); ?>;
-
 $tableBackgroundHover:              darken($tableBackground, 20%) ;
 
-$tablesHeaderBackgroundColor:       <?php echo _tern($tables['table_header']['background_color_rgba'],  'darken($tableBackground, 30%)'); ?>;
-$tablesHeaderTextColor:       <?php echo _tern($tables['table_header']['text_color'],  'darken($tablesTextColor, 30%)'); ?>;
-
-
+// hedaer
+$tablesHeaderBackgroundColor:       <?php echo _tern($tables['table_header']['background_color_rgba'],  '$grayLighterDark'); ?>;
+$tablesHeaderTextColor:       <?php echo _tern($tables['table_header']['text_color'],  '$gray'); ?>;
 
 $tableBackgroundAccent:             <?php echo _tern($tables['striped_rows']['background_color_rgba'],  '$offWhite'); ?>  ;
 $tableBackgroundAccentHover:              darken($tableBackgroundAccent, 20%) ;
 
+
+// striped rows
 $tableStripedBackground:        $tableBackgroundAccent;
-$tableStripedBackground:        darken($tableBackgroundAccent, 20%) ;
+$tableStripedBackground:        $white;
 $tablesStripedTextColor:       <?php echo _tern($tables['striped_rows']['text_color'],  '$grayDark'); ?>;
 $tablesStripedLinkColor:       <?php echo _tern($tables['striped_rows']['links_color'],  '$linkColor'); ?>;
 
 
+// the row borders
+$tableBorder:                       <?php echo _tern($tables['borders']['inner_border_color'], '$grayLighterDark'); ?> ;
+$tableBorderStyle: <?php echo _tern($tables['borders']['inner_border_style'], 'solid'); ?> ;
+$tableBorderWidth: <?php echo _tern($tables['borders']['inner_border_width'], '1px'); ?> ;
 
-$tableBorder:                       <?php echo _tern($tables['borders']['inner_border_color'], '$grayLighter'); ?> ;
-$tableBorderStyle: <?php echo _tern($tables['borders']['inner_border_style'], 'none'); ?> ;
-$tableBorderWidth: <?php echo _tern($tables['borders']['inner_border_width'], '0'); ?> ;
-
-
+// the outer border
 $tableOuterBorder: <?php echo _tern($tables['borders']['all_sides_border_color'], '$tableBorder'); ?> ;
 $tableOuterBorderStyle: <?php echo _tern($tables['borders']['all_sides_border_style'], 'none'); ?> ;
 $tableOuterBorderWidth: <?php echo _tern($tables['borders']['all_sides_border_width'], '0'); ?> ;

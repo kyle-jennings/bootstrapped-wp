@@ -9,23 +9,23 @@ $quotes_borders = $quotes['borders'];
 // Quotes
 // -------------------------
 
-$quotesColor: <?php echo $quotes_text['text_color'] ? $quotes_text['text_color'] : '$textColor'; ?>;
-$quotesBackgroundColor: <?php echo $quotes_background_colors['background_start_color_rgba'] ? $quotes_background_colors['background_start_color_rgba'] : '#f5f5f5'; ?>;
-$quotesBackgroundEndColor: <?php echo $quotes_background_colors['background_end_color_rgba'] ? $quotes_background_colors['background_end_color_rgba'] : 'transparent'; ?>;
-$quotesBackgroundFill: <?php echo $quotes_background_colors['background_fill'] ? $quotes_background_colors['background_fill'] : 'solid'; ?>;
+$quotesColor: <?php echo _tern($quotes_text['text_color'], '$grayDark'); ?>;
+$quotesBackgroundColor: <?php echo _tern($quotes_background_colors['background_start_color_rgba'], '$offWhite'); ?>;
+$quotesBackgroundEndColor: <?php echo _tern($quotes_background_colors['background_end_color_rgba'], 'transparent'); ?>;
+$quotesBackgroundFill: <?php echo _tern($quotes_background_colors['background_fill'], 'solid'); ?>;
 
-$quotesBackgroundWallpaper: <?php echo $quotes_wallpapers['background_use_wallpaper'] ? $quotes_wallpapers['background_use_wallpaper'] : 'no'; ?> ;
+$quotesBackgroundWallpaper: <?php echo _tern($quotes_wallpapers['background_use_wallpaper'], 'no'); ?> ;
 
-$quotesBackgroundImage: "<?php echo $quotes_wallpapers['background_image'] ? $quotes_wallpapers['background_image'] : 'none'; ?>" ;
-$quotesBackgroundRepeat: <?php echo $quotes_wallpapers['background_repeat'] ? $quotes_wallpapers['background_repeat'] : 'no-repeat'; ?> ;
-$quotesBackgroundAttachment: <?php echo $quotes_wallpapers['background_attachment'] ? $quotes_wallpapers['background_attachment'] : 'scroll'; ?> ;
+$quotesBackgroundImage: "<?php echo _tern($quotes_wallpapers['background_image'], 'none'); ?>" ;
+$quotesBackgroundRepeat: <?php echo _tern($quotes_wallpapers['background_repeat'], 'no-repeat'); ?> ;
+$quotesBackgroundAttachment: <?php echo _tern($quotes_wallpapers['background_attachment'], 'scroll'); ?> ;
 
-$quotesBackgroundPosition: <?php echo $quotes_wallpapers['background_position'] ? $quotes_wallpapers['background_position'] : 'left top'; ?> ;
-$quotesBackgroundPositionX: <?php echo $quotes_wallpapers['background_positionX'] ? $quotes_wallpapers['background_positionX'] : '0'; ?> ;
-$quotesBackgroundPositionY: <?php echo $quotes_wallpapers['background_positionY'] ? $quotes_wallpapers['background_positionY'] : '0'; ?> ;
+$quotesBackgroundPosition: <?php echo _tern($quotes_wallpapers['background_position'], 'left top'); ?> ;
+$quotesBackgroundPositionX: <?php echo _tern($quotes_wallpapers['background_positionX'], '0'); ?> ;
+$quotesBackgroundPositionY: <?php echo _tern($quotes_wallpapers['background_positionY'], '0'); ?> ;
 
-$quotesBackgroundSize: <?php echo $quotes_wallpapers['background_size'] ? $quotes_wallpapers['background_size'] : 'auto'; ?> ;
-$quotesBackgroundPercentage: <?php echo $quotes_wallpapers['background_percentage'] ? $quotes_wallpapers['background_percentage'] : '0%'; ?> ;
+$quotesBackgroundSize: <?php echo _tern($quotes_wallpapers['background_size'], 'auto'); ?> ;
+$quotesBackgroundPercentage: <?php echo _tern($quotes_wallpapers['background_percentage'], '0%'); ?> ;
 
 $quotesBorder: $grayLighter;
 <?php

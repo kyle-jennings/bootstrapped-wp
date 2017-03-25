@@ -5,13 +5,13 @@
 a {
     color: $linkColor;
     @include link-bg($linkBackgroundFill, $linkBackgroundColor);
-    @include link-decoration($linkDecoration, $linkTextShadow);
+    @include link-decoration($linkTextDecoration, $linkTextShadow);
 
     &:hover,
     &:hover:visited {
         color: $hoveredLinkColor;
         @include link-bg($hoveredLinkBackgroundFill, $hoveredLinkBackgroundColor);
-        @include link-decoration($hoveredLinkDecoration, $hoveredLinkTextShadow);
+        @include link-decoration($hoveredLinkTextDecoration, $hoveredLinkTextShadow);
 
     }
 
@@ -20,7 +20,7 @@ a {
         color: $activeLinkColor;
         @if $activeLinkBackgroundFill != none {
             background-color: $activeLinkBackgroundColor;
-            @include link-decoration($activeLinkDecoration, $activeLinkTextShadow);
+            @include link-decoration($activeLinkTextDecoration, $activeLinkTextShadow);
         }
     }
   }

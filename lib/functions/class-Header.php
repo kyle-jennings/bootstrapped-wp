@@ -66,7 +66,7 @@ class Header {
 
     public static function is_body_full_width() {
         $layout = self::$site_settings['misc']['layout'];
-        $full_width = ($layout['full_width'] == 'yes') ? true : false;
+        $full_width = ($layout['full_width'] != 'no') ? true : false;
         return $full_width;
     }
 

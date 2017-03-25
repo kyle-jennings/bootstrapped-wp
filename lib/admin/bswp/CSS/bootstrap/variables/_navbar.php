@@ -21,20 +21,21 @@ $navbarCollapseWidth:             979px ;
 $navbarCollapseDesktopWidth:      $navbarCollapseWidth + 1;
 
 $navbarHeight:                    40px ;
-$navbarBackgroundStart:           <?php echo _tern($navbg['background_start_color_rgba'], '$bodyBackground'); ?> ;
-$navbarBackgroundEnd:             <?php echo _tern($navbg['background_end_color_rgba'], '$navbarBackgroundStart'); ?> ;
+$navbarBackgroundStart:           <?php echo _tern($navbg['background_start_color_rgba'], '$white'); ?> ;
+$navbarBackgroundEnd:             <?php echo _tern($navbg['background_end_color_rgba'], 'darken($navbarBackgroundStart, 5%)'); ?> ;
 
 $navbarBackgroundHighlight:       $navbarBackgroundStart ;
 $navbarBackground:                $navbarBackgroundEnd ;
 
-$navbarText:                      <?php echo _tern($navtext['text_color'], '#777'); ?> ;
+$navbarText:                      <?php echo _tern($navtext['text_color'], '$greyMedium'); ?> ;
+
 $navbarLinkColor:                  <?php echo _tern($navtext['link_color'], '$navbarText'); ?> ;
 $navbarLinkBackgroundFill:       <?php echo _tern($navtext['link_background_style'], 'none'); ?> ;
-$navbarLinkBackgroundColor:       <?php echo _tern($navtext['link_background_color_rgba'], 'rgba(0,0,0,0)'); ?> ;
+$navbarLinkBackgroundColor:       <?php echo _tern($navtext['link_background_color_rgba'], '$transparent'); ?> ;
 
 $navbarLinkColorHover:            <?php echo _tern($navtext['hovered_link_color'], '$grayDark'); ?> ;
-$navbarLinkBackgroundHoverFill:       <?php echo _tern($navtext['hovered_link_background_style'], '$navbarLinkBackgroundFill'); ?> ;
-$navbarLinkBackgroundHoverColor:       <?php echo _tern($navtext['hovered_link_background_color_rgba'], '$navbarLinkBackgroundColor'); ?> ;
+$navbarLinkBackgroundHoverFill:       <?php echo _tern($navtext['hovered_link_background_style'], 'highlight'); ?> ;
+$navbarLinkBackgroundHoverColor:       <?php echo _tern($navtext['hovered_link_background_color_rgba'], '$grayLighter'); ?> ;
 
 $navbarLinkColorActive:           <?php echo _tern($navtext['active_link_color'], '$navbarLinkColorHover'); ?> ;
 $navbarLinkBackgroundActiveFill:      <?php echo _tern($navtext['active_link_background_style'], '$navbarLinkBackgroundHoverFill'); ?> ;
@@ -51,9 +52,9 @@ $navbarBorderWidth:               1px;
 
 $navbarAlign: <?php echo _tern($navsettings['align'], 'left');?>;
 <?php
-    $defaults = array('$navbarBorder', '$navbarBorderStyle', '$navbarBorderWidth');
-    _component_outer_border_sass_vars('nav', $navborders, $defaults);
-    _component_border_radius_sass_vars('nav', $navborders);
+
+    _component_outer_border_sass_vars('nav', $navborders);
+    _component_border_radius_sass_vars('nav', $navborders, '0px');
 
 ?>
 

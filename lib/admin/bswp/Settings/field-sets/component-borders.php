@@ -37,6 +37,7 @@ foreach($border_sides as $border){
                 'toggled_by' => array(
                     'style_border_sides' => 'yes'
                 ),
+                'default' =>'solid'
             )
         ),
         $border.'_border_color' => new ColorPicker(array(
@@ -53,7 +54,8 @@ foreach($border_sides as $border){
                 'toggled_by' => array(
                     $border.'_border_style' => border_settings_map('border_styles_toggled_by', array($border) ),
                     'style_border_sides' => 'yes'
-                )
+                ),
+                'default'=>'1px'
             )
         ),
     );

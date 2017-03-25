@@ -83,6 +83,8 @@ class SettingsGroup {
             $tab[$name]->group_name = $this->name;
             $tab[$name]->tab_name = $tab_name;
             $tab[$name]->form_name_attr = $this->section_name.'_section';
+            $tab[$name]->default = $this->default ? $this->default : null;
+
 
             $tab[$name]->id = $this->name.'-'.$tab_name.'-'.$name;
             $tab[$name]->field_name = 'bswp_'.$this->section_name. '['.$this->name.']['.$tab_name.']['.$name.']';
@@ -110,7 +112,7 @@ class SettingsGroup {
             //     $base = str_replace('_rgba','', $field->name);
             //     $saved_value = $this->find_value($base);
             // }
-            $tab[$name]->value = $saved_value;
+            $tab[$name]->value = $saved_value ? $saved_value : $tab[$name]->default;
 
         }
 

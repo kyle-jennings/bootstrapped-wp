@@ -79,7 +79,7 @@ class Field {
 
         $this->class = isset($class) ? $class : '';
         $this->wrapper_class = isset($wrapper_class) ? $wrapper_class : '';
-
+        $this->default = isset($default) ? $default : null;
 
     }
 
