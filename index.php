@@ -10,4 +10,9 @@
  * These files will be further abstracted and cleaned up in the near future
  */
 
-new Scaffolding;
+
+$layout = new Layout;
+ob_start();
+get_header();
+echo $layout->scaffolding_init();
+get_footer();

@@ -18,7 +18,3 @@ register_nav_menus(
       'primary-menu' => __( 'Primary Nav' ),
     )
 );
-
-
-// include('gallery.php');
-// include('kjd-widgets.php');

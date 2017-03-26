@@ -51,6 +51,7 @@ if(!is_admin()){
     require_once('functions/class-Header.php');
     require_once('functions/class-Sidebar.php');
     require_once('functions/class-Layout.php');
+    require_once('functions/class-Pagination.php');
     require_once('functions/class-Scaffolding.php');
     require_once('functions/class-Content.php');
     require_once('functions/class-mobileMenu.php');

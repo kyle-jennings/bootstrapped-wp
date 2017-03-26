@@ -4,6 +4,7 @@ class Content {
     /**
     * The content wrapper
     */
+    public static $template;
     public static $site_settings;
 
     public function __construct(){
@@ -17,6 +18,10 @@ class Content {
         return self::kjd_the_content_wrapper();
     }
 
+
+    public static function set_template($template){
+        self::$template = $template;
+    }
 
     public static function is_body_contained() {
         $layout = self::$site_settings['misc']['layout'];
@@ -33,82 +38,68 @@ class Content {
 
     public static function kjd_the_content_wrapper(){
 
-        $post_options = get_option('kjd_posts_misc_settings');
-        $post_options = $post_options['kjd_posts_misc'];
-        $post_display = $post_options['post_listing_type'];
-
-        $show_thumbnail = $post_options['show_featured_image'];
-        $featured_image = $post_options['featured_position'];
-
-        $media_class = ($show_thumbnail == 'true' && $post_display == 'excerpt' && !is_singular() ) ? 'media' : '' ;
-
-        $content_well = $post_options['style_posts'] == "true" ? 'well' : '' ;
-
-        $the_content_markup = '';
+        $output = '';
 
         // this will wrap the content in a well if need be
-        $the_content_markup .= '<div class="the-content-wrapper '.$content_well.' '. $media_class .'">';
+        $output .= '<div class="the-content-wrapper '.$content_well.' '. $media_class .'">';
 
         if( is_attachment() ){
 
-            $the_content_markup .= self::kjd_attachment_layout($post_options);
+            $output .= self::kjd_attachment_layout($post_options);
 
         }elseif( is_page() || is_single () ){
 
-            $the_content_markup .= self::kjd_single_page_layout($post_options);
+            $output .= self::kjd_single_page_layout($post_options);
 
         }else{
 
-            $the_content_markup .= self::kjd_posts_layout($post_options);
+            $output .= self::kjd_posts_layout($post_options);
 
         }
 
         // closes the content-wrapper
-        $the_content_markup .= '</div>';
+        $output .= '</div>';
 
-        return $the_content_markup;
+        return $output;
     }
 
     public static function kjd_attachment_layout($post_options){
 
-        $attachment_options = get_option('kjd_attachment_page_layout_settings');
-        $attachment_info = $attachment_options['kjd_attachment_info'];
-        // $attachment_layout = $attachment_options['kjd_attachment_layout'];
 
 
         $attachment_layout = !empty($attachment_options['kjd_attachment_layout']) ? $attachment_options['kjd_attachment_layout'] : 'do_not_display'  ;
-        $the_content_markup = '';
+        $output = '';
 
-        $the_content_markup .= '<div class="the-content-inner attachment-'. $attachment_layout .'">';
+        $output .= '<div class="the-content-inner attachment-'. $attachment_layout .'">';
 
         if($attachment_info == 'yes'){
-            $the_content_markup .= self::kjd_get_the_post_info();
+            $output .= self::kjd_get_the_post_info();
         }
 
         if( $attachment_layout == 'text-above' || $attachment_layout == 'text-left' ){
             if( get_the_content()  ){
-                $the_content_markup .= '<p class="attachment-description">'.get_the_content().'</p>';
+                $output .= '<p class="attachment-description">'.get_the_content().'</p>';
             }
         }
 
         // the content
-        $the_content_markup .= self::kjd_get_the_content();
+        $output .= self::kjd_get_the_content();
         //the content
 
         if($attachment_layout == 'text-below' || $attachment_layout == 'text-right'){
             if( get_the_content()  ){
-                $the_content_markup .= '<p class="attachment-description">'.get_the_content().'</p>';
+                $output .= '<p class="attachment-description">'.get_the_content().'</p>';
             }
         }
 
 
-        $the_content_markup .= self::kjd_get_the_post_meta();
+        $output .= self::kjd_get_the_post_meta();
 
 
         // closes content inner
-        $the_content_markup .= '</div>';
+        $output .= '</div>';
 
-        return 	$the_content_markup;
+        return 	$output;
     }
 
 
@@ -118,28 +109,25 @@ class Content {
     */
     public static function kjd_single_page_layout() {
 
-        $the_content_markup = '';
+        $output = '';
 
-        $the_content_markup .= '<div class="the-content-inner">';
+        $output .= '<div class="the-content-inner">';
 
-        if( !is_page() ){
+            // if this is a post, show the post info
+            if(!is_page())
+                $output .= self::kjd_get_the_post_info();
 
-            $the_content_markup .= self::kjd_get_the_post_info();
-        }
+            // the content
+            $output .= self::kjd_get_the_content();
 
-        // the content
-        $the_content_markup .= self::kjd_get_the_content();
-        //the content
-
-        if( !is_page() ){
-
-            $the_content_markup .= self::kjd_get_the_post_meta();
-        }
+            // if this is a post, show the post meta
+            if(!is_page())
+                $output .= self::kjd_get_the_post_meta();
 
         // closes content inner
-        $the_content_markup .= '</div>';
+        $output .= '</div>';
 
-        return $the_content_markup;
+        return $output;
     }
 
 
@@ -152,12 +140,10 @@ class Content {
 
     public static function kjd_get_the_content($post_display = null)
     {
-        $allow_comments = get_option('kjd_pageTitle_misc_settings');
-        $allow_comments = $allow_comments['kjd_pageTitle_misc'];
 
-        $the_content_markup = '';
+        $output = '';
 
-        $the_content_markup .= '<div class="the-content">';
+        $output .= '<div class="the-content">';
         if(!is_single() && !is_page()){
             $title = get_the_title();
         }
@@ -168,16 +154,16 @@ class Content {
             if ( wp_attachment_is_image( $post->id ) ){
                 $att_image = wp_get_attachment_image_src( $post->id, "full");
 
-                $the_content_markup .= '<div class="attachment">';
-                $the_content_markup .= '<a href="'.wp_get_attachment_url($post->id).'" title="'.get_the_title().'" rel="attachment">';
-                $the_content_markup .= '<img src="'.$att_image[0].'" class="attachment-medium" alt="'.$post->post_excerpt.'" />';
-                $the_content_markup .= '</a>';
-                $the_content_markup .= '</div>';
+                $output .= '<div class="attachment">';
+                    $output .= '<a href="'.wp_get_attachment_url($post->id).'" title="'.get_the_title().'" rel="attachment">';
+                        $output .= '<img src="'.$att_image[0].'" class="attachment-medium" alt="'.$post->post_excerpt.'" />';
+                    $output .= '</a>';
+                $output .= '</div>';
             }
 
         }elseif( is_404() ){
 
-            $the_content_markup = kjd_the_404();
+            $output = kjd_the_404();
 
         }elseif(is_single() || is_page()){
 
@@ -187,9 +173,9 @@ class Content {
             $buffered_content = ob_get_contents();
             ob_end_clean();
 
-            $the_content_markup .= $buffered_content;
+            $output .= $buffered_content;
             if($allow_comments == 'true' && is_single() ){
-                $the_content_markup .= kjd_comment_form();
+                $output .= kjd_comment_form();
             }
 
 
@@ -203,13 +189,13 @@ class Content {
             $buffered_content = ob_get_contents();
             ob_end_clean();
 
-            $the_content_markup .= $buffered_content;
+            $output .= $buffered_content;
         }
 
-        $the_content_markup .= '<div style="clear:both;"></div>';
-        $the_content_markup .= '</div>';
+        $output .= '<div style="clear:both;"></div>';
+        $output .= '</div>';
 
-        return $the_content_markup;
+        return $output;
     }
 
 
@@ -220,7 +206,7 @@ class Content {
     * @param  [type] $post_options [description]
     * @return [type]               [description]
     */
-    public static function kjd_posts_layout($post_options) {
+    public static function kjd_posts_layout($post_options = array()) {
 
         $post_display = $post_options['post_listing_type'];
         $show_thumbnail = $post_options['show_featured_image'];
@@ -229,53 +215,54 @@ class Content {
         $show_thumbnail = ( $show_thumbnail== 'true' && $post_display == 'excerpt' ) ? 'true' : 'false' ;
         $media_body_right = $featured_image == 'right_of_post' ? 'media-body-right' : '' ;
 
+        $output = '';
         // puts featured image before content wrapper
         if( in_array($featured_image, array('atop_post','left_of_post') ) && $show_thumbnail == 'true'){
 
-            $the_content_markup .= self::kjd_get_featured_image($featured_image);
+            $output .= self::kjd_get_featured_image($featured_image);
 
         }
         //
 
-        $the_content_markup .= '<div class="the-content-inner media-body '.$media_body_right.' ">';
+        $output .= '<div class="the-content-inner media-body '.$media_body_right.' ">';
 
-        $the_content_markup .= '<h3 class="post-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h3>';
+        $output .= '<h3 class="post-title"><a href="'.get_permalink().'">'.get_the_title().'</a></h3>';
 
         // featured image before info
         if($featured_image == 'before_post_info' && $show_thumbnail == 'true' && !is_attachment()){
-            $the_content_markup .= self::kjd_get_featured_image();
+            $output .= self::kjd_get_featured_image();
         }
 
-        $the_content_markup .= self::kjd_get_the_post_info();
+        $output .= self::kjd_get_the_post_info();
 
 
         // featured image before content
         if($featured_image == 'before_content' && $show_thumbnail == 'true' && !is_attachment()){
-            $the_content_markup .= self::kjd_get_featured_image();
+            $output .= self::kjd_get_featured_image();
         }
 
         // the content
-        $the_content_markup .= self::kjd_get_the_content($post_display);
+        $output .= self::kjd_get_the_content($post_display);
         //the content
 
         // featured image before meta
         if($featured_image == 'before_post_meta' && $show_thumbnail == 'true' && !is_attachment()){
-            $the_content_markup .= self::kjd_get_featured_image();
+            $output .= self::kjd_get_featured_image();
         }
         //
 
-        $the_content_markup .= self::kjd_get_the_post_meta();
+        $output .= self::kjd_get_the_post_meta();
 
 
         // closes content inner
-        $the_content_markup .= '</div>';
+        $output .= '</div>';
 
         // featured image after post or right of post
         if(in_array($featured_image, array('after_post','right_of_post')) && $show_thumbnail == 'true'){
-            $the_content_markup .= self::kjd_get_featured_image($featured_image);
+            $output .= self::kjd_get_featured_image($featured_image);
         }
 
-        return $the_content_markup;
+        return $output;
     }
 
 
@@ -289,17 +276,18 @@ class Content {
         the_category();
         $buffered_categories = ob_get_contents();
         ob_end_clean();
-        $the_post_meta_markup = '<div class="post-meta">';
+        $output = '';
+        $output .= '<div class="post-meta">';
         if(!is_page() && !is_attachment()){
-            $the_post_meta_markup .= '<span class="cat-label">Categorized: </span>'.$buffered_categories;
-            $the_post_meta_markup .= '<div style="clear:both;"></div>';
+            $output .= '<span class="cat-label">Categorized: </span>'.$buffered_categories;
+            $output .= '<div style="clear:both;"></div>';
         }elseif( is_attachment() ){
-            $the_post_meta_markup .= self::kjd_gallery_image_links();
+            $output .= self::kjd_gallery_image_links();
         }
 
-        $the_post_meta_markup .= '</div>';
+        $output .= '</div>';
 
-        return $the_post_meta_markup;
+        return $output;
     }
 
     /* -----------------------------------------------
@@ -354,15 +342,16 @@ class Content {
         $buffered_content = ob_get_contents();
         ob_end_clean();
 
+        $output = '';
+        $output .= '<div class="post-info">';
+            $output .= '<span class="post-date">';
+                $output .= 'Posted on: <a href="'.get_month_link(get_the_time('Y'), get_the_time('m')).'">'.get_the_date('F j').'</a>, <a href="'.get_year_link(get_the_time('Y')).'">'.get_the_date('Y').'</a> - ';
+            $output .= '</span>';
+        $output .='<span class="post-author">';
+            $output .='By: <a href="'.get_author_posts_url(get_the_author_meta( 'ID' )).'">'.get_the_author_meta('nickname').'</a>';
+        $output .= '</span></div>';
 
-        $the_post_info_markup =	'<div class="post-info">';
-        $the_post_info_markup .='<span class="post-date">';
-        $the_post_info_markup .= 'Posted on: <a href="'.get_month_link(get_the_time('Y'), get_the_time('m')).'">'.get_the_date('F j').'</a>, <a href="'.get_year_link(get_the_time('Y')).'">'.get_the_date('Y').'</a> - </span>';
-        $the_post_info_markup .='<span class="post-author">';
-        $the_post_info_markup .='By: <a href="'.get_author_posts_url(get_the_author_meta( 'ID' )).'">'.get_the_author_meta('nickname').'</a>';
-        $the_post_info_markup .= '</span></div>';
-
-        return $the_post_info_markup;
+        return $output;
     }
 
 }

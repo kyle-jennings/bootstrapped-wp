@@ -10,7 +10,7 @@ $buttons_text = $buttons['text'];
 $btnBackground:                     <?php echo _tern($buttons_bg['background_start_color_rgba'], '$white'); ?>;
 $btnBackgroundHighlight:            <?php echo _tern($buttons_bg['background_end_color_rgba'], 'darken($btnBackground, 10%)'); ?>;
 $btnBorder:                        $grayLighterDark;
-$btnText:                           <?php echo _tern($buttons_text['text_color'], '$white'); ?>;
+$btnText:                           <?php echo _tern($buttons_text['text_color'], '$grayDark'); ?>;
 <?php
     $btn_defaults = array('color'=> '$grayLighterDark', 'style'=>'solid', 'width'=>'1px' );
     _component_outer_border_sass_vars('btn', $buttons_borders, $btn_defaults);

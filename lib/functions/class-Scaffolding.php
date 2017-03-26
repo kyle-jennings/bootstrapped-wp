@@ -9,7 +9,7 @@ class Scaffolding {
         $layout = new Layout;
 		ob_start();
 			get_header();
-				echo $layout->kjd_scaffolding_init();
+				echo $layout->scaffolding_init();
 			get_footer();
 
 			$this->output = ob_get_contents();

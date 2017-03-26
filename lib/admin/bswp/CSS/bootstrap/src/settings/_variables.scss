@@ -104,36 +104,30 @@ $bottomMargin: 0 ;
 
 $outerGlow: none;
     $BorderColor: $transGrayLight !default;
-    $BorderStyle: none !default;
-    $BorderWidth: 0px !default;
+    $BorderStyle: solid !default;
+    $BorderWidth: 1px !default;
 
 
 
     
     $TopBorderColor: transparent !default;
     $TopBorderStyle: none !default;
-    $TopBorderWidth: 1px !default;
+    $TopBorderWidth: 0 !default;
     
     $RightBorderColor: transparent !default;
     $RightBorderStyle: none !default;
-    $RightBorderWidth: 1px !default;
+    $RightBorderWidth: 0 !default;
     
     $BottomBorderColor: transparent !default;
     $BottomBorderStyle: none !default;
-    $BottomBorderWidth: 1px !default;
+    $BottomBorderWidth: 0 !default;
     
     $LeftBorderColor: transparent !default;
     $LeftBorderStyle: none !default;
-    $LeftBorderWidth: 1px !default;
+    $LeftBorderWidth: 0 !default;
     
-        $BorderRadius: 0px !default;
+        $BorderRadius: $baseBorderRadius !default;
 
-    
-            $TopLeftBorderRadius: 0px !default;
-            $TopRightBorderRadius: 0px !default;
-            $BottomRightBorderRadius: 0px !default;
-            $BottomLeftBorderRadius: 0px !default;
-    
     // text
 $textColor:             $grayDark;
 
@@ -245,69 +239,63 @@ $tablesStripedLinkColor:       $linkColor;
 
 // the row borders
 $tableBorder:                       $grayLighterDark ;
-$tableBorderStyle: none ;
+$tableBorderStyle: solid ;
 $tableBorderWidth: 1px ;
 
 // the outer border
 $tableOuterBorder: $tableBorder ;
 $tableOuterBorderStyle: none ;
-$tableOuterBorderWidth: 0px ;
+$tableOuterBorderWidth: 0 ;
 
 
 $tableTopBorder: transparent ;
 $tableTopBorderStyle: none ;
-$tableTopBorderWidth: 1px ;
+$tableTopBorderWidth: 0 ;
 
 $tableRightBorder: transparent ;
 $tableRightBorderStyle: none ;
-$tableRightBorderWidth: 1px ;
+$tableRightBorderWidth: 0 ;
 
 $tableBottomBorder: transparent ;
 $tableBottomBorderStyle: none ;
-$tableBottomBorderWidth: 1px ;
+$tableBottomBorderWidth: 0 ;
 
 $tableLeftBorder: transparent ;
 $tableLeftBorderStyle: none ;
-$tableLeftBorderWidth: 1px ;
+$tableLeftBorderWidth: 0 ;
 
 
 // Buttons
 // -------------------------
-$btnBackground:                     rgba(192, 41, 219, 1);
+$btnBackground:                     $white;
 $btnBackgroundHighlight:            darken($btnBackground, 10%);
 $btnBorder:                        $grayLighterDark;
-$btnText:                           #ff0303;
-    $btnBorderColor: #2896f0 !default;
+$btnText:                           $grayDark;
+    $btnBorderColor: $grayLighterDark !default;
     $btnBorderStyle: solid !default;
-    $btnBorderWidth: 4px !default;
+    $btnBorderWidth: 1px !default;
 
 
 
     
     $btnTopBorderColor: transparent !default;
     $btnTopBorderStyle: none !default;
-    $btnTopBorderWidth: 1px !default;
+    $btnTopBorderWidth: 0 !default;
     
     $btnRightBorderColor: transparent !default;
     $btnRightBorderStyle: none !default;
-    $btnRightBorderWidth: 1px !default;
+    $btnRightBorderWidth: 0 !default;
     
     $btnBottomBorderColor: transparent !default;
     $btnBottomBorderStyle: none !default;
-    $btnBottomBorderWidth: 1px !default;
+    $btnBottomBorderWidth: 0 !default;
     
     $btnLeftBorderColor: transparent !default;
     $btnLeftBorderStyle: none !default;
-    $btnLeftBorderWidth: 1px !default;
+    $btnLeftBorderWidth: 0 !default;
     
-        $btnBorderRadius: 0px !default;
+        $btnBorderRadius: 4px !default;
 
-    
-            $btnTopLeftBorderRadius: 0px !default;
-            $btnTopRightBorderRadius: 0px !default;
-            $btnBottomRightBorderRadius: 0px !default;
-            $btnBottomLeftBorderRadius: 0px !default;
-    
     
 $btnPrimaryBackground:              $linkColor ;
 $btnPrimaryBackgroundHighlight:     adjust-hue($btnPrimaryBackground, 20%) ;
@@ -334,38 +322,32 @@ $imagePadding: 0px ;
     $imageBackgroundColor: $white !default;
     $imageBackgroundEndColor: $white !default;
 
-    $imageBackgroundFill: solid !default;
+    $imageBackgroundFill: none !default;
     $imageBorderColor: $transGrayLight !default;
-    $imageBorderStyle: none !default;
-    $imageBorderWidth: 0px !default;
+    $imageBorderStyle: solid !default;
+    $imageBorderWidth: 1px !default;
 
 
 
     
     $imageTopBorderColor: transparent !default;
     $imageTopBorderStyle: none !default;
-    $imageTopBorderWidth: 1px !default;
+    $imageTopBorderWidth: 0 !default;
     
     $imageRightBorderColor: transparent !default;
     $imageRightBorderStyle: none !default;
-    $imageRightBorderWidth: 1px !default;
+    $imageRightBorderWidth: 0 !default;
     
     $imageBottomBorderColor: transparent !default;
     $imageBottomBorderStyle: none !default;
-    $imageBottomBorderWidth: 1px !default;
+    $imageBottomBorderWidth: 0 !default;
     
     $imageLeftBorderColor: transparent !default;
     $imageLeftBorderStyle: none !default;
-    $imageLeftBorderWidth: 1px !default;
+    $imageLeftBorderWidth: 0 !default;
     
-        $imageBorderRadius: 0px !default;
+        $imageBorderRadius: $baseBorderRadius !default;
 
-    
-            $imageTopLeftBorderRadius: 0px !default;
-            $imageTopRightBorderRadius: 0px !default;
-            $imageBottomRightBorderRadius: 0px !default;
-            $imageBottomLeftBorderRadius: 0px !default;
-    
     
 
 // caption images
@@ -377,38 +359,32 @@ $imageCaptionPadding: 0px ;
     $imageCaptionBackgroundColor: $white !default;
     $imageCaptionBackgroundEndColor: $white !default;
 
-    $imageCaptionBackgroundFill: solid !default;
+    $imageCaptionBackgroundFill: none !default;
     $imageCaptionBorderColor: $transGrayLight !default;
-    $imageCaptionBorderStyle: none !default;
-    $imageCaptionBorderWidth: 0px !default;
+    $imageCaptionBorderStyle: solid !default;
+    $imageCaptionBorderWidth: 1px !default;
 
 
 
     
     $imageCaptionTopBorderColor: transparent !default;
     $imageCaptionTopBorderStyle: none !default;
-    $imageCaptionTopBorderWidth: 1px !default;
+    $imageCaptionTopBorderWidth: 0 !default;
     
     $imageCaptionRightBorderColor: transparent !default;
     $imageCaptionRightBorderStyle: none !default;
-    $imageCaptionRightBorderWidth: 1px !default;
+    $imageCaptionRightBorderWidth: 0 !default;
     
     $imageCaptionBottomBorderColor: transparent !default;
     $imageCaptionBottomBorderStyle: none !default;
-    $imageCaptionBottomBorderWidth: 1px !default;
+    $imageCaptionBottomBorderWidth: 0 !default;
     
     $imageCaptionLeftBorderColor: transparent !default;
     $imageCaptionLeftBorderStyle: none !default;
-    $imageCaptionLeftBorderWidth: 1px !default;
+    $imageCaptionLeftBorderWidth: 0 !default;
     
-        $imageCaptionBorderRadius: 0px !default;
+        $imageCaptionBorderRadius: $baseBorderRadius !default;
 
-    
-            $imageCaptionTopLeftBorderRadius: 0px !default;
-            $imageCaptionTopRightBorderRadius: 0px !default;
-            $imageCaptionBottomRightBorderRadius: 0px !default;
-            $imageCaptionBottomLeftBorderRadius: 0px !default;
-    
     
 
 // thumbnail images
@@ -418,38 +394,32 @@ $imageThumbnailPadding: 0px ;
     $imageThumbnailBackgroundColor: $white !default;
     $imageThumbnailBackgroundEndColor: $white !default;
 
-    $imageThumbnailBackgroundFill: solid !default;
+    $imageThumbnailBackgroundFill: none !default;
     $imageThumbnailBorderColor: $transGrayLight !default;
-    $imageThumbnailBorderStyle: none !default;
-    $imageThumbnailBorderWidth: 0px !default;
+    $imageThumbnailBorderStyle: solid !default;
+    $imageThumbnailBorderWidth: 1px !default;
 
 
 
     
     $imageThumbnailTopBorderColor: transparent !default;
     $imageThumbnailTopBorderStyle: none !default;
-    $imageThumbnailTopBorderWidth: 1px !default;
+    $imageThumbnailTopBorderWidth: 0 !default;
     
     $imageThumbnailRightBorderColor: transparent !default;
     $imageThumbnailRightBorderStyle: none !default;
-    $imageThumbnailRightBorderWidth: 1px !default;
+    $imageThumbnailRightBorderWidth: 0 !default;
     
     $imageThumbnailBottomBorderColor: transparent !default;
     $imageThumbnailBottomBorderStyle: none !default;
-    $imageThumbnailBottomBorderWidth: 1px !default;
+    $imageThumbnailBottomBorderWidth: 0 !default;
     
     $imageThumbnailLeftBorderColor: transparent !default;
     $imageThumbnailLeftBorderStyle: none !default;
-    $imageThumbnailLeftBorderWidth: 1px !default;
+    $imageThumbnailLeftBorderWidth: 0 !default;
     
-        $imageThumbnailBorderRadius: 0px !default;
+        $imageThumbnailBorderRadius: $baseBorderRadius !default;
 
-    
-            $imageThumbnailTopLeftBorderRadius: 0px !default;
-            $imageThumbnailTopRightBorderRadius: 0px !default;
-            $imageThumbnailBottomRightBorderRadius: 0px !default;
-            $imageThumbnailBottomLeftBorderRadius: 0px !default;
-    
     
 // Forms
 // -------------------------
@@ -467,76 +437,64 @@ $formTextColor: $grayDark;
     $formBackgroundColor: $white !default;
     $formBackgroundEndColor: $white !default;
 
-    $formBackgroundFill: solid !default;
+    $formBackgroundFill: none !default;
     $formBorderColor: $transGrayLight !default;
-    $formBorderStyle: none !default;
-    $formBorderWidth: 0px !default;
+    $formBorderStyle: solid !default;
+    $formBorderWidth: 1px !default;
 
 
 
     
     $formTopBorderColor: transparent !default;
     $formTopBorderStyle: none !default;
-    $formTopBorderWidth: 1px !default;
+    $formTopBorderWidth: 0 !default;
     
     $formRightBorderColor: transparent !default;
     $formRightBorderStyle: none !default;
-    $formRightBorderWidth: 1px !default;
+    $formRightBorderWidth: 0 !default;
     
     $formBottomBorderColor: transparent !default;
     $formBottomBorderStyle: none !default;
-    $formBottomBorderWidth: 1px !default;
+    $formBottomBorderWidth: 0 !default;
     
     $formLeftBorderColor: transparent !default;
     $formLeftBorderStyle: none !default;
-    $formLeftBorderWidth: 1px !default;
+    $formLeftBorderWidth: 0 !default;
     
-        $formBorderRadius: 0px !default;
+        $formBorderRadius: $baseBorderRadius !default;
 
-    
-            $formTopLeftBorderRadius: 0px !default;
-            $formTopRightBorderRadius: 0px !default;
-            $formBottomRightBorderRadius: 0px !default;
-            $formBottomLeftBorderRadius: 0px !default;
-    
     
 $fieldTextColor: $grayDark;
 
     $fieldBackgroundColor: $white !default;
     $fieldBackgroundEndColor: $white !default;
 
-    $fieldBackgroundFill: solid !default;
+    $fieldBackgroundFill: none !default;
     $fieldBorderColor: $transGrayLight !default;
-    $fieldBorderStyle: none !default;
-    $fieldBorderWidth: 0px !default;
+    $fieldBorderStyle: solid !default;
+    $fieldBorderWidth: 1px !default;
 
 
 
     
     $fieldTopBorderColor: transparent !default;
     $fieldTopBorderStyle: none !default;
-    $fieldTopBorderWidth: 1px !default;
+    $fieldTopBorderWidth: 0 !default;
     
     $fieldRightBorderColor: transparent !default;
     $fieldRightBorderStyle: none !default;
-    $fieldRightBorderWidth: 1px !default;
+    $fieldRightBorderWidth: 0 !default;
     
     $fieldBottomBorderColor: transparent !default;
     $fieldBottomBorderStyle: none !default;
-    $fieldBottomBorderWidth: 1px !default;
+    $fieldBottomBorderWidth: 0 !default;
     
     $fieldLeftBorderColor: transparent !default;
     $fieldLeftBorderStyle: none !default;
-    $fieldLeftBorderWidth: 1px !default;
+    $fieldLeftBorderWidth: 0 !default;
     
-        $fieldBorderRadius: 0px !default;
+        $fieldBorderRadius: $baseBorderRadius !default;
 
-    
-            $fieldTopLeftBorderRadius: 0px !default;
-            $fieldTopRightBorderRadius: 0px !default;
-            $fieldBottomRightBorderRadius: 0px !default;
-            $fieldBottomLeftBorderRadius: 0px !default;
-    
     
 
 $fieldActiveTextColor: $grayDark;
@@ -544,95 +502,68 @@ $fieldActiveTextColor: $grayDark;
     $fieldActiveBackgroundColor: $white !default;
     $fieldActiveBackgroundEndColor: $white !default;
 
-    $fieldActiveBackgroundFill: solid !default;
+    $fieldActiveBackgroundFill: none !default;
     $fieldActiveBorderColor: $transGrayLight !default;
-    $fieldActiveBorderStyle: none !default;
-    $fieldActiveBorderWidth: 0px !default;
+    $fieldActiveBorderStyle: solid !default;
+    $fieldActiveBorderWidth: 1px !default;
 
 
 
     
     $fieldActiveTopBorderColor: transparent !default;
     $fieldActiveTopBorderStyle: none !default;
-    $fieldActiveTopBorderWidth: 1px !default;
+    $fieldActiveTopBorderWidth: 0 !default;
     
     $fieldActiveRightBorderColor: transparent !default;
     $fieldActiveRightBorderStyle: none !default;
-    $fieldActiveRightBorderWidth: 1px !default;
+    $fieldActiveRightBorderWidth: 0 !default;
     
     $fieldActiveBottomBorderColor: transparent !default;
     $fieldActiveBottomBorderStyle: none !default;
-    $fieldActiveBottomBorderWidth: 1px !default;
+    $fieldActiveBottomBorderWidth: 0 !default;
     
     $fieldActiveLeftBorderColor: transparent !default;
     $fieldActiveLeftBorderStyle: none !default;
-    $fieldActiveLeftBorderWidth: 1px !default;
+    $fieldActiveLeftBorderWidth: 0 !default;
     
-        $fieldActiveBorderRadius: 0px !default;
+        $fieldActiveBorderRadius: $baseBorderRadius !default;
 
-    
-            $fieldActiveTopLeftBorderRadius: 0px !default;
-            $fieldActiveTopRightBorderRadius: 0px !default;
-            $fieldActiveBottomRightBorderRadius: 0px !default;
-            $fieldActiveBottomLeftBorderRadius: 0px !default;
-    
     
 // alerts
 // -------------------------
 
-$alertsBackgroundColor:                     rgba(255, 3, 221, 1);
+$alertsBackgroundColor:                     $white;
 $alertsBackgroundHighlight:            darken($alertsBackgroundColor, 10%);
 $alertsBackgroundEndColor: transparent;
 $alertsBackgroundFill: solid;
 
 $alertsBorder:                        $grayLighterDark;
-$alertsText:                           #ffffff;
-    $alertsBorderColor: #bd049b !default;
+$alertsText:                           $white;
+    $alertsBorderColor: $grayLighterDark !default;
     $alertsBorderStyle: solid !default;
-    $alertsBorderWidth: 5px !default;
+    $alertsBorderWidth: 1px !default;
 
 
 
     
     $alertsTopBorderColor: transparent !default;
     $alertsTopBorderStyle: none !default;
-    $alertsTopBorderWidth: 1px !default;
+    $alertsTopBorderWidth: 0 !default;
     
     $alertsRightBorderColor: transparent !default;
     $alertsRightBorderStyle: none !default;
-    $alertsRightBorderWidth: 1px !default;
+    $alertsRightBorderWidth: 0 !default;
     
     $alertsBottomBorderColor: transparent !default;
     $alertsBottomBorderStyle: none !default;
-    $alertsBottomBorderWidth: 1px !default;
+    $alertsBottomBorderWidth: 0 !default;
     
-    $alertsLeftBorderColor: #a80281 !default;
-    $alertsLeftBorderStyle: solid !default;
-    $alertsLeftBorderWidth: 6px !default;
+    $alertsLeftBorderColor: transparent !default;
+    $alertsLeftBorderStyle: none !default;
+    $alertsLeftBorderWidth: 0 !default;
     
-            $alertsBorderColor:
-            $alertsTopBorderColor
-            $alertsRightBorderColor
-            $alertsBottomBorderColor
-            $alertsLeftBorderColor;
-        $alertsBorderStyle:
-            $alertsTopBorderStyle
-            $alertsRightBorderStyle
-            $alertsBottomBorderStyle
-            $alertsLeftBorderStyle;
-        $alertsBorderWidth:
-            $alertsTopBorderWidth
-            $alertsRightBorderWidth
-            $alertsBottomBorderWidth
-            $alertsLeftBorderWidth;
-        $alertsBorderRadius: 0px !default;
+        $alertsBorderRadius: 4px !default;
 
-    
-            $alertsTopLeftBorderRadius: 0px !default;
-            $alertsTopRightBorderRadius: 0px !default;
-            $alertsBottomRightBorderRadius: 0px !default;
-            $alertsBottomLeftBorderRadius: 0px !default;
-    
     
 $warningText:             #c09853 ;
 $warningBackground:       #fcf8e3 ;
@@ -672,36 +603,30 @@ $quotesBackgroundPercentage: 0% ;
 
 $quotesBorder: $grayLighter;
     $quotesBorderColor: $transGrayLight !default;
-    $quotesBorderStyle: none !default;
-    $quotesBorderWidth: 0px !default;
+    $quotesBorderStyle: solid !default;
+    $quotesBorderWidth: 1px !default;
 
 
 
     
     $quotesTopBorderColor: transparent !default;
     $quotesTopBorderStyle: none !default;
-    $quotesTopBorderWidth: 1px !default;
+    $quotesTopBorderWidth: 0 !default;
     
     $quotesRightBorderColor: transparent !default;
     $quotesRightBorderStyle: none !default;
-    $quotesRightBorderWidth: 1px !default;
+    $quotesRightBorderWidth: 0 !default;
     
     $quotesBottomBorderColor: transparent !default;
     $quotesBottomBorderStyle: none !default;
-    $quotesBottomBorderWidth: 1px !default;
+    $quotesBottomBorderWidth: 0 !default;
     
     $quotesLeftBorderColor: transparent !default;
     $quotesLeftBorderStyle: none !default;
-    $quotesLeftBorderWidth: 1px !default;
+    $quotesLeftBorderWidth: 0 !default;
     
-        $quotesBorderRadius: 0px !default;
+        $quotesBorderRadius: $baseBorderRadius !default;
 
-    
-            $quotesTopLeftBorderRadius: 0px !default;
-            $quotesTopRightBorderRadius: 0px !default;
-            $quotesBottomRightBorderRadius: 0px !default;
-            $quotesBottomLeftBorderRadius: 0px !default;
-    
     $quotesLinkColor: $linkColor;
 
 
@@ -755,36 +680,30 @@ $preBackgroundPercentage: 0% ;
 
 
     $preBorderColor: $transGrayLight !default;
-    $preBorderStyle: none !default;
-    $preBorderWidth: 0px !default;
+    $preBorderStyle: solid !default;
+    $preBorderWidth: 1px !default;
 
 
 
     
     $preTopBorderColor: transparent !default;
     $preTopBorderStyle: none !default;
-    $preTopBorderWidth: 1px !default;
+    $preTopBorderWidth: 0 !default;
     
     $preRightBorderColor: transparent !default;
     $preRightBorderStyle: none !default;
-    $preRightBorderWidth: 1px !default;
+    $preRightBorderWidth: 0 !default;
     
     $preBottomBorderColor: transparent !default;
     $preBottomBorderStyle: none !default;
-    $preBottomBorderWidth: 1px !default;
+    $preBottomBorderWidth: 0 !default;
     
     $preLeftBorderColor: transparent !default;
     $preLeftBorderStyle: none !default;
-    $preLeftBorderWidth: 1px !default;
+    $preLeftBorderWidth: 0 !default;
     
-        $preBorderRadius: 0px !default;
+        $preBorderRadius: $baseBorderRadius !default;
 
-    
-            $preTopLeftBorderRadius: 0px !default;
-            $preTopRightBorderRadius: 0px !default;
-            $preBottomRightBorderRadius: 0px !default;
-            $preBottomLeftBorderRadius: 0px !default;
-    
     $preLinkColor: $linkColor;
 
 
@@ -940,35 +859,29 @@ $headerTitleSize:       39px ;
 
     $headerBorderColor: $transGrayLight !default;
     $headerBorderStyle: none !default;
-    $headerBorderWidth: 0px !default;
+    $headerBorderWidth: 1px !default;
 
 
 
     
     $headerTopBorderColor: transparent !default;
     $headerTopBorderStyle: none !default;
-    $headerTopBorderWidth: 1px !default;
+    $headerTopBorderWidth: 0 !default;
     
     $headerRightBorderColor: transparent !default;
     $headerRightBorderStyle: none !default;
-    $headerRightBorderWidth: 1px !default;
+    $headerRightBorderWidth: 0 !default;
     
     $headerBottomBorderColor: transparent !default;
     $headerBottomBorderStyle: none !default;
-    $headerBottomBorderWidth: 1px !default;
+    $headerBottomBorderWidth: 0 !default;
     
     $headerLeftBorderColor: transparent !default;
     $headerLeftBorderStyle: none !default;
-    $headerLeftBorderWidth: 1px !default;
+    $headerLeftBorderWidth: 0 !default;
     
         $headerBorderRadius: 0px !default;
 
-    
-            $headerTopLeftBorderRadius: 0px !default;
-            $headerTopRightBorderRadius: 0px !default;
-            $headerBottomRightBorderRadius: 0px !default;
-            $headerBottomLeftBorderRadius: 0px !default;
-    
     $headerLinkColor: $linkColor;
 
 
@@ -1013,14 +926,14 @@ $headerHeadingsLinkHoveredTextDecoration: none ;
 $headerHeadingsLinkHoveredTextShadow: rgba(0,0,0,0) ;
 
 // front page settings
-$frontpageAlignment: left;
+$frontpageAlignment: $headingAlignment;
 
 
 // feed page settings
-$feedAlignment: left;
+$feedAlignment: $headingAlignment;
 
 // single page settings
-$singleAlignment: left;
+$singleAlignment: $headingAlignment;
 // Navbar
 // -------------------------
 
@@ -1038,16 +951,16 @@ $navbarBackground:                $navbarBackgroundEnd ;
 
 $navbarText:                      $greyMedium ;
 
-$navbarLinkColor:                  #ff0303 ;
+$navbarLinkColor:                  $navbarText ;
 $navbarLinkBackgroundFill:       none ;
 $navbarLinkBackgroundColor:       $transparent ;
 
 $navbarLinkColorHover:            $grayDark ;
-$navbarLinkBackgroundHoverFill:       none ;
+$navbarLinkBackgroundHoverFill:       highlight ;
 $navbarLinkBackgroundHoverColor:       $grayLighter ;
 
 $navbarLinkColorActive:           $navbarLinkColorHover ;
-$navbarLinkBackgroundActiveFill:      none ;
+$navbarLinkBackgroundActiveFill:      $navbarLinkBackgroundHoverFill ;
 $navbarLinkBackgroundActiveColor:      $navbarLinkBackgroundHoverColor ;
 
 
@@ -1061,36 +974,30 @@ $navbarBorderWidth:               1px;
 
 $navbarAlign: left;
     $navBorderColor: $transGrayLight !default;
-    $navBorderStyle: none !default;
-    $navBorderWidth: 0px !default;
+    $navBorderStyle: solid !default;
+    $navBorderWidth: 1px !default;
 
 
 
     
     $navTopBorderColor: transparent !default;
     $navTopBorderStyle: none !default;
-    $navTopBorderWidth: 1px !default;
+    $navTopBorderWidth: 0 !default;
     
     $navRightBorderColor: transparent !default;
     $navRightBorderStyle: none !default;
-    $navRightBorderWidth: 1px !default;
+    $navRightBorderWidth: 0 !default;
     
     $navBottomBorderColor: transparent !default;
     $navBottomBorderStyle: none !default;
-    $navBottomBorderWidth: 1px !default;
+    $navBottomBorderWidth: 0 !default;
     
     $navLeftBorderColor: transparent !default;
     $navLeftBorderStyle: none !default;
-    $navLeftBorderWidth: 1px !default;
+    $navLeftBorderWidth: 0 !default;
     
         $navBorderRadius: 0px !default;
 
-    
-            $navTopLeftBorderRadius: 0px !default;
-            $navTopRightBorderRadius: 0px !default;
-            $navBottomRightBorderRadius: 0px !default;
-            $navBottomLeftBorderRadius: 0px !default;
-    
     
 
 // float the section?
@@ -1106,36 +1013,30 @@ $navbarBottomMargin: 0 ;
 $navbarDropdownBackground:            $white ;
 $styleBorderSides: no;
     $navbarDropdownBorderColor: $transGrayLight !default;
-    $navbarDropdownBorderStyle: none !default;
-    $navbarDropdownBorderWidth: 0px !default;
+    $navbarDropdownBorderStyle: solid !default;
+    $navbarDropdownBorderWidth: 1px !default;
 
 
 
     
     $navbarDropdownTopBorderColor: transparent !default;
     $navbarDropdownTopBorderStyle: none !default;
-    $navbarDropdownTopBorderWidth: 1px !default;
+    $navbarDropdownTopBorderWidth: 0 !default;
     
     $navbarDropdownRightBorderColor: transparent !default;
     $navbarDropdownRightBorderStyle: none !default;
-    $navbarDropdownRightBorderWidth: 1px !default;
+    $navbarDropdownRightBorderWidth: 0 !default;
     
     $navbarDropdownBottomBorderColor: transparent !default;
     $navbarDropdownBottomBorderStyle: none !default;
-    $navbarDropdownBottomBorderWidth: 1px !default;
+    $navbarDropdownBottomBorderWidth: 0 !default;
     
     $navbarDropdownLeftBorderColor: transparent !default;
     $navbarDropdownLeftBorderStyle: none !default;
-    $navbarDropdownLeftBorderWidth: 1px !default;
+    $navbarDropdownLeftBorderWidth: 0 !default;
     
-        $navbarDropdownBorderRadius: 0px !default;
+        $navbarDropdownBorderRadius: $baseBorderRadius !default;
 
-    
-            $navbarDropdownTopLeftBorderRadius: 0px !default;
-            $navbarDropdownTopRightBorderRadius: 0px !default;
-            $navbarDropdownBottomRightBorderRadius: 0px !default;
-            $navbarDropdownBottomLeftBorderRadius: 0px !default;
-    
     
 
 
