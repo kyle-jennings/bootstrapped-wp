@@ -27,6 +27,7 @@ include dirname(__FILE__).'/components/quotes.php';
 include dirname(__FILE__).'/components/tables.php';
 include dirname(__FILE__).'/components/images.php';
 include dirname(__FILE__).'/components/forms.php';
+include dirname(__FILE__).'/components/buttons.php';
 
 $component_options = get_option('bswp_site_settings');
 $component_options = $component_options['available_components']['components'];
@@ -87,9 +88,6 @@ $links->add_tab('visited_link', $visited_link);
 
 
 
-
-
-
 // Misc settings
 $settings = new SettingsGroup('settings');
 $settings->add_tab('layout', $section_layout);
@@ -107,6 +105,7 @@ $groups = array(
     'navbar' => $navbar,
     'images' => $images,
     'forms' => $forms,
+    'buttons' => $buttons,
     'tables' => $tables,
     'preformatted' => $preformatted,
     'quotes' => $quotes,
