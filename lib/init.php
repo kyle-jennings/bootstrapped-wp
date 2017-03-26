@@ -73,27 +73,18 @@ function bswp_add_assets(){
     $wpcontent = dirname( ( dirname($root) ) );
     $root = $root.'/lib';
 
-    // set variables
-    $mobileNavSettings = get_option('kjd_mobileNav_misc_settings');
-    $mobileNavSettings = $mobileNavSettings['kjd_mobileNav_misc'];
-
-    $override_nav = $mobileNavSettings['override_nav'];
-    if( $override_nav == 'true') {
-        $mobilenav_style = $mobileNavSettings['mobilenav_style'];
-    }
 
     wp_enqueue_script("jquery", $root."/scripts/jquery.js", false, null, false);
 
     wp_enqueue_script("bootstrap-dropdown", $root."/scripts/bootstrap/bootstrap-dropdown.js", false, null, true);
     wp_enqueue_script("bootstrap-carousel", $root."/scripts/bootstrap/bootstrap-carousel.js", false, null, true);
+    wp_enqueue_script("bootstrap-collapse", $root."/scripts/bootstrap/bootstrap-collapse.js", false, null, true);
+    wp_enqueue_script("bootstrap-alerts", $root."/scripts/bootstrap/bootstrap-alerts.js", false, null, true);
+    wp_enqueue_script("bootstrap-transition", $root."/scripts/bootstrap/bootstrap-transition.js", false, null, true);
 
 
     $component_options = get_option('bswp_site_settings');
     $component_options = $component_options['available_components']['components'];
-
-    // this always needs to be here because of the navbar
-    wp_enqueue_script("bootstrap-collapse", $root."/scripts/bootstrap/bootstrap-collapse.js", false, null, true);
-
 
     if($component_options['activate_tabs'])
         wp_enqueue_script("bootstrap-tab", $root."/scripts/bootstrap/bootstrap-tab.js", false, null, true);

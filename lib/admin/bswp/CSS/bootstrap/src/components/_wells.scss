@@ -5,68 +5,68 @@
 
 // Base class
 .well {
-  min-height: 20px;
-  padding: 19px;
-  margin-bottom: 20px;
-  @include box-shadow(inset 0 1px 1px rgba(0,0,0,.05));
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    @include box-shadow(inset 0 1px 1px rgba(0,0,0,.05));
 
 
-  background-color: $wellBackgroundColor;
-  @if $wellBackgroundFill == vertical {
-      @include gradient-vertical($wellBackgroundColor, $wellBackgroundEndColor );
-  } @else if $wellBackgroundFill == horizontal {
-      @include gradient-horizontal($wellBackgroundColor, $wellBackgroundEndColor );
-  } @else if $wellBackgroundFill == radial {
-      @include gradient-radial($wellBackgroundColor, $wellBackgroundEndColor );
-  } @else if $wellBackgroundFill == none {
-    background-color: transparent;
-  }
+    background-color: $wellBackgroundColor;
+    @if $wellBackgroundFill == vertical {
+        @include gradient-vertical($wellBackgroundColor, $wellBackgroundEndColor );
+    } @else if $wellBackgroundFill == horizontal {
+        @include gradient-horizontal($wellBackgroundColor, $wellBackgroundEndColor );
+    } @else if $wellBackgroundFill == radial {
+        @include gradient-radial($wellBackgroundColor, $wellBackgroundEndColor );
+    } @else if $wellBackgroundFill == none {
+        background-color: transparent;
+    }
 
-  border-radius: $wellBorderRadius;
+    border-radius: $wellBorderRadius;
 
-  border-color: $wellBorderColor;
-  border-style: $wellBorderStyle ;
-  border-width: $wellBorderWidth ;
-  color: $wellColor;
-
-
-  a {
-      color: $wellLinkColor;
-      @include link-bg($wellLinkBackgroundStyle, $wellLinkBackgroundColor);
-      @include link-decoration($wellLinkTextDecoration, $wellLinkTextShadow);
-
-      &:hover,
-      &:hover:visited {
-          color: $wellHoveredLinkColor;
-          @include link-bg($wellHoveredLinkBackgroundStyle, $wellHoveredLinkBackgroundColor);
-          @include link-decoration($wellHoveredLinkTextDecoration, $wellHoveredLinkTextShadow);
-
-      }
+    border-color: $wellBorderColor;
+    border-style: $wellBorderStyle ;
+    border-width: $wellBorderWidth ;
+    color: $wellColor;
 
 
-      &:focus,
-      &:active {
-          color: $wellActiveLinkColor;
-          @include link-bg($wellActiveLinkBackgroundStyle, $wellActiveLinkBackgroundColor);
-          @include link-decoration($wellActiveLinkTextDecoration, $wellActiveLinkTextShadow);
+    a {
+        color: $wellLinkColor;
+        @include link-bg($wellLinkBackgroundStyle, $wellLinkBackgroundColor);
+        @include link-decoration($wellLinkTextDecoration, $wellLinkTextShadow);
 
-      }
+        &:hover,
+        &:hover:visited {
+            color: $wellHoveredLinkColor;
+            @include link-bg($wellHoveredLinkBackgroundStyle, $wellHoveredLinkBackgroundColor);
+            @include link-decoration($wellHoveredLinkTextDecoration, $wellHoveredLinkTextShadow);
+
+        }
 
 
-  }
+        &:focus,
+        &:active {
+            color: $wellActiveLinkColor;
+            @include link-bg($wellActiveLinkBackgroundStyle, $wellActiveLinkBackgroundColor);
+            @include link-decoration($wellActiveLinkTextDecoration, $wellActiveLinkTextShadow);
 
-  blockquote {
-    border-color: #ddd;
-    border-color: rgba(0,0,0,.15);
-  }
+        }
+
+
+    }
+
+    blockquote {
+        border-color: #ddd;
+        border-color: rgba(0,0,0,.15);
+    }
 }
 
 // Sizes
 .well-large {
-  padding: 24px;
-  @include border-radius($borderRadiusLarge);
+    padding: 24px;
+    @include border-radius($borderRadiusLarge);
 }
 .well-small {
-  padding: 9px;
-  @include border-radius($borderRadiusSmall);
+    padding: 9px;
+    @include border-radius($borderRadiusSmall);
 }

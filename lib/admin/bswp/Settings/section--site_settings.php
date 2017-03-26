@@ -28,6 +28,7 @@ include dirname(__FILE__).'/components/tables.php';
 include dirname(__FILE__).'/components/images.php';
 include dirname(__FILE__).'/components/forms.php';
 include dirname(__FILE__).'/components/buttons.php';
+include dirname(__FILE__).'/components/alerts.php';
 
 $component_options = get_option('bswp_site_settings');
 $component_options = $component_options['available_components']['components'];
@@ -92,7 +93,6 @@ $links->add_tab('visited_link', $visited_link);
 $settings = new SettingsGroup('settings');
 $settings->add_tab('layout', $section_layout);
 $settings->add_tab('components', $available_components_toggles);
-// $settings->add_tab('sections', $available_sections_toggles);
 
 
 // this array is mounted by the section object
@@ -109,6 +109,7 @@ $groups = array(
     'tables' => $tables,
     'preformatted' => $preformatted,
     'quotes' => $quotes,
+    'alerts' => $alerts,
     'settings' => $settings,
     // 'available_sections' => $available_sections,
 );

@@ -7,73 +7,115 @@
 // -------------------------
 
 .alert {
-  padding: 8px 35px 8px 14px;
-  margin-bottom: $baseLineHeight;
-  text-shadow: 0 1px 0 rgba(255,255,255,.5);
-  background-color: $warningBackground;
-  border: 1px solid $warningBorder;
-  @include border-radius($baseBorderRadius);
+    background-color: $alertsBackgroundColor;
+    @if $alertsBackgroundFill == vertical {
+        @include gradient-vertical($alertsBackgroundColor, $alertsBackgroundEndColor );
+    } @else if $alertsBackgroundFill == horizontal {
+        @include gradient-horizontal($alertsBackgroundColor, $alertsBackgroundEndColor );
+    } @else if $alertsBackgroundFill == radial {
+        @include gradient-radial($alertsBackgroundColor, $alertsBackgroundEndColor );
+    } @else if $alertsBackgroundFill == none {
+        background-color: transparent;
+    }
+
+    border-radius: $alertsBorderRadius;
+
+    border-color: $alertsBorderColor;
+    border-style: $alertsBorderStyle;
+    border-width: $alertsBorderWidth;
+    color: $alertsText;
+    margin-bottom: $baseLineHeight;
+    padding: 8px 35px 8px 14px;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+
+    h4,
+    .close,
+    .alert-title {
+        color: $alertsText;
+    }
 }
-.alert,
+
+
 .alert h4 {
-  // Specified for the h4 to prevent conflicts of changing $headingsColor
-  color: $warningText;
-}
-.alert h4 {
-  margin: 0;
+    margin: 0;
 }
 
 // Adjust close link position
 .alert .close {
-  position: relative;
-  top: -2px;
-  right: -21px;
-  line-height: $baseLineHeight;
+    background: none;
+    line-height: $baseLineHeight;
+    opacity: 1;
+    position: relative;
+    right: -21px;
+    top: -2px;
 }
 
 
 // Alternate styles
 // -------------------------
+.alert-warning {
+    background-color: $warningBackground;
+    border-color: $warningBorder;
+    color: $warningText;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
 
+    h4,
+    .close,
+    .alert-title {
+        color: $warningText;
+    }
+}
 .alert-success {
-  background-color: $successBackground;
-  border-color: $successBorder;
-  color: $successText;
+    background-color: $successBackground;
+    border-color: $successBorder;
+    color: $successText;
+
+    h4,
+    .close,
+    .alert-title {
+        color: $successText;
+    }
 }
-.alert-success h4 {
-  color: $successText;
-}
+
 .alert-danger,
 .alert-error {
-  background-color: $errorBackground;
-  border-color: $errorBorder;
-  color: $errorText;
+    background-color: $errorBackground;
+    border-color: $errorBorder;
+    color: $errorText;
+
+    h4,
+    .close,
+    .alert-title {
+        color: $errorText;
+    }
 }
-.alert-danger h4,
-.alert-error h4 {
-  color: $errorText;
-}
+
 .alert-info {
-  background-color: $infoBackground;
-  border-color: $infoBorder;
-  color: $infoText;
+    background-color: $infoBackground;
+    border-color: $infoBorder;
+    color: $infoText;
+
+    h4,
+    .close,
+    .alert-title {
+        color: $infoText;
+
+    }
 }
-.alert-info h4 {
-  color: $infoText;
-}
+
 
 
 // Block alerts
 // -------------------------
 
 .alert-block {
-  padding-top: 14px;
-  padding-bottom: 14px;
+    padding-top: 14px;
+    padding-bottom: 14px;
 }
 .alert-block > p,
 .alert-block > ul {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 .alert-block p + p {
-  margin-top: 5px;
+    margin-top: 5px;
 }

@@ -279,7 +279,7 @@ $btnBorder:                        $grayLighterDark;
 $btnText:                           #ff0303;
     $btnBorderColor: #2896f0 !default;
     $btnBorderStyle: solid !default;
-    $btnBorderWidth: 13px !default;
+    $btnBorderWidth: 4px !default;
 
 
 
@@ -576,8 +576,64 @@ $fieldActiveTextColor: $grayDark;
             $fieldActiveBottomRightBorderRadius: 0px !default;
             $fieldActiveBottomLeftBorderRadius: 0px !default;
     
-    // alerts
+    
+// alerts
 // -------------------------
+
+$alertsBackgroundColor:                     rgba(255, 3, 221, 1);
+$alertsBackgroundHighlight:            darken($alertsBackgroundColor, 10%);
+$alertsBackgroundEndColor: transparent;
+$alertsBackgroundFill: solid;
+
+$alertsBorder:                        $grayLighterDark;
+$alertsText:                           #ffffff;
+    $alertsBorderColor: #bd049b !default;
+    $alertsBorderStyle: solid !default;
+    $alertsBorderWidth: 5px !default;
+
+
+
+    
+    $alertsTopBorderColor: transparent !default;
+    $alertsTopBorderStyle: none !default;
+    $alertsTopBorderWidth: 1px !default;
+    
+    $alertsRightBorderColor: transparent !default;
+    $alertsRightBorderStyle: none !default;
+    $alertsRightBorderWidth: 1px !default;
+    
+    $alertsBottomBorderColor: transparent !default;
+    $alertsBottomBorderStyle: none !default;
+    $alertsBottomBorderWidth: 1px !default;
+    
+    $alertsLeftBorderColor: #a80281 !default;
+    $alertsLeftBorderStyle: solid !default;
+    $alertsLeftBorderWidth: 6px !default;
+    
+            $alertsBorderColor:
+            $alertsTopBorderColor
+            $alertsRightBorderColor
+            $alertsBottomBorderColor
+            $alertsLeftBorderColor;
+        $alertsBorderStyle:
+            $alertsTopBorderStyle
+            $alertsRightBorderStyle
+            $alertsBottomBorderStyle
+            $alertsLeftBorderStyle;
+        $alertsBorderWidth:
+            $alertsTopBorderWidth
+            $alertsRightBorderWidth
+            $alertsBottomBorderWidth
+            $alertsLeftBorderWidth;
+        $alertsBorderRadius: 0px !default;
+
+    
+            $alertsTopLeftBorderRadius: 0px !default;
+            $alertsTopRightBorderRadius: 0px !default;
+            $alertsBottomRightBorderRadius: 0px !default;
+            $alertsBottomLeftBorderRadius: 0px !default;
+    
+    
 $warningText:             #c09853 ;
 $warningBackground:       #fcf8e3 ;
 $warningBorder:           darken(adjust-hue($warningBackground, -10), 3%) ;
@@ -732,12 +788,12 @@ $preBackgroundPercentage: 0% ;
     $preLinkColor: $linkColor;
 
 
-    $preLinkColor: #ff0303;
+    $preLinkColor: $blue;
 
     $preLinkBackgroundStyle: none;
     $preLinkBackgroundColor: transparent;
-    $preLinkTextDecoration: text-shadow;
-    $preLinkTextShadow: #8a0202;
+    $preLinkTextDecoration: none;
+    $preLinkTextShadow: none;
 
 
     
@@ -982,7 +1038,7 @@ $navbarBackground:                $navbarBackgroundEnd ;
 
 $navbarText:                      $greyMedium ;
 
-$navbarLinkColor:                  $navbarText ;
+$navbarLinkColor:                  #ff0303 ;
 $navbarLinkBackgroundFill:       none ;
 $navbarLinkBackgroundColor:       $transparent ;
 
