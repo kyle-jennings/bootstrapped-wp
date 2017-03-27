@@ -1,1 +1,9 @@
-.mce-content-body.front_page_custom_content.wp-editor,html{height:100%}
+html {
+  height: 100%;
+}
+
+.mce-content-body.front_page_custom_content.wp-editor {
+  height: 100%;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImVkaXRvci5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksYUFBYTtDQUNoQjs7QUFDRDtFQUNJLGFBQWE7Q0FDaEIiLCJmaWxlIjoiZWRpdG9yLmNzcyIsInNvdXJjZXNDb250ZW50IjpbImh0bWwge1xuICAgIGhlaWdodDogMTAwJTtcbn1cbi5tY2UtY29udGVudC1ib2R5LmZyb250X3BhZ2VfY3VzdG9tX2NvbnRlbnQud3AtZWRpdG9yIHtcbiAgICBoZWlnaHQ6IDEwMCU7XG59XG4iXSwic291cmNlUm9vdCI6Ii9zb3VyY2UvIn0= */
