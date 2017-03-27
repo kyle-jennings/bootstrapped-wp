@@ -12,15 +12,14 @@ include dirname(__FILE__).'/field-sets/background-wallpaper.php';
 include dirname(__FILE__).'/field-sets/borders.php';
 include dirname(__FILE__).'/field-sets/border-radius.php';
 include dirname(__FILE__).'/field-sets/links.php';
-include dirname(__FILE__).'/field-sets/section-layout.php';
+include dirname(__FILE__).'/field-sets/settings.php';
 include dirname(__FILE__).'/field-sets/text.php';
-
-// component settings
 include dirname(__FILE__).'/field-sets/component-borders.php';
 
+
+// component settings
+include dirname(__FILE__).'/components/sidebars.php';
 include dirname(__FILE__).'/components/header.php';
-
-
 include dirname(__FILE__).'/components/navbar.php';
 include dirname(__FILE__).'/components/preformatted.php';
 include dirname(__FILE__).'/components/quotes.php';
@@ -88,7 +87,6 @@ $links->add_tab('visited_link', $visited_link);
 
 
 
-
 // Misc settings
 $settings = new SettingsGroup('settings');
 $settings->add_tab('layout', $section_layout);
@@ -110,6 +108,7 @@ $groups = array(
     'preformatted' => $preformatted,
     'quotes' => $quotes,
     'alerts' => $alerts,
+    'layouts' => $layouts,
     'settings' => $settings,
     // 'available_sections' => $available_sections,
 );

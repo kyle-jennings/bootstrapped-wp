@@ -28,8 +28,13 @@ form.kjd-options{
 .bswp-form .field.TextArea {
 
     &.expand{
-        
+
         z-index: 9999;
         width: 300%;
     }
+}
+
+.bswp-form .SidebarPosition {
+    float: left;
+    margin-right: 10px;
 }

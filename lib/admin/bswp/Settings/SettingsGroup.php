@@ -105,14 +105,11 @@ class SettingsGroup {
 
 
             $saved_value = $GLOBALS['bswp\Settings\Section']->find_saved_value($this->name, $tab_name, $name);
-
-            // try and set hidden fields values if missing
-            // if($type === 'Hidden' && strpos($field->name, 'rgba') ){
-            //     if(empty($saved_value) || !isset($saved_value))
-            //     $base = str_replace('_rgba','', $field->name);
-            //     $saved_value = $this->find_value($base);
+            // if($type === 'SidebarPosition' ){
+            //     examine($saved_value);
             // }
-            $tab[$name]->value = $saved_value ? $saved_value : $tab[$name]->default;
+
+            $tab[$name]->value = $saved_value;
 
         }
 

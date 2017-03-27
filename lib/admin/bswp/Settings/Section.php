@@ -195,11 +195,10 @@ class Section {
     // see if the field has a saved value
     public function find_saved_value($group_name = '', $tab_name = '', $field_name = '') {
 
+
         if( empty( $this->saved_values[$group_name] ) )
             return false;
 
-
-        // examine( $group_name . '>' . $tab_name .'>'. $field_name );
 
         // loop through all the group tabs
         foreach( $this->saved_values[$group_name] as $tab_key=>$tab ){
@@ -207,11 +206,16 @@ class Section {
             if($tab_name !== $tab_key)
                 continue;
 
+
             $fields = $tab;
             // loop through the fields
             foreach($fields as $field_key => $field_value){
-                if($field_name == $field_key)
+                if($field_name == $field_key){
+                    // if($group_name == 'layouts')
+                    //     examine($field_name .'=='. $field_key .':'. $field_value);
+                        // examine( $group_name . '>' . $tab_name .'>'. $field_name );
                     return $field_value;
+                }
             }
 
         }

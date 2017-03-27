@@ -1,0 +1,78 @@
+.diagram {
+    background: $white;
+    border: 1px solid $light-grey;
+    float: left;
+    padding: 3px;
+    height: 76px;
+    width: 76px;
+}
+
+
+.diagram-column {
+    border: 1px solid $silver;
+    float: left;
+    height: 67px;
+}
+
+.diagram__content-area {
+    background: $light-grey;
+    font-size: 4px;
+    line-height: 4px;
+    margin-right: 5px;
+    overflow: hidden;
+    padding: 4px;
+    width: 67px;
+
+
+    .diagram.top &,
+    .diagram.right &,
+    .diagram.bottom &,
+    .diagram.left & {
+        width: 48px;
+    }
+
+    .diagram.left & {
+        float: right;
+        margin-left: 5px;
+        margin-right: 0;
+    }
+
+    .diagram.top &,
+    .diagram.bottom & {
+        height: 50px;
+        width: 67px;
+    }
+    .diagram.bottom & {
+        margin-bottom: 3px;
+    }
+    .diagram.top & {
+        margin-top: 15px;
+    }
+
+}
+
+.diagram__sidebar {
+    display: none;
+
+    background: $dark-grey;
+    width: 13px;
+
+
+    .diagram.top &,
+    .diagram.right &,
+    .diagram.bottom &,
+    .diagram.left & {
+        display: block;
+    }
+
+    .diagram.top &,
+    .diagram.bottom & {
+        height: 12px;
+        width: 67px;
+    }
+
+    .diagram.top & {
+        margin-left: -72px;
+    }
+
+}
