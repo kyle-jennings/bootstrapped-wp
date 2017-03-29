@@ -215,4 +215,11 @@ class Field {
 
         return $data;
     }
+
+
+    public function clean_string($string) {
+        $string = str_replace('_',' ', $string);
+        $string = ucwords($string);
+        return $string;
+    }
 }
