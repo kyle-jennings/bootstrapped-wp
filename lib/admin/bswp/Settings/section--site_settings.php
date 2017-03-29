@@ -19,6 +19,7 @@ include dirname(__FILE__).'/field-sets/component-borders.php';
 
 // component settings
 include dirname(__FILE__).'/components/sidebars.php';
+include dirname(__FILE__).'/components/frontpage-layout.php';
 include dirname(__FILE__).'/components/header.php';
 include dirname(__FILE__).'/components/navbar.php';
 include dirname(__FILE__).'/components/preformatted.php';

@@ -25,7 +25,7 @@ function kjd_site_preview($src = null){
     $preview_sizes = array('desktop','tablet','phone');
 
     $output ='';
-    $output .= '<select class="preview-size">';
+    $output .= '<select class="preview-size js--no-css-change">';
 
     foreach($preview_sizes as $size){
         $output .= '<option value="'.$size.'">'.$size.'</option>';
