@@ -1,255 +1,121 @@
 <?php
 
 // Page Template One Widgets
-if ( function_exists('register_sidebar') ){
-///////////////////////
-// page widgets
-///////////////////////
+if ( !function_exists('register_sidebar') )
+    return;
+
+class SetupWidgets {
+
+    public static $templates = array(
+        'frontpage',
+        'feed',
+        'single',
+    );
+    public static $sidebars;
+
+    public function __construct()
+    {
+
+        $site_settings = get_option('bswp_site_settings');
+        $layouts = $site_settings['layouts'];
+        self::$sidebars = $layouts['sidebars'];
+
+    }
 
 
-$options = get_option('kjd_post_layout_settings');
-$postLayouts = $options['kjd_post_layouts'];
+    function registerSidebars()
+    {
+        foreach(self::$sidebars as $sidebar=>$setting){
+            if(strpos($sidebar, '_location') == false)
+                continue;
 
-$options = get_option('kjd_page_layout_settings');
-$pageLayouts = $options['kjd_page_layouts'];
+            $pos = $setting;
+            $name = substr($sidebar, 0, strpos($sidebar, '_'));
+            $width = self::setWidgetWidth($name,$pos);
 
+        	register_sidebar(
+        		 array(
+        			'name' => $name,
+        			'id' => $name,
+        			'description' => 'Widgets for the ' .ucwords(str_replace('_',' ',$name)) . 'page',
+        			'before_widget' =>'<div class="widget '.$width.'">',
+        			'before_title' => '<h3>',
+        			'after_title' => '</h3>',
+        			'after_widget' => '</div>'
+        		)
+        	);
+        }
+    }
 
-if(!empty($pageLayouts) && empty($postLayouts)){
-	$layouts = $pageLayouts;
-}elseif(!empty($postLayouts) && empty($pageLayouts)){
-	$layouts = $postLayouts;
-}elseif(!empty($postLayouts) && !empty($pageLayouts)){
-	$layouts = array_merge($pageLayouts,$postLayouts);
-}else{
-	$layouts = array();
-}
+    public static function setWidgetWidth($sidebar, $sidebar_pos)
+    {
+        $sidebars = wp_get_sidebars_widgets($sidebar);
+        $widgets = $sidebars[$sidebar];
+        $count = count($widgets);
 
-
-function set_width($template, $frontpage_area = null){
-
-
-    global $layouts;
-// if the widget area is one of hte two front page widget areas, set the widget widths
-	if($template['name'] == 'front_page_widgets'){
-		$i = 1;
-
-        // error checking
-        if(!isset($layouts[$frontpage_area]) )
+        if($sidebar_pos == 'none' || !$sidebar_pos)
             return;
 
-		$template = $layouts[$frontpage_area];
-		$sidebars = wp_get_sidebars_widgets($frontpage_area);
-		$widgetsCount = count($sidebars[$frontpage_area]);
 
-		if($template['position'] !='none' & $template['position']):
-			switch($widgetsCount){
-				case 1:
-					return 'span9';
-					break;
-				case 2:
-					return 'span4';
-					break;
-				case 3:
-					return 'span3';
-					break;
-				case 4:
-					return 'span2';
-					break;
-				case 5:
-					return 'span1';
-					break;
-				case 6:
-					return 'span1';
-					break;
-			}
-        else:
-            switch($widgetsCount){
-                case 1:
-                    return 'span12';
-                    break;
-                case 2:
-                    return 'span6';
-                    break;
-                case 3:
-                    return 'span4';
-                    break;
-                case 4:
-                    return 'span3';
-                    break;
-                case 5:
-                    return 'span2';
-                    break;
-                case 6:
-                    return 'span2';
-                    break;
-            } // end switch
-		endif;
+        if( in_array($sidebar_pos, array('left', 'right')))
+            $width = self::widgetWidthNarrow($count);
+        else
+            $width = self::widgetWidthWide($count);
+
+        return $width;
+    }
 
 
-// or else these are going to be pages and posts widgets
-	}else{
-		// checks to see if the position of the widget area is on the right or left
-		// if it is NOT then we set the widget widths dynamically
-		// if it IS then we set them to span3
-		// print '<pre>';
-
-		// print_r( $template );
-
-		// print '</pre>';
-
-		$sidebars = wp_get_sidebars_widgets($template['name']);
-
-        // error checking
-        if(!isset($sidebars[$template['name']]))
-            return;
-
-		$widgetsCount = count($sidebars[$template['name']]);
-		 if( $template['position'] != 'left' && $template['position'] != 'right') {
-
-			switch($widgetsCount){
-				case 1:
-					return 'span12';
-					break;
-				case 2:
-					return 'span6';
-					break;
-				case 3:
-					return 'span4';
-					break;
-				case 4:
-					return 'span3';
-					break;
-				case 5:
-					return 'span2';
-					break;
-				case 6:
-					return 'span2';
-					break;
-			} // end switch
-
-		}else{
-			return 'span3';
-		} //end else
-
-	} // end if else
-
-} // end fntion
+    public static function widgetWidthNarrow($count)
+    {
+        switch($count):
+            case 1:
+                return 'span12';
+                break;
+            case 2:
+                return 'span6';
+                break;
+            case 3:
+                return 'span4';
+                break;
+            case 4:
+                return 'span3';
+                break;
+            case 5:
+                return 'span2';
+                break;
+            case 6:
+                return 'span2';
+                break;
+        endswitch;
+    }
 
 
-
-
-//////////////////////////////////////////
-// header, footer, front page areas, index
-//////////////////////////////////////////
-// print('<pre>');
-// print_r($layouts);
-// print('</pre>');
-
-$wrap_entire_widget = 'false';
-$wrap_inner_widget = 'false';
-
-$templates = array(
-				'header_widgets',
-				'front_page_widget_area_1',
-				'front_page_widget_area_2',
-				'front_page_widget_area_3',
-				'footer_widgets',
-				'default'
-			);
-
-
-foreach($templates as $template){
-
-
-
-
-	if($template == 'front_page_widget_area_1' || $template == 'front_page_widget_area_2' || $template == 'front_page_widget_area_3' ){
-
-		$temp = array('name' => 'front_page_widgets', 'position' =>"top");
-		$width = set_width($temp,$template);
-
-	}elseif($template == 'header_widgets' || $template == 'footer_widgets' ){
-    global $layouts;		$temp = array('name' => $template, 'position' =>"top");
-		$width = set_width($temp);
-	}else{
-		$width = set_width($layouts[$template]);
-
-	}
-
-	register_sidebar(
-		 array(
-			'name' => ucwords(str_replace('_',' ',$template)),
-			'id' => $template,
-			'description' => 'Widgets for the ' .ucwords(str_replace('_',' ',$template)),
-			'before_widget' =>'<div class="widget '.$width.'">',
-			'before_title' => '<h3>',
-			'after_title' => '</h3>',
-			'after_widget' => '</div>'
-		)
-	);
-
+    public static function widgetWidthWide($count)
+    {
+        switch($count):
+            case 1:
+                return 'span12';
+                break;
+            case 2:
+                return 'span6';
+                break;
+            case 3:
+                return 'span4';
+                break;
+            case 4:
+                return 'span3';
+                break;
+            case 5:
+                return 'span2';
+                break;
+            case 6:
+                return 'span2';
+                break;
+        endswitch;
+    }
 }
 
 
-
-
-/* -------------------------------------------
-				posts widgets
---------------------------------------------- */
-
-	// $post_templates = get_option('kjd_widget_areas_settings');
-	$post_templates = get_option('kjd_post_layout_settings');
-	$post_templates = $post_templates['kjd_post_layouts'];
-
-
-	if( !empty( $post_templates && isset($post_templates) ) ){
-		foreach($post_templates as $k => $v){
-
-			if( isset($v['toggled']) && $v['toggled'] == 'true' ){
-
-				$width = set_width($layouts[$k]);
-				register_sidebar(
-					 array(
-						'name' => ucwords(str_replace('_page', '',$k)) . ' Page',
-						'id' => $k,
-						'description' => 'Widgets for the ' .ucwords(str_replace('_page', '',$k)) . ' page',
-						'before_widget' =>'<div class="widget '.$width.'">',
-						'before_title' => '<h3>',
-						'after_title' => '</h3>',
-						'after_widget' => '</div>'
-					)
-				);
-
-			}
-
-
-		}
-
-	}
-
-//////////////////////////////
-//	 Page templates
-//////////////////////////////
-
-	$templates = array('template_1', 'template_2', 'template_3', 'template_4', 'template_5', 'template_6' );
-	foreach($templates as $template){
-        // error checking
-        if(!isset($layouts[$template]))
-            continue;
-
-		$width = set_width($layouts[$template]);
-		register_sidebar(
-			 array(
-				'name' => 'Page ' . ucwords(str_replace('kjd','', str_replace('_',' ',$template))),
-				'id' => $template,
-				'description' => 'Widgets for the ' .ucwords(str_replace('kjd','', str_replace('_',' ',$template))) . ' page',
-				'before_widget' =>'<div class="widget '.$width.'">',
-				'before_title' => '<h3>',
-				'after_title' => '</h3>',
-				'after_widget' => '</div>'
-			)
-		);
-
-	}
-
-}
+$SetupWidgets = new SetupWidgets();
+$SetupWidgets::registerSidebars();

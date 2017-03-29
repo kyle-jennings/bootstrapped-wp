@@ -1,4 +1,5 @@
-.section {
+.section,
+.section--sidebar.span12 {
     padding: 20px;
     position: relative;
     z-index: 2;
@@ -10,7 +11,8 @@
 
 
 
-.section--navbar {
+.section--navbar,
+.section--sidebar {
     padding: 0;
 }
 

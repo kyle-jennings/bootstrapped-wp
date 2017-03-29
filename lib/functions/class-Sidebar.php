@@ -8,14 +8,18 @@ class Sidebar
     public $width;
     public $device_view;
 
-    public function __construct($sidebar = 'default', $location = null, $width = null, $device_view = null)
+    public function __construct($sidebar = 'default', $location = 'none', $device_view = 'all')
     {
+
+        if($this->location == 'none')
+            return '';
+
         $this->sidebar = $sidebar;
         $this->location = $location;
-        $this->width = $width;
+        $this->width = in_array($this->location, array('top', 'bottom')) ? 'span12' : 'span3' ;
         $this->device_view = $device_view;
 
-        $this->output = $this->kjd_get_sidebar();
+        $this->output = $this->getSidebar();
     }
 
 
@@ -25,44 +29,45 @@ class Sidebar
 
 
     /**
-	 * builds and gets the sidebar, must call kjd_set_sidebar_area to get the correct widgts
+	 * builds and gets the sidebar, must call setSidebarArea to get the correct widgts
 	 * @param  string $sidebar     [description]
 	 * @param  [type] $location    [description]
 	 * @param  [type] $width       [description]
 	 * @param  [type] $device_view [description]
 	 * @return [type]              [description]
 	 */
-	public function kjd_get_sidebar()
+	public function getSidebar()
 	{
 
         $output = '';
-		$location_class = ($this->location == 'horizontal') ? 'span12' : 'span3' ;
 
-		$sidebar = $this->kjd_set_sidebar_area($this->sidebar);
+
 		ob_start();
-			dynamic_sidebar($sidebar);
+			dynamic_sidebar($this->sidebar);
 			$content = ob_get_contents();
 		ob_end_clean();
-		$output .= '<div id="side-content" class="section section--sidebar '.$location_class.' '.$this->location.'-widgets '.$this->device_view.'">';
-				$output .= '<div class="row">' . $content .'</div>';
+		$output .= '<div id="side-content" class="section section--sidebar '.$this->width.' '.$this->location.'-widgets '.$this->device_view.'">';
+
+            if($this->width == 'span12')
+                $output .= '<div class="row">' . $content .'</div>';
+            else
+                $output .= $content;
+
 		$output .= '</div>';
+
 
 
 		// return $the_buffered_sidebar;
 		return $output;
 	}
 
-
-	public function kjd_set_sidebar_area($sidebar = null)
+	public function setSidebarArea($sidebar = null)
     {
-
-		// echo $sidebar; die();
-		$post_templates = get_option('kjd_post_layout_settings');
-		$post_templates = $post_templates['kjd_post_layouts'];
 
 		$available_sidebars = array(
 			'template_1', 'template_2', 'template_3', 'template_4', 'template_5', 'template_6',
-			'front_page_widget_area_1', 'front_page_widget_area_2', 'header_widgets', 'footer_widgets','default'
+			'frontpage_widgets_1', 'frontpage_widgets_2', 'header_widgets', 'footer_widgets',
+            'default', 'frontpage','feed', 'single'
 		);
 		if( !empty($post_templates) ){
 			foreach($post_templates as $k => $v){

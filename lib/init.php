@@ -51,6 +51,7 @@ if(!is_admin()){
     require_once('functions/class-Header.php');
     require_once('functions/class-Sidebar.php');
     require_once('functions/class-Layout.php');
+    require_once('functions/frontpage-functions.php');
     require_once('functions/class-Pagination.php');
     require_once('functions/class-Scaffolding.php');
     require_once('functions/class-Content.php');
@@ -107,9 +108,6 @@ function bswp_add_assets(){
     wp_enqueue_style("site", wp_upload_dir()['baseurl'].'/bswp/assets/css/site.css');
     wp_enqueue_style("base", $root."/styles/common.css");
 
-    // Add slider scripts if on front page
-    if( is_front_page() )
-        include( 'functions/add-slider-scripts.php');
 
 }
 

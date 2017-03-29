@@ -23,10 +23,10 @@ $layouts->add_tab('frontpage', array(
         'name'=>'frontpage_layout_sortable',
         'label' => "Frontpage Layout",
         'args'=>array(
+            'page_content',
             'frontpage_widgets_1',
             'frontpage_widgets_2',
             'frontpage_widgets_3',
-            'content',
         ),
         'preview'=>'form_save_warning'
     )),

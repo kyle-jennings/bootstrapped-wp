@@ -4,16 +4,17 @@ global $page, $paged;
 $root = get_stylesheet_directory_uri();
 
 $site_options = get_option('bswp_site_settings');
-$misc_settings = $site_options['misc'];
+$misc_settings = $site_options['settings'];
 $header_settings = $site_options['header'];
+
 $navbar = new Navbar('primary-menu');
 
 
-    if($misc_settings['layout']['full_width'] == 'no'){
-        $page_wrapper_class = 'container';
-    }else {
-        $page_wrapper_class = '';
-    }
+if($misc_settings['layout']['full_width'] == 'no'){
+    $page_wrapper_class = 'container';
+}else {
+    $page_wrapper_class = '';
+}
 ?>
 
 
