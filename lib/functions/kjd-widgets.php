@@ -6,11 +6,6 @@ if ( !function_exists('register_sidebar') )
 
 class SetupWidgets {
 
-    public static $templates = array(
-        'frontpage',
-        'feed',
-        'single',
-    );
     public static $sidebars;
     public static $frontpage_sidebar;
 

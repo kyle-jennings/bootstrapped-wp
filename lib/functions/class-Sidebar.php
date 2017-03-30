@@ -14,12 +14,14 @@ class Sidebar
         if($this->location == 'none')
             return '';
 
-        $this->sidebar = $sidebar;
+        $this->sidebar = !strpos('_widgets',$sidebar) ? $sidebar.'_widgets' : $sidebar;
+
         $this->location = $location;
         $this->width = in_array($this->location, array('top', 'bottom')) ? 'span12' : 'span3' ;
         $this->device_view = $device_view;
 
         $this->output = $this->getSidebar();
+
     }
 
 

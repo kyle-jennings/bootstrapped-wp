@@ -19,10 +19,10 @@ use function bswp\Settings\_helpers\border_settings_map;
 $layouts = new SettingsGroup('layouts');
 $layouts->add_tab('sidebars',
     array(
-        'frontpage_sidebar' => new SidebarPosition(
+        'frontpage_widgets' => new SidebarPosition(
             array(
                 'label'=> 'Frontpage',
-                'name'=>'frontpage_sidebar',
+                'name'=>'frontpage_widgets',
                 'args' => array(
                     'none',
                     'top',
@@ -37,10 +37,10 @@ $layouts->add_tab('sidebars',
 
         'divider1'=>new Divider(),
 
-        'feed_sidebar' => new SidebarPosition(
+        'feed_widgets' => new SidebarPosition(
             array(
                 'label'=> 'Feed',
-                'name'=>'feed_sidebar',
+                'name'=>'feed_widgets',
                 'args' => array(
                     'none',
                     'top',
@@ -54,10 +54,10 @@ $layouts->add_tab('sidebars',
 
         'divider2'=>new Divider(),
 
-        'single_sidebar' => new SidebarPosition(
+        'single_widgets' => new SidebarPosition(
             array(
                 'label'=> 'Single',
-                'name'=>'single_sidebar',
+                'name'=>'single_widgets',
                 'args' => array(
                     'none',
                     'top',

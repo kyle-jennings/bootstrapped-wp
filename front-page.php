@@ -8,7 +8,7 @@ $site_options = get_option('bswp_site_settings');
 $layout_settings = $site_options['layouts'];
 $sidebars = $layout_settings['sidebars'];
 
-$sidebar = json_decode($sidebars['frontpage_sidebar']);
+$sidebar = json_decode($sidebars['frontpage_widgets']);
 $sidebar_pos = $sidebar->position;
 $sidebar_vis = $sidebar->visibility;
 
@@ -28,7 +28,7 @@ if(!empty($components)) {
                 <?php
 
                 if($sidebar_pos == 'top' || $sidebar_pos == 'left')
-                    echo new Sidebar('frontpage_sidebar', $sidebar_pos, $sidebar_vis);
+                    echo new Sidebar('frontpage', $sidebar_pos, $sidebar_vis);
 
 
                 echo '<div id="main-content" class="'.$main_width.'">';
@@ -36,7 +36,7 @@ if(!empty($components)) {
                 echo '</div>';
 
                 if($sidebar_pos == 'right' || $sidebar_pos == 'bottom')
-                    echo new Sidebar('frontpage_sidebar', $sidebar_pos, $sidebar_vis);
+                    echo new Sidebar('frontpage', $sidebar_pos, $sidebar_vis);
 
 
                 ?>
