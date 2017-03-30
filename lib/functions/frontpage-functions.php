@@ -1,6 +1,28 @@
 <?php
 
+function get_frontpage_settings(){
 
+
+    $site_options = get_option('bswp_site_settings');
+    $layout_settings = $site_options['layouts'];
+    $sidebars = $layout_settings['sidebars'];
+
+    $sidebar = json_decode($sidebars['frontpage_widgets']);
+    $sidebar_pos = $sidebar->position;
+    $sidebar_vis = $sidebar->visibility;
+
+
+    $components = $layout_settings['frontpage']['frontpage_layout_sortable'];
+    $components = json_decode($components);
+    $main_width = ($sidebar_pos == 'left' || $sidebar_pos == 'right') ? 'span9' : 'span12';
+
+    return array(
+        'components' => $components,
+        'sidebar_vis' => $sidebar_vis,
+        'sidebar_pos' => $sidebar_pos,
+        'main_width' => $main_width,
+    );
+}
 /* --------------------------------------------------------------------
 			Widget Areas
  -------------------------------------------------------------------- */
@@ -63,6 +85,7 @@ function frontpage_content($visibility){
 ------------------------------------------------------------------- */
 function kjd_front_page_layout( $components ){
 
+    ob_start();
 	foreach($components as $position => $component)
 	{
 
@@ -88,12 +111,16 @@ function kjd_front_page_layout( $components ){
 		endswitch;
 
 	}
+    $contents = ob_get_contents();
+    ob_end_clean();
 
+    return $contents;
 }
 
 
 
 function default_frontpage() {
+    ob_start();
     ?>
     <div class="section section--body section--frontpage">
     	<div class="container">
@@ -109,4 +136,8 @@ function default_frontpage() {
     	</div>
     </div>
     <?php
+    $contents = ob_get_contents();
+    ob_end_clean();
+
+    return $contents;
 }

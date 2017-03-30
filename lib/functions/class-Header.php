@@ -98,10 +98,16 @@ class Header {
 
 
         // set the current page
-        if($id === null || is_front_page($id) || (  self::$page_id !== get_option('page_for_posts', true) && strpos($template, 'index')) ){
-            return 'frontpage';
-        }elseif( is_archive($id) || (self::$page_id == self::$post_page_id  || is_home($id)) ){
+        if( is_search() ||
+            is_archive($id) ||
+            (self::$page_id == self::$post_page_id  || is_home($id)) )
+        {
             return 'feed';
+        } elseif( $id === null ||
+            is_front_page($id) ||
+            (  self::$page_id !== get_option('page_for_posts', true) && strpos($template, 'index'))
+        ){
+            return 'frontpage';
         }else {
             return 'single';
         }
@@ -253,6 +259,7 @@ class Header {
 
             $content = self::get_frontpage_content();
         }elseif( self::$template_type == 'feed' ){
+
             $content = self::get_feed_content();
         }else {
 
@@ -320,14 +327,37 @@ class Header {
         self::_get_default('feed_page');
         $post = get_queried_object();
 
-        if( $post->post_title)
+        if(is_author() || get_query_var('author_name')){
+            $auth = get_user_by('slug', get_query_var('author_name'));
+            $title ='Posts by: '.$auth->nickname;
+        }
+        elseif( $post->post_title)
                 $title = $post->post_title;
         elseif($post->name)
                 $title = $post->name;
         elseif(self::$page_id)
                 $title = get_the_title(self::$page_id);
-        else
+        elseif ( is_day() )
+			$title ='Daily Archives: <span>'.get_the_date() . '</span>';
+		elseif ( is_month() )
+			$title ='Monthly Archives: <span>' . get_the_date( 'F Y' ) . '</span>';
+		elseif ( is_year() )
+			$title ='Yearly Archives: <span>' . get_the_date( 'Y' ) . '</span>';
+		elseif( is_category() ){
+            ob_start();
+            single_cat_title();
+            $buffered_cat = ob_get_contents();
+            ob_end_clean();
+            $title ='Posted in: '.$buffered_cat;
+        }elseif (is_search()){
+            global $wp_query;
+			$total_results = $wp_query->found_posts;
+			$title = $total_results ? 'Posts containing: '.get_search_query() : 'No results found' ;
+        }else{
             $title = '';
+        }
+
+
 
 
         // select the content type markup

@@ -16,7 +16,7 @@ class SetupWidgets {
         $layouts = $site_settings['layouts'];
         self::$sidebars = $layouts['sidebars'];
 
-        self::$frontpage_sidebar = json_decode($layouts['sidebars']['frontpage_sidebar']);
+        self::$frontpage_sidebar = json_decode($layouts['sidebars']['frontpage_widgets']);
         $frontpage = $layouts['frontpage']['frontpage_layout_sortable'];
 
         self::get_frontpage_widget_areas($frontpage);
@@ -72,6 +72,7 @@ class SetupWidgets {
 
 
     public static function get_frontpage_pos() {
+
         if( in_array(self::$frontpage_sidebar->position, array('left','right')) )
             return true;
     }
