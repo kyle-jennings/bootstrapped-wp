@@ -46,7 +46,8 @@ class Sidebar
 			dynamic_sidebar($this->sidebar);
 			$content = ob_get_contents();
 		ob_end_clean();
-		$output .= '<div id="side-content" class="section section--sidebar '.$this->width.' '.$this->location.'-widgets '.$this->device_view.'">';
+
+		$output .= '<div id="side-content" class="'.$this->width.' '.$this->location.'-widgets '.$this->device_view.'">';
 
             if($this->width == 'span12')
                 $output .= '<div class="row">' . $content .'</div>';

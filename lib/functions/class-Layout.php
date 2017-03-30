@@ -57,7 +57,7 @@ class Layout {
 				$scaffolding_markup .= '<div class="row">';
 
 
-
+                    examine($template);
 					/* ----------------- top or left sidebar ------------------- */
 					 if($position =='top' || $position =='left'){
 

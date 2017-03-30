@@ -4,28 +4,29 @@
 /* --------------------------------------------------------------------
 			Widget Areas
  -------------------------------------------------------------------- */
-function kjd_widget_area_1_callback($visibility){
+function frontpage_widgets_1_callback($visibility){
+
 	echo '<div class="row '.$visibility.' frontpage-component">';
-		dynamic_sidebar('front_page_widget_area_1');
+		dynamic_sidebar('frontpage_widgets_1');
 	echo '</div>';
 }
 
-function kjd_widget_area_2_callback($visibility){
+function frontpage_widgets_2_callback($visibility){
 	echo '<div class="row '.$visibility.' frontpage-component">';
-		dynamic_sidebar('front_page_widget_area_2');
+		dynamic_sidebar('frontpage_widgets_2');
 	echo '</div>';
 }
 
-function kjd_widget_area_3_callback($visibility){
+function frontpage_widgets_3_callback($visibility){
 	echo '<div class="row '.$visibility.' frontpage-component">';
-		dynamic_sidebar('front_page_widget_area_3');
+		dynamic_sidebar('frontpage_widgets_3');
 	echo '</div>';
 }
 
 /* --------------------------------------------------------------------
 			Default Content
  -------------------------------------------------------------------- */
-function kjd_frontpage_content($visibility){
+function frontpage_content($visibility){
 
     $visibility = $visibility == 'all' ? '' : $visibility;
 
@@ -64,24 +65,25 @@ function kjd_front_page_layout( $components ){
 
 	foreach($components as $position => $component)
 	{
+
         $name = $component->name;
         $visibility = $component->visibility;
 
 		switch( $name ):
-			case 'widget_area_1':
-				kjd_widget_area_1_callback($visibility);
+			case 'frontpage_widgets_1':
+				frontpage_widgets_1_callback($visibility);
 				break;
-			case 'widget_area_2':
-				kjd_widget_area_2_callback($visibility);
+			case 'frontpage_widgets_2':
+				frontpage_widgets_2_callback($visibility);
 				break;
-			case 'widget_area_3':
-				kjd_widget_area_3_callback($visibility);
+			case 'frontpage_widgets_3':
+				widget_area_3_callback($visibility);
 				break;
 			case 'page_content':
-				kjd_frontpage_content($visibility);
+				frontpage_content($visibility);
 				break;
             default:
-                kjd_frontpage_content($visibility);
+                frontpage_content($visibility);
                 break;
 		endswitch;
 

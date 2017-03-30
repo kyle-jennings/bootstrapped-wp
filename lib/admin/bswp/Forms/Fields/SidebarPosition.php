@@ -21,8 +21,10 @@ class SidebarPosition extends Field{
         // the label
         $output .= '<label>'.$this->label.'</label>';
 
-        $pos = $this->get_pos();
-        $vis= $this->get_vis();
+
+        $pos = $this->value->position;
+        $vis = $this->value->visibility;
+
         // the select
         $output .= '<select class="'.$classes.'" data-name="position">';
             $output .= $this->options_markup($pos);
@@ -41,23 +43,6 @@ class SidebarPosition extends Field{
 
         return $output;
 
-    }
-
-    private function get_pos()
-    {
-        foreach($this->value as $value) {
-            if($value->name == 'position')
-                return $value->value;
-        }
-    }
-
-
-    private function get_vis()
-    {
-        foreach($this->value as $value) {
-            if($value->name == 'visibility')
-                return $value->value;
-        }
     }
 
 
