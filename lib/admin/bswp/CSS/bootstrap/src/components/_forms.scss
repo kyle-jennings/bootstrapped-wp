@@ -19,8 +19,6 @@ form,
         @include gradient-radial($formBackgroundColor, $formBackgroundEndColor );
     } @else if $formBackgroundFill == none {
         background-color: transparent;
-        padding: 0px !important;
-
     } @else {
         background-color: $formBackgroundColor;
     }
@@ -34,6 +32,10 @@ form,
     color: $formTextColor;
 
     margin: 0 0 $baseLineHeight;
+
+    @if $formRemovePadding == yes {
+        padding: 0 !important;
+    }
 }
 
 

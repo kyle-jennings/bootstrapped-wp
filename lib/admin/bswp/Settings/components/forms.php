@@ -50,3 +50,28 @@ $forms->add_tab('field_active_colors', array_merge(
     $radii_fields
     )
 );
+
+
+$forms->add_tab('button_colors',
+    array_merge(
+        $background_colors,
+        $regular_text,
+        $component_borders,
+        array( 'divider1'=>new Divider()),
+        array( 'label1'=>new Label(array('name'=>'border_radius'))),
+        $radii_fields
+    )
+);
+
+
+$forms->add_tab('misc', array_merge(
+    array(
+        'remove_padding' => new Select(
+            array(
+                'name'=>'remove_padding',
+                'args'=>array('no', 'yes')
+                )
+            )
+        )
+    )
+);

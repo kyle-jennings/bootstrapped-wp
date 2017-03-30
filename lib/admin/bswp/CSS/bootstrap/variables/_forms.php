@@ -6,7 +6,7 @@ $form = $forms['background_colors'];
 $field = $forms['field_colors'];
 $field_hovered = $forms['field_hovered_colors'];
 $field_active = $forms['field_active_colors'];
-
+$form_misc = $forms['misc'];
 ?>
 
 // Forms
@@ -18,7 +18,7 @@ $inputDisabledBackground:       $grayLighter;
 $formActionsBackground:         $offWhite;
 $inputHeight:                   $baseLineHeight + 10px; // base line-height + 8px vertical padding + 2px top/bottom border
 $placeholderText:         $grayLight;
-
+$formRemovePadding: <?php echo _tern($form_misc['remove_padding'], 'no'); ?>;
 
 $formTextColor: <?php echo $form['text_color'] ? $form['text_color'] : '$grayDark';  ?>;
 <?php
