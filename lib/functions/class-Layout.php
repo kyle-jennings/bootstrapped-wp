@@ -39,79 +39,7 @@ class Layout {
     }
 
 
-    public static function loop()
-    {
-        $content = new Content();
-        $content::set_template(self::$template);
 
-        $output = '';
-        /* ---------------------- The Loop ----------------------- */
-        if (have_posts()){
-
-            if($pagination_top == 'true'){
-                $output .= new Pagination();
-            }
-
-            //open content-list/single wrapper
-            if( !is_single() && !is_page() && !is_attachment() ){
-                $output .= '<div class="content-feed">';
-            }else{
-                $output .= '<div class="content-single">';
-            }
-            while (have_posts()){
-                the_post();
-                $output .= $content;
-            }
-
-            $output .= '</div>'; //close content-list/single wrapper
-
-            // pagination
-            $output .= new Pagination();
-
-        }else{
-            $output .= '<div class="content-wrapper">';
-                $output .= kjd_the_404();
-            $output .= '</div>';
-        }
-
-        return $output;
-    }
-
-
-
-    public static function mainColumn($width = 'span12', $pagination_top = false, $content = null) {
-
-        $output = '';
-        //content div
-        $output .= '<div id="main-content" class="'.$width.'">';
-
-            $output .= $content ? $content : self::loop();
-
-        //end main content
-        $output .= '</div>'; // end maincontent span
-
-        return $output;
-    }
-
-
-    public static function columns() {
-
-        $template = self::$template;
-        $width = in_array(self::$sidebar->position, array('left', 'right')) ? 'span9' : 'span12';
-
-        // sidebar if on top on left
-        if(self::$sidebar->position =='top' || self::$sidebar->position =='left')
-            $output .= new Sidebar(self::$template, self::$sidebar->position, self::$sidebar->visibility);
-
-
-        $output .= self::mainColumn($width, false, self::$content);
-
-        // sidebar if on bottom or right
-        if(self::$sidebar->position =='bottom' || self::$sidebar->position =='right')
-            $output .= new Sidebar(self::$template, self::$sidebar->position, self::$sidebar->visibility);
-
-        return $output;
-    }
 
 
     public static function scaffolding_init(){
@@ -126,10 +54,7 @@ class Layout {
             $output .= '<div class="'.self::contain_section().'">';
                 $output .= '<div class="row">';
 
-
-                    $output .= self::columns();
-
-                    // close scaffolding
+                    $output .= new Columns(self::$sidebar, self::$content, self::$template);
 
                 $output .= '</div>';//	<!-- end row -->
             $output .= '</div>';// <!-- end container -->

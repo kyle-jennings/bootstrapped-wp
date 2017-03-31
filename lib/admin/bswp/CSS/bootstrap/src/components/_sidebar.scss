@@ -1,0 +1,9 @@
+.sidebar {
+    min-height: 1px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        z-index: -2;
+    }
+}

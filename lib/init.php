@@ -50,6 +50,7 @@ if(!is_admin()){
     require_once('functions/class-Navbar.php');
     require_once('functions/class-Header.php');
     require_once('functions/class-Sidebar.php');
+    require_once('functions/class-Columns.php');
     require_once('functions/class-Layout.php');
     require_once('functions/frontpage-functions.php');
     require_once('functions/class-Pagination.php');

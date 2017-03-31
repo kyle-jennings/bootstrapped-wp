@@ -49,7 +49,7 @@ class Sidebar
 			$content = ob_get_contents();
 		ob_end_clean();
 
-		$output .= '<div id="side-content" class="'.$this->width.' '.$this->location.'-widgets '.$this->device_view.'">';
+		$output .= '<div class="sidebar '.$this->width.' '.$this->location.'-widgets '.$this->device_view.'">';
 
             if($this->width == 'span12')
                 $output .= '<div class="row">' . $content .'</div>';
