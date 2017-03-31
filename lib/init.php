@@ -45,8 +45,8 @@ if(is_admin())
     include 'admin/init.php' ;
 
 if(!is_admin()){
-    require_once('functions/kjd-gallery.php');
-    require_once('functions/kjd-shortcodes.php');
+    require_once('functions/gallery.php');
+    require_once('functions/shortcodes.php');
     require_once('functions/class-Navbar.php');
     require_once('functions/class-Header.php');
     require_once('functions/class-Sidebar.php');
@@ -62,7 +62,7 @@ if(!is_admin()){
 }
 
 
-require_once('functions/kjd-widgets.php');
+require_once('functions/class-SetupWidgets.php');
 
 
 /* ------------------------------------------------
