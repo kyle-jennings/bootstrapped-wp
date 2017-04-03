@@ -1,5 +1,7 @@
 <?php
-
+// $bt =  debug_backtrace();
+// error_log('sadsakjdl;k;ldkas;lkd');
+// error_log("Calling file: ". $bt[0]['file'] . ' line  '. $bt[0]['line']);
 /**
  * The index.php file is used to build the page scaffolding
  * for every possible wordpress template sans the custom templates.
@@ -11,8 +13,7 @@
  */
 
 
-$layout = new Layout();
-// ob_start();
 get_header();
+    $layout = new Layout();
     echo $layout::scaffolding_init();
 get_footer();

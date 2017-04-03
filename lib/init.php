@@ -19,32 +19,12 @@ if(! function_exists('examine') ){
 }
 
 
-function bswp_remove_customizer() {
-    global $wp_admin_bar;
-    $wp_admin_bar->remove_menu('customize');
-}
-
-add_action( 'wp_before_admin_bar_render', 'bswp_remove_customizer' );
-
-function bswp_remove_customizer_menu_item () {
-    global $submenu;
-    foreach($submenu['themes.php'] as $key=>$item)
-        if($item[1] == 'customize')
-            unset($submenu['themes.php'][$key]);
-}
-add_action('admin_menu', 'bswp_remove_customizer_menu_item');
-
-register_nav_menus(
-    array(
-      'primary-menu' => __( 'Primary Nav' ),
-    )
-);
-
 // gets options function
 if(is_admin())
     include 'admin/init.php' ;
 
 if(!is_admin()){
+    require_once('functions/class-TemplateSettings.php');
     require_once('functions/gallery.php');
     require_once('functions/shortcodes.php');
     require_once('functions/class-Navbar.php');
@@ -63,6 +43,7 @@ if(!is_admin()){
 }
 
 
+require_once('functions/functions.php');
 require_once('functions/class-SetupWidgets.php');
 
 
@@ -82,9 +63,8 @@ function bswp_add_assets(){
     wp_enqueue_script("bootstrap-dropdown", $root."/scripts/bootstrap/bootstrap-dropdown.js", false, null, true);
     wp_enqueue_script("bootstrap-carousel", $root."/scripts/bootstrap/bootstrap-carousel.js", false, null, true);
     wp_enqueue_script("bootstrap-collapse", $root."/scripts/bootstrap/bootstrap-collapse.js", false, null, true);
-    wp_enqueue_script("bootstrap-alerts", $root."/scripts/bootstrap/bootstrap-alerts.js", false, null, true);
-    wp_enqueue_script("bootstrap-transition", $root."/scripts/bootstrap/bootstrap-transition.js", false, null, true);
-
+    // wp_enqueue_script("bootstrap-alert",    $root."/scripts/bootstrap/bootstrap-alerts.js",   false, null, true);
+    wp_enqueue_script("bootstrap-trans",    $root."/scripts/bootstrap/bootstrap-transition.js", false, null, true);
 
     $component_options = get_option('bswp_site_settings');
     $component_options = $component_options['available_components']['components'];
@@ -99,18 +79,8 @@ function bswp_add_assets(){
         wp_enqueue_script("bootstrap-popover", $root."/scripts/bootstrap/bootstrap-popover.js", false, null, true);
 
 
-
-
     wp_enqueue_script("site", $root."/scripts/application.js", 'jquery', null, true);
-
-
-
-
     wp_enqueue_style("site", wp_upload_dir()['baseurl'].'/bswp/assets/css/site.css');
     wp_enqueue_style("base", $root."/styles/common.css");
 
-
 }
-
-
-require_once('functions/functions.php');

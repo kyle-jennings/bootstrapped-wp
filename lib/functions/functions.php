@@ -1,5 +1,23 @@
 <?php
 
+function get_page_wrapper_class() {
+    $site_options = get_option('bswp_site_settings');
+    $misc_settings = $site_options['settings'];
+    $page_wrapper_class = '';
+    if($misc_settings['layout']['full_width'] == 'no')
+        $page_wrapper_class = 'container';
+
+    return $page_wrapper_class;
+}
+
+
+// main nav menu
+register_nav_menus(
+    array(
+      'primary-menu' => __( 'Primary Nav' ),
+    )
+);
+
 
 /* ----------------------------------------------------
  Set featured image and User Image Sizes

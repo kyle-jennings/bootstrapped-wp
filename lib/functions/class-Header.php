@@ -5,13 +5,19 @@ class Header {
     // settings
     public static $page_id;
     public static $post_page_id;
+
+    public static $template;
     public static $template_type;
+    public static $feed_type;
+
     public static $args;
     public static $content_type;
     public static $custom_content;
     public static $header_settings;
+
+
     public static $full_width;
-    public static $site_settings;
+
     public static $bg_image_url;
     public static $navbar;
     public static $background_use_wallpaper;
@@ -36,13 +42,16 @@ class Header {
         if(!self::$page_id || self::$page_id == 0 ){
             self::$page_id = $url ? self::get_page_id($url) : null;
         }
-        // set the page type - used for previews mostly
-        self::$template_type = self::set_template_type(self::$page_id);
-        // lets go ahead and grab the saved values
-        self::$site_settings = get_option('bswp_site_settings');
-        self::$header_settings = self::$site_settings['header'];
 
-        self::$full_width = self::$header_settings['settings']['full_width'];
+        // set the page type - used for previews mostly
+        self::$template_type = $GLOBALS['TemplateSettings']::$template_type;
+        self::$template = $GLOBALS['TemplateSettings']::$template;
+        self::$feed_type = $GLOBALS['TemplateSettings']::$feed_type;
+
+
+
+        self::$header_settings = $GLOBALS['TemplateSettings']::$header_settings;
+        self::$full_width = $GLOBALS['TemplateSettings']::$full_width;
 
 
         // sizes
@@ -55,7 +64,7 @@ class Header {
         // set navbar
         self::$navbar = $navbar;
 
-        // examine(self::$site_settings['misc']['layout']);
+        // error_log('header init');
     }
 
 
@@ -65,9 +74,9 @@ class Header {
     }
 
     public static function is_body_full_width() {
-        $layout = self::$site_settings['misc']['layout'];
-        $full_width = ($layout['full_width'] != 'no') ? true : false;
-        return $full_width;
+        $full_width = self::is_full_width();
+        return ($full_width == 'no') ? true : false;
+
     }
 
 
@@ -88,32 +97,6 @@ class Header {
         $container = !$body_contained && self::is_navbar_full_width() ? 'container' : '';
     }
 
-
-    /**
-     * We identify the page type (template) and set it to frontpage/feed/single post
-     * This will expand later to the other "top level" template types
-     * @param [type] $id [description]
-     */
-    public static function set_template_type($id = null) {
-
-
-        // set the current page
-        if( is_search() ||
-            is_archive($id) ||
-            (self::$page_id == self::$post_page_id  || is_home($id)) )
-        {
-            return 'feed';
-        } elseif( $id === null ||
-            is_front_page($id) ||
-            (  self::$page_id !== get_option('page_for_posts', true) && strpos($template, 'index'))
-        ){
-            return 'frontpage';
-        }else {
-            return 'single';
-        }
-
-
-    }
 
     public static function get_page_id($url) {
         $number = url_to_postid($url);
@@ -260,7 +243,7 @@ class Header {
             $content = self::get_frontpage_content();
         }elseif( self::$template_type == 'feed' ){
 
-            $content = self::get_feed_content();
+            $content = self::getFeedContent();
         }else {
 
             $content = self::get_page_content();
@@ -321,52 +304,79 @@ class Header {
      * Could be the taxonomy title, the posts page title, or a featured post
      * @return [type] [description]
      */
-    public static function get_feed_content() {
+    public static function getFeedContent()
+    {
 
 
         self::_get_default('feed_page');
-        $post = get_queried_object();
 
-        if(is_author() || get_query_var('author_name')){
-            $auth = get_user_by('slug', get_query_var('author_name'));
-            $title ='Posts by: '.$auth->nickname;
-        }
-        elseif( $post->post_title)
+
+        if(self::$feed_type == 'post_type_archive'):
+            $post = get_queried_object();
+            if( $post->post_title)
                 $title = $post->post_title;
-        elseif($post->name)
+            elseif($post->name)
                 $title = $post->name;
-        elseif(self::$page_id)
+            elseif(self::$page_id)
                 $title = get_the_title(self::$page_id);
-        elseif ( is_day() )
-			$title ='Daily Archives: <span>'.get_the_date() . '</span>';
-		elseif ( is_month() )
-			$title ='Monthly Archives: <span>' . get_the_date( 'F Y' ) . '</span>';
-		elseif ( is_year() )
-			$title ='Yearly Archives: <span>' . get_the_date( 'Y' ) . '</span>';
-		elseif( is_category() ){
-            ob_start();
-            single_cat_title();
-            $buffered_cat = ob_get_contents();
-            ob_end_clean();
-            $title ='Posted in: '.$buffered_cat;
-        }elseif (is_search()){
-            global $wp_query;
-			$total_results = $wp_query->found_posts;
-			$title = $total_results ? 'Posts containing: '.get_search_query() : 'No results found' ;
-        }else{
-            $title = '';
-        }
+        endif;
 
 
+        switch(self::$template):
+            case 'author':
+                $auth = get_user_by('slug', get_query_var('author_name'));
+                $title ='Posts by: '.$auth->nickname;
+                break;
+            case 'date':
+                $title = self::isDate(self::$feed_type);
+                break;
+    		case 'category':
+                ob_start();
+                single_cat_title();
+                $buffered_cat = ob_get_contents();
+                ob_end_clean();
+                $title ='Posted in: '.$buffered_cat;
+                break;
+            case 'search':
+                global $wp_query;
+    			$total_results = $wp_query->found_posts;
+    			$title = $total_results ? 'Posts containing: '.get_search_query() : 'No results found' ;
+                break;
+        endswitch;
 
+        error_log(self::$template . '--' . self::$feed_type);
 
         // select the content type markup
-        if(self::$content_type == 'title' || self::$content_type == null)
+        if(self::$feed_type != 'post_type_archive'){
+            $output = self::title_markup($title);
+        }
+        elseif(self::$content_type == 'title' || self::$content_type == null )
             $output = self::title_markup($title);
         else
             $output = self::featured_post_markup($post);
 
         return $output;
+    }
+
+
+
+    public static function isDate($date_type)
+    {
+
+        switch($date_type):
+            case 'day':
+                $title = 'Daily Archives: <span>'.get_the_date() . '</span>';
+                break;
+            case 'month':
+                $title = 'Monthly Archives: <span>' . get_the_date( 'F Y' ) . '</span>';
+                break;
+            case 'year':
+                $title = 'Yearly Archives: <span>' . get_the_date( 'Y' ) . '</span>';
+                break;
+        endswitch;
+
+
+        return $title;
     }
 
 

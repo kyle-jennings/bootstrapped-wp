@@ -1,20 +1,10 @@
 <?php
 
-global $page, $paged;
-$root = get_stylesheet_directory_uri();
+new TemplateSettings();
 
-$site_options = get_option('bswp_site_settings');
-$misc_settings = $site_options['settings'];
-$header_settings = $site_options['header'];
-
+$page_wrapper_class = get_page_wrapper_class();
 $navbar = new Navbar('primary-menu');
 
-
-if($misc_settings['layout']['full_width'] == 'no'){
-    $page_wrapper_class = 'container';
-}else {
-    $page_wrapper_class = '';
-}
 ?>
 
 
@@ -57,14 +47,13 @@ if($misc_settings['layout']['full_width'] == 'no'){
 
 <div class="page-wrapper <?php echo $page_wrapper_class; ?>">
 
-    <?php
-    	if( $navbar::$position == 'above_header' || $navbar::$position == 'stickied_to_top')
-            echo $navbar;
+<?php
+	if( $navbar::$position == 'above_header' || $navbar::$position == 'stickied_to_top')
+        echo $navbar;
 
-        $header = new Header(null, $navbar);
-        $header::set_scaffolding();
+    $header = new Header(null, $navbar);
+    $header::set_scaffolding();
 
 
-    	if( $navbar::$position == 'default' || $navbar::$position == 'below_header' || $navbar::$position == 'stickied_to_bottom' )
-            echo $navbar;
-	?>
+	if( $navbar::$position == 'default' || $navbar::$position == 'below_header' || $navbar::$position == 'stickied_to_bottom' )
+        echo $navbar;

@@ -92,7 +92,7 @@ class Section {
 
 
         $class = __CLASS__;
-            $GLOBALS[ $class ] = $this;
+        $GLOBALS[ $class ] = $this;
 
         $this->get_section_field_settings();
         $this->set_values_to_fields();
