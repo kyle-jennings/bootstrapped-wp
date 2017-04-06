@@ -64,7 +64,6 @@ class Header {
         // set navbar
         self::$navbar = $navbar;
 
-        // error_log('header init');
     }
 
 
@@ -130,6 +129,7 @@ class Header {
             : null;
 
 
+
         if(self::$custom_content){
             self::set_content_markup(self::$custom_content);
             return;
@@ -154,9 +154,7 @@ class Header {
     public static function inner_markup() {
         $output = '';
         $output .= '<div class="row">';
-            $output .= '<div class="span12 header-content js--header-content">';
-                $output .= self::$output;
-            $output .= '</div>';
+            $output .= self::$output;
         $output .= '</div>';
 
         return $output;
@@ -222,9 +220,9 @@ class Header {
 
         self::$content = $content;
         $output = '';
-
+        $output .= '<div class="span12 header-content js--header-content">';
             $output .= self::$content;
-
+        $output .= '</div>';
         self::$output = $output;
         self::$custom_content = null;;
     }
@@ -238,6 +236,7 @@ class Header {
 
         $post_page = get_option('page_for_posts', true);
 
+
         if( self::$template_type == 'frontpage'){
 
             $content = self::get_frontpage_content();
@@ -245,7 +244,6 @@ class Header {
 
             $content = self::getFeedContent();
         }else {
-
             $content = self::get_page_content();
         }
 
@@ -261,7 +259,7 @@ class Header {
      */
     public static function get_frontpage_content() {
         // get the saved front page values
-        self::_get_default('front_page');
+        self::_get_default('frontpage');
 
         if(self::$content_type == 'title' || self::$content_type == null)
             return self::site_title();
@@ -330,7 +328,7 @@ class Header {
             case 'date':
                 $title = self::isDate(self::$feed_type);
                 break;
-    		case 'category':
+            case 'category':
                 ob_start();
                 single_cat_title();
                 $buffered_cat = ob_get_contents();
@@ -344,16 +342,17 @@ class Header {
                 break;
         endswitch;
 
-        error_log(self::$template . '--' . self::$feed_type);
-
         // select the content type markup
         if(self::$feed_type != 'post_type_archive'){
             $output = self::title_markup($title);
         }
         elseif(self::$content_type == 'title' || self::$content_type == null )
             $output = self::title_markup($title);
-        else
+        else{
+            $post = get_queried_object();
             $output = self::featured_post_markup($post);
+        }
+
 
         return $output;
     }
@@ -386,12 +385,14 @@ class Header {
      * @param  [type] $post [description]
      */
     public static function featured_post_markup($post) {
+
         $f_id = get_option('featured-post--post');
         include dirname(__FILE__) . '/class-FeaturedPost.php';
 
         $use_exceprt = strpos(self::$content_type, 'excerpt') !== false ? 'use-excerpt' : null;
         $featured_post = new FeaturedPost($f_id, 'post', $use_exceprt);
         self::set_post_image($featured_post->id);
+
         return $featured_post->output;
         // return '';
     }

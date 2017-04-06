@@ -94,6 +94,7 @@ function rebuild_nav($args = array()) {
 function rebuild_header($args = array()){
 
     $lib_dir = dirname(dirname(dirname(__FILE__)));
+    include $lib_dir . '/functions/class-TemplateSettings.php';
     include $lib_dir . '/functions/class-Header.php';
     include $lib_dir . '/functions/class-navbarMenu.php';
     include $lib_dir . '/functions/class-Navbar.php';
@@ -103,11 +104,11 @@ function rebuild_header($args = array()){
     $styles = null;
     $page_type = null;
     $url = $args['iframeURL'] ? $args['iframeURL'] : null;
+    $iframeURLID = get_page_id($url);
     $content_type = $args['field'] == 'content_type' ? $args['value'] : null;
+    $template_type = str_replace('_page','',$args['tab']);
 
-
-
-
+    new TemplateSettings($template_type, null, $iframeURLID);
 
     if(!empty($args['dependancies'])) {
         foreach($args['dependancies'] as $dep){
@@ -122,15 +123,27 @@ function rebuild_header($args = array()){
     }
 
 
-    $header = new Header($url, new Navbar('primary-menu'));
-    $header->set_content($content_type, $custom_content);
-    $header->select_content();
 
-    return array(
-        'output' => $header::$output,
-        'callback_args' => '',
-        'args' => $new_args
+    $array = array(
+        'output' => 'no-change',
     );
+    if($template_type == $GLOBALS['TemplateSettings']::$template_type) {
+
+        $header = new Header($url, new Navbar('primary-menu'));
+        $header::set_content($content_type, $custom_content);
+        $header::select_content();
+        $header::inner_markup();
+
+        $array = array(
+            'output' => $header::$output,
+            'callback_args' => '',
+            'args' => $new_args
+        );
+    }
+
+    return $array;
+
+
 }
 
 
@@ -140,3 +153,96 @@ function rebuild_header_custom_content($args = array()){
     return rebuild_header($args);
 
 }
+
+
+function rebuild_sidebar($args = array()) {
+    global $wpdb;
+
+    $lib_dir = dirname(dirname(dirname(__FILE__)));
+    include $lib_dir . '/functions/class-TemplateSettings.php';
+    include $lib_dir . '/functions/class-Sidebar.php';
+
+
+    $url = $args['iframeURL'];
+    $iframeURLID = get_page_id($url);
+    // sidebar args
+    $template_type = str_replace('_widgets','',$args['value']['target']);
+    $position = $args['value']['position'];
+    $visibility = $args['value']['visibility'];
+
+    new TemplateSettings(null, null, $iframeURLID);
+
+    $array = array();
+
+
+    // examine($GLOBALS['wp_registered_sidebars']);
+    // examine($template_type .'=>'. $GLOBALS['TemplateSettings']::$template_type);
+
+    if($template_type == $GLOBALS['TemplateSettings']::$template_type) {
+
+        $sidebar = new Sidebar($template_type, $position, $visibility);
+
+        $new_args = json_encode(array(
+            'position' => $position,
+            'visibility' => $visibility
+        ));
+
+
+
+        $array = array(
+            'output' => $sidebar->output,
+            'callback_args' => '',
+            'args' => $new_args
+        );
+
+    }
+
+    return $array;
+}
+
+
+
+function get_page_id($url) {
+    $number = url_to_postid($url);
+    $id = null;
+    if($number > 0)
+        $id = $number; // a page
+    else{
+        $posts_id = get_option('page_for_posts', true);
+        $page_for_posts_url = get_permalink( $posts_id );
+        if( rtrim($url,'/') == rtrim($page_for_posts_url,'/') )
+            $id = $post_id; // the posts page
+        else
+            $id =  null;  // front page
+    }
+
+    return $id;
+}
+
+
+// $test = array(
+//     'iframeURL' => 'http://kylejenningsdesign.loc/',
+//     'section' => 'site_settings',
+//     'group' => 'layouts',
+//     'tab' => 'sidebars',
+//     'field' => 'frontpage_widgets',
+//     'value' => array(
+//             'position' => 'top',
+//             'visibility' => 'all',
+//             'target' => 'frontpage_widgets',
+//         )
+// );
+
+
+// rebuild_sidebar($test);
+
+// $lib_dir = dirname(dirname(dirname(__FILE__)));
+//
+// require_once($lib_dir.'/functions/class-SetupWidgets.php');
+//
+//
+//
+// ob_start();
+//     dynamic_sidebar('frontpage_widgets');
+// $content = ob_get_clean();
+// examine($content);

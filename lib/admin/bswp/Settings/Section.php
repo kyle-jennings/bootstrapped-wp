@@ -87,7 +87,7 @@ class Section {
         $this->get_settings_file();
         $this->get_saved_values();
 
-        if($_GET['show_saved_values'] == 'yes')
+        if(isset($_GET['show_saved_values']) && $_GET['show_saved_values'] == 'yes')
             examine($this->saved_values);
 
 
@@ -101,7 +101,7 @@ class Section {
 
 
 
-        if($_GET['show_object'] == 'yes')
+        if(isset($_GET['show_object']) && $_GET['show_object'] == 'yes')
             examine($this);
 
 

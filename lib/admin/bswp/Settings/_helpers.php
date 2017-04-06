@@ -46,7 +46,7 @@ function border_settings_map(
     $return_arr = array();
 
     foreach($toggles as $toggle){
-
+        $return_arr[$toggle] = '';
         foreach($border_targets as $target){
             $border_color = ltrim($target.'_border_color', '_');
             $border_style = ltrim($target.'_border_style', '_');
@@ -72,7 +72,7 @@ function border_corners_toggle_map($action = 'toggle'){
     $corners = array('top_left','top_right','bottom_right','bottom_left');
 
     $return_arr = array();
-
+    $return_arr['yes'] = null;
     foreach($corners as $corner){
 
         if($action == 'toggle')

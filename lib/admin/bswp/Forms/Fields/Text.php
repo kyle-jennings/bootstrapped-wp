@@ -34,7 +34,7 @@ class Text extends Field {
 
 
 
-        if($this->args['suffix']){
+        if(isset($this->args['suffix']) && $this->args['suffix']){
             $class = 'js--add-suffix';
             $data = 'data-suffix="'.$this->args['suffix'].'"';
         }

@@ -16,6 +16,17 @@ use function bswp\Settings\_helpers\remove_link_bg;
 use function bswp\Settings\_helpers\border_settings_map;
 
 
+$rebuild_sidebar_script = '
+    console.log(json.output);
+    console.log(json.args);
+    console.log(json);
+    // var $preview = $(".preview-window").contents();
+    // var $output = $(json.output);
+    // var $body = $preview.find(".section--body");
+    //
+    // $body.replaceWith($output);
+';
+
 $layouts = new SettingsGroup('layouts');
 $layouts->add_tab('sidebars',
     array(
@@ -30,8 +41,9 @@ $layouts->add_tab('sidebars',
                     'bottom',
                     'left',
                 ),
-
-                'preview'=> null
+                'preview'=>'form_save_warning',
+                'preview_args'=>'rebuild_sidebar',
+                'preview_callback' => $rebuild_sidebar_script,
             )
         ),
 
@@ -48,7 +60,9 @@ $layouts->add_tab('sidebars',
                     'bottom',
                     'left',
                 ),
-
+                'preview'=>'form_save_warning',
+                'preview_args'=>'rebuild_sidebar',
+                'preview_callback' => $rebuild_sidebar_script,
             )
         ),
 
@@ -65,7 +79,9 @@ $layouts->add_tab('sidebars',
                     'bottom',
                     'left',
                 ),
-
+                'preview'=>'form_save_warning',
+                'preview_args'=>'rebuild_sidebar',
+                'preview_callback' => $rebuild_sidebar_script,
 
             )
         ),

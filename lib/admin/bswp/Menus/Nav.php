@@ -85,7 +85,7 @@ class Nav {
         // useless function
         foreach($groups as $group){
             // get the tabs for the group
-            $groups_arr[$group->name];
+            // examine($groups_arr[$group->name]);
             $tabs = $group->tabs;
 
             // for each of the tabs, get the tab name

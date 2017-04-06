@@ -4,21 +4,22 @@ class Sidebar
 {
     public $output = '';
     public $sidebar;
-    public $location;
+    public $position;
     public $width;
     public $device_view;
 
-    public function __construct($sidebar = 'default', $location = 'none', $device_view = 'all')
+    public function __construct($sidebar = 'default', $position = 'none', $device_view = 'all')
     {
-
-        if($this->location == 'none')
-            return '';
 
         $this->sidebar = !strpos('_widgets',$sidebar) ? $sidebar.'_widgets' : $sidebar;
 
-        $this->location = $location;
-        $this->width = in_array($this->location, array('top', 'bottom')) ? 'span12' : 'span3' ;
+        $this->position = $position;
+        $this->width = in_array($this->position, array('top', 'bottom')) ? 'span12' : 'span3' ;
         $this->device_view = $device_view;
+
+        if($this->position == 'none')
+            return '';
+
 
         $this->output = $this->getSidebar();
 
@@ -33,7 +34,7 @@ class Sidebar
     /**
 	 * builds and gets the sidebar, must call setSidebarArea to get the correct widgts
 	 * @param  string $sidebar     [description]
-	 * @param  [type] $location    [description]
+	 * @param  [type] $position    [description]
 	 * @param  [type] $width       [description]
 	 * @param  [type] $device_view [description]
 	 * @return [type]              [description]
@@ -46,10 +47,10 @@ class Sidebar
 
 		ob_start();
 			dynamic_sidebar($this->sidebar);
-			$content = ob_get_contents();
-		ob_end_clean();
+		$content = ob_get_clean();
+    
 
-		$output .= '<div class="sidebar '.$this->width.' '.$this->location.'-widgets '.$this->device_view.'">';
+		$output .= '<div class="sidebar sidebar--'.$this->position.' '.$this->width.' '.$this->device_view.'">';
 
             if($this->width == 'span12')
                 $output .= '<div class="row">' . $content .'</div>';
@@ -59,8 +60,6 @@ class Sidebar
 		$output .= '</div>';
 
 
-
-		// return $the_buffered_sidebar;
 		return $output;
 	}
 

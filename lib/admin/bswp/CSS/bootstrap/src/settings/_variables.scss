@@ -998,14 +998,14 @@ $headerHeadingsLinkHoveredTextDecoration: none ;
 $headerHeadingsLinkHoveredTextShadow: rgba(0,0,0,0) ;
 
 // front page settings
-$frontpageAlignment: left;
+$frontpageAlignment: $headingAlignment;
 
 
 // feed page settings
-$feedAlignment: left;
+$feedAlignment: $headingAlignment;
 
 // single page settings
-$singleAlignment: left;
+$singleAlignment: $headingAlignment;
 // Navbar
 // -------------------------
 

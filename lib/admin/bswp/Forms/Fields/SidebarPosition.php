@@ -150,8 +150,7 @@ class SidebarPosition extends Field{
         $field_name = 'bswp_'.$this->section_name.
             '['.$this->group_name.']['.$this->tab_name.']['.$this->name.']';
 
-
-        return array(
+        $args = array(
             'id'=>$id,
             'field_name' => $field_name,
             'value_str' => $value_str,
@@ -161,5 +160,8 @@ class SidebarPosition extends Field{
             'data_preview_deps' => $data_preview_deps,
             'classes' => $classes
         );
+
+
+        return $args;
     }
 }

@@ -23,7 +23,7 @@ class SetupWidgets {
     }
 
 
-    function get_frontpage_widget_areas($frontpage)
+    public static function get_frontpage_widget_areas($frontpage)
     {
         $sortables = json_decode($frontpage);
 
@@ -40,7 +40,7 @@ class SetupWidgets {
     }
 
 
-    function registerSidebars()
+    public static function registerSidebars()
     {
 
 
@@ -67,6 +67,7 @@ class SetupWidgets {
         			'after_widget' => '</div>'
         		)
         	);
+
         }
     }
 
@@ -82,9 +83,10 @@ class SetupWidgets {
     {
 
 
-        $sidebars = wp_get_sidebars_widgets($sidebar);
+        $sidebars = wp_get_sidebars_widgets();
         $widgets = $sidebars[$sidebar];
         $count = count($widgets);
+
 
 
         if($sidebar_pos == 'none' || !$sidebar_pos)

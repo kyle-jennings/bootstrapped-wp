@@ -118,7 +118,7 @@ class Sortable extends Field {
 
     // get the active components
     private function get_active(){
-
+        $output = '';
         $saved = $this->value;
         foreach($saved as $component){
             $output .= $this->get_sortable_markup($component);

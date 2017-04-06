@@ -148,6 +148,7 @@ $header->add_tab('borders', array_merge(
 
 $rebuild_header_script = '
     if(json.output != "no-change"){
+        console.log(json);
         var $preview = $(".preview-window").contents();
         var $output = $(json.output);
         var position = json.callback_args;
@@ -156,7 +157,7 @@ $rebuild_header_script = '
     }
 ';
 
-$header->add_tab('front_page',array(
+$header->add_tab('frontpage',array(
     'content_type' => new Select(
         array(
             'label'=> 'Content Type',
@@ -173,7 +174,7 @@ $header->add_tab('front_page',array(
             'preview'=>'ajax',
             'preview_args'=>'rebuild_header',
             'preview_callback' => $rebuild_header_script,
-            'preview_dependancies' => '$(\'#front_page_custom_content_ifr\').contents().find(\'body\').html(),title_alignment'
+            'preview_dependancies' => '$(\'#frontpage_custom_content_ifr\').contents().find(\'body\').html(),title_alignment'
         )
     ),
     'title_alignment' => new Select(
@@ -205,13 +206,13 @@ $header->add_tab('front_page',array(
                 'type'=>'wp_editor',
                 'args' => array(),
             ),
-            'preview_dependancies' => '$(\'#front_page_custom_content_ifr\').contents().find(\'body\').html(),title_alignment,content_type'
+            'preview_dependancies' => '$(\'#frontpage_custom_content_ifr\').contents().find(\'body\').html(),title_alignment,content_type'
         )
     ),
 ));
 
 
-$header->add_tab('feed_page',array(
+$header->add_tab('feed',array(
     'content_type' => new Select(
         array(
             'label'=> 'Content Type',
@@ -242,7 +243,7 @@ $header->add_tab('feed_page',array(
 ));
 
 
-$header->add_tab('single_page',array(
+$header->add_tab('single',array(
     'content_type' => new Select(
         array(
             'label'=> 'Content Type',

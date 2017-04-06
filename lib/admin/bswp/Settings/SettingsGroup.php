@@ -83,7 +83,7 @@ class SettingsGroup {
             $tab[$name]->group_name = $this->name;
             $tab[$name]->tab_name = $tab_name;
             $tab[$name]->form_name_attr = $this->section_name.'_section';
-            $tab[$name]->default = $this->default ? $this->default : null;
+            $tab[$name]->default = isset($this->default) ? $this->default : null;
 
 
             $tab[$name]->id = $this->name.'-'.$tab_name.'-'.$name;

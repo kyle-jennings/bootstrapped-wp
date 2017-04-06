@@ -4,15 +4,15 @@ class Columns {
 
     public static $output = '';
     public static $content;
-    public static $template;
+    public static $template_type;
     public static $sidebar;
     public static $width;
 
-    public function __construct($sidebar = null, $content, $template = null)
+    public function __construct($template_type = null, $sidebar = null, $content = null)
     {
 
         self::$content = $content;;
-        self::$template = $template;
+        self::$template_type = $template_type;
         self::$sidebar = $sidebar;
         $width = in_array($sidebar->position, array('left', 'right')) ? 'span9' : 'span12';
 
@@ -20,14 +20,14 @@ class Columns {
 
         // sidebar if on top on left
         if($sidebar->position =='top' || $sidebar->position =='left')
-            $output .= new Sidebar(self::$template, $sidebar->position, $sidebar->visibility);
+            $output .= new Sidebar(self::$template_type, $sidebar->position, $sidebar->visibility);
 
 
         $output .= self::mainColumn($width, $content, false);
 
         // sidebar if on bottom or right
         if($sidebar->position =='bottom' || $sidebar->position =='right')
-            $output .= new Sidebar(self::$template, $sidebar->position, $sidebar->visibility);
+            $output .= new Sidebar(self::$template_type, $sidebar->position, $sidebar->visibility);
 
         self::$output = $output;
     }
@@ -40,7 +40,7 @@ class Columns {
     public static function loop()
     {
         $content = new Content();
-        $content::set_template(self::$template);
+        $content::set_template(self::$template_type);
 
         $output = '';
         /* ---------------------- The Loop ----------------------- */

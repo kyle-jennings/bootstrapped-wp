@@ -153,7 +153,7 @@ class Field {
 
         $data_toggled_by = '';
         $data_toggle_name = '';
-
+        $data_toggled_by_name = '';
 
         if(!empty($this->toggled_by) ){
             $toggles = $this->toggle_fields_markup($this->toggled_by);

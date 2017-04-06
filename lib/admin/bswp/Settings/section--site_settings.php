@@ -31,7 +31,7 @@ include dirname(__FILE__).'/components/buttons.php';
 include dirname(__FILE__).'/components/alerts.php';
 
 $component_options = get_option('bswp_site_settings');
-$component_options = $component_options['available_components']['components'];
+$component_options = $component_options['settings']['components'];
 
 // add components
 // components are determined by the $available_components_toggles array
@@ -84,7 +84,6 @@ $links = new SettingsGroup('links');
 $links->add_tab('link', $link);
 $links->add_tab('hovered_link', $hovered_link);
 $links->add_tab('active_link', $active_link);
-$links->add_tab('visited_link', $visited_link);
 
 
 
