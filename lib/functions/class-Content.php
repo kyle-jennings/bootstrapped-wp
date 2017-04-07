@@ -181,7 +181,7 @@ class Content {
 
         }else{
             ob_start();
-            if($post_display !='excerpt'){
+            if(!get_option('rss_use_excerpt', true)){
                 the_content();
             }else{
                 the_excerpt();
