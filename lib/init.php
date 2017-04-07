@@ -80,7 +80,16 @@ function bswp_add_assets(){
 
 
     wp_enqueue_script("site", $root."/scripts/application.js", 'jquery', null, true);
-    wp_enqueue_style("site", wp_upload_dir()['baseurl'].'/bswp/assets/css/site.css');
+
+    // we might use this later...
+    // $backup = wp_upload_dir()['baseurl'].'/bswp/assets/css/site.css';
+    // if(is_readable($backup) )
+    //     wp_enqueue_style("site", wp_upload_dir()['baseurl'].'/bswp/assets/css/site.css');
+    // else{
+        $css = get_option('css-url', true);
+        wp_enqueue_style("site", $css['src']);
+    // }
+
     wp_enqueue_style("base", $root."/styles/common.css");
 
 }

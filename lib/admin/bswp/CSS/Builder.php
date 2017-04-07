@@ -5,6 +5,10 @@ namespace bswp\css;
 use Leafo\ScssPhp\Compiler;
 use Leafo\ScssPhp\Exception;
 
+require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+require_once(ABSPATH . "wp-admin" . '/includes/file.php');
+require_once(ABSPATH . "wp-admin" . '/includes/media.php');
+
 class Builder {
 
     public $preview = false;
@@ -164,10 +168,94 @@ class Builder {
             if ($file != false){
                 fwrite($file,$filecontent);
                 fclose($file);
+                $this->sideLoadAndClean($filename, $folderPath);
                 return 1;
             }
             return -2;
         }
         return -1;
+    }
+
+    function sideLoadAndClean($filename, $folderPath)
+    {
+      $current_user = wp_get_current_user();
+      $id = $current_user->ID;
+
+
+      $path = wp_upload_dir()['baseurl'].'/bswp/assets/css/'. $filename;
+
+
+      $status = $this->sideloadFile($path, $id);
+
+      if(!is_wp_error($status)){
+          unlink($folderPath . '/' . $filename);
+          $oldfile = get_option('css-url', true);
+          wp_delete_attachment($oldfile['id'], true);
+          update_option('css-url', $status, 'true');
+
+      }else{
+          $this->status = $status;
+          add_action( 'admin_notices', array($this,'error') );
+      }
+
+    }
+
+
+    function sideloadFile( $file, $post_id) {
+        if ( ! empty( $file ) ) {
+
+            // Set variables for storage, fix file filename for query strings.
+            preg_match( '/[^\?]+\.(css)\b/i', $file, $matches );
+            if ( ! $matches ) {
+                return new WP_Error( 'image_sideload_failed', __( 'Invalid URL' ) );
+            }
+
+            $file_array = array();
+            $file_array['name'] = basename( $matches[0] );
+
+            // Download file to temp location.
+            $file_array['tmp_name'] = download_url( $file );
+
+            // If error storing temporarily, return the error.
+            if ( is_wp_error( $file_array['tmp_name'] ) ) {
+                return $file_array['tmp_name'];
+            }
+
+            // Do the validation and storage stuff.
+            $id = media_handle_sideload( $file_array, $post_id, $desc );
+
+            // If error storing permanently, unlink.
+            if ( is_wp_error( $id ) ) {
+                @unlink( $file_array['tmp_name'] );
+                return $id;
+            }else{
+                $old_css_file = get_option('css-url', true);
+            }
+
+            $src = wp_get_attachment_url( $id );
+        }
+
+        // Finally, check to make sure the file has been saved, then return the HTML.
+        if ( ! empty( $src ) ) {
+            return array(
+                'src'=>$src,
+                'id'=>$id
+            );
+
+        } else {
+            return new WP_Error( 'image_sideload_failed' );
+        }
+    }
+
+
+    public function error()
+    {
+        ?>
+            <div class="update-nag notice">
+                <p>
+                    Something has gone wrong..please try again.
+                </p>
+            </div>
+        <?php
     }
 }
