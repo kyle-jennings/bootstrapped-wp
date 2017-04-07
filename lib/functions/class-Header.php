@@ -48,8 +48,6 @@ class Header {
         self::$template = $GLOBALS['TemplateSettings']::$template;
         self::$feed_type = $GLOBALS['TemplateSettings']::$feed_type;
 
-
-
         self::$header_settings = $GLOBALS['TemplateSettings']::$header_settings;
         self::$full_width = $GLOBALS['TemplateSettings']::$full_width;
 
@@ -236,12 +234,10 @@ class Header {
 
         $post_page = get_option('page_for_posts', true);
 
-
         if( self::$template_type == 'frontpage'){
 
             $content = self::get_frontpage_content();
         }elseif( self::$template_type == 'feed' ){
-
             $content = self::getFeedContent();
         }else {
             $content = self::get_page_content();
@@ -305,9 +301,7 @@ class Header {
     public static function getFeedContent()
     {
 
-
-        self::_get_default('feed_page');
-
+        self::_get_default('feed');
 
         if(self::$feed_type == 'post_type_archive'):
             $post = get_queried_object();
@@ -405,7 +399,7 @@ class Header {
     public static function get_page_content() {
         global $post;
 
-        self::_get_default('single_page');
+        self::_get_default('single');
 
         $title = $post->post_title ? $post->post_title : get_the_title(self::$page_id);
 
