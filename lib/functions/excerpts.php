@@ -4,13 +4,18 @@
  * Custom Excerpt Length
  */
 function bswp_continue_reading_link() {
-    return '<a href="'. esc_url( get_permalink() ) . '">' . __( '&hellip;', 'kjd_themestarter' ) . '</a>';
+    global $summary_settings;
+    $value = $summary_settings['read_more'] ? $summary_settings['read_more'] : '...';
+    
+    return '<a href="'. esc_url( get_permalink() ) . '">' . $value . '</a>';
 }
 
 
 function bswp_excerpt_length() {
-    error_log('22');
-    return '10';
+    global $summary_settings;
+    $value = $summary_settings['length'] ? $summary_settings['length'] : 55;
+
+    return $value;
 }
 
 function bswp_auto_excerpt_more( $more ) {
@@ -26,6 +31,7 @@ function bswp_custom_excerpt_more( $output ) {
 
 
 if(get_option('rss_use_excerpt', true) == true) {
+    $summary_settings = get_option('summary_settings', true);
 
     add_filter( 'excerpt_length', 'bswp_excerpt_length' );
     add_filter( 'excerpt_more', 'bswp_auto_excerpt_more' );
