@@ -19,14 +19,14 @@ $navbar = new SettingsGroup('navbar');
 
 
 $rebuild_nav_script = '
+
     var $preview = $(".preview-window").contents();
     var $output = $(json.output);
     var position = json.callback_args;
-    var $navbar = $preview.find("#navbar");
-    var $header = $preview.find("#header");
+    var $navbar = $preview.find(".section--navbar");
+    var $header = $preview.find(".section--header");
 
     if( position == "above_header" || position == "stickied_to_top" ){
-        console.log($navbar);
         $navbar.insertBefore($header);
     }else if( position == "in_header_top" ){
         $navbar.prependTo($header);
@@ -82,7 +82,6 @@ $navbar->add_tab('settings', array(
             'toggled_by'=>array(
                 'brand'=>'image',
                 'settings'=>'basic'
-
             ),
             'preview'=>'ajax',
             'preview_args'=>'rebuild_nav',

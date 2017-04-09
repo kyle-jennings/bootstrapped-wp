@@ -25,8 +25,16 @@ class File extends Field {
 
         $output = '';
         $output .= '<label>'.$this->label.'</label>';
-        $output .= '<input class="media_input" type="text" id="'.$id.'" name="'.$name.'"
-            value="'.$this->value.'" />';
+        $output .= '<input
+            class="media_input" type="text"
+            '.$data_preview.'
+            '.$data_field_name.'
+            '.$data_preview_deps.'
+            '.$data_target_fields.'
+            id="'.$id.'"
+            name="'.$name.'"
+            value="'.$this->value.'"
+          />';
         $output .= '<input class="button upload_image" type="button" value="Upload file" />';
 
         return $output;

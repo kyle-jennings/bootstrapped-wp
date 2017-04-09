@@ -34,7 +34,6 @@ class Navbar{
         self::$site_settings = $site_settings['misc'];
         self::$nav_settings = $site_settings['navbar']['settings'];
 
-
         self::$class = $class ? $class : '';
 
         // position and movement
@@ -45,6 +44,7 @@ class Navbar{
         // navbar brand
         self::$brand = isset($brand) ? $brand : self::get_default('brand', 'text');
         self::$brand_image = isset($brand_image) ? $brand_image : self::get_default('brand_image', '');
+
 
         // navbar style for stickied navbar
         if(self::$position == 'stickied_to_top')

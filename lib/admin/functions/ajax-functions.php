@@ -73,8 +73,9 @@ function rebuild_nav($args = array()) {
     include $lib_dir . '/functions/class-Navbar.php';
 
     $new_args = array();
-    // get all the ars for the new navbar
-    //
+    error_log('navbar change: ');
+    error_log(json_encode($args));
+
     if(!empty($args['dependancies'])) {
         foreach($args['dependancies'] as &$dep){
             $new_args[str_replace('#navbar-settings-','', $dep['name'])] = $dep['value'];
