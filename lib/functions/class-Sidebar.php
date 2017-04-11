@@ -7,22 +7,26 @@ class Sidebar
     public $position;
     public $width;
     public $device_view;
+    public $preview;
 
-    public function __construct($sidebar = 'default', $position = 'none', $device_view = 'all')
+    public function __construct($sidebar = 'default', $position = 'none', $device_view = 'all', $preview = null)
     {
 
-        $this->sidebar = !strpos('_widgets',$sidebar) ? $sidebar.'_widgets' : $sidebar;
+
+        $this->name = $sidebar;
 
         $this->position = $position;
         $this->width = in_array($this->position, array('top', 'bottom')) ? 'span12' : 'span3' ;
         $this->device_view = $device_view;
-
+        $this->preview = $preview;
         if($this->position == 'none')
             return '';
 
-
         $this->output = $this->getSidebar();
 
+
+        if($this->preview == 'preview' && strpos($this->name, 'frontpage') !== false){}
+            return $this->setWidgetWidth($this->name, $this->position);
     }
 
 
@@ -46,9 +50,8 @@ class Sidebar
 
 
 		ob_start();
-			dynamic_sidebar($this->sidebar);
+			dynamic_sidebar($this->name);
 		$content = ob_get_clean();
-    
 
 		$output .= '<div class="sidebar sidebar--'.$this->position.' '.$this->width.' '.$this->device_view.'">';
 
@@ -63,27 +66,102 @@ class Sidebar
 		return $output;
 	}
 
-	public function setSidebarArea($sidebar = null)
+
+    public static function getFrontpagePos($frontpage_sidebar = null) {
+        if(!$frontpage_sidebar)
+            return;
+
+        $frontpage_sidebar = json_decode($frontpage_sidebar);
+        $orientation = 'none';
+
+        if( in_array($frontpage_sidebar->position, array('left','right')) )
+            $orientation = 'vertical';
+        elseif(in_array($frontpage_sidebar->position, array('top','bottom')))
+            $orientation = 'horizontal';
+
+        return $orientation;
+
+    }
+
+    public function setWidgetWidth($name, $position)
     {
 
-		$available_sidebars = array(
-			'template_1', 'template_2', 'template_3', 'template_4', 'template_5', 'template_6',
-			'frontpage_widgets_1', 'frontpage_widgets_2', 'header_widgets', 'footer_widgets',
-            'default', 'frontpage','feed', 'single'
-		);
-		if( !empty($post_templates) ){
-			foreach($post_templates as $k => $v){
-				$available_sidebars[] = $k;
-			}
-		}
+        // examine(wp_get_sidebars_widgets());
+        $sidebars = wp_get_sidebars_widgets();
+        $widgets = $sidebars[$name];
+        $count = count($widgets);
+        $this->count = $count;
+
+        $options = get_option('bswp_site_settings');
+        $frontpage_sidebar = $options['layouts']['sidebars']['frontpage'];
+
+        // if no position is provided, or its "none" then we do nothing
+        if($position == 'none' || !$position)
+            return;
+
+        if( strpos($name, 'frontpage_widgets_') !== false
+            && $this->getFrontpagePos($frontpage_sidebar) == 'vertical'
+        ){
+            $width = $this->widgetWidthNarrow($count);
+        }
+        elseif( in_array($position, array('left', 'right')))
+            $width = "";
+        else
+            $width = $this->widgetWidthWide($count);
+
+        $this->output = preg_replace('/(class="widget (span(\d))*")/', 'class="widget '.$width.'"', $this->output);
+
+    }
 
 
-		if(!in_array($sidebar, $available_sidebars)){
-			$sidebar = 'default';
-		}
+    public function widgetWidthNarrow($count)
+    {
+
+        switch($count):
+			case 1:
+				return 'span9';
+				break;
+			case 2:
+				return 'span4';
+				break;
+			case 3:
+				return 'span3';
+				break;
+			case 4:
+				return 'span2';
+				break;
+			case 5:
+				return 'span1';
+				break;
+			case 6:
+				return 'span1';
+				break;
+        endswitch;
+    }
 
 
-		return $sidebar;
-	}
+    public function widgetWidthWide($count)
+    {
+        switch($count):
+            case 1:
+                return 'span12';
+                break;
+            case 2:
+                return 'span6';
+                break;
+            case 3:
+                return 'span4';
+                break;
+            case 4:
+                return 'span3';
+                break;
+            case 5:
+                return 'span2';
+                break;
+            case 6:
+                return 'span2';
+                break;
+        endswitch;
+    }
 
 }

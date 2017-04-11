@@ -80,14 +80,6 @@ function kjd_deviceViewSettings($deviceView){
     }
 }
 
-/* ------------------------------------------------------
- Add login css
---------------------------------------------------------- */
-function kjd_login_css() {
-    require_once dirname(dirname(__FILE__)).'/styles/login.php';
-}
-add_action('login_head', 'kjd_login_css');
-
 
 
 /* --------------------------------------------
@@ -136,7 +128,7 @@ function kjd_add_widget_style( $params ){
     return $params;
 }
 
-add_filter( 'dynamic_sidebar_params', 'kjd_add_widget_style' );
+// add_filter( 'dynamic_sidebar_params', 'kjd_add_widget_style' );
 
 
 /* ------------------------------------------------------
@@ -198,7 +190,7 @@ function kjd_add_device_visibility( $params ){
     return $params;
 }
 
-add_filter( 'dynamic_sidebar_params', 'kjd_add_device_visibility' );
+// add_filter( 'dynamic_sidebar_params', 'kjd_add_device_visibility' );
 
 
 /* --------------------------------------------------

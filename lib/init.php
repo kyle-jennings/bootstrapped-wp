@@ -19,6 +19,10 @@ if(! function_exists('examine') ){
 }
 
 
+
+require_once('functions/functions.php');
+require_once('functions/class-SetupWidgets.php');
+
 // gets options function
 if(is_admin())
     include 'admin/init.php' ;
@@ -41,7 +45,3 @@ if(!is_admin()){
     require_once('functions/class-mobileMenu.php');
     require_once('functions/class-navbarMenu.php');
 }
-
-
-require_once('functions/functions.php');
-require_once('functions/class-SetupWidgets.php');

@@ -17,23 +17,32 @@ use function bswp\Settings\_helpers\border_settings_map;
 
 
 $rebuild_sidebar_script = '
-    console.log(json.output);
-    console.log(json.args);
-    console.log(json);
-    // var $preview = $(".preview-window").contents();
-    // var $output = $(json.output);
-    // var $body = $preview.find(".section--body");
-    //
-    // $body.replaceWith($output);
+if(json.callback_args){
+    var args = json.callback_args;
+    window.args = args;
+    var position  = args.position;
+    var width = (position == "left" || position == "right") ? "span9" : "span12";
+    var $preview = $(".preview-window").contents();
+    var $output = $(json.output);
+    var $content = $preview.find(".content-column");
+
+    $content.removeClass("span9 span12").addClass(width);
+    $preview.find(".sidebar").remove();
+
+    if(position == "left" || position == "top")
+        $output.insertBefore($content);
+    else
+        $output.insertAfter($content);
+}
 ';
 
 $layouts = new SettingsGroup('layouts');
 $layouts->add_tab('sidebars',
     array(
-        'frontpage_widgets' => new SidebarPosition(
+        'frontpage' => new SidebarPosition(
             array(
                 'label'=> 'Frontpage',
-                'name'=>'frontpage_widgets',
+                'name'=>'frontpage',
                 'args' => array(
                     'none',
                     'top',
@@ -49,10 +58,10 @@ $layouts->add_tab('sidebars',
 
         'divider1'=>new Divider(),
 
-        'feed_widgets' => new SidebarPosition(
+        'feed' => new SidebarPosition(
             array(
                 'label'=> 'Feed',
-                'name'=>'feed_widgets',
+                'name'=>'feed',
                 'args' => array(
                     'none',
                     'top',
@@ -68,10 +77,10 @@ $layouts->add_tab('sidebars',
 
         'divider2'=>new Divider(),
 
-        'single_widgets' => new SidebarPosition(
+        'single' => new SidebarPosition(
             array(
                 'label'=> 'Single',
-                'name'=>'single_widgets',
+                'name'=>'single',
                 'args' => array(
                     'none',
                     'top',

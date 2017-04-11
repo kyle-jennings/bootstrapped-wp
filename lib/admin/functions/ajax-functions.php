@@ -1,5 +1,6 @@
 <?php
 
+
 use bswp\Settings;
 use bswp\Menus\AdminMenu;
 use bswp\Menus\Nav;
@@ -15,7 +16,6 @@ function bswp_live_preview() {
         die;
 
     $data = $_POST['data'];
-
 
     $builder = new Builder($data['section'], $data['form_values'], true);
     $builder->build();
@@ -162,6 +162,7 @@ function rebuild_sidebar($args = array()) {
     $lib_dir = dirname(dirname(dirname(__FILE__)));
     include $lib_dir . '/functions/class-TemplateSettings.php';
     include $lib_dir . '/functions/class-Sidebar.php';
+    include $lib_dir . '/functions/class-Columns.php';
 
 
     $url = $args['iframeURL'];
@@ -176,23 +177,27 @@ function rebuild_sidebar($args = array()) {
     $array = array();
 
 
-    // examine($GLOBALS['wp_registered_sidebars']);
     // examine($template_type .'=>'. $GLOBALS['TemplateSettings']::$template_type);
 
     if($template_type == $GLOBALS['TemplateSettings']::$template_type) {
 
-        $sidebar = new Sidebar($template_type, $position, $visibility);
+        // error_log($template_type.'---'.$position.'---'.$visibility);
+        $sidebar = new Sidebar($template_type, $position, $visibility, 'preview');
 
-        $new_args = json_encode(array(
+
+        $new_args = array(
             'position' => $position,
             'visibility' => $visibility
-        ));
+        );
 
+        if($template_type == 'frontpage'){
+            $new_args['fp_widget_areas'] = get_frontpage_sortble_widgets();
+        }
 
 
         $array = array(
             'output' => $sidebar->output,
-            'callback_args' => '',
+            'callback_args' => $new_args,
             'args' => $new_args
         );
 
@@ -221,29 +226,24 @@ function get_page_id($url) {
 }
 
 
-// $test = array(
-//     'iframeURL' => 'http://kylejenningsdesign.loc/',
-//     'section' => 'site_settings',
-//     'group' => 'layouts',
-//     'tab' => 'sidebars',
-//     'field' => 'frontpage_widgets',
-//     'value' => array(
-//             'position' => 'top',
-//             'visibility' => 'all',
-//             'target' => 'frontpage_widgets',
-//         )
-// );
+function get_frontpage_sortble_widgets() {
 
+    $options = get_option('bswp_site_settings');
+    $frontpage_sidebar = $options['layouts']['sidebars']['frontpage'];
+    $sortables = $options['layouts']['frontpage']['frontpage_layout_sortable'];
+    $sortables = json_decode($sortables);
 
-// rebuild_sidebar($test);
+    $areas = array();
+    foreach($sortables as $sortable){
+        if(strpos($sortable->name, 'widgets')){
+            $output = '';
+            $output .= '<div class="row '.$sortable->visibility.' frontpage-component">';
+                $output .= new Sidebar($sortable->name, 'top', $sortable->visibility, 'preview');
+            $output .= '</div>';
+            $areas[] = $output;
+        }
 
-// $lib_dir = dirname(dirname(dirname(__FILE__)));
-//
-// require_once($lib_dir.'/functions/class-SetupWidgets.php');
-//
-//
-//
-// ob_start();
-//     dynamic_sidebar('frontpage_widgets');
-// $content = ob_get_clean();
-// examine($content);
+    }
+
+    return $areas;
+}

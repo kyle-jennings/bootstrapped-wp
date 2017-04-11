@@ -18,3 +18,9 @@ register_nav_menus(
       'primary-menu' => __( 'Primary Nav' ),
     )
 );
+
+
+function kjd_login_css() {
+    require_once dirname(dirname(__FILE__)).'/styles/login.php';
+}
+add_action('login_head', 'kjd_login_css');

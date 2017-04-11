@@ -9,6 +9,15 @@ use bswp\CSS\Builder;
 add_action('admin_menu', array(new AdminMenu, 'add_top_menu') );
 
 
+// adds admin functions
+include 'functions/ajax-functions.php';
+include 'functions/admin_functions.php';
+include 'functions/shortcode-injector/init.php';
+include 'functions/metabox--featured-post.php';
+include('functions/wordpress-settings.php');
+
+
+
 function bswp_check_for_styles() {
     $file = wp_upload_dir()['basedir'].'/bswp/assets/css/site.css';
     if(!file_exists($file)){
@@ -25,13 +34,13 @@ function bswp_check_for_styles() {
 add_action("after_switch_theme", "bswp_check_for_styles");
 
 /**
- * Adds the admin area CSS and JS
- * @return [type] [description]
- */
+* Adds the admin area CSS and JS
+* @return [type] [description]
+*/
 function bswp_admin_assets() {
 
-	$adminDir = get_bloginfo('template_directory');
-	$adminDir = $adminDir."/lib/admin/";
+    $adminDir = get_bloginfo('template_directory');
+    $adminDir = $adminDir."/lib/admin/";
     $assets_dir = $adminDir . 'assets';
     $css_dir = wp_upload_dir()['baseurl'];
 
@@ -40,18 +49,17 @@ function bswp_admin_assets() {
     wp_enqueue_script("boostrap-tab", get_bloginfo('template_directory').'/lib/scripts/bootstrap/bootstrap-tab.js');
     wp_enqueue_script("boostrap-dropdown", get_bloginfo('template_directory').'/lib/scripts/bootstrap/bootstrap-dropdown.js');
 
-	wp_enqueue_style("admin", $assets_dir."/css/admin.css");
+    wp_enqueue_style("admin", $assets_dir."/css/admin.css");
     wp_enqueue_script( 'admin', $assets_dir."/js/_admin.js", false, '1.0' ); //register script
 
+    $wp_paths = array( 'export_file_url' => $adminDir.'functions/kjd_export_settings.php',
+        'root_url' 		 => get_bloginfo('template_directory'),
+        'site_url' 		 => get_bloginfo('url'),
+        'css_dir'      => $css_dir,
+    );
 
-
-	$wp_paths = array( 'export_file_url' => $adminDir.'functions/kjd_export_settings.php',
-					   'root_url' 		 => get_bloginfo('template_directory'),
-					   'site_url' 		 => get_bloginfo('url'),
-                       'css_dir'      => $css_dir,
-				    );
-	wp_localize_script( 'admin', 'object_name', $wp_paths );
-	wp_enqueue_script("admin"); //enqueue
+    wp_localize_script( 'admin', 'object_name', $wp_paths );
+    wp_enqueue_script("admin"); //enqueue
 
 }
 
@@ -66,15 +74,9 @@ function bswp_add_editor_styles() {
 }
 add_action( 'admin_init', 'bswp_add_editor_styles' );
 
-// adds admin functions
-include 'functions/admin_functions.php';
-include 'functions/ajax-functions.php';
-include 'functions/shortcode-injector/init.php';
-include 'functions/metabox--featured-post.php';
-include('functions/wordpress-settings.php');
 
 // update function
-include 'update/update.php';
+// include 'update/update.php';
 
 
 // initializae the BSWP stuff

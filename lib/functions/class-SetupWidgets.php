@@ -8,6 +8,7 @@ class SetupWidgets {
 
     public static $sidebars;
     public static $frontpage_sidebar;
+    public static $frontpage_orientation = null;
 
     public function __construct()
     {
@@ -16,10 +17,12 @@ class SetupWidgets {
         $layouts = $site_settings['layouts'];
         self::$sidebars = $layouts['sidebars'];
 
-        self::$frontpage_sidebar = json_decode($layouts['sidebars']['frontpage_widgets']);
+        self::$frontpage_sidebar = json_decode(self::$sidebars['frontpage']);
+
         $frontpage = $layouts['frontpage']['frontpage_layout_sortable'];
 
         self::get_frontpage_widget_areas($frontpage);
+
     }
 
 
@@ -43,24 +46,20 @@ class SetupWidgets {
     public static function registerSidebars()
     {
 
-
         foreach(self::$sidebars as $name=>$sidebar){
 
             $sidebar = json_decode($sidebar);
 
             $pos = $sidebar->position;
 
-            if(strpos($name, 'frontpage_widgets') !== false){
-                $frontpage_sidebar_vert = self::get_frontpage_pos();
-            }
 
             $display_name = ucwords(str_replace('_', ' ', $name));
-            $width = self::setWidgetWidth($name, $pos, $frontpage_sidebar_vert);
+            $width = self::setWidgetWidth($name, $pos);
         	register_sidebar(
         		 array(
         			'name' => $display_name,
         			'id' => $name,
-        			'description' => 'Widgets for the ' .ucwords(str_replace('_',' ',$name)) . 'page',
+        			'description' => 'Widgets for the ' .ucwords(str_replace('_',' ',$name)) . ' page',
         			'before_widget' =>'<div class="widget '.$width.'">',
         			'before_title' => '<h3>',
         			'after_title' => '</h3>',
@@ -72,30 +71,41 @@ class SetupWidgets {
     }
 
 
-    public static function get_frontpage_pos() {
+    public static function getFrontpagePos()
+    {
 
         if( in_array(self::$frontpage_sidebar->position, array('left','right')) )
-            return true;
+            return 'vertical';
+        elseif(in_array(self::$frontpage_sidebar->position, array('top','bottom')))
+            return 'horizontal';
+        else
+            return 'none';
+
     }
 
 
-    public static function setWidgetWidth($sidebar, $sidebar_pos, $frontpage_sidebar_vert = false)
+    public static function setWidgetWidth($name, $position)
     {
 
-
+        // examine(wp_get_sidebars_widgets());
         $sidebars = wp_get_sidebars_widgets();
-        $widgets = $sidebars[$sidebar];
+        $widgets = $sidebars[$name];
         $count = count($widgets);
 
 
 
-        if($sidebar_pos == 'none' || !$sidebar_pos)
+
+
+        if($position == 'none' || !$position)
             return;
 
-        if( in_array($sidebar_pos, array('left', 'right')))
-            $width = "";
-        elseif($frontpage_sidebar_vert)
+
+        // if we are on the frontpage and the sidebar is set to left or right,
+        if( strpos($name, 'frontpage_widgets') !== false && self::getFrontpagePos() == 'vertical'){
             $width = self::widgetWidthNarrow($count);
+        }
+        elseif( in_array($position, array('left', 'right')))
+            $width = "";
         else
             $width = self::widgetWidthWide($count);
 
@@ -156,4 +166,4 @@ class SetupWidgets {
 
 
 $SetupWidgets = new SetupWidgets();
-$SetupWidgets::registerSidebars();
+add_action( 'init', array('SetupWidgets', 'registerSidebars'), 1);

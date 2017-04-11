@@ -2,6 +2,7 @@
 
 get_header();
 
+
 $frontpage_settings = get_frontpage_settings();
 extract($frontpage_settings);
 
