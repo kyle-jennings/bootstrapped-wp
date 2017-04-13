@@ -101,3 +101,28 @@ img {
         padding: 0;
     }
 }
+
+
+
+div.img-rounded,
+div.img-polaroid,
+div.img-circle
+{
+    margin:0 5px;
+}
+
+div.img-rounded img {
+  border-radius: 6px;
+}
+
+div.img-polaroid img {
+  padding: 4px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+div.img-circle img{
+    border-radius: 50%;
+}

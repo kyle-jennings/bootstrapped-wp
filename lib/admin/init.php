@@ -14,7 +14,8 @@ include 'functions/ajax-functions.php';
 include 'functions/admin_functions.php';
 include 'functions/shortcode-injector/init.php';
 include 'functions/metabox--featured-post.php';
-include('functions/wordpress-settings.php');
+include 'functions/wordpress-settings.php';
+include 'functions/media-library.php';
 
 
 

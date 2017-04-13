@@ -35,3 +35,20 @@
 
 
 }
+
+
+
+/* Navbar Brand Styles */
+.brand.logo img{
+    display: block;
+    float: left;
+}
+
+.brand.title {
+    display: block;
+    padding-left: 20px;
+}
+
+.brand--menu-button {
+    cursor: pointer;
+}

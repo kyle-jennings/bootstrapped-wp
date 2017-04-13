@@ -19,11 +19,11 @@
         margin-top: $navbarTopMargin !important;
     }
     position: relative;
-    z-index: 10 !important;
+    z-index: 10px !important;
 
     .section--header & {
-        margin-left: -20px;
-        margin-right: -20px;
+        margin-left: -20;
+        margin-right: -20;
     }
 }
 
@@ -41,8 +41,8 @@
     box-shadow: none;
 
     min-height: $navbarHeight;
-    padding-left:  20px;
-    padding-right: 20px;
+    padding-left:  20;
+    padding-right: 20;
 
     // Prevent floats from breaking the navbar
     @include clearfix();
@@ -60,9 +60,9 @@
         float: $navbarAlign;
 
         @if($navbarAlign == 'right'){
-             >.nav {
-                 margin-right: 0 !important;
-             }
+            >.nav {
+                margin-right: 0 !important;
+            }
         }
     }
 }
@@ -105,7 +105,7 @@
 // -------------------------
 .navbar .btn,
 .navbar .btn-group {
-    @include navbarVerticalAlign(30px); // Vertically center in navbar
+    @include navbarVerticalAlign(30); // Vertically center in navbar
 }
 .navbar .btn-group .btn,
 .navbar .input-prepend .btn,
@@ -124,7 +124,7 @@
     select,
     .radio,
     .checkbox {
-        @include navbarVerticalAlign(30px); // Vertically center in navbar
+        @include navbarVerticalAlign(30); // Vertically center in navbar
     }
     input,
     select,
@@ -152,7 +152,7 @@
 .navbar-search {
     position: relative;
     float: left;
-    @include navbarVerticalAlign(30px); // Vertically center in navbar
+    @include navbarVerticalAlign(30); // Vertically center in navbar
     margin-bottom: 0;
     .search-query {
         margin-bottom: 0;
@@ -344,5 +344,121 @@
         margin-left: 0;
         margin-right: -1px;
         @include border-radius(6px 0 6px 6px);
+    }
+}
+
+
+
+
+
+.navbar-wrapper > .navbar-inner{
+    border-left-width: 0 !important;
+    border-right-width: 0 !important;
+    border-radius: 0;
+}
+
+.navbar-wrapper {
+    position: relative;
+    /*margin-bottom: 20;*/
+}
+
+
+/*.navbar-wrapper.navbar,*/
+.navbar-wrapper .navbar {
+    margin-bottom: 0;
+    /*padding: 0 10;*/
+}
+
+.navbar-wrapper.navbar-fixed-top,
+.navbar-wrapper.navbar-fixed-bottom{
+    position: fixed;
+    margin-bottom: 0;
+}
+
+
+.navbar .nav > li > a:focus,
+.navbar .nav > li > a:hover,
+.navbar .nav > li > a{
+
+    box-shadow: none;
+    position: relative;
+    text-shadow: none;
+    z-index: 999;
+}
+
+.btn.btn-navbar{
+    position: relative;
+    z-index: 999;
+}
+
+.navbar-menu-btn {
+    display: none;
+    float: right;
+    margin-right: 0;
+}
+
+.navbar-inner {
+    border: 0;
+}
+
+
+.navbar-inner .nav.nav-pills li a {
+    border-color: transparent;
+    border-style: solid;
+    border-width: 1px;
+    line-height: 18px;
+}
+
+.navbar-inner .nav.nav-tabs li a {
+    min-height: 19px;
+}
+
+.navbar-inner .nav-tabs.tabs-below > li > a {
+    border-radius: 0 0 4px 4px;
+}
+
+.navbar-inner .nav-tabs.tabs-below {
+    border-bottom: 0 none transparent;
+}
+
+.navbar .form-search {
+    margin: 6px 0 0;
+}
+
+
+.navbar-wrapper .nav-tabs {
+    border-bottom: 0 none transparent;
+}
+
+.navbar-wrapper .nav-tabs > li {
+    margin-bottom: 0;
+    margin-top: 3px;
+}
+
+.navbar-wrapper .nav-tabs.tabs-below > li {
+    margin-bottom: 3px;
+    margin-top: 0;
+}
+
+
+.navbar .form-search .btn,
+.navbar .form-search .btn-group {
+    margin: 0;
+}
+
+.navbar-fixed-bottom.navbar .nav .sub-menu{
+    margin-bottom: -32px;
+}
+
+
+
+
+body.logged-in .navbar-fixed-top {
+    top: 32px;
+}
+
+@media (max-width: 782px) {
+    body.logged-in .navbar-fixed-top {
+        top: 46px;
     }
 }

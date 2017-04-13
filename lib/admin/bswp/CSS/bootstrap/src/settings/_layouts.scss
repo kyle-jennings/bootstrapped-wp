@@ -1,6 +1,45 @@
 //
 // Layouts
 // --------------------------------------------------
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+}
+
+html,
+body{
+    margin:0;
+    position:relative;
+}
+
+
+.page-wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+html.navbar-fixed-top {
+    padding-top: 50px
+}
+
+html.navbar-fixed-bottom {
+    padding-bottom: 50px
+}
+
+body.desktopnav-fixed-top {
+    padding-top: 40px;
+}
+
+body.desktopnav-fixed-bottom {
+    padding-bottom: 40px;
+}
+
 
 .page-wrapper.container {
     margin: 0 auto;
@@ -9,12 +48,24 @@
 
 // Container (centered, fixed-width layouts)
 .container {
-  @include container-fixed();
+    @include container-fixed();
 }
 
 // Fluid layouts (left aligned, with sidebar, min- & max-width content)
 .container-fluid {
-  padding-right: $gridGutterWidth;
-  padding-left: $gridGutterWidth;
-  @include clearfix();
+    padding-right: $gridGutterWidth;
+    padding-left: $gridGutterWidth;
+    @include clearfix();
+}
+
+
+#wpadminbar {
+    position: fixed;
+}
+
+
+
+#footer {
+    position: relative;
+    z-index: 2;
 }

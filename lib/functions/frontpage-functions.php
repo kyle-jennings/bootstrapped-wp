@@ -100,7 +100,7 @@ function kjd_front_page_layout( $components ){
 				frontpage_widgets_2_callback($visibility);
 				break;
 			case 'frontpage_widgets_3':
-				widget_area_3_callback($visibility);
+				frontpage_widgets_3_callback($visibility);
 				break;
 			case 'page_content':
 				frontpage_content($visibility);
