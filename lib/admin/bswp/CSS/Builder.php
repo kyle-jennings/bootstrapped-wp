@@ -12,7 +12,7 @@ require_once(ABSPATH . "wp-admin" . '/includes/media.php');
 class Builder {
 
     public $preview = false;
-    public $section = 'site';
+    public $section = array();
     public $values = array();
 
     public $bs_dir;
@@ -23,25 +23,69 @@ class Builder {
 
     public $bootstrap_vars = '';
 
-    public function __construct($section = 'site_settings', $values = array(), $preview = false ) {
-        $this->section = !empty($section) ? $section : 'site_settings';
-        $this->values = $values;
-        $this->preview = $preview;
+    public function __construct($section = null, $values = array()) {
 
         $this->initCompiler();
+
         $this->findBootstrapScssFile();
-        $this->set_variables();
-        $this->init_bootstrap_var_file();
+        // if a specific section and values were passed in, do the thing
+        // this will only occure when generating a preview file
+        if( !empty($section) && !empty($values) ){
+            $this->section[] = $section;
+            $this->values = $values;
+            $this->preview = true;
+        }else{
+            $name = 'site_settings';
+            $settings = get_option('bswp_'.$name);
+
+            $this->section[] = $name;
+            $this->values = $settings;
+        }
+
+        $this->setManifest();
+        $this->initManifestFile();
+
+        $this->setVariables();
+        $this->initVarFile();
+
+    }
+
+    public function getSavedValues()
+    {
+        $name = 'site_settings';
+        $settings = get_option('bswp_'.$name);
+
+        return $settings;
     }
 
 
-    public function set_variables() {
+    public function setManifest() {
+
+        $manifest_file = $this->bs_dir . 'manifest.php';
+        require_once($manifest_file);
+
+    }
+
+    public function initManifestFile() {
+        $file = $this->bs_dir . 'src/manifest.scss';
+        file_put_contents($file, $this->bootstrap_manifest);
+
+    }
+
+    public function setVariables() {
 
         $var_file = $this->bs_dir . 'variables.php';
         require_once($var_file);
 
     }
 
+
+    public function initVarFile() {
+        $file = $this->bs_dir . 'src/settings/_variables.scss';
+
+        file_put_contents($file, $this->bootstrap_vars);
+
+    }
 
     public function getSectionName($section = null) {
         $section = $section ? $section : 'site_settings';
@@ -55,10 +99,6 @@ class Builder {
         endswitch;
     }
 
-
-    public function set_manifest() {
-        // $var_file = $this->bs_dir .
-    }
 
 
     // create new compiler object
@@ -131,12 +171,7 @@ class Builder {
     }
 
 
-    public function init_bootstrap_var_file() {
-        $file = $this->bs_dir . 'src/settings/_variables.scss';
 
-        file_put_contents($file, $this->bootstrap_vars);
-        // examine(file_get_contents($file) );
-    }
 
 
     /**
@@ -145,7 +180,7 @@ class Builder {
      *
      * The public section file is used to render the site and should be minimized
      */
-    public function save_to_file($target) {
+    public function saveToFile($target) {
         $folder = $target.'_dir';
         $filename = ($target == 'dist') ? 'site' : 'preview';
         $filename.= '.css';

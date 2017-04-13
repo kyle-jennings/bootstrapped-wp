@@ -17,9 +17,9 @@ function bswp_live_preview() {
 
     $data = $_POST['data'];
 
-    $builder = new Builder($data['section'], $data['form_values'], true);
+    $builder = new Builder($data['section'], $data['form_values']);
     $builder->build();
-    $builder->save_to_file('preview');
+    $builder->saveToFile('preview');
 
     unset($builder);
     die;

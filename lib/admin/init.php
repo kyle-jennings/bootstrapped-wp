@@ -25,9 +25,9 @@ function bswp_check_for_styles() {
         $name = 'site_settings';
         $settings = get_option('bswp_'.$name);
 
-        $builder = new Builder($name, $settings);
+        $builder = new Builder();
         $builder->build();
-        $builder->save_to_file('dist');
+        $builder->saveToFile('dist');
         unset($builder);
     }
 

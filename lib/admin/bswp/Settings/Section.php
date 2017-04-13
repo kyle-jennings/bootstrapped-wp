@@ -105,8 +105,8 @@ class Section {
             examine($this);
 
 
-        if( !get_option('bswp_site_settings') || $this->form_meta_settings['build_css'] == 'yes') {
             $this->build_css();
+        if( !get_option('bswp_site_settings') || $this->form_meta_settings['build_css'] == 'yes') {
         }
 
 
@@ -143,9 +143,9 @@ class Section {
         if(!empty($_POST) )
             return;
 
-        $builder = new Builder($this->name, $this->saved_values);
+        $builder = new Builder();
         $builder->build();
-        $builder->save_to_file('dist');
+        $builder->saveToFile('dist');
 
         unset($builder);
 
