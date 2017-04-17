@@ -14,12 +14,13 @@
 }
 
 .section--navbar {
+    padding: 0;
     @if $navbarFloatSection == yes {
         margin-bottom: $navbarBottomMargin !important;
         margin-top: $navbarTopMargin !important;
     }
     position: relative;
-    z-index: 10px !important;
+    z-index: 1000;
 
     .section--header & {
         margin-left: -20;

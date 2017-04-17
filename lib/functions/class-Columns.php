@@ -8,7 +8,7 @@ class Columns {
     public static $sidebar;
     public static $width;
 
-    public function __construct($template_type = null, $sidebar = null, $content = null)
+    public function __construct($template_type = null, $sidebar = null, $content = null, $sidebar_horizontal = false)
     {
 
         self::$content = $content;;
@@ -19,14 +19,15 @@ class Columns {
         $output = '';
 
         // sidebar if on top on left
-        if($sidebar->position =='top' || $sidebar->position =='left')
+        if( $sidebar_horizontal !== true && ($sidebar->position == 'top' || $sidebar->position =='left') )
             $output .= new Sidebar(self::$template_type, $sidebar->position, $sidebar->visibility);
 
 
         $output .= self::mainColumn($width, $content, false);
 
+
         // sidebar if on bottom or right
-        if($sidebar->position =='bottom' || $sidebar->position =='right')
+        if( $sidebar_horizontal !== true && ($sidebar->position == 'bottom' || $sidebar->position =='right') )
             $output .= new Sidebar(self::$template_type, $sidebar->position, $sidebar->visibility);
 
         self::$output = $output;

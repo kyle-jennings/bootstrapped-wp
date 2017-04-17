@@ -1,6 +1,6 @@
 <?php
 // tables
-$tables = $this->values['tables'];
+$tables = $values['tables'];
 
 ?>
 // Tables

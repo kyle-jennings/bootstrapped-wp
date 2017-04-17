@@ -2,7 +2,7 @@
 // -------------------------
 <?php
 
-$links = $this->values['links'];
+$links = $values['links'];
 
 ?>
 

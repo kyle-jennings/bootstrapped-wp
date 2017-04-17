@@ -34,7 +34,7 @@ $backgroundOverlay: <?php echo _tern($background_wallpaper['overlay_color_rgba']
 
 
 // float the section?
-$section: body;
+
 $floatSection: <?php echo _tern($layout['float_section'], 'no'); ?> ;
 $topMargin: <?php echo _tern($layout['top_margin'], '0'); ?> ;
 $bottomMargin: <?php echo _tern($layout['bottom_margin'], '0'); ?> ;

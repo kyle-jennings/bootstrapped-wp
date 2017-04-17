@@ -1,7 +1,7 @@
 <?php
 
 // Tooltips
-$tooltips = $this->values['tooltips'];
+$tooltips = $values['tooltips'];
 
 $tooltip_bg = $tooltips['background_colors'];
 $tooltip_text = $tooltips['text']['text_color'];

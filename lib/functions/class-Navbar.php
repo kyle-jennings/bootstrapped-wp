@@ -128,7 +128,7 @@ class Navbar{
 
         $output = '';
 
-        $output .= '<div id="navbar" class="section section--navbar navbar-wrapper '. self::$menu_id
+        $output .= '<div class="section section--navbar navbar-wrapper '. self::$menu_id
             .' '. self::movement_class()
             .' '. self::nav_style()
             .'">';

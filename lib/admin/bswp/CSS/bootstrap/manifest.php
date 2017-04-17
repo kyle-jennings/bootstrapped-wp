@@ -1,37 +1,38 @@
 <?php
-foreach($this->section as $section):
 
-    $section_name = $this->getSectionName($section );
+include $this->src_dir . '__helpers.php';
 
-    ob_start();
+ob_start();
+
+// $section = reset($this->sections);
+//
+// $section_name = $this->getSectionName( $section );
+// $values = get_option('bswp_site_settings');
+
+
+foreach($this->sections as $section):
+    $section_name = $this->getSectionName( $section );
+    $values = get_option('bswp_'.$section);
+
+
     if ( $section == 'site_settings' ):
 ?>
-    // Settings
-    ///////////////////////
 
-    // Core variables and mixins
+
     @import 'settings/constants';
-    @import 'settings/variables'; // Modify this for custom colors, font-sizes, etc
+    <?php
+     echo $this->setVariables($values);
+    ?>
     @import 'settings/mixins';
-
-    // CSS Reset
     @import 'settings/reset';
-    // Utility classes
     @import 'settings/utilities'; // Has to be last to override when necessary
+    @import 'settings/section-globals';
 
-    // the body background
-    @import './body';
-
-
-    // these are not repeatable in other sections
+    @import 'settings/body';
     @import 'settings/grid';
     @import 'settings/layouts';
     @import 'components/section';
-
     @import 'components/navs';
-
-
-    // @import 'components/tabbables';
 
     @import 'components/brand';
     @import 'settings/responsive-utilities'; // RESPONSIVE CLASSES
@@ -43,77 +44,82 @@ foreach($this->section as $section):
     @import 'components/modals';
 
     @import 'components/frontpage';
+<?php
+    endif;
+
+echo $section_name . ' {';
+?>
+
+
     <?php
-        endif;
+    echo $this->setVariables($values);
     ?>
+    @import 'components/scaffolding';
+<?php
+    if ( in_array($section, array('sidebar_settings', 'site_settings', 'body_settings')) )
+        echo "@import 'components/sidebar';";
+?>
+<?php
+    if($section == 'sidebar_settings' ):
+        echo "@import 'components/scaffolding-sidebar-bg';";
+    else:
+        echo "@import 'components/scaffolding-background';";
+    endif;
+?>
+
+    @import 'components/scaffolding-borders';
+    @import 'components/links';
 
 
-    // Components
-    ///////////////////////////
-    <?php
-    echo $section_name . ' {';
-    ?>
-
-        // Grid system and page structure
-        @import 'components/scaffolding';
-        @import 'components/links';
-        // Base CSS
-        @import 'components/type';
-        @import 'components/blockquotes';
-        @import 'components/code';
-        @import 'components/forms';
-        @import 'components/tables';
-
-        // Components: common
-        @import 'components/wells';
-        @import 'components/close';
-
-        // Components: Buttons & Alerts
-        @import 'components/buttons';
-        @import 'components/button-groups';
-        @import 'components/alerts'; // Note: alerts share common CSS with buttons and thus have styles in buttons
-
-        @import 'components/breadcrumbs';
-        @import 'components/pagination';
-        @import 'components/pager';
-
-        // Components: Popovers
-        @import 'components/tooltip';
-        @import 'components/popovers';
-
-        // images
-        @import 'components/images';
-        // @import 'components/thumbnails';
-        @import 'components/thumbnails';
+    @import 'components/type';
+    @import 'components/blockquotes';
+    @import 'components/code';
+    @import 'components/forms';
+    @import 'components/tables';
 
 
-        // Components: Misc
-        @import 'components/media';
-        @import 'components/labels-badges';
-        @import 'components/progress-bars';
-        @import 'components/accordion';
-        @import 'components/tabbables';
-        @import 'components/carousel';
-        @import 'components/hero-unit';
-        @import 'components/sidebar';
-        @import 'components/content-column';
-
-        @import 'components/header';
-
-        @import 'components/navbar';
-        @import 'components/dropdowns';
-        @import 'components/navbar_dropdown';
-        @import 'components/navbar-toggle';
-        @import 'components/navbar-responsive';
-
-    <?php
-        echo '}';
+    @import 'components/wells';
+    @import 'components/close';
 
 
-        $contents = ob_get_contents();
-        ob_end_clean();
+    @import 'components/buttons';
+    @import 'components/button-groups';
+    @import 'components/alerts';
 
-    $this->bootstrap_manifest = $contents;
+    @import 'components/breadcrumbs';
+    @import 'components/pagination';
+    @import 'components/pager';
 
-    // examine($contents);
+    @import 'components/tooltip';
+    @import 'components/popovers';
+
+    @import 'components/images';
+
+    @import 'components/thumbnails';
+
+    @import 'components/media';
+    @import 'components/labels-badges';
+    @import 'components/progress-bars';
+    @import 'components/accordion';
+    @import 'components/tabbables';
+    @import 'components/carousel';
+    @import 'components/hero-unit';
+    @import 'components/content-column';
+
+    @import 'components/header';
+
+    @import 'components/navbar';
+    @import 'components/dropdowns';
+    @import 'components/navbar_dropdown';
+    @import 'components/navbar-toggle';
+    @import 'components/navbar-responsive';
+
+<?php
+echo '}';
+
+
+$contents = ob_get_contents();
 endforeach;
+
+ob_end_clean();
+$this->bootstrap_manifest = $contents;

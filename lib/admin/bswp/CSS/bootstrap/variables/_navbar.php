@@ -1,6 +1,6 @@
 <?php
 // navbar
-$navbar = $this->values['navbar'];
+$navbar = $values['navbar'];
 $navsettings = $navbar['settings'];
 
 // if($navsettings['settings'] == 'basic'){

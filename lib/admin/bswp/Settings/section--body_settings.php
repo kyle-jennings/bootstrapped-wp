@@ -18,10 +18,7 @@ include dirname(__FILE__).'/field-sets/component-borders.php';
 
 
 // component settings
-include dirname(__FILE__).'/components/sidebars.php';
-include dirname(__FILE__).'/components/frontpage-layout.php';
-include dirname(__FILE__).'/components/header.php';
-include dirname(__FILE__).'/components/navbar.php';
+
 include dirname(__FILE__).'/components/preformatted.php';
 include dirname(__FILE__).'/components/quotes.php';
 include dirname(__FILE__).'/components/tables.php';
@@ -61,8 +58,6 @@ $section_name = str_replace('section--','',$section_name);
 $background_and_borders = new SettingsGroup('background_and_borders');
 $background_and_borders->add_tab('background_colors', $background_colors);
 $background_and_borders->add_tab('wallpaper', $background_wallpaper);
-$background_and_borders->add_tab('body_background_colors', $background_colors);
-$background_and_borders->add_tab('body_wallpaper', $background_wallpaper);
 
 $background_and_borders->add_tab('borders', $component_borders);
 $background_and_borders->add_tab('border-radius', $radii_fields);
@@ -86,22 +81,13 @@ $links->add_tab('hovered_link', $hovered_link);
 $links->add_tab('active_link', $active_link);
 
 
-
-// Misc settings
-$settings = new SettingsGroup('settings');
-$settings->add_tab('layout', $section_layout);
-$settings->add_tab('components', $available_components_toggles);
-$settings->add_tab('sections', $available_sections);
-
-
 // this array is mounted by the section object
 // the Section object specifically looks for an array called "groups"
 $groups = array(
     'background_and_borders' => $background_and_borders,
     'text' => $text,
     'links' => $links,
-    'header' => $header,
-    'navbar' => $navbar,
+
     'images' => $images,
     'forms' => $forms,
     'buttons' => $buttons,
@@ -109,8 +95,7 @@ $groups = array(
     'preformatted' => $preformatted,
     'quotes' => $quotes,
     'alerts' => $alerts,
-    'layouts' => $layouts,
-    'settings' => $settings,
+
 );
 
 

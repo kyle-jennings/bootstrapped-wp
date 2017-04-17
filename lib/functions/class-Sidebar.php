@@ -9,9 +9,9 @@ class Sidebar
     public $device_view;
     public $preview;
 
+
     public function __construct($sidebar = 'default', $position = 'none', $device_view = 'all', $preview = null)
     {
-
 
         $this->name = $sidebar;
 
@@ -22,6 +22,11 @@ class Sidebar
         if($this->position == 'none')
             return '';
 
+        // examine($GLOBALS['TemplateSettings']::$sidebar_settings);
+        // examine($GLOBALS);
+        $this->isSidebarSection = $GLOBALS['TemplateSettings']::$sidebarSectionActivated;
+        $this->isHorizontalSidebarSection = $GLOBALS['TemplateSettings']::$horizontalSidebarSectionActivated;
+
         $this->output = $this->getSidebar();
 
 
@@ -31,6 +36,7 @@ class Sidebar
 
 
     public function __toString() {
+
         return $this->output;
     }
 
@@ -62,9 +68,42 @@ class Sidebar
 
 		$output .= '</div>';
 
+        // if the sidebar is horizontal, it needs a wrapper
+        $output = $this->isHorizontalSection() ? $this->horizontalWrapper($output) : $output;
 
 		return $output;
 	}
+
+    public function horizontalWrapper($markup)
+    {
+        $output = '';
+
+        if($this->position == 'top' || $this->position == 'bottom'){
+            $output .= '<div class="section section--sidebar">';
+                $output .= '<div class="container">';
+                    $output .= $markup;
+                $output .= '</div>';
+            $output .= '</div>';
+        }else{
+            $output .= $markup;
+        }
+
+        return $output;
+    }
+
+
+    public function isHorizontalSection()
+    {
+        // examine($this->isSidebarSection .'--'. $this->position);
+        if(
+            ($this->isSidebarSection == 'yes' || $this->isHorizontalSidebarSection == 'yes')
+            && in_array($this->position, array('top', 'bottom'))
+        ){
+            return true;
+        }
+
+        return false;
+    }
 
 
     public static function getFrontpagePos($frontpage_sidebar = null) {

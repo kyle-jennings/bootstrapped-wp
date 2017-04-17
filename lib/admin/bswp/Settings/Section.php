@@ -14,7 +14,7 @@ use bswp\CSS\Builder;
  * Sections can be turned on and off
  * Sections can also inherit their settings from another section
  *
- * Basic stesps:
+ * Basic steps:
  * when a section object is created, we pass in the section name and
  * its field settings.  The fields themselves will have the name of the
  * "SettingsGroup" and "Tab".  These will be used to determine how to set up the
@@ -76,7 +76,7 @@ class Section {
         }
 
 
-        $this->is_section_activated();
+        $this->isSectionSctivated();
 
 
         if($display_name)
@@ -105,8 +105,9 @@ class Section {
             examine($this);
 
 
-            $this->build_css();
         if( !get_option('bswp_site_settings') || $this->form_meta_settings['build_css'] == 'yes') {
+            $this->build_css();
+
         }
 
 
@@ -119,11 +120,20 @@ class Section {
      * If the use attempts to goto a section page which has not been activated
      * (ie: body_settings) then we redirect them to the site settings page
      */
-    public function is_section_activated() {
+    public function isSectionSctivated()
+    {
 
+        $sections = array('site_settings');
         $options = get_option('bswp_site_settings');
-        $sections = !empty( $options['available_sections']) ?  $options['available_sections'] : array();
-        $sections = array_merge(array('site_settings'), $sections);
+        $options = $options['settings'];
+        $options = !empty( $options['sections']) ?  $options['sections'] : array();
+
+        foreach($options as $section=>$toggled){
+            if($toggled !== 'yes')
+                continue;
+
+            $sections[] = $section.'_settings';
+        }
 
         if( in_array($this->name, $sections) )
             return;
@@ -154,7 +164,7 @@ class Section {
 
     public function delete_preview_css() {
         $builder = new Builder($this->name, null, true);
-        $builder->delete_preview_css_file('preview');
+        $builder->deletePreviewFile('preview');
     }
 
     // we use a settings file as an index of all settings

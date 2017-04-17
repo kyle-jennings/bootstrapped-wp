@@ -1,6 +1,6 @@
 <?php
 // Wells
-$well = $this->values['well'];
+$well = $values['well'];
 $well_background_colors = $well['background_colors'];
 $well_text = $well['text'];
 $well_borders = $well['borders'];

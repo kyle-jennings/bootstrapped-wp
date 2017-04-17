@@ -12,6 +12,8 @@ class TemplateSettings {
     public static $template;
     public static $template_type;
     public static $sidebar_settings;
+    public static $sidebarSectionActivated;
+    public static $horizontalSidebarSectionActivated;
 
     public function __construct($template_type = null, $template = null, $id = null, $url = null)
     {
@@ -31,15 +33,32 @@ class TemplateSettings {
         self::$header_settings = $site_settings['header'];
         self::$sidebar_settings = $site_settings['layouts']['sidebars'];
 
+        $active_sections = $site_settings['settings']['sections'];
+        self::$sidebarSectionActivated = $active_sections['sidebar'];
+        self::$horizontalSidebarSectionActivated = $active_sections['horizontal_sidebar'];
+
 
         self::$template_type = $template_type ? $template_type : self::getTemplateType(self::$id);
         self::$template = $template ? $template : self::getTemplate(self::$template_type, self::$id);
 
 
-
         $class = __CLASS__;
         $GLOBALS[ $class ] = $this;
     }
+
+    public function isHorizontalSidebar()
+    {
+        // examine($this->isSidebarSection .'--'. $this->position);
+        if(
+            (self::$sidebarSectionActivated == 'yes' || self::$horizontalSidebarSectionActivated == 'yes')
+            && in_array($this->position, array('top', 'bottom'))
+        ){
+            return true;
+        }
+
+        return false;
+    }
+
 
     /**
     * This detects the current page's/post's /feed's template and gets teh layout settings appropriately

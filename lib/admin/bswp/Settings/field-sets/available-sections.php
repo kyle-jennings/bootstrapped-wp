@@ -4,49 +4,40 @@ namespace bswp\Forms\Fields;
 use bswp\Forms\Fields;
 
 
-$available_sections_toggles = array(
-    'activate_title_area'=>new Select(
+$available_sections = array(
+    // 'activate_header'=>new Select(
+    //     array(
+    //         'args'=>array('no', 'yes'),
+    //         'name'=>'activate_header',
+    //         'label'=>'Header Settings'
+    //     )
+    // ),
+    // 'activate_navbar'=>new Select(
+    //     array(
+    //         'args'=>array('no', 'yes'),
+    //         'name'=>'activate_navbar',
+    //         'label'=>'Navbar Settings'
+    //     )
+    // ),
+    'body'=>new Select(
         array(
             'args'=>array('no', 'yes'),
-            'name'=>'activate_body',
+            'name'=>'body',
             'label'=>'Body Settings'
         )
     ),
-
-    'activate_header'=>new Select(
+    'sidebar'=>new Select(
         array(
             'args'=>array('no', 'yes'),
-            'name'=>'activate_header',
-            'label'=>'Header Settings'
-        )
-    ),
-
-    'activate_title_area'=>new Select(
-        array(
-            'args'=>array('no', 'yes'),
-            'name'=>'activate_title_area',
-            'label'=>'Title Area Settings'
-        )
-    ),
-    'activate_body'=>new Select(
-        array(
-            'args'=>array('no', 'yes'),
-            'name'=>'activate_body',
-            'label'=>'Body Settings'
-        )
-    ),
-    'activate_sidebar'=>new Select(
-        array(
-            'args'=>array('no', 'yes'),
-            'name'=>'activate_sidebar',
+            'name'=>'sidebar',
             'label'=>'Sidebar Settings'
         )
     ),
-    'activate_footer'=>new Select(
-        array(
-            'args'=>array('no', 'yes'),
-            'name'=>'activate_footer',
-            'label'=>'Footer Settings'
-        )
-    ),
+    // 'activate_footer'=>new Select(
+    //     array(
+    //         'args'=>array('no', 'yes'),
+    //         'name'=>'activate_footer',
+    //         'label'=>'Footer Settings'
+    //     )
+    // ),
 );

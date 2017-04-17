@@ -1,6 +1,6 @@
 <?php
 // pagination
-$pagination = $this->values['pagination'];
+$pagination = $values['pagination'];
 // examine($pagination);
 ?>
 

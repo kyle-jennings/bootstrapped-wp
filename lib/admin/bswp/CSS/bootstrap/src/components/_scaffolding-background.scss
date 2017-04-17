@@ -1,0 +1,46 @@
+@if $backgroundFill == vertical {
+    @include gradient-vertical($background, $backgroundEnd);
+} @else if $backgroundFill == horizontal {
+    @include gradient-horizontal($background, $backgroundEnd);
+} @else if $backgroundFill == radial {
+    @include gradient-radial($background, $backgroundEnd);
+} @else if $backgroundFill == none {
+    background-color: transparent;
+    background-image: none;
+} @else {
+    background-color: $background;
+    background-image: none;
+}
+
+
+@if $useBackgroundWallpaper == yes {
+    background-attachment: $backgroundAttachment;
+    background-image: url($backgroundImage);
+    @if $backgroundPosition == custom {
+        background-position: $backgroundPositionX  $backgroundPositionY;
+    } @else {
+        background-position: $backgroundPosition;
+    }
+    background-repeat: $backgroundRepeat;
+
+    @if $backgroundSize == percentage {
+        background-size: $backgroundPercentage;
+    } @else {
+        background-size: $backgroundSize;
+
+    }
+
+    &::before {
+        background-color: $backgroundOverlay;
+        bottom: 0;
+        content: '';
+        display: block;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+    }
+
+    position: relative;
+}

@@ -27,8 +27,10 @@ class Nav {
         $this->tab = isset($_GET['tab']) ? $_GET['tab'] : null;
 
         $options = get_option('bswp_site_settings');
-        $sections = !empty( $options['available_sections']) ?  $options['available_sections'] : array();
-        $sections = array_merge($this->sections,$sections);
+        $options = $options['settings'];
+
+        $sections = !empty( $options['sections']) ?  $options['sections'] : array();
+        $sections = array_merge($this->sections, $sections);
 
         $this->set_sections($sections);
         $this->set_groups($this->section->groups);
@@ -47,13 +49,13 @@ class Nav {
 
     // collect the sections
     public function set_sections($sections) {
+
         foreach($sections as $section=>$toggled){
             if($toggled !== 'yes')
                 continue;
 
-            $name = str_replace('activate_','', $section.'_settings');
-
-            $label = str_replace('_',' ',$replace ,$name);
+            $name = $section.'_settings';
+            $label = str_replace('_',' ',$name);
             $label = ucwords($label);
 
             $this->sections[$name] = array(

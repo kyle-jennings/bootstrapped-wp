@@ -1,6 +1,6 @@
 <?php
 // tabs
-$tabs = $this->values['tabs'];
+$tabs = $values['tabs'];
 $tabs_bg = $tabs['background_colors'];
 $tabs_text = $tabs['text'];
 $tabs_borders = $tabs['borders'];

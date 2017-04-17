@@ -1,5 +1,5 @@
 <?php
-$alerts = $this->values['alerts'];
+$alerts = $values['alerts'];
 $alerts_bg = $alerts['background_colors'];
 $alerts_borders = $alerts['borders'];
 $alerts_text = $alerts['text'];

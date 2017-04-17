@@ -1,5 +1,5 @@
 <?php
-$buttons = $this->values['buttons'];
+$buttons = $values['buttons'];
 $buttons_bg = $buttons['background_colors'];
 $buttons_borders = $buttons['borders'];
 $buttons_text = $buttons['text'];

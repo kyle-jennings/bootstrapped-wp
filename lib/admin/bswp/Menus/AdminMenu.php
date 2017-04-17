@@ -16,17 +16,15 @@ class AdminMenu {
 
 
         $options = get_option('bswp_site_settings');
-        $sections = !empty( $options['available_sections']) ?  $options['available_sections'] : array();
+        $options = $options['settings'];
+        $sections = !empty( $options['sections']) ?  $options['sections'] : array();
         $sections = array_merge($this->sections,$sections);
 
 
         foreach($sections as $section=>$toggled){
-
             if($toggled == 'yes')
-            $this->sections[] = str_replace('activate_','', $section.'_settings');
+                $this->sections[] = $section.'_settings';
         }
-
-
 
         $theme_root = get_template_directory();
         $this->forms_root = $theme_root.'/lib/admin/functions/new-forms';

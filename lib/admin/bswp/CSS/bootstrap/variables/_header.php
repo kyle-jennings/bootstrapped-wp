@@ -3,7 +3,7 @@
 <?php
 
 // header
-$header = $this->values['header'];
+$header = $values['header'];
 $header_bgcolors = $header['background_colors'];
 $header_wallpaper = $header['background_wallpaper'];
 $header_text = $header['text'];

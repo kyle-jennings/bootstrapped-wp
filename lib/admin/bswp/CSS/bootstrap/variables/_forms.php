@@ -1,7 +1,7 @@
 <?php
 
 // forms
-$forms = $this->values['forms'];
+$forms = $values['forms'];
 $form = $forms['background_colors'];
 $field = $forms['field_colors'];
 $field_hovered = $forms['field_hovered_colors'];

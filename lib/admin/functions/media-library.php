@@ -2,9 +2,11 @@
 
 
 function bswp_hide_css_files($query) {
+
   $include = array();
   $exclude = array();
   $temp_query = new WP_Query($query);
+
   if($temp_query->have_posts()) {
     while($temp_query->have_posts()) {
       $temp_query->the_post();

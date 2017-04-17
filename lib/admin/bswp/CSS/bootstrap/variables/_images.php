@@ -1,7 +1,7 @@
 <?php
 
 // images
-$image_settings = $this->values['images'];
+$image_settings = $values['images'];
 $images = $image_settings['images'];
 $image_thumbnails = $image_settings['thumbnails'];
 $image_captions = $image_settings['image_captions'];
