@@ -53,43 +53,26 @@ class Sidebar
 	{
 
         $output = '';
-
+        $width_class = $this->isHorizontalSection() ? '' : $this->width;
 
 		ob_start();
 			dynamic_sidebar($this->name);
 		$content = ob_get_clean();
 
-		$output .= '<div class="sidebar sidebar--'.$this->position.' '.$this->width.' '.$this->device_view.'">';
+        $output .= '<div class="section section--sidebar sidebar-'.$this->position.' '.$width_class.' '.$this->device_view.'">';
+            $output .= '<div class="container">';
 
-            if($this->width == 'span12')
-                $output .= '<div class="row">' . $content .'</div>';
-            else
-                $output .= $content;
+                if($this->width == 'span12')
+                    $output .= '<div class="row">' . $content .'</div>';
+                else
+                    $output .= $content;
 
-		$output .= '</div>';
+            $output .= '</div>';
+        $output .= '</div>';
 
-        // if the sidebar is horizontal, it needs a wrapper
-        $output = $this->isHorizontalSection() ? $this->horizontalWrapper($output) : $output;
 
 		return $output;
 	}
-
-    public function horizontalWrapper($markup)
-    {
-        $output = '';
-
-        if($this->position == 'top' || $this->position == 'bottom'){
-            $output .= '<div class="section section--sidebar">';
-                $output .= '<div class="container">';
-                    $output .= $markup;
-                $output .= '</div>';
-            $output .= '</div>';
-        }else{
-            $output .= $markup;
-        }
-
-        return $output;
-    }
 
 
     public function isHorizontalSection()

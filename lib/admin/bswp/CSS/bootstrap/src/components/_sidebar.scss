@@ -1,10 +1,14 @@
-.sidebar {
+.section--sidebar {
     min-height: 1px;
     padding: 20px 0;
+
     @media (max-width: 767px) {
         padding-bottom: 20px;
         padding-top: 20px;
         position: relative;
     }
 
+    &.span3 .container {
+        width: auto !important;
+    }
 }

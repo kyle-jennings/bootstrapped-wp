@@ -48,25 +48,19 @@ foreach($this->sections as $section):
     endif;
 
 echo $section_name . ' {';
-?>
 
-
-    <?php
     echo $this->setVariables($values);
-    ?>
-    @import 'components/scaffolding';
-<?php
+
     if ( in_array($section, array('sidebar_settings', 'site_settings', 'body_settings')) )
         echo "@import 'components/sidebar';";
-?>
-<?php
+
     if($section == 'sidebar_settings' ):
         echo "@import 'components/scaffolding-sidebar-bg';";
     else:
         echo "@import 'components/scaffolding-background';";
     endif;
 ?>
-
+    @import 'components/scaffolding';
     @import 'components/scaffolding-borders';
     @import 'components/links';
 

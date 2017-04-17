@@ -20,6 +20,7 @@ $rebuild_sidebar_script = '
 if(json.callback_args){
     var args = json.callback_args;
     window.args = args;
+    var isSection = args.isSection;
     var position  = args.position;
     var width = (position == "left" || position == "right") ? "span9" : "span12";
     var $preview = $(".preview-window").contents();
@@ -27,9 +28,17 @@ if(json.callback_args){
     var $content = $preview.find(".content-column");
 
     $content.removeClass("span9 span12").addClass(width);
-    $preview.find(".sidebar").remove();
+    $preview.find(".section--sidebar").remove();
 
-    if(position == "left" || position == "top")
+    if(isSection == true && (position == "top" || position == "bottom")){
+        var $body = $preview.find(".section--body");
+        if(position == "top")
+            $output.insertBefore($body);
+        else if(position == "bottom")
+            $output.insertAfter($body);
+
+    }
+    else if(position == "left" || position == "top")
         $output.insertBefore($content);
     else
         $output.insertAfter($content);

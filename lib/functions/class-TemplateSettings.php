@@ -46,12 +46,11 @@ class TemplateSettings {
         $GLOBALS[ $class ] = $this;
     }
 
-    public function isHorizontalSidebar()
+    public static function isHorizontalSidebar()
     {
         // examine($this->isSidebarSection .'--'. $this->position);
         if(
             (self::$sidebarSectionActivated == 'yes' || self::$horizontalSidebarSectionActivated == 'yes')
-            && in_array($this->position, array('top', 'bottom'))
         ){
             return true;
         }

@@ -187,7 +187,8 @@ function rebuild_sidebar($args = array()) {
 
         $new_args = array(
             'position' => $position,
-            'visibility' => $visibility
+            'visibility' => $visibility,
+            'isSection' => $GLOBALS['TemplateSettings']::isHorizontalSidebar()
         );
 
         if($template_type == 'frontpage'){

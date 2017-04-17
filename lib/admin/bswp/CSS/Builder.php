@@ -153,9 +153,6 @@ class Builder {
             case 'site_settings';
                 return '.page-wrapper';
                 break;
-            case 'sidebar_settings';
-                return '.sidebar';
-                break;
             default:
                 return '.section--'.str_replace('_settings', '', $section);
                 break;

@@ -1509,9 +1509,7 @@ $heroUnitLeadColor:               inherit ;
     @import 'components/modals';
 
     @import 'components/frontpage';
-.page-wrapper {
-
-    // Component sizing
+.page-wrapper {// Component sizing
 // Based on 14px font-size and 20px line-height
 
 $paddingLarge:          11px 19px; // 44px
@@ -2998,8 +2996,7 @@ $tabInActiveBorders: no;
 $heroUnitBackground:              $grayLighter ;
 $heroUnitHeadingColor:            inherit ;
 $heroUnitLeadColor:               inherit ;
-    @import 'components/scaffolding';
-@import 'components/sidebar';@import 'components/scaffolding-background';
+@import 'components/sidebar';@import 'components/scaffolding-background';    @import 'components/scaffolding';
     @import 'components/scaffolding-borders';
     @import 'components/links';
 
@@ -3047,9 +3044,7 @@ $heroUnitLeadColor:               inherit ;
     @import 'components/navbar-toggle';
     @import 'components/navbar-responsive';
 
-}.section--body {
-
-    // Component sizing
+}.section--body {// Component sizing
 // Based on 14px font-size and 20px line-height
 
 $paddingLarge:          11px 19px; // 44px
@@ -4518,8 +4513,7 @@ $tabInActiveBorders: no;
 $heroUnitBackground:              $grayLighter ;
 $heroUnitHeadingColor:            inherit ;
 $heroUnitLeadColor:               inherit ;
-    @import 'components/scaffolding';
-@import 'components/sidebar';@import 'components/scaffolding-background';
+@import 'components/sidebar';@import 'components/scaffolding-background';    @import 'components/scaffolding';
     @import 'components/scaffolding-borders';
     @import 'components/links';
 
@@ -4567,9 +4561,7 @@ $heroUnitLeadColor:               inherit ;
     @import 'components/navbar-toggle';
     @import 'components/navbar-responsive';
 
-}.sidebar {
-
-    // Component sizing
+}.section--sidebar {// Component sizing
 // Based on 14px font-size and 20px line-height
 
 $paddingLarge:          11px 19px; // 44px
@@ -6038,8 +6030,7 @@ $tabInActiveBorders: no;
 $heroUnitBackground:              $grayLighter ;
 $heroUnitHeadingColor:            inherit ;
 $heroUnitLeadColor:               inherit ;
-    @import 'components/scaffolding';
-@import 'components/sidebar';@import 'components/scaffolding-sidebar-bg';
+@import 'components/sidebar';@import 'components/scaffolding-sidebar-bg';    @import 'components/scaffolding';
     @import 'components/scaffolding-borders';
     @import 'components/links';
 

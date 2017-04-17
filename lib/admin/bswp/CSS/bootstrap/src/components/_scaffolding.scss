@@ -4,7 +4,7 @@ font-family: $baseFontFamily;
 font-size: $baseFontSize;
 line-height: $baseLineHeight;
 
-margin: 0;
+
 @if $floatSection == yes {
     margin-bottom: $bottomMargin !important;
     margin-top: $topMargin !important;

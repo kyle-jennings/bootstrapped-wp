@@ -23,14 +23,16 @@ $available_sections = array(
         array(
             'args'=>array('no', 'yes'),
             'name'=>'body',
-            'label'=>'Body Settings'
+            'label'=>'Body Settings',
+            'preview'=>'form_save_warning',
         )
     ),
     'sidebar'=>new Select(
         array(
             'args'=>array('no', 'yes'),
             'name'=>'sidebar',
-            'label'=>'Sidebar Settings'
+            'label'=>'Sidebar Settings',
+            'preview'=>'form_save_warning',
         )
     ),
     // 'activate_footer'=>new Select(
