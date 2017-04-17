@@ -138,10 +138,15 @@ class Section {
         if( in_array($this->name, $sections) )
             return;
 
+        $this->redirectToSiteSettings();
+    }
+
+    public function redirectToSiteSettings()
+    {
+
         $url = admin_url('admin.php?page=bswp_settings&amp;section=site_settings');
         wp_redirect($url);
         exit;
-
     }
 
 
@@ -169,7 +174,11 @@ class Section {
 
     // we use a settings file as an index of all settings
     public function get_settings_file(){
-        $this->settings_file = dirname(__FILE__).'/section--'.$this->name.'.php';
+        if(is_readable(dirname(__FILE__).'/section--'.$this->name.'.php'))
+            $this->settings_file = dirname(__FILE__).'/section--'.$this->name.'.php';
+        else
+            $this->redirectToSiteSettings();
+
     }
 
     // now we grab the field settings
@@ -244,10 +253,6 @@ class Section {
 
         register_setting('bswp_'.$this->name, 'bswp_'.$this->name);
 
-
-        // foreach($this->groups as $group_name=>$group){
-        //     $this->register_field($group);
-        // }
 
     }
 

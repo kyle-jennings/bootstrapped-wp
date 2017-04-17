@@ -16,6 +16,7 @@ class SetupWidgets {
         $site_settings = get_option('bswp_site_settings');
         $layouts = $site_settings['layouts'];
         self::$sidebars = $layouts['sidebars'];
+        self::$sidebars['footer'] = '{"position":"top","visibility":"all"}';
 
         self::$frontpage_sidebar = json_decode(self::$sidebars['frontpage']);
 
@@ -49,9 +50,7 @@ class SetupWidgets {
         foreach(self::$sidebars as $name=>$sidebar){
 
             $sidebar = json_decode($sidebar);
-
             $pos = $sidebar->position;
-
 
             $display_name = ucwords(str_replace('_', ' ', $name));
             $width = self::setWidgetWidth($name, $pos);

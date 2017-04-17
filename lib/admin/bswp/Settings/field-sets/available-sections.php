@@ -24,7 +24,7 @@ $available_sections = array(
             'args'=>array('no', 'yes'),
             'name'=>'body',
             'label'=>'Body Settings',
-            'preview'=>'form_save_warning',
+
         )
     ),
     'sidebar'=>new Select(
@@ -32,14 +32,20 @@ $available_sections = array(
             'args'=>array('no', 'yes'),
             'name'=>'sidebar',
             'label'=>'Sidebar Settings',
-            'preview'=>'form_save_warning',
+
         )
     ),
-    // 'activate_footer'=>new Select(
-    //     array(
-    //         'args'=>array('no', 'yes'),
-    //         'name'=>'activate_footer',
-    //         'label'=>'Footer Settings'
-    //     )
-    // ),
+    'footer'=>new Select(
+        array(
+            'args'=>array('no', 'yes'),
+            'name'=>'footer',
+            'label'=>'Footer',
+
+        )
+    ),
 );
+
+
+foreach($available_sections as &$section){
+    $section->preview = 'form_save_warning';
+}
