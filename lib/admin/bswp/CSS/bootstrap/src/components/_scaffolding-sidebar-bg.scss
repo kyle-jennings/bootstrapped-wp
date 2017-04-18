@@ -16,7 +16,6 @@
 
     @if $useBackgroundWallpaper == yes {
         background-attachment: $backgroundAttachment;
-        background-color: $backgroundOverlay;
         background-image: url($backgroundImage);
         @if $backgroundPosition == custom {
             background-position: $backgroundPositionX  $backgroundPositionY;
@@ -33,28 +32,35 @@
         }
 
 
-        bottom: 0;
-        content: '';
-        display: block;
-        position: absolute;
-        right: 0;
-        top: 0;
-        z-index: 1;
-        position: relative;
+
     }
 
     bottom: 0;
     content: '';
     position: absolute;
     top: 0;
-    z-index: -1;
+    z-index: -2;
 
 }
 
+// background overlay
+@if $useBackgroundWallpaper == yes {
+    &::after {
+        background-color: $backgroundOverlay;
+        bottom: 0;
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        z-index: -1;
+    }
+}
+
 // the left side padding and BG
-&.sidebar-left{
+&.sidebar-left {
     // padding-right: 20px;
-    &::before {
+    &::before,
+    &::after {
         left: 0;
     }
 }
@@ -62,7 +68,8 @@
 // the right side padding and BG
 &.sidebar-right {
     // padding-left: 20px;
-    &::before{
+    &::before,
+    &::after{
         right: 0;
     }
 }
@@ -76,7 +83,8 @@
         position: relative;
     }
 
-    &::before {
+    &::before,
+    &::after {
 
         @include sidebar-bg(3, $gridColumnWidth, $gridGutterWidth);
         @media (max-width: 767px) {
@@ -102,7 +110,8 @@
 &.sidebar-top,
 &.sidebar-bottom {
     // padding-left: 0;
-    &::before {
+    &::before,
+    &::after {
         left: 0;
         right: 0;
         width: 100%;

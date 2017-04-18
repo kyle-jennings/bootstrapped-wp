@@ -129,7 +129,7 @@ class Builder {
     }
 
 
-    public function setVariables($values) {
+    public function setVariables($values, $section = null) {
 
         include $this->src_dir . 'variables.php';
 

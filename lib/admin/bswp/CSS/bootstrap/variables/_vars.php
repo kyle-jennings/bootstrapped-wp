@@ -5,7 +5,7 @@ $section_name = $this->getSectionName($section);
 
 $background_and_borders = $values['background_and_borders'];
 
-// headings
+    // headings
 $text = $values['text'];
 $text_color = $text['text']['text_color'];
 

@@ -100,13 +100,17 @@ class Sortable extends Field {
         $saved = $this->value;
         foreach($components as $component){
             $continue = false;
-            foreach($saved as $s){
-                if($component->name == $s->name){
-                    $continue = true;
+
+            if(!empty($saved)):
+
+                foreach($saved as $s){
+                    if($component->name == $s->name){
+                        $continue = true;
+                    }
                 }
-            }
-            if($continue == true)
-                continue;
+                if($continue == true)
+                    continue;
+            endif;
 
             $output .= $this->get_sortable_markup($component);
         }
@@ -120,6 +124,10 @@ class Sortable extends Field {
     private function get_active(){
         $output = '';
         $saved = $this->value;
+
+        if(empty($saved))
+            return $output;
+
         foreach($saved as $component){
             $output .= $this->get_sortable_markup($component);
         }

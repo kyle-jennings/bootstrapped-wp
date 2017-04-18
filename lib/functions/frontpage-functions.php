@@ -122,19 +122,18 @@ function kjd_front_page_layout( $components ){
 function default_frontpage() {
     ob_start();
     ?>
-    <div class="section section--body section--frontpage">
-    	<div class="container">
-    		<div class="jumbotron">
-    		  <h1>Please set up your front page!</h1>
-    		  <p>And this ugly message goes away</p>
-    		  <p>
-    		    <a href="wp-admin/admin.php?page=kjd_page_layout_settings&tab=frontPage"class="btn btn-warning btn-large">
-    		      Go to your dashboard
-    		    </a>
-    		  </p>
-    		</div>
-    	</div>
+
+    <div class="jumbotron">
+        <h1>Please set up your front page!</h1>
+        <p>And this ugly message goes away</p>
+            <p>
+            <a href="<?php echo admin_url('admin.php?page=bswp_settings'); ?>"
+            class="btn btn-warning btn-large">
+                Go to your dashboard
+            </a>
+        </p>
     </div>
+
     <?php
     $contents = ob_get_contents();
     ob_end_clean();

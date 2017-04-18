@@ -13,8 +13,6 @@ if($component_options['activate_tabs'] == 'yes'){
             $regular_text,
             array( 'divider1'=>new Divider()),
             $link,
-            array( 'divider2'=>new Divider()),
-            $visited_link,
             array( 'divider3'=>new Divider()),
             $hovered_link,
             array( 'divider4'=>new Divider()),

@@ -5,25 +5,25 @@ use bswp\Forms\Fields;
 
 
 $available_sections = array(
-    // 'activate_header'=>new Select(
-    //     array(
-    //         'args'=>array('no', 'yes'),
-    //         'name'=>'activate_header',
-    //         'label'=>'Header Settings'
-    //     )
-    // ),
-    // 'activate_navbar'=>new Select(
-    //     array(
-    //         'args'=>array('no', 'yes'),
-    //         'name'=>'activate_navbar',
-    //         'label'=>'Navbar Settings'
-    //     )
-    // ),
+    'header'=>new Select(
+        array(
+            'args'=>array('no', 'yes'),
+            'name'=>'header',
+            'label'=>'Header'
+        )
+    ),
+    'navbar'=>new Select(
+        array(
+            'args'=>array('no', 'yes'),
+            'name'=>'navbar',
+            'label'=>'Navbar'
+        )
+    ),
     'body'=>new Select(
         array(
             'args'=>array('no', 'yes'),
             'name'=>'body',
-            'label'=>'Body Settings',
+            'label'=>'Body',
 
         )
     ),
@@ -31,10 +31,19 @@ $available_sections = array(
         array(
             'args'=>array('no', 'yes'),
             'name'=>'sidebar',
-            'label'=>'Sidebar Settings',
+            'label'=>'Sidebar',
 
         )
     ),
+    // 'horizontal_sidebar'=>new Select(
+    //     array(
+    //         'args'=>array('no', 'yes'),
+    //         'name'=>'horizontal_sidebar',
+    //         'label'=>'Horizontal Sidebar',
+    //
+    //     )
+    // ),
+
     'footer'=>new Select(
         array(
             'args'=>array('no', 'yes'),

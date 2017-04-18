@@ -1,4 +1,3 @@
-#header,
 .section--header,
 .front_page_custom_content.wp-editor {
 
@@ -56,16 +55,16 @@
     border-radius: $headerBorderRadius;
 
     border-color: $headerBorderColor;
+    border-left: 0;
+    border-right: 0;
     border-style: $headerBorderStyle;
     border-width: $headerBorderWidth;
-    border-left: none;
-    border-right: none;
 
     height: $headerHeight;
 
     @if $headerHeight == 100vh {
-        display: flex;
         align-items: center;
+        display: flex;
         justify-content: center;
     }
 
@@ -74,7 +73,7 @@
     }
 }
 
-#header > .container ,
+
 .section--header > .container,
 .front_page_custom_content.wp-editor {
 
@@ -145,7 +144,7 @@
 
     .header-content__title {
         font-size: $headerTitleSize;
-        line-height: $headerTitleSize+1;
+        line-height: $headerTitleSize + 1;
         word-break: break-all;
     }
 

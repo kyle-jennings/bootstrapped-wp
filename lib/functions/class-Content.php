@@ -289,6 +289,44 @@ class Content {
 
         return $output;
     }
+    
+    /* ----------------------------------------------------
+            gallery images pagination
+     ----------------------------------------------------- */
+    public function kjd_gallery_image_links(){
+
+        global $post;
+
+        $navigation_markup = '<div class="image-pagination cf">';
+        $parent_id = $post->post_parent;
+
+        if ( strpos(get_post($parent_id)->post_content,'[gallery ') === false ){
+            // $navigation_markup .= 'no gallery';
+        }else{
+
+            $images = kjd_get_post_images($parent_id);
+            foreach($images as $k=>$image)
+            {
+
+
+                if($image['image_id'] == $post->ID){
+                    // $next_url = '<a href="'.get_attachment_link( $id ).'"><img src="'.$url[0].'" /></a>';
+                    $prev =  $images[$k-1]['image_id'];
+                    if(isset($prev)){
+                        $navigation_markup .= '<a class="image-nav prev" href="'.get_attachment_link($prev).'">Previous Image</a>';
+                    }
+
+                    $next =  $images[$k+1]['image_id'];
+                    if(isset($next)){
+                        $navigation_markup .= '<a class="image-nav next" href="'.get_attachment_link($next).'">Next Image</a>';
+                    }
+                }
+            }
+        }
+
+        $navigation_markup .= '</div>';
+        return $navigation_markup;
+    }
 
     /* -----------------------------------------------
     set featured image size

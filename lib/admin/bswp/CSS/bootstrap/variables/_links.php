@@ -3,7 +3,9 @@
 <?php
 
 $links = $values['links'];
-
+$link = $links['link'];
+$hovered_link = $links['hovered_link'];
+$active_link = $links['active_link'];
 ?>
 
 $linkColor:         <?php echo $link['link_color'] ? $link['link_color'] : '$blue'; ?> ;

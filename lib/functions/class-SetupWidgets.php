@@ -31,6 +31,8 @@ class SetupWidgets {
     {
         $sortables = json_decode($frontpage);
 
+        if(empty($sortables))
+            return;
 
         foreach($sortables as $sortable):
             if(strpos($sortable->name, 'widgets') == false )

@@ -12,7 +12,7 @@ $tablesTextColor:       <?php echo _tern($tables['rows']['text_color'],  '$grayD
 $tablesLinkColor:       <?php echo _tern($tables['rows']['links_color'],  '$linkColor'); ?>;
 $tableBackgroundHover:              darken($tableBackground, 20%) ;
 
-// hedaer
+// header
 $tablesHeaderBackgroundColor:       <?php echo _tern($tables['table_header']['background_color_rgba'],  '$grayLighterDark'); ?>;
 $tablesHeaderTextColor:       <?php echo _tern($tables['table_header']['text_color'],  '$gray'); ?>;
 
@@ -21,8 +21,7 @@ $tableBackgroundAccentHover:              darken($tableBackgroundAccent, 20%) ;
 
 
 // striped rows
-$tableStripedBackground:        $tableBackgroundAccent;
-$tableStripedBackground:        $white;
+$tableStripedBackground:       <?php echo _tern($tables['striped_rows']['background_color_rgba'],  '$white'); ?>;
 $tablesStripedTextColor:       <?php echo _tern($tables['striped_rows']['text_color'],  '$grayDark'); ?>;
 $tablesStripedLinkColor:       <?php echo _tern($tables['striped_rows']['links_color'],  '$linkColor'); ?>;
 

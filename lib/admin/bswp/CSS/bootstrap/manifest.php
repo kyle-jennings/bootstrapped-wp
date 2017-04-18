@@ -21,7 +21,7 @@ foreach($this->sections as $section):
 
     @import 'settings/constants';
     <?php
-     echo $this->setVariables($values);
+     echo $this->setVariables($values, $section);
     ?>
     @import 'settings/mixins';
     @import 'settings/reset';
@@ -49,7 +49,7 @@ foreach($this->sections as $section):
 
 echo $section_name . ' {';
 
-    echo $this->setVariables($values);
+    echo $this->setVariables($values, $section);
 
     if ( in_array($section, array('sidebar_settings', 'site_settings', 'body_settings')) )
         echo "@import 'components/sidebar';";

@@ -106,6 +106,9 @@ class Layout {
     {
         $sidebars = self::$sidebar_settings;
 
+        if(empty($sidebars))
+            return;
+        
         foreach($sidebars as $name=>$sidebar){
             if(strpos($name, self::$template_type) !== false) {
 
