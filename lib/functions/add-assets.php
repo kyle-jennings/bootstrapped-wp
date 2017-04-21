@@ -40,8 +40,6 @@ function bswp_add_assets(){
         wp_enqueue_style("site", $css['src']);
     // }
 
-    wp_enqueue_style("base", $root."/styles/common.css");
-
 }
 
 add_action( 'wp_enqueue_scripts', 'bswp_add_assets' );

@@ -4,18 +4,32 @@ include $this->src_dir . '__helpers.php';
 
 ob_start();
 
-// $section = reset($this->sections);
-//
-// $section_name = $this->getSectionName( $section );
-// $values = get_option('bswp_site_settings');
+// if we are in the body, we need to include the sidebar settings
+if($this->preview == true && reset($this->sections) == 'body_settings')
+    $this->sections[] = 'sidebar_settings';
 
 
-foreach($this->sections as $section):
+// loop through each section
+foreach($this->sections as $k=>$section):
+    // grab the section name
     $section_name = $this->getSectionName( $section );
-    $values = get_option('bswp_'.$section);
 
+    // if no values are provided (not in a preview), then we grab them from the DB
+    $values = !empty($this->values) ? $this->values : $values = get_option('bswp_'.$section);
 
-    if ( $section == 'site_settings' ):
+    // if the previed section is the body settings, and the current iteration is
+    // on the sidebar settings, and we are in preview mode,
+    // then get the saved sidebar values
+    if( reset($this->sections) == 'body_settings'
+        && $section == 'sidebar_settings'
+        && $this->preview == true
+    ){
+        $values = get_option('bswp_sidebar_settings');
+    }
+
+    // ok, so only include the global settings once, if we are on the
+    // site_settings iteration, or we are in preview mode (and in the first iteration)
+    if ( $section == 'site_settings' || ($this->preview == true && $k == 0)):
 ?>
 
 
@@ -51,17 +65,22 @@ echo $section_name . ' {';
 
     echo $this->setVariables($values, $section);
 
+    // if we are building the sidebar, site, or body settings, we need to
+    // include the sidebar component
     if ( in_array($section, array('sidebar_settings', 'site_settings', 'body_settings')) )
         echo "@import 'components/sidebar';";
 
+    // if we are styling the sidebar (its activated) then we give it
+    // special bg rules
     if($section == 'sidebar_settings' ):
         echo "@import 'components/scaffolding-sidebar-bg';";
+        echo "@import 'components/scaffolding-sidebar-borders';";
     else:
         echo "@import 'components/scaffolding-background';";
+        echo "@import 'components/scaffolding-borders';";
     endif;
 ?>
     @import 'components/scaffolding';
-    @import 'components/scaffolding-borders';
     @import 'components/links';
 
 
@@ -100,13 +119,37 @@ echo $section_name . ' {';
     @import 'components/hero-unit';
     @import 'components/content-column';
 
-    @import 'components/header';
+<?php
+    // if we are in the site settings section and neither the headier or navbar
+    // settings sections have been set, then we style the header and navbar
+    if( $section == 'site_settings'
+        && (!in_array('header_settings', $this->sections)
+        && !in_array('navbar_settings', $this->sections) )
+    ):
+    echo "@import 'components/header';";
+    echo "@import 'components/navbar';";
+    echo "@import 'components/dropdowns';";
+    echo "@import 'components/navbar_dropdown';";
+    echo "@import 'components/navbar-toggle';";
+    echo "@import 'components/navbar-responsive';";
 
-    @import 'components/navbar';
-    @import 'components/dropdowns';
-    @import 'components/navbar_dropdown';
-    @import 'components/navbar-toggle';
-    @import 'components/navbar-responsive';
+    endif;
+
+    // if we are in the header section, style the header
+    if( $section == 'header_settings'):
+        echo "@import 'components/header';";
+    endif;
+
+    // if we are in the navbar section, style the navbar
+    if( $section == 'navbar_settings'):
+        echo "@import 'components/navbar';";
+        echo "@import 'components/dropdowns';";
+        echo "@import 'components/navbar_dropdown';";
+        echo "@import 'components/navbar-toggle';";
+        echo "@import 'components/navbar-responsive';";
+    endif;
+?>
+
 
 <?php
 echo '}';

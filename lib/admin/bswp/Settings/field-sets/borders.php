@@ -69,7 +69,7 @@ foreach($border_sides as $border){
         ),
         $border.'_border_width' => new Select(array(
                 'name' => $border.'_border_width',
-                'args' => array_map('bswp\Settings\_helpers\add_px_string', range(1,20)),
+                'args' => array_map('bswp\Settings\_helpers\add_px_string', $px_range ),
                 'toggled_by' => array(
                     $border.'_border_style' => border_settings_map('border_styles_toggled_by', array($border) ),
                 )

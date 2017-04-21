@@ -47,10 +47,6 @@ class Builder {
             $this->preview = true;
         }else{
 
-            // $this->section = 'site_settings';
-            //
-            // $options = get_option('bswp_site_settings');
-            // $this->values = $options;
             $this->setActiveSections();
         }
     }

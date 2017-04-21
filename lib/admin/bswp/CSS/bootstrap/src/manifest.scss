@@ -1366,8 +1366,7 @@ $tabsInActiveBorderColor:$transGrayLight;$tabsInActiveBorderStyle:none;$tabsInAc
 $heroUnitBackground:              $grayLighter ;
 $heroUnitHeadingColor:            inherit ;
 $heroUnitLeadColor:               inherit ;
-@import 'components/sidebar';@import 'components/scaffolding-background';    @import 'components/scaffolding';
-    @import 'components/scaffolding-borders';
+@import 'components/sidebar';@import 'components/scaffolding-background';@import 'components/scaffolding-borders';    @import 'components/scaffolding';
     @import 'components/links';
 
 
@@ -1406,13 +1405,7 @@ $heroUnitLeadColor:               inherit ;
     @import 'components/hero-unit';
     @import 'components/content-column';
 
-    @import 'components/header';
 
-    @import 'components/navbar';
-    @import 'components/dropdowns';
-    @import 'components/navbar_dropdown';
-    @import 'components/navbar-toggle';
-    @import 'components/navbar-responsive';
 
 }.section--header {// Component sizing
 // Based on 14px font-size and 20px line-height
@@ -1507,7 +1500,7 @@ $topMargin: 0 ;
 $bottomMargin: 0 ;
 $outerGlow: none;
 $BorderColor:#03c0ff;$BorderStyle:solid;$BorderWidth:4px;$TopBorderColor:transparent;$TopBorderStyle:none;$TopBorderWidth:1px;$RightBorderColor:transparent;$RightBorderStyle:none;$RightBorderWidth:1px;$BottomBorderColor:transparent;$BottomBorderStyle:none;$BottomBorderWidth:1px;$LeftBorderColor:transparent;$LeftBorderStyle:none;$LeftBorderWidth:1px;$BorderRadius: 0px;$TopLeftBorderRadius: 0px;$TopRightBorderRadius: 0px;$BottomRightBorderRadius: 0px;$BottomLeftBorderRadius: 0px;// text
-$textColor:             #f0f0f0;
+$textColor:             #030303;
 
 
 // Typography
@@ -2086,8 +2079,7 @@ $tabsInActiveBorderColor:$transGrayLight;$tabsInActiveBorderStyle:none;$tabsInAc
 $heroUnitBackground:              $grayLighter ;
 $heroUnitHeadingColor:            inherit ;
 $heroUnitLeadColor:               inherit ;
-@import 'components/scaffolding-background';    @import 'components/scaffolding';
-    @import 'components/scaffolding-borders';
+@import 'components/scaffolding-background';@import 'components/scaffolding-borders';    @import 'components/scaffolding';
     @import 'components/links';
 
 
@@ -2126,13 +2118,7 @@ $heroUnitLeadColor:               inherit ;
     @import 'components/hero-unit';
     @import 'components/content-column';
 
-    @import 'components/header';
-
-    @import 'components/navbar';
-    @import 'components/dropdowns';
-    @import 'components/navbar_dropdown';
-    @import 'components/navbar-toggle';
-    @import 'components/navbar-responsive';
+@import 'components/header';
 
 }.section--navbar {// Component sizing
 // Based on 14px font-size and 20px line-height
@@ -2806,8 +2792,7 @@ $tabsInActiveBorderColor:$transGrayLight;$tabsInActiveBorderStyle:none;$tabsInAc
 $heroUnitBackground:              $grayLighter ;
 $heroUnitHeadingColor:            inherit ;
 $heroUnitLeadColor:               inherit ;
-@import 'components/scaffolding-background';    @import 'components/scaffolding';
-    @import 'components/scaffolding-borders';
+@import 'components/scaffolding-background';@import 'components/scaffolding-borders';    @import 'components/scaffolding';
     @import 'components/links';
 
 
@@ -2846,13 +2831,7 @@ $heroUnitLeadColor:               inherit ;
     @import 'components/hero-unit';
     @import 'components/content-column';
 
-    @import 'components/header';
-
-    @import 'components/navbar';
-    @import 'components/dropdowns';
-    @import 'components/navbar_dropdown';
-    @import 'components/navbar-toggle';
-    @import 'components/navbar-responsive';
+@import 'components/navbar';@import 'components/dropdowns';@import 'components/navbar_dropdown';@import 'components/navbar-toggle';@import 'components/navbar-responsive';
 
 }.section--body {// Component sizing
 // Based on 14px font-size and 20px line-height
@@ -2947,7 +2926,7 @@ $topMargin: 0 ;
 $bottomMargin: 0 ;
 $outerGlow: none;
 $BorderColor:#550294;$BorderStyle:solid;$BorderWidth:5px;$TopBorderColor:transparent;$TopBorderStyle:none;$TopBorderWidth:1px;$RightBorderColor:transparent;$RightBorderStyle:none;$RightBorderWidth:1px;$BottomBorderColor:transparent;$BottomBorderStyle:none;$BottomBorderWidth:1px;$LeftBorderColor:transparent;$LeftBorderStyle:none;$LeftBorderWidth:1px;$BorderRadius: 0px;$TopLeftBorderRadius: 0px;$TopRightBorderRadius: 0px;$BottomRightBorderRadius: 0px;$BottomLeftBorderRadius: 0px;// text
-$textColor:             #06c720;
+$textColor:             #dbdbdb;
 
 
 // Typography
@@ -3526,8 +3505,7 @@ $tabsInActiveBorderColor:#f50e0e;$tabsInActiveBorderStyle:solid;$tabsInActiveBor
 $heroUnitBackground:              $grayLighter ;
 $heroUnitHeadingColor:            inherit ;
 $heroUnitLeadColor:               inherit ;
-@import 'components/sidebar';@import 'components/scaffolding-background';    @import 'components/scaffolding';
-    @import 'components/scaffolding-borders';
+@import 'components/sidebar';@import 'components/scaffolding-background';@import 'components/scaffolding-borders';    @import 'components/scaffolding';
     @import 'components/links';
 
 
@@ -3566,13 +3544,7 @@ $heroUnitLeadColor:               inherit ;
     @import 'components/hero-unit';
     @import 'components/content-column';
 
-    @import 'components/header';
 
-    @import 'components/navbar';
-    @import 'components/dropdowns';
-    @import 'components/navbar_dropdown';
-    @import 'components/navbar-toggle';
-    @import 'components/navbar-responsive';
 
 }.section--sidebar {// Component sizing
 // Based on 14px font-size and 20px line-height
@@ -3666,8 +3638,8 @@ $floatSection: no ;
 $topMargin: 0 ;
 $bottomMargin: 0 ;
 $outerGlow: none;
-$BorderColor:$transGrayLight;$BorderStyle:none;$BorderWidth:0px;$TopBorderColor:transparent;$TopBorderStyle:none;$TopBorderWidth:1px;$RightBorderColor:transparent;$RightBorderStyle:none;$RightBorderWidth:1px;$BottomBorderColor:transparent;$BottomBorderStyle:none;$BottomBorderWidth:1px;$LeftBorderColor:transparent;$LeftBorderStyle:none;$LeftBorderWidth:1px;$BorderRadius: 0px;$TopLeftBorderRadius: 0px;$TopRightBorderRadius: 0px;$BottomRightBorderRadius: 0px;$BottomLeftBorderRadius: 0px;// text
-$textColor:             #f5f5f5;
+$BorderColor:$transGrayLight;$BorderStyle:none;$BorderWidth:0px;$TopBorderColor:transparent;$TopBorderStyle:none;$TopBorderWidth:1px;$RightBorderColor:transparent;$RightBorderStyle:none;$RightBorderWidth:1px;$BottomBorderColor:transparent;$BottomBorderStyle:none;$BottomBorderWidth:1px;$LeftBorderColor:#ffee03;$LeftBorderStyle:solid;$LeftBorderWidth:3px;$BorderColor: $TopBorderColor $RightBorderColor $BottomBorderColor $LeftBorderColor;$BorderStyle: $TopBorderStyle $RightBorderStyle $BottomBorderStyle $LeftBorderStyle;$BorderWidth: $TopBorderWidth $RightBorderWidth $BottomBorderWidth $LeftBorderWidth;$BorderRadius: 0px;$TopLeftBorderRadius: 0px;$TopRightBorderRadius: 0px;$BottomRightBorderRadius: 0px;$BottomLeftBorderRadius: 0px;// text
+$textColor:             #ffc861;
 
 
 // Typography
@@ -3689,7 +3661,7 @@ $hrBorder:                $grayLighter;
 // Links
 // -------------------------
 
-$linkColor:         #02a844 ;
+$linkColor:         #ffef0f ;
 $linkBackgroundFill: none ;
 $linkBackgroundColor: transparent ;
 $linkTextDecoration: none ;
@@ -3715,7 +3687,7 @@ $linkColorHover:        darken($hoveredLinkColor, 15%);
 $headingsFontFamily:    $baseFontFamily; // empty to use BS default, $baseFontFamily
 $headingsFontWeight:    bold;    // instead of browser default, bold
 
-        $headingsColor:         $textColor ;
+        $headingsColor:         #e68b03 ;
 
         $headingsTextDecoration: none ;
         $headingsTextShadow: darken($headingsColor, 15%) ;
@@ -3959,7 +3931,7 @@ $wellBackgroundSize: auto ;
 $wellBackgroundPercentage: 0% ;
 
 
-$wellBorderColor:$transGrayLight;$wellBorderStyle:solid;$wellBorderWidth:1px;$wellTopBorderColor:transparent;$wellTopBorderStyle:none;$wellTopBorderWidth:0;$wellRightBorderColor:transparent;$wellRightBorderStyle:none;$wellRightBorderWidth:0;$wellBottomBorderColor:transparent;$wellBottomBorderStyle:none;$wellBottomBorderWidth:0;$wellLeftBorderColor:transparent;$wellLeftBorderStyle:none;$wellLeftBorderWidth:0;$wellLinkColor: $linkColor;$wellLinkColor:$blue;$wellLinkBackgroundStyle:none;$wellLinkBackgroundColor:transparent;$wellLinkTextDecoration:none;$wellLinkTextShadow:none;$wellHoveredLinkColor:$blue;$wellHoveredLinkBackgroundStyle:none;$wellHoveredLinkBackgroundColor:transparent;$wellHoveredLinkTextDecoration:none;$wellHoveredLinkTextShadow:none;$wellActiveLinkColor:$blue;$wellActiveLinkBackgroundStyle:none;$wellActiveLinkBackgroundColor:transparent;$wellActiveLinkTextDecoration:none;$wellActiveLinkTextShadow:none;// header
+$wellBorderColor:$transGrayLight;$wellBorderStyle:none;$wellBorderWidth:0px;$wellTopBorderColor:transparent;$wellTopBorderStyle:none;$wellTopBorderWidth:1px;$wellRightBorderColor:transparent;$wellRightBorderStyle:none;$wellRightBorderWidth:1px;$wellBottomBorderColor:transparent;$wellBottomBorderStyle:none;$wellBottomBorderWidth:1px;$wellLeftBorderColor:transparent;$wellLeftBorderStyle:none;$wellLeftBorderWidth:1px;$wellBorderRadius: 0px;$wellTopLeftBorderRadius: 0px;$wellTopRightBorderRadius: 0px;$wellBottomRightBorderRadius: 0px;$wellBottomLeftBorderRadius: 0px;$wellLinkColor: $linkColor;$wellLinkColor:$blue;$wellLinkBackgroundStyle:none;$wellLinkBackgroundColor:transparent;$wellLinkTextDecoration:none;$wellLinkTextShadow:none;$wellHoveredLinkColor:$blue;$wellHoveredLinkBackgroundStyle:none;$wellHoveredLinkBackgroundColor:transparent;$wellHoveredLinkTextDecoration:none;$wellHoveredLinkTextShadow:none;$wellActiveLinkColor:$blue;$wellActiveLinkBackgroundStyle:none;$wellActiveLinkBackgroundColor:transparent;$wellActiveLinkTextDecoration:none;$wellActiveLinkTextShadow:none;// header
 //////////////////////
 
 // base settings
@@ -4116,7 +4088,7 @@ $paginationBorder:                    #ddd ;
 $paginationActiveBackground:          #f5f5f5 ;
 
 
-$paginationBorderColor:$transGrayLight;$paginationBorderStyle:solid;$paginationBorderWidth:1px;$paginationTopBorderColor:transparent;$paginationTopBorderStyle:none;$paginationTopBorderWidth:0;$paginationRightBorderColor:transparent;$paginationRightBorderStyle:none;$paginationRightBorderWidth:0;$paginationBottomBorderColor:transparent;$paginationBottomBorderStyle:none;$paginationBottomBorderWidth:0;$paginationLeftBorderColor:transparent;$paginationLeftBorderStyle:none;$paginationLeftBorderWidth:0;$paginationLinkColor: $blue ;
+$paginationBorderColor:$transGrayLight;$paginationBorderStyle:none;$paginationBorderWidth:0px;$paginationTopBorderColor:transparent;$paginationTopBorderStyle:none;$paginationTopBorderWidth:1px;$paginationRightBorderColor:transparent;$paginationRightBorderStyle:none;$paginationRightBorderWidth:1px;$paginationBottomBorderColor:transparent;$paginationBottomBorderStyle:none;$paginationBottomBorderWidth:1px;$paginationLeftBorderColor:transparent;$paginationLeftBorderStyle:none;$paginationLeftBorderWidth:1px;$paginationBorderRadius: 0px;$paginationTopLeftBorderRadius: 0px;$paginationTopRightBorderRadius: 0px;$paginationBottomRightBorderRadius: 0px;$paginationBottomLeftBorderRadius: 0px;$paginationLinkColor: $blue ;
 $paginationLinkBackgroundColor: $transparent ;
 
 $paginationHoveredLinkColor: $white ;
@@ -4130,13 +4102,13 @@ $paginationActiveLinkBackgroundColor: $blue ;
 $tooltipColor:            $white ;
 $tooltipBackgroundColor:       $black ;
 $tooltipBackgroundEndColor:       $black ;
-$tooltipBackgroundFill:       none ;
+$tooltipBackgroundFill:       solid ;
 
 $tooltipArrowWidth:       5px ;
 $tooltipArrowColor:       $tooltipBackgroundColor ;
 
 
-$tooltipBorderColor:$transGrayLight;$tooltipBorderStyle:solid;$tooltipBorderWidth:1px;$tooltipTopBorderColor:transparent;$tooltipTopBorderStyle:none;$tooltipTopBorderWidth:0;$tooltipRightBorderColor:transparent;$tooltipRightBorderStyle:none;$tooltipRightBorderWidth:0;$tooltipBottomBorderColor:transparent;$tooltipBottomBorderStyle:none;$tooltipBottomBorderWidth:0;$tooltipLeftBorderColor:transparent;$tooltipLeftBorderStyle:none;$tooltipLeftBorderWidth:0;
+$tooltipBorderColor:$transGrayLight;$tooltipBorderStyle:none;$tooltipBorderWidth:0px;$tooltipTopBorderColor:transparent;$tooltipTopBorderStyle:none;$tooltipTopBorderWidth:1px;$tooltipRightBorderColor:transparent;$tooltipRightBorderStyle:none;$tooltipRightBorderWidth:1px;$tooltipBottomBorderColor:transparent;$tooltipBottomBorderStyle:none;$tooltipBottomBorderWidth:1px;$tooltipLeftBorderColor:transparent;$tooltipLeftBorderStyle:none;$tooltipLeftBorderWidth:1px;$tooltipBorderRadius: 0px;$tooltipTopLeftBorderRadius: 0px;$tooltipTopRightBorderRadius: 0px;$tooltipBottomRightBorderRadius: 0px;$tooltipBottomLeftBorderRadius: 0px;
 // popovers
 // -------------------------
 
@@ -4144,20 +4116,20 @@ $tooltipBorderColor:$transGrayLight;$tooltipBorderStyle:solid;$tooltipBorderWidt
 $popoverColor:            $white ;
 $popoverBackgroundColor:       $black ;
 $popoverBackgroundEndColor:       $popoverBackgroundColor ;
-$popoverBackgroundFill:       none ;
+$popoverBackgroundFill:       solid ;
 
 $popoverTitleColor:            $white ;
 
 $popoverTitleBackgroundColor:       $popoverBackgroundColor ;
 $popoverTitleBackgroundEndColor:       $popoverTitleBackgroundColor ;
-$popoverTitleBackgroundFill:       none ;
+$popoverTitleBackgroundFill:       solid ;
 
 $popoverTitleBottomBorderStyle:    none;
 $popoverTitleBottomBorderColor:    transparent;
 $popoverTitleBottomBorderWidth:    1px;
 
 
-$popoverBorderColor:$transGrayLight;$popoverBorderStyle:solid;$popoverBorderWidth:1px;$popoverTopBorderColor:transparent;$popoverTopBorderStyle:none;$popoverTopBorderWidth:0;$popoverRightBorderColor:transparent;$popoverRightBorderStyle:none;$popoverRightBorderWidth:0;$popoverBottomBorderColor:transparent;$popoverBottomBorderStyle:none;$popoverBottomBorderWidth:0;$popoverLeftBorderColor:transparent;$popoverLeftBorderStyle:none;$popoverLeftBorderWidth:0;
+$popoverBorderColor:$transGrayLight;$popoverBorderStyle:none;$popoverBorderWidth:0px;$popoverTopBorderColor:transparent;$popoverTopBorderStyle:none;$popoverTopBorderWidth:1px;$popoverRightBorderColor:transparent;$popoverRightBorderStyle:none;$popoverRightBorderWidth:1px;$popoverBottomBorderColor:transparent;$popoverBottomBorderStyle:none;$popoverBottomBorderWidth:1px;$popoverLeftBorderColor:transparent;$popoverLeftBorderStyle:none;$popoverLeftBorderWidth:1px;$popoverBorderRadius: 0px;$popoverTopLeftBorderRadius: 0px;$popoverTopRightBorderRadius: 0px;$popoverBottomRightBorderRadius: 0px;$popoverBottomLeftBorderRadius: 0px;
 
 
 
@@ -4203,11 +4175,11 @@ $collapsiblesBackgroundSize: auto ;
 $collapsiblesBackgroundPercentage: 0% ;
 
 
-$collapsiblesBorderColor:$transGrayLight;$collapsiblesBorderStyle:solid;$collapsiblesBorderWidth:1px;$collapsiblesTopBorderColor:transparent;$collapsiblesTopBorderStyle:none;$collapsiblesTopBorderWidth:0;$collapsiblesRightBorderColor:transparent;$collapsiblesRightBorderStyle:none;$collapsiblesRightBorderWidth:0;$collapsiblesBottomBorderColor:transparent;$collapsiblesBottomBorderStyle:none;$collapsiblesBottomBorderWidth:0;$collapsiblesLeftBorderColor:transparent;$collapsiblesLeftBorderStyle:none;$collapsiblesLeftBorderWidth:0;$collapsiblesLinkColor: $linkColor;$collapsiblesLinkColor:$blue;$collapsiblesLinkBackgroundStyle:none;$collapsiblesLinkBackgroundColor:transparent;$collapsiblesLinkTextDecoration:none;$collapsiblesLinkTextShadow:none;$collapsiblesHoveredLinkColor:$blue;$collapsiblesHoveredLinkBackgroundStyle:none;$collapsiblesHoveredLinkBackgroundColor:transparent;$collapsiblesHoveredLinkTextDecoration:none;$collapsiblesHoveredLinkTextShadow:none;$collapsiblesActiveLinkColor:$blue;$collapsiblesActiveLinkBackgroundStyle:none;$collapsiblesActiveLinkBackgroundColor:transparent;$collapsiblesActiveLinkTextDecoration:none;$collapsiblesActiveLinkTextShadow:none;
+$collapsiblesBorderColor:$transGrayLight;$collapsiblesBorderStyle:none;$collapsiblesBorderWidth:0px;$collapsiblesTopBorderColor:transparent;$collapsiblesTopBorderStyle:none;$collapsiblesTopBorderWidth:1px;$collapsiblesRightBorderColor:transparent;$collapsiblesRightBorderStyle:none;$collapsiblesRightBorderWidth:1px;$collapsiblesBottomBorderColor:transparent;$collapsiblesBottomBorderStyle:none;$collapsiblesBottomBorderWidth:1px;$collapsiblesLeftBorderColor:transparent;$collapsiblesLeftBorderStyle:none;$collapsiblesLeftBorderWidth:1px;$collapsiblesBorderRadius: 0px;$collapsiblesTopLeftBorderRadius: 0px;$collapsiblesTopRightBorderRadius: 0px;$collapsiblesBottomRightBorderRadius: 0px;$collapsiblesBottomLeftBorderRadius: 0px;$collapsiblesLinkColor: $linkColor;$collapsiblesLinkColor:$blue;$collapsiblesLinkBackgroundStyle:none;$collapsiblesLinkBackgroundColor:transparent;$collapsiblesLinkTextDecoration:none;$collapsiblesLinkTextShadow:none;$collapsiblesHoveredLinkColor:$blue;$collapsiblesHoveredLinkBackgroundStyle:none;$collapsiblesHoveredLinkBackgroundColor:transparent;$collapsiblesHoveredLinkTextDecoration:none;$collapsiblesHoveredLinkTextShadow:none;$collapsiblesActiveLinkColor:$blue;$collapsiblesActiveLinkBackgroundStyle:none;$collapsiblesActiveLinkBackgroundColor:transparent;$collapsiblesActiveLinkTextDecoration:none;$collapsiblesActiveLinkTextShadow:none;
 
 // borders
 $collapsiblesInnerBorderColor: $grayLight;
-$collapsiblesInnerBorderStyle: solid;
+$collapsiblesInnerBorderStyle: none;
 $collapsiblesInnerBorderWidth: 1px;
 // Tabs - Active
 // -------------------------
@@ -4223,7 +4195,7 @@ $tabsBackgroundFill: solid;
 $tabsCorners: no;
 $tabsBorders: no;
 
-$tabsBorderColor:$transGrayLight;$tabsBorderStyle:solid;$tabsBorderWidth:1px;$tabsTopBorderColor:transparent;$tabsTopBorderStyle:none;$tabsTopBorderWidth:0;$tabsRightBorderColor:transparent;$tabsRightBorderStyle:none;$tabsRightBorderWidth:0;$tabsBottomBorderColor:transparent;$tabsBottomBorderStyle:none;$tabsBottomBorderWidth:0;$tabsLeftBorderColor:transparent;$tabsLeftBorderStyle:none;$tabsLeftBorderWidth:0;$tabsLinkColor: $linkColor;$tabsLinkColor:$blue;$tabsLinkBackgroundStyle:none;$tabsLinkBackgroundColor:transparent;$tabsLinkTextDecoration:none;$tabsLinkTextShadow:none;$tabsHoveredLinkColor:$blue;$tabsHoveredLinkBackgroundStyle:none;$tabsHoveredLinkBackgroundColor:transparent;$tabsHoveredLinkTextDecoration:none;$tabsHoveredLinkTextShadow:none;$tabsActiveLinkColor:$blue;$tabsActiveLinkBackgroundStyle:none;$tabsActiveLinkBackgroundColor:transparent;$tabsActiveLinkTextDecoration:none;$tabsActiveLinkTextShadow:none;
+$tabsBorderColor:$transGrayLight;$tabsBorderStyle:none;$tabsBorderWidth:0px;$tabsTopBorderColor:transparent;$tabsTopBorderStyle:none;$tabsTopBorderWidth:0;$tabsRightBorderColor:transparent;$tabsRightBorderStyle:none;$tabsRightBorderWidth:0;$tabsBottomBorderColor:transparent;$tabsBottomBorderStyle:none;$tabsBottomBorderWidth:0;$tabsLeftBorderColor:transparent;$tabsLeftBorderStyle:none;$tabsLeftBorderWidth:0;$tabsBorderRadius: 0px;$tabsTopLeftBorderRadius: 0px;$tabsTopRightBorderRadius: 0px;$tabsBottomRightBorderRadius: 0px;$tabsBottomLeftBorderRadius: 0px;$tabsLinkColor: $linkColor;$tabsLinkColor:$blue;$tabsLinkBackgroundStyle:none;$tabsLinkBackgroundColor:transparent;$tabsLinkTextDecoration:none;$tabsLinkTextShadow:none;$tabsHoveredLinkColor:$blue;$tabsHoveredLinkBackgroundStyle:none;$tabsHoveredLinkBackgroundColor:transparent;$tabsHoveredLinkTextDecoration:none;$tabsHoveredLinkTextShadow:none;$tabsActiveLinkColor:$blue;$tabsActiveLinkBackgroundStyle:none;$tabsActiveLinkBackgroundColor:transparent;$tabsActiveLinkTextDecoration:none;$tabsActiveLinkTextShadow:none;
 
 // Tabs - Inactive
 // -------------------------
@@ -4240,14 +4212,13 @@ $tabInActiveCorners: no;
 $tabInActiveBorders: no;
 
 
-$tabsInActiveBorderColor:$transGrayLight;$tabsInActiveBorderStyle:solid;$tabsInActiveBorderWidth:1px;$tabsInActiveTopBorderColor:transparent;$tabsInActiveTopBorderStyle:none;$tabsInActiveTopBorderWidth:0;$tabsInActiveRightBorderColor:transparent;$tabsInActiveRightBorderStyle:none;$tabsInActiveRightBorderWidth:0;$tabsInActiveBottomBorderColor:transparent;$tabsInActiveBottomBorderStyle:none;$tabsInActiveBottomBorderWidth:0;$tabsInActiveLeftBorderColor:transparent;$tabsInActiveLeftBorderStyle:none;$tabsInActiveLeftBorderWidth:0;
+$tabsInActiveBorderColor:$transGrayLight;$tabsInActiveBorderStyle:none;$tabsInActiveBorderWidth:1px;$tabsInActiveTopBorderColor:transparent;$tabsInActiveTopBorderStyle:none;$tabsInActiveTopBorderWidth:0;$tabsInActiveRightBorderColor:transparent;$tabsInActiveRightBorderStyle:none;$tabsInActiveRightBorderWidth:0;$tabsInActiveBottomBorderColor:transparent;$tabsInActiveBottomBorderStyle:none;$tabsInActiveBottomBorderWidth:0;$tabsInActiveLeftBorderColor:transparent;$tabsInActiveLeftBorderStyle:none;$tabsInActiveLeftBorderWidth:0;$tabsInActiveBorderRadius: $baseBorderRadius;$tabsInActiveTopLeftBorderRadius: $baseBorderRadius;$tabsInActiveTopRightBorderRadius: $baseBorderRadius;$tabsInActiveBottomRightBorderRadius: $baseBorderRadius;$tabsInActiveBottomLeftBorderRadius: $baseBorderRadius;
 // Hero unit
 // -------------------------
 $heroUnitBackground:              $grayLighter ;
 $heroUnitHeadingColor:            inherit ;
 $heroUnitLeadColor:               inherit ;
-@import 'components/sidebar';@import 'components/scaffolding-sidebar-bg';    @import 'components/scaffolding';
-    @import 'components/scaffolding-borders';
+@import 'components/sidebar';@import 'components/scaffolding-sidebar-bg';@import 'components/scaffolding-sidebar-borders';    @import 'components/scaffolding';
     @import 'components/links';
 
 
@@ -4286,13 +4257,7 @@ $heroUnitLeadColor:               inherit ;
     @import 'components/hero-unit';
     @import 'components/content-column';
 
-    @import 'components/header';
 
-    @import 'components/navbar';
-    @import 'components/dropdowns';
-    @import 'components/navbar_dropdown';
-    @import 'components/navbar-toggle';
-    @import 'components/navbar-responsive';
 
 }.section--horizontal_sidebar {// Component sizing
 // Based on 14px font-size and 20px line-height
@@ -4966,8 +4931,7 @@ $tabsInActiveBorderColor:$transGrayLight;$tabsInActiveBorderStyle:solid;$tabsInA
 $heroUnitBackground:              $grayLighter ;
 $heroUnitHeadingColor:            inherit ;
 $heroUnitLeadColor:               inherit ;
-@import 'components/scaffolding-background';    @import 'components/scaffolding';
-    @import 'components/scaffolding-borders';
+@import 'components/scaffolding-background';@import 'components/scaffolding-borders';    @import 'components/scaffolding';
     @import 'components/links';
 
 
@@ -5006,13 +4970,7 @@ $heroUnitLeadColor:               inherit ;
     @import 'components/hero-unit';
     @import 'components/content-column';
 
-    @import 'components/header';
 
-    @import 'components/navbar';
-    @import 'components/dropdowns';
-    @import 'components/navbar_dropdown';
-    @import 'components/navbar-toggle';
-    @import 'components/navbar-responsive';
 
 }.section--footer {// Component sizing
 // Based on 14px font-size and 20px line-height
@@ -5686,8 +5644,7 @@ $tabsInActiveBorderColor:$transGrayLight;$tabsInActiveBorderStyle:none;$tabsInAc
 $heroUnitBackground:              $grayLighter ;
 $heroUnitHeadingColor:            inherit ;
 $heroUnitLeadColor:               inherit ;
-@import 'components/scaffolding-background';    @import 'components/scaffolding';
-    @import 'components/scaffolding-borders';
+@import 'components/scaffolding-background';@import 'components/scaffolding-borders';    @import 'components/scaffolding';
     @import 'components/links';
 
 
@@ -5726,12 +5683,6 @@ $heroUnitLeadColor:               inherit ;
     @import 'components/hero-unit';
     @import 'components/content-column';
 
-    @import 'components/header';
 
-    @import 'components/navbar';
-    @import 'components/dropdowns';
-    @import 'components/navbar_dropdown';
-    @import 'components/navbar-toggle';
-    @import 'components/navbar-responsive';
 
 }

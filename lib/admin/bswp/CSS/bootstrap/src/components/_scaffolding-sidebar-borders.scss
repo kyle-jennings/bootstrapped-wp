@@ -1,0 +1,9 @@
+&::after {
+    @include section-glow($outerGlow, $black);
+
+    border-color: $BorderColor;
+    border-radius: $BorderRadius;
+    border-style: $BorderStyle;
+    border-width: $BorderWidth;
+
+}
