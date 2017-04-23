@@ -225,7 +225,7 @@ function kjd_add_body_class( $classes ){
         $classes[] = 'feed';
     } elseif(is_archive() ){
         $classes[] = 'feed';
-    } elseif( is_page() ){
+    } elseif( is_page() || is_single() || is_singular() ){
         $classes[] = 'page';
         $classes[] = 'single';
         $classes[] = get_page_template_slug();

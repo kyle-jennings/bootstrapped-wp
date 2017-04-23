@@ -92,6 +92,9 @@ class Section {
 
 
         $class = __CLASS__;
+        if($GLOBALS[ $class ])
+            unset($GLOBALS[ $class ]);
+
         $GLOBALS[ $class ] = $this;
 
         $this->get_section_field_settings();
@@ -108,7 +111,6 @@ class Section {
         if( !get_option('bswp_site_settings') || $this->form_meta_settings['build_css'] == 'yes') {
             $this->build_css();
         }
-
 
         unset($this->saved_values);
 

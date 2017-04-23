@@ -39,7 +39,16 @@ require 'variables/_quotes.php';
 require 'variables/_preformatted.php';
 require 'variables/_well.php';
 
-require 'variables/_header.php';
+
+// header things
+if($section == 'header_settings'){
+    require 'variables/_header-settings.php';
+}
+
+if($section == 'site_settings')
+    require 'variables/_header.php';
+
+
 require 'variables/_navbar.php';
 require 'variables/_navbar-dropdown.php';
 

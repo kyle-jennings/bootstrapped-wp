@@ -129,11 +129,31 @@ class Header {
 
 
         if(self::$custom_content){
+            // error_log('ajax:'.self::$custom_content);
             self::set_content_markup(self::$custom_content);
             return;
         }
 
 
+    }
+
+
+    /**
+     * sets the header object's output based on what was set as teh content
+     * from the results of the selct_content method
+     * @param string $content [description]
+     */
+    public static function set_content_markup($content = '') {
+        // error_log('passed in:'.$content);
+        self::$content = $content;
+        $output = '';
+        $output .= '<div class="span12 header-content js--header-content">';
+            $output .= self::$content;
+        $output .= '</div>';
+
+        self::$output = $output;
+        self::$custom_content = null;;
+        // error_log('saved: '.self::$output);
     }
 
 
@@ -210,23 +230,6 @@ class Header {
 
 
     /**
-     * sets the header object's output based on what was set as teh content
-     * from the results of the selct_content method
-     * @param string $content [description]
-     */
-    public static function set_content_markup($content = '') {
-
-        self::$content = $content;
-        $output = '';
-        $output .= '<div class="span12 header-content js--header-content">';
-            $output .= self::$content;
-        $output .= '</div>';
-        self::$output = $output;
-        self::$custom_content = null;;
-    }
-
-
-    /**
      * Logic to select which type of content we need to start grabing
      * @return [type] [description]
      */
@@ -235,7 +238,6 @@ class Header {
         $post_page = get_option('page_for_posts', true);
 
         if( self::$template_type == 'frontpage'){
-
             $content = self::get_frontpage_content();
         }elseif( self::$template_type == 'feed' ){
             $content = self::getFeedContent();

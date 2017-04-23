@@ -30,8 +30,10 @@ include dirname(__FILE__).'/components/forms.php';
 include dirname(__FILE__).'/components/buttons.php';
 include dirname(__FILE__).'/components/alerts.php';
 
-$component_options = get_option('bswp_site_settings');
-$component_options = $component_options['settings']['components'];
+$site_settings_options = get_option('bswp_site_settings');
+$component_options = $site_settings_options['settings']['components'];
+
+$active_sections = $site_settings_options['settings']['sections'];
 
 // add components
 // components are determined by the $available_components_toggles array
@@ -112,6 +114,12 @@ $groups = array(
     'layouts' => $layouts,
     'settings' => $settings,
 );
+
+if($active_sections['header'] == 'yes')
+    unset($groups['header']);
+
+// if($active_sections['navbar'] == 'yes')
+    // unset($groups['navbar']);
 
 
 $groups = array_slice($groups, 0, 7, true) +

@@ -17,8 +17,8 @@ foreach($this->sections as $k=>$section):
     // if no values are provided (not in a preview), then we grab them from the DB
     $values = !empty($this->values) ? $this->values : $values = get_option('bswp_'.$section);
 
-    // if the previed section is the body settings, and the current iteration is
-    // on the sidebar settings, and we are in preview mode,
+    // if the previewed section is the body settings, and the current iteration is
+    // on the sidebar settings, AND we are in preview mode,
     // then get the saved sidebar values
     if( reset($this->sections) == 'body_settings'
         && $section == 'sidebar_settings'
@@ -29,13 +29,16 @@ foreach($this->sections as $k=>$section):
 
     // ok, so only include the global settings once, if we are on the
     // site_settings iteration, or we are in preview mode (and in the first iteration)
+    // This basically just sets the things like grids, and font sizes ect ect
     if ( $section == 'site_settings' || ($this->preview == true && $k == 0)):
 ?>
 
 
     @import 'settings/constants';
     <?php
-     echo $this->setVariables($values, $section);
+    // spit out the variables, these get overriden as we start looping through
+    // sections
+    echo $this->setVariables($values, $section);
     ?>
     @import 'settings/mixins';
     @import 'settings/reset';
@@ -61,6 +64,14 @@ foreach($this->sections as $k=>$section):
 <?php
     endif;
 
+
+// ok now the goods, we loop through each section and namespace it
+// with the section name
+//
+// things to note:
+// the sidebar is included when styling the sidebar section, body section, or the default, site settings
+//
+//
 echo $section_name . ' {';
 
     echo $this->setVariables($values, $section);
@@ -70,8 +81,11 @@ echo $section_name . ' {';
     if ( in_array($section, array('sidebar_settings', 'site_settings', 'body_settings')) )
         echo "@import 'components/sidebar';";
 
+
+    // scaffolding
     // if we are styling the sidebar (its activated) then we give it
     // special bg rules
+    // otherwise, we use the standard scaffolding
     if($section == 'sidebar_settings' ):
         echo "@import 'components/scaffolding-sidebar-bg';";
         echo "@import 'components/scaffolding-sidebar-borders';";
@@ -80,9 +94,10 @@ echo $section_name . ' {';
         echo "@import 'components/scaffolding-borders';";
     endif;
 ?>
+
+
     @import 'components/scaffolding';
     @import 'components/links';
-
 
     @import 'components/type';
     @import 'components/blockquotes';
@@ -90,10 +105,8 @@ echo $section_name . ' {';
     @import 'components/forms';
     @import 'components/tables';
 
-
     @import 'components/wells';
     @import 'components/close';
-
 
     @import 'components/buttons';
     @import 'components/button-groups';
@@ -120,14 +133,9 @@ echo $section_name . ' {';
     @import 'components/content-column';
 
 <?php
-    // if we are in the site settings section and neither the headier or navbar
-    // settings sections have been set, then we style the header and navbar
-    if( $section == 'site_settings'
-        && (!in_array('header_settings', $this->sections)
-        && !in_array('navbar_settings', $this->sections) )
-    ):
-    echo "@import 'components/header';";
-    echo "@import 'components/navbar';";
+    // if we are in the site settings section and neither the header or navbar
+    // sections have been activated, then we style the header and navbar
+    if( $section == 'site_settings' && !in_array('navbar_settings', $this->sections) ):
     echo "@import 'components/dropdowns';";
     echo "@import 'components/navbar_dropdown';";
     echo "@import 'components/navbar-toggle';";
@@ -135,9 +143,17 @@ echo $section_name . ' {';
 
     endif;
 
-    // if we are in the header section, style the header
-    if( $section == 'header_settings'):
+    if( $section == 'site_settings' && !in_array('header_settings', $this->sections) ){
+
         echo "@import 'components/header';";
+    }
+
+    // if we are in the header section, style the header
+    // this is what we are having issues with, the header.scss is looking for
+    // variables prefixed with "header", but if we have activated this seciton,
+    // then we need to use a different file
+    if( $section == 'header_settings'):
+        echo "@import 'components/header-settings';";
     endif;
 
     // if we are in the navbar section, style the navbar

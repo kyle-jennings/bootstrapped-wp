@@ -18,6 +18,7 @@ include dirname(__FILE__).'/field-sets/component-borders.php';
 
 
 // component settings
+include dirname(__FILE__).'/components/header-settings.php';
 
 include dirname(__FILE__).'/components/preformatted.php';
 include dirname(__FILE__).'/components/quotes.php';
@@ -80,6 +81,13 @@ $links->add_tab('link', $link);
 $links->add_tab('hovered_link', $hovered_link);
 $links->add_tab('active_link', $active_link);
 
+// settings and layout
+$settings = new SettingsGroup('settings_and_layout');
+$settings->add_tab('settings', $header_settings_tab );
+$settings->add_tab('frontpage', $header_frontpage_settings);
+$settings->add_tab('feed', $header_feed_settings);
+$settings->add_tab('single', $header_single_settings);
+
 
 // this array is mounted by the section object
 // the Section object specifically looks for an array called "groups"
@@ -87,7 +95,6 @@ $groups = array(
     'background_and_borders' => $background_and_borders,
     'text' => $text,
     'links' => $links,
-
     'images' => $images,
     'forms' => $forms,
     'buttons' => $buttons,
@@ -95,7 +102,7 @@ $groups = array(
     'preformatted' => $preformatted,
     'quotes' => $quotes,
     'alerts' => $alerts,
-
+    'settings_and_layout' => $settings
 );
 
 

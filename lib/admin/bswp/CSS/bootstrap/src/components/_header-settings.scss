@@ -1,0 +1,34 @@
+height: $headerHeight;
+
+@if $headerHeight == 100vh {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-wrapper {
+    z-index: 9;
+}
+
+
+text-align: $headingAlignment;
+
+body.frontpage & {
+    text-align: $frontpageAlignment;
+}
+
+body.feed & {
+    text-align: $feedAlignment;
+}
+
+body.single & {
+    text-align: $singleAlignment;
+}
+
+padding: $headerPadding;
+
+.header-content__title {
+    font-size: $headerTitleSize;
+    line-height: $headerTitleSize + 1;
+    word-break: break-all;
+}

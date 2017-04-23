@@ -16,14 +16,21 @@ use function bswp\Settings\_helpers\remove_link_bg;
 use function bswp\Settings\_helpers\border_settings_map;
 
 
-$header_borders = $component_borders;
-
-$header_borders['all_sides_border_style'] = clone $component_borders['all_sides_border_style'];
-
-$header = new SettingsGroup('header');
-
-
-$header->add_tab('settings', array(
+$header_settings_tab = array(
+    'settings' => new Select(
+        array(
+            'label'=> 'Settings',
+            'name'=>'settings',
+            'args' => array(
+                'basic',
+                'advanced',
+            ),
+            'toggle_fields' => array(
+                // 'basic'=>'brand,brand_image,position,movement,menu_toggle_type'
+            ),
+            'preview'=>'form_save_warning'
+        )
+    ),
     'height' => new Select(
         array(
             'label'=> 'Height',
@@ -93,57 +100,18 @@ $header->add_tab('settings', array(
     //     )
     // ),
 
-));
-
-// the colors
-$header->add_tab('background_colors', $background_colors);
-$header->add_tab('background_wallpaper', $background_wallpaper);
-
-$header->add_tab('text',
-    array_merge(
-        $regular_text,
-        array( 'divider0'=>new Divider()),
-        array( 'label0'=>new Label(array('name'=>'Headings'))),
-        $headings_normal,
-        array( 'divider1'=>new Divider()),
-        $headings_link,
-        array( 'divider2'=>new Divider()),
-        $headings_link_hovered
-
-    )
 );
-
-$header->add_tab('links',
-    array_merge(
-        $link,
-        array( 'divider0'=>new Divider()),
-        $hovered_link,
-        array( 'divider1'=>new Divider()),
-        $active_link
-    )
-);
-
-$header->add_tab('borders', array_merge(
-        $header_borders,
-        array( 'divider1'=>new Divider()),
-        array( 'label1'=>new Label(array('name'=>'border_radius'))),
-        $radii_fields
-    )
-);
-
 
 $rebuild_header_script = '
     if(json.output != "no-change"){
-        console.log(json);
         var $preview = $(".preview-window").contents();
         var $output = $(json.output);
         var position = json.callback_args;
-        var $header = $preview.find(".js--header-content");
-        $header.replaceWith($output);
-    }
-';
+        var $settings = $preview.find(".js--header-content");
+        $settings.replaceWith($output);
+    }';
 
-$header->add_tab('frontpage',array(
+$header_frontpage_settings = array(
     'content_type' => new Select(
         array(
             'label'=> 'Content Type',
@@ -195,10 +163,9 @@ $header->add_tab('frontpage',array(
             'preview_dependancies' => '$(\'#frontpage_custom_content_ifr\').contents().find(\'body\').html(),title_alignment,content_type'
         )
     ),
-));
+);
 
-
-$header->add_tab('feed',array(
+$header_feed_settings = array(
     'content_type' => new Select(
         array(
             'label'=> 'Content Type',
@@ -226,10 +193,9 @@ $header->add_tab('feed',array(
         )
     ),
 
-));
+);
 
-
-$header->add_tab('single',array(
+$header_single_settings = array(
     'content_type' => new Select(
         array(
             'label'=> 'Content Type',
@@ -257,4 +223,4 @@ $header->add_tab('single',array(
         )
     ),
 
-));
+);

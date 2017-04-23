@@ -28,9 +28,15 @@ class TemplateSettings {
         $site_settings = get_option('bswp_site_settings');
 
         $layout = $site_settings['settings']['layout'];
+        $active_sections = $site_settings['settings']['sections'];
+
         self::$full_width = ($layout['full_width'] != 'no') ? true : false;
 
-        self::$header_settings = $site_settings['header'];
+        // the header settings, use site_settings if the header section has not been activated
+        self::$header_settings = $active_sections['header'] !='yes'
+            ? $site_settings['header']
+            : get_option('bswp_header_settings')['settings_and_layout'];
+
         self::$sidebar_settings = $site_settings['layouts']['sidebars'];
 
         $active_sections = $site_settings['settings']['sections'];
