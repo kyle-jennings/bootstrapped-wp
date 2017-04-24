@@ -115,6 +115,9 @@ $groups = array(
     'settings' => $settings,
 );
 
+// if($active_sections['navbar'] == 'yes')
+//     unset($groups['navbar']);
+
 if($active_sections['header'] == 'yes')
     unset($groups['header']);
 

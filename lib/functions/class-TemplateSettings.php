@@ -14,6 +14,7 @@ class TemplateSettings {
     public static $sidebar_settings;
     public static $sidebarSectionActivated;
     public static $horizontalSidebarSectionActivated;
+    public static $navbar_settings;
 
     public function __construct($template_type = null, $template = null, $id = null, $url = null)
     {
@@ -31,6 +32,11 @@ class TemplateSettings {
         $active_sections = $site_settings['settings']['sections'];
 
         self::$full_width = ($layout['full_width'] != 'no') ? true : false;
+
+        // the header settings, use site_settings if the header section has not been activated
+        self::$navbar_settings = $active_sections['navbar'] !='yes'
+            ? $site_settings['navbar']['settings']
+            : get_option('bswp_navbar_settings')['settings']['settings'];
 
         // the header settings, use site_settings if the header section has not been activated
         self::$header_settings = $active_sections['header'] !='yes'

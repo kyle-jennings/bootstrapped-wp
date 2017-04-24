@@ -30,9 +30,8 @@ class Navbar{
         // expecting: $position, $movement, $nav_style, $brand, $brand_image,  $menu_toggle_type
         extract($args);
 
-        $site_settings = get_option('bswp_site_settings');
-        self::$site_settings = $site_settings['misc'];
-        self::$nav_settings = $site_settings['navbar']['settings'];
+
+        self::$nav_settings = $GLOBALS['TemplateSettings']::$navbar_settings;
 
         self::$class = $class ? $class : '';
 

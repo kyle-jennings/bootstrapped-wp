@@ -2,31 +2,12 @@
 // Navbars (Redux)
 // --------------------------------------------------
 
-
-// COMMON STYLES
-// -------------
-
 // Base class and wrapper
 .navbar {
     overflow: visible;
     margin-bottom: $baseLineHeight;
-
 }
 
-.section--navbar {
-    padding: 0;
-    @if $navbarFloatSection == yes {
-        margin-bottom: $navbarBottomMargin !important;
-        margin-top: $navbarTopMargin !important;
-    }
-    position: relative;
-    z-index: 1000;
-
-    .section--header & {
-        margin-left: -20;
-        margin-right: -20;
-    }
-}
 
 
 // Inner for background effects

@@ -18,37 +18,10 @@ include dirname(__FILE__).'/field-sets/component-borders.php';
 
 
 // component settings
+include dirname(__FILE__).'/components/navbar-settings.php';
 
-include dirname(__FILE__).'/components/preformatted.php';
-include dirname(__FILE__).'/components/quotes.php';
-include dirname(__FILE__).'/components/tables.php';
-include dirname(__FILE__).'/components/images.php';
 include dirname(__FILE__).'/components/forms.php';
 include dirname(__FILE__).'/components/buttons.php';
-include dirname(__FILE__).'/components/alerts.php';
-
-$component_options = get_option('bswp_site_settings');
-$component_options = $component_options['settings']['components'];
-
-// add components
-// components are determined by the $available_components_toggles array
-// see available-components.php
-// settings are adding in components.php
-
-$components = array();
-if(!empty($component_options)){
-
-    foreach($component_options as $component=>$active){
-
-        if($active !== 'yes')
-        continue;
-
-        $name = str_replace('activate_','', $component);
-        include_once('components/'.$name.'.php');
-        $components[$name] = $$name;
-    }
-}
-
 
 
 $section_name = basename(__FILE__, '.php');
@@ -80,6 +53,17 @@ $links->add_tab('link', $link);
 $links->add_tab('hovered_link', $hovered_link);
 $links->add_tab('active_link', $active_link);
 
+//submenu
+$submenu = new SettingsGroup('submenu');
+$submenu->add_tab('submenu_background_colors', $submenu_background_colors);
+$submenu->add_tab('submenu_text', $submenu_text);
+$submenu->add_tab('submenu_borders', $submenu_borders);
+
+
+// settings
+$settings = new SettingsGroup('settings');
+$settings->add_tab('settings', $submenu_settings);
+
 
 // this array is mounted by the section object
 // the Section object specifically looks for an array called "groups"
@@ -87,18 +71,8 @@ $groups = array(
     'background_and_borders' => $background_and_borders,
     'text' => $text,
     'links' => $links,
-
-    'images' => $images,
     'forms' => $forms,
     'buttons' => $buttons,
-    'tables' => $tables,
-    'preformatted' => $preformatted,
-    'quotes' => $quotes,
-    'alerts' => $alerts,
-
+    'submenu' => $submenu,
+    'settings' => $settings,
 );
-
-
-$groups = array_slice($groups, 0, 7, true) +
-    $components +
-    array_slice($groups, 7, count($groups) - 1, true);

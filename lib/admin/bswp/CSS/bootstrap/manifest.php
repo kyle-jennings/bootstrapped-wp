@@ -51,7 +51,6 @@ foreach($this->sections as $k=>$section):
     @import 'components/section';
     @import 'components/navs';
 
-    @import 'components/brand';
     @import 'settings/responsive-utilities'; // RESPONSIVE CLASSES
     @import 'settings/responsive-1200px-min'; // Large desktops
     @import 'settings/responsive-768px-979px'; // Tablets to regular desktops
@@ -100,6 +99,11 @@ echo $section_name . ' {';
     @import 'components/links';
 
     @import 'components/type';
+    @import 'components/buttons';
+<?php
+
+    if($section !== 'navbar_settings' ):
+?>
     @import 'components/blockquotes';
     @import 'components/code';
     @import 'components/forms';
@@ -108,7 +112,7 @@ echo $section_name . ' {';
     @import 'components/wells';
     @import 'components/close';
 
-    @import 'components/buttons';
+
     @import 'components/button-groups';
     @import 'components/alerts';
 
@@ -133,15 +137,19 @@ echo $section_name . ' {';
     @import 'components/content-column';
 
 <?php
+
+    endif; // if the section is not the navbar
+
     // if we are in the site settings section and neither the header or navbar
     // sections have been activated, then we style the header and navbar
-    if( $section == 'site_settings' && !in_array('navbar_settings', $this->sections) ):
-    echo "@import 'components/dropdowns';";
-    echo "@import 'components/navbar_dropdown';";
-    echo "@import 'components/navbar-toggle';";
-    echo "@import 'components/navbar-responsive';";
-
-    endif;
+    if( $section == 'site_settings' || $section == 'navbar_settings' ){
+        echo "@import 'components/navbar';";
+        echo "@import 'components/dropdowns';";
+        echo "@import 'components/navbar_dropdown';";
+        echo "@import 'components/navbar-toggle';";
+        echo "@import 'components/navbar-responsive';";
+        echo "@import 'components/brand';";
+    }
 
     if( $section == 'site_settings' && !in_array('header_settings', $this->sections) ){
 
@@ -156,14 +164,7 @@ echo $section_name . ' {';
         echo "@import 'components/header-settings';";
     endif;
 
-    // if we are in the navbar section, style the navbar
-    if( $section == 'navbar_settings'):
-        echo "@import 'components/navbar';";
-        echo "@import 'components/dropdowns';";
-        echo "@import 'components/navbar_dropdown';";
-        echo "@import 'components/navbar-toggle';";
-        echo "@import 'components/navbar-responsive';";
-    endif;
+
 ?>
 
 

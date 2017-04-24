@@ -49,8 +49,18 @@ if($section == 'site_settings')
     require 'variables/_header.php';
 
 
-require 'variables/_navbar.php';
-require 'variables/_navbar-dropdown.php';
+if($section == 'site_settings'):
+    require 'variables/_navbar-settings.php';
+    require 'variables/_navbar.php';
+    require 'variables/_navbar-dropdown.php';
+
+elseif( $section == 'navbar_settings'):
+    require 'variables/_navbar-settings--section.php';
+    require 'variables/_navbar.php';
+    require 'variables/_navbar-dropdown.php';
+
+endif;
+
 
 require 'variables/_pagination.php';
 require 'variables/_tooltips.php';
