@@ -10,6 +10,10 @@ use function bswp\Settings\_helpers\heading_toggle;
 
 $comp_all_sides = $all_sides;
 $comp_all_sides['style_border_sides'] = clone $all_sides['style_border_sides'];
+$comp_all_sides['all_sides_border_style'] = clone $all_sides['all_sides_border_style'];
+unset($comp_all_sides['all_sides_border_style']->args[0]);
+$comp_all_sides['all_sides_border_style']->args[] = 'none';
+
 $comp_all_sides['style_border_sides']->toggle_fields['yes'] = implode(array_map(function($v, $k){
     $divider = 'dividerBorder'.$k;
     $border_color = ltrim($v.'_border_color', '_');

@@ -16,7 +16,20 @@ class SetupWidgets {
         $site_settings = get_option('bswp_site_settings');
         $layouts = $site_settings['layouts'];
         self::$sidebars = $layouts['sidebars'];
-        self::$sidebars['footer'] = '{"position":"top","visibility":"all"}';
+
+        $defaults = array(
+            'frontpage' => '{"position":"top","visibility":"all"}',
+            'single' => '{"position":"top","visibility":"all"}',
+            'feed' => '{"position":"top","visibility":"all"}',
+            'footer' => '{"position":"top","visibility":"all"}',
+            'frontpage_widgets_1' => '{"position":"top","visibility":"all"}',
+            'frontpage_widgets_2' => '{"position":"top","visibility":"all"}',
+            'frontpage_widgets_3' => '{"position":"top","visibility":"all"}',
+        );
+        foreach($defaults as $k=>$v){
+            if(empty(self::$sidebars[$k]))
+                self::$sidebars[$k] = $v;
+        }
 
         self::$frontpage_sidebar = json_decode(self::$sidebars['frontpage']);
 

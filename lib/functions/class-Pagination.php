@@ -14,7 +14,7 @@ class Pagination {
         if ($total_pages > 1){
 
           $current_page = max(1, get_query_var('paged'));
-          $output .= '<div class="row">';
+        //   $output .= '<div class="row">';
 
               $output .= '<div class="pagination">';
               $output .=  paginate_links(array(
@@ -29,7 +29,7 @@ class Pagination {
                   'end_size' => 1
                 ));
               $output .= '</div>';
-          $output .= '</div>';
+        //   $output .= '</div>';
 
         }
         $this->output = $output;

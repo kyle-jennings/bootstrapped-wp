@@ -26,8 +26,11 @@ function _component_border_radius_sass_vars($prefix = null, $borders = array(), 
     $output = '';
     $output .= '$'. $prefix . 'BorderRadius: ' . _tern($borders['all_corners'], $default).';';
 
-    if(is_null($prefix) || empty($borders) )
+    if(is_null($prefix) || empty($borders) ){
+        echo $output;
         return;
+    }
+
 
     // loop through each corner
     $corners = array('top_left','top_right','bottom_right', 'bottom_left');

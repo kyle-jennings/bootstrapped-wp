@@ -18,7 +18,8 @@ function add_px_string($index){
     return ($index.'px');
 }
 
-$px_range = range(0,10);
+$px_range = range(1,10);
+$px_range[] = 0;
 
 // this is used to populate the
 $border_styles = array(

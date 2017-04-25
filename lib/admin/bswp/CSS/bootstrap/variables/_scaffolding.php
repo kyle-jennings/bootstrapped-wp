@@ -42,4 +42,4 @@ $outerGlow: <?php echo _tern($layout['outer_glow'], 'none'); ?>;
 <?php
 
 _component_outer_border_sass_vars('', $borders, array('color'=>'$transGrayLight', 'style'=>'solid', 'width'=>'1px' ), $section);
-_component_border_radius_sass_vars('', $border_radii);
+_component_border_radius_sass_vars('', $border_radii, '0px');
