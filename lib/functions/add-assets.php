@@ -17,16 +17,15 @@ function bswp_add_assets(){
     wp_enqueue_script("bootstrap-trans",    $root."/scripts/bootstrap/bootstrap-transition.js", false, null, true);
 
     $component_options = get_option('bswp_site_settings');
-    $component_options = $component_options['available_components']['components'];
+    $component_options = $component_options['settings']['components'];
 
-    if($component_options['activate_tabs'])
-        wp_enqueue_script("bootstrap-tab", $root."/scripts/bootstrap/bootstrap-tab.js", false, null, true);
+    // wp_enqueue_script("bootstrap-tab", $root."/scripts/bootstrap/bootstrap-tab.js", false, null, true);
 
-    if($component_options['activate_tooltips'])
-        wp_enqueue_script("bootstrap-tooltip", $root."/scripts/bootstrap/bootstrap-tooltip.js", false, null, true);
+    // if($component_options['activate_tooltips'])
+    wp_enqueue_script("bootstrap-tooltip", $root."/scripts/bootstrap/bootstrap-tooltip.js", false, null, true);
 
-    if($component_options['activate_popovers'])
-        wp_enqueue_script("bootstrap-popover", $root."/scripts/bootstrap/bootstrap-popover.js", false, null, true);
+    // if($component_options['activate_popovers'])
+    wp_enqueue_script("bootstrap-popover", $root."/scripts/bootstrap/bootstrap-popover.js", false, null, true);
 
 
     wp_enqueue_script("site", $root."/scripts/application.js", 'jquery', null, true);
