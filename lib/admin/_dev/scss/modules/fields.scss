@@ -74,6 +74,7 @@
 
 
 .save-warning {
+    .sortable__title::after,
     label::after,
     &.submit::before {
         color: $red;

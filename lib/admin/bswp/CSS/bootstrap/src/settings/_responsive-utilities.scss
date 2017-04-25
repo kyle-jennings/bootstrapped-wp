@@ -27,6 +27,8 @@
 .hidden-desktop    { display: none !important; }
 .visible-desktop   { display: inherit !important; }
 
+
+
 // Tablets & small desktops only
 @media (min-width: 768px) and (max-width: 979px) {
   // Hide everything else

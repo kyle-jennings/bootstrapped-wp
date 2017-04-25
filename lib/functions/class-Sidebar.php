@@ -17,7 +17,8 @@ class Sidebar
 
         $this->position = $position;
         $this->width = in_array($this->position, array('top', 'bottom')) ? 'span12' : 'span3' ;
-        $this->device_view = $device_view;
+        $this->device_view = str_replace('_','-',$device_view);
+
         $this->preview = $preview;
         if($this->position == 'none')
             return '';

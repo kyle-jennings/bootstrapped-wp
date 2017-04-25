@@ -50,10 +50,9 @@ function frontpage_widgets_3_callback($visibility){
  -------------------------------------------------------------------- */
 function frontpage_content($visibility){
 
-    $visibility = $visibility == 'all' ? '' : $visibility;
+    $visibility = $visibility == 'all' ? '' : str_replace('_','-',$visibility);
 
     $front_page = new Content();
-
 
 	echo '<div class="'.$visibility.' frontpage-component">';
 

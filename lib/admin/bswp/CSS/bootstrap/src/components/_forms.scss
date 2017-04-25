@@ -129,6 +129,9 @@ input[type="color"],
     display: inline-block;
     font-size: $baseFontSize;
     height: $baseLineHeight;
+    @media(max-height: $tabletWidth){
+        height:auto;
+    }
     padding: 4px 6px;
     line-height: $baseLineHeight;
     margin-bottom: $baseLineHeight / 2;;
