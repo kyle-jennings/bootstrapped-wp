@@ -92,7 +92,7 @@ $headerPadding:  <?php echo $header_padding; ?> ;
 ?>
 // Text and Headings
 $headerTitleSize:       <?php echo $header_title_size; ?> ;
-
+$headerBorderRadius: 0;
 
 <?php
     $default_borders = array('color'=>'$transGrayLight', 'style'=>'none', 'width'=>'1px');

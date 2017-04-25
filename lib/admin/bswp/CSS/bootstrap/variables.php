@@ -41,12 +41,12 @@ require 'variables/_well.php';
 
 
 // header things
+if($section == 'site_settings')
+    require 'variables/_header.php';
+
 if($section == 'header_settings'){
     require 'variables/_header-settings.php';
 }
-
-if($section == 'site_settings')
-    require 'variables/_header.php';
 
 
 if($section == 'site_settings'):

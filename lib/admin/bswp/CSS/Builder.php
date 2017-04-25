@@ -170,7 +170,7 @@ class Builder {
      */
     public function build() {
 
-
+        
         $this->compiler->setImportPaths($this->src_dir.'src');
 
         $file = file_get_contents( $this->src_dir . $this->manifest );

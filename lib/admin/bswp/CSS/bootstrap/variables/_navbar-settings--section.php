@@ -2,7 +2,7 @@
 // navbar
 
 $navsettings = $values['settings']['settings'];
-error_log(json_encode($navsettings));
+
 
 $navbg = $values['background_and_borders']['background_colors'];
 $nav_wallpaper = $values['background_and_borders']['wallpaper'];

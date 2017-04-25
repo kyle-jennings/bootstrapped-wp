@@ -11,6 +11,7 @@ if($this->preview == true && reset($this->sections) == 'body_settings')
 
 // loop through each section
 foreach($this->sections as $k=>$section):
+
     // grab the section name
     $section_name = $this->getSectionName( $section );
 
@@ -174,6 +175,6 @@ echo '}';
 
 $contents = ob_get_contents();
 endforeach;
-
+// examine($contents);
 ob_end_clean();
 $this->bootstrap_manifest = $contents;
