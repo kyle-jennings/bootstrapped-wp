@@ -429,7 +429,7 @@ $headerPadding:  20px 0 ;
 $headerTitleSize:       39px ;
 <!-- $headerBorderRadius: 0; -->
 
-$headerBorderColor:$transGrayLight;$headerBorderStyle:solid;$headerBorderWidth:1px;$headerTopBorderColor:transparent;$headerTopBorderStyle:none;$headerTopBorderWidth:1px;$headerRightBorderColor:transparent;$headerRightBorderStyle:none;$headerRightBorderWidth:1px;$headerBottomBorderColor:transparent;$headerBottomBorderStyle:none;$headerBottomBorderWidth:1px;$headerLeftBorderColor:transparent;$headerLeftBorderStyle:none;$headerLeftBorderWidth:1px;$headerBorderRadius: 1px;$headerTopLeftBorderRadius: 1px;$headerTopRightBorderRadius: 1px;$headerBottomRightBorderRadius: 1px;$headerBottomLeftBorderRadius: 1px;$headerLinkColor: $linkColor;$headerLinkColor:$blue;$headerLinkBackgroundStyle:none;$headerLinkBackgroundColor:transparent;$headerLinkTextDecoration:none;$headerLinkTextShadow:none;$headerHoveredLinkColor:$blue;$headerHoveredLinkBackgroundStyle:none;$headerHoveredLinkBackgroundColor:transparent;$headerHoveredLinkTextDecoration:none;$headerHoveredLinkTextShadow:none;$headerActiveLinkColor:$blue;$headerActiveLinkBackgroundStyle:none;$headerActiveLinkBackgroundColor:transparent;$headerActiveLinkTextDecoration:none;$headerActiveLinkTextShadow:none;
+$headerBorderColor:$transGrayLight;$headerBorderStyle:none;$headerBorderWidth:1px;$headerTopBorderColor:transparent;$headerTopBorderStyle:none;$headerTopBorderWidth:1px;$headerRightBorderColor:transparent;$headerRightBorderStyle:none;$headerRightBorderWidth:1px;$headerBottomBorderColor:transparent;$headerBottomBorderStyle:none;$headerBottomBorderWidth:1px;$headerLeftBorderColor:transparent;$headerLeftBorderStyle:none;$headerLeftBorderWidth:1px;$headerBorderRadius: 1px;$headerTopLeftBorderRadius: 1px;$headerTopRightBorderRadius: 1px;$headerBottomRightBorderRadius: 1px;$headerBottomLeftBorderRadius: 1px;$headerLinkColor: $linkColor;$headerLinkColor:$blue;$headerLinkBackgroundStyle:none;$headerLinkBackgroundColor:transparent;$headerLinkTextDecoration:none;$headerLinkTextShadow:none;$headerHoveredLinkColor:$blue;$headerHoveredLinkBackgroundStyle:none;$headerHoveredLinkBackgroundColor:transparent;$headerHoveredLinkTextDecoration:none;$headerHoveredLinkTextShadow:none;$headerActiveLinkColor:$blue;$headerActiveLinkBackgroundStyle:none;$headerActiveLinkBackgroundColor:transparent;$headerActiveLinkTextDecoration:none;$headerActiveLinkTextShadow:none;
 
 $headerHeadingsColor:         $headerText ;
 $headerHeadingsTextDecoration: none ;
@@ -1118,7 +1118,7 @@ $headerPadding:  20px 0 ;
 $headerTitleSize:       39px ;
 <!-- $headerBorderRadius: 0; -->
 
-$headerBorderColor:$transGrayLight;$headerBorderStyle:solid;$headerBorderWidth:1px;$headerTopBorderColor:transparent;$headerTopBorderStyle:none;$headerTopBorderWidth:1px;$headerRightBorderColor:transparent;$headerRightBorderStyle:none;$headerRightBorderWidth:1px;$headerBottomBorderColor:transparent;$headerBottomBorderStyle:none;$headerBottomBorderWidth:1px;$headerLeftBorderColor:transparent;$headerLeftBorderStyle:none;$headerLeftBorderWidth:1px;$headerBorderRadius: 1px;$headerTopLeftBorderRadius: 1px;$headerTopRightBorderRadius: 1px;$headerBottomRightBorderRadius: 1px;$headerBottomLeftBorderRadius: 1px;$headerLinkColor: $linkColor;$headerLinkColor:$blue;$headerLinkBackgroundStyle:none;$headerLinkBackgroundColor:transparent;$headerLinkTextDecoration:none;$headerLinkTextShadow:none;$headerHoveredLinkColor:$blue;$headerHoveredLinkBackgroundStyle:none;$headerHoveredLinkBackgroundColor:transparent;$headerHoveredLinkTextDecoration:none;$headerHoveredLinkTextShadow:none;$headerActiveLinkColor:$blue;$headerActiveLinkBackgroundStyle:none;$headerActiveLinkBackgroundColor:transparent;$headerActiveLinkTextDecoration:none;$headerActiveLinkTextShadow:none;
+$headerBorderColor:$transGrayLight;$headerBorderStyle:none;$headerBorderWidth:1px;$headerTopBorderColor:transparent;$headerTopBorderStyle:none;$headerTopBorderWidth:1px;$headerRightBorderColor:transparent;$headerRightBorderStyle:none;$headerRightBorderWidth:1px;$headerBottomBorderColor:transparent;$headerBottomBorderStyle:none;$headerBottomBorderWidth:1px;$headerLeftBorderColor:transparent;$headerLeftBorderStyle:none;$headerLeftBorderWidth:1px;$headerBorderRadius: 1px;$headerTopLeftBorderRadius: 1px;$headerTopRightBorderRadius: 1px;$headerBottomRightBorderRadius: 1px;$headerBottomLeftBorderRadius: 1px;$headerLinkColor: $linkColor;$headerLinkColor:$blue;$headerLinkBackgroundStyle:none;$headerLinkBackgroundColor:transparent;$headerLinkTextDecoration:none;$headerLinkTextShadow:none;$headerHoveredLinkColor:$blue;$headerHoveredLinkBackgroundStyle:none;$headerHoveredLinkBackgroundColor:transparent;$headerHoveredLinkTextDecoration:none;$headerHoveredLinkTextShadow:none;$headerActiveLinkColor:$blue;$headerActiveLinkBackgroundStyle:none;$headerActiveLinkBackgroundColor:transparent;$headerActiveLinkTextDecoration:none;$headerActiveLinkTextShadow:none;
 
 $headerHeadingsColor:         $headerText ;
 $headerHeadingsTextDecoration: none ;
@@ -1399,5 +1399,1135 @@ $heroUnitLeadColor:               inherit ;
     @import 'components/content-column';
 
 @import 'components/navbar';@import 'components/dropdowns';@import 'components/navbar_dropdown';@import 'components/navbar-toggle';@import 'components/navbar-responsive';@import 'components/brand';@import 'components/header';
+
+}.section--sidebar {// Component sizing
+// Based on 14px font-size and 20px line-height
+
+$paddingLarge:          11px 19px; // 44px
+$paddingSmall:          2px 10px;  // 26px
+$paddingMini:           0px 6px;   // 22px
+
+$baseBorderRadius:      4px;
+$borderRadiusLarge:     6px;
+$borderRadiusSmall:     3px;
+// Body Background
+// -------------------------
+$bodyBackground:        white;
+$bodyBackgroundEnd:        $bodyBackground;
+$bodyBackgroundFill: solid;
+
+
+$bodyUseBackgroundWallpaper: no;
+
+$bodyBackgroundImage: "";
+$bodyBackgroundRepeat: no-repeat;
+$bodyBackgroundAttachment: scroll;
+
+$bodyBackgroundPosition: left top;
+$bodyBackgroundPositionX: 0;
+$bodyBackgroundPositionY: 0;
+
+$bodyBackgroundSize: auto;
+$bodyBackgroundPercentage: 0%;
+
+$bodyBackgroundOverlay: transparent;
+// Grays
+// -------------------------
+$black:                 #000;
+$grayDarker:            #222;
+$grayDark:              #333;
+$gray:                  #555;
+$greyMedium:            #777;
+$grayLight:             #999;
+$grayLighterDark:       #ccc;
+$grayLighter:           #eee;
+$white:                 #fff;
+$offWhite:           #f5f5f5;
+
+// Accent colors
+// -------------------------
+$blue:                  #049cdb;
+$blueDark:              #0064cd;
+$green:                 #46a546;
+$red:                   #9d261d;
+$yellow:                #ffc40d;
+$orange:                #f89406;
+$pink:                  #c3325f;
+$purple:                #7a43b6;
+
+
+// transparent
+$transparent: rgba(0,0,0,0);
+$transGrayLight: rgba(0, 0, 0, 0.2);
+$transGray: rgba(0, 0, 0, 0.5);
+$transBlack: rgba(0, 0, 0, 0.8);
+// Scaffolding
+// -------------------------
+$background:        rgba(3, 3, 3, 1) ;
+$backgroundEnd:        $background ;
+$backgroundFill: solid ;
+
+
+$useBackgroundWallpaper: no ;
+
+$backgroundImage: "none" ;
+$backgroundRepeat: no-repeat ;
+$backgroundAttachment: scroll ;
+
+$backgroundPosition: left top ;
+$backgroundPositionX: 0 ;
+$backgroundPositionY: 0 ;
+
+$backgroundSize: auto ;
+$backgroundPercentage: 0% ;
+
+$backgroundOverlay: transparent ;
+
+
+
+
+// float the section?
+
+$floatSection: no ;
+$topMargin: 0 ;
+$bottomMargin: 0 ;
+$outerGlow: none;
+$BorderColor:#f0d403;$BorderStyle:solid;$BorderWidth:4px;$TopBorderColor:transparent;$TopBorderStyle:none;$TopBorderWidth:1px;$RightBorderColor:transparent;$RightBorderStyle:none;$RightBorderWidth:1px;$BottomBorderColor:transparent;$BottomBorderStyle:none;$BottomBorderWidth:1px;$LeftBorderColor:#f0d403;$LeftBorderStyle:solid;$LeftBorderWidth:4px;$BorderRadius: 1px;$TopLeftBorderRadius: 1px;$TopRightBorderRadius: 1px;$BottomRightBorderRadius: 1px;$BottomLeftBorderRadius: 1px;// text
+$textColor:             #e8e8e8;
+
+
+// Typography
+// -------------------------
+$sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif;
+$serifFontFamily:       Georgia, "Times New Roman", Times, serif;
+$monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace;
+
+$baseFontSize:          14px;
+$baseFontFamily:        $sansFontFamily;
+$baseLineHeight:        20px;
+$altFontFamily:         $serifFontFamily;
+
+$fontSizeLarge:         $baseFontSize * 1.25; // ~18px
+$fontSizeSmall:         $baseFontSize * 0.85; // ~12px
+$fontSizeMini:          $baseFontSize * 0.75; // ~11px
+
+$hrBorder:                $grayLighter;
+// Links
+// -------------------------
+
+$linkColor:         #f5d103 ;
+$linkBackgroundFill: none ;
+$linkBackgroundColor: transparent ;
+$linkTextDecoration: none ;
+$linkTextShadow: darken($linkColor, 15%) ;
+
+$hoveredLinkColor:         #ffed47 ;
+$hoveredLinkBackgroundFill: none ;
+$hoveredLinkBackgroundColor: transparent ;
+$hoveredLinkTextDecoration: none ;
+$hoveredLinkTextShadow: darken($linkColor, 15%) ;
+
+$activeLinkColor:         $blue ;
+$activeLinkBackgroundFill: none ;
+$activeLinkBackgroundColor: transparent ;
+$activeLinkTextDecoration: none ;
+$activeLinkTextShadow: darken($linkColor, 15%) ;
+
+$linkColorHover:        darken($hoveredLinkColor, 15%);
+// headgings
+///////////////
+
+
+$headingsFontFamily:    $baseFontFamily; // empty to use BS default, $baseFontFamily
+$headingsFontWeight:    bold;    // instead of browser default, bold
+
+        $headingsColor:         $textColor ;
+
+        $headingsTextDecoration: none ;
+        $headingsTextShadow: darken($headingsColor, 15%) ;
+
+
+
+
+        $headingsLinkColor:         $linkColor ;
+
+        $headingsLinkTextDecoration: none ;
+        $headingsLinkTextShadow: darken($headingsColor, 15%) ;
+
+
+
+
+        $headingsLinkHoveredColor:         $linkColor ;
+
+        $headingsLinkHoveredTextDecoration: none ;
+        $headingsLinkHoveredTextShadow: darken($headingsColor, 15%) ;
+
+
+
+
+// Dropdowns
+$dropdownBackground:            $white;
+$dropdownBorder:                rgba(0,0,0,.2);
+$dropdownDividerTop:            #e5e5e5;
+$dropdownDividerBottom:         $white;
+
+$dropdownLinkColor:             $grayDark;
+$dropdownLinkColorHover:        $white;
+$dropdownLinkColorActive:       $white;
+
+$dropdownLinkBackgroundActive:  $linkColor;
+$dropdownLinkBackgroundHover:   $dropdownLinkBackgroundActive;
+// Tables
+// -------------------------
+
+// standard row
+$tableBackground:                   $offWhite ;
+$tablesTextColor:       $grayDark;
+$tablesLinkColor:       $linkColor;
+$tableBackgroundHover:              darken($tableBackground, 20%) ;
+
+// header
+$tablesHeaderBackgroundColor:       $grayLighterDark;
+$tablesHeaderTextColor:       $gray;
+
+$tableBackgroundAccent:             $offWhite  ;
+$tableBackgroundAccentHover:              darken($tableBackgroundAccent, 20%) ;
+
+
+// striped rows
+$tableStripedBackground:       $white;
+$tablesStripedTextColor:       $grayDark;
+$tablesStripedLinkColor:       $linkColor;
+
+
+// the row borders
+$tableBorder:                       $grayLighterDark ;
+$tableBorderStyle: none ;
+$tableBorderWidth: 1px ;
+
+// the outer border
+$tableOuterBorder: $tableBorder ;
+$tableOuterBorderStyle: solid ;
+$tableOuterBorderWidth: 1px ;
+
+
+$tableTopBorder: transparent ;
+$tableTopBorderStyle: none ;
+$tableTopBorderWidth: 1px ;
+
+$tableRightBorder: transparent ;
+$tableRightBorderStyle: none ;
+$tableRightBorderWidth: 1px ;
+
+$tableBottomBorder: transparent ;
+$tableBottomBorderStyle: none ;
+$tableBottomBorderWidth: 1px ;
+
+$tableLeftBorder: transparent ;
+$tableLeftBorderStyle: none ;
+$tableLeftBorderWidth: 1px ;
+
+
+// Buttons
+// -------------------------
+$btnBackground:                     $white;
+$btnBackgroundHighlight:            darken($btnBackground, 10%);
+$btnBorder:                        $grayLighterDark;
+$btnText:                           $grayDark;
+$btnBorderColor:$grayLighterDark;$btnBorderStyle:solid;$btnBorderWidth:1px;$btnTopBorderColor:transparent;$btnTopBorderStyle:none;$btnTopBorderWidth:1px;$btnRightBorderColor:transparent;$btnRightBorderStyle:none;$btnRightBorderWidth:1px;$btnBottomBorderColor:transparent;$btnBottomBorderStyle:none;$btnBottomBorderWidth:1px;$btnLeftBorderColor:transparent;$btnLeftBorderStyle:none;$btnLeftBorderWidth:1px;$btnBorderRadius: 1px;$btnTopLeftBorderRadius: 1px;$btnTopRightBorderRadius: 1px;$btnBottomRightBorderRadius: 1px;$btnBottomLeftBorderRadius: 1px;
+$btnPrimaryBackground:              $linkColor ;
+$btnPrimaryBackgroundHighlight:     adjust-hue($btnPrimaryBackground, 20%) ;
+
+$btnInfoBackground:                 #5bc0de ;
+$btnInfoBackgroundHighlight:        #2f96b4 ;
+
+$btnSuccessBackground:              #62c462 ;
+$btnSuccessBackgroundHighlight:     #51a351 ;
+
+$btnWarningBackground:              lighten($orange, 15%) ;
+$btnWarningBackgroundHighlight:     $orange ;
+
+$btnDangerBackground:               #ee5f5b ;
+$btnDangerBackgroundHighlight:      #bd362f ;
+
+$btnInverseBackground:              #444 ;
+$btnInverseBackgroundHighlight:     $grayDarker ;
+// Images
+///////////////////////
+
+$imagePadding: 0px ;
+$imageBackgroundColor: $white;$imageBackgroundEndColor: $white;$imageBackgroundFill: solid;$imageBorderColor:$transGrayLight;$imageBorderStyle:solid;$imageBorderWidth:1px;$imageTopBorderColor:transparent;$imageTopBorderStyle:none;$imageTopBorderWidth:1px;$imageRightBorderColor:transparent;$imageRightBorderStyle:none;$imageRightBorderWidth:1px;$imageBottomBorderColor:transparent;$imageBottomBorderStyle:none;$imageBottomBorderWidth:1px;$imageLeftBorderColor:transparent;$imageLeftBorderStyle:none;$imageLeftBorderWidth:1px;$imageBorderRadius: 1px;$imageTopLeftBorderRadius: 1px;$imageTopRightBorderRadius: 1px;$imageBottomRightBorderRadius: 1px;$imageBottomLeftBorderRadius: 1px;
+
+// caption images
+//////////////////
+
+$imageCaptionTextColor: $textColor ;
+$imageCaptionPadding: 0px ;
+$imageCaptionBackgroundColor: $white;$imageCaptionBackgroundEndColor: $white;$imageCaptionBackgroundFill: solid;$imageCaptionBorderColor:$transGrayLight;$imageCaptionBorderStyle:solid;$imageCaptionBorderWidth:1px;$imageCaptionTopBorderColor:transparent;$imageCaptionTopBorderStyle:none;$imageCaptionTopBorderWidth:1px;$imageCaptionRightBorderColor:transparent;$imageCaptionRightBorderStyle:none;$imageCaptionRightBorderWidth:1px;$imageCaptionBottomBorderColor:transparent;$imageCaptionBottomBorderStyle:none;$imageCaptionBottomBorderWidth:1px;$imageCaptionLeftBorderColor:transparent;$imageCaptionLeftBorderStyle:none;$imageCaptionLeftBorderWidth:1px;$imageCaptionBorderRadius: 1px;$imageCaptionTopLeftBorderRadius: 1px;$imageCaptionTopRightBorderRadius: 1px;$imageCaptionBottomRightBorderRadius: 1px;$imageCaptionBottomLeftBorderRadius: 1px;
+
+// thumbnail images
+/////////////////////
+$imageThumbnailPadding: 0px ;
+$imageThumbnailBackgroundColor: $white;$imageThumbnailBackgroundEndColor: $white;$imageThumbnailBackgroundFill: solid;$imageThumbnailBorderColor:$transGrayLight;$imageThumbnailBorderStyle:solid;$imageThumbnailBorderWidth:1px;$imageThumbnailTopBorderColor:transparent;$imageThumbnailTopBorderStyle:none;$imageThumbnailTopBorderWidth:1px;$imageThumbnailRightBorderColor:transparent;$imageThumbnailRightBorderStyle:none;$imageThumbnailRightBorderWidth:1px;$imageThumbnailBottomBorderColor:transparent;$imageThumbnailBottomBorderStyle:none;$imageThumbnailBottomBorderWidth:1px;$imageThumbnailLeftBorderColor:transparent;$imageThumbnailLeftBorderStyle:none;$imageThumbnailLeftBorderWidth:1px;$imageThumbnailBorderRadius: 1px;$imageThumbnailTopLeftBorderRadius: 1px;$imageThumbnailTopRightBorderRadius: 1px;$imageThumbnailBottomRightBorderRadius: 1px;$imageThumbnailBottomLeftBorderRadius: 1px;
+// Forms
+// -------------------------
+$inputBackground:               $white;
+$inputBorder:                   $grayLighterDark;
+$inputBorderRadius:             $baseBorderRadius;
+$inputDisabledBackground:       $grayLighter;
+$formActionsBackground:         $offWhite;
+$inputHeight:                   $baseLineHeight + 10px; // base line-height + 8px vertical padding + 2px top/bottom border
+$placeholderText:         $grayLight;
+$formRemovePadding: no;
+
+$formTextColor: $grayDark;
+$formBackgroundColor: $white;$formBackgroundEndColor: $white;$formBackgroundFill: solid;$formBorderColor:$transGrayLight;$formBorderStyle:solid;$formBorderWidth:1px;$formTopBorderColor:transparent;$formTopBorderStyle:none;$formTopBorderWidth:1px;$formRightBorderColor:transparent;$formRightBorderStyle:none;$formRightBorderWidth:1px;$formBottomBorderColor:transparent;$formBottomBorderStyle:none;$formBottomBorderWidth:1px;$formLeftBorderColor:transparent;$formLeftBorderStyle:none;$formLeftBorderWidth:1px;$formBorderRadius: 1px;$formTopLeftBorderRadius: 1px;$formTopRightBorderRadius: 1px;$formBottomRightBorderRadius: 1px;$formBottomLeftBorderRadius: 1px;
+$fieldTextColor: $grayDark;
+$fieldBackgroundColor: $white;$fieldBackgroundEndColor: $white;$fieldBackgroundFill: solid;$fieldBorderColor:$transGrayLight;$fieldBorderStyle:solid;$fieldBorderWidth:1px;$fieldTopBorderColor:transparent;$fieldTopBorderStyle:none;$fieldTopBorderWidth:1px;$fieldRightBorderColor:transparent;$fieldRightBorderStyle:none;$fieldRightBorderWidth:1px;$fieldBottomBorderColor:transparent;$fieldBottomBorderStyle:none;$fieldBottomBorderWidth:1px;$fieldLeftBorderColor:transparent;$fieldLeftBorderStyle:none;$fieldLeftBorderWidth:1px;$fieldBorderRadius: 1px;$fieldTopLeftBorderRadius: 1px;$fieldTopRightBorderRadius: 1px;$fieldBottomRightBorderRadius: 1px;$fieldBottomLeftBorderRadius: 1px;
+
+$fieldActiveTextColor: $grayDark;
+$fieldActiveBackgroundColor: $white;$fieldActiveBackgroundEndColor: $white;$fieldActiveBackgroundFill: solid;$fieldActiveBorderColor:$transGrayLight;$fieldActiveBorderStyle:solid;$fieldActiveBorderWidth:1px;$fieldActiveTopBorderColor:transparent;$fieldActiveTopBorderStyle:none;$fieldActiveTopBorderWidth:1px;$fieldActiveRightBorderColor:transparent;$fieldActiveRightBorderStyle:none;$fieldActiveRightBorderWidth:1px;$fieldActiveBottomBorderColor:transparent;$fieldActiveBottomBorderStyle:none;$fieldActiveBottomBorderWidth:1px;$fieldActiveLeftBorderColor:transparent;$fieldActiveLeftBorderStyle:none;$fieldActiveLeftBorderWidth:1px;$fieldActiveBorderRadius: 1px;$fieldActiveTopLeftBorderRadius: 1px;$fieldActiveTopRightBorderRadius: 1px;$fieldActiveBottomRightBorderRadius: 1px;$fieldActiveBottomLeftBorderRadius: 1px;
+// alerts
+// -------------------------
+
+$alertsBackgroundColor:                     $white;
+$alertsBackgroundHighlight:            darken($alertsBackgroundColor, 10%);
+$alertsBackgroundEndColor: transparent;
+$alertsBackgroundFill: solid;
+
+$alertsBorder:                        $grayLighterDark;
+$alertsText:                           $white;
+$alertsBorderColor:$grayLighterDark;$alertsBorderStyle:solid;$alertsBorderWidth:1px;$alertsTopBorderColor:transparent;$alertsTopBorderStyle:none;$alertsTopBorderWidth:1px;$alertsRightBorderColor:transparent;$alertsRightBorderStyle:none;$alertsRightBorderWidth:1px;$alertsBottomBorderColor:transparent;$alertsBottomBorderStyle:none;$alertsBottomBorderWidth:1px;$alertsLeftBorderColor:transparent;$alertsLeftBorderStyle:none;$alertsLeftBorderWidth:1px;$alertsBorderRadius: 1px;$alertsTopLeftBorderRadius: 1px;$alertsTopRightBorderRadius: 1px;$alertsBottomRightBorderRadius: 1px;$alertsBottomLeftBorderRadius: 1px;
+$warningText:             #c09853 ;
+$warningBackground:       #fcf8e3 ;
+$warningBorder:           darken(adjust-hue($warningBackground, -10), 3%) ;
+
+$errorText:               #b94a48 ;
+$errorBackground:         #f2dede ;
+$errorBorder:             darken(adjust-hue($errorBackground, -10), 3%) ;
+
+$successText:             #468847 ;
+$successBackground:       #dff0d8 ;
+$successBorder:           darken(adjust-hue($successBackground, -10), 5%) ;
+
+$infoText:                #3a87ad ;
+$infoBackground:          #d9edf7 ;
+$infoBorder:              darken(adjust-hue($infoBackground, -10), 7%) ;
+// Quotes
+// -------------------------
+
+$quotesColor: $grayDark;
+$quotesBackgroundColor: $offWhite;
+$quotesBackgroundEndColor: transparent;
+$quotesBackgroundFill: solid;
+
+$quotesBackgroundWallpaper: no ;
+
+$quotesBackgroundImage: "none" ;
+$quotesBackgroundRepeat: no-repeat ;
+$quotesBackgroundAttachment: scroll ;
+
+$quotesBackgroundPosition: left top ;
+$quotesBackgroundPositionX: 0 ;
+$quotesBackgroundPositionY: 0 ;
+
+$quotesBackgroundSize: auto ;
+$quotesBackgroundPercentage: 0% ;
+
+$quotesBorder: $grayLighter;
+$quotesBorderColor:$transGrayLight;$quotesBorderStyle:solid;$quotesBorderWidth:1px;$quotesTopBorderColor:transparent;$quotesTopBorderStyle:none;$quotesTopBorderWidth:1px;$quotesRightBorderColor:transparent;$quotesRightBorderStyle:none;$quotesRightBorderWidth:1px;$quotesBottomBorderColor:transparent;$quotesBottomBorderStyle:none;$quotesBottomBorderWidth:1px;$quotesLeftBorderColor:transparent;$quotesLeftBorderStyle:none;$quotesLeftBorderWidth:1px;$quotesBorderRadius: 1px;$quotesTopLeftBorderRadius: 1px;$quotesTopRightBorderRadius: 1px;$quotesBottomRightBorderRadius: 1px;$quotesBottomLeftBorderRadius: 1px;$quotesLinkColor: $linkColor;$quotesLinkColor:$blue;$quotesLinkBackgroundStyle:none;$quotesLinkBackgroundColor:transparent;$quotesLinkTextDecoration:none;$quotesLinkTextShadow:none;$quotesHoveredLinkColor:$blue;$quotesHoveredLinkBackgroundStyle:none;$quotesHoveredLinkBackgroundColor:transparent;$quotesHoveredLinkTextDecoration:none;$quotesHoveredLinkTextShadow:none;$quotesActiveLinkColor:$blue;$quotesActiveLinkBackgroundStyle:none;$quotesActiveLinkBackgroundColor:transparent;$quotesActiveLinkTextDecoration:none;$quotesActiveLinkTextShadow:none;// Preformatted and Code
+// -------------------------
+
+$preColor: $grayDark;
+$preBackgroundColor: $offWhite;
+$preBackgroundEndColor: transparent;
+$preBackgroundFill: solid;
+
+
+$preBackgroundWallpaper: no ;
+
+$preBackgroundImage: "none" ;
+$preBackgroundRepeat: no-repeat ;
+$preBackgroundAttachment: scroll ;
+
+$preBackgroundPosition: left top ;
+$preBackgroundPositionX: 0 ;
+$preBackgroundPositionY: 0 ;
+
+$preBackgroundSize: auto ;
+$preBackgroundPercentage: 0% ;
+
+
+$preBorderColor:$transGrayLight;$preBorderStyle:solid;$preBorderWidth:1px;$preTopBorderColor:transparent;$preTopBorderStyle:none;$preTopBorderWidth:1px;$preRightBorderColor:transparent;$preRightBorderStyle:none;$preRightBorderWidth:1px;$preBottomBorderColor:transparent;$preBottomBorderStyle:none;$preBottomBorderWidth:1px;$preLeftBorderColor:transparent;$preLeftBorderStyle:none;$preLeftBorderWidth:1px;$preBorderRadius: 1px;$preTopLeftBorderRadius: 1px;$preTopRightBorderRadius: 1px;$preBottomRightBorderRadius: 1px;$preBottomLeftBorderRadius: 1px;$preLinkColor: $linkColor;$preLinkColor:$blue;$preLinkBackgroundStyle:none;$preLinkBackgroundColor:transparent;$preLinkTextDecoration:none;$preLinkTextShadow:none;$preHoveredLinkColor:$blue;$preHoveredLinkBackgroundStyle:none;$preHoveredLinkBackgroundColor:transparent;$preHoveredLinkTextDecoration:none;$preHoveredLinkTextShadow:none;$preActiveLinkColor:$blue;$preActiveLinkBackgroundStyle:none;$preActiveLinkBackgroundColor:transparent;$preActiveLinkTextDecoration:none;$preActiveLinkTextShadow:none;// Wells
+// -------------------------
+
+// Wells
+////////
+$wellBackground:                  $offWhite;
+$wellBorder:                      darken($wellBackground, 7%);
+
+$wellColor: $grayDark;
+$wellBackgroundColor: $offWhite;
+$wellBackgroundEndColor: transparent;
+$wellBackgroundFill: solid;
+
+$wellBackgroundWallpaper: no ;
+
+$wellBackgroundImage: "none" ;
+$wellBackgroundRepeat: no-repeat ;
+$wellBackgroundAttachment: scroll ;
+
+$wellBackgroundPosition: left top ;
+$wellBackgroundPositionX: 0 ;
+$wellBackgroundPositionY: 0 ;
+
+$wellBackgroundSize: auto ;
+$wellBackgroundPercentage: 0% ;
+
+
+$wellBorderColor:$transGrayLight;$wellBorderStyle:solid;$wellBorderWidth:1px;$wellTopBorderColor:transparent;$wellTopBorderStyle:none;$wellTopBorderWidth:0;$wellRightBorderColor:transparent;$wellRightBorderStyle:none;$wellRightBorderWidth:0;$wellBottomBorderColor:transparent;$wellBottomBorderStyle:none;$wellBottomBorderWidth:0;$wellLeftBorderColor:transparent;$wellLeftBorderStyle:none;$wellLeftBorderWidth:0;$wellBorderRadius: $baseBorderRadius;$wellLinkColor: $linkColor;$wellLinkColor:$blue;$wellLinkBackgroundStyle:none;$wellLinkBackgroundColor:transparent;$wellLinkTextDecoration:none;$wellLinkTextShadow:none;$wellHoveredLinkColor:$blue;$wellHoveredLinkBackgroundStyle:none;$wellHoveredLinkBackgroundColor:transparent;$wellHoveredLinkTextDecoration:none;$wellHoveredLinkTextShadow:none;$wellActiveLinkColor:$blue;$wellActiveLinkBackgroundStyle:none;$wellActiveLinkBackgroundColor:transparent;$wellActiveLinkTextDecoration:none;$wellActiveLinkTextShadow:none;
+
+// Pagination
+// -------------------------
+$paginationBackground:                #fff ;
+$paginationBorder:                    #ddd ;
+$paginationActiveBackground:          #f5f5f5 ;
+
+
+$paginationBorderColor:$transGrayLight;$paginationBorderStyle:solid;$paginationBorderWidth:1px;$paginationTopBorderColor:transparent;$paginationTopBorderStyle:none;$paginationTopBorderWidth:0;$paginationRightBorderColor:transparent;$paginationRightBorderStyle:none;$paginationRightBorderWidth:0;$paginationBottomBorderColor:transparent;$paginationBottomBorderStyle:none;$paginationBottomBorderWidth:0;$paginationLeftBorderColor:transparent;$paginationLeftBorderStyle:none;$paginationLeftBorderWidth:0;$paginationBorderRadius: $baseBorderRadius;$paginationLinkColor: $blue ;
+$paginationLinkBackgroundColor: $transparent ;
+
+$paginationHoveredLinkColor: $white ;
+$paginationHoveredLinkBackgroundColor: $blue ;
+
+$paginationActiveLinkColor: $white ;
+$paginationActiveLinkBackgroundColor: $blue ;
+
+// Tooltips
+// -------------------------
+$tooltipColor:            $white ;
+$tooltipBackgroundColor:       $black ;
+$tooltipBackgroundEndColor:       $black ;
+$tooltipBackgroundFill:       none ;
+
+$tooltipArrowWidth:       5px ;
+$tooltipArrowColor:       $tooltipBackgroundColor ;
+
+
+$tooltipBorderColor:$transGrayLight;$tooltipBorderStyle:solid;$tooltipBorderWidth:1px;$tooltipTopBorderColor:transparent;$tooltipTopBorderStyle:none;$tooltipTopBorderWidth:0;$tooltipRightBorderColor:transparent;$tooltipRightBorderStyle:none;$tooltipRightBorderWidth:0;$tooltipBottomBorderColor:transparent;$tooltipBottomBorderStyle:none;$tooltipBottomBorderWidth:0;$tooltipLeftBorderColor:transparent;$tooltipLeftBorderStyle:none;$tooltipLeftBorderWidth:0;$tooltipBorderRadius: $baseBorderRadius;
+// popovers
+// -------------------------
+
+
+$popoverColor:            $white ;
+$popoverBackgroundColor:       $black ;
+$popoverBackgroundEndColor:       $popoverBackgroundColor ;
+$popoverBackgroundFill:       none ;
+
+$popoverTitleColor:            $white ;
+
+$popoverTitleBackgroundColor:       $popoverBackgroundColor ;
+$popoverTitleBackgroundEndColor:       $popoverTitleBackgroundColor ;
+$popoverTitleBackgroundFill:       none ;
+
+$popoverTitleBottomBorderStyle:    none;
+$popoverTitleBottomBorderColor:    transparent;
+$popoverTitleBottomBorderWidth:    1px;
+
+
+$popoverBorderColor:$transGrayLight;$popoverBorderStyle:solid;$popoverBorderWidth:1px;$popoverTopBorderColor:transparent;$popoverTopBorderStyle:none;$popoverTopBorderWidth:0;$popoverRightBorderColor:transparent;$popoverRightBorderStyle:none;$popoverRightBorderWidth:0;$popoverBottomBorderColor:transparent;$popoverBottomBorderStyle:none;$popoverBottomBorderWidth:0;$popoverLeftBorderColor:transparent;$popoverLeftBorderStyle:none;$popoverLeftBorderWidth:0;$popoverBorderRadius: $baseBorderRadius;
+
+
+
+// arrows
+$popoverArrowWidth:       5px ;
+$popoverArrowColor:       $popoverBackgroundColor ;
+
+// Special enhancement for popovers
+$popoverArrowOuterWidth:  $popoverArrowWidth + 1 ;
+$popoverArrowOuterColor:  rgba($popoverArrowColor, .25) ;
+// collapsibles
+// -------------------------
+
+//scaffolding
+$collapsiblesColor: $grayDark;
+
+// background colors
+$collapsiblesBackgroundColor: $offWhite;
+$collapsiblesBackgroundEndColor: transparent;
+$collapsiblesBackgroundFill: solid;
+
+// header
+$collapsiblesHeaderBackgroundColor: $collapsiblesBackgroundColor;
+$collapsiblesHeaderBackgroundEndColor: transparent;
+$collapsiblesHeaderBackgroundFill: solid;
+$collapsiblesHeaderTextColor: $collapsiblesColor;
+
+
+
+
+// bg wallpapers
+$collapsiblesBackgroundWallpaper: no ;
+
+$collapsiblesBackgroundImage: "none" ;
+$collapsiblesBackgroundRepeat: no-repeat ;
+$collapsiblesBackgroundAttachment: scroll ;
+
+$collapsiblesBackgroundPosition: left top ;
+$collapsiblesBackgroundPositionX: 0 ;
+$collapsiblesBackgroundPositionY: 0 ;
+
+$collapsiblesBackgroundSize: auto ;
+$collapsiblesBackgroundPercentage: 0% ;
+
+
+$collapsiblesBorderColor:$transGrayLight;$collapsiblesBorderStyle:solid;$collapsiblesBorderWidth:1px;$collapsiblesTopBorderColor:transparent;$collapsiblesTopBorderStyle:none;$collapsiblesTopBorderWidth:0;$collapsiblesRightBorderColor:transparent;$collapsiblesRightBorderStyle:none;$collapsiblesRightBorderWidth:0;$collapsiblesBottomBorderColor:transparent;$collapsiblesBottomBorderStyle:none;$collapsiblesBottomBorderWidth:0;$collapsiblesLeftBorderColor:transparent;$collapsiblesLeftBorderStyle:none;$collapsiblesLeftBorderWidth:0;$collapsiblesBorderRadius: $baseBorderRadius;$collapsiblesLinkColor: $linkColor;$collapsiblesLinkColor:$blue;$collapsiblesLinkBackgroundStyle:none;$collapsiblesLinkBackgroundColor:transparent;$collapsiblesLinkTextDecoration:none;$collapsiblesLinkTextShadow:none;$collapsiblesHoveredLinkColor:$blue;$collapsiblesHoveredLinkBackgroundStyle:none;$collapsiblesHoveredLinkBackgroundColor:transparent;$collapsiblesHoveredLinkTextDecoration:none;$collapsiblesHoveredLinkTextShadow:none;$collapsiblesActiveLinkColor:$blue;$collapsiblesActiveLinkBackgroundStyle:none;$collapsiblesActiveLinkBackgroundColor:transparent;$collapsiblesActiveLinkTextDecoration:none;$collapsiblesActiveLinkTextShadow:none;
+
+// borders
+$collapsiblesInnerBorderColor: $grayLight;
+$collapsiblesInnerBorderStyle: solid;
+$collapsiblesInnerBorderWidth: 1px;
+// Tabs - Active
+// -------------------------
+
+//scaffolding
+$tabsColor: $grayDark;
+
+// background colors
+$tabsBackgroundColor: #f5f5f5;
+$tabsBackgroundEndColor: transparent;
+$tabsBackgroundFill: solid;
+
+$tabsCorners: no;
+$tabsBorders: no;
+
+$tabsBorderColor:$transGrayLight;$tabsBorderStyle:none;$tabsBorderWidth:1px;$tabsTopBorderColor:transparent;$tabsTopBorderStyle:none;$tabsTopBorderWidth:0;$tabsRightBorderColor:transparent;$tabsRightBorderStyle:none;$tabsRightBorderWidth:0;$tabsBottomBorderColor:transparent;$tabsBottomBorderStyle:none;$tabsBottomBorderWidth:0;$tabsLeftBorderColor:transparent;$tabsLeftBorderStyle:none;$tabsLeftBorderWidth:0;$tabsBorderRadius: 1px;$tabsTopLeftBorderRadius: 1px;$tabsTopRightBorderRadius: 1px;$tabsBottomRightBorderRadius: 1px;$tabsBottomLeftBorderRadius: 1px;$tabsLinkColor: $linkColor;$tabsLinkColor:$blue;$tabsLinkBackgroundStyle:none;$tabsLinkBackgroundColor:transparent;$tabsLinkTextDecoration:none;$tabsLinkTextShadow:none;$tabsHoveredLinkColor:$blue;$tabsHoveredLinkBackgroundStyle:none;$tabsHoveredLinkBackgroundColor:transparent;$tabsHoveredLinkTextDecoration:none;$tabsHoveredLinkTextShadow:none;$tabsActiveLinkColor:$blue;$tabsActiveLinkBackgroundStyle:none;$tabsActiveLinkBackgroundColor:transparent;$tabsActiveLinkTextDecoration:none;$tabsActiveLinkTextShadow:none;
+
+// Tabs - Inactive
+// -------------------------
+
+// scaffolding
+$tabsInActiveColor: $grayDark;
+
+// background colors
+$tabsInActiveBackgroundColor: #f5f5f5;
+$tabsInActiveBackgroundEndColor: transparent;
+$tabsInActiveBackgroundFill: solid;
+
+$tabInActiveCorners: no;
+$tabInActiveBorders: no;
+
+
+$tabsInActiveBorderColor:$transGrayLight;$tabsInActiveBorderStyle:none;$tabsInActiveBorderWidth:1px;$tabsInActiveTopBorderColor:transparent;$tabsInActiveTopBorderStyle:none;$tabsInActiveTopBorderWidth:0;$tabsInActiveRightBorderColor:transparent;$tabsInActiveRightBorderStyle:none;$tabsInActiveRightBorderWidth:0;$tabsInActiveBottomBorderColor:transparent;$tabsInActiveBottomBorderStyle:none;$tabsInActiveBottomBorderWidth:0;$tabsInActiveLeftBorderColor:transparent;$tabsInActiveLeftBorderStyle:none;$tabsInActiveLeftBorderWidth:0;$tabsInActiveBorderRadius: $baseBorderRadius;$tabsInActiveTopLeftBorderRadius: $baseBorderRadius;$tabsInActiveTopRightBorderRadius: $baseBorderRadius;$tabsInActiveBottomRightBorderRadius: $baseBorderRadius;$tabsInActiveBottomLeftBorderRadius: $baseBorderRadius;
+// Hero unit
+// -------------------------
+$heroUnitBackground:              $grayLighter ;
+$heroUnitHeadingColor:            inherit ;
+$heroUnitLeadColor:               inherit ;
+@import 'components/sidebar';@import 'components/scaffolding-sidebar-bg';@import 'components/scaffolding-sidebar-borders';
+
+    @import 'components/scaffolding';
+    @import 'components/links';
+
+    @import 'components/type';
+    @import 'components/buttons';
+    @import 'components/blockquotes';
+    @import 'components/code';
+    @import 'components/forms';
+    @import 'components/tables';
+
+    @import 'components/wells';
+    @import 'components/close';
+
+
+    @import 'components/button-groups';
+    @import 'components/alerts';
+
+    @import 'components/breadcrumbs';
+    @import 'components/pagination';
+    @import 'components/pager';
+
+    @import 'components/tooltip';
+    @import 'components/popovers';
+
+    @import 'components/images';
+
+    @import 'components/thumbnails';
+
+    @import 'components/media';
+    @import 'components/labels-badges';
+    @import 'components/progress-bars';
+    @import 'components/accordion';
+    @import 'components/tabbables';
+    @import 'components/carousel';
+    @import 'components/hero-unit';
+    @import 'components/content-column';
+
+
+
+}.section--footer {// Component sizing
+// Based on 14px font-size and 20px line-height
+
+$paddingLarge:          11px 19px; // 44px
+$paddingSmall:          2px 10px;  // 26px
+$paddingMini:           0px 6px;   // 22px
+
+$baseBorderRadius:      4px;
+$borderRadiusLarge:     6px;
+$borderRadiusSmall:     3px;
+// Body Background
+// -------------------------
+$bodyBackground:        white;
+$bodyBackgroundEnd:        $bodyBackground;
+$bodyBackgroundFill: solid;
+
+
+$bodyUseBackgroundWallpaper: no;
+
+$bodyBackgroundImage: "";
+$bodyBackgroundRepeat: no-repeat;
+$bodyBackgroundAttachment: scroll;
+
+$bodyBackgroundPosition: left top;
+$bodyBackgroundPositionX: 0;
+$bodyBackgroundPositionY: 0;
+
+$bodyBackgroundSize: auto;
+$bodyBackgroundPercentage: 0%;
+
+$bodyBackgroundOverlay: transparent;
+// Grays
+// -------------------------
+$black:                 #000;
+$grayDarker:            #222;
+$grayDark:              #333;
+$gray:                  #555;
+$greyMedium:            #777;
+$grayLight:             #999;
+$grayLighterDark:       #ccc;
+$grayLighter:           #eee;
+$white:                 #fff;
+$offWhite:           #f5f5f5;
+
+// Accent colors
+// -------------------------
+$blue:                  #049cdb;
+$blueDark:              #0064cd;
+$green:                 #46a546;
+$red:                   #9d261d;
+$yellow:                #ffc40d;
+$orange:                #f89406;
+$pink:                  #c3325f;
+$purple:                #7a43b6;
+
+
+// transparent
+$transparent: rgba(0,0,0,0);
+$transGrayLight: rgba(0, 0, 0, 0.2);
+$transGray: rgba(0, 0, 0, 0.5);
+$transBlack: rgba(0, 0, 0, 0.8);
+// Scaffolding
+// -------------------------
+$background:        $white ;
+$backgroundEnd:        $background ;
+$backgroundFill: solid ;
+
+
+$useBackgroundWallpaper: no ;
+
+$backgroundImage: "none" ;
+$backgroundRepeat: no-repeat ;
+$backgroundAttachment: scroll ;
+
+$backgroundPosition: left top ;
+$backgroundPositionX: 0 ;
+$backgroundPositionY: 0 ;
+
+$backgroundSize: auto ;
+$backgroundPercentage: 0% ;
+
+$backgroundOverlay: transparent ;
+
+
+
+
+// float the section?
+
+$floatSection: no ;
+$topMargin: 0 ;
+$bottomMargin: 0 ;
+$outerGlow: none;
+$BorderColor:$transGrayLight;$BorderStyle:solid;$BorderWidth:1px;$TopBorderColor:transparent;$TopBorderStyle:none;$TopBorderWidth:1px;$RightBorderColor:transparent;$RightBorderStyle:none;$RightBorderWidth:1px;$BottomBorderColor:transparent;$BottomBorderStyle:none;$BottomBorderWidth:1px;$LeftBorderColor:transparent;$LeftBorderStyle:none;$LeftBorderWidth:1px;$BorderRadius: 1px;$TopLeftBorderRadius: 1px;$TopRightBorderRadius: 1px;$BottomRightBorderRadius: 1px;$BottomLeftBorderRadius: 1px;// text
+$textColor:             $grayDark;
+
+
+// Typography
+// -------------------------
+$sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif;
+$serifFontFamily:       Georgia, "Times New Roman", Times, serif;
+$monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace;
+
+$baseFontSize:          14px;
+$baseFontFamily:        $sansFontFamily;
+$baseLineHeight:        20px;
+$altFontFamily:         $serifFontFamily;
+
+$fontSizeLarge:         $baseFontSize * 1.25; // ~18px
+$fontSizeSmall:         $baseFontSize * 0.85; // ~12px
+$fontSizeMini:          $baseFontSize * 0.75; // ~11px
+
+$hrBorder:                $grayLighter;
+// Links
+// -------------------------
+
+$linkColor:         $blue ;
+$linkBackgroundFill: none ;
+$linkBackgroundColor: transparent ;
+$linkTextDecoration: none ;
+$linkTextShadow: darken($linkColor, 15%) ;
+
+$hoveredLinkColor:         $blue ;
+$hoveredLinkBackgroundFill: none ;
+$hoveredLinkBackgroundColor: transparent ;
+$hoveredLinkTextDecoration: none ;
+$hoveredLinkTextShadow: darken($linkColor, 15%) ;
+
+$activeLinkColor:         $blue ;
+$activeLinkBackgroundFill: none ;
+$activeLinkBackgroundColor: transparent ;
+$activeLinkTextDecoration: none ;
+$activeLinkTextShadow: darken($linkColor, 15%) ;
+
+$linkColorHover:        darken($hoveredLinkColor, 15%);
+// headgings
+///////////////
+
+
+$headingsFontFamily:    $baseFontFamily; // empty to use BS default, $baseFontFamily
+$headingsFontWeight:    bold;    // instead of browser default, bold
+
+        $headingsColor:         $textColor ;
+
+        $headingsTextDecoration: none ;
+        $headingsTextShadow: darken($headingsColor, 15%) ;
+
+
+
+
+        $headingsLinkColor:         $linkColor ;
+
+        $headingsLinkTextDecoration: none ;
+        $headingsLinkTextShadow: darken($headingsColor, 15%) ;
+
+
+
+
+        $headingsLinkHoveredColor:         $linkColor ;
+
+        $headingsLinkHoveredTextDecoration: none ;
+        $headingsLinkHoveredTextShadow: darken($headingsColor, 15%) ;
+
+
+
+
+// Dropdowns
+$dropdownBackground:            $white;
+$dropdownBorder:                rgba(0,0,0,.2);
+$dropdownDividerTop:            #e5e5e5;
+$dropdownDividerBottom:         $white;
+
+$dropdownLinkColor:             $grayDark;
+$dropdownLinkColorHover:        $white;
+$dropdownLinkColorActive:       $white;
+
+$dropdownLinkBackgroundActive:  $linkColor;
+$dropdownLinkBackgroundHover:   $dropdownLinkBackgroundActive;
+// Tables
+// -------------------------
+
+// standard row
+$tableBackground:                   $offWhite ;
+$tablesTextColor:       $grayDark;
+$tablesLinkColor:       $linkColor;
+$tableBackgroundHover:              darken($tableBackground, 20%) ;
+
+// header
+$tablesHeaderBackgroundColor:       $grayLighterDark;
+$tablesHeaderTextColor:       $gray;
+
+$tableBackgroundAccent:             $offWhite  ;
+$tableBackgroundAccentHover:              darken($tableBackgroundAccent, 20%) ;
+
+
+// striped rows
+$tableStripedBackground:       $white;
+$tablesStripedTextColor:       $grayDark;
+$tablesStripedLinkColor:       $linkColor;
+
+
+// the row borders
+$tableBorder:                       $grayLighterDark ;
+$tableBorderStyle: none ;
+$tableBorderWidth: 1px ;
+
+// the outer border
+$tableOuterBorder: $tableBorder ;
+$tableOuterBorderStyle: solid ;
+$tableOuterBorderWidth: 1px ;
+
+
+$tableTopBorder: transparent ;
+$tableTopBorderStyle: none ;
+$tableTopBorderWidth: 1px ;
+
+$tableRightBorder: transparent ;
+$tableRightBorderStyle: none ;
+$tableRightBorderWidth: 1px ;
+
+$tableBottomBorder: transparent ;
+$tableBottomBorderStyle: none ;
+$tableBottomBorderWidth: 1px ;
+
+$tableLeftBorder: transparent ;
+$tableLeftBorderStyle: none ;
+$tableLeftBorderWidth: 1px ;
+
+
+// Buttons
+// -------------------------
+$btnBackground:                     $white;
+$btnBackgroundHighlight:            darken($btnBackground, 10%);
+$btnBorder:                        $grayLighterDark;
+$btnText:                           $grayDark;
+$btnBorderColor:$grayLighterDark;$btnBorderStyle:solid;$btnBorderWidth:1px;$btnTopBorderColor:transparent;$btnTopBorderStyle:none;$btnTopBorderWidth:1px;$btnRightBorderColor:transparent;$btnRightBorderStyle:none;$btnRightBorderWidth:1px;$btnBottomBorderColor:transparent;$btnBottomBorderStyle:none;$btnBottomBorderWidth:1px;$btnLeftBorderColor:transparent;$btnLeftBorderStyle:none;$btnLeftBorderWidth:1px;$btnBorderRadius: 1px;$btnTopLeftBorderRadius: 1px;$btnTopRightBorderRadius: 1px;$btnBottomRightBorderRadius: 1px;$btnBottomLeftBorderRadius: 1px;
+$btnPrimaryBackground:              $linkColor ;
+$btnPrimaryBackgroundHighlight:     adjust-hue($btnPrimaryBackground, 20%) ;
+
+$btnInfoBackground:                 #5bc0de ;
+$btnInfoBackgroundHighlight:        #2f96b4 ;
+
+$btnSuccessBackground:              #62c462 ;
+$btnSuccessBackgroundHighlight:     #51a351 ;
+
+$btnWarningBackground:              lighten($orange, 15%) ;
+$btnWarningBackgroundHighlight:     $orange ;
+
+$btnDangerBackground:               #ee5f5b ;
+$btnDangerBackgroundHighlight:      #bd362f ;
+
+$btnInverseBackground:              #444 ;
+$btnInverseBackgroundHighlight:     $grayDarker ;
+// Images
+///////////////////////
+
+$imagePadding: 0px ;
+$imageBackgroundColor: $white;$imageBackgroundEndColor: $white;$imageBackgroundFill: solid;$imageBorderColor:$transGrayLight;$imageBorderStyle:solid;$imageBorderWidth:1px;$imageTopBorderColor:transparent;$imageTopBorderStyle:none;$imageTopBorderWidth:1px;$imageRightBorderColor:transparent;$imageRightBorderStyle:none;$imageRightBorderWidth:1px;$imageBottomBorderColor:transparent;$imageBottomBorderStyle:none;$imageBottomBorderWidth:1px;$imageLeftBorderColor:transparent;$imageLeftBorderStyle:none;$imageLeftBorderWidth:1px;$imageBorderRadius: 1px;$imageTopLeftBorderRadius: 1px;$imageTopRightBorderRadius: 1px;$imageBottomRightBorderRadius: 1px;$imageBottomLeftBorderRadius: 1px;
+
+// caption images
+//////////////////
+
+$imageCaptionTextColor: $textColor ;
+$imageCaptionPadding: 0px ;
+$imageCaptionBackgroundColor: $white;$imageCaptionBackgroundEndColor: $white;$imageCaptionBackgroundFill: solid;$imageCaptionBorderColor:$transGrayLight;$imageCaptionBorderStyle:solid;$imageCaptionBorderWidth:1px;$imageCaptionTopBorderColor:transparent;$imageCaptionTopBorderStyle:none;$imageCaptionTopBorderWidth:1px;$imageCaptionRightBorderColor:transparent;$imageCaptionRightBorderStyle:none;$imageCaptionRightBorderWidth:1px;$imageCaptionBottomBorderColor:transparent;$imageCaptionBottomBorderStyle:none;$imageCaptionBottomBorderWidth:1px;$imageCaptionLeftBorderColor:transparent;$imageCaptionLeftBorderStyle:none;$imageCaptionLeftBorderWidth:1px;$imageCaptionBorderRadius: 1px;$imageCaptionTopLeftBorderRadius: 1px;$imageCaptionTopRightBorderRadius: 1px;$imageCaptionBottomRightBorderRadius: 1px;$imageCaptionBottomLeftBorderRadius: 1px;
+
+// thumbnail images
+/////////////////////
+$imageThumbnailPadding: 0px ;
+$imageThumbnailBackgroundColor: $white;$imageThumbnailBackgroundEndColor: $white;$imageThumbnailBackgroundFill: solid;$imageThumbnailBorderColor:$transGrayLight;$imageThumbnailBorderStyle:solid;$imageThumbnailBorderWidth:1px;$imageThumbnailTopBorderColor:transparent;$imageThumbnailTopBorderStyle:none;$imageThumbnailTopBorderWidth:1px;$imageThumbnailRightBorderColor:transparent;$imageThumbnailRightBorderStyle:none;$imageThumbnailRightBorderWidth:1px;$imageThumbnailBottomBorderColor:transparent;$imageThumbnailBottomBorderStyle:none;$imageThumbnailBottomBorderWidth:1px;$imageThumbnailLeftBorderColor:transparent;$imageThumbnailLeftBorderStyle:none;$imageThumbnailLeftBorderWidth:1px;$imageThumbnailBorderRadius: 1px;$imageThumbnailTopLeftBorderRadius: 1px;$imageThumbnailTopRightBorderRadius: 1px;$imageThumbnailBottomRightBorderRadius: 1px;$imageThumbnailBottomLeftBorderRadius: 1px;
+// Forms
+// -------------------------
+$inputBackground:               $white;
+$inputBorder:                   $grayLighterDark;
+$inputBorderRadius:             $baseBorderRadius;
+$inputDisabledBackground:       $grayLighter;
+$formActionsBackground:         $offWhite;
+$inputHeight:                   $baseLineHeight + 10px; // base line-height + 8px vertical padding + 2px top/bottom border
+$placeholderText:         $grayLight;
+$formRemovePadding: no;
+
+$formTextColor: $grayDark;
+$formBackgroundColor: $white;$formBackgroundEndColor: $white;$formBackgroundFill: solid;$formBorderColor:$transGrayLight;$formBorderStyle:solid;$formBorderWidth:1px;$formTopBorderColor:transparent;$formTopBorderStyle:none;$formTopBorderWidth:1px;$formRightBorderColor:transparent;$formRightBorderStyle:none;$formRightBorderWidth:1px;$formBottomBorderColor:transparent;$formBottomBorderStyle:none;$formBottomBorderWidth:1px;$formLeftBorderColor:transparent;$formLeftBorderStyle:none;$formLeftBorderWidth:1px;$formBorderRadius: 1px;$formTopLeftBorderRadius: 1px;$formTopRightBorderRadius: 1px;$formBottomRightBorderRadius: 1px;$formBottomLeftBorderRadius: 1px;
+$fieldTextColor: $grayDark;
+$fieldBackgroundColor: $white;$fieldBackgroundEndColor: $white;$fieldBackgroundFill: solid;$fieldBorderColor:$transGrayLight;$fieldBorderStyle:solid;$fieldBorderWidth:1px;$fieldTopBorderColor:transparent;$fieldTopBorderStyle:none;$fieldTopBorderWidth:1px;$fieldRightBorderColor:transparent;$fieldRightBorderStyle:none;$fieldRightBorderWidth:1px;$fieldBottomBorderColor:transparent;$fieldBottomBorderStyle:none;$fieldBottomBorderWidth:1px;$fieldLeftBorderColor:transparent;$fieldLeftBorderStyle:none;$fieldLeftBorderWidth:1px;$fieldBorderRadius: 1px;$fieldTopLeftBorderRadius: 1px;$fieldTopRightBorderRadius: 1px;$fieldBottomRightBorderRadius: 1px;$fieldBottomLeftBorderRadius: 1px;
+
+$fieldActiveTextColor: $grayDark;
+$fieldActiveBackgroundColor: $white;$fieldActiveBackgroundEndColor: $white;$fieldActiveBackgroundFill: solid;$fieldActiveBorderColor:$transGrayLight;$fieldActiveBorderStyle:solid;$fieldActiveBorderWidth:1px;$fieldActiveTopBorderColor:transparent;$fieldActiveTopBorderStyle:none;$fieldActiveTopBorderWidth:1px;$fieldActiveRightBorderColor:transparent;$fieldActiveRightBorderStyle:none;$fieldActiveRightBorderWidth:1px;$fieldActiveBottomBorderColor:transparent;$fieldActiveBottomBorderStyle:none;$fieldActiveBottomBorderWidth:1px;$fieldActiveLeftBorderColor:transparent;$fieldActiveLeftBorderStyle:none;$fieldActiveLeftBorderWidth:1px;$fieldActiveBorderRadius: 1px;$fieldActiveTopLeftBorderRadius: 1px;$fieldActiveTopRightBorderRadius: 1px;$fieldActiveBottomRightBorderRadius: 1px;$fieldActiveBottomLeftBorderRadius: 1px;
+// alerts
+// -------------------------
+
+$alertsBackgroundColor:                     $white;
+$alertsBackgroundHighlight:            darken($alertsBackgroundColor, 10%);
+$alertsBackgroundEndColor: transparent;
+$alertsBackgroundFill: solid;
+
+$alertsBorder:                        $grayLighterDark;
+$alertsText:                           $white;
+$alertsBorderColor:$grayLighterDark;$alertsBorderStyle:solid;$alertsBorderWidth:1px;$alertsTopBorderColor:transparent;$alertsTopBorderStyle:none;$alertsTopBorderWidth:1px;$alertsRightBorderColor:transparent;$alertsRightBorderStyle:none;$alertsRightBorderWidth:1px;$alertsBottomBorderColor:transparent;$alertsBottomBorderStyle:none;$alertsBottomBorderWidth:1px;$alertsLeftBorderColor:transparent;$alertsLeftBorderStyle:none;$alertsLeftBorderWidth:1px;$alertsBorderRadius: 1px;$alertsTopLeftBorderRadius: 1px;$alertsTopRightBorderRadius: 1px;$alertsBottomRightBorderRadius: 1px;$alertsBottomLeftBorderRadius: 1px;
+$warningText:             #c09853 ;
+$warningBackground:       #fcf8e3 ;
+$warningBorder:           darken(adjust-hue($warningBackground, -10), 3%) ;
+
+$errorText:               #b94a48 ;
+$errorBackground:         #f2dede ;
+$errorBorder:             darken(adjust-hue($errorBackground, -10), 3%) ;
+
+$successText:             #468847 ;
+$successBackground:       #dff0d8 ;
+$successBorder:           darken(adjust-hue($successBackground, -10), 5%) ;
+
+$infoText:                #3a87ad ;
+$infoBackground:          #d9edf7 ;
+$infoBorder:              darken(adjust-hue($infoBackground, -10), 7%) ;
+// Quotes
+// -------------------------
+
+$quotesColor: $grayDark;
+$quotesBackgroundColor: $offWhite;
+$quotesBackgroundEndColor: transparent;
+$quotesBackgroundFill: solid;
+
+$quotesBackgroundWallpaper: no ;
+
+$quotesBackgroundImage: "none" ;
+$quotesBackgroundRepeat: no-repeat ;
+$quotesBackgroundAttachment: scroll ;
+
+$quotesBackgroundPosition: left top ;
+$quotesBackgroundPositionX: 0 ;
+$quotesBackgroundPositionY: 0 ;
+
+$quotesBackgroundSize: auto ;
+$quotesBackgroundPercentage: 0% ;
+
+$quotesBorder: $grayLighter;
+$quotesBorderColor:$transGrayLight;$quotesBorderStyle:solid;$quotesBorderWidth:1px;$quotesTopBorderColor:transparent;$quotesTopBorderStyle:none;$quotesTopBorderWidth:1px;$quotesRightBorderColor:transparent;$quotesRightBorderStyle:none;$quotesRightBorderWidth:1px;$quotesBottomBorderColor:transparent;$quotesBottomBorderStyle:none;$quotesBottomBorderWidth:1px;$quotesLeftBorderColor:transparent;$quotesLeftBorderStyle:none;$quotesLeftBorderWidth:1px;$quotesBorderRadius: 1px;$quotesTopLeftBorderRadius: 1px;$quotesTopRightBorderRadius: 1px;$quotesBottomRightBorderRadius: 1px;$quotesBottomLeftBorderRadius: 1px;$quotesLinkColor: $linkColor;$quotesLinkColor:$blue;$quotesLinkBackgroundStyle:none;$quotesLinkBackgroundColor:transparent;$quotesLinkTextDecoration:none;$quotesLinkTextShadow:none;$quotesHoveredLinkColor:$blue;$quotesHoveredLinkBackgroundStyle:none;$quotesHoveredLinkBackgroundColor:transparent;$quotesHoveredLinkTextDecoration:none;$quotesHoveredLinkTextShadow:none;$quotesActiveLinkColor:$blue;$quotesActiveLinkBackgroundStyle:none;$quotesActiveLinkBackgroundColor:transparent;$quotesActiveLinkTextDecoration:none;$quotesActiveLinkTextShadow:none;// Preformatted and Code
+// -------------------------
+
+$preColor: $grayDark;
+$preBackgroundColor: $offWhite;
+$preBackgroundEndColor: transparent;
+$preBackgroundFill: solid;
+
+
+$preBackgroundWallpaper: no ;
+
+$preBackgroundImage: "none" ;
+$preBackgroundRepeat: no-repeat ;
+$preBackgroundAttachment: scroll ;
+
+$preBackgroundPosition: left top ;
+$preBackgroundPositionX: 0 ;
+$preBackgroundPositionY: 0 ;
+
+$preBackgroundSize: auto ;
+$preBackgroundPercentage: 0% ;
+
+
+$preBorderColor:$transGrayLight;$preBorderStyle:solid;$preBorderWidth:1px;$preTopBorderColor:transparent;$preTopBorderStyle:none;$preTopBorderWidth:1px;$preRightBorderColor:transparent;$preRightBorderStyle:none;$preRightBorderWidth:1px;$preBottomBorderColor:transparent;$preBottomBorderStyle:none;$preBottomBorderWidth:1px;$preLeftBorderColor:transparent;$preLeftBorderStyle:none;$preLeftBorderWidth:1px;$preBorderRadius: 1px;$preTopLeftBorderRadius: 1px;$preTopRightBorderRadius: 1px;$preBottomRightBorderRadius: 1px;$preBottomLeftBorderRadius: 1px;$preLinkColor: $linkColor;$preLinkColor:$blue;$preLinkBackgroundStyle:none;$preLinkBackgroundColor:transparent;$preLinkTextDecoration:none;$preLinkTextShadow:none;$preHoveredLinkColor:$blue;$preHoveredLinkBackgroundStyle:none;$preHoveredLinkBackgroundColor:transparent;$preHoveredLinkTextDecoration:none;$preHoveredLinkTextShadow:none;$preActiveLinkColor:$blue;$preActiveLinkBackgroundStyle:none;$preActiveLinkBackgroundColor:transparent;$preActiveLinkTextDecoration:none;$preActiveLinkTextShadow:none;// Wells
+// -------------------------
+
+// Wells
+////////
+$wellBackground:                  $offWhite;
+$wellBorder:                      darken($wellBackground, 7%);
+
+$wellColor: $grayDark;
+$wellBackgroundColor: $offWhite;
+$wellBackgroundEndColor: transparent;
+$wellBackgroundFill: solid;
+
+$wellBackgroundWallpaper: no ;
+
+$wellBackgroundImage: "none" ;
+$wellBackgroundRepeat: no-repeat ;
+$wellBackgroundAttachment: scroll ;
+
+$wellBackgroundPosition: left top ;
+$wellBackgroundPositionX: 0 ;
+$wellBackgroundPositionY: 0 ;
+
+$wellBackgroundSize: auto ;
+$wellBackgroundPercentage: 0% ;
+
+
+$wellBorderColor:$transGrayLight;$wellBorderStyle:solid;$wellBorderWidth:1px;$wellTopBorderColor:transparent;$wellTopBorderStyle:none;$wellTopBorderWidth:0;$wellRightBorderColor:transparent;$wellRightBorderStyle:none;$wellRightBorderWidth:0;$wellBottomBorderColor:transparent;$wellBottomBorderStyle:none;$wellBottomBorderWidth:0;$wellLeftBorderColor:transparent;$wellLeftBorderStyle:none;$wellLeftBorderWidth:0;$wellBorderRadius: $baseBorderRadius;$wellLinkColor: $linkColor;$wellLinkColor:$blue;$wellLinkBackgroundStyle:none;$wellLinkBackgroundColor:transparent;$wellLinkTextDecoration:none;$wellLinkTextShadow:none;$wellHoveredLinkColor:$blue;$wellHoveredLinkBackgroundStyle:none;$wellHoveredLinkBackgroundColor:transparent;$wellHoveredLinkTextDecoration:none;$wellHoveredLinkTextShadow:none;$wellActiveLinkColor:$blue;$wellActiveLinkBackgroundStyle:none;$wellActiveLinkBackgroundColor:transparent;$wellActiveLinkTextDecoration:none;$wellActiveLinkTextShadow:none;
+
+// Pagination
+// -------------------------
+$paginationBackground:                #fff ;
+$paginationBorder:                    #ddd ;
+$paginationActiveBackground:          #f5f5f5 ;
+
+
+$paginationBorderColor:$transGrayLight;$paginationBorderStyle:solid;$paginationBorderWidth:1px;$paginationTopBorderColor:transparent;$paginationTopBorderStyle:none;$paginationTopBorderWidth:0;$paginationRightBorderColor:transparent;$paginationRightBorderStyle:none;$paginationRightBorderWidth:0;$paginationBottomBorderColor:transparent;$paginationBottomBorderStyle:none;$paginationBottomBorderWidth:0;$paginationLeftBorderColor:transparent;$paginationLeftBorderStyle:none;$paginationLeftBorderWidth:0;$paginationBorderRadius: $baseBorderRadius;$paginationLinkColor: $blue ;
+$paginationLinkBackgroundColor: $transparent ;
+
+$paginationHoveredLinkColor: $white ;
+$paginationHoveredLinkBackgroundColor: $blue ;
+
+$paginationActiveLinkColor: $white ;
+$paginationActiveLinkBackgroundColor: $blue ;
+
+// Tooltips
+// -------------------------
+$tooltipColor:            $white ;
+$tooltipBackgroundColor:       $black ;
+$tooltipBackgroundEndColor:       $black ;
+$tooltipBackgroundFill:       none ;
+
+$tooltipArrowWidth:       5px ;
+$tooltipArrowColor:       $tooltipBackgroundColor ;
+
+
+$tooltipBorderColor:$transGrayLight;$tooltipBorderStyle:solid;$tooltipBorderWidth:1px;$tooltipTopBorderColor:transparent;$tooltipTopBorderStyle:none;$tooltipTopBorderWidth:0;$tooltipRightBorderColor:transparent;$tooltipRightBorderStyle:none;$tooltipRightBorderWidth:0;$tooltipBottomBorderColor:transparent;$tooltipBottomBorderStyle:none;$tooltipBottomBorderWidth:0;$tooltipLeftBorderColor:transparent;$tooltipLeftBorderStyle:none;$tooltipLeftBorderWidth:0;$tooltipBorderRadius: $baseBorderRadius;
+// popovers
+// -------------------------
+
+
+$popoverColor:            $white ;
+$popoverBackgroundColor:       $black ;
+$popoverBackgroundEndColor:       $popoverBackgroundColor ;
+$popoverBackgroundFill:       none ;
+
+$popoverTitleColor:            $white ;
+
+$popoverTitleBackgroundColor:       $popoverBackgroundColor ;
+$popoverTitleBackgroundEndColor:       $popoverTitleBackgroundColor ;
+$popoverTitleBackgroundFill:       none ;
+
+$popoverTitleBottomBorderStyle:    none;
+$popoverTitleBottomBorderColor:    transparent;
+$popoverTitleBottomBorderWidth:    1px;
+
+
+$popoverBorderColor:$transGrayLight;$popoverBorderStyle:solid;$popoverBorderWidth:1px;$popoverTopBorderColor:transparent;$popoverTopBorderStyle:none;$popoverTopBorderWidth:0;$popoverRightBorderColor:transparent;$popoverRightBorderStyle:none;$popoverRightBorderWidth:0;$popoverBottomBorderColor:transparent;$popoverBottomBorderStyle:none;$popoverBottomBorderWidth:0;$popoverLeftBorderColor:transparent;$popoverLeftBorderStyle:none;$popoverLeftBorderWidth:0;$popoverBorderRadius: $baseBorderRadius;
+
+
+
+// arrows
+$popoverArrowWidth:       5px ;
+$popoverArrowColor:       $popoverBackgroundColor ;
+
+// Special enhancement for popovers
+$popoverArrowOuterWidth:  $popoverArrowWidth + 1 ;
+$popoverArrowOuterColor:  rgba($popoverArrowColor, .25) ;
+// collapsibles
+// -------------------------
+
+//scaffolding
+$collapsiblesColor: $grayDark;
+
+// background colors
+$collapsiblesBackgroundColor: $offWhite;
+$collapsiblesBackgroundEndColor: transparent;
+$collapsiblesBackgroundFill: solid;
+
+// header
+$collapsiblesHeaderBackgroundColor: $collapsiblesBackgroundColor;
+$collapsiblesHeaderBackgroundEndColor: transparent;
+$collapsiblesHeaderBackgroundFill: solid;
+$collapsiblesHeaderTextColor: $collapsiblesColor;
+
+
+
+
+// bg wallpapers
+$collapsiblesBackgroundWallpaper: no ;
+
+$collapsiblesBackgroundImage: "none" ;
+$collapsiblesBackgroundRepeat: no-repeat ;
+$collapsiblesBackgroundAttachment: scroll ;
+
+$collapsiblesBackgroundPosition: left top ;
+$collapsiblesBackgroundPositionX: 0 ;
+$collapsiblesBackgroundPositionY: 0 ;
+
+$collapsiblesBackgroundSize: auto ;
+$collapsiblesBackgroundPercentage: 0% ;
+
+
+$collapsiblesBorderColor:$transGrayLight;$collapsiblesBorderStyle:solid;$collapsiblesBorderWidth:1px;$collapsiblesTopBorderColor:transparent;$collapsiblesTopBorderStyle:none;$collapsiblesTopBorderWidth:0;$collapsiblesRightBorderColor:transparent;$collapsiblesRightBorderStyle:none;$collapsiblesRightBorderWidth:0;$collapsiblesBottomBorderColor:transparent;$collapsiblesBottomBorderStyle:none;$collapsiblesBottomBorderWidth:0;$collapsiblesLeftBorderColor:transparent;$collapsiblesLeftBorderStyle:none;$collapsiblesLeftBorderWidth:0;$collapsiblesBorderRadius: $baseBorderRadius;$collapsiblesLinkColor: $linkColor;$collapsiblesLinkColor:$blue;$collapsiblesLinkBackgroundStyle:none;$collapsiblesLinkBackgroundColor:transparent;$collapsiblesLinkTextDecoration:none;$collapsiblesLinkTextShadow:none;$collapsiblesHoveredLinkColor:$blue;$collapsiblesHoveredLinkBackgroundStyle:none;$collapsiblesHoveredLinkBackgroundColor:transparent;$collapsiblesHoveredLinkTextDecoration:none;$collapsiblesHoveredLinkTextShadow:none;$collapsiblesActiveLinkColor:$blue;$collapsiblesActiveLinkBackgroundStyle:none;$collapsiblesActiveLinkBackgroundColor:transparent;$collapsiblesActiveLinkTextDecoration:none;$collapsiblesActiveLinkTextShadow:none;
+
+// borders
+$collapsiblesInnerBorderColor: $grayLight;
+$collapsiblesInnerBorderStyle: solid;
+$collapsiblesInnerBorderWidth: 1px;
+// Tabs - Active
+// -------------------------
+
+//scaffolding
+$tabsColor: $grayDark;
+
+// background colors
+$tabsBackgroundColor: #f5f5f5;
+$tabsBackgroundEndColor: transparent;
+$tabsBackgroundFill: solid;
+
+$tabsCorners: no;
+$tabsBorders: no;
+
+$tabsBorderColor:$transGrayLight;$tabsBorderStyle:none;$tabsBorderWidth:1px;$tabsTopBorderColor:transparent;$tabsTopBorderStyle:none;$tabsTopBorderWidth:0;$tabsRightBorderColor:transparent;$tabsRightBorderStyle:none;$tabsRightBorderWidth:0;$tabsBottomBorderColor:transparent;$tabsBottomBorderStyle:none;$tabsBottomBorderWidth:0;$tabsLeftBorderColor:transparent;$tabsLeftBorderStyle:none;$tabsLeftBorderWidth:0;$tabsBorderRadius: 1px;$tabsTopLeftBorderRadius: 1px;$tabsTopRightBorderRadius: 1px;$tabsBottomRightBorderRadius: 1px;$tabsBottomLeftBorderRadius: 1px;$tabsLinkColor: $linkColor;$tabsLinkColor:$blue;$tabsLinkBackgroundStyle:none;$tabsLinkBackgroundColor:transparent;$tabsLinkTextDecoration:none;$tabsLinkTextShadow:none;$tabsHoveredLinkColor:$blue;$tabsHoveredLinkBackgroundStyle:none;$tabsHoveredLinkBackgroundColor:transparent;$tabsHoveredLinkTextDecoration:none;$tabsHoveredLinkTextShadow:none;$tabsActiveLinkColor:$blue;$tabsActiveLinkBackgroundStyle:none;$tabsActiveLinkBackgroundColor:transparent;$tabsActiveLinkTextDecoration:none;$tabsActiveLinkTextShadow:none;
+
+// Tabs - Inactive
+// -------------------------
+
+// scaffolding
+$tabsInActiveColor: $grayDark;
+
+// background colors
+$tabsInActiveBackgroundColor: #f5f5f5;
+$tabsInActiveBackgroundEndColor: transparent;
+$tabsInActiveBackgroundFill: solid;
+
+$tabInActiveCorners: no;
+$tabInActiveBorders: no;
+
+
+$tabsInActiveBorderColor:$transGrayLight;$tabsInActiveBorderStyle:none;$tabsInActiveBorderWidth:1px;$tabsInActiveTopBorderColor:transparent;$tabsInActiveTopBorderStyle:none;$tabsInActiveTopBorderWidth:0;$tabsInActiveRightBorderColor:transparent;$tabsInActiveRightBorderStyle:none;$tabsInActiveRightBorderWidth:0;$tabsInActiveBottomBorderColor:transparent;$tabsInActiveBottomBorderStyle:none;$tabsInActiveBottomBorderWidth:0;$tabsInActiveLeftBorderColor:transparent;$tabsInActiveLeftBorderStyle:none;$tabsInActiveLeftBorderWidth:0;$tabsInActiveBorderRadius: $baseBorderRadius;$tabsInActiveTopLeftBorderRadius: $baseBorderRadius;$tabsInActiveTopRightBorderRadius: $baseBorderRadius;$tabsInActiveBottomRightBorderRadius: $baseBorderRadius;$tabsInActiveBottomLeftBorderRadius: $baseBorderRadius;
+// Hero unit
+// -------------------------
+$heroUnitBackground:              $grayLighter ;
+$heroUnitHeadingColor:            inherit ;
+$heroUnitLeadColor:               inherit ;
+@import 'components/scaffolding-background';@import 'components/scaffolding-borders';
+
+    @import 'components/scaffolding';
+    @import 'components/links';
+
+    @import 'components/type';
+    @import 'components/buttons';
+    @import 'components/blockquotes';
+    @import 'components/code';
+    @import 'components/forms';
+    @import 'components/tables';
+
+    @import 'components/wells';
+    @import 'components/close';
+
+
+    @import 'components/button-groups';
+    @import 'components/alerts';
+
+    @import 'components/breadcrumbs';
+    @import 'components/pagination';
+    @import 'components/pager';
+
+    @import 'components/tooltip';
+    @import 'components/popovers';
+
+    @import 'components/images';
+
+    @import 'components/thumbnails';
+
+    @import 'components/media';
+    @import 'components/labels-badges';
+    @import 'components/progress-bars';
+    @import 'components/accordion';
+    @import 'components/tabbables';
+    @import 'components/carousel';
+    @import 'components/hero-unit';
+    @import 'components/content-column';
+
+
 
 }

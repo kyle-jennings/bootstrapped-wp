@@ -35,14 +35,14 @@ $available_sections = array(
 
         )
     ),
-    // 'horizontal_sidebar'=>new Select(
-    //     array(
-    //         'args'=>array('no', 'yes'),
-    //         'name'=>'horizontal_sidebar',
-    //         'label'=>'Horizontal Sidebar',
-    //
-    //     )
-    // ),
+    'horizontal_sidebar'=>new Select(
+        array(
+            'args'=>array('no', 'yes'),
+            'name'=>'horizontal_sidebar',
+            'label'=>'Horizontal Sidebar',
+
+        )
+    ),
 
     'footer'=>new Select(
         array(

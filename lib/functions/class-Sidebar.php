@@ -3,11 +3,11 @@
 class Sidebar
 {
     public $output = '';
-    public $sidebar;
-    public $position;
-    public $width;
-    public $device_view;
-    public $preview;
+    public $sidebar = '';
+    public $position = '';
+    public $width = '';
+    public $device_view = '';
+    public $preview = false;
 
 
     public function __construct($sidebar = 'default', $position = 'none', $device_view = 'all', $preview = null)
@@ -27,6 +27,8 @@ class Sidebar
         // examine($GLOBALS);
         $this->isSidebarSection = $GLOBALS['TemplateSettings']::$sidebarSectionActivated;
         $this->isHorizontalSidebarSection = $GLOBALS['TemplateSettings']::$horizontalSidebarSectionActivated;
+
+
 
         $this->output = $this->getSidebar();
 
@@ -54,13 +56,18 @@ class Sidebar
 	{
 
         $output = '';
-        $width_class = $this->isHorizontalSection() ? '' : $this->width;
+        $width_class = $this->isSectionHorizontal()  ? '' : $this->width;
 
 		ob_start();
 			dynamic_sidebar($this->name);
 		$content = ob_get_clean();
 
-        $output .= '<div class="section section--sidebar sidebar-'.$this->position.' '.$width_class.' '.$this->device_view.'">';
+
+        $section_class = $this->isHorizontalSection()
+            ? 'section--horizontal-sidebar' : 'section--sidebar';
+
+        $output .= '<div class="section '.$section_class.
+            ' sidebar-'.$this->position.' '.$width_class.' '.$this->device_view.'">';
             $output .= '<div class="container">';
 
                 if($this->width == 'span12')
@@ -75,13 +82,22 @@ class Sidebar
 		return $output;
 	}
 
-
     public function isHorizontalSection()
     {
-        // examine($this->isSidebarSection .'--'. $this->position);
-        if(
-            ($this->isSidebarSection == 'yes' || $this->isHorizontalSidebarSection == 'yes')
+        if( $this->isHorizontalSidebarSection == 'yes'
             && in_array($this->position, array('top', 'bottom'))
+        ){
+            return true;
+        }
+        return false;
+    }
+
+
+    public function isSectionHorizontal()
+    {
+        // examine($this->isSidebarSection .'--'. $this->position);
+        if( ($this->isHorizontalSidebarSection == 'yes' || $this->isSidebarSection == 'yes')
+         && in_array($this->position, array('top', 'bottom'))
         ){
             return true;
         }

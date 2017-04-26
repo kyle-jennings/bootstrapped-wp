@@ -42,7 +42,7 @@ class Section {
     public $inherits_from = array();
 
     public $current_group = '';
-    public $groups;
+    public $groups = array();
     public $fields = array();
     public $current_tab = '';
 
@@ -58,11 +58,10 @@ class Section {
             // examine('set');
             $this->name = $name;
         }elseif( isset($_GET['section']) ){
-            // examine('get');
             $this->name = $_GET['section'];
         }elseif( !empty($_POST)){
 
-            preg_match( '/(bswp_){1}[a-zA-Z]+(_settings){1}/', $_POST['option_page'], $m );
+            preg_match( '/(bswp_){1}[a-zA-Z_]+(_settings){1}/', $_POST['option_page'], $m );
 
             if( !isset($_POST['option_page'])
                 || !$m
@@ -135,9 +134,9 @@ class Section {
 
             $sections[] = $section.'_settings';
         }
-
-        if( in_array($this->name, $sections) )
+        if( in_array($this->name, $sections) ){
             return;
+        }
 
         $this->redirectToSiteSettings();
     }
@@ -251,7 +250,6 @@ class Section {
             null,
             'bswp_'.$this->name
         );
-
         register_setting('bswp_'.$this->name, 'bswp_'.$this->name);
 
 

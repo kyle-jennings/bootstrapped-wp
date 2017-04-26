@@ -150,7 +150,9 @@ class Builder {
                 return '.page-wrapper';
                 break;
             default:
-                return '.section--'.str_replace('_settings', '', $section);
+                $find = array('_settings', '_');
+                $replace = array('', '-');
+                return '.section--'.str_replace($find, $replace, $section);
                 break;
         endswitch;
     }
@@ -170,7 +172,7 @@ class Builder {
      */
     public function build() {
 
-        
+
         $this->compiler->setImportPaths($this->src_dir.'src');
 
         $file = file_get_contents( $this->src_dir . $this->manifest );
