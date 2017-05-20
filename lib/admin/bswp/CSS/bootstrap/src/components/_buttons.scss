@@ -12,9 +12,19 @@
     border-color: $btnBorderColor;
     border-style: $btnBorderStyle ;
     border-width: $btnBorderWidth ;
-    border-radius: $baseBorderRadius;
+    border-radius: $btnBorderRadius;
 
-    @include buttonBackground($btnBackground, $btnBackgroundHighlight, $grayDark, 0 1px 1px rgba(255,255,255,.75));
+    background-color: $btnBackgroundColor;
+    @if $btnBackgroundFill == vertical {
+        @include gradient-vertical($btnBackgroundColor, $btnBackgroundEndColor );
+    } @else if $btnBackgroundFill == horizontal {
+        @include gradient-horizontal($btnBackgroundColor, $btnBackgroundEndColor );
+    } @else if $btnBackgroundFill == radial {
+        @include gradient-radial($btnBackgroundColor, $btnBackgroundEndColor );
+    } @else if $btnBackgroundFill == none {
+        background-color: transparent;
+    }
+
     @include box-shadow(inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05));
     color: $btnText;
     cursor: pointer;
@@ -168,27 +178,82 @@ input[type="button"] {
 // Set the backgrounds
 // -------------------------
 .btn-primary {
-    @include buttonBackground($btnPrimaryBackground, $btnPrimaryBackgroundHighlight);
-}
-// Warning appears are orange
-.btn-warning {
-    @include buttonBackground($btnWarningBackground, $btnWarningBackgroundHighlight);
-}
-// Danger and error appear as red
-.btn-danger {
-    @include buttonBackground($btnDangerBackground, $btnDangerBackgroundHighlight);
-}
-// Success appears as green
-.btn-success {
-    @include buttonBackground($btnSuccessBackground, $btnSuccessBackgroundHighlight);
+    border-color: $btnPrimaryBorderColor;
+    background-color: $btnPrimaryBackgroundColor;
+    @if $btnBackgroundFill == vertical {
+        @include gradient-vertical($btnPrimaryBackgroundColor, $btnPrimaryBackgroundEndColor );
+    } @else if $btnBackgroundFill == horizontal {
+        @include gradient-horizontal($btnPrimaryBackgroundColor, $btnPrimaryBackgroundEndColor );
+    } @else if $btnBackgroundFill == radial {
+        @include gradient-radial($btnPrimaryBackgroundColor, $btnPrimaryBackgroundEndColor );
+    } @else if $btnBackgroundFill == none {
+        background-color: transparent;
+    }
+    color: $btnPrimaryText;
 }
 // Info appears as a neutral blue
 .btn-info {
-    @include buttonBackground($btnInfoBackground, $btnInfoBackgroundHighlight);
+    border-color: $btnInfoBorderColor;
+    background-color: $btnInfoBackgroundColor;
+    @if $btnBackgroundFill == vertical {
+        @include gradient-vertical($btnInfoBackgroundColor, $btnInfoBackgroundEndColor );
+    } @else if $btnBackgroundFill == horizontal {
+        @include gradient-horizontal($btnInfoBackgroundColor, $btnInfoBackgroundEndColor );
+    } @else if $btnBackgroundFill == radial {
+        @include gradient-radial($btnInfoBackgroundColor, $btnInfoBackgroundEndColor );
+    } @else if $btnBackgroundFill == none {
+        background-color: transparent;
+    }
+    color: $btnInfoText;
+}
+// Success appears as green
+.btn-success {
+    border-color: $btnSuccessBorderColor;
+    background-color: $btnSuccessBackgroundColor;
+    @if $btnBackgroundFill == vertical {
+        @include gradient-vertical($btnSuccessBackgroundColor, $btnSuccessBackgroundEndColor );
+    } @else if $btnBackgroundFill == horizontal {
+        @include gradient-horizontal($btnSuccessBackgroundColor, $btnSuccessBackgroundEndColor );
+    } @else if $btnBackgroundFill == radial {
+        @include gradient-radial($btnSuccessBackgroundColor, $btnSuccessBackgroundEndColor );
+    } @else if $btnBackgroundFill == none {
+        background-color: transparent;
+    }
+    color: $btnSuccessText;
+}
+// Warning appears are orange
+.btn-warning {
+    border-color: $btnWarningBorderColor;
+    background-color: $btnWarningBackgroundColor;
+    @if $btnBackgroundFill == vertical {
+        @include gradient-vertical($btnWarningBackgroundColor, $btnWarningBackgroundEndColor );
+    } @else if $btnBackgroundFill == horizontal {
+        @include gradient-horizontal($btnWarningBackgroundColor, $btnWarningBackgroundEndColor );
+    } @else if $btnBackgroundFill == radial {
+        @include gradient-radial($btnWarningBackgroundColor, $btnWarningBackgroundEndColor );
+    } @else if $btnBackgroundFill == none {
+        background-color: transparent;
+    }
+    color: $btnWarningText;
+}
+// Danger and error appear as red
+.btn-danger {
+    border-color: $btnDangerBorderColor;
+    background-color: $btnDangerBackgroundColor;
+    @if $btnBackgroundFill == vertical {
+        @include gradient-vertical($btnDangerBackgroundColor, $btnDangerBackgroundEndColor );
+    } @else if $btnBackgroundFill == horizontal {
+        @include gradient-horizontal($btnDangerBackgroundColor, $btnDangerBackgroundEndColor );
+    } @else if $btnBackgroundFill == radial {
+        @include gradient-radial($btnDangerBackgroundColor, $btnDangerBackgroundEndColor );
+    } @else if $btnBackgroundFill == none {
+        background-color: transparent;
+    }
+    color: $btnDangerText;
 }
 // Inverse appears as dark gray
 .btn-inverse {
-    @include buttonBackground($btnInverseBackground, $btnInverseBackgroundHighlight);
+    @include buttonBackground($btnInverseBackgroundColor, $btnInverseBackgroundEndColor);
 }
 
 

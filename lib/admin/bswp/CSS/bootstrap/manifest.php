@@ -108,6 +108,9 @@ echo $section_name . ' {';
     @import 'components/blockquotes';
     @import 'components/code';
     @import 'components/forms';
+    @import 'components/form-fields';
+    @import 'components/form-buttons';
+    @import 'components/form-search';
     @import 'components/tables';
 
     @import 'components/wells';

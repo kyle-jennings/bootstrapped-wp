@@ -107,8 +107,8 @@ class Section {
             examine($this);
 
 
-        if( !get_option('bswp_site_settings') || $this->form_meta_settings['build_css'] == 'yes') {
             $this->build_css();
+        if( !get_option('bswp_site_settings') || $this->form_meta_settings['build_css'] == 'yes') {
         }
 
         unset($this->saved_values);

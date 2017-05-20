@@ -50,7 +50,7 @@ function frontpage_widgets_3_callback($visibility){
  -------------------------------------------------------------------- */
 function frontpage_content($visibility){
 
-    $visibility = $visibility == 'all' ? '' : str_replace('_','-',$visibility);
+
 
     $front_page = new Content();
 
@@ -90,7 +90,8 @@ function kjd_front_page_layout( $components ){
 
         $name = $component->name;
         $visibility = $component->visibility;
-
+        $visibility = $visibility == 'all' ? '' : str_replace('_','-',$visibility);
+        
 		switch( $name ):
 			case 'frontpage_widgets_1':
 				frontpage_widgets_1_callback($visibility);

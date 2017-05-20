@@ -99,6 +99,15 @@ $header->add_tab('settings', array(
 $header->add_tab('background_colors', $background_colors);
 $header->add_tab('background_wallpaper', $background_wallpaper);
 
+$header->add_tab('borders', array_merge(
+        $header_borders,
+        array( 'divider1'=>new Divider()),
+        array( 'label1'=>new Label(array('name'=>'border_radius'))),
+        $radii_fields
+    )
+);
+
+
 $header->add_tab('text',
     array_merge(
         $regular_text,
@@ -123,13 +132,6 @@ $header->add_tab('links',
     )
 );
 
-$header->add_tab('borders', array_merge(
-        $header_borders,
-        array( 'divider1'=>new Divider()),
-        array( 'label1'=>new Label(array('name'=>'border_radius'))),
-        $radii_fields
-    )
-);
 
 
 $rebuild_header_script = '

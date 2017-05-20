@@ -11,7 +11,6 @@ function _component_background_colors_sass_vars($prefix = null, $settings = arra
     $output = '';
     $output .= '$'.$prefix.'BackgroundColor: '. _tern($settings['background_start_color_rgba'], $default).';';
     $output .= '$'.$prefix.'BackgroundEndColor: '. _tern($settings['background_end_color_rgba'], $default).';';
-
     $output .= '$'.$prefix.'BackgroundFill: '. _tern($settings['background_fill'], 'none').';';
     echo $output;
 
@@ -37,6 +36,7 @@ function _component_border_radius_sass_vars($prefix = null, $borders = array(), 
     foreach($corners as $corner):
         $cornerName = $prefix . str_replace(' ','',ucwords(str_replace('_',' ',$corner)));
         $output .= '$'. $cornerName . 'BorderRadius: '. _tern($borders[$corner], $default).';';
+        $output .= "\n";
     endforeach;
 
     // if the corners were set to be set individually, set those
@@ -59,6 +59,7 @@ function _component_outer_border_sass_vars(
     $section = null
 ) {
 
+
     $output = '';
     // just incase there is an issue with teh defaults array, set it again
     $defaults = is_null($defaults) ? array('color'=>'$transGrayLight', 'style'=>'solid', 'width'=>'1px' ) : $defaults ;
@@ -66,8 +67,11 @@ function _component_outer_border_sass_vars(
 
     // set the initial border settings, this sets all the sides at onces
     $output .= '$'. $prefix . 'BorderColor:' . _tern( $borders['all_sides_border_color'], $color) .';';
+        $output .= "\n";
     $output .= '$'. $prefix . 'BorderStyle:' . _tern( $borders['all_sides_border_style'], $style) .';';
+        $output .= "\n";
     $output .= '$'. $prefix . 'BorderWidth:' . _tern( $borders['all_sides_border_width'], $width) .';';
+        $output .= "\n";
 
     if(is_null($prefix) )
         return;
@@ -76,15 +80,20 @@ function _component_outer_border_sass_vars(
     $sides = array('top','right','bottom', 'left');
     foreach($sides as $side):
         $output .= '$'. $prefix . ucfirst($side) .'BorderColor:'. _tern($borders[$side.'_border_color'], 'transparent') .';';
+        $output .= "\n";
+
         $output .= '$'. $prefix . ucfirst($side) .'BorderStyle:'. _tern($borders[$side.'_border_style'], 'none') .';';
+        $output .= "\n";
+
         $output .= '$'. $prefix . ucfirst($side) .'BorderWidth:'. _tern($borders[$side.'_border_width'], '0') .';';
+        $output .= "\n";
 
     endforeach;
 
     if($borders['style_border_sides'] == 'yes'):
-        $output .= '$BorderColor: $TopBorderColor $RightBorderColor $BottomBorderColor $LeftBorderColor;';
-        $output .= '$BorderStyle: $TopBorderStyle $RightBorderStyle $BottomBorderStyle $LeftBorderStyle;';
-        $output .= '$BorderWidth: $TopBorderWidth $RightBorderWidth $BottomBorderWidth $LeftBorderWidth;';
+        $output .= '$'.$prefix.'BorderColor: $'.$prefix.'TopBorderColor $'.$prefix.'RightBorderColor $'.$prefix.'BottomBorderColor $'.$prefix.'LeftBorderColor;';
+        $output .= '$'.$prefix.'BorderStyle: $'.$prefix.'TopBorderStyle $'.$prefix.'RightBorderStyle $'.$prefix.'BottomBorderStyle $'.$prefix.'LeftBorderStyle;';
+        $output .= '$'.$prefix.'BorderWidth: $'.$prefix.'TopBorderWidth $'.$prefix.'RightBorderWidth $'.$prefix.'BottomBorderWidth $'.$prefix.'LeftBorderWidth;';
     endif;
 
     // if($prefix == 'navbar')
@@ -126,6 +135,7 @@ function _component_links_sass_vars($prefix = null, $links = array(), $default =
         $output .= '$'.$state_name . 'BackgroundColor:'. _tern($links[$state.'_background_color_rgba'],'transparent').';';
         $output .= '$'.$state_name . 'TextDecoration:'. _tern($links[$state.'_text_decoration'],'none').';';
         $output .= '$'.$state_name . 'TextShadow:'. _tern($links[$state.'_text_shadow'],'none').';';
+        $output .= "\n";
 
     endforeach;
 

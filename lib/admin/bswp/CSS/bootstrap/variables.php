@@ -72,3 +72,5 @@ require 'variables/_hero-unit.php';
 
 $contents = ob_get_contents();
 ob_end_clean();
+
+// examine($contents);

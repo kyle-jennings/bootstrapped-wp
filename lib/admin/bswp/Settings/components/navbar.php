@@ -227,6 +227,16 @@ unset($navbar_active_link['active_link_text_shadow_rgba']);
 
 
 
+
+$navbar->add_tab('borders', array_merge(
+        $component_borders,
+        array( 'divider1'=>new Divider()),
+        array( 'label1'=>new Label(array('name'=>'border_radius'))),
+        $radii_fields
+    )
+);
+
+
 $navbar->add_tab('text',
     array_merge(
         $regular_text,
@@ -239,15 +249,6 @@ $navbar->add_tab('text',
     )
 );
 
-
-
-$navbar->add_tab('borders', array_merge(
-        $component_borders,
-        array( 'divider1'=>new Divider()),
-        array( 'label1'=>new Label(array('name'=>'border_radius'))),
-        $radii_fields
-    )
-);
 
 
 

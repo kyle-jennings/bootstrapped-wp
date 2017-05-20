@@ -8,9 +8,11 @@ $navbarCollapseDesktopWidth:      $navbarCollapseWidth + 1;
 $navbarHeight:                    40px ;
 $navbarBackgroundStart:           <?php echo _tern($navbg['background_start_color_rgba'], '$white'); ?> ;
 $navbarBackgroundEnd:             <?php echo _tern($navbg['background_end_color_rgba'], 'darken($navbarBackgroundStart, 5%)'); ?> ;
+$navbarBackgroundFill:            <?php echo _tern($navbg['background_fill'], 'solid'); ?> ;
 
-$navbarBackgroundHighlight:       $navbarBackgroundStart ;
-$navbarBackground:                $navbarBackgroundEnd ;
+
+$navbarBackgroundHighlight:       darken($navbarBackgroundStart, 5%);
+$navbarBackground:                $navbarBackgroundStart;
 
 $navbarText:                      <?php echo _tern($navtext['text_color'], '$greyMedium'); ?> ;
 
@@ -21,7 +23,9 @@ $navbarLinkBackgroundColor:       <?php echo _tern($navlinks['link_background_co
 $navbarLinkColorHover:            <?php echo _tern($navlinks['hovered_link_color'], '$navbarLinkColor'); ?> ;
 $navbarLinkBackgroundHoverFill:       <?php echo _tern($navlinks['hovered_link_background_style'], '$navbarLinkBackgroundFill'); ?> ;
 $navbarLinkBackgroundHoverColor:       <?php echo _tern($navlinks['hovered_link_background_color_rgba'], '$navbarLinkBackgroundColor'); ?> ;
-
+<?php
+    // examine($navlinks);
+?>
 $navbarLinkColorActive:           <?php echo _tern($navlinks['active_link_color'], '$navbarLinkColorHover'); ?> ;
 $navbarLinkBackgroundActiveFill:      <?php echo _tern($navlinks['active_link_background_style'], '$navbarLinkBackgroundHoverFill'); ?> ;
 $navbarLinkBackgroundActiveColor:      <?php echo _tern($navlinks['active_link_background_color_rgba'], '$navbarLinkBackgroundHoverColor'); ?> ;

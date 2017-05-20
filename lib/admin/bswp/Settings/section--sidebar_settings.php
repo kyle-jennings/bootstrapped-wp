@@ -87,7 +87,6 @@ $groups = array(
     'background_and_borders' => $background_and_borders,
     'text' => $text,
     'links' => $links,
-
     'images' => $images,
     'forms' => $forms,
     'buttons' => $buttons,

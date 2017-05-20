@@ -1,0 +1,30 @@
+
+// SEARCH FORM
+// -----------
+
+input.search-query {
+    padding-right: 14px;
+    padding-right: 4px \9;
+    padding-left: 14px;
+    padding-left: 4px \9; /* IE7-8 doesn't have border-radius, so don't indent the padding */
+    margin-bottom: 0; // Remove the default margin on all inputs
+    @include border-radius(15px);
+}
+
+/* Allow for input prepend/append in search forms */
+.form-search .input-append .search-query,
+.form-search .input-prepend .search-query {
+    @include border-radius(0); // Override due to specificity
+}
+.form-search .input-append .search-query {
+    @include border-radius($baseBorderRadius 0 0 $baseBorderRadius);
+}
+.form-search .input-append .btn {
+    @include border-radius(0 $baseBorderRadius $baseBorderRadius 0);
+}
+.form-search .input-prepend .search-query {
+    @include border-radius(0 $baseBorderRadius $baseBorderRadius 0);
+}
+.form-search .input-prepend .btn {
+    @include border-radius($baseBorderRadius 0 0 $baseBorderRadius);
+}

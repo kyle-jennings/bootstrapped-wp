@@ -138,22 +138,22 @@
     background-color: $btnBackgroundHighlight;
   }
   .btn-primary.dropdown-toggle {
-    background-color: $btnPrimaryBackgroundHighlight;
+    background-color: $btnPrimaryBackgroundEndColor;
   }
   .btn-warning.dropdown-toggle {
-    background-color: $btnWarningBackgroundHighlight;
+    background-color: $btnWarningBackgroundEndColor;
   }
   .btn-danger.dropdown-toggle {
-    background-color: $btnDangerBackgroundHighlight;
+    background-color: $btnDangerBackgroundEndColor;
   }
   .btn-success.dropdown-toggle {
-    background-color: $btnSuccessBackgroundHighlight;
+    background-color: $btnSuccessBackgroundEndColor;
   }
   .btn-info.dropdown-toggle {
-    background-color: $btnInfoBackgroundHighlight;
+    background-color: $btnInfoBackgroundEndColor;
   }
   .btn-inverse.dropdown-toggle {
-    background-color: $btnInverseBackgroundHighlight;
+    background-color: $btnInverseBackgroundEndColor;
   }
 }
 
